@@ -96,7 +96,7 @@ tr:hover td{background:var(--card)}
 <div class="status-grid">
   <div class="status-item">
     <div class="status-label">LaunchAgents</div>
-    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>34 active</div>
+    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>35 active</div>
   </div>
   <div class="status-item">
     <div class="status-label">Telegram Bot</div>
@@ -191,11 +191,11 @@ tr:hover td{background:var(--card)}
 <h2>Performance</h2>
 <div class="perf-grid">
   <div class="perf-card">
-    <div class="perf-number">29</div>
+    <div class="perf-number">31</div>
     <div class="perf-label">Active Automations</div>
   </div>
   <div class="perf-card">
-    <div class="perf-number">34</div>
+    <div class="perf-number">35</div>
     <div class="perf-label">LaunchAgents</div>
   </div>
   <div class="perf-card">
@@ -248,6 +248,13 @@ tr:hover td{background:var(--card)}
           <td>Daily</td>
           <td>Apple Notes auto-organizer</td>
           <td style="color:var(--dim);font-size:.75rem">auto-organizer.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>7:00am</td>
+          <td>Daily</td>
+          <td>Daily Apple Notes planner (calendar + tasks, priority sorted)</td>
+          <td style="color:var(--dim);font-size:.75rem">daily-note.py</td>
           <td><span class="badge badge-green">ACTIVE</span></td>
         </tr>
         <tr>
@@ -304,6 +311,13 @@ tr:hover td{background:var(--card)}
           <td>Always</td>
           <td>Telegram bot v6 (buttons, /deals, /portfolio, /health)</td>
           <td style="color:var(--dim);font-size:.75rem">telegram-claude-bot.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Every 5min</td>
+          <td>Continuous</td>
+          <td>Telegram watchdog (auto-restart frozen/dead bot)</td>
+          <td style="color:var(--dim);font-size:.75rem">telegram-watchdog.py</td>
           <td><span class="badge badge-green">ACTIVE</span></td>
         </tr>
         <tr>
