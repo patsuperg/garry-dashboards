@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="300">
+<title>GARRY COO System</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#09090b;--card:#111113;--border:#1e1e22;
+  --text:#e4e4e7;--muted:#71717a;--dim:#52525b;
+  --green:#4ade80;--green-bg:#052e16;
+  --amber:#fbbf24;--amber-bg:#422006;
+  --red:#f87171;--red-bg:#450a0a;
+  --blue:#60a5fa;--purple:#a78bfa;
+  --accent:linear-gradient(135deg,#4ade80,#22c55e);
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:24px;max-width:1400px;margin:0 auto;-webkit-font-smoothing:antialiased}
+
+.header{display:flex;justify-content:space-between;align-items:center;padding-bottom:24px;margin-bottom:32px;border-bottom:1px solid var(--border)}
+.header-left{display:flex;align-items:center;gap:16px}
+.logo{width:44px;height:44px;background:var(--accent);border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#09090b}
+.header h1{font-size:1.6rem;font-weight:700;letter-spacing:-.5px}
+.header .sub{color:var(--muted);font-size:.8rem}
+.grade{text-align:right}
+.grade-value{font-size:2.8rem;font-weight:800;background:var(--accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.grade-label{font-size:.65rem;color:var(--green);text-transform:uppercase;letter-spacing:1px}
+
+h2{font-size:.85rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+
+.status-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:40px}
+.status-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;transition:border-color .2s}
+.status-item:hover{border-color:#333}
+.status-label{font-size:.65rem;color:var(--dim);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.status-value{font-size:.9rem;font-weight:600;display:flex;align-items:center}
+
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-bottom:40px}
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;transition:border-color .2s,transform .15s}
+.team-card:hover{border-color:#333;transform:translateY(-2px)}
+.team-header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.avatar{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#09090b}
+.team-name{font-weight:600;font-size:.95rem}
+.team-role{font-size:.7rem;color:var(--muted)}
+.team-desc{font-size:.8rem;color:var(--muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.team-status{display:flex;align-items:center;gap:6px;font-size:.75rem;margin-top:8px}
+
+.perf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-bottom:40px}
+.perf-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center}
+.perf-number{font-size:2rem;font-weight:800;background:linear-gradient(135deg,#60a5fa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2}
+.perf-label{font-size:.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:.8px;margin-top:6px}
+
+table{width:100%;border-collapse:collapse;margin-bottom:40px}
+th{text-align:left;font-size:.65rem;color:var(--dim);text-transform:uppercase;letter-spacing:.8px;padding:10px 14px;border-bottom:1px solid var(--border)}
+td{padding:11px 14px;border-bottom:1px solid #111;font-size:.82rem}
+tr:hover td{background:var(--card)}
+
+.badge{font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+.badge-green{background:var(--green-bg);color:var(--green)}
+.badge-amber{background:var(--amber-bg);color:var(--amber)}
+.badge-red{background:var(--red-bg);color:var(--red)}
+.badge-dim{background:#1a1a1e;color:var(--dim)}
+
+.principles{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;padding:24px 0;border-top:1px solid var(--border);margin-top:20px}
+.principle{font-size:.8rem;color:var(--dim)}
+.principle strong{color:var(--muted)}
+.footer{text-align:center;color:var(--dim);font-size:.7rem;padding-top:16px}
+
+@media(max-width:768px){
+  body{padding:14px}
+  .header{flex-direction:column;align-items:flex-start;gap:12px}
+  .status-grid{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:1fr}
+  .perf-grid{grid-template-columns:repeat(2,1fr)}
+  table{display:block;overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="logo">G</div>
+    <div>
+      <h1>GARRY COO SYSTEM</h1>
+      <div class="sub">Autonomous Operations Centre — Patrick Dickson</div>
+    </div>
+  </div>
+  <div class="grade">
+    <div class="grade-value">A+</div>
+    <div class="grade-label">System Grade</div>
+  </div>
+</div>
+
+<h2>System Status</h2>
+<div class="status-grid">
+  <div class="status-item">
+    <div class="status-label">LaunchAgents</div>
+    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>32 active</div>
+  </div>
+  <div class="status-item">
+    <div class="status-label">Telegram Bot</div>
+    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>v6 Online</div>
+  </div>
+  <div class="status-item">
+    <div class="status-label">Deal Pipeline</div>
+    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>Autonomous</div>
+  </div>
+  <div class="status-item">
+    <div class="status-label">Security</div>
+    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>PASS</div>
+  </div>
+  <div class="status-item">
+    <div class="status-label">Disk Free</div>
+    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>650Gi</div>
+  </div>
+  <div class="status-item">
+    <div class="status-label">Ollama</div>
+    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>Running</div>
+  </div>
+  <div class="status-item">
+    <div class="status-label">Auto-Heal</div>
+    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>Active</div>
+  </div>
+  <div class="status-item">
+    <div class="status-label">Backups</div>
+    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>Hourly</div>
+  </div>
+</div>
+
+<h2>Agent Team</h2>
+<div class="team-grid">
+  
+        <div class="team-card">
+          <div class="team-header">
+            <div class="avatar" style="background:linear-gradient(135deg,#4ade80,#22c55e)">G</div>
+            <div>
+              <div class="team-name">Garry</div>
+              <div class="team-role">Chief Operating Officer</div>
+            </div>
+          </div>
+          <div class="team-desc">Overall coordination, system orchestration, Patrick's bandwidth protection</div>
+          <div class="team-status"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span> Online</div>
+        </div>
+        <div class="team-card">
+          <div class="team-header">
+            <div class="avatar" style="background:linear-gradient(135deg,#60a5fa,#3b82f6)">A</div>
+            <div>
+              <div class="team-name">Atlas</div>
+              <div class="team-role">Finance Specialist</div>
+            </div>
+          </div>
+          <div class="team-desc">Portfolio tracking, HAP payments, cash flow analysis, GW Carter CPA coordination</div>
+          <div class="team-status"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span> Online</div>
+        </div>
+        <div class="team-card">
+          <div class="team-header">
+            <div class="avatar" style="background:linear-gradient(135deg,#fbbf24,#f59e0b)">M</div>
+            <div>
+              <div class="team-name">Mercury</div>
+              <div class="team-role">Operations</div>
+            </div>
+          </div>
+          <div class="team-desc">Property management, Avenue Residential liaison, maintenance coordination</div>
+          <div class="team-status"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span> Online</div>
+        </div>
+        <div class="team-card">
+          <div class="team-header">
+            <div class="avatar" style="background:linear-gradient(135deg,#f87171,#ef4444)">S</div>
+            <div>
+              <div class="team-name">Sentinel</div>
+              <div class="team-role">Risk & Security</div>
+            </div>
+          </div>
+          <div class="team-desc">Security audits, secret scanning, backup integrity, key rotation</div>
+          <div class="team-status"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span> Online</div>
+        </div>
+        <div class="team-card">
+          <div class="team-header">
+            <div class="avatar" style="background:linear-gradient(135deg,#a78bfa,#8b5cf6)">Ap</div>
+            <div>
+              <div class="team-name">Apollo</div>
+              <div class="team-role">Communications</div>
+            </div>
+          </div>
+          <div class="team-desc">Telegram bot, email automation, Laura's course delivery, notifications</div>
+          <div class="team-status"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span> Online</div>
+        </div>
+</div>
+
+<h2>Performance</h2>
+<div class="perf-grid">
+  <div class="perf-card">
+    <div class="perf-number">28</div>
+    <div class="perf-label">Active Automations</div>
+  </div>
+  <div class="perf-card">
+    <div class="perf-number">32</div>
+    <div class="perf-label">LaunchAgents</div>
+  </div>
+  <div class="perf-card">
+    <div class="perf-number">24/7</div>
+    <div class="perf-label">Uptime Target</div>
+  </div>
+  <div class="perf-card">
+    <div class="perf-number">5</div>
+    <div class="perf-label">Agent Team</div>
+  </div>
+</div>
+
+<h2>Automations</h2>
+<table>
+  <thead>
+    <tr><th>Time</th><th>Frequency</th><th>Task</th><th>Script</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    
+        <tr>
+          <td>7:00am</td>
+          <td>Daily</td>
+          <td>Morning brief v2 (Telegram) — live email pull</td>
+          <td style="color:var(--dim);font-size:.75rem">telegram-morning-brief.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>8:00am</td>
+          <td>Mon-Fri</td>
+          <td>Laura's Holding Space Course (email)</td>
+          <td style="color:var(--dim);font-size:.75rem">laura-course-delivery.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>4:00pm</td>
+          <td>Friday</td>
+          <td>Pat's Growth Journey → Laura (Telegram)</td>
+          <td style="color:var(--dim);font-size:.75rem">patrick-weekly-growth-summary.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>8:00am</td>
+          <td>Daily</td>
+          <td>S8 Deal Finder (property scout)</td>
+          <td style="color:var(--dim);font-size:.75rem">s8-property-finder.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>6:00am</td>
+          <td>Daily</td>
+          <td>Apple Notes auto-organizer</td>
+          <td style="color:var(--dim);font-size:.75rem">auto-organizer.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Every 5min</td>
+          <td>Continuous</td>
+          <td>Health check (dashboard — silent unless critical)</td>
+          <td style="color:var(--dim);font-size:.75rem">health-check.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Every 30min</td>
+          <td>Continuous</td>
+          <td>Email scan cache (INBOX + SENT)</td>
+          <td style="color:var(--dim);font-size:.75rem">email-scanner.py --json</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Every 2hrs</td>
+          <td>Continuous</td>
+          <td>Session brief generator (pre-compute)</td>
+          <td style="color:var(--dim);font-size:.75rem">generate-session-brief.py --scan</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>10pm-7am</td>
+          <td>Every 30min</td>
+          <td>Overnight task runner (off-peak)</td>
+          <td style="color:var(--dim);font-size:.75rem">overnight-task-runner.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>7am-10pm</td>
+          <td>Every 10min</td>
+          <td>Idle scheduler (uses idle gaps for builds)</td>
+          <td style="color:var(--dim);font-size:.75rem">idle-scheduler.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>7:00pm</td>
+          <td>Daily</td>
+          <td>Evening wrap + CURRENT-STATE.md auto-gen</td>
+          <td style="color:var(--dim);font-size:.75rem">telegram-evening-wrap.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Every 10min</td>
+          <td>Continuous</td>
+          <td>Agent Healer (self-healing restarts w/ backoff)</td>
+          <td style="color:var(--dim);font-size:.75rem">agent-healer.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Continuous</td>
+          <td>Always</td>
+          <td>Telegram bot v6 (buttons, /deals, /portfolio, /health)</td>
+          <td style="color:var(--dim);font-size:.75rem">telegram-claude-bot.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Continuous</td>
+          <td>Always</td>
+          <td>Keep awake (caffeinate)</td>
+          <td style="color:var(--dim);font-size:.75rem">caffeinate</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Hourly</td>
+          <td>Continuous</td>
+          <td>Memory guardian (backup + integrity)</td>
+          <td style="color:var(--dim);font-size:.75rem">memory-guardian.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>6:30am+6:30pm</td>
+          <td>Daily</td>
+          <td>Security audit (enhanced — perms, .env, secrets)</td>
+          <td style="color:var(--dim);font-size:.75rem">security-audit.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>7:00am</td>
+          <td>Daily</td>
+          <td>Secret scanner (file + detect-secrets baseline)</td>
+          <td style="color:var(--dim);font-size:.75rem">secret-scanner.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Monday 8am</td>
+          <td>Weekly</td>
+          <td>Key rotation check (alerts 14d before due)</td>
+          <td style="color:var(--dim);font-size:.75rem">key-rotation-check.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Periodic</td>
+          <td>Daily</td>
+          <td>Memory check reminder (silent if no session)</td>
+          <td style="color:var(--dim);font-size:.75rem">memory-check-reminder.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Periodic</td>
+          <td>Daily</td>
+          <td>Session start reminder (silent if no session)</td>
+          <td style="color:var(--dim);font-size:.75rem">session-reminder.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Continuous</td>
+          <td>Always</td>
+          <td>Command Centre Dashboard V2</td>
+          <td style="color:var(--dim);font-size:.75rem">command-centre/server.js</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>2:00pm Tue+Fri</td>
+          <td>Twice weekly</td>
+          <td>Bangkok Apartment Picks email + Telegram ping</td>
+          <td style="color:var(--dim);font-size:.75rem">send_email_picks.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Every 30min</td>
+          <td>Continuous</td>
+          <td>MCP extension watchdog (auto-fix node_modules)</td>
+          <td style="color:var(--dim);font-size:.75rem">fix-mcp-extensions.sh</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Continuous</td>
+          <td>Always</td>
+          <td>OpenClaw gateway (autonomous GPT-4o agent)</td>
+          <td style="color:var(--dim);font-size:.75rem">openclaw-gateway</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>6:00am Mon</td>
+          <td>Weekly</td>
+          <td>Luke's playbook repo sync</td>
+          <td style="color:var(--dim);font-size:.75rem">luke-repo-sync</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>9:00am Sun</td>
+          <td>Weekly</td>
+          <td>Course link checker (auto-fix dead YouTube links + Telegram alert)</td>
+          <td style="color:var(--dim);font-size:.75rem">course-link-checker.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>3:00am Sun</td>
+          <td>Weekly</td>
+          <td>Auto-Evolve (self-improving: models, packages, repos, health)</td>
+          <td style="color:var(--dim);font-size:.75rem">auto-evolve.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>2:00am</td>
+          <td>Daily</td>
+          <td>Overnight Pipeline (property refresh, memory index, portfolio health, disk cleanup)</td>
+          <td style="color:var(--dim);font-size:.75rem">overnight-pipeline.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+  </tbody>
+</table>
+
+<h2>Roadmap</h2>
+<table>
+  <thead>
+    <tr><th>Initiative</th><th>Status</th><th>Detail</th></tr>
+  </thead>
+  <tbody>
+    
+        <tr>
+          <td>HAP Payment Tracker</td>
+          <td><span class="badge badge-amber">SCAFFOLDED</span></td>
+          <td style="color:var(--muted)">Needs real Avenue payment data</td>
+        </tr>
+        <tr>
+          <td>Auto-Offer System</td>
+          <td><span class="badge badge-green">LIVE</span></td>
+          <td style="color:var(--muted)">Deal Finder → Telegram buttons → email draft</td>
+        </tr>
+        <tr>
+          <td>Portfolio Dashboard v3</td>
+          <td><span class="badge badge-green">LIVE</span></td>
+          <td style="color:var(--muted)">Global access via GitHub Pages</td>
+        </tr>
+        <tr>
+          <td>Self-Healing Agents</td>
+          <td><span class="badge badge-green">LIVE</span></td>
+          <td style="color:var(--muted)">Backoff: 5m/15m/1hr auto-restart</td>
+        </tr>
+        <tr>
+          <td>Credit Score Builder</td>
+          <td><span class="badge badge-dim">PLANNED</span></td>
+          <td style="color:var(--muted)">Capital One secured card → autopay</td>
+        </tr>
+        <tr>
+          <td>Avenue API Integration</td>
+          <td><span class="badge badge-dim">PLANNED</span></td>
+          <td style="color:var(--muted)">Direct rent roll + maintenance data</td>
+        </tr>
+        <tr>
+          <td>Tax Filing Automation</td>
+          <td><span class="badge badge-dim">PLANNED</span></td>
+          <td style="color:var(--muted)">GW Carter quarterly prep pipeline</td>
+        </tr>
+        <tr>
+          <td>Bangkok Relocation Ops</td>
+          <td><span class="badge badge-amber">IN PROGRESS</span></td>
+          <td style="color:var(--muted)">Apartment picks, visa planning, DTV prep</td>
+        </tr>
+        <tr>
+          <td>DSCR Financing Pipeline</td>
+          <td><span class="badge badge-green">READY</span></td>
+          <td style="color:var(--muted)">Nick Worthing engaged, $120K+ triggers</td>
+        </tr>
+        <tr>
+          <td>Multi-Property Bundled Loan</td>
+          <td><span class="badge badge-dim">PLANNED</span></td>
+          <td style="color:var(--muted)">Bundle 3-5 properties for better terms</td>
+        </tr>
+  </tbody>
+</table>
+
+<div class="principles">
+  <div class="principle"><strong>Rule 1:</strong> Never ask permission for technical ops</div>
+  <div class="principle"><strong>Rule 2:</strong> Build before asking — ship finished systems</div>
+  <div class="principle"><strong>Rule 3:</strong> Protect Patrick's bandwidth — results only</div>
+  <div class="principle"><strong>Rule 4:</strong> Self-heal — fix infrastructure problems silently</div>
+  <div class="principle"><strong>Rule 5:</strong> Be many steps ahead — pre-solve everything</div>
+</div>
+
+<div class="footer">
+  Powered by Garry COO System &mdash; Auto-updated every 30 minutes<br>
+  &copy; 2026 Patrick Dickson
+</div>
+
+</body>
+</html>
