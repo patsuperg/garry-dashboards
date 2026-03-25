@@ -96,7 +96,7 @@ tr:hover td{background:var(--card)}
 <div class="status-grid">
   <div class="status-item">
     <div class="status-label">LaunchAgents</div>
-    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>38 active</div>
+    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>36 active</div>
   </div>
   <div class="status-item">
     <div class="status-label">Telegram Bot</div>
@@ -191,11 +191,11 @@ tr:hover td{background:var(--card)}
 <h2>Performance</h2>
 <div class="perf-grid">
   <div class="perf-card">
-    <div class="perf-number">32</div>
+    <div class="perf-number">34</div>
     <div class="perf-label">Active Automations</div>
   </div>
   <div class="perf-card">
-    <div class="perf-number">38</div>
+    <div class="perf-number">36</div>
     <div class="perf-label">LaunchAgents</div>
   </div>
   <div class="perf-card">
@@ -398,10 +398,24 @@ tr:hover td{background:var(--card)}
           <td><span class="badge badge-green">ACTIVE</span></td>
         </tr>
         <tr>
+          <td>Hourly</td>
           <td>Continuous</td>
-          <td>Always</td>
-          <td>OpenClaw gateway (autonomous GPT-4o agent)</td>
-          <td style="color:var(--dim);font-size:.75rem">openclaw-gateway</td>
+          <td>Decision Bridge (PENDING-DECISIONS.md → JSON for automations)</td>
+          <td style="color:var(--dim);font-size:.75rem">decision-bridge.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Every 6h</td>
+          <td>Continuous</td>
+          <td>Immune System (output verification, drift detection, health score)</td>
+          <td style="color:var(--dim);font-size:.75rem">immune-system.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Daily 8am</td>
+          <td>Daily</td>
+          <td>PM Portal Scraper (Avenue, B2B statement downloads)</td>
+          <td style="color:var(--dim);font-size:.75rem">pm-portal-scraper.py</td>
           <td><span class="badge badge-green">ACTIVE</span></td>
         </tr>
         <tr>

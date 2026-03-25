@@ -49,12 +49,21 @@ def get_system_health():
 def parse_state(state):
     # Portfolio
     properties = []
-    for m in re.finditer(r'- (.+?): \$([0-9,]+)/mo net \[(.+?)\]', state):
+    # Match format: "- ADDRESS: $X/mo rent, $Y/mo net [STATUS]"
+    for m in re.finditer(r'- (.+?): \$[\d,]+/mo rent, \$([0-9,]+)/mo net \[(.+?)\]', state):
         properties.append({
             'address': m.group(1),
             'net': m.group(2).replace(',',''),
             'status': m.group(3),
         })
+    # Fallback: old format "- ADDRESS: $Y/mo net [STATUS]"
+    if not properties:
+        for m in re.finditer(r'- (.+?): \$([0-9,]+)/mo net \[(.+?)\]', state):
+            properties.append({
+                'address': m.group(1),
+                'net': m.group(2).replace(',',''),
+                'status': m.group(3),
+            })
     total_match = re.search(r'\*\*Total net: \$([\d,]+)/mo\*\*', state)
     total = total_match.group(1).replace(',','') if total_match else "0"
 
