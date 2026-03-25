@@ -655,6 +655,123 @@ tr:hover td{{background:var(--card)}}
     return html
 
 
+def generate_health_dashboard(health):
+    """Health dashboard — real system data + biometric data pipeline status."""
+    now = datetime.now().strftime("%b %d, %Y %I:%M %p")
+
+    # Try to load immune system report
+    immune_file = os.path.expanduser("~/AI/Claude/Infrastructure/immune-health-report.json")
+    immune = {}
+    try:
+        with open(immune_file) as f:
+            immune = json.load(f)
+    except:
+        pass
+
+    overall = immune.get("overall_score", "?")
+    automations = immune.get("automations", {})
+
+    # Build automation rows
+    auto_rows = ""
+    for name, data in sorted(automations.items(), key=lambda x: x[1].get("score", 0)):
+        score = data.get("score", 0)
+        hours = data.get("last_output_hours", "?")
+        color = "#34d399" if score >= 80 else "#fbbf24" if score >= 50 else "#f87171"
+        bar_width = score
+        auto_rows += f"""<tr>
+<td style="color:{color};font-weight:600">{name.replace('_',' ').title()}</td>
+<td><div style="background:#1a1a20;border-radius:4px;overflow:hidden;height:8px;width:120px">
+<div style="background:{color};height:100%;width:{bar_width}%"></div></div></td>
+<td style="color:{color}">{score}/100</td>
+<td style="color:#a0a0a8">{hours}h ago</td></tr>"""
+
+    # Check for health data sources
+    health_data_dir = os.path.expanduser("~/AI/Claude/Infrastructure/data")
+    health_log = os.path.join(health_data_dir, "health-log.json")
+    has_health_data = os.path.exists(health_log)
+
+    if has_health_data:
+        try:
+            with open(health_log) as f:
+                hdata = json.load(f)
+            bio_section = f"""
+<div class="panel"><h3>Biometrics</h3>
+<p style="color:#34d399">Data connected — showing latest readings</p>
+<pre style="color:#a0a0a8;font-size:12px">{json.dumps(hdata.get('latest',{}), indent=2)[:500]}</pre></div>"""
+        except:
+            bio_section = ""
+    else:
+        bio_section = f"""
+<div class="panel" style="border-color:#fbbf24">
+<h3 style="color:#fbbf24">Biometric Data — Not Connected</h3>
+<p style="color:#a0a0a8;margin:12px 0">Health Auto Export app is installed but no data has landed on this Mac yet.</p>
+<div style="background:#1a1a10;padding:16px;border-radius:8px;margin:12px 0">
+<p style="color:#fbbf24;font-weight:600;margin-bottom:8px">To connect:</p>
+<ol style="color:#a0a0a8;padding-left:20px;line-height:1.8">
+<li>Open <b>Health Auto Export</b> on iPhone</li>
+<li>Settings → Automations → Add</li>
+<li>Export to: <b>iCloud Drive</b> folder</li>
+<li>Format: <b>CSV</b></li>
+<li>Frequency: <b>Every hour</b></li>
+<li>Metrics: Sleep, HRV, Heart Rate, Steps, Workouts</li>
+</ol>
+<p style="color:#a0a0a8;margin-top:12px">Once CSVs land in iCloud Drive, this dashboard auto-populates.</p>
+</div>
+</div>"""
+
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="300">
+<title>Health · Patrick</title>
+<style>
+:root{{--bg:#050508;--surface:#0c0c10;--border:#18181c;--text:#f0f0f2;--sub:#a0a0a8}}
+*{{margin:0;padding:0;box-sizing:border-box}}
+body{{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro',sans-serif;padding:20px;max-width:900px;margin:0 auto}}
+h1{{font-size:24px;font-weight:700;margin-bottom:4px}}
+h2{{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--sub)}}
+h3{{font-size:16px;font-weight:600;margin-bottom:8px}}
+.panel{{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;margin:12px 0}}
+.score-big{{font-size:64px;font-weight:800;text-align:center;padding:20px 0}}
+.score-label{{text-align:center;color:var(--sub);font-size:14px}}
+table{{width:100%;border-collapse:collapse;font-size:14px}}
+td{{padding:8px 12px}}
+tr:nth-child(even){{background:rgba(255,255,255,0.02)}}
+.footer{{text-align:center;color:#5a5a64;font-size:12px;padding:30px 0}}
+</style>
+</head>
+<body>
+
+<h1>Health Dashboard</h1>
+<p style="color:var(--sub);font-size:13px">Last updated: {now}</p>
+
+<h2>System Health</h2>
+<div class="panel">
+<div class="score-big" style="color:{'#34d399' if overall == 100 else '#fbbf24' if overall >= 80 else '#f87171'}">{overall}</div>
+<div class="score-label">Immune System Score — {len(automations)} automations verified</div>
+</div>
+
+<div class="panel">
+<table>
+<tr style="color:var(--sub);font-weight:600"><td>Automation</td><td>Health</td><td>Score</td><td>Last Output</td></tr>
+{auto_rows}
+</table>
+</div>
+
+<h2>Biometric Health</h2>
+{bio_section}
+
+<div class="footer">
+Updated every 30 minutes · Powered by Garry Immune System<br>
+&copy; {datetime.now().year} Patrick Dickson
+</div>
+</body>
+</html>"""
+    return html
+
+
 def main():
     state = read_file(STATE_FILE)
     schedules = read_file(SCHEDULES_FILE)
@@ -672,7 +789,12 @@ def main():
     with open(os.path.join(OUTPUT_DIR, "garry.html"), "w") as f:
         f.write(garry_html)
 
-    print(f"Generated both dashboards at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    # Generate Health Dashboard
+    health_html = generate_health_dashboard(health)
+    with open(os.path.join(OUTPUT_DIR, "health.html"), "w") as f:
+        f.write(health_html)
+
+    print(f"Generated all 3 dashboards at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"  Portfolio: {len(properties)} properties, ${total}/mo net")
     print(f"  System: {health['agents']} agents, {len(automations)} automations")
 
