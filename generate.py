@@ -64,7 +64,7 @@ def parse_state(state):
                 'net': m.group(2).replace(',',''),
                 'status': m.group(3),
             })
-    total_match = re.search(r'\*\*Total net: \$([\d,]+)/mo\*\*', state)
+    total_match = re.search(r'Total net: \$([\d,]+)/mo', state)
     total = total_match.group(1).replace(',','') if total_match else "0"
 
     # Deals
