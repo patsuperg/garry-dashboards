@@ -3,119 +3,181 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="refresh" content="300">
-<title>Health · Patrick</title>
+<title>Health Dashboard</title>
 <style>
-:root{--bg:#050508;--surface:#0c0c10;--border:#18181c;--text:#f0f0f2;--sub:#a0a0a8}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro',sans-serif;padding:20px;max-width:900px;margin:0 auto}
-h1{font-size:24px;font-weight:700;margin-bottom:4px}
-h2{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--sub)}
-h3{font-size:16px;font-weight:600;margin-bottom:8px}
-.panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;margin:12px 0}
-.score-big{font-size:64px;font-weight:800;text-align:center;padding:20px 0}
-.score-label{text-align:center;color:var(--sub);font-size:14px}
-table{width:100%;border-collapse:collapse;font-size:14px}
-td{padding:8px 12px}
-tr:nth-child(even){background:rgba(255,255,255,0.02)}
-.footer{text-align:center;color:#5a5a64;font-size:12px;padding:30px 0}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a0a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', system-ui, sans-serif; padding: 24px; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+  h1 { font-size: 1.8rem; color: #fff; letter-spacing: -0.5px; }
+  .ts { color: #555; font-size: 0.8rem; }
+  h2 { font-size: 1.1rem; color: #fff; margin-bottom: 14px; font-weight: 600; }
+  .section { margin-bottom: 28px; }
+
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+  .card { background: #141414; border: 1px solid #222; border-radius: 14px; padding: 20px; }
+  .card .num { font-size: 2.5rem; font-weight: 700; line-height: 1; }
+  .card .lbl { font-size: 0.8rem; color: #888; margin-top: 6px; }
+  .green { color: #00d4aa; }
+  .red { color: #e74c3c; }
+  .yellow { color: #f39c12; }
+  .white { color: #fff; }
+  .blue { color: #3498db; }
+
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 16px; font-size: 0.7rem; font-weight: 600; }
+  .badge-green { background: rgba(0,212,170,0.15); color: #00d4aa; }
+  .badge-red { background: rgba(231,76,60,0.15); color: #e74c3c; }
+  .badge-yellow { background: rgba(243,156,18,0.15); color: #f39c12; }
+
+  .connect-card { background: #1a1a1a; border-radius: 12px; padding: 20px; border-left: 4px solid; margin-bottom: 12px; }
+  .connect-on { border-color: #00d4aa; }
+  .connect-off { border-color: #e74c3c; }
+  .connect-partial { border-color: #f39c12; }
+  .connect-title { font-weight: 600; font-size: 0.95rem; color: #fff; }
+  .connect-desc { font-size: 0.8rem; color: #888; margin-top: 6px; }
+  .connect-action { font-size: 0.8rem; color: #f39c12; margin-top: 8px; font-weight: 600; }
+
+  .insight-box { background: #141414; border: 1px solid #222; border-radius: 14px; padding: 24px; margin-bottom: 16px; }
+  .insight-title { font-size: 0.9rem; color: #fff; font-weight: 600; margin-bottom: 8px; }
+  .insight-text { font-size: 0.85rem; color: #888; line-height: 1.5; }
+
+  .setup-step { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #1a1a1a; }
+  .step-num { width: 28px; height: 28px; border-radius: 50%; background: #222; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .step-text { font-size: 0.85rem; color: #ccc; }
+  .step-time { font-size: 0.75rem; color: #555; margin-top: 2px; }
 </style>
 </head>
 <body>
 
-<h1>Health Dashboard</h1>
-<p style="color:var(--sub);font-size:13px">Last updated: Mar 26, 2026 10:16 AM</p>
-
-<h2>System Health</h2>
-<div class="panel">
-<div class="score-big" style="color:#34d399">100</div>
-<div class="score-label">Immune System Score — 11 automations verified</div>
+<div class="header">
+  <div>
+    <h1>Health Dashboard</h1>
+    <span class="badge badge-yellow">DATA SOURCES LIMITED</span>
+  </div>
+  <div class="ts">Mar 26, 2026 10:30 AEDT</div>
 </div>
 
-<div class="panel">
-<table>
-<tr style="color:var(--sub);font-weight:600"><td>Automation</td><td>Health</td><td>Score</td><td>Last Output</td></tr>
-<tr>
-<td style="color:#34d399;font-weight:600">Property Finder</td>
-<td><div style="background:#1a1a20;border-radius:4px;overflow:hidden;height:8px;width:120px">
-<div style="background:#34d399;height:100%;width:100%"></div></div></td>
-<td style="color:#34d399">100/100</td>
-<td style="color:#a0a0a8">2.2h ago</td></tr><tr>
-<td style="color:#34d399;font-weight:600">Decision Bridge</td>
-<td><div style="background:#1a1a20;border-radius:4px;overflow:hidden;height:8px;width:120px">
-<div style="background:#34d399;height:100%;width:100%"></div></div></td>
-<td style="color:#34d399">100/100</td>
-<td style="color:#a0a0a8">0.5h ago</td></tr><tr>
-<td style="color:#34d399;font-weight:600">Morning Brief</td>
-<td><div style="background:#1a1a20;border-radius:4px;overflow:hidden;height:8px;width:120px">
-<div style="background:#34d399;height:100%;width:100%"></div></div></td>
-<td style="color:#34d399">100/100</td>
-<td style="color:#a0a0a8">19.1h ago</td></tr><tr>
-<td style="color:#34d399;font-weight:600">Evening Wrap</td>
-<td><div style="background:#1a1a20;border-radius:4px;overflow:hidden;height:8px;width:120px">
-<div style="background:#34d399;height:100%;width:100%"></div></div></td>
-<td style="color:#34d399">100/100</td>
-<td style="color:#a0a0a8">15.2h ago</td></tr><tr>
-<td style="color:#34d399;font-weight:600">Email Scanner</td>
-<td><div style="background:#1a1a20;border-radius:4px;overflow:hidden;height:8px;width:120px">
-<div style="background:#34d399;height:100%;width:100%"></div></div></td>
-<td style="color:#34d399">100/100</td>
-<td style="color:#a0a0a8">0.2h ago</td></tr><tr>
-<td style="color:#34d399;font-weight:600">Garry Autonomous</td>
-<td><div style="background:#1a1a20;border-radius:4px;overflow:hidden;height:8px;width:120px">
-<div style="background:#34d399;height:100%;width:100%"></div></div></td>
-<td style="color:#34d399">100/100</td>
-<td style="color:#a0a0a8">0.0h ago</td></tr><tr>
-<td style="color:#34d399;font-weight:600">Dashboards</td>
-<td><div style="background:#1a1a20;border-radius:4px;overflow:hidden;height:8px;width:120px">
-<div style="background:#34d399;height:100%;width:100%"></div></div></td>
-<td style="color:#34d399">100/100</td>
-<td style="color:#a0a0a8">0.4h ago</td></tr><tr>
-<td style="color:#34d399;font-weight:600">Telegram Bot</td>
-<td><div style="background:#1a1a20;border-radius:4px;overflow:hidden;height:8px;width:120px">
-<div style="background:#34d399;height:100%;width:100%"></div></div></td>
-<td style="color:#34d399">100/100</td>
-<td style="color:#a0a0a8">?h ago</td></tr><tr>
-<td style="color:#34d399;font-weight:600">Bangkok Finder</td>
-<td><div style="background:#1a1a20;border-radius:4px;overflow:hidden;height:8px;width:120px">
-<div style="background:#34d399;height:100%;width:100%"></div></div></td>
-<td style="color:#34d399">100/100</td>
-<td style="color:#a0a0a8">26.2h ago</td></tr><tr>
-<td style="color:#34d399;font-weight:600">Overnight Pipeline</td>
-<td><div style="background:#1a1a20;border-radius:4px;overflow:hidden;height:8px;width:120px">
-<div style="background:#34d399;height:100%;width:100%"></div></div></td>
-<td style="color:#34d399">100/100</td>
-<td style="color:#a0a0a8">5.7h ago</td></tr><tr>
-<td style="color:#34d399;font-weight:600">Security Audit</td>
-<td><div style="background:#1a1a20;border-radius:4px;overflow:hidden;height:8px;width:120px">
-<div style="background:#34d399;height:100%;width:100%"></div></div></td>
-<td style="color:#34d399">100/100</td>
-<td style="color:#a0a0a8">3.7h ago</td></tr>
-</table>
+<!-- Data Sources Status -->
+<div class="section">
+  <h2>Data Source Connections</h2>
+  <div class="grid-2">
+    <div>
+      <div class="connect-card connect-off">
+        <div class="connect-title">Apple Health Export <span class="badge badge-red">NOT CONNECTED</span></div>
+        <div class="connect-desc">iOS Shortcuts automation not built. No biometric data flowing to Garry.</div>
+        <div class="connect-action">2-min setup required — see instructions below</div>
+      </div>
+      <div class="connect-card connect-off">
+        <div class="connect-title">Eight Sleep <span class="badge badge-red">NOT CONNECTED</span></div>
+        <div class="connect-desc">Morning SMS goes to Talkatone (US number). Garry can't read SMS directly.</div>
+        <div class="connect-action">Garry figuring out alternative data path</div>
+      </div>
+      <div class="connect-card connect-off">
+        <div class="connect-title">Whoop <span class="badge badge-red">NOT CONNECTED</span></div>
+        <div class="connect-desc">No Whoop device detected. Apple Watch is primary wearable.</div>
+        <div class="connect-action">Not needed — Apple Watch covers this</div>
+      </div>
+    </div>
+    <div>
+      <div class="connect-card connect-partial">
+        <div class="connect-title">Apple Watch <span class="badge badge-yellow">DEVICE PAIRED</span></div>
+        <div class="connect-desc">Watch paired to iPhone. Health data in Apple Health app. Not yet exported to Garry.</div>
+        <div class="connect-action">Will flow once iOS Shortcut is built</div>
+      </div>
+      <div class="connect-card connect-on">
+        <div class="connect-title">Mental Health Framework <span class="badge badge-green">ACTIVE</span></div>
+        <div class="connect-desc">Meg (therapist) — HIGH trust. Anxious-preoccupied pattern understood. Dashboard signals "nothing dropped."</div>
+      </div>
+      <div class="connect-card connect-on">
+        <div class="connect-title">ADHD Management <span class="badge badge-green">INTEGRATED</span></div>
+        <div class="connect-desc">Garry compensates: pre-solves everything, momentum-first design, zero-friction systems.</div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<h2>Biometric Health</h2>
+<!-- What We Know -->
+<div class="section">
+  <h2>What Garry Knows About Patrick's Health</h2>
+  <div class="grid-3">
+    <div class="card">
+      <div class="num blue" style="font-size:1.5rem;">ADHD</div>
+      <div class="lbl">Primary consideration — momentum-first design</div>
+    </div>
+    <div class="card">
+      <div class="num blue" style="font-size:1.5rem;">AP</div>
+      <div class="lbl">Anxious-preoccupied attachment — Meg supporting</div>
+    </div>
+    <div class="card">
+      <div class="num green" style="font-size:1.5rem;">Active</div>
+      <div class="lbl">Apple Watch paired — data available on device</div>
+    </div>
+  </div>
+</div>
 
-<div class="panel" style="border-color:#fbbf24">
-<h3 style="color:#fbbf24">Biometric Data — Not Connected</h3>
-<p style="color:#a0a0a8;margin:12px 0">Health Auto Export app is installed but no data has landed on this Mac yet.</p>
-<div style="background:#1a1a10;padding:16px;border-radius:8px;margin:12px 0">
-<p style="color:#fbbf24;font-weight:600;margin-bottom:8px">To connect:</p>
-<ol style="color:#a0a0a8;padding-left:20px;line-height:1.8">
-<li>Open <b>Health Auto Export</b> on iPhone</li>
-<li>Settings → Automations → Add</li>
-<li>Export to: <b>iCloud Drive</b> folder</li>
-<li>Format: <b>CSV</b></li>
-<li>Frequency: <b>Every hour</b></li>
-<li>Metrics: Sleep, HRV, Heart Rate, Steps, Workouts</li>
-</ol>
-<p style="color:#a0a0a8;margin-top:12px">Once CSVs land in iCloud Drive, this dashboard auto-populates.</p>
-</div>
+<!-- Insights -->
+<div class="section">
+  <h2>Available Insights (No Data Source Needed)</h2>
+  <div class="grid-2">
+    <div class="insight-box">
+      <div class="insight-title">Sleep Pattern Proxy</div>
+      <div class="insight-text">Session start times suggest Patrick is typically active by 8-10am AEDT. Evening sessions sometimes past 11pm. Bangkok move (ICT, UTC+7) shifts 4 hours earlier vs US business hours — beneficial for STL alignment.</div>
+    </div>
+    <div class="insight-box">
+      <div class="insight-title">Stress Indicators</div>
+      <div class="insight-text">Pending decisions: <strong style="color:#f39c12;">5 items needing Patrick</strong>. Tax deadline Apr 15. MSD sewer unresolved. Multiple overdue follow-ups. Estimate: <strong style="color:#f39c12;">MODERATE-HIGH</strong>.</div>
+    </div>
+    <div class="insight-box">
+      <div class="insight-title">Momentum Score</div>
+      <div class="insight-text">Sessions/week: ~3-4. Avg length: 45-60min. Deal pipeline active. System velocity high. <strong style="color:#00d4aa;">Momentum: STRONG</strong>. Risk: tax templates = dropped ball trigger.</div>
+    </div>
+    <div class="insight-box">
+      <div class="insight-title">Energy Management</div>
+      <div class="insight-text">ADHD-friendly design: scannable formats, zero-friction, pre-solved decisions. Garry handles admin + follow-ups. Patrick's bandwidth = vision + enjoyment.</div>
+    </div>
+  </div>
 </div>
 
-<div class="footer">
-Updated every 30 minutes · Powered by Garry Immune System<br>
-&copy; 2026 Patrick Dickson
+<!-- Setup Instructions -->
+<div class="section">
+  <h2>Connect Apple Health — 2-Minute Setup</h2>
+  <div class="card">
+    <p style="color:#888;font-size:0.85rem;margin-bottom:16px;">Once connected: heart rate, steps, sleep quality, HRV, active energy, workouts, and trends.</p>
+    <div class="setup-step">
+      <div class="step-num">1</div>
+      <div><div class="step-text">Open <strong>Shortcuts</strong> app on iPhone</div><div class="step-time">10 seconds</div></div>
+    </div>
+    <div class="setup-step">
+      <div class="step-num">2</div>
+      <div><div class="step-text">Create: <strong>Find Health Samples</strong> (last 24h) → <strong>Save File</strong> to iCloud Drive → <strong>garry-health-export.csv</strong></div><div class="step-time">60 seconds</div></div>
+    </div>
+    <div class="setup-step">
+      <div class="step-num">3</div>
+      <div><div class="step-text">Set automation: Run hourly (or on each Apple Watch charge)</div><div class="step-time">30 seconds</div></div>
+    </div>
+    <div class="setup-step">
+      <div class="step-num">4</div>
+      <div><div class="step-text">Done — Garry picks up CSV from iCloud Drive automatically</div><div class="step-time">Automatic</div></div>
+    </div>
+    <p style="color:#555;font-size:0.8rem;margin-top:16px;">Full instructions: ~/AI/Claude/Infrastructure/apple-health-shortcut.md</p>
+  </div>
 </div>
+
+<!-- Placeholder metrics -->
+<div class="section">
+  <h2>Coming Soon (After Apple Health Connect)</h2>
+  <div class="grid">
+    <div class="card" style="border-top:3px solid #333;"><div style="font-size:2rem;color:#333;">—</div><div class="lbl">Resting Heart Rate</div></div>
+    <div class="card" style="border-top:3px solid #333;"><div style="font-size:2rem;color:#333;">—</div><div class="lbl">Steps Today</div></div>
+    <div class="card" style="border-top:3px solid #333;"><div style="font-size:2rem;color:#333;">—</div><div class="lbl">Sleep Score</div></div>
+    <div class="card" style="border-top:3px solid #333;"><div style="font-size:2rem;color:#333;">—</div><div class="lbl">HRV (Recovery)</div></div>
+  </div>
+</div>
+
+<div style="text-align:center; padding:16px; color:#444; font-size:0.75rem;">
+  Health Dashboard — Garry COO System — Waiting for data sources
+</div>
+
 </body>
 </html>

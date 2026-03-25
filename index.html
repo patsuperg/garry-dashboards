@@ -2,144 +2,157 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="refresh" content="300">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Command Centre</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garry System Dashboard</title>
 <style>
-:root{--bg:#050508;--surface:#0c0c10;--border:#18181c;--text:#f0f0f2;--sub:#a0a0a8;--dim:#5a5a64;--gold:#daa520;--gold-glow:rgba(218,165,32,0.08);--green:#34d399;--green-glow:rgba(52,211,153,0.08);--red:#f87171;--blue:#60a5fa;--orange:#fb923c}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 20px 40px}
-.wrap{max-width:540px;margin:0 auto}
-.brand{text-align:center;padding:24px 0 20px;opacity:0.4;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--dim)}
-.held{text-align:center;margin-bottom:32px}
-.held-line{font-size:14px;color:var(--green);font-weight:500;letter-spacing:0.3px}
-.held-line b{color:var(--text);font-weight:600}
-.star{text-align:center;padding:36px 0 40px;margin-bottom:32px;position:relative}
-.star::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
-.star-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:12px}
-.star-num{font-size:64px;font-weight:800;color:var(--text);line-height:1;letter-spacing:-2px}
-.star-num .aud{font-size:28px;color:var(--gold);font-weight:600;vertical-align:top;letter-spacing:0;margin-right:2px}
-.star-of{font-size:18px;color:var(--dim);font-weight:400;margin-top:4px}
-.star-bar{width:200px;height:6px;background:#151518;border-radius:3px;margin:20px auto 8px;overflow:hidden}
-.star-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),#f0c040)}
-.star-pct{font-size:12px;color:var(--gold);font-weight:600;letter-spacing:1px}
-.star-meta{display:flex;justify-content:center;gap:32px;margin-top:20px}
-.star-meta .m{text-align:center}
-.star-meta .m .v{font-size:20px;font-weight:700;color:var(--text)}
-.star-meta .m .l{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
-.star-pace{font-size:11px;color:var(--dim);margin-top:20px}
-.star-pace em{color:var(--green);font-style:normal;font-weight:500}
-.sec{margin-bottom:36px}
-.sec-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);font-weight:600;margin-bottom:16px}
-.today-card{background:var(--surface);border-radius:16px;padding:20px;border:1px solid var(--border)}
-.today-empty{font-size:14px;color:var(--sub);text-align:center;padding:20px 0}
-.today-empty em{color:var(--green);font-style:normal}
-.tc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
-.tc-title{font-size:16px;font-weight:600;color:var(--text);line-height:1.3}
-.tc-deadline{font-size:10px;font-weight:600;padding:4px 10px;border-radius:8px;white-space:nowrap;background:rgba(218,165,32,0.1);color:var(--gold)}
-.tc-nudge{font-size:12px;color:var(--gold);font-weight:500}
-.deal{background:var(--surface);border-radius:16px;padding:20px;border:1px solid var(--border);margin-bottom:10px}
-.deal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.deal-addr{font-size:17px;font-weight:600;color:var(--text)}
-.deal-badge{font-size:9px;font-weight:700;padding:4px 10px;border-radius:8px;letter-spacing:0.5px}
-.deal-badge.hot{background:rgba(248,113,113,0.1);color:var(--red)}
-.deal-badge.eval{background:rgba(218,165,32,0.1);color:var(--gold)}
-.deal-badge.hold{background:rgba(90,90,100,0.1);color:var(--dim)}
-.deal-context{font-size:12px;color:var(--sub);font-style:italic;padding-top:8px;border-top:1px solid var(--border)}
-.deal-action{font-size:13px;color:var(--gold);font-weight:500;margin-top:8px}
-.deal-dead{font-size:11px;color:var(--dim);margin-top:6px;text-align:center}
-.eng-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.eng{background:var(--surface);border-radius:14px;padding:14px;border:1px solid var(--border)}
-.eng-name{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin-bottom:8px}
-.eng-line{font-size:11px;color:var(--sub);padding:3px 0;display:flex;align-items:center;gap:6px;line-height:1.3}
-.d{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.props{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.prop{background:var(--surface);border-radius:12px;padding:14px;border:1px solid var(--border);text-align:center}
-.prop-v{font-size:20px;font-weight:700;color:var(--green)}
-.prop-aud{font-size:10px;color:var(--dim);margin-top:1px}
-.prop-a{font-size:9px;color:var(--sub);margin-top:6px;line-height:1.3}
-.updated{text-align:center;font-size:9px;color:var(--dim);margin-top:32px;letter-spacing:1px}
-@media(max-width:500px){
-.star-num{font-size:48px}
-.star-num .aud{font-size:22px}
-.star-meta{gap:20px}
-.eng-row{grid-template-columns:1fr}
-.props{grid-template-columns:repeat(2,1fr)}
-}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a0a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', system-ui, sans-serif; padding: 24px; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+  h1 { font-size: 1.8rem; color: #fff; letter-spacing: -0.5px; }
+  .header .ts { color: #555; font-size: 0.8rem; }
+  .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+  .badge-live { background: rgba(0,212,170,0.15); color: #00d4aa; border: 1px solid rgba(0,212,170,0.3); }
+
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .card { background: #141414; border: 1px solid #222; border-radius: 14px; padding: 20px; }
+  .card .num { font-size: 2.5rem; font-weight: 700; line-height: 1; }
+  .card .lbl { font-size: 0.8rem; color: #888; margin-top: 6px; }
+  .green { color: #00d4aa; }
+  .red { color: #e74c3c; }
+  .yellow { color: #f39c12; }
+  .white { color: #fff; }
+
+  .agent-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .agent-item { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #1a1a1a; border-radius: 8px; font-size: 0.8rem; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-green { background: #00d4aa; }
+  .dot-red { background: #e74c3c; }
+  .dot-yellow { background: #f39c12; }
+  .agent-name { color: #ccc; }
+  .agent-age { color: #555; margin-left: auto; font-size: 0.7rem; }
+
+  .score-bar { height: 8px; background: #1a1a1a; border-radius: 4px; margin-top: 8px; overflow: hidden; }
+  .score-fill { height: 100%; border-radius: 4px; }
+
+  h2 { font-size: 1.1rem; color: #fff; margin-bottom: 14px; font-weight: 600; }
+  .section { margin-bottom: 28px; }
+
+  .capability-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .cap-item { padding: 10px; background: #1a1a1a; border-radius: 8px; font-size: 0.8rem; text-align: center; border-top: 3px solid; }
+  .cap-on { border-color: #00d4aa; color: #00d4aa; }
+  .cap-off { border-color: #e74c3c; color: #e74c3c; }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<div class="brand">Command Centre</div>
-
-<div class="held">
-<div class="held-line">Everything handled. <b>26 active</b>. <b>0 dropped</b>.</div>
-</div>
-
-<div class="star">
-<div class="star-label">North Star</div>
-<div class="star-num"><span class="aud">A$</span>7,797</div>
-<div class="star-of">of A$20,000 per month</div>
-<div class="star-bar"><div class="star-fill" style="width:39.0%"></div></div>
-<div class="star-pct">39%</div>
-<div class="star-meta">
-<div class="m"><div class="v">6</div><div class="l">Doors</div></div>
-<div class="m"><div class="v">~10</div><div class="l">To Go</div></div>
-<div class="m"><div class="v">A$12,203</div><div class="l">Gap</div></div>
-</div>
-<div class="star-pace">At 1 door/month — <em>Northstar by Jan 2027</em></div>
+<div class="header">
+  <div>
+    <h1>Garry System Dashboard</h1>
+    <span class="badge badge-live">SYSTEM LIVE</span>
+  </div>
+  <div class="ts">Updated: Mar 26, 2026 10:30 AEDT<br>Score: 72/100</div>
 </div>
 
-<div class="sec">
-<div class="sec-title">Today</div>
-<div class="today-card"><div class="today-empty">Clear. <em>Nothing needs you today.</em></div></div>
+<!-- Top Stats -->
+<div class="grid">
+  <div class="card">
+    <div class="num green">72</div>
+    <div class="lbl">System Score</div>
+    <div class="score-bar"><div class="score-fill" style="width:72%;background:linear-gradient(90deg,#00a882,#00d4aa);"></div></div>
+  </div>
+  <div class="card">
+    <div class="num white">29</div>
+    <div class="lbl">LaunchAgents Loaded</div>
+    <div class="score-bar"><div class="score-fill" style="width:90%;background:#00d4aa;"></div></div>
+  </div>
+  <div class="card">
+    <div class="num green">26</div>
+    <div class="lbl">Healthy (exit 0)</div>
+  </div>
+  <div class="card">
+    <div class="num red">3</div>
+    <div class="lbl">Errors (exit 1)</div>
+  </div>
 </div>
 
-<div class="sec">
-<div class="sec-title">Deals</div>
-<div class="today-card"><div class="today-empty"><em>No active deals right now.</em></div></div>
-
+<!-- Capabilities -->
+<div class="section">
+  <h2>Capabilities — 12/12 Active</h2>
+  <div class="capability-grid">
+    <div class="cap-item cap-on">Deal Packaging</div>
+    <div class="cap-item cap-on">Rejection Learning</div>
+    <div class="cap-item cap-on">HAP Tracking</div>
+    <div class="cap-item cap-on">PM Scoring</div>
+    <div class="cap-item cap-on">Evernest Chase</div>
+    <div class="cap-item cap-on">Cashflow Dashboard</div>
+    <div class="cap-item cap-on">Morning Brief</div>
+    <div class="cap-item cap-on">20 Telegram Cmds</div>
+    <div class="cap-item cap-on">Usage Optimizer</div>
+    <div class="cap-item cap-on">Session Continuity</div>
+    <div class="cap-item cap-on">Immune Self-Heal</div>
+    <div class="cap-item cap-on">Value Scoring</div>
+  </div>
 </div>
 
-<div class="sec">
-<div class="sec-title">Engines</div>
-<div class="eng-row">
-<div class="eng">
-<div class="eng-name" style="color:var(--green)">Acquisition</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>Deal Finder daily</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>0 leads active</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>DSCR package ready</div>
-<div class="eng-line"><span class="d" style="background:var(--orange)"></span>Lending: pending</div>
-</div>
-<div class="eng">
-<div class="eng-name" style="color:var(--blue)">Optimization</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>6/6 leased</div>
-<div class="eng-line"><span class="d" style="background:var(--orange)"></span>HAP: needs data</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>Avenue active</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>B2B active</div>
-</div>
-<div class="eng">
-<div class="eng-name" style="color:var(--sub)">Compliance</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>GW Carter on it</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>Ohio: Garry filing</div>
-<div class="eng-line"><span class="d" style="background:var(--orange)"></span>ASIC: 2 remain</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>Insurance current</div>
-</div>
-</div>
+<!-- Agent Status -->
+<div class="section">
+  <h2>Agent Status — Live</h2>
+  <div class="agent-list">
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">telegram-watchdog</span><span class="agent-age">0m</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">memory-guardian</span><span class="agent-age">6m</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">agent-healer</span><span class="agent-age">6m</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">decision-bridge</span><span class="agent-age">6m</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">garry-autonomous</span><span class="agent-age">12m</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">immune-system</span><span class="agent-age">18m</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">s8-property-finder</span><span class="agent-age">18m</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">portfolio-health</span><span class="agent-age">18m</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">overnight-pipeline</span><span class="agent-age">18m</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">telegram-bot</span><span class="agent-age">24m</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">email-scan-cache</span><span class="agent-age">24m</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">log-rotate</span><span class="agent-age">1.8h</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">offsite-backup</span><span class="agent-age">2.3h</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">mac-cleanup</span><span class="agent-age">2.8h</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">morning-brief</span><span class="agent-age">4.6h</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">mcp-healer</span><span class="agent-age">4.8h</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">idle-scheduler</span><span class="agent-age">4.9h</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">health-check</span><span class="agent-age">4.7h</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">network-watchdog</span><span class="agent-age">4.7h</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">security-audit</span><span class="agent-age">6.3h</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">session-brief</span><span class="agent-age">7.3h</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">session-reminder</span><span class="agent-age">7.8h</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">evening-wrap</span><span class="agent-age">9.8h</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">deal-packager</span><span class="agent-age">10.4h</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">rejection-learner</span><span class="agent-age">10.4h</span></div>
+    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">laura-daily-telegram</span><span class="agent-age">15.8h</span></div>
+    <div class="agent-item"><span class="dot dot-yellow"></span><span class="agent-name">bangkok-finder</span><span class="agent-age">20.8h</span></div>
+    <div class="agent-item"><span class="dot dot-red"></span><span class="agent-name">daily-note</span><span class="agent-age">exit 1</span></div>
+    <div class="agent-item"><span class="dot dot-red"></span><span class="agent-name">pm-scraper</span><span class="agent-age">exit 1</span></div>
+  </div>
 </div>
 
-<div class="sec">
-<div class="sec-title">Portfolio</div>
-<div class="props">
-<div class="prop"><div class="prop-v">$1,061</div><div class="prop-aud">A$1,676</div><div class="prop-a">132 Fenwick Dr<br></div></div><div class="prop"><div class="prop-v">$1,005</div><div class="prop-aud">A$1,588</div><div class="prop-a">516 Alcove Ave<br></div></div><div class="prop"><div class="prop-v">$988</div><div class="prop-aud">A$1,561</div><div class="prop-a">505 W 25th St<br></div></div><div class="prop"><div class="prop-v">$974</div><div class="prop-aud">A$1,539</div><div class="prop-a">5361 Wilborn Dr<br></div></div><div class="prop"><div class="prop-v">$598</div><div class="prop-aud">A$945</div><div class="prop-a">124 Kenilworth Ave<br></div></div><div class="prop"><div class="prop-v">$309</div><div class="prop-aud">A$488</div><div class="prop-a">Unit F 7596 Hazelcrest Dr<br></div></div>
-</div>
+<!-- Infrastructure -->
+<div class="section">
+  <h2>Infrastructure</h2>
+  <div class="grid" style="grid-template-columns: repeat(3,1fr);">
+    <div class="card">
+      <div class="num green" style="font-size:1.5rem;">12 GB</div>
+      <div class="lbl">Disk Used (764 GB free)</div>
+      <div class="score-bar"><div class="score-fill" style="width:2%;background:#00d4aa;"></div></div>
+    </div>
+    <div class="card">
+      <div class="num green" style="font-size:1.5rem;">Ollama</div>
+      <div class="lbl">llama3.1:8b — 51 tok/s — $0/query</div>
+    </div>
+    <div class="card">
+      <div class="num green" style="font-size:1.5rem;">ChromaDB</div>
+      <div class="lbl">481 chunks indexed</div>
+    </div>
+  </div>
 </div>
 
-<div class="updated">Auto-updated Mar 26, 2026 10:16 AM · Garry COO</div>
-
+<div style="text-align:center; padding:16px; color:#444; font-size:0.75rem;">
+  Garry COO System — patsuperg.github.io/garry-dashboards — Auto-refreshes every 30min
 </div>
+
 </body>
 </html>
