@@ -12,310 +12,248 @@
   .ts { color: #555; font-size: 0.8rem; }
   h2 { font-size: 1.1rem; color: #fff; margin-bottom: 14px; font-weight: 600; }
   .section { margin-bottom: 28px; }
-
   .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
   .card { background: #141414; border: 1px solid #222; border-radius: 14px; padding: 20px; }
-  .card-wide { grid-column: span 2; }
   .card .num { font-size: 2.5rem; font-weight: 700; line-height: 1; }
   .card .lbl { font-size: 0.8rem; color: #888; margin-top: 6px; }
   .green { color: #00d4aa; }
   .red { color: #e74c3c; }
   .yellow { color: #f39c12; }
   .white { color: #fff; }
-  .dim { color: #666; }
-
-  .progress-track { height: 32px; background: #1a1a1a; border-radius: 16px; overflow: hidden; position: relative; margin: 12px 0; }
-  .progress-fill { height: 100%; border-radius: 16px; display: flex; align-items: center; padding-left: 14px; font-weight: 700; font-size: 0.85rem; }
-
-  /* Property table */
-  .prop-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-  .prop-table th { text-align: left; padding: 10px 12px; border-bottom: 2px solid #333; color: #888; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; }
-  .prop-table td { padding: 10px 12px; border-bottom: 1px solid #1a1a1a; }
-  .prop-table tr:hover { background: #1a1a1a; }
-
-  /* Decision cards */
-  .decision { background: #1a1a1a; border-radius: 10px; padding: 14px 16px; margin-bottom: 8px; border-left: 3px solid; }
-  .decision-urgent { border-color: #e74c3c; }
-  .decision-normal { border-color: #f39c12; }
-  .decision-info { border-color: #3498db; }
-  .decision .title { font-weight: 600; font-size: 0.9rem; color: #fff; }
-  .decision .desc { font-size: 0.8rem; color: #888; margin-top: 4px; }
-
-  /* Timeline */
-  .timeline-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #1a1a1a; }
-  .timeline-date { width: 80px; font-size: 0.8rem; color: #f39c12; font-weight: 600; flex-shrink: 0; }
-  .timeline-body { font-size: 0.85rem; color: #ccc; }
-  .timeline-urgent .timeline-date { color: #e74c3c; }
-
   .badge { display: inline-block; padding: 3px 10px; border-radius: 16px; font-size: 0.7rem; font-weight: 600; }
   .badge-green { background: rgba(0,212,170,0.15); color: #00d4aa; }
   .badge-red { background: rgba(231,76,60,0.15); color: #e74c3c; }
   .badge-yellow { background: rgba(243,156,18,0.15); color: #f39c12; }
   .badge-blue { background: rgba(52,152,219,0.15); color: #3498db; }
-
+  .progress-track { height: 32px; background: #1a1a1a; border-radius: 16px; overflow: hidden; position: relative; margin: 12px 0; }
+  .progress-fill { height: 100%; border-radius: 16px; display: flex; align-items: center; padding-left: 14px; font-weight: 700; font-size: 0.85rem; }
+  .prop-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .prop-table th { text-align: left; padding: 10px 12px; border-bottom: 2px solid #333; color: #888; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; }
+  .prop-table td { padding: 10px 12px; border-bottom: 1px solid #1a1a1a; }
+  .prop-table tr:hover { background: #1a1a1a; }
+  .decision { background: #1a1a1a; border-radius: 10px; padding: 14px 16px; margin-bottom: 8px; border-left: 3px solid; }
+  .decision-urgent { border-color: #e74c3c; }
+  .decision-normal { border-color: #f39c12; }
+  .decision .title { font-weight: 600; font-size: 0.9rem; color: #fff; }
+  .decision .desc { font-size: 0.8rem; color: #888; margin-top: 4px; }
+  .timeline-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #1a1a1a; }
+  .timeline-date { width: 80px; font-size: 0.8rem; color: #f39c12; font-weight: 600; flex-shrink: 0; }
+  .timeline-body { font-size: 0.85rem; color: #ccc; }
+  .timeline-urgent .timeline-date { color: #e74c3c; }
   .hap-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
   .hap-card { background: #1a1a1a; border-radius: 8px; padding: 12px 8px; text-align: center; }
   .hap-card .name { font-size: 0.7rem; color: #888; }
   .hap-card .amt { font-size: 0.95rem; font-weight: 700; margin-top: 4px; }
   .hap-card .status { font-size: 0.65rem; margin-top: 4px; }
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: 1fr; }
+    .hap-grid { grid-template-columns: repeat(3, 1fr); }
+    .prop-table { font-size: 0.75rem; }
+  }
 </style>
 </head>
 <body>
-
 <div class="header">
   <div>
     <h1>Patrick's Command Centre</h1>
     <span class="badge badge-green">ALL LEASED</span>
-    <span class="badge badge-yellow">0/6 HAP RECEIVED</span>
+    <span class="badge badge-yellow">0/6 HAP</span>
   </div>
-  <div class="ts">Mar 26, 2026 10:30 AEDT<br>Avenue transition month — first payout April 10</div>
+  <div class="ts">Auto-updated: Mar 26, 2026 11:23 AEDT<br>All income in AUD (×1.58)</div>
 </div>
 
-<!-- Money Overview -->
 <div class="grid">
   <div class="card">
-    <div class="num green">$4,935</div>
-    <div class="lbl">Net Monthly Income</div>
+    <div class="num green">A$7,797</div>
+    <div class="lbl">Net Monthly (AUD)</div>
   </div>
   <div class="card">
-    <div class="num white">$7,858</div>
-    <div class="lbl">Gross Monthly Rent</div>
-  </div>
+      <div class="num" style="color:#f39c12;font-size:2.5rem;">Awaiting data</div>
+      <div class="lbl">Spoons Score (stale data)</div>
+    </div>
   <div class="card">
     <div class="num white">6</div>
     <div class="lbl">Properties — All Leased</div>
   </div>
   <div class="card">
-    <div class="num yellow">24.7%</div>
-    <div class="lbl">Progress to $20K Target</div>
+    <div class="num yellow">39.0%</div>
+    <div class="lbl">→ A$20,000/mo target</div>
   </div>
 </div>
 
-<!-- Portfolio Progress Bar -->
 <div class="card" style="margin-bottom:24px;">
-  <h2>$20,000/mo AUD Target</h2>
+  <h2>A$20,000/mo Target</h2>
   <div class="progress-track">
-    <div class="progress-fill" style="width:24.7%;background:linear-gradient(90deg,#00a882,#00d4aa);">$4,935</div>
+    <div class="progress-fill" style="width:39.0%;background:linear-gradient(90deg,#00a882,#00d4aa);">A$7,797</div>
   </div>
   <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:#555;margin-top:4px;">
-    <span>$0</span><span>$5K</span><span style="color:#f39c12;">$7.5K next</span><span>$10K</span><span>$15K</span><span>$20K</span>
+    <span>A$0</span><span style="color:#f39c12;">A$11,850 next</span><span>A$20K</span>
   </div>
-  <p style="color:#888;font-size:0.8rem;margin-top:12px;">Need 2-3 more doors at ~$900/mo net each to hit $7,500 milestone. Pipeline active: Bridgevale ($100K backup), Theodore ($94K, needs decision).</p>
+  <p style="color:#888;font-size:0.8rem;margin-top:12px;">Need 2-3 more doors at ~A$1,400/mo net each to hit next milestone.</p>
 </div>
 
-<!-- Properties -->
 <div class="section">
   <h2>Portfolio — 6 Properties</h2>
   <table class="prop-table">
-    <thead>
-      <tr><th>Property</th><th>Rent</th><th>Net</th><th>PM</th><th>Status</th><th>Notes</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>132 Fenwick Dr, STL 63135</td>
-        <td>$1,450</td>
-        <td class="green">$1,061</td>
-        <td>Avenue</td>
-        <td><span class="badge badge-green">LEASED</span></td>
-        <td style="color:#e74c3c;font-size:0.8rem;">MSD sewer $263 — Garry solving</td>
-      </tr>
-      <tr>
-        <td>516 Alcove Ave, BN 63137</td>
-        <td>$1,490</td>
-        <td class="green">$1,005</td>
-        <td>Avenue</td>
-        <td><span class="badge badge-green">LEASED</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>505 W 25th St, Lorain OH</td>
-        <td>$1,383</td>
-        <td class="green">$988</td>
-        <td>B2B</td>
-        <td><span class="badge badge-green">LEASED</span></td>
-        <td style="color:#f39c12;font-size:0.8rem;">Tax appeal due Mar 31</td>
-      </tr>
-      <tr>
-        <td>5361 Wilborn Dr, STL 63136</td>
-        <td>$1,400</td>
-        <td class="green">$974</td>
-        <td>Avenue</td>
-        <td><span class="badge badge-green">LEASED</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>124 Kenilworth Ave, OH</td>
-        <td>$1,360</td>
-        <td class="green">$598</td>
-        <td>B2B</td>
-        <td><span class="badge badge-green">LEASED</span></td>
-        <td style="color:#f39c12;font-size:0.8rem;">Tax appeal due Mar 31</td>
-      </tr>
-      <tr>
-        <td>7596 Hazelcrest Dr F, MO</td>
-        <td>$775</td>
-        <td class="yellow">$309</td>
-        <td>Avenue</td>
-        <td><span class="badge badge-green">LEASED</span></td>
-        <td style="color:#888;font-size:0.8rem;">Lowest net — review expenses</td>
-      </tr>
-    </tbody>
+    <thead><tr><th>Property</th><th>Rent (USD)</th><th>Net (AUD)</th><th>PM</th><th>Status</th><th>Notes</th></tr></thead>
+    <tbody><tr>
+          <td>505 W 25th St, Lorain, OH 44052</td>
+          <td>$1,383 USD</td>
+          <td class="green">A$1,561</td>
+          <td>BTR</td>
+          <td><span class="badge badge-green">LEASED</span></td>
+          <td style="color:#e74c3c;font-size:0.8rem;">Ohio property, tax appeal due Mar 31</td>
+        </tr><tr>
+          <td>7596 Hazelcrest Dr Unit F, Hazelwood, MO 63042</td>
+          <td>$775 USD</td>
+          <td class="red">A$488</td>
+          <td>Avenue Residential</td>
+          <td><span class="badge badge-green">LEASED</span></td>
+          <td style="color:#888;font-size:0.8rem;">Lowest net — review expenses</td>
+        </tr><tr>
+          <td>132 Fenwick Dr, Saint Louis, MO 63135</td>
+          <td>$1,450 USD</td>
+          <td class="green">A$1,676</td>
+          <td>Avenue Residential</td>
+          <td><span class="badge badge-green">LEASED</span></td>
+          <td style="color:#e74c3c;font-size:0.8rem;">MSD sewer issue — Garry solving</td>
+        </tr><tr>
+          <td>5361 Wilborn Dr, St Louis, MO 63136</td>
+          <td>$1,400 USD</td>
+          <td class="green">A$1,539</td>
+          <td>Avenue Residential</td>
+          <td><span class="badge badge-green">LEASED</span></td>
+          <td style="color:#888;font-size:0.8rem;">Evernest negligence — part of $13.8K claim</td>
+        </tr><tr>
+          <td>516 Alcove Ave, Bellefontaine Neighbors, MO 63137</td>
+          <td>$1,490 USD</td>
+          <td class="green">A$1,588</td>
+          <td>Avenue Residential</td>
+          <td><span class="badge badge-green">LEASED</span></td>
+          <td style="color:#888;font-size:0.8rem;"></td>
+        </tr><tr>
+          <td>124 Kenilworth Ave, Painesville, OH 44077</td>
+          <td>$1,360 USD</td>
+          <td class="yellow">A$945</td>
+          <td>BTR</td>
+          <td><span class="badge badge-green">LEASED</span></td>
+          <td style="color:#e74c3c;font-size:0.8rem;">Ohio property, tax appeal due Mar 31</td>
+        </tr></tbody>
   </table>
 </div>
 
-<!-- HAP Status -->
 <div class="section">
   <h2>HAP Status — March 2026</h2>
-  <div class="hap-grid">
-    <div class="hap-card">
-      <div class="name">Fenwick</div>
-      <div class="amt yellow">$1,450</div>
-      <div class="status yellow">PENDING</div>
-    </div>
-    <div class="hap-card">
-      <div class="name">Alcove</div>
-      <div class="amt yellow">$1,490</div>
-      <div class="status yellow">PENDING</div>
-    </div>
-    <div class="hap-card">
-      <div class="name">25th St</div>
-      <div class="amt yellow">$1,383</div>
-      <div class="status yellow">PENDING</div>
-    </div>
-    <div class="hap-card">
-      <div class="name">Wilborn</div>
-      <div class="amt yellow">$1,400</div>
-      <div class="status yellow">PENDING</div>
-    </div>
-    <div class="hap-card">
-      <div class="name">Kenilworth</div>
-      <div class="amt yellow">$1,360</div>
-      <div class="status yellow">PENDING</div>
-    </div>
-    <div class="hap-card">
-      <div class="name">Hazelcrest</div>
-      <div class="amt yellow">$775</div>
-      <div class="status yellow">PENDING</div>
-    </div>
-  </div>
-  <p style="color:#888;font-size:0.8rem;margin-top:12px;">0/6 received — Avenue transition month. Heather confirmed: first payouts start April. Statements on 10th, payouts on 10th & 20th.</p>
+  <div class="hap-grid"><div class="hap-card">
+          <div class="name">25th</div>
+          <div class="amt yellow">$1,383</div>
+          <div class="status yellow">PENDING</div>
+        </div><div class="hap-card">
+          <div class="name">Hazelcrest</div>
+          <div class="amt yellow">$775</div>
+          <div class="status yellow">PENDING</div>
+        </div><div class="hap-card">
+          <div class="name">Fenwick</div>
+          <div class="amt yellow">$1,450</div>
+          <div class="status yellow">PENDING</div>
+        </div><div class="hap-card">
+          <div class="name">Wilborn</div>
+          <div class="amt yellow">$1,400</div>
+          <div class="status yellow">PENDING</div>
+        </div><div class="hap-card">
+          <div class="name">Alcove</div>
+          <div class="amt yellow">$1,490</div>
+          <div class="status yellow">PENDING</div>
+        </div><div class="hap-card">
+          <div class="name">Kenilworth</div>
+          <div class="amt yellow">$1,360</div>
+          <div class="status yellow">PENDING</div>
+        </div></div>
+  <p style="color:#888;font-size:0.8rem;margin-top:12px;">0/6 received. Avenue transition — first payouts April 10.</p>
 </div>
 
-<!-- Needs Patrick -->
 <div class="section">
-  <h2>Needs Patrick's Action</h2>
+  <h2>Deals Pipeline</h2>
+  <div class="grid-3"><div class="card"><div style="color:#555;">No active deals</div></div></div>
+</div>
+
+<div class="section">
+  <h2>Needs Patrick</h2>
   <div class="decision decision-urgent">
-    <div class="title">GW Carter Tax Templates <span class="badge badge-red">URGENT</span></div>
-    <div class="desc">Rita/Olena sent templates. Patrick must find, fill, return. Blocking 2024/2025 filings. Apr 15 deadline (5472/1120). June 15 (1040NR).</div>
-  </div>
-  <div class="decision decision-normal">
-    <div class="title">Theodore Ave Decision <span class="badge badge-yellow">DECISION</span></div>
-    <div class="desc">7032 Theodore, 63136. $94K, 14.6% cap, $1,098/mo NOI. Same zip as Wilborn. Pursue at $85-88K or pass?</div>
-  </div>
-  <div class="decision decision-normal">
-    <div class="title">Subscription Kill List <span class="badge badge-yellow">$2-3K/mo SAVINGS</span></div>
-    <div class="desc">39 services audited. Shopify $285, Evernest $500, FB Ads $250, Adobe $54, LegalZoom $150, Calendly $500. Confirm kills.</div>
-  </div>
-  <div class="decision decision-info">
-    <div class="title">Frollo CSV Export <span class="badge badge-blue">2 MIN</span></div>
-    <div class="desc">Banks connected. Export CSV with subject "GARRY-FINANCE" for automated bank feed.</div>
-  </div>
-  <div class="decision decision-info">
-    <div class="title">Health Shortcut <span class="badge badge-blue">3 MIN</span></div>
-    <div class="desc">iOS Shortcuts not built. No biometric data flowing. Instructions at apple-health-shortcut.md.</div>
-  </div>
+          <div class="title">GW Carter Tax Templates <span class="badge badge-red">URGENT</span></div>
+          <div class="desc">URGENT: Gary says Rita/Olena sent templates. Patrick hasn't returned them. April 15 deadline for 5472/1120. June 15 for 1040NR. Karl now CC'd on threa</div>
+        </div><div class="decision decision-normal">
+          <div class="title">Subscription Kill List <span class="badge badge-yellow">DECISION</span></div>
+          <div class="desc">39 services audited. Potential $2-3K/mo dead spend: Shopify $285, Evernest $500, FB Ads $250, Adobe $54, LegalZoom $150, Calendly $500, Xero.</div>
+        </div><div class="decision decision-normal">
+          <div class="title">Theodore Ave Decision <span class="badge badge-yellow">DECISION</span></div>
+          <div class="desc">7032 Theodore, 63136. $94K, vacant turnkey, 14.6% cap, $1,098/mo NOI. Better at $85-88K. Same zip as Wilborn.</div>
+        </div><div class="decision decision-normal">
+          <div class="title">Frollo CSV Export <span class="badge badge-yellow">DECISION</span></div>
+          <div class="desc">Banks connected (ANZ + Macquarie). Need first CSV export emailed with subject GARRY-FINANCE.</div>
+        </div><div class="decision decision-normal">
+          <div class="title">Health Shortcut <span class="badge badge-yellow">DECISION</span></div>
+          <div class="desc">iOS Shortcuts not built. No biometric data flowing. Health dashboard shows &quot;Not Connected.&quot; Instructions at ~/AI/Claude/Infrastructure/apple-health-sh</div>
+        </div><div class="decision decision-normal">
+          <div class="title">MSD Sewer — $263.28 <span class="badge badge-yellow">DECISION</span></div>
+          <div class="desc">In collections. Heather says she can't help — Patrick must contact MSD directly. Portal broken. Ref EG6889. Dispute deadline Apr 14.</div>
+        </div><div class="decision decision-normal">
+          <div class="title">Bridgevale — $100K BACKUP OFFER <span class="badge badge-yellow">DECISION</span></div>
+          <div class="desc">$100K offer sent Mar 20. Seller under contract at $105K, Patrick is backup. S8 inspection was Mar 24. Follow-up sent to Lindia same day. No response.</div>
+        </div><div class="decision decision-normal">
+          <div class="title">ASIC Forms x3 — ALL POSTED <span class="badge badge-yellow">DECISION</span></div>
+          <div class="desc">All 3 forms express posted Mar 24 (UHF, Spartans Property, Fitness Supplies). AusPost tracking 79852088 05.</div>
+        </div>
 </div>
 
-<!-- Deal Pipeline -->
-<div class="section">
-  <h2>Deal Pipeline</h2>
-  <div class="grid-3">
-    <div class="card" style="border-top:3px solid #f39c12;">
-      <div style="font-weight:600;color:#fff;">Bridgevale — 63138</div>
-      <div style="font-size:0.85rem;color:#888;margin-top:6px;">$100K backup offer sent Mar 20<br>S8 inspection Mar 24<br>$1,410/mo rent</div>
-      <div style="margin-top:8px;"><span class="badge badge-yellow">WAITING — Lindia</span></div>
-    </div>
-    <div class="card" style="border-top:3px solid #3498db;">
-      <div style="font-weight:600;color:#fff;">Theodore Ave — 63136</div>
-      <div style="font-size:0.85rem;color:#888;margin-top:6px;">$94K, 14.6% cap<br>$1,098/mo NOI<br>Better at $85-88K</div>
-      <div style="margin-top:8px;"><span class="badge badge-blue">NEEDS DECISION</span></div>
-    </div>
-    <div class="card" style="border-top:3px solid #00d4aa;">
-      <div style="font-weight:600;color:#fff;">Sapphire Ave — 63136</div>
-      <div style="font-size:0.85rem;color:#888;margin-top:6px;">$79.9K, 16.1% cap<br>$1,073/mo NOI<br>Same zip as Wilborn</div>
-      <div style="margin-top:8px;"><span class="badge badge-green">INVESTIGATING</span></div>
-    </div>
-  </div>
-  <p style="color:#666;font-size:0.8rem;">S8 Finder: 175 scanned, 56 matched (last run Mar 25). Target: 3BR STL turnkey, $70-100K, &lt;$3K GC.</p>
-</div>
-
-<!-- Deadlines -->
 <div class="section">
   <h2>Deadlines — Next 14 Days</h2>
   <div class="timeline-item timeline-urgent">
-    <div class="timeline-date">Mar 31</div>
-    <div class="timeline-body"><strong>Ohio Tax Appeals x2</strong> — GARRY FILES. DTE Form 1, no filing fee.</div>
-  </div>
-  <div class="timeline-item timeline-urgent">
-    <div class="timeline-date">Mar 31</div>
-    <div class="timeline-body"><strong>Sleek AU entity deadline</strong> — ASIC forms posted, awaiting processing.</div>
-  </div>
-  <div class="timeline-item">
-    <div class="timeline-date">Apr 10</div>
-    <div class="timeline-body"><strong>First Avenue payout</strong> — Heather confirmed. Statements + payouts.</div>
-  </div>
-  <div class="timeline-item">
-    <div class="timeline-date">Apr 14</div>
-    <div class="timeline-body"><strong>MSD Sewer dispute deadline</strong> — $263.28. GARRY SOLVING.</div>
-  </div>
-  <div class="timeline-item timeline-urgent">
-    <div class="timeline-date">Apr 15</div>
-    <div class="timeline-body"><strong>B2B Hard Deadline</strong> — Kenilworth income, Lorain HAP, water warranty. Michael overdue.</div>
-  </div>
-  <div class="timeline-item timeline-urgent">
-    <div class="timeline-date">Apr 15</div>
-    <div class="timeline-body"><strong>GW Carter 5472/1120</strong> — BLOCKED on Patrick's templates.</div>
-  </div>
-  <div class="timeline-item">
-    <div class="timeline-date">APRIL</div>
-    <div class="timeline-body"><strong>Thailand move</strong> — Visa exemption → DTV from Cambodia.</div>
-  </div>
+          <div class="timeline-date">Mar 31</div>
+          <div class="timeline-body">Ohio Property Tax Appeals x2 (GARRY FILES)</div>
+        </div><div class="timeline-item timeline-urgent">
+          <div class="timeline-date">Mar 31</div>
+          <div class="timeline-body">Sleek AU entity deadline (ASIC forms posted, awaiting processing)</div>
+        </div><div class="timeline-item ">
+          <div class="timeline-date">Apr 14</div>
+          <div class="timeline-body">MSD Sewer dispute deadline (GARRY SOLVING)</div>
+        </div><div class="timeline-item timeline-urgent">
+          <div class="timeline-date">Apr 15</div>
+          <div class="timeline-body">B2B Hard Deadline (3 items: Kenilworth income, Lorain HAP, water warranty)</div>
+        </div><div class="timeline-item timeline-urgent">
+          <div class="timeline-date">Apr 15</div>
+          <div class="timeline-body">GW Carter 5472/1120 filing deadline (BLOCKED on Patrick's templates)</div>
+        </div><div class="timeline-item ">
+          <div class="timeline-date">APRIL</div>
+          <div class="timeline-body">Thailand move (visa exemption → DTV from Cambodia)</div>
+        </div>
 </div>
 
-<!-- Waiting On -->
 <div class="section">
-  <h2>Waiting On Others</h2>
-  <div class="grid-3">
-    <div class="card">
-      <div style="font-weight:600;color:#f39c12;">Michael Drew (B2B)</div>
-      <div style="font-size:0.8rem;color:#888;margin-top:6px;">Promised "Tuesday Mar 24" resolution. <strong style="color:#e74c3c;">OVERDUE.</strong> Chase needed.</div>
-    </div>
-    <div class="card">
-      <div style="font-weight:600;color:#f39c12;">Lindia (Buyer's Agent)</div>
-      <div style="font-size:0.8rem;color:#888;margin-top:6px;">Bridgevale $100K backup. S8 inspection Mar 24. No response yet.</div>
-    </div>
-    <div class="card">
-      <div style="font-weight:600;color:#3498db;">ASIC</div>
-      <div style="font-size:0.8rem;color:#888;margin-top:6px;">3 forms processing. Posted Mar 24. Tracking: 79852088 05.</div>
-    </div>
-  </div>
+  <h2>Garry Status</h2>
+  <div style="padding:8px 0;border-bottom:1px solid #1a1a1a;font-size:0.85rem;">
+          <strong style="color:#fff;">Ohio Property Tax Appeals</strong> — <span style="color:#888;">GARRY FILES — deadline Mar 31</span>
+        </div><div style="padding:8px 0;border-bottom:1px solid #1a1a1a;font-size:0.85rem;">
+          <strong style="color:#fff;">Evernest Settlement — $13,810</strong> — <span style="color:#888;">GARRY HANDLES — chase Jenna</span>
+        </div><div style="padding:8px 0;border-bottom:1px solid #1a1a1a;font-size:0.85rem;">
+          <strong style="color:#fff;">B2B Performance</strong> — <span style="color:#888;">Michael overdue on &quot;Tuesday&quot; promise. Chase today.</span>
+        </div><div style="padding:8px 0;border-bottom:1px solid #1a1a1a;font-size:0.85rem;">
+          <strong style="color:#fff;">MSD Sewer — $263.28</strong> — <span style="color:#888;">GARRY SOLVING — alternative payment path</span>
+        </div><div style="padding:8px 0;border-bottom:1px solid #1a1a1a;font-size:0.85rem;">
+          <strong style="color:#fff;">Close AU Entities</strong> — <span style="color:#888;">POSTED — awaiting ASIC processing</span>
+        </div><div style="padding:8px 0;border-bottom:1px solid #1a1a1a;font-size:0.85rem;">
+          <strong style="color:#fff;">Lending Plan</strong> — <span style="color:#888;">Nick DSCR ready. Warren/ICG10 awaiting response.</span>
+        </div><div style="padding:8px 0;border-bottom:1px solid #1a1a1a;font-size:0.85rem;">
+          <strong style="color:#fff;">US Tax — GW Carter</strong> — <span style="color:#888;">Patrick blocked on templates. Garry to help locate.</span>
+        </div><div style="padding:8px 0;border-bottom:1px solid #1a1a1a;font-size:0.85rem;">
+          <strong style="color:#fff;">Ohio PM Replacement</strong> — <span style="color:#888;">RE/MAX Haven + CPMG shortlisted</span>
+        </div>
 </div>
 
-<!-- System Health -->
-<div class="section">
-  <h2>System Health</h2>
-  <div class="grid">
-    <div class="card"><div class="num green" style="font-size:1.3rem;">72/100</div><div class="lbl">System Score</div></div>
-    <div class="card"><div class="num green" style="font-size:1.3rem;">29</div><div class="lbl">Agents Running</div></div>
-    <div class="card"><div class="num green" style="font-size:1.3rem;">12 GB</div><div class="lbl">Disk (764 GB free)</div></div>
-    <div class="card"><div class="num green" style="font-size:1.3rem;">20</div><div class="lbl">Telegram Commands</div></div>
-  </div>
+<div style="text-align:center;padding:16px;color:#333;font-size:0.7rem;">
+  Command Centre — Auto-updates every 30min — All AUD (×1.58)
 </div>
-
-<div style="text-align:center; padding:16px; color:#444; font-size:0.75rem;">
-  Patrick's Command Centre — Garry COO System — Auto-updates every 30min
-</div>
-
 </body>
 </html>

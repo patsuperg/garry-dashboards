@@ -12,172 +12,146 @@
   .ts { color: #555; font-size: 0.8rem; }
   h2 { font-size: 1.1rem; color: #fff; margin-bottom: 14px; font-weight: 600; }
   .section { margin-bottom: 28px; }
-
   .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
   .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
   .card { background: #141414; border: 1px solid #222; border-radius: 14px; padding: 20px; }
   .card .num { font-size: 2.5rem; font-weight: 700; line-height: 1; }
   .card .lbl { font-size: 0.8rem; color: #888; margin-top: 6px; }
-  .green { color: #00d4aa; }
-  .red { color: #e74c3c; }
-  .yellow { color: #f39c12; }
-  .white { color: #fff; }
-  .blue { color: #3498db; }
-
+  .green { color: #00d4aa; } .red { color: #e74c3c; } .yellow { color: #f39c12; } .white { color: #fff; } .blue { color: #3498db; }
   .badge { display: inline-block; padding: 3px 10px; border-radius: 16px; font-size: 0.7rem; font-weight: 600; }
   .badge-green { background: rgba(0,212,170,0.15); color: #00d4aa; }
-  .badge-red { background: rgba(231,76,60,0.15); color: #e74c3c; }
   .badge-yellow { background: rgba(243,156,18,0.15); color: #f39c12; }
-
-  .connect-card { background: #1a1a1a; border-radius: 12px; padding: 20px; border-left: 4px solid; margin-bottom: 12px; }
-  .connect-on { border-color: #00d4aa; }
-  .connect-off { border-color: #e74c3c; }
-  .connect-partial { border-color: #f39c12; }
-  .connect-title { font-weight: 600; font-size: 0.95rem; color: #fff; }
-  .connect-desc { font-size: 0.8rem; color: #888; margin-top: 6px; }
-  .connect-action { font-size: 0.8rem; color: #f39c12; margin-top: 8px; font-weight: 600; }
-
-  .insight-box { background: #141414; border: 1px solid #222; border-radius: 14px; padding: 24px; margin-bottom: 16px; }
-  .insight-title { font-size: 0.9rem; color: #fff; font-weight: 600; margin-bottom: 8px; }
-  .insight-text { font-size: 0.85rem; color: #888; line-height: 1.5; }
-
-  .setup-step { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #1a1a1a; }
-  .step-num { width: 28px; height: 28px; border-radius: 50%; background: #222; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: #fff; flex-shrink: 0; }
-  .step-text { font-size: 0.85rem; color: #ccc; }
-  .step-time { font-size: 0.75rem; color: #555; margin-top: 2px; }
+  .badge-red { background: rgba(231,76,60,0.15); color: #e74c3c; }
+  .supp-item { padding: 8px 12px; background: #1a1a1a; border-radius: 8px; font-size: 0.8rem; margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .supp-name { color: #ccc; } .supp-dose { color: #00d4aa; font-weight: 600; }
+  @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-
 <div class="header">
-  <div>
-    <h1>Health Dashboard</h1>
-    <span class="badge badge-yellow">DATA SOURCES LIMITED</span>
-  </div>
-  <div class="ts">Mar 26, 2026 10:30 AEDT</div>
+  <div><h1>Health Dashboard</h1><span class="badge badge-yellow">STALE DATA</span></div>
+  <div class="ts">Auto-updated: Mar 26, 2026 11:23 AEDT<br>Data: no data</div>
 </div>
 
-<!-- Data Sources Status -->
-<div class="section">
-  <h2>Data Source Connections</h2>
-  <div class="grid-2">
-    <div>
-      <div class="connect-card connect-off">
-        <div class="connect-title">Apple Health Export <span class="badge badge-red">NOT CONNECTED</span></div>
-        <div class="connect-desc">iOS Shortcuts automation not built. No biometric data flowing to Garry.</div>
-        <div class="connect-action">2-min setup required — see instructions below</div>
-      </div>
-      <div class="connect-card connect-off">
-        <div class="connect-title">Eight Sleep <span class="badge badge-red">NOT CONNECTED</span></div>
-        <div class="connect-desc">Morning SMS goes to Talkatone (US number). Garry can't read SMS directly.</div>
-        <div class="connect-action">Garry figuring out alternative data path</div>
-      </div>
-      <div class="connect-card connect-off">
-        <div class="connect-title">Whoop <span class="badge badge-red">NOT CONNECTED</span></div>
-        <div class="connect-desc">No Whoop device detected. Apple Watch is primary wearable.</div>
-        <div class="connect-action">Not needed — Apple Watch covers this</div>
-      </div>
-    </div>
-    <div>
-      <div class="connect-card connect-partial">
-        <div class="connect-title">Apple Watch <span class="badge badge-yellow">DEVICE PAIRED</span></div>
-        <div class="connect-desc">Watch paired to iPhone. Health data in Apple Health app. Not yet exported to Garry.</div>
-        <div class="connect-action">Will flow once iOS Shortcut is built</div>
-      </div>
-      <div class="connect-card connect-on">
-        <div class="connect-title">Mental Health Framework <span class="badge badge-green">ACTIVE</span></div>
-        <div class="connect-desc">Meg (therapist) — HIGH trust. Anxious-preoccupied pattern understood. Dashboard signals "nothing dropped."</div>
-      </div>
-      <div class="connect-card connect-on">
-        <div class="connect-title">ADHD Management <span class="badge badge-green">INTEGRATED</span></div>
-        <div class="connect-desc">Garry compensates: pre-solves everything, momentum-first design, zero-friction systems.</div>
-      </div>
-    </div>
+<div style="display:flex;gap:40px;justify-content:center;align-items:center;margin-bottom:32px;flex-wrap:wrap;">
+  <div style="text-align:center;"><div style="font-size:2rem;color:#555;">Awaiting data</div><div style="color:#888;font-size:0.8rem;">Health parser needs to run</div></div>
+  <div style="display:flex;gap:24px;">
+    <div style="text-align:center;">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#1a1a1a" stroke-width="8"/>
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#6c5ce7" stroke-width="8"
+              stroke-dasharray="0.0 326.72535999999997" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            <text x="60" y="55" text-anchor="middle" fill="#fff" font-size="1.8rem" font-weight="700">0%</text>
+            <text x="60" y="75" text-anchor="middle" fill="#888" font-size="0.7rem">SLEEP</text>
+          </svg>
+        </div>
+    <div style="text-align:center;">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#1a1a1a" stroke-width="8"/>
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#00d4aa" stroke-width="8"
+              stroke-dasharray="0.0 326.72535999999997" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            <text x="60" y="55" text-anchor="middle" fill="#fff" font-size="1.8rem" font-weight="700">0%</text>
+            <text x="60" y="75" text-anchor="middle" fill="#888" font-size="0.7rem">RECOVERY</text>
+          </svg>
+        </div>
+    <div style="text-align:center;">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#1a1a1a" stroke-width="8"/>
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#fdcb6e" stroke-width="8"
+              stroke-dasharray="0.0 326.72535999999997" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            <text x="60" y="55" text-anchor="middle" fill="#fff" font-size="1.8rem" font-weight="700">0%</text>
+            <text x="60" y="75" text-anchor="middle" fill="#888" font-size="0.7rem">STRAIN</text>
+          </svg>
+        </div>
   </div>
 </div>
 
-<!-- What We Know -->
+<div class="grid">
+  <div class="card" style="text-align:center;"><div class="num red" style="font-size:1.8rem;">—<span style="font-size:0.8rem;color:#888;">h</span></div><div class="lbl">Sleep</div></div>
+  <div class="card" style="text-align:center;"><div class="num red" style="font-size:1.8rem;">—<span style="font-size:0.8rem;color:#888;">bpm</span></div><div class="lbl">Resting HR</div></div>
+  <div class="card" style="text-align:center;"><div class="num red" style="font-size:1.8rem;">—<span style="font-size:0.8rem;color:#888;">ms</span></div><div class="lbl">HRV</div></div>
+  <div class="card" style="text-align:center;"><div class="num white" style="font-size:1.8rem;">—<span style="font-size:0.8rem;color:#888;"></span></div><div class="lbl">Steps</div></div>
+</div>
+
+<div class="grid">
+  <div class="card" style="text-align:center;"><div class="num white" style="font-size:1.8rem;">—<span style="font-size:0.8rem;color:#888;">kg</span></div><div class="lbl">Weight</div></div>
+  <div class="card" style="text-align:center;"><div class="num red" style="font-size:1.8rem;">—<span style="font-size:0.8rem;color:#888;">kcal</span></div><div class="lbl">Calories</div></div>
+  <div class="card" style="text-align:center;"><div class="num red" style="font-size:1.8rem;">—<span style="font-size:0.8rem;color:#888;"></span></div><div class="lbl">Protein</div></div>
+  <div class="card" style="text-align:center;"><div class="num green" style="font-size:1.8rem;">—<span style="font-size:0.8rem;color:#888;">min</span></div><div class="lbl">Exercise</div></div>
+</div>
+
 <div class="section">
-  <h2>What Garry Knows About Patrick's Health</h2>
+  <h2>Current Protocol</h2>
   <div class="grid-3">
     <div class="card">
-      <div class="num blue" style="font-size:1.5rem;">ADHD</div>
-      <div class="lbl">Primary consideration — momentum-first design</div>
+      <h2 style="font-size:0.9rem;">Anabolics</h2>
+      <div class="supp-item"><span class="supp-name">Test Enanthate</span><span class="supp-dose">250mg/wk</span></div>
+      <div class="supp-item"><span class="supp-name">Primobolan</span><span class="supp-dose">50mg/wk</span></div>
+      <div class="supp-item"><span class="supp-name">Growth Hormone</span><span class="supp-dose">4iu/day</span></div>
     </div>
     <div class="card">
-      <div class="num blue" style="font-size:1.5rem;">AP</div>
-      <div class="lbl">Anxious-preoccupied attachment — Meg supporting</div>
+      <h2 style="font-size:0.9rem;">Peptides</h2>
+      <div class="supp-item"><span class="supp-name">BPC-157/TB-500</span><span class="supp-dose">750mcg/day</span></div>
+      <div class="supp-item"><span class="supp-name">CHK CU</span><span class="supp-dose">2mg/day</span></div>
+      <div class="supp-item"><span class="supp-name">Retatrutide</span><span class="supp-dose">2000mcg/wk</span></div>
     </div>
     <div class="card">
-      <div class="num green" style="font-size:1.5rem;">Active</div>
-      <div class="lbl">Apple Watch paired — data available on device</div>
+      <h2 style="font-size:0.9rem;">Key Supplements</h2>
+      <div class="supp-item"><span class="supp-name">Fish Oil</span><span class="supp-dose">5-6g/day</span></div>
+      <div class="supp-item"><span class="supp-name">Creatine</span><span class="supp-dose">10g/day</span></div>
+      <div class="supp-item"><span class="supp-name">NAD+</span><span class="supp-dose">1g/day</span></div>
+      <div class="supp-item"><span class="supp-name">Resveratrol</span><span class="supp-dose">1g/day</span></div>
+      <div class="supp-item"><span class="supp-name">Glutathione</span><span class="supp-dose">1000mg/day</span></div>
+      <div class="supp-item"><span class="supp-name">Collagen</span><span class="supp-dose">15g/day</span></div>
     </div>
   </div>
 </div>
 
-<!-- Insights -->
 <div class="section">
-  <h2>Available Insights (No Data Source Needed)</h2>
-  <div class="grid-2">
-    <div class="insight-box">
-      <div class="insight-title">Sleep Pattern Proxy</div>
-      <div class="insight-text">Session start times suggest Patrick is typically active by 8-10am AEDT. Evening sessions sometimes past 11pm. Bangkok move (ICT, UTC+7) shifts 4 hours earlier vs US business hours — beneficial for STL alignment.</div>
-    </div>
-    <div class="insight-box">
-      <div class="insight-title">Stress Indicators</div>
-      <div class="insight-text">Pending decisions: <strong style="color:#f39c12;">5 items needing Patrick</strong>. Tax deadline Apr 15. MSD sewer unresolved. Multiple overdue follow-ups. Estimate: <strong style="color:#f39c12;">MODERATE-HIGH</strong>.</div>
-    </div>
-    <div class="insight-box">
-      <div class="insight-title">Momentum Score</div>
-      <div class="insight-text">Sessions/week: ~3-4. Avg length: 45-60min. Deal pipeline active. System velocity high. <strong style="color:#00d4aa;">Momentum: STRONG</strong>. Risk: tax templates = dropped ball trigger.</div>
-    </div>
-    <div class="insight-box">
-      <div class="insight-title">Energy Management</div>
-      <div class="insight-text">ADHD-friendly design: scannable formats, zero-friction, pre-solved decisions. Garry handles admin + follow-ups. Patrick's bandwidth = vision + enjoyment.</div>
-    </div>
-  </div>
-</div>
-
-<!-- Setup Instructions -->
-<div class="section">
-  <h2>Connect Apple Health — 2-Minute Setup</h2>
-  <div class="card">
-    <p style="color:#888;font-size:0.85rem;margin-bottom:16px;">Once connected: heart rate, steps, sleep quality, HRV, active energy, workouts, and trends.</p>
-    <div class="setup-step">
-      <div class="step-num">1</div>
-      <div><div class="step-text">Open <strong>Shortcuts</strong> app on iPhone</div><div class="step-time">10 seconds</div></div>
-    </div>
-    <div class="setup-step">
-      <div class="step-num">2</div>
-      <div><div class="step-text">Create: <strong>Find Health Samples</strong> (last 24h) → <strong>Save File</strong> to iCloud Drive → <strong>garry-health-export.csv</strong></div><div class="step-time">60 seconds</div></div>
-    </div>
-    <div class="setup-step">
-      <div class="step-num">3</div>
-      <div><div class="step-text">Set automation: Run hourly (or on each Apple Watch charge)</div><div class="step-time">30 seconds</div></div>
-    </div>
-    <div class="setup-step">
-      <div class="step-num">4</div>
-      <div><div class="step-text">Done — Garry picks up CSV from iCloud Drive automatically</div><div class="step-time">Automatic</div></div>
-    </div>
-    <p style="color:#555;font-size:0.8rem;margin-top:16px;">Full instructions: ~/AI/Claude/Infrastructure/apple-health-shortcut.md</p>
-  </div>
-</div>
-
-<!-- Placeholder metrics -->
-<div class="section">
-  <h2>Coming Soon (After Apple Health Connect)</h2>
+  <h2>Bloodwork Snapshot (Oct 2025)</h2>
   <div class="grid">
-    <div class="card" style="border-top:3px solid #333;"><div style="font-size:2rem;color:#333;">—</div><div class="lbl">Resting Heart Rate</div></div>
-    <div class="card" style="border-top:3px solid #333;"><div style="font-size:2rem;color:#333;">—</div><div class="lbl">Steps Today</div></div>
-    <div class="card" style="border-top:3px solid #333;"><div style="font-size:2rem;color:#333;">—</div><div class="lbl">Sleep Score</div></div>
-    <div class="card" style="border-top:3px solid #333;"><div style="font-size:2rem;color:#333;">—</div><div class="lbl">HRV (Recovery)</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid #00d4aa;">
+      <div style="font-size:1.5rem;font-weight:700;color:#00d4aa;">34.9</div>
+      <div class="lbl">Total Test (nmol/L)</div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #e74c3c;">
+      <div style="font-size:1.5rem;font-weight:700;color:#e74c3c;">3.8</div>
+      <div class="lbl">LDL (mmol/L) — HIGH</div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #f39c12;">
+      <div style="font-size:1.5rem;font-weight:700;color:#f39c12;">0.50</div>
+      <div class="lbl">HCT — watch &gt;0.52</div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #00d4aa;">
+      <div style="font-size:1.5rem;font-weight:700;color:#00d4aa;">0.1</div>
+      <div class="lbl">hsCRP (excellent)</div>
+    </div>
   </div>
 </div>
 
-<div style="text-align:center; padding:16px; color:#444; font-size:0.75rem;">
-  Health Dashboard — Garry COO System — Waiting for data sources
+<div class="section">
+  <h2>Body Composition (Evolt History)</h2>
+  <div class="grid" style="grid-template-columns:repeat(5,1fr);">
+    <div class="card" style="text-align:center;"><div style="font-size:0.7rem;color:#888;">Apr 8</div><div style="font-weight:700;">92.4kg</div><div style="color:#888;font-size:0.75rem;">18.4% BF</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:0.7rem;color:#888;">Apr 17</div><div style="font-weight:700;">—</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:0.7rem;color:#888;">Apr 28</div><div style="font-weight:700;">—</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:0.7rem;color:#888;">May 12</div><div style="font-weight:700;">—</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:0.7rem;color:#888;">May 27</div><div style="font-weight:700;">93kg</div><div style="color:#00d4aa;font-size:0.75rem;">17.0% BF</div></div>
+  </div>
+  <p style="color:#888;font-size:0.8rem;">Latest INSMART (Mar 25): 88.6kg, BMI 28.3. Next Evolt scan: Bangkok gym TBD.</p>
 </div>
 
-</body>
-</html>
+<div class="section">
+  <h2>Training</h2>
+  <div class="card">
+    <div style="display:flex;gap:24px;flex-wrap:wrap;">
+      <div><strong style="color:#fff;">Split:</strong> <span style="color:#888;">Push / Pull / Legs, 3-4x/wk</span></div>
+      <div><strong style="color:#fff;">Elbow:</strong> <span style="color:#f39c12;">Rehabbing — BPC completing mid-April</span></div>
+      <div><strong style="color:#fff;">Status:</strong> <span style="color:#00d4aa;">Drive returning, feeling good</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:16px;color:#333;font-size:0.7rem;">Health Dashboard — Auto-updates every 30min from Apple Health Auto Export</div>
+</body></html>

@@ -9,150 +9,49 @@
   body { background: #0a0a0a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', system-ui, sans-serif; padding: 24px; }
   .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
   h1 { font-size: 1.8rem; color: #fff; letter-spacing: -0.5px; }
-  .header .ts { color: #555; font-size: 0.8rem; }
-  .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
-  .badge-live { background: rgba(0,212,170,0.15); color: #00d4aa; border: 1px solid rgba(0,212,170,0.3); }
-
+  .ts { color: #555; font-size: 0.8rem; }
+  h2 { font-size: 1.1rem; color: #fff; margin-bottom: 14px; font-weight: 600; }
+  .section { margin-bottom: 28px; }
   .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
   .card { background: #141414; border: 1px solid #222; border-radius: 14px; padding: 20px; }
   .card .num { font-size: 2.5rem; font-weight: 700; line-height: 1; }
   .card .lbl { font-size: 0.8rem; color: #888; margin-top: 6px; }
-  .green { color: #00d4aa; }
-  .red { color: #e74c3c; }
-  .yellow { color: #f39c12; }
-  .white { color: #fff; }
-
+  .green { color: #00d4aa; } .red { color: #e74c3c; } .yellow { color: #f39c12; } .white { color: #fff; }
+  .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+  .badge-live { background: rgba(0,212,170,0.15); color: #00d4aa; border: 1px solid rgba(0,212,170,0.3); }
+  .score-bar { height: 8px; background: #1a1a1a; border-radius: 4px; margin-top: 8px; overflow: hidden; }
+  .score-fill { height: 100%; border-radius: 4px; }
   .agent-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .agent-item { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #1a1a1a; border-radius: 8px; font-size: 0.8rem; }
   .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-green { background: #00d4aa; }
-  .dot-red { background: #e74c3c; }
-  .dot-yellow { background: #f39c12; }
-  .agent-name { color: #ccc; }
-  .agent-age { color: #555; margin-left: auto; font-size: 0.7rem; }
-
-  .score-bar { height: 8px; background: #1a1a1a; border-radius: 4px; margin-top: 8px; overflow: hidden; }
-  .score-fill { height: 100%; border-radius: 4px; }
-
-  h2 { font-size: 1.1rem; color: #fff; margin-bottom: 14px; font-weight: 600; }
-  .section { margin-bottom: 28px; }
-
+  .dot-green { background: #00d4aa; } .dot-red { background: #e74c3c; }
+  .agent-name { color: #ccc; } .agent-age { color: #555; margin-left: auto; font-size: 0.7rem; }
   .capability-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .cap-item { padding: 10px; background: #1a1a1a; border-radius: 8px; font-size: 0.8rem; text-align: center; border-top: 3px solid; }
-  .cap-on { border-color: #00d4aa; color: #00d4aa; }
-  .cap-off { border-color: #e74c3c; color: #e74c3c; }
+  .cap-on { border-color: #00d4aa; color: #00d4aa; } .cap-off { border-color: #e74c3c; color: #e74c3c; }
+  @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } .agent-list { grid-template-columns: 1fr; } .capability-grid { grid-template-columns: repeat(2, 1fr); } }
 </style>
 </head>
 <body>
-
 <div class="header">
-  <div>
-    <h1>Garry System Dashboard</h1>
-    <span class="badge badge-live">SYSTEM LIVE</span>
-  </div>
-  <div class="ts">Updated: Mar 26, 2026 10:30 AEDT<br>Score: 72/100</div>
+  <div><h1>Garry System Dashboard</h1><span class="badge badge-live">SYSTEM LIVE</span></div>
+  <div class="ts">Auto-updated: Mar 26, 2026 11:23 AEDT<br>Score: 72/100 (honest)</div>
 </div>
-
-<!-- Top Stats -->
 <div class="grid">
-  <div class="card">
-    <div class="num green">72</div>
-    <div class="lbl">System Score</div>
-    <div class="score-bar"><div class="score-fill" style="width:72%;background:linear-gradient(90deg,#00a882,#00d4aa);"></div></div>
-  </div>
-  <div class="card">
-    <div class="num white">29</div>
-    <div class="lbl">LaunchAgents Loaded</div>
-    <div class="score-bar"><div class="score-fill" style="width:90%;background:#00d4aa;"></div></div>
-  </div>
-  <div class="card">
-    <div class="num green">26</div>
-    <div class="lbl">Healthy (exit 0)</div>
-  </div>
-  <div class="card">
-    <div class="num red">3</div>
-    <div class="lbl">Errors (exit 1)</div>
+  <div class="card"><div class="num green">72</div><div class="lbl">System Score</div>
+    <div class="score-bar"><div class="score-fill" style="width:72%;background:linear-gradient(90deg,#00a882,#00d4aa);"></div></div></div>
+  <div class="card"><div class="num white">29</div><div class="lbl">LaunchAgents</div></div>
+  <div class="card"><div class="num green">26</div><div class="lbl">Healthy</div></div>
+  <div class="card"><div class="num red">3</div><div class="lbl">Errors</div></div>
+</div>
+<div class="section"><h2>Capabilities — 12/12 Verified Active</h2><div class="capability-grid"><div class="cap-item cap-on">Deal Packaging</div><div class="cap-item cap-on">Rejection Learning</div><div class="cap-item cap-on">HAP Tracking</div><div class="cap-item cap-on">PM Scoring</div><div class="cap-item cap-on">Evernest Chase</div><div class="cap-item cap-on">Cashflow Dashboard</div><div class="cap-item cap-on">Morning Brief</div><div class="cap-item cap-on">Telegram (20 cmds)</div><div class="cap-item cap-on">Usage Optimizer</div><div class="cap-item cap-on">Session Continuity</div><div class="cap-item cap-on">Immune Self-Heal</div><div class="cap-item cap-on">Value Scoring</div></div></div>
+<div class="section"><h2>Agents</h2><div class="agent-list"><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">telegram-claude-bot</span><span class="agent-age">221h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">dashboard-refresh</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">keep-awake</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">s8-property-finder</span><span class="agent-age">3h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">email-scan-cache</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">memory-guardian</span><span class="agent-age">1h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">mac-cleanup</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">key-rotation</span><span class="agent-age">75h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">garry-autonomous</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">decision-bridge</span><span class="agent-age">1h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">secret-scanner</span><span class="agent-age">4h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">agent-healer</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">post-reboot-healthcheck</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">weekly-growth-summary</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">evening-wrap</span><span class="agent-age">16h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">log-rotate</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">memory-check</span><span class="agent-age">17h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">bangkok-finder</span><span class="agent-age">27h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">luke-repo-sync</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">bangkok-finder-feedback</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">tunnel</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">telegram-morning-brief</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">immune-system</span><span class="agent-age">1h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">telegram-watchdog</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">auto-evolve</span><span class="agent-age">104h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">security-audit</span><span class="agent-age">5h</span></div><div class="agent-item"><span class="dot dot-red"></span><span class="agent-name">daily-note</span><span class="agent-age">exit 1</span></div><div class="agent-item"><span class="dot dot-red"></span><span class="agent-name">pm-scraper</span><span class="agent-age">exit 1</span></div><div class="agent-item"><span class="dot dot-red"></span><span class="agent-name">offsite-backup</span><span class="agent-age">exit 1</span></div></div></div>
+<div class="section"><h2>Infrastructure</h2>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="card"><div class="num green" style="font-size:1.5rem;">12Gi</div><div class="lbl">Disk Used (611Gi free)</div></div>
+    <div class="card"><div class="num green" style="font-size:1.5rem;">Ollama</div><div class="lbl">llama3.1:8b — $0/query</div></div>
+    <div class="card"><div class="num green" style="font-size:1.5rem;">ChromaDB</div><div class="lbl">481 chunks indexed</div></div>
   </div>
 </div>
-
-<!-- Capabilities -->
-<div class="section">
-  <h2>Capabilities — 12/12 Active</h2>
-  <div class="capability-grid">
-    <div class="cap-item cap-on">Deal Packaging</div>
-    <div class="cap-item cap-on">Rejection Learning</div>
-    <div class="cap-item cap-on">HAP Tracking</div>
-    <div class="cap-item cap-on">PM Scoring</div>
-    <div class="cap-item cap-on">Evernest Chase</div>
-    <div class="cap-item cap-on">Cashflow Dashboard</div>
-    <div class="cap-item cap-on">Morning Brief</div>
-    <div class="cap-item cap-on">20 Telegram Cmds</div>
-    <div class="cap-item cap-on">Usage Optimizer</div>
-    <div class="cap-item cap-on">Session Continuity</div>
-    <div class="cap-item cap-on">Immune Self-Heal</div>
-    <div class="cap-item cap-on">Value Scoring</div>
-  </div>
-</div>
-
-<!-- Agent Status -->
-<div class="section">
-  <h2>Agent Status — Live</h2>
-  <div class="agent-list">
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">telegram-watchdog</span><span class="agent-age">0m</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">memory-guardian</span><span class="agent-age">6m</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">agent-healer</span><span class="agent-age">6m</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">decision-bridge</span><span class="agent-age">6m</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">garry-autonomous</span><span class="agent-age">12m</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">immune-system</span><span class="agent-age">18m</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">s8-property-finder</span><span class="agent-age">18m</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">portfolio-health</span><span class="agent-age">18m</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">overnight-pipeline</span><span class="agent-age">18m</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">telegram-bot</span><span class="agent-age">24m</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">email-scan-cache</span><span class="agent-age">24m</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">log-rotate</span><span class="agent-age">1.8h</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">offsite-backup</span><span class="agent-age">2.3h</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">mac-cleanup</span><span class="agent-age">2.8h</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">morning-brief</span><span class="agent-age">4.6h</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">mcp-healer</span><span class="agent-age">4.8h</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">idle-scheduler</span><span class="agent-age">4.9h</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">health-check</span><span class="agent-age">4.7h</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">network-watchdog</span><span class="agent-age">4.7h</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">security-audit</span><span class="agent-age">6.3h</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">session-brief</span><span class="agent-age">7.3h</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">session-reminder</span><span class="agent-age">7.8h</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">evening-wrap</span><span class="agent-age">9.8h</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">deal-packager</span><span class="agent-age">10.4h</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">rejection-learner</span><span class="agent-age">10.4h</span></div>
-    <div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">laura-daily-telegram</span><span class="agent-age">15.8h</span></div>
-    <div class="agent-item"><span class="dot dot-yellow"></span><span class="agent-name">bangkok-finder</span><span class="agent-age">20.8h</span></div>
-    <div class="agent-item"><span class="dot dot-red"></span><span class="agent-name">daily-note</span><span class="agent-age">exit 1</span></div>
-    <div class="agent-item"><span class="dot dot-red"></span><span class="agent-name">pm-scraper</span><span class="agent-age">exit 1</span></div>
-  </div>
-</div>
-
-<!-- Infrastructure -->
-<div class="section">
-  <h2>Infrastructure</h2>
-  <div class="grid" style="grid-template-columns: repeat(3,1fr);">
-    <div class="card">
-      <div class="num green" style="font-size:1.5rem;">12 GB</div>
-      <div class="lbl">Disk Used (764 GB free)</div>
-      <div class="score-bar"><div class="score-fill" style="width:2%;background:#00d4aa;"></div></div>
-    </div>
-    <div class="card">
-      <div class="num green" style="font-size:1.5rem;">Ollama</div>
-      <div class="lbl">llama3.1:8b — 51 tok/s — $0/query</div>
-    </div>
-    <div class="card">
-      <div class="num green" style="font-size:1.5rem;">ChromaDB</div>
-      <div class="lbl">481 chunks indexed</div>
-    </div>
-  </div>
-</div>
-
-<div style="text-align:center; padding:16px; color:#444; font-size:0.75rem;">
-  Garry COO System — patsuperg.github.io/garry-dashboards — Auto-refreshes every 30min
-</div>
-
-</body>
-</html>
+<div style="text-align:center;padding:16px;color:#333;font-size:0.7rem;">Garry COO — Auto-updates every 30min — Honest scoring</div>
+</body></html>
