@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garry System Map — War Room</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #0d0d15;
+    --bg3: #111120;
+    --blue: #00d4ff;
+    --green: #00ff88;
+    --orange: #ff6b00;
+    --purple: #8b5cf6;
+    --red: #ff3b6b;
+    --text: #e0e8ff;
+    --muted: #4a5580;
+    --border: rgba(0,212,255,0.12);
+    --glass: rgba(13,13,21,0.8);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Subtle radial glow at top */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 500px;
+    background: radial-gradient(ellipse, rgba(0,212,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 36px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-left .eyebrow {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .header-left h1 {
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+
+  .header-left h1 span {
+    color: var(--blue);
+  }
+
+  .header-right {
+    text-align: right;
+  }
+
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,255,136,0.1);
+    border: 1px solid rgba(0,255,136,0.3);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .live-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse-green 1.5s ease-in-out infinite;
+  }
+
+  .clock {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ─── SECTION LABELS ─── */
+  .section-label {
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ─── HP METER ─── */
+  .hp-section {
+    margin-bottom: 36px;
+  }
+
+  .hp-card {
+    background: linear-gradient(135deg, rgba(0,212,255,0.08) 0%, rgba(139,92,246,0.06) 100%);
+    border: 1px solid rgba(0,212,255,0.25);
+    border-radius: 20px;
+    padding: 32px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hp-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--purple), var(--blue));
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  .hp-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .hp-title {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .hp-headline {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+
+  .hp-counter-area {
+    text-align: right;
+  }
+
+  .hp-number {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--blue);
+    text-shadow: 0 0 40px rgba(0,212,255,0.5);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hp-denom {
+    font-size: 1.2rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .hp-sub {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .hp-bar-wrap {
+    position: relative;
+    height: 24px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 16px;
+  }
+
+  .hp-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 12px;
+    background: linear-gradient(90deg, var(--purple), var(--blue), rgba(0,255,136,0.8));
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+    transition: width 2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 0 20px rgba(0,212,255,0.4);
+    position: relative;
+  }
+
+  .hp-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 30px; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3));
+  }
+
+  .hp-tick {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 1px;
+  }
+
+  .hp-unlocks {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .hp-unlock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,107,0,0.08);
+    border: 1px solid rgba(255,107,0,0.2);
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 0.75rem;
+    color: var(--orange);
+  }
+
+  .hp-unlock .icon {
+    font-size: 1rem;
+  }
+
+  .hp-unlock strong {
+    color: #fff;
+  }
+
+  /* ─── ARCHITECTURE FLOWCHART ─── */
+  .arch-section {
+    margin-bottom: 36px;
+  }
+
+  .arch-canvas {
+    background: rgba(13,13,21,0.6);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .arch-canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(0,212,255,0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* SVG ARCHITECTURE */
+  .arch-svg-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .arch-svg-wrap svg {
+    display: block;
+    margin: 0 auto;
+    min-width: 700px;
+  }
+
+  /* ─── NODE CARDS (used in JS-positioned layout) ─── */
+  .node-grid {
+    display: grid;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── MILESTONE TRACK ─── */
+  .milestone-section {
+    margin-bottom: 36px;
+  }
+
+  .milestone-card {
+    background: rgba(13,13,21,0.8);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .milestone-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--green), rgba(0,255,136,0.2));
+  }
+
+  .milestone-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .milestone-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .milestone-pct {
+    font-size: 0.75rem;
+    color: var(--green);
+    font-weight: 700;
+    background: rgba(0,255,136,0.1);
+    border: 1px solid rgba(0,255,136,0.25);
+    border-radius: 20px;
+    padding: 4px 12px;
+  }
+
+  .milestone-bar-wrap {
+    height: 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .milestone-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--green), rgba(0,255,136,0.6));
+    transition: width 2.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+    box-shadow: 0 0 15px rgba(0,255,136,0.35);
+  }
+
+  .milestones {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+
+  .milestone {
+    text-align: center;
+    position: relative;
+  }
+
+  .milestone::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: -4px;
+    width: calc(100% - 20px);
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .milestone:last-child::before { display: none; }
+
+  .m-dot {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    margin: 0 auto 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 800;
+    position: relative;
+    z-index: 1;
+  }
+
+  .m-dot.active {
+    background: var(--green);
+    box-shadow: 0 0 20px rgba(0,255,136,0.6);
+    animation: pulse-green 2s ease-in-out infinite;
+  }
+
+  .m-dot.done {
+    background: rgba(0,255,136,0.3);
+    border: 2px solid var(--green);
+    color: var(--green);
+  }
+
+  .m-dot.future {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.15);
+    color: var(--muted);
+  }
+
+  .m-dot.goal {
+    background: linear-gradient(135deg, var(--orange), var(--purple));
+    box-shadow: 0 0 20px rgba(255,107,0,0.4);
+    color: #fff;
+  }
+
+  .m-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+
+  .m-sub {
+    font-size: 0.6rem;
+    color: var(--muted);
+    line-height: 1.3;
+  }
+
+  .m-sub.active-sub {
+    color: var(--green);
+  }
+
+  /* ─── DEAL PIPELINE ─── */
+  .pipeline-section {
+    margin-bottom: 36px;
+  }
+
+  .pipeline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+
+  .deal-card {
+    background: rgba(13,13,21,0.9);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+
+  .deal-card:hover {
+    border-color: rgba(0,212,255,0.3);
+    transform: translateY(-2px);
+  }
+
+  .deal-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .deal-card.awaiting::before { background: var(--orange); }
+  .deal-card.decision::before { background: var(--blue); }
+  .deal-card.hot::before { background: var(--green); }
+  .deal-card.incoming::before { background: var(--purple); }
+
+  .deal-badge {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .deal-badge.awaiting { background: rgba(255,107,0,0.12); color: var(--orange); border: 1px solid rgba(255,107,0,0.25); }
+  .deal-badge.decision { background: rgba(0,212,255,0.1); color: var(--blue); border: 1px solid rgba(0,212,255,0.2); }
+  .deal-badge.hot { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.2); }
+  .deal-badge.incoming { background: rgba(139,92,246,0.1); color: var(--purple); border: 1px solid rgba(139,92,246,0.2); }
+
+  .deal-address {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .deal-zip {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .deal-metrics {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .deal-metric {
+    text-align: center;
+  }
+
+  .deal-metric .val {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--blue);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .deal-metric .lbl {
+    font-size: 0.6rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .deal-status {
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .deal-status .arrow {
+    color: var(--blue);
+    margin: 0 3px;
+  }
+
+  /* ─── SPRINT CHECKLIST ─── */
+  .sprint-section {
+    margin-bottom: 36px;
+  }
+
+  .sprint-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px;
+  }
+
+  .sprint-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(13,13,21,0.8);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 12px 16px;
+    transition: border-color 0.2s;
+  }
+
+  .sprint-item:hover {
+    border-color: rgba(0,212,255,0.2);
+  }
+
+  .sprint-icon {
+    font-size: 1rem;
+    width: 28px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .sprint-text {
+    font-size: 0.8rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .sprint-item.live {
+    border-left: 2px solid var(--green);
+  }
+
+  .sprint-item.ready {
+    border-left: 2px solid var(--blue);
+  }
+
+  .sprint-item.tomorrow {
+    border-left: 2px solid var(--orange);
+    opacity: 0.7;
+  }
+
+  .sprint-tag {
+    margin-left: auto;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 7px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .tag-live { background: rgba(0,255,136,0.1); color: var(--green); }
+  .tag-ready { background: rgba(0,212,255,0.1); color: var(--blue); }
+  .tag-soon { background: rgba(255,107,0,0.1); color: var(--orange); }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-main {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .footer-target {
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  .footer-target span {
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  /* ─── ARCHITECTURE SVG NODES ─── */
+  .node-card {
+    cursor: default;
+    transition: filter 0.3s;
+  }
+
+  .node-card:hover {
+    filter: brightness(1.2);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes pulse-green {
+    0%, 100% { box-shadow: 0 0 8px rgba(0,255,136,0.4); }
+    50% { box-shadow: 0 0 20px rgba(0,255,136,0.8), 0 0 40px rgba(0,255,136,0.3); }
+  }
+
+  @keyframes pulse-blue {
+    0%, 100% { box-shadow: 0 0 8px rgba(0,212,255,0.4); }
+    50% { box-shadow: 0 0 20px rgba(0,212,255,0.8), 0 0 40px rgba(0,212,255,0.3); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes nodePulse {
+    0%, 100% { r: 7; opacity: 0.9; }
+    50% { r: 10; opacity: 0.5; }
+  }
+
+  @keyframes connFlow {
+    0% { stroke-dashoffset: 40; }
+    100% { stroke-dashoffset: 0; }
+  }
+
+  .arch-section, .hp-section, .milestone-section, .pipeline-section, .sprint-section {
+    animation: fadeInUp 0.5s ease both;
+  }
+
+  .arch-section { animation-delay: 0.1s; }
+  .milestone-section { animation-delay: 0.2s; }
+  .pipeline-section { animation-delay: 0.3s; }
+  .sprint-section { animation-delay: 0.4s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .wrapper { padding: 16px 14px 40px; }
+    .hp-number { font-size: 2.5rem; }
+    .hp-card { padding: 20px; }
+    .milestones { grid-template-columns: repeat(3, 1fr); }
+    .milestone:nth-child(4), .milestone:nth-child(5) {
+      grid-column: span 1;
+    }
+    .header-left h1 { font-size: 1.4rem; }
+    .milestone-card { padding: 20px; }
+  }
+
+  @media (max-width: 480px) {
+    .hp-top { flex-direction: column; }
+    .hp-counter-area { text-align: left; }
+    .milestones { grid-template-columns: 1fr 1fr; }
+    .milestone:last-child { grid-column: 1 / -1; }
+  }
+
+  /* Glow effects on SVG */
+  .conn-line {
+    stroke-dasharray: 8 4;
+    animation: connFlow 1.5s linear infinite;
+  }
+
+  .node-pulse {
+    animation: nodePulse 2s ease-in-out infinite;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- ─── HEADER ─── -->
+  <header class="header">
+    <div class="header-left">
+      <div class="eyebrow">Garry AI Operating System</div>
+      <h1>SYSTEM <span>WAR ROOM</span></h1>
+    </div>
+    <div class="header-right">
+      <div class="live-badge">
+        <span class="live-dot"></span>
+        All Systems Operational
+      </div>
+      <div class="clock" id="clock">Loading...</div>
+    </div>
+  </header>
+
+  <!-- ─── HP METER ─── -->
+  <section class="hp-section">
+    <div class="section-label">System Power</div>
+    <div class="hp-card">
+      <div class="hp-top">
+        <div>
+          <div class="hp-title">Garry System Power</div>
+          <div class="hp-headline">350 HP at session start → <span style="color:var(--blue)">850 HP now.</span> Path to 1000 mapped.</div>
+        </div>
+        <div class="hp-counter-area">
+          <div class="hp-number"><span id="hp-count">0</span><span class="hp-denom">/1000</span></div>
+          <div class="hp-sub">HP</div>
+        </div>
+      </div>
+
+      <div class="hp-bar-wrap">
+        <!-- ticks at every 100 -->
+        <div class="hp-tick" style="left:10%"></div>
+        <div class="hp-tick" style="left:20%"></div>
+        <div class="hp-tick" style="left:30%"></div>
+        <div class="hp-tick" style="left:40%"></div>
+        <div class="hp-tick" style="left:50%"></div>
+        <div class="hp-tick" style="left:60%"></div>
+        <div class="hp-tick" style="left:70%"></div>
+        <div class="hp-tick" style="left:80%"></div>
+        <div class="hp-tick" style="left:90%"></div>
+        <div class="hp-bar-fill" id="hp-bar"></div>
+      </div>
+
+      <div class="hp-unlocks">
+        <div class="hp-unlock">
+          <span class="icon">📱</span>
+          <div>
+            <div><strong>iOS Health Integration</strong></div>
+            <div style="font-size:0.65rem;opacity:0.7;">+80 HP unlock remaining</div>
+          </div>
+        </div>
+        <div class="hp-unlock">
+          <span class="icon">⚡</span>
+          <div>
+            <div><strong>Persistent Daemon</strong></div>
+            <div style="font-size:0.65rem;opacity:0.7;">+70 HP unlock remaining</div>
+          </div>
+        </div>
+        <div class="hp-unlock" style="background:rgba(0,255,136,0.06);border-color:rgba(0,255,136,0.15);color:var(--green)">
+          <span class="icon">🎯</span>
+          <div>
+            <div><strong>Full 1000 HP requires 2 builds</strong></div>
+            <div style="font-size:0.65rem;opacity:0.7;">Total unlocked: 850 HP today</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ARCHITECTURE FLOWCHART ─── -->
+  <section class="arch-section">
+    <div class="section-label">System Architecture</div>
+    <div class="arch-canvas">
+      <div class="arch-svg-wrap">
+        <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" width="900" height="520">
+          <defs>
+            <filter id="glow-blue">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="glow-green">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <linearGradient id="connGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.6"/>
+              <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.6"/>
+            </linearGradient>
+            <linearGradient id="connGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.6"/>
+              <stop offset="100%" style="stop-color:#00ff88;stop-opacity:0.4"/>
+            </linearGradient>
+
+            <!-- Node background gradients -->
+            <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:rgba(0,212,255,0.2)"/>
+              <stop offset="100%" style="stop-color:rgba(0,212,255,0.05)"/>
+            </linearGradient>
+            <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:rgba(0,255,136,0.15)"/>
+              <stop offset="100%" style="stop-color:rgba(0,255,136,0.04)"/>
+            </linearGradient>
+            <linearGradient id="nodeOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:rgba(255,107,0,0.18)"/>
+              <stop offset="100%" style="stop-color:rgba(255,107,0,0.04)"/>
+            </linearGradient>
+            <linearGradient id="nodePurple" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:rgba(139,92,246,0.18)"/>
+              <stop offset="100%" style="stop-color:rgba(139,92,246,0.04)"/>
+            </linearGradient>
+          </defs>
+
+          <!-- ── CONNECTIONS ── -->
+          <!-- Patrick → Garry -->
+          <line x1="450" y1="75" x2="450" y2="125" stroke="url(#connGrad2)" stroke-width="2" class="conn-line"/>
+          <!-- Garry → Roger -->
+          <line x1="370" y1="180" x2="240" y2="235" stroke="url(#connGrad)" stroke-width="1.5" class="conn-line"/>
+          <!-- Garry → Telegram -->
+          <line x1="530" y1="180" x2="660" y2="235" stroke="url(#connGrad)" stroke-width="1.5" class="conn-line"/>
+          <!-- Roger → LaunchAgents -->
+          <line x1="240" y1="290" x2="350" y2="345" stroke="url(#connGrad2)" stroke-width="1.5" class="conn-line"/>
+          <!-- Telegram → LaunchAgents -->
+          <line x1="660" y1="290" x2="550" y2="345" stroke="url(#connGrad2)" stroke-width="1.5" class="conn-line"/>
+          <!-- LaunchAgents → children -->
+          <line x1="370" y1="400" x2="160" y2="455" stroke="rgba(0,255,136,0.3)" stroke-width="1.5" class="conn-line"/>
+          <line x1="415" y1="400" x2="340" y2="455" stroke="rgba(0,255,136,0.3)" stroke-width="1.5" class="conn-line"/>
+          <line x1="490" y1="400" x2="560" y2="455" stroke="rgba(255,107,0,0.3)" stroke-width="1.5" class="conn-line"/>
+          <line x1="530" y1="400" x2="740" y2="455" stroke="rgba(0,212,255,0.3)" stroke-width="1.5" class="conn-line"/>
+
+          <!-- ── NODE: PATRICK ── -->
+          <g filter="url(#glow-blue)">
+            <rect x="355" y="14" width="190" height="62" rx="14" fill="url(#nodeBlue)" stroke="rgba(0,212,255,0.5)" stroke-width="1.5"/>
+            <circle cx="378" cy="45" r="7" fill="#00ff88" class="node-pulse"/>
+            <text x="393" y="41" fill="#fff" font-size="13" font-weight="800" font-family="system-ui">PATRICK</text>
+            <text x="393" y="57" fill="rgba(0,212,255,0.8)" font-size="9.5" font-family="system-ui" font-weight="600">VISION &amp; DIRECTION</text>
+          </g>
+
+          <!-- ── NODE: GARRY COO ── -->
+          <g filter="url(#glow-blue)">
+            <rect x="330" y="125" width="240" height="68" rx="14" fill="url(#nodeBlue)" stroke="rgba(0,212,255,0.6)" stroke-width="2"/>
+            <circle cx="357" cy="157" r="7" fill="#00ff88" class="node-pulse"/>
+            <text x="373" y="153" fill="#fff" font-size="13" font-weight="800" font-family="system-ui">GARRY COO</text>
+            <text x="373" y="169" fill="rgba(0,212,255,0.8)" font-size="9.5" font-family="system-ui" font-weight="600">Claude Code · Autonomous · 24/7</text>
+          </g>
+
+          <!-- ── NODE: ROGER QA ── -->
+          <g>
+            <rect x="145" y="235" width="190" height="62" rx="12" fill="url(#nodeGreen)" stroke="rgba(0,255,136,0.4)" stroke-width="1.5"/>
+            <circle cx="166" cy="266" r="6" fill="#00ff88"/>
+            <text x="180" y="263" fill="#fff" font-size="12" font-weight="800" font-family="system-ui">ROGER QA</text>
+            <text x="180" y="278" fill="rgba(0,255,136,0.8)" font-size="9" font-family="system-ui" font-weight="600">Score: 97/100 · Every 15 min</text>
+          </g>
+
+          <!-- ── NODE: TELEGRAM BOT ── -->
+          <g>
+            <rect x="565" y="235" width="190" height="62" rx="12" fill="url(#nodeBlue)" stroke="rgba(0,212,255,0.4)" stroke-width="1.5"/>
+            <circle cx="586" cy="266" r="6" fill="#00ff88"/>
+            <text x="600" y="263" fill="#fff" font-size="12" font-weight="800" font-family="system-ui">TELEGRAM BOT</text>
+            <text x="600" y="278" fill="rgba(0,212,255,0.8)" font-size="9" font-family="system-ui" font-weight="600">v6 · 20 Commands · Inline Buttons</text>
+          </g>
+
+          <!-- ── NODE: 48 LAUNCHAGENTS ── -->
+          <g filter="url(#glow-green)">
+            <rect x="275" y="345" width="350" height="62" rx="14" fill="url(#nodeGreen)" stroke="rgba(0,255,136,0.5)" stroke-width="2"/>
+            <circle cx="302" cy="376" r="7" fill="#00ff88" class="node-pulse"/>
+            <text x="318" y="372" fill="#fff" font-size="13" font-weight="800" font-family="system-ui">48 LAUNCHAGENTS</text>
+            <text x="318" y="388" fill="rgba(0,255,136,0.8)" font-size="9.5" font-family="system-ui" font-weight="600">Auto-running 24/7 on Mac Mini M4 Pro</text>
+          </g>
+
+          <!-- ── NODE: DEAL FINDER ── -->
+          <g>
+            <rect x="70" y="455" width="185" height="56" rx="12" fill="url(#nodeGreen)" stroke="rgba(0,255,136,0.35)" stroke-width="1.5"/>
+            <circle cx="90" cy="482" r="5.5" fill="#00ff88"/>
+            <text x="105" y="479" fill="#fff" font-size="11" font-weight="800" font-family="system-ui">DEAL FINDER</text>
+            <text x="105" y="494" fill="rgba(0,255,136,0.75)" font-size="8.5" font-family="system-ui">175 scanned · 56 matched</text>
+          </g>
+
+          <!-- ── NODE: MONEY INTEL ── -->
+          <g>
+            <rect x="270" y="455" width="165" height="56" rx="12" fill="url(#nodeOrange)" stroke="rgba(255,107,0,0.35)" stroke-width="1.5"/>
+            <circle cx="289" cy="482" r="5.5" fill="#ff6b00"/>
+            <text x="303" y="479" fill="#fff" font-size="11" font-weight="800" font-family="system-ui">MONEY INTEL</text>
+            <text x="303" y="494" fill="rgba(255,107,0,0.8)" font-size="8.5" font-family="system-ui">Bank CSVs pending</text>
+          </g>
+
+          <!-- ── NODE: HEALTH TRACK ── -->
+          <g>
+            <rect x="450" y="455" width="165" height="56" rx="12" fill="url(#nodeOrange)" stroke="rgba(255,107,0,0.35)" stroke-width="1.5"/>
+            <circle cx="469" cy="482" r="5.5" fill="#ff6b00"/>
+            <text x="483" y="479" fill="#fff" font-size="11" font-weight="800" font-family="system-ui">HEALTH TRACK</text>
+            <text x="483" y="494" fill="rgba(255,107,0,0.8)" font-size="8.5" font-family="system-ui">Needs iOS shortcut</text>
+          </g>
+
+          <!-- ── NODE: OPS ADMIN ── -->
+          <g>
+            <rect x="630" y="455" width="165" height="56" rx="12" fill="url(#nodeBlue)" stroke="rgba(0,212,255,0.35)" stroke-width="1.5"/>
+            <circle cx="649" cy="482" r="5.5" fill="#00ff88"/>
+            <text x="663" y="479" fill="#fff" font-size="11" font-weight="800" font-family="system-ui">OPS &amp; ADMIN</text>
+            <text x="663" y="494" fill="rgba(0,212,255,0.75)" font-size="8.5" font-family="system-ui">Brief + Evening wrap</text>
+          </g>
+
+          <!-- ── STATUS LEGEND ── -->
+          <g transform="translate(14, 14)">
+            <circle cx="8" cy="9" r="5" fill="#00ff88"/>
+            <text x="18" y="13" fill="rgba(255,255,255,0.5)" font-size="9" font-family="system-ui">Live</text>
+            <circle cx="58" cy="9" r="5" fill="#ff6b00"/>
+            <text x="68" y="13" fill="rgba(255,255,255,0.5)" font-size="9" font-family="system-ui">Partial</text>
+            <circle cx="118" cy="9" r="5" fill="rgba(255,255,255,0.2)"/>
+            <text x="128" y="13" fill="rgba(255,255,255,0.5)" font-size="9" font-family="system-ui">Coming</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ROAD TO $20K ─── -->
+  <section class="milestone-section">
+    <div class="section-label">Revenue Target</div>
+    <div class="milestone-card">
+      <div class="milestone-header">
+        <div class="milestone-title">Road to $20,000 AUD / Month</div>
+        <div class="milestone-pct">39% complete</div>
+      </div>
+      <div class="milestone-bar-wrap">
+        <div class="milestone-bar-fill" id="milestone-bar"></div>
+      </div>
+      <div class="milestones">
+        <div class="milestone">
+          <div class="m-dot active" title="Current position">●</div>
+          <div class="m-label">NOW</div>
+          <div class="m-sub active-sub">$7,797/mo</div>
+          <div class="m-sub">6 doors</div>
+        </div>
+        <div class="milestone">
+          <div class="m-dot future">1</div>
+          <div class="m-label">+3 Doors</div>
+          <div class="m-sub">$11,000/mo</div>
+          <div class="m-sub">STL bundle</div>
+        </div>
+        <div class="milestone">
+          <div class="m-dot future">2</div>
+          <div class="m-label">DSCR Refi</div>
+          <div class="m-sub">$13,500/mo</div>
+          <div class="m-sub">Equity freed</div>
+        </div>
+        <div class="milestone">
+          <div class="m-dot future">3</div>
+          <div class="m-label">+4 Doors</div>
+          <div class="m-sub">$17,000/mo</div>
+          <div class="m-sub">10-12 total</div>
+        </div>
+        <div class="milestone">
+          <div class="m-dot goal" title="Goal">🎯</div>
+          <div class="m-label">NORTH STAR</div>
+          <div class="m-sub" style="color:var(--orange);font-weight:700;">$20,000+/mo</div>
+          <div class="m-sub">Equity leverage</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── DEAL PIPELINE ─── -->
+  <section class="pipeline-section">
+    <div class="section-label">Live Deal Pipeline</div>
+    <div class="pipeline-grid">
+
+      <div class="deal-card awaiting">
+        <div class="deal-badge awaiting">Awaiting Verdict</div>
+        <div class="deal-address">Bridgevale Ave</div>
+        <div class="deal-zip">St. Louis · 63138</div>
+        <div class="deal-metrics">
+          <div class="deal-metric">
+            <div class="val">$100K</div>
+            <div class="lbl">Offer</div>
+          </div>
+          <div class="deal-metric">
+            <div class="val">$1,410</div>
+            <div class="lbl">S8 Rent/mo</div>
+          </div>
+        </div>
+        <div class="deal-status">
+          $100K offer sent to Lindia
+          <span class="arrow">→</span>
+          S8 inspection Mar 24
+          <span class="arrow">→</span>
+          <span style="color:var(--orange)">Awaiting verdict</span>
+        </div>
+      </div>
+
+      <div class="deal-card decision">
+        <div class="deal-badge decision">Decision Needed</div>
+        <div class="deal-address">Theodore Ave</div>
+        <div class="deal-zip">St. Louis · 63136</div>
+        <div class="deal-metrics">
+          <div class="deal-metric">
+            <div class="val">$94K</div>
+            <div class="lbl">Ask</div>
+          </div>
+          <div class="deal-metric">
+            <div class="val">14.6%</div>
+            <div class="lbl">Cap Rate</div>
+          </div>
+        </div>
+        <div class="deal-status">
+          Strong cap rate · DSCR pair candidate · Needs Patrick's go/no-go
+        </div>
+      </div>
+
+      <div class="deal-card hot">
+        <div class="deal-badge hot">Hot Lead</div>
+        <div class="deal-address">Sapphire Ave</div>
+        <div class="deal-zip">St. Louis · 63136</div>
+        <div class="deal-metrics">
+          <div class="deal-metric">
+            <div class="val">$79.9K</div>
+            <div class="lbl">Ask</div>
+          </div>
+          <div class="deal-metric">
+            <div class="val">16.1%</div>
+            <div class="lbl">Cap Rate</div>
+          </div>
+        </div>
+        <div class="deal-status">
+          Best cap rate in pipeline · Below $80K threshold · <span style="color:var(--green)">Move fast</span>
+        </div>
+      </div>
+
+      <div class="deal-card incoming">
+        <div class="deal-badge incoming">Incoming</div>
+        <div class="deal-address">Lindia Robins</div>
+        <div class="deal-zip">Buyer's Agent · Active</div>
+        <div class="deal-metrics">
+          <div class="deal-metric">
+            <div class="val">2-3</div>
+            <div class="lbl">Bundle Target</div>
+          </div>
+        </div>
+        <div class="deal-status">
+          Separate deal email expected · Looking for bundle · <span style="color:var(--purple)">Watch inbox</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── TOMORROW'S SPRINT ─── -->
+  <section class="sprint-section">
+    <div class="section-label">Tomorrow's Sprint — Pre-Built &amp; Ready to Turn On</div>
+    <div class="sprint-grid">
+
+      <div class="sprint-item live">
+        <div class="sprint-icon">✅</div>
+        <div class="sprint-text">Luke Playbook Frameworks</div>
+        <div class="sprint-tag tag-live">Wired</div>
+      </div>
+
+      <div class="sprint-item ready">
+        <div class="sprint-icon">✅</div>
+        <div class="sprint-text">Token Sovereignty Pattern</div>
+        <div class="sprint-tag tag-ready">Ready</div>
+      </div>
+
+      <div class="sprint-item ready">
+        <div class="sprint-icon">✅</div>
+        <div class="sprint-text">Verification Agent Pattern</div>
+        <div class="sprint-tag tag-ready">Ready</div>
+      </div>
+
+      <div class="sprint-item ready">
+        <div class="sprint-icon">✅</div>
+        <div class="sprint-text">Autonomous Blueprint Spec</div>
+        <div class="sprint-tag tag-ready">Ready</div>
+      </div>
+
+      <div class="sprint-item live">
+        <div class="sprint-icon">✅</div>
+        <div class="sprint-text">Session Handoff</div>
+        <div class="sprint-tag tag-live">Live</div>
+      </div>
+
+      <div class="sprint-item live">
+        <div class="sprint-icon">✅</div>
+        <div class="sprint-text">Memory Gate</div>
+        <div class="sprint-tag tag-live">Live</div>
+      </div>
+
+      <div class="sprint-item live">
+        <div class="sprint-icon">✅</div>
+        <div class="sprint-text">Telegram Gateway</div>
+        <div class="sprint-tag tag-live">Live</div>
+      </div>
+
+      <div class="sprint-item live">
+        <div class="sprint-icon">✅</div>
+        <div class="sprint-text">Protected Files</div>
+        <div class="sprint-tag tag-live">Live</div>
+      </div>
+
+      <div class="sprint-item tomorrow">
+        <div class="sprint-icon">🔜</div>
+        <div class="sprint-text">Persistent Daemon</div>
+        <div class="sprint-tag tag-soon">Tomorrow</div>
+      </div>
+
+      <div class="sprint-item tomorrow">
+        <div class="sprint-icon">🔜</div>
+        <div class="sprint-text">Financial Intelligence (CSVs needed)</div>
+        <div class="sprint-tag tag-soon">Pending</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="footer-main">Garry System — Built by AI, operated for Patrick. Updated: <span id="footer-ts">—</span></div>
+    <div class="footer-target">
+      Target: <span>$20,000 AUD/mo</span> net &nbsp;|&nbsp;
+      Current: <span>$7,797 AUD/mo</span> &nbsp;|&nbsp;
+      ETA: 8-10 more doors &nbsp;|&nbsp;
+      <span>6 properties active</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // ─── CLOCK ───
+  function updateClock() {
+    const now = new Date();
+    const opts = {
+      timeZone: 'Australia/Melbourne',
+      weekday: 'short', year: 'numeric', month: 'short',
+      day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: true
+    };
+    document.getElementById('clock').textContent = now.toLocaleString('en-AU', opts) + ' AEST';
+    document.getElementById('footer-ts').textContent = now.toLocaleString('en-AU', {
+      timeZone: 'Australia/Melbourne',
+      day: 'numeric', month: 'short', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', hour12: true
+    }) + ' AEST';
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // ─── HP COUNTER ───
+  function animateHP() {
+    const target = 850;
+    const duration = 2000;
+    const startTime = performance.now();
+    const el = document.getElementById('hp-count');
+    const bar = document.getElementById('hp-bar');
+
+    function easeOutCubic(t) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    function step(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeOutCubic(progress);
+      const current = Math.round(eased * target);
+
+      el.textContent = current.toLocaleString();
+      bar.style.width = (eased * 85) + '%'; // 850/1000 = 85%
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  // ─── MILESTONE BAR ───
+  function animateMilestone() {
+    const bar = document.getElementById('milestone-bar');
+    // Delay slightly after HP
+    setTimeout(() => {
+      bar.style.width = '39%';
+    }, 500);
+  }
+
+  // ─── NODE PULSE COLORS in SVG ───
+  function initNodePulses() {
+    const circles = document.querySelectorAll('.node-pulse');
+    circles.forEach((c, i) => {
+      c.style.animationDelay = (i * 0.3) + 's';
+    });
+  }
+
+  // ─── INTERSECTION OBSERVER — trigger on scroll into view ───
+  function observeSection(id, callback) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          callback();
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+    obs.observe(el);
+  }
+
+  // ─── INIT ───
+  window.addEventListener('load', () => {
+    // Slight delay for dramatic effect
+    setTimeout(animateHP, 300);
+    animateMilestone();
+    initNodePulses();
+  });
+
+  // ─── CONNECTION LINE ANIMATION ───
+  // Make SVG connection lines flow with staggered start
+  const connLines = document.querySelectorAll('.conn-line');
+  connLines.forEach((line, i) => {
+    line.style.animationDelay = (i * 0.15) + 's';
+    line.style.animationDuration = (1.5 + (i % 3) * 0.4) + 's';
+  });
+
+  // ─── DEAL CARD HOVER GLOW ───
+  document.querySelectorAll('.deal-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.boxShadow = '0 8px 40px rgba(0,212,255,0.1)';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.boxShadow = 'none';
+    });
+  });
+
+</script>
+</body>
+</html>
