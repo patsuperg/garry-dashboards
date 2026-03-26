@@ -87,7 +87,7 @@ tr:hover td{background:var(--card)}
     </div>
   </div>
   <div class="grade">
-    <div class="grade-value">A+</div>
+    <div class="grade-value">B</div>
     <div class="grade-label">System Grade</div>
   </div>
 </div>
@@ -96,11 +96,11 @@ tr:hover td{background:var(--card)}
 <div class="status-grid">
   <div class="status-item">
     <div class="status-label">LaunchAgents</div>
-    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>26 active</div>
+    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>45 active</div>
   </div>
   <div class="status-item">
     <div class="status-label">Telegram Bot</div>
-    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>v6 Online</div>
+    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f87171;box-shadow:0 0 6px #f8717166;margin-right:6px;vertical-align:middle"></span>Offline</div>
   </div>
   <div class="status-item">
     <div class="status-label">Deal Pipeline</div>
@@ -112,7 +112,7 @@ tr:hover td{background:var(--card)}
   </div>
   <div class="status-item">
     <div class="status-label">Disk Free</div>
-    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>611Gi</div>
+    <div class="status-value"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade8066;margin-right:6px;vertical-align:middle"></span>609Gi</div>
   </div>
   <div class="status-item">
     <div class="status-label">Ollama</div>
@@ -191,11 +191,11 @@ tr:hover td{background:var(--card)}
 <h2>Performance</h2>
 <div class="perf-grid">
   <div class="perf-card">
-    <div class="perf-number">34</div>
+    <div class="perf-number">0</div>
     <div class="perf-label">Active Automations</div>
   </div>
   <div class="perf-card">
-    <div class="perf-number">26</div>
+    <div class="perf-number">45</div>
     <div class="perf-label">LaunchAgents</div>
   </div>
   <div class="perf-card">
@@ -215,244 +215,6 @@ tr:hover td{background:var(--card)}
   </thead>
   <tbody>
     
-        <tr>
-          <td>7:00am</td>
-          <td>Daily</td>
-          <td>Morning brief v2 (Telegram) — live email pull</td>
-          <td style="color:var(--dim);font-size:.75rem">telegram-morning-brief.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>8:00am</td>
-          <td>Mon-Fri</td>
-          <td>Laura's Holding Space Course (email)</td>
-          <td style="color:var(--dim);font-size:.75rem">laura-course-delivery.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>4:00pm</td>
-          <td>Friday</td>
-          <td>Pat's Growth Journey → Laura (Telegram)</td>
-          <td style="color:var(--dim);font-size:.75rem">patrick-weekly-growth-summary.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>8:00am</td>
-          <td>Daily</td>
-          <td>S8 Deal Finder (property scout)</td>
-          <td style="color:var(--dim);font-size:.75rem">s8-property-finder.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>6:00am</td>
-          <td>Daily</td>
-          <td>Apple Notes auto-organizer</td>
-          <td style="color:var(--dim);font-size:.75rem">auto-organizer.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>7:00am</td>
-          <td>Daily</td>
-          <td>Daily Apple Notes planner (calendar + tasks, priority sorted)</td>
-          <td style="color:var(--dim);font-size:.75rem">daily-note.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Every 5min</td>
-          <td>Continuous</td>
-          <td>Health check (dashboard — silent unless critical)</td>
-          <td style="color:var(--dim);font-size:.75rem">health-check.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Every 30min</td>
-          <td>Continuous</td>
-          <td>Email scan cache (INBOX + SENT)</td>
-          <td style="color:var(--dim);font-size:.75rem">email-scanner.py --json</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Every 2hrs</td>
-          <td>Continuous</td>
-          <td>Session brief generator (pre-compute)</td>
-          <td style="color:var(--dim);font-size:.75rem">generate-session-brief.py --scan</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>10pm-7am</td>
-          <td>Every 30min</td>
-          <td>Overnight task runner (off-peak)</td>
-          <td style="color:var(--dim);font-size:.75rem">overnight-task-runner.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>7am-10pm</td>
-          <td>Every 10min</td>
-          <td>Idle scheduler (uses idle gaps for builds)</td>
-          <td style="color:var(--dim);font-size:.75rem">idle-scheduler.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>7:00pm</td>
-          <td>Daily</td>
-          <td>Evening wrap + CURRENT-STATE.md auto-gen</td>
-          <td style="color:var(--dim);font-size:.75rem">telegram-evening-wrap.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Every 10min</td>
-          <td>Continuous</td>
-          <td>Agent Healer (self-healing restarts w/ backoff)</td>
-          <td style="color:var(--dim);font-size:.75rem">agent-healer.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Continuous</td>
-          <td>Always</td>
-          <td>Telegram bot v6 (buttons, /deals, /portfolio, /health)</td>
-          <td style="color:var(--dim);font-size:.75rem">telegram-claude-bot.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Every 5min</td>
-          <td>Continuous</td>
-          <td>Telegram watchdog (auto-restart frozen/dead bot)</td>
-          <td style="color:var(--dim);font-size:.75rem">telegram-watchdog.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Continuous</td>
-          <td>Always</td>
-          <td>Keep awake (caffeinate)</td>
-          <td style="color:var(--dim);font-size:.75rem">caffeinate</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Hourly</td>
-          <td>Continuous</td>
-          <td>Memory guardian (backup + integrity)</td>
-          <td style="color:var(--dim);font-size:.75rem">memory-guardian.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>6:30am+6:30pm</td>
-          <td>Daily</td>
-          <td>Security audit (enhanced — perms, .env, secrets)</td>
-          <td style="color:var(--dim);font-size:.75rem">security-audit.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>7:00am</td>
-          <td>Daily</td>
-          <td>Secret scanner (file + detect-secrets baseline)</td>
-          <td style="color:var(--dim);font-size:.75rem">secret-scanner.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Monday 8am</td>
-          <td>Weekly</td>
-          <td>Key rotation check (alerts 14d before due)</td>
-          <td style="color:var(--dim);font-size:.75rem">key-rotation-check.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Periodic</td>
-          <td>Daily</td>
-          <td>Memory check reminder (silent if no session)</td>
-          <td style="color:var(--dim);font-size:.75rem">memory-check-reminder.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Periodic</td>
-          <td>Daily</td>
-          <td>Session start reminder (silent if no session)</td>
-          <td style="color:var(--dim);font-size:.75rem">session-reminder.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Continuous</td>
-          <td>Always</td>
-          <td>Command Centre Dashboard V2</td>
-          <td style="color:var(--dim);font-size:.75rem">command-centre/server.js</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>8:00am Tue+Fri</td>
-          <td>Twice weekly</td>
-          <td>Bangkok Apartment Finder (EMAIL ONLY, no Telegram)</td>
-          <td style="color:var(--dim);font-size:.75rem">bangkok-finder.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>9:00am Daily</td>
-          <td>Daily</td>
-          <td>Bangkok Finder feedback parser (reads email replies)</td>
-          <td style="color:var(--dim);font-size:.75rem">bangkok-finder-feedback.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Every 30min</td>
-          <td>Continuous</td>
-          <td>MCP extension watchdog (auto-fix node_modules)</td>
-          <td style="color:var(--dim);font-size:.75rem">fix-mcp-extensions.sh</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Hourly</td>
-          <td>Continuous</td>
-          <td>Decision Bridge (PENDING-DECISIONS.md → JSON for automations)</td>
-          <td style="color:var(--dim);font-size:.75rem">decision-bridge.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Every 6h</td>
-          <td>Continuous</td>
-          <td>Immune System (output verification, drift detection, health score)</td>
-          <td style="color:var(--dim);font-size:.75rem">immune-system.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Daily 8am</td>
-          <td>Daily</td>
-          <td>PM Portal Scraper (Avenue, B2B statement downloads)</td>
-          <td style="color:var(--dim);font-size:.75rem">pm-portal-scraper.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>6:00am Mon</td>
-          <td>Weekly</td>
-          <td>Luke's playbook repo sync</td>
-          <td style="color:var(--dim);font-size:.75rem">luke-repo-sync</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>9:00am Sun</td>
-          <td>Weekly</td>
-          <td>Course link checker (auto-fix dead YouTube links + Telegram alert)</td>
-          <td style="color:var(--dim);font-size:.75rem">course-link-checker.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>Every 30min</td>
-          <td>Continuous</td>
-          <td>Global dashboards auto-update → GitHub Pages</td>
-          <td style="color:var(--dim);font-size:.75rem">update-and-push.sh</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>3:00am Sun</td>
-          <td>Weekly</td>
-          <td>Auto-Evolve (self-improving: models, packages, repos, health)</td>
-          <td style="color:var(--dim);font-size:.75rem">auto-evolve.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
-        <tr>
-          <td>2:00am</td>
-          <td>Daily</td>
-          <td>Overnight Pipeline (property refresh, memory index, portfolio health, disk cleanup)</td>
-          <td style="color:var(--dim);font-size:.75rem">overnight-pipeline.py</td>
-          <td><span class="badge badge-green">ACTIVE</span></td>
-        </tr>
   </tbody>
 </table>
 
