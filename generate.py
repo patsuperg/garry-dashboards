@@ -437,8 +437,8 @@ body{{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple
 <div class="eng-name" style="color:var(--sub)">Compliance</div>
 <div class="eng-line"><span class="d" style="background:var(--red)"></span>GW Carter: BLOCKED on Patrick templates</div>
 <div class="eng-line"><span class="d" style="background:var(--orange)"></span>Ohio tax appeals: due Mar 31</div>
-<div class="eng-line"><span class="d" style="background:var(--orange)"></span>ASIC: 2 remain</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>Insurance current</div>
+<div class="eng-line"><span class="d" style="background:var(--green)"></span>ASIC: 3 forms posted, processing</div>
+<div class="eng-line"><span class="d" style="background:var(--green)"></span>FBAR: tracked for 2024</div>
 </div>
 </div>
 </div>
@@ -750,119 +750,189 @@ tr:hover td{{background:var(--card)}}
 
 
 def generate_health_dashboard(health):
-    """Health dashboard — real system data + biometric data pipeline status."""
+    """Health dashboard — Whoop-style. Spoons is the hero metric. Patrick's body = the business."""
     now = datetime.now().strftime("%b %d, %Y %I:%M %p")
+    today = datetime.now().strftime("%A, %b %d")
 
-    # Try to load immune system report
-    immune_file = os.path.expanduser("~/AI/Claude/Infrastructure/immune-health-report.json")
-    immune = {}
+    # Try to load health data from Auto Export
+    health_log = os.path.expanduser("~/AI/Claude/Infrastructure/data/health-log.json")
+    hdata = {}
     try:
-        with open(immune_file) as f:
-            immune = json.load(f)
+        with open(health_log) as f:
+            hdata = json.load(f)
     except:
         pass
 
-    overall = immune.get("overall_score", "?")
-    automations = immune.get("automations", {})
+    latest = hdata.get("latest", {})
+    sleep_hrs = latest.get("sleep_hours", None)
+    hrv = latest.get("hrv", None)
+    rhr = latest.get("resting_hr", None)
+    steps = latest.get("steps", None)
+    active_cal = latest.get("active_calories", None)
+    has_data = any(v is not None for v in [sleep_hrs, hrv, rhr, steps])
 
-    # Build automation rows
-    auto_rows = ""
-    for name, data in sorted(automations.items(), key=lambda x: x[1].get("score", 0)):
-        score = data.get("score", 0)
-        hours = data.get("last_output_hours", "?")
-        color = "#34d399" if score >= 80 else "#fbbf24" if score >= 50 else "#f87171"
-        bar_width = score
-        auto_rows += f"""<tr>
-<td style="color:{color};font-weight:600">{name.replace('_',' ').title()}</td>
-<td><div style="background:#1a1a20;border-radius:4px;overflow:hidden;height:8px;width:120px">
-<div style="background:{color};height:100%;width:{bar_width}%"></div></div></td>
-<td style="color:{color}">{score}/100</td>
-<td style="color:#a0a0a8">{hours}h ago</td></tr>"""
-
-    # Check for health data sources
-    health_data_dir = os.path.expanduser("~/AI/Claude/Infrastructure/data")
-    health_log = os.path.join(health_data_dir, "health-log.json")
-    has_health_data = os.path.exists(health_log)
-
-    if has_health_data:
-        try:
-            with open(health_log) as f:
-                hdata = json.load(f)
-            bio_section = f"""
-<div class="panel"><h3>Biometrics</h3>
-<p style="color:#34d399">Data connected — showing latest readings</p>
-<pre style="color:#a0a0a8;font-size:12px">{json.dumps(hdata.get('latest',{}), indent=2)[:500]}</pre></div>"""
-        except:
-            bio_section = ""
+    # Spoons calculation — honest
+    # Without biometric data, we can't calculate a real score
+    # Show the framework + what's needed
+    if has_data:
+        # Basic spoons calc from available data
+        spoons = 6  # baseline
+        if sleep_hrs and sleep_hrs >= 7.5: spoons += 2
+        elif sleep_hrs and sleep_hrs >= 6.5: spoons += 1
+        if hrv and hrv >= 50: spoons += 2
+        elif hrv and hrv >= 35: spoons += 1
+        if rhr and rhr <= 65: spoons += 1
+        if steps and steps >= 8000: spoons += 1
+        spoons = min(12, spoons)
+        spoons_color = "#34d399" if spoons >= 9 else "#fbbf24" if spoons >= 6 else "#f87171"
+        data_status = "live"
     else:
-        bio_section = f"""
-<div class="panel" style="border-color:#fbbf24">
-<h3 style="color:#fbbf24">Biometric Data — Not Connected</h3>
-<p style="color:#a0a0a8;margin:12px 0">Health Auto Export app is installed but no data has landed on this Mac yet.</p>
-<div style="background:#1a1a10;padding:16px;border-radius:8px;margin:12px 0">
-<p style="color:#fbbf24;font-weight:600;margin-bottom:8px">To connect:</p>
-<ol style="color:#a0a0a8;padding-left:20px;line-height:1.8">
-<li>Open <b>Health Auto Export</b> on iPhone</li>
-<li>Settings → Automations → Add</li>
-<li>Export to: <b>iCloud Drive</b> folder</li>
-<li>Format: <b>CSV</b></li>
-<li>Frequency: <b>Every hour</b></li>
-<li>Metrics: Sleep, HRV, Heart Rate, Steps, Workouts</li>
-</ol>
-<p style="color:#a0a0a8;margin-top:12px">Once CSVs land in iCloud Drive, this dashboard auto-populates.</p>
+        spoons = "?"
+        spoons_color = "#5a5a64"
+        data_status = "waiting"
+
+    # Spoon emoji row
+    if isinstance(spoons, int):
+        spoon_row = '<span style="font-size:28px;letter-spacing:4px">' + ("🥄" * spoons) + ('<span style="opacity:0.15">🥄</span>' * (12 - spoons)) + '</span>'
+    else:
+        spoon_row = '<span style="font-size:28px;letter-spacing:4px;opacity:0.2">' + ("🥄" * 12) + '</span>'
+
+    # Metric cards
+    def metric_card(label, value, unit, subtitle="", status="grey"):
+        colors = {"green": "#34d399", "amber": "#fbbf24", "red": "#f87171", "grey": "#5a5a64"}
+        c = colors.get(status, colors["grey"])
+        val_display = f"{value}" if value is not None else "—"
+        return f'''<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">{label}</div>
+<div style="font-size:36px;font-weight:800;color:{c}">{val_display}<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">{unit}</span></div>
+<div style="font-size:11px;color:#555;margin-top:6px">{subtitle}</div>
+</div>'''
+
+    # Sleep status
+    if sleep_hrs is not None:
+        sleep_status = "green" if sleep_hrs >= 7.5 else "amber" if sleep_hrs >= 6 else "red"
+        sleep_val = f"{sleep_hrs:.1f}"
+    else:
+        sleep_status, sleep_val = "grey", None
+
+    # HRV status
+    if hrv is not None:
+        hrv_status = "green" if hrv >= 50 else "amber" if hrv >= 30 else "red"
+    else:
+        hrv_status = "grey"
+
+    # RHR status
+    if rhr is not None:
+        rhr_status = "green" if rhr <= 65 else "amber" if rhr <= 75 else "red"
+    else:
+        rhr_status = "grey"
+
+    # Steps
+    if steps is not None:
+        steps_status = "green" if steps >= 8000 else "amber" if steps >= 5000 else "red"
+        steps_val = f"{steps:,}"
+    else:
+        steps_status, steps_val = "grey", None
+
+    # Known profile data (always show)
+    profile_html = f'''<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:12px;padding:16px">
+<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:8px">Protocol</div>
+<div style="font-size:13px;color:#a0a0a8;line-height:1.8">
+250mg Test E + 50mg Primo/wk<br>
+BPC/TB-500 (elbow rehab → Apr)<br>
+4iu GH daily<br>
+2000mcg Reta weekly
 </div>
-</div>"""
+</div>
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:12px;padding:16px">
+<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:8px">Vitals Snapshot</div>
+<div style="font-size:13px;color:#a0a0a8;line-height:1.8">
+Weight: 88.6kg (Mar 25)<br>
+BF: ~17% (Evolt May 25)<br>
+Test: 34.9 nmol/L (Oct 25)<br>
+LDL: 3.8 — <span style="color:#fbbf24">WATCH</span>
+</div>
+</div>
+</div>'''
+
+    # Build phase section
+    build_html = f'''<div style="background:#0c0c10;border:1px solid #1a3a1a;border-radius:16px;padding:20px;margin-top:16px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#34d399;margin-bottom:8px">Build Phase</div>
+<div style="font-size:14px;color:#e0e0e0;margin-bottom:4px">Starting April 6 — Push/Pull/Legs 4x/wk</div>
+<div style="font-size:12px;color:#666">Goal: +1-2kg muscle, -2-4kg fat. Stay low 90s. Bangkok gym: TBD</div>
+</div>'''
+
+    # Data connection status
+    if not has_data:
+        connect_html = f'''<div style="background:#0c0c10;border:1px solid #3a2a0a;border-radius:16px;padding:24px;margin-top:20px">
+<div style="font-size:13px;color:#fbbf24;font-weight:600;margin-bottom:12px">Connect Your Data</div>
+<div style="font-size:13px;color:#a0a0a8;line-height:2">
+<strong>iPhone Shortcut (3 min):</strong> ~/AI/Claude/Infrastructure/apple-health-shortcut.md<br>
+Sends sleep, HRV, HR, steps, workouts to Gmail daily at 6:30am.<br>
+Garry parses it → dashboard auto-populates → spoons score goes live.
+</div>
+</div>'''
+    else:
+        connect_html = ""
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta http-equiv="refresh" content="300">
 <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="expires" content="0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Health · Patrick</title>
-<style>
-:root{{--bg:#050508;--surface:#0c0c10;--border:#18181c;--text:#f0f0f2;--sub:#a0a0a8}}
-*{{margin:0;padding:0;box-sizing:border-box}}
-body{{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro',sans-serif;padding:20px;max-width:900px;margin:0 auto}}
-h1{{font-size:24px;font-weight:700;margin-bottom:4px}}
-h2{{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--sub)}}
-h3{{font-size:16px;font-weight:600;margin-bottom:8px}}
-.panel{{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;margin:12px 0}}
-.score-big{{font-size:64px;font-weight:800;text-align:center;padding:20px 0}}
-.score-label{{text-align:center;color:var(--sub);font-size:14px}}
-table{{width:100%;border-collapse:collapse;font-size:14px}}
-td{{padding:8px 12px}}
-tr:nth-child(even){{background:rgba(255,255,255,0.02)}}
-.footer{{text-align:center;color:#5a5a64;font-size:12px;padding:30px 0}}
-</style>
 </head>
-<body>
+<body style="margin:0;padding:0;background:#050508;color:#f0f0f2;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 20px 40px">
+<div style="max-width:540px;margin:0 auto">
 
-<h1>Health Dashboard</h1>
-<p style="color:var(--sub);font-size:13px">Last updated: {now}</p>
+<!-- HEADER -->
+<div style="text-align:center;padding:24px 0 8px;opacity:0.4;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#5a5a64">Health</div>
 
-<h2>System Health</h2>
-<div class="panel">
-<div class="score-big" style="color:{'#34d399' if overall == 100 else '#fbbf24' if overall >= 80 else '#f87171'}">{overall}</div>
-<div class="score-label">Immune System Score — {len(automations)} automations verified</div>
+<!-- SPOONS HERO -->
+<div style="text-align:center;padding:32px 0 24px">
+<div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#666;margin-bottom:16px">Spoons Today</div>
+<div style="font-size:96px;font-weight:900;color:{spoons_color};line-height:1;letter-spacing:-3px">{spoons}<span style="font-size:32px;color:#444;font-weight:400">/12</span></div>
+<div style="margin:20px 0 8px">{spoon_row}</div>
+<div style="font-size:12px;color:#555">{today}</div>
 </div>
 
-<div class="panel">
-<table>
-<tr style="color:var(--sub);font-weight:600"><td>Automation</td><td>Health</td><td>Score</td><td>Last Output</td></tr>
-{auto_rows}
-</table>
+<div style="height:1px;background:linear-gradient(90deg,transparent,#222,transparent);margin:0 20%"></div>
+
+<!-- WHOOP-STYLE METRICS -->
+<div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
+{metric_card("Sleep", sleep_val, "hrs", "Target: 7.5+", sleep_status)}
+{metric_card("HRV", hrv, "ms", "Higher = better", hrv_status)}
+</div>
+<div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+{metric_card("Resting HR", rhr, "bpm", "Lower = fitter", rhr_status)}
+{metric_card("Steps", steps_val, "", "Target: 8,000+", steps_status)}
 </div>
 
-<h2>Biometric Health</h2>
-{bio_section}
+<!-- BODY & PROTOCOL -->
+<div style="margin-top:28px">
+<div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#5a5a64;font-weight:600;margin-bottom:12px">Body & Protocol</div>
+{profile_html}
+</div>
 
-<div class="footer">
-Updated every 30 minutes · Powered by Garry Immune System<br>
-&copy; {datetime.now().year} Patrick Dickson
+<!-- BUILD PHASE -->
+{build_html}
+
+<!-- CONNECT DATA -->
+{connect_html}
+
+<!-- FOOTER -->
+<div style="text-align:center;color:#333;font-size:11px;padding:32px 0 16px">
+Auto-updated {now}<br>
+The income is me.
+</div>
+
 </div>
 </body>
 </html>"""
