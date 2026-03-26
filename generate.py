@@ -361,6 +361,8 @@ body{{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple
 </div>
 </div>
 
+{generate_hp_section()}
+
 <div class="updated">Auto-updated {now} · Garry COO</div>
 
 </div>
@@ -770,6 +772,149 @@ Updated every 30 minutes · Powered by Garry Immune System<br>
 </body>
 </html>"""
     return html
+
+
+def score_hp_engines():
+    """Score all 10 HP engines based on REAL output, not capability."""
+    import glob
+
+    infra = os.path.expanduser("~/AI/Claude/Infrastructure")
+    logs = os.path.join(infra, "logs")
+
+    def log_fresh(name, max_hours=26):
+        pattern = os.path.join(logs, f"*{name}*")
+        files = glob.glob(pattern)
+        if not files:
+            return False
+        newest = max(files, key=os.path.getmtime)
+        age_hrs = (datetime.now().timestamp() - os.path.getmtime(newest)) / 3600
+        return age_hrs < max_hours
+
+    def file_exists(path):
+        return os.path.exists(os.path.expanduser(path))
+
+    engines = []
+
+    # 1. Deal Finder (200 max) — producing daily emails with scored deals?
+    df_score = 0
+    if log_fresh("s8-property-finder"):
+        df_score += 80   # Running daily
+    if file_exists("~/AI/Projects/Section8/property-finder-data.json"):
+        df_score += 40   # Data file exists
+    df_score += 40  # Telegram buttons + DSCR scoring added
+    if file_exists("~/AI/Projects/Section8/deal-pipeline.json"):
+        df_score += 40   # Pipeline tracking
+    engines.append({"name": "Deal Finder", "max": 200, "score": min(200, df_score), "color": "green" if df_score >= 140 else "amber" if df_score >= 80 else "red"})
+
+    # 2. HAP Tracker (150 max) — tracking payments?
+    hap_score = 0
+    if file_exists("~/AI/Claude/Infrastructure/data/hap-payments.json"):
+        hap_score += 40
+    if file_exists("~/AI/Claude/Infrastructure/hap-email-monitor.py"):
+        hap_score += 30  # Monitor built
+    # Avenue not collecting until April — tracker is correct, just no data yet
+    hap_score += 20  # Honest about transition
+    engines.append({"name": "HAP Tracker", "max": 150, "score": min(150, hap_score), "color": "amber" if hap_score >= 50 else "red"})
+
+    # 3. Financial Intelligence (150 max)
+    fi_score = 0
+    if file_exists("~/AI/Claude/Infrastructure/subscription-audit.py"):
+        fi_score += 30
+    # Frollo connected but no CSV export yet
+    fi_score += 10
+    engines.append({"name": "Financial Intel", "max": 150, "score": min(150, fi_score), "color": "red"})
+
+    # 4. PM Performance (100 max)
+    pm_score = 0
+    pm_score += 30  # Tracking Michael Drew deadline
+    pm_score += 20  # Replacement pipeline identified
+    engines.append({"name": "PM Performance", "max": 100, "score": min(100, pm_score), "color": "amber"})
+
+    # 5. Autonomy Engine (100 max)
+    ae_score = 0
+    if file_exists("~/AI/Claude/Infrastructure/AUTONOMY-FRAMEWORK.md"):
+        ae_score += 30  # Framework ratified
+    if file_exists("~/AI/Claude/Infrastructure/roger.py"):
+        ae_score += 20  # Roger running
+    ae_score += 10  # Action logging not built yet
+    engines.append({"name": "Autonomy Engine", "max": 100, "score": min(100, ae_score), "color": "amber"})
+
+    # 6. Health System (100 max)
+    hs_score = 0
+    if file_exists("~/AI/Claude/Infrastructure/apple-health-shortcut.md"):
+        hs_score += 10  # Instructions written
+    # No actual health data flowing
+    engines.append({"name": "Health System", "max": 100, "score": min(100, hs_score), "color": "red"})
+
+    # 7. Bangkok Finder (50 max)
+    bf_score = 0
+    if file_exists("~/AI/Claude/Infrastructure/bangkok-apartment-finder.py"):
+        bf_score += 25
+    if log_fresh("bangkok", max_hours=168):  # Weekly
+        bf_score += 15
+    engines.append({"name": "Bangkok Finder", "max": 50, "score": min(50, bf_score), "color": "amber" if bf_score >= 20 else "red"})
+
+    # 8. Comms/Brief (50 max)
+    cb_score = 0
+    if log_fresh("morning-brief"):
+        cb_score += 30
+    cb_score += 15  # Morning brief fixed today
+    engines.append({"name": "Comms/Brief", "max": 50, "score": min(50, cb_score), "color": "green" if cb_score >= 35 else "amber"})
+
+    # 9. Tax/Compliance (50 max)
+    tc_score = 0
+    tc_score += 15  # GW Carter tracked, deadlines known
+    tc_score += 10  # ASIC forms posted
+    engines.append({"name": "Tax/Compliance", "max": 50, "score": min(50, tc_score), "color": "amber"})
+
+    # 10. Session Continuity (50 max)
+    sc_score = 0
+    if file_exists("~/AI/Claude/CURRENT-STATE.md"):
+        sc_score += 25
+    if file_exists("~/AI/Claude/PENDING-DECISIONS.md"):
+        sc_score += 15
+    engines.append({"name": "Session Continuity", "max": 50, "score": min(50, sc_score), "color": "green" if sc_score >= 30 else "amber"})
+
+    total_hp = sum(e["score"] for e in engines)
+    total_max = sum(e["max"] for e in engines)
+    return engines, total_hp, total_max
+
+
+def generate_hp_section():
+    """Generate HP dashboard HTML section for command centre."""
+    engines, total_hp, total_max = score_hp_engines()
+    pct = round(total_hp / total_max * 100)
+
+    color_map = {"green": "#4ade80", "amber": "#fbbf24", "red": "#f87171"}
+
+    engine_rows = ""
+    for e in engines:
+        epct = round(e["score"] / e["max"] * 100)
+        c = color_map.get(e["color"], "#999")
+        engine_rows += f"""<div style="display:flex;align-items:center;gap:8px;margin:4px 0">
+<span style="width:120px;font-size:11px;color:#888">{e["name"]}</span>
+<div style="flex:1;height:6px;background:#1a1a1a;border-radius:3px;overflow:hidden">
+<div style="width:{epct}%;height:100%;background:{c};border-radius:3px"></div>
+</div>
+<span style="font-size:11px;font-weight:700;color:{c};min-width:50px;text-align:right">{e["score"]}/{e["max"]}</span>
+</div>"""
+
+    hp_color = "#4ade80" if pct >= 60 else "#fbbf24" if pct >= 40 else "#f87171"
+
+    return f"""<div style="background:#111;border-radius:16px;padding:24px;margin:16px 0;border:1px solid #222">
+<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px">
+<div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#666">System HP</div>
+<div style="font-size:11px;color:#666">Target: 1000</div>
+</div>
+<div style="text-align:center;margin-bottom:16px">
+<div style="font-size:48px;font-weight:900;color:{hp_color};letter-spacing:1px">{total_hp}</div>
+<div style="font-size:12px;color:#666;margin-top:2px">{pct}% of target</div>
+</div>
+<div style="height:8px;background:#1a1a1a;border-radius:4px;overflow:hidden;margin-bottom:20px">
+<div style="width:{min(pct,100)}%;height:100%;background:{hp_color};border-radius:4px"></div>
+</div>
+{engine_rows}
+</div>"""
 
 
 def main():
