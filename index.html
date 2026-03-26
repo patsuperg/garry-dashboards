@@ -16,7 +16,7 @@
   .card { background: #141414; border: 1px solid #222; border-radius: 14px; padding: 20px; }
   .card .num { font-size: 2.5rem; font-weight: 700; line-height: 1; }
   .card .lbl { font-size: 0.8rem; color: #888; margin-top: 6px; }
-  .green { color: #00d4aa; } .red { color: #e74c3c; } .yellow { color: #f39c12; } .white { color: #fff; }
+  .green { color: #00d4aa; } .red { color: #e74c3c; } .yellow { color: #f39c12; } .white { color: #fff; } .orange { color: #ff6b35; }
   .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
   .badge-live { background: rgba(0,212,170,0.15); color: #00d4aa; border: 1px solid rgba(0,212,170,0.3); }
   .score-bar { height: 8px; background: #1a1a1a; border-radius: 4px; margin-top: 8px; overflow: hidden; }
@@ -29,14 +29,62 @@
   .capability-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .cap-item { padding: 10px; background: #1a1a1a; border-radius: 8px; font-size: 0.8rem; text-align: center; border-top: 3px solid; }
   .cap-on { border-color: #00d4aa; color: #00d4aa; } .cap-off { border-color: #e74c3c; color: #e74c3c; }
-  @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } .agent-list { grid-template-columns: 1fr; } .capability-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* HP METER */
+  .hp-banner { background: linear-gradient(135deg, #0d1117 0%, #1a0a00 100%); border: 1px solid #ff6b35; border-radius: 18px; padding: 28px 32px; margin-bottom: 28px; display: flex; align-items: center; gap: 40px; }
+  .hp-main { flex-shrink: 0; }
+  .hp-number { font-size: 5rem; font-weight: 900; color: #ff6b35; line-height: 1; letter-spacing: -3px; text-shadow: 0 0 40px rgba(255,107,53,0.5); }
+  .hp-label { font-size: 0.85rem; color: #888; letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; }
+  .hp-target { font-size: 0.75rem; color: #555; margin-top: 2px; }
+  .hp-bar-wrap { flex: 1; }
+  .hp-bar-bg { height: 20px; background: #1a1a1a; border-radius: 10px; overflow: hidden; margin-bottom: 16px; border: 1px solid #2a2a2a; }
+  .hp-bar-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, #ff4500, #ff6b35, #ffaa00); box-shadow: 0 0 20px rgba(255,107,53,0.4); transition: width 1s ease; }
+  .hp-breakdown { display: flex; gap: 24px; flex-wrap: wrap; }
+  .hp-item { font-size: 0.75rem; }
+  .hp-item .hi-val { color: #ff6b35; font-weight: 700; }
+  .hp-item .hi-lbl { color: #555; }
+  .hp-unlock { flex-shrink: 0; max-width: 220px; }
+  .hp-unlock h3 { font-size: 0.75rem; color: #888; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .unlock-item { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; padding: 4px 0; border-bottom: 1px solid #1a1a1a; }
+  .unlock-item:last-child { border-bottom: none; }
+  .unlock-name { color: #aaa; }
+  .unlock-hp { color: #ff6b35; font-weight: 700; }
+  @media (max-width: 768px) { .hp-banner { flex-direction: column; gap: 20px; } .hp-unlock { max-width: 100%; } .grid { grid-template-columns: repeat(2, 1fr); } .agent-list { grid-template-columns: 1fr; } .capability-grid { grid-template-columns: repeat(2, 1fr); } }
 </style>
 </head>
 <body>
 <div class="header">
-  <div><h1>Garry System Dashboard</h1><span class="badge badge-live">SYSTEM LIVE</span></div>
-  <div class="ts">Auto-updated: Mar 26, 2026 17:53 AEDT<br>Score: 89/100 (honest)</div>
+  <div><h1>Garry — COO Command Centre</h1><span class="badge badge-live">SYSTEM LIVE</span></div>
+  <div class="ts">Auto-updated: Mar 26, 2026 18:10 AEDT<br>Roger QA: 97/100 | HP: 350 → 1000</div>
 </div>
+
+<!-- HP METER -->
+<div class="hp-banner">
+  <div class="hp-main">
+    <div class="hp-number">350</div>
+    <div class="hp-label">System HP</div>
+    <div class="hp-target">Target: 1,000+</div>
+  </div>
+  <div class="hp-bar-wrap">
+    <div class="hp-bar-bg"><div class="hp-bar-fill" style="width:35%;"></div></div>
+    <div class="hp-breakdown">
+      <div class="hp-item"><span class="hi-val">97</span><br><span class="hi-lbl">QA Score</span></div>
+      <div class="hp-item"><span class="hi-val">48</span><br><span class="hi-lbl">Agents Live</span></div>
+      <div class="hp-item"><span class="hi-val">11/12</span><br><span class="hi-lbl">Caps Verified</span></div>
+      <div class="hp-item"><span class="hi-val">$0</span><br><span class="hi-lbl">Local LLM</span></div>
+      <div class="hp-item"><span class="hi-val">24/7</span><br><span class="hi-lbl">Autonomous</span></div>
+    </div>
+  </div>
+  <div class="hp-unlock">
+    <h3>Unlocks +650 HP</h3>
+    <div class="unlock-item"><span class="unlock-name">Luke Repo Implementation</span><span class="unlock-hp">+200</span></div>
+    <div class="unlock-item"><span class="unlock-name">Token Sovereignty Layer</span><span class="unlock-hp">+150</span></div>
+    <div class="unlock-item"><span class="unlock-name">Persistent Daemon (24/7)</span><span class="unlock-hp">+120</span></div>
+    <div class="unlock-item"><span class="unlock-name">Financial Intelligence</span><span class="unlock-hp">+100</span></div>
+    <div class="unlock-item"><span class="unlock-name">Health Data Live</span><span class="unlock-hp">+80</span></div>
+  </div>
+</div>
+
 <div class="grid">
   <div class="card"><div class="num green">89</div><div class="lbl">System Score</div>
     <div class="score-bar"><div class="score-fill" style="width:89%;background:linear-gradient(90deg,#00a882,#00d4aa);"></div></div></div>
