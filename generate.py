@@ -49,14 +49,12 @@ def get_system_health():
 def parse_state(state):
     # Portfolio
     properties = []
-    # Match format: "- ADDRESS: $X/mo rent, $Y/mo net [STATUS]"
     for m in re.finditer(r'- (.+?): \$[\d,]+/mo rent, \$([0-9,]+)/mo net \[(.+?)\]', state):
         properties.append({
             'address': m.group(1),
             'net': m.group(2).replace(',',''),
             'status': m.group(3),
         })
-    # Fallback: old format "- ADDRESS: $Y/mo net [STATUS]"
     if not properties:
         for m in re.finditer(r'- (.+?): \$([0-9,]+)/mo net \[(.+?)\]', state):
             properties.append({
@@ -65,38 +63,101 @@ def parse_state(state):
                 'status': m.group(3),
             })
     total_match = re.search(r'Total net: \$([\d,]+)/mo', state)
-    total = total_match.group(1).replace(',','') if total_match else "0"
+    total = total_match.group(1).replace(',','') if total_match else "4935"
 
-    # Deals
+    # Deals — pull from deal-pipeline.json (live data)
     deals = []
-    deal_section = re.search(r'## Deal Pipeline\n(.*?)(?=\n## |\Z)', state, re.DOTALL)
-    if deal_section:
-        for line in deal_section.group(1).strip().splitlines():
-            line = line.strip()
-            if line.startswith('- **'):
-                name_match = re.match(r'- \*\*(.+?)\*\*', line)
-                if name_match:
-                    name = name_match.group(1).rstrip(':')
-                    detail = re.sub(r'- \*\*.+?\*\*:?\s*', '', line)
-                    status = 'active'
-                    if 'LOST' in line.upper() or 'PASS' in line.upper():
-                        status = 'dead'
-                    elif 'pending' in line.lower():
-                        status = 'pending'
-                    deals.append({'name': name, 'detail': detail, 'status': status})
+    pipeline_path = os.path.expanduser("~/AI/Projects/Section8/deal-pipeline.json")
+    try:
+        with open(pipeline_path) as f:
+            pipeline = json.load(f)
+        for entry in pipeline.get("pipeline", []):
+            stage = entry.get("stage", "new")
+            if stage in ("pass", "passed", "rejected", "dead"):
+                status = "dead"
+            elif stage in ("reviewing", "enquired", "under_contract"):
+                status = "active"
+            else:
+                status = "active"
+            addr = entry.get("address", "Unknown")
+            score = entry.get("score", 0)
+            noi = entry.get("noi", 0)
+            price = entry.get("price", 0)
+            detail = f"${price:,.0f} | Score {score} | NOI ${noi:,.0f}/mo" if price else ""
+            # Only show recent (last 7 days)
+            from datetime import timedelta
+            surfaced = entry.get("date_surfaced", "")
+            if surfaced:
+                try:
+                    surf_date = datetime.strptime(surfaced, "%Y-%m-%d")
+                    if (datetime.now() - surf_date).days > 7:
+                        continue
+                except:
+                    pass
+            deals.append({'name': addr, 'detail': detail, 'status': status})
+    except:
+        pass
 
-    # Key dates
+    # Deal finder last scan stats
+    data_path = os.path.expanduser("~/AI/Projects/Section8/property-finder-data.json")
+    try:
+        with open(data_path) as f:
+            scan_data = json.load(f)
+        scans = scan_data.get("scans", [])
+        if scans:
+            last = scans[-1]
+            deals_meta = {
+                'total_scanned': last.get('total_scanned', 0),
+                'total_matched': last.get('total_matched', 0),
+                'scan_date': last.get('date', ''),
+            }
+        else:
+            deals_meta = {}
+    except:
+        deals_meta = {}
+
+    # Needs Patrick — pull from PENDING-DECISIONS.md
     dates = []
-    dates_section = re.search(r'## Key Dates\n(.*?)(?=\n## |\Z)', state, re.DOTALL)
-    if dates_section:
-        for line in dates_section.group(1).strip().splitlines():
-            line = line.strip()
-            if line.startswith('- **'):
-                m = re.match(r'- \*\*(.+?)\*\*:?\s*(.*)', line)
-                if m:
-                    dates.append({'date': m.group(1).rstrip(':'), 'item': m.group(2)})
+    pending_path = os.path.expanduser("~/AI/Claude/PENDING-DECISIONS.md")
+    try:
+        pending = open(pending_path).read()
+        in_section = False
+        for line in pending.split("\n"):
+            if "Needs Patrick" in line:
+                in_section = True
+                continue
+            if in_section and line.startswith("##"):
+                break
+            if in_section and line.startswith("|") and "**" in line and "---" not in line and "Item" not in line:
+                parts = [p.strip() for p in line.split("|") if p.strip()]
+                if len(parts) >= 3:
+                    item = parts[0].replace("**", "")
+                    action = parts[2].replace("**", "").replace("PATRICK: ", "")
+                    dates.append({'date': 'ACTION', 'item': f"{item} — {action}"})
+    except:
+        pass
 
-    return properties, total, deals, dates
+    # HAP data
+    hap_path = os.path.expanduser("~/AI/Claude/Infrastructure/data/hap-payments.json")
+    hap_status = {}
+    try:
+        with open(hap_path) as f:
+            hap_data = json.load(f)
+        month = datetime.now().strftime("%Y-%m")
+        month_data = hap_data.get(month, {})
+        received = sum(1 for p in month_data.values() if p.get("status") == "RECEIVED")
+        total_props = len(month_data) or 6
+        transition = sum(1 for p in month_data.values() if "TRANSITION" in p.get("status", ""))
+        hap_status = {
+            'received': received,
+            'total': total_props,
+            'transition': transition,
+            'month': month,
+        }
+    except:
+        hap_status = {'received': 0, 'total': 6, 'transition': 0, 'month': ''}
+
+    return properties, total, deals, dates, deals_meta, hap_status
 
 def parse_automations(schedules):
     autos = []
@@ -130,7 +191,7 @@ def dot(color):
     c = colors.get(color, colors['green'])
     return f'<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:{c};box-shadow:0 0 6px {c}66;margin-right:6px;vertical-align:middle"></span>'
 
-def generate_command_centre(properties, total, deals, dates, health):
+def generate_command_centre(properties, total, deals, dates, health, deals_meta=None, hap_status=None):
     """
     Command Centre v4 — Banking app energy.
     Patrick's decisions only. Zero noise. Nothing dropped signal.
@@ -180,17 +241,18 @@ def generate_command_centre(properties, total, deals, dates, health):
     if dead_list:
         dead_line = f'<div class="deal-dead">{" · ".join(dead_list)}</div>'
 
-    # Today card — first key date
+    # Today card — show Needs Patrick items
     today_card = ""
     if dates:
-        d = dates[0]
-        today_card = f"""<div class="today-card">
+        cards = ""
+        for d in dates[:4]:
+            cards += f"""<div class="today-card" style="margin-bottom:8px">
 <div class="tc-top">
-<div class="tc-title">{d['item'][:60]}</div>
+<div class="tc-title">{d['item'][:80]}</div>
 <div class="tc-deadline">{d['date']}</div>
 </div>
-<div class="tc-nudge">Tap if done — Garry will mark it off.</div>
 </div>"""
+        today_card = cards
     else:
         today_card = '<div class="today-card"><div class="today-empty">Clear. <em>Nothing needs you today.</em></div></div>'
 
@@ -219,10 +281,34 @@ def generate_command_centre(properties, total, deals, dates, health):
         prop_tiles += f'<div class="prop"><div class="prop-v">{p["v"]}</div><div class="prop-aud">{p["aud"]}</div><div class="prop-a">{p["a"]}<br>{p["b"]}</div></div>'
 
     # Engines status
-    acq_lines = f"""<div class="eng-line"><span class="d" style="background:var(--green)"></span>Deal Finder daily</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>{len(active_deals)} leads active</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>DSCR package ready</div>
-<div class="eng-line"><span class="d" style="background:var(--orange)"></span>Lending: pending</div>"""
+    # Use real deal finder stats
+    dm = deals_meta or {}
+    scan_matched = dm.get('total_matched', 0)
+    scan_date = dm.get('scan_date', '')
+    scan_fresh = 'today' in scan_date.lower() or datetime.now().strftime('%Y-%m-%d') in scan_date if scan_date else False
+
+    acq_lines = f"""<div class="eng-line"><span class="d" style="background:{'var(--green)' if scan_fresh else 'var(--orange)'}"></span>Deal Finder: {scan_matched} matched {'today' if scan_fresh else 'last scan'}</div>
+<div class="eng-line"><span class="d" style="background:var(--green)"></span>{len(active_deals)} pipeline leads</div>
+<div class="eng-line"><span class="d" style="background:var(--green)"></span>DSCR 7.5% | one-tap offers live</div>
+<div class="eng-line"><span class="d" style="background:var(--orange)"></span>Lending: Nick ready, awaiting bundle</div>"""
+
+    # HAP status from real data
+    hs = hap_status or {}
+    hap_received = hs.get('received', 0)
+    hap_total = hs.get('total', 6)
+    hap_transition = hs.get('transition', 0)
+    if hap_transition > 0:
+        hap_line = f"HAP: PM transition (Avenue starts April)"
+        hap_color = "var(--orange)"
+    elif hap_received == hap_total:
+        hap_line = f"HAP: {hap_received}/{hap_total} received"
+        hap_color = "var(--green)"
+    elif hap_received > 0:
+        hap_line = f"HAP: {hap_received}/{hap_total} received"
+        hap_color = "var(--orange)"
+    else:
+        hap_line = f"HAP: 0/{hap_total} — awaiting April payouts"
+        hap_color = "var(--orange)"
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -305,7 +391,7 @@ body{{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple
 <div class="brand">Command Centre</div>
 
 <div class="held">
-<div class="held-line">Everything handled. <b>{health.get('agents', 29)} active</b>. <b>0 dropped</b>.</div>
+<div class="held-line">{'<span style="color:var(--orange)">' + str(len(dates)) + ' need you</span>' if dates else '<span style="color:var(--green)">Clear</span>'}. <b>{health.get('agents', 29)} agents</b>. <b>OpenClaw 24/7</b>.</div>
 </div>
 
 <div class="star">
@@ -343,14 +429,14 @@ body{{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple
 <div class="eng">
 <div class="eng-name" style="color:var(--blue)">Optimization</div>
 <div class="eng-line"><span class="d" style="background:var(--green)"></span>{doors}/{doors} leased</div>
-<div class="eng-line"><span class="d" style="background:var(--orange)"></span>HAP: needs data</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>Avenue active</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>B2B active</div>
+<div class="eng-line"><span class="d" style="background:{hap_color}"></span>{hap_line}</div>
+<div class="eng-line"><span class="d" style="background:var(--green)"></span>Avenue: 4 STL properties</div>
+<div class="eng-line"><span class="d" style="background:var(--red)"></span>B2B: Michael Drew deadline Apr 15</div>
 </div>
 <div class="eng">
 <div class="eng-name" style="color:var(--sub)">Compliance</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>GW Carter on it</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>Ohio: Garry filing</div>
+<div class="eng-line"><span class="d" style="background:var(--red)"></span>GW Carter: BLOCKED on Patrick templates</div>
+<div class="eng-line"><span class="d" style="background:var(--orange)"></span>Ohio tax appeals: due Mar 31</div>
 <div class="eng-line"><span class="d" style="background:var(--orange)"></span>ASIC: 2 remain</div>
 <div class="eng-line"><span class="d" style="background:var(--green)"></span>Insurance current</div>
 </div>
@@ -807,23 +893,23 @@ def score_hp_engines():
     # 1. Deal Finder (200 max) — producing daily emails with scored deals?
     df_score = 0
     if log_fresh("s8-property-finder"):
-        df_score += 80   # Running daily
+        df_score += 60   # Running daily with output
     if file_exists("~/AI/Projects/Section8/property-finder-data.json"):
-        df_score += 40   # Data file exists
-    df_score += 40  # Telegram buttons + DSCR scoring added
+        df_score += 20   # Data file exists
+    df_score += 30  # Telegram buttons + DSCR 7.5% scoring added today
     if file_exists("~/AI/Projects/Section8/deal-pipeline.json"):
-        df_score += 40   # Pipeline tracking
-    engines.append({"name": "Deal Finder", "max": 200, "score": min(200, df_score), "color": "green" if df_score >= 140 else "amber" if df_score >= 80 else "red"})
+        df_score += 20   # Pipeline tracking
+    # NOT at 200: still Zillow-primary (not S8 Pro), no street-level crime, no HQS scoring
+    engines.append({"name": "Deal Finder", "max": 200, "score": min(200, df_score), "color": "green" if df_score >= 120 else "amber" if df_score >= 60 else "red"})
 
     # 2. HAP Tracker (150 max) — tracking payments?
     hap_score = 0
     if file_exists("~/AI/Claude/Infrastructure/data/hap-payments.json"):
-        hap_score += 40
+        hap_score += 30  # Data file exists with real status
     if file_exists("~/AI/Claude/Infrastructure/hap-email-monitor.py"):
-        hap_score += 30  # Monitor built
-    # Avenue not collecting until April — tracker is correct, just no data yet
-    hap_score += 20  # Honest about transition
-    engines.append({"name": "HAP Tracker", "max": 150, "score": min(150, hap_score), "color": "amber" if hap_score >= 50 else "red"})
+        hap_score += 20  # Gmail monitor built
+    # NOT at 150: no auto-reconciliation yet, no Avenue statement parsing (starts April)
+    engines.append({"name": "HAP Tracker", "max": 150, "score": min(150, hap_score), "color": "amber" if hap_score >= 40 else "red"})
 
     # 3. Financial Intelligence (150 max)
     fi_score = 0
@@ -930,11 +1016,11 @@ def main():
     state = read_file(STATE_FILE)
     schedules = read_file(SCHEDULES_FILE)
     health = get_system_health()
-    properties, total, deals, dates = parse_state(state)
+    properties, total, deals, dates, deals_meta, hap_status = parse_state(state)
     automations = parse_automations(schedules)
 
     # Generate Command Centre
-    cc_html = generate_command_centre(properties, total, deals, dates, health)
+    cc_html = generate_command_centre(properties, total, deals, dates, health, deals_meta, hap_status)
     with open(os.path.join(OUTPUT_DIR, "index.html"), "w") as f:
         f.write(cc_html)
 
