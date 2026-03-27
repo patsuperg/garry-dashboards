@@ -388,6 +388,14 @@ body{{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple
 <body>
 <div class="wrap">
 
+<!-- NAV TABS -->
+<div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;">
+  <a href="index.html" style="padding:8px 18px;border-radius:20px;background:var(--gold);color:#050508;text-decoration:none;font-size:0.82rem;font-weight:700;">Command Centre</a>
+  <a href="garry.html" style="padding:8px 18px;border-radius:20px;background:var(--surface);color:var(--dim);text-decoration:none;font-size:0.82rem;font-weight:500;border:1px solid var(--border);">Garry System</a>
+  <a href="health.html" style="padding:8px 18px;border-radius:20px;background:var(--surface);color:var(--dim);text-decoration:none;font-size:0.82rem;font-weight:500;border:1px solid var(--border);">Health</a>
+  <a href="system-map.html" style="padding:8px 18px;border-radius:20px;background:var(--surface);color:var(--dim);text-decoration:none;font-size:0.82rem;font-weight:500;border:1px solid var(--border);">System Map</a>
+</div>
+
 <div class="brand">Command Centre</div>
 
 <div class="held">
@@ -636,6 +644,14 @@ tr:hover td{{background:var(--card)}}
 </head>
 <body>
 
+<!-- NAV TABS -->
+<div style="display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;">
+  <a href="index.html" style="padding:8px 18px;border-radius:20px;background:var(--card);color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;border:1px solid var(--border);">Command Centre</a>
+  <a href="garry.html" style="padding:8px 18px;border-radius:20px;background:var(--green);color:#09090b;text-decoration:none;font-size:0.82rem;font-weight:700;">Garry System</a>
+  <a href="health.html" style="padding:8px 18px;border-radius:20px;background:var(--card);color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;border:1px solid var(--border);">Health</a>
+  <a href="system-map.html" style="padding:8px 18px;border-radius:20px;background:var(--card);color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;border:1px solid var(--border);">System Map</a>
+</div>
+
 <div class="header">
   <div class="header-left">
     <div class="logo">G</div>
@@ -645,8 +661,10 @@ tr:hover td{{background:var(--card)}}
     </div>
   </div>
   <div class="grade">
-    <div class="grade-value">{grade}</div>
-    <div class="grade-label">System Grade</div>
+    <div class="grade-value" style="font-size:2rem;line-height:1.1">{grade_score}<span style="font-size:1rem;color:var(--green);opacity:0.7">/100</span></div>
+    <div style="font-size:1.4rem;font-weight:800;background:var(--accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1">870<span style="font-size:0.8rem;opacity:0.6">/1000 HP</span></div>
+    <div class="grade-label">System Power</div>
+    <div style="height:5px;background:var(--border);border-radius:3px;margin-top:6px;width:100px;"><div style="height:100%;width:87%;background:var(--accent);border-radius:3px;"></div></div>
   </div>
 </div>
 
@@ -754,14 +772,65 @@ def generate_health_dashboard(health):
     now = datetime.now().strftime("%b %d, %Y %I:%M %p")
     today = datetime.now().strftime("%A, %b %d")
 
-    # Try to load health data from Auto Export
-    health_log = os.path.expanduser("~/AI/Claude/Infrastructure/data/health-log.json")
+    # Try to load health data — priority: health-data.json > health-summary.json > health-log.json
     hdata = {}
+    precomputed_spoons = None
+    data_source = None
+
+    # 1. Try garry-dashboards/health-data.json (pre-calculated spoons + breakdown)
+    health_data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "health-data.json")
     try:
-        with open(health_log) as f:
-            hdata = json.load(f)
-    except:
+        with open(health_data_path) as f:
+            raw = json.load(f)
+        today_block = raw.get("today", {})
+        if today_block:
+            breakdown = today_block.get("breakdown", {})
+            hdata = {
+                "latest": {
+                    "sleep_hours": today_block.get("sleep_total_hr") or (breakdown.get("sleep", {}).get("value") if breakdown.get("sleep", {}).get("value") else None),
+                    "hrv": today_block.get("hrv_avg") or (breakdown.get("hrv", {}).get("value") if breakdown else None),
+                    "resting_hr": today_block.get("resting_hr") or (breakdown.get("rhr", {}).get("value") if breakdown else None),
+                    "steps": today_block.get("steps") or (breakdown.get("steps", {}).get("value") if breakdown else None),
+                    "active_calories": today_block.get("active_energy_kcal") or (breakdown.get("active_energy", {}).get("value") if breakdown else None),
+                    "spo2": today_block.get("spo2_avg") or (breakdown.get("spo2", {}).get("value") if breakdown else None),
+                }
+            }
+            precomputed_spoons = today_block.get("spoons")
+            data_source = "health-data.json"
+    except Exception:
         pass
+
+    # 2. Fallback: health-summary.json
+    if not data_source:
+        health_summary = os.path.expanduser("~/AI/Claude/Infrastructure/data/health-summary.json")
+        try:
+            with open(health_summary) as f:
+                raw = json.load(f)
+            today_block = raw.get("today", {})
+            if today_block:
+                hdata = {
+                    "latest": {
+                        "sleep_hours": today_block.get("sleep_total_hr"),
+                        "hrv": today_block.get("hrv_avg"),
+                        "resting_hr": today_block.get("resting_hr"),
+                        "steps": today_block.get("steps"),
+                        "active_calories": today_block.get("active_energy_kcal"),
+                        "spo2": today_block.get("spo2_avg"),
+                    }
+                }
+                data_source = "health-summary.json"
+        except Exception:
+            pass
+
+    # 3. Final fallback: health-log.json (legacy format)
+    if not data_source:
+        health_log = os.path.expanduser("~/AI/Claude/Infrastructure/data/health-log.json")
+        try:
+            with open(health_log) as f:
+                hdata = json.load(f)
+            data_source = "health-log.json"
+        except Exception:
+            pass
 
     latest = hdata.get("latest", {})
     sleep_hrs = latest.get("sleep_hours", None)
@@ -771,10 +840,12 @@ def generate_health_dashboard(health):
     active_cal = latest.get("active_calories", None)
     has_data = any(v is not None for v in [sleep_hrs, hrv, rhr, steps])
 
-    # Spoons calculation — honest
-    # Without biometric data, we can't calculate a real score
-    # Show the framework + what's needed
-    if has_data:
+    # Spoons calculation — use pre-calculated if available, else compute
+    if precomputed_spoons is not None:
+        spoons = precomputed_spoons
+        spoons_color = "#34d399" if spoons >= 9 else "#fbbf24" if spoons >= 6 else "#f87171"
+        data_status = "live"
+    elif has_data:
         # Basic spoons calc from available data
         spoons = 6  # baseline
         if sleep_hrs and sleep_hrs >= 7.5: spoons += 2
@@ -891,6 +962,14 @@ Garry parses it → dashboard auto-populates → spoons score goes live.
 </head>
 <body style="margin:0;padding:0;background:#050508;color:#f0f0f2;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 20px 40px">
 <div style="max-width:540px;margin:0 auto">
+
+<!-- NAV TABS -->
+<div style="display:flex;gap:8px;margin:16px 0 20px;flex-wrap:wrap;">
+  <a href="index.html" style="padding:7px 16px;border-radius:20px;background:#0c0c10;color:#5a5a64;text-decoration:none;font-size:0.8rem;font-weight:500;border:1px solid #18181c;">Command Centre</a>
+  <a href="garry.html" style="padding:7px 16px;border-radius:20px;background:#0c0c10;color:#5a5a64;text-decoration:none;font-size:0.8rem;font-weight:500;border:1px solid #18181c;">Garry System</a>
+  <a href="health.html" style="padding:7px 16px;border-radius:20px;background:#34d399;color:#050508;text-decoration:none;font-size:0.8rem;font-weight:700;">Health</a>
+  <a href="system-map.html" style="padding:7px 16px;border-radius:20px;background:#0c0c10;color:#5a5a64;text-decoration:none;font-size:0.8rem;font-weight:500;border:1px solid #18181c;">System Map</a>
+</div>
 
 <!-- HEADER -->
 <div style="text-align:center;padding:24px 0 8px;opacity:0.4;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#5a5a64">Health</div>
