@@ -5,7 +5,8 @@
 cd "$(dirname "$0")"
 
 # Step 1: Refresh CURRENT-STATE.md from live data (ALWAYS before generating)
-python3 "$(dirname "$0")/refresh-state.py" 2>/dev/null
+python3 "$(dirname "$0")/refresh-state.py" 2>/dev/null || \
+  python3 /Users/patrickdickson/AI/Claude/Infrastructure/garry-dashboards/refresh-state.py 2>/dev/null
 
 # Step 2: Regenerate dashboards from live state
 python3 generate.py 2>/dev/null
