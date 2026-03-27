@@ -81,6 +81,14 @@ tr:hover td{background:var(--card)}
 </head>
 <body>
 
+<!-- NAV TABS -->
+<div style="display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;">
+  <a href="index.html" style="padding:8px 18px;border-radius:20px;background:var(--card);color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;border:1px solid var(--border);">Command Centre</a>
+  <a href="garry.html" style="padding:8px 18px;border-radius:20px;background:var(--green);color:#09090b;text-decoration:none;font-size:0.82rem;font-weight:700;">Garry System</a>
+  <a href="health.html" style="padding:8px 18px;border-radius:20px;background:var(--card);color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;border:1px solid var(--border);">Health</a>
+  <a href="system-map.html" style="padding:8px 18px;border-radius:20px;background:var(--card);color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;border:1px solid var(--border);">System Map</a>
+</div>
+
 <div class="header">
   <div class="header-left">
     <div class="logo">G</div>
@@ -90,8 +98,10 @@ tr:hover td{background:var(--card)}
     </div>
   </div>
   <div class="grade">
-    <div class="grade-value">B</div>
-    <div class="grade-label">System Grade</div>
+    <div class="grade-value" style="font-size:2rem;line-height:1.1">75<span style="font-size:1rem;color:var(--green);opacity:0.7">/100</span></div>
+    <div style="font-size:1.4rem;font-weight:800;background:var(--accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1">870<span style="font-size:0.8rem;opacity:0.6">/1000 HP</span></div>
+    <div class="grade-label">System Power</div>
+    <div style="height:5px;background:var(--border);border-radius:3px;margin-top:6px;width:100px;"><div style="height:100%;width:87%;background:var(--accent);border-radius:3px;"></div></div>
   </div>
 </div>
 
