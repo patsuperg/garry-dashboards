@@ -1,23 +1,30 @@
 #!/bin/bash
-# Garry Dashboard Auto-Update — regenerates dashboards from live state and pushes to GitHub Pages
-# Runs every 30 minutes via LaunchAgent
+# Garry Dashboard — Single source of truth for all dashboards
+# Runs every 30 minutes via com.patrick.garry-dashboards LaunchAgent
+#
+# Pipeline: data-refresh.py → refresh-state.py → generate.py → git push
 
 cd "$(dirname "$0")"
+INFRA="/Users/patrickdickson/AI/Claude/Infrastructure"
 
-# Step 1: Refresh CURRENT-STATE.md from live data (ALWAYS before generating)
-python3 "$(dirname "$0")/refresh-state.py" 2>/dev/null || \
-  python3 /Users/patrickdickson/AI/Claude/Infrastructure/garry-dashboards/refresh-state.py 2>/dev/null
+# Step 1: Refresh ALL data files from live sources
+python3 "$INFRA/data-refresh.py" 2>&1
 
-# Step 2: Regenerate dashboards from live state
+# Step 2: Refresh CURRENT-STATE.md from updated data
+python3 "$(dirname "$0")/refresh-state.py" 2>/dev/null
+
+# Step 3: Regenerate ALL dashboards from fresh data
 python3 generate.py 2>/dev/null
 
+# Step 4: Push ALL dashboard files + data directory
+git add index.html garry.html health.html command-centre.html system-map.html health-data.json data/ 2>/dev/null
+
 # Only push if something changed
-if git diff --quiet index.html garry.html health.html 2>/dev/null; then
+if git diff --cached --quiet 2>/dev/null; then
+    echo "No dashboard changes to push"
     exit 0
 fi
 
-# Commit and push
-git add index.html garry.html health.html system-map.html
 git commit -m "Auto-update $(date '+%Y-%m-%d %H:%M')" --quiet 2>/dev/null
 git push --quiet 2>/dev/null
 

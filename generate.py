@@ -1082,6 +1082,48 @@ def generate_hp_section():
 </div>"""
 
 
+def copy_data_for_dashboard():
+    """Copy data JSON files into garry-live/data/ so the unified dashboard can fetch them via relative paths."""
+    import shutil
+    data_src = os.path.expanduser("~/AI/Claude/Infrastructure/data")
+    data_dst = os.path.join(OUTPUT_DIR, "data")
+    os.makedirs(data_dst, exist_ok=True)
+
+    # Files the unified dashboard reads
+    needed = [
+        "portfolio-v2.json",
+        "system-health.json",
+        "hap-payments.json",
+        "deal-finder-v4-results.json",
+        "health-summary.json",
+        "hp-score.json",
+        "build-phase.json",
+        "evolution-state.json",
+        "session-plan.json",
+        "lending-tracker.json",
+    ]
+    for fname in needed:
+        src = os.path.join(data_src, fname)
+        dst = os.path.join(data_dst, fname)
+        if os.path.exists(src):
+            shutil.copy2(src, dst)
+            os.chmod(dst, 0o644)
+
+    # Also copy PENDING-DECISIONS.md (dashboard parses it for "Needs Patrick")
+    pending_src = os.path.expanduser("~/AI/Claude/PENDING-DECISIONS.md")
+    if os.path.exists(pending_src):
+        dst = os.path.join(data_dst, "PENDING-DECISIONS.md")
+        shutil.copy2(pending_src, dst)
+        os.chmod(dst, 0o644)
+
+    # Copy deal pipeline if it exists
+    pipeline_src = os.path.expanduser("~/AI/Projects/Section8/deal-pipeline.json")
+    if os.path.exists(pipeline_src):
+        dst = os.path.join(data_dst, "deal-pipeline.json")
+        shutil.copy2(pipeline_src, dst)
+        os.chmod(dst, 0o644)
+
+
 def main():
     state = read_file(STATE_FILE)
     schedules = read_file(SCHEDULES_FILE)
@@ -1089,24 +1131,31 @@ def main():
     properties, total, deals, dates, deals_meta, hap_status = parse_state(state)
     automations = parse_automations(schedules)
 
-    # Generate Command Centre
-    cc_html = generate_command_centre(properties, total, deals, dates, health, deals_meta, hap_status)
-    with open(os.path.join(OUTPUT_DIR, "index.html"), "w") as f:
-        f.write(cc_html)
+    # Copy data files for the unified dashboard (index.html reads these client-side)
+    copy_data_for_dashboard()
 
-    # Generate Garry Dashboard
+    # Legacy dashboards — kept for backward compat (garry.html, health.html, command-centre.html)
+    # index.html is now the unified tabbed dashboard — DO NOT overwrite it
+
+    # Generate Garry Dashboard (legacy)
     garry_html = generate_garry_dashboard(health, automations)
     with open(os.path.join(OUTPUT_DIR, "garry.html"), "w") as f:
         f.write(garry_html)
 
-    # Generate Health Dashboard
+    # Generate Health Dashboard (legacy)
     health_html = generate_health_dashboard(health)
     with open(os.path.join(OUTPUT_DIR, "health.html"), "w") as f:
         f.write(health_html)
 
-    print(f"Generated all 3 dashboards at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    # Generate Command Centre (legacy — saved as command-centre.html, NOT index.html)
+    cc_html = generate_command_centre(properties, total, deals, dates, health, deals_meta, hap_status)
+    with open(os.path.join(OUTPUT_DIR, "command-centre.html"), "w") as f:
+        f.write(cc_html)
+
+    print(f"Generated dashboards + copied data at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"  Portfolio: {len(properties)} properties, ${total}/mo net")
     print(f"  System: {health['agents']} agents, {len(automations)} automations")
+    print(f"  Unified dashboard: index.html (client-side, reads from data/)")
 
 
 if __name__ == "__main__":

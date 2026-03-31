@@ -30,19 +30,18 @@ def read_file(path):
 
 
 def build_portfolio_section():
-    properties = [
-        {"name": "505 W 25th St, Lorain, OH 44052", "rent": 1383, "net": 988, "status": "LEASED"},
-        {"name": "Unit F 7596 Hazelcrest Dr, Hazelwood, MO 63042", "rent": 775, "net": 309, "status": "LEASED"},
-        {"name": "132 Fenwick Dr, Saint Louis, MO 63135", "rent": 1450, "net": 1061, "status": "LEASED"},
-        {"name": "5361 Wilborn Dr, St Louis, MO 63136", "rent": 1400, "net": 974, "status": "LEASED"},
-        {"name": "516 Alcove Ave, Bellefontaine Neighbors, MO 63137", "rent": 1490, "net": 1005, "status": "LEASED"},
-        {"name": "124 Kenilworth Ave, Painesville, OH 44077", "rent": 1360, "net": 598, "status": "LEASED"},
-    ]
-    total_net = sum(p["net"] for p in properties)
+    portfolio = load_json(DATA / "portfolio-v2.json")
+    if not portfolio or "properties" not in portfolio:
+        return "Portfolio data unavailable"
+    properties = portfolio["properties"]
+    totals = portfolio.get("totals", {})
+    total_net = totals.get("net_monthly", sum(p.get("rent_net", 0) for p in properties))
     lines = [f"Properties: {len(properties)}"]
     for p in properties:
-        lines.append(f"- {p['name']}: ${p['rent']}/mo rent, ${p['net']}/mo net [{p['status']}]")
-    lines.append(f"**Total net: ${total_net:,}/mo**")
+        lines.append(f"- {p['address']}: ${p['rent_gross']}/mo rent, ${p['rent_net']}/mo net [{p['status']}]")
+    lines.append(f"**Total net: ${total_net:,}/mo USD (${int(total_net * 1.58):,}/mo AUD)**")
+    updated = portfolio.get("updated", "unknown")
+    lines.append(f"*Data verified: {updated}*")
     return "\n".join(lines)
 
 
