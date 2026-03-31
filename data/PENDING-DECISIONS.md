@@ -2,7 +2,7 @@
 
 **Purpose:** Things Patrick is thinking about. Claude checks this every session and proactively surfaces relevant info.
 
-Last Updated: 2026-03-31 (Session #45 — Garry COO)
+Last Updated: 2026-03-31 (Session #54 — Garry Autonomy Run)
 
 ---
 
@@ -17,7 +17,8 @@ Last Updated: 2026-03-31 (Session #45 — Garry COO)
 | **Evernest Jenna — $13,810** | Heather has NO visibility. 45-day hold from Mar 20 = possible May 4. Last chase Mar 27. New draft ready. | **PATRICK: Gmail Drafts → "Re: Disbursement Update — $13,810 Settlement" → SEND** |
 | **Subscription Kill List** | Roger Directive 15: ALL confirmed dead except LegalZoom ($50/mo virtual mailbox). Kill: Shopify $285, Evernest $500, FB Ads $250, Adobe $54, Calendly $500, Xero. | **PATRICK: Cancel each (Garry can draft steps)** |
 | **Theodore Ave Decision** | 7032 Theodore, 63136. $94K, vacant turnkey, 14.6% cap, $1,098/mo NOI. Better at $85-88K. Same zip as Wilborn. | **PATRICK: Pursue or pass?** |
-| **Frollo CSV Export** | Banks connected (ANZ + Macquarie). Account type confirmed ✓ (personal, not Broker — helpdesk Mar 31). Need first CSV export emailed with subject GARRY-FINANCE. | **PATRICK: Export from Frollo app** |
+| **Frollo CSV Export** | Banks connected (ANZ + Macquarie). Account type confirmed ✓ (personal, not Broker — helpdesk Mar 31). Frollo helpdesk: clear cache/cookies on phone browser + retry password reset. | **PATRICK: Clear cache → retry → Export from Frollo app** |
+| **🚨 ANZ Card 9921 — RESTRICTED** | ANZ Falcon detected unusual activity. Card may be blocked. Telegram sent. | **PATRICK: Call ANZ +61 3 8654 9991 (24/7) NOW** |
 | **Health Shortcut** | iOS Shortcuts not built. No biometric data flowing. Health dashboard shows "Not Connected." Instructions at ~/AI/Claude/Infrastructure/apple-health-shortcut.md. 3 min job. | **PATRICK: Build shortcut on iPhone** |
 | **MSD Sewer — $263.28/$332.72** | In collections. Fenwick property. Emailed MSD to clarify $332.72 vs $263.28 discrepancy and requested billing name update. Dispute deadline Apr 14. | **AWAITING MSD RESPONSE** |
 | **ASIC Forms x3 — IN TRANSIT/DELIVERED** | All 3 forms express posted Mar 24 (UHF, Spartans Property, Fitness Supplies). AusPost tracking 79852088 05. 6 calendar days elapsed (4 business days) — should be delivered/in ASIC queue. Direct tracking verification attempted. | **DONE — awaiting ASIC processing** |
