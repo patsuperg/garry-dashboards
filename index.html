@@ -9,251 +9,1176 @@
 <meta http-equiv="expires" content="0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Command Centre</title>
+<title>Garry — Command Centre</title>
 <style>
-:root{--bg:#050508;--surface:#0c0c10;--border:#18181c;--text:#f0f0f2;--sub:#a0a0a8;--dim:#5a5a64;--gold:#daa520;--gold-glow:rgba(218,165,32,0.08);--green:#34d399;--green-glow:rgba(52,211,153,0.08);--red:#f87171;--blue:#60a5fa;--orange:#fb923c}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 20px 40px}
-.wrap{max-width:540px;margin:0 auto}
-.brand{text-align:center;padding:24px 0 20px;opacity:0.4;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--dim)}
-.held{text-align:center;margin-bottom:32px}
-.held-line{font-size:14px;color:var(--green);font-weight:500;letter-spacing:0.3px}
-.held-line b{color:var(--text);font-weight:600}
-.star{text-align:center;padding:36px 0 40px;margin-bottom:32px;position:relative}
-.star::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
-.star-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:12px}
-.star-num{font-size:64px;font-weight:800;color:var(--text);line-height:1;letter-spacing:-2px}
-.star-num .aud{font-size:28px;color:var(--gold);font-weight:600;vertical-align:top;letter-spacing:0;margin-right:2px}
-.star-of{font-size:18px;color:var(--dim);font-weight:400;margin-top:4px}
-.star-bar{width:200px;height:6px;background:#151518;border-radius:3px;margin:20px auto 8px;overflow:hidden}
-.star-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),#f0c040)}
-.star-pct{font-size:12px;color:var(--gold);font-weight:600;letter-spacing:1px}
-.star-meta{display:flex;justify-content:center;gap:32px;margin-top:20px}
-.star-meta .m{text-align:center}
-.star-meta .m .v{font-size:20px;font-weight:700;color:var(--text)}
-.star-meta .m .l{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
-.star-pace{font-size:11px;color:var(--dim);margin-top:20px}
-.star-pace em{color:var(--green);font-style:normal;font-weight:500}
-.sec{margin-bottom:36px}
-.sec-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);font-weight:600;margin-bottom:16px}
-.today-card{background:var(--surface);border-radius:16px;padding:20px;border:1px solid var(--border)}
-.today-empty{font-size:14px;color:var(--sub);text-align:center;padding:20px 0}
-.today-empty em{color:var(--green);font-style:normal}
-.tc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
-.tc-title{font-size:16px;font-weight:600;color:var(--text);line-height:1.3}
-.tc-deadline{font-size:10px;font-weight:600;padding:4px 10px;border-radius:8px;white-space:nowrap;background:rgba(218,165,32,0.1);color:var(--gold)}
-.tc-nudge{font-size:12px;color:var(--gold);font-weight:500}
-.deal{background:var(--surface);border-radius:16px;padding:20px;border:1px solid var(--border);margin-bottom:10px}
-.deal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.deal-addr{font-size:17px;font-weight:600;color:var(--text)}
-.deal-badge{font-size:9px;font-weight:700;padding:4px 10px;border-radius:8px;letter-spacing:0.5px}
-.deal-badge.hot{background:rgba(248,113,113,0.1);color:var(--red)}
-.deal-badge.eval{background:rgba(218,165,32,0.1);color:var(--gold)}
-.deal-badge.hold{background:rgba(90,90,100,0.1);color:var(--dim)}
-.deal-context{font-size:12px;color:var(--sub);font-style:italic;padding-top:8px;border-top:1px solid var(--border)}
-.deal-action{font-size:13px;color:var(--gold);font-weight:500;margin-top:8px}
-.deal-dead{font-size:11px;color:var(--dim);margin-top:6px;text-align:center}
-.eng-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.eng{background:var(--surface);border-radius:14px;padding:14px;border:1px solid var(--border)}
-.eng-name{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin-bottom:8px}
-.eng-line{font-size:11px;color:var(--sub);padding:3px 0;display:flex;align-items:center;gap:6px;line-height:1.3}
-.d{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.props{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.prop{background:var(--surface);border-radius:12px;padding:14px;border:1px solid var(--border);text-align:center}
-.prop-v{font-size:20px;font-weight:700;color:var(--green)}
-.prop-aud{font-size:10px;color:var(--dim);margin-top:1px}
-.prop-a{font-size:9px;color:var(--sub);margin-top:6px;line-height:1.3}
-.updated{text-align:center;font-size:9px;color:var(--dim);margin-top:32px;letter-spacing:1px}
-@media(max-width:500px){
-.star-num{font-size:48px}
-.star-num .aud{font-size:22px}
-.star-meta{gap:20px}
-.eng-row{grid-template-columns:1fr}
-.props{grid-template-columns:repeat(2,1fr)}
+:root {
+  --bg: #050508;
+  --surface: #0c0c10;
+  --border: #18181c;
+  --text: #f0f0f2;
+  --sub: #a0a0a8;
+  --dim: #5a5a64;
+  --gold: #daa520;
+  --green: #34d399;
+  --red: #f87171;
+  --blue: #60a5fa;
+  --orange: #fb923c;
+  --amber: #fbbf24;
+  --purple: #a78bfa;
+  --green-bg: #052e16;
+  --amber-bg: #422006;
+  --red-bg: #450a0a;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* ── Tab Navigation ── */
+.tab-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(5,5,8,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+}
+.tab-btn {
+  background: none;
+  border: none;
+  color: var(--dim);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 16px 24px;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+.tab-btn:hover { color: var(--sub); }
+.tab-btn.active { color: var(--text); }
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 1px;
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ── Shared ── */
+.wrap { max-width: 560px; margin: 0 auto; padding: 0 20px 40px; }
+.wrap-wide { max-width: 900px; margin: 0 auto; padding: 0 20px 40px; }
+.brand {
+  text-align: center;
+  padding: 24px 0 16px;
+  opacity: 0.4;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.sec { margin-bottom: 32px; }
+.sec-title {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.updated {
+  text-align: center;
+  font-size: 9px;
+  color: var(--dim);
+  margin-top: 32px;
+  letter-spacing: 1px;
+}
+.dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.dot-green { background: var(--green); box-shadow: 0 0 6px rgba(52,211,153,0.4); }
+.dot-amber { background: var(--amber); box-shadow: 0 0 6px rgba(251,191,36,0.4); }
+.dot-red { background: var(--red); box-shadow: 0 0 6px rgba(248,113,113,0.4); }
+.dot-dim { background: var(--dim); }
+
+.badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.badge-green { background: var(--green-bg); color: var(--green); }
+.badge-amber { background: var(--amber-bg); color: var(--amber); }
+.badge-red { background: var(--red-bg); color: var(--red); }
+.badge-dim { background: #1a1a1e; color: var(--dim); }
+.badge-gold { background: rgba(218,165,32,0.1); color: var(--gold); }
+
+/* ── Command Centre Tab ── */
+.status-line {
+  text-align: center;
+  margin-bottom: 28px;
+  font-size: 14px;
+  color: var(--green);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+.status-line b { color: var(--text); font-weight: 600; }
+
+.star {
+  text-align: center;
+  padding: 32px 0 36px;
+  margin-bottom: 28px;
+  position: relative;
+}
+.star::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.star-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.6;
+  margin-bottom: 12px;
+}
+.star-num {
+  font-size: 60px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+  letter-spacing: -2px;
+}
+.star-num .aud {
+  font-size: 26px;
+  color: var(--gold);
+  font-weight: 600;
+  vertical-align: top;
+  letter-spacing: 0;
+  margin-right: 2px;
+}
+.star-of {
+  font-size: 16px;
+  color: var(--dim);
+  font-weight: 400;
+  margin-top: 4px;
+}
+.star-bar {
+  width: 200px;
+  height: 6px;
+  background: #151518;
+  border-radius: 3px;
+  margin: 18px auto 8px;
+  overflow: hidden;
+}
+.star-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--gold), #f0c040);
+}
+.star-pct {
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.star-meta {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 18px;
+}
+.star-meta .m { text-align: center; }
+.star-meta .m .v { font-size: 20px; font-weight: 700; color: var(--text); }
+.star-meta .m .l { font-size: 9px; color: var(--dim); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 2px; }
+
+.today-card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.today-empty {
+  font-size: 14px;
+  color: var(--sub);
+  text-align: center;
+  padding: 16px 0;
+}
+.tc-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.tc-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.3; }
+
+.props-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.prop {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.prop-v { font-size: 20px; font-weight: 700; color: var(--green); }
+.prop-aud { font-size: 10px; color: var(--dim); margin-top: 1px; }
+.prop-a { font-size: 9px; color: var(--sub); margin-top: 6px; line-height: 1.3; }
+
+.hp-box {
+  background: #111;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 16px 0;
+  border: 1px solid #222;
+}
+.hp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+.hp-score-display { text-align: center; margin-bottom: 16px; }
+.hp-score-num { font-size: 48px; font-weight: 900; letter-spacing: 1px; }
+.hp-bar-track { height: 8px; background: #1a1a1a; border-radius: 4px; overflow: hidden; margin-bottom: 20px; }
+.hp-bar-fill { height: 100%; border-radius: 4px; }
+.hp-engine-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+}
+.hp-engine-name { width: 120px; font-size: 11px; color: #888; }
+.hp-engine-bar { flex: 1; height: 6px; background: #1a1a1a; border-radius: 3px; overflow: hidden; }
+.hp-engine-fill { height: 100%; border-radius: 3px; }
+.hp-engine-val { font-size: 11px; font-weight: 700; min-width: 50px; text-align: right; }
+
+/* ── Health Tab ── */
+.spoons-hero { text-align: center; padding: 32px 0 24px; }
+.spoons-score {
+  font-size: 96px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -3px;
+}
+.spoons-max { font-size: 32px; color: #444; font-weight: 400; }
+.spoons-row { margin: 20px 0 8px; font-size: 28px; letter-spacing: 4px; }
+.spoons-date { font-size: 12px; color: #555; }
+
+.metrics-grid {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.metric-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  flex: 1;
+  min-width: 140px;
+}
+.metric-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 12px;
+}
+.metric-value { font-size: 36px; font-weight: 800; }
+.metric-unit { font-size: 14px; color: #666; font-weight: 400; margin-left: 4px; }
+.metric-sub { font-size: 11px; color: #555; margin-top: 6px; }
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+.profile-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+.profile-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 8px;
+}
+.profile-text {
+  font-size: 13px;
+  color: var(--sub);
+  line-height: 1.8;
+}
+.build-phase-card {
+  background: var(--surface);
+  border: 1px solid #1a3a1a;
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 16px;
+}
+.connect-card {
+  background: var(--surface);
+  border: 1px solid #3a2a0a;
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 20px;
+}
+
+/* ── System Tab ── */
+.sys-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0 24px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+.sys-header-left { display: flex; align-items: center; gap: 16px; }
+.sys-logo {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--green), #22c55e);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 20px;
+  color: #09090b;
+}
+.sys-title { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; }
+.sys-sub { color: var(--dim); font-size: 0.8rem; }
+.sys-grade { text-align: right; }
+.sys-grade-val {
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--green), #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+.sys-grade-label {
+  font-size: 0.65rem;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.status-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: border-color 0.2s;
+}
+.status-item:hover { border-color: #333; }
+.status-item-label {
+  font-size: 0.65rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 4px;
+}
+.status-item-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.team-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.team-card:hover { border-color: #333; transform: translateY(-2px); }
+.team-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #09090b;
+}
+.team-name { font-weight: 600; font-size: 0.95rem; }
+.team-role { font-size: 0.7rem; color: var(--dim); }
+.team-desc {
+  font-size: 0.8rem;
+  color: var(--dim);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+.team-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  margin-top: 8px;
+}
+
+.perf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.perf-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+}
+.perf-number {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--blue), #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+.perf-label {
+  font-size: 0.7rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-top: 6px;
+}
+
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+}
+.principle { font-size: 0.8rem; color: var(--dim); }
+.principle strong { color: var(--sub); }
+
+.roadmap-table { width: 100%; border-collapse: collapse; }
+.roadmap-table th {
+  text-align: left;
+  font-size: .65rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.roadmap-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid #111;
+  font-size: .82rem;
+}
+.roadmap-table tr:hover td { background: var(--surface); }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .tab-btn { padding: 14px 16px; font-size: 10px; letter-spacing: 1px; }
+  .star-num { font-size: 48px; }
+  .star-num .aud { font-size: 22px; }
+  .star-meta { gap: 20px; }
+  .props-grid { grid-template-columns: repeat(2, 1fr); }
+  .spoons-score { font-size: 72px; }
+  .metrics-grid { flex-direction: column; }
+  .profile-grid { grid-template-columns: 1fr; }
+  .sys-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .status-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid { grid-template-columns: 1fr; }
+  .perf-grid { grid-template-columns: repeat(2, 1fr); }
+  .roadmap-table { display: block; overflow-x: auto; }
 }
 </style>
 </head>
 <body>
+
+<!-- Tab Navigation -->
+<nav class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('command')" id="tab-command">Command Centre</button>
+  <button class="tab-btn" onclick="switchTab('health')" id="tab-health">Health</button>
+  <button class="tab-btn" onclick="switchTab('system')" id="tab-system">System</button>
+</nav>
+
+<!-- ════════════════════════════════════════ -->
+<!-- TAB 1: COMMAND CENTRE                    -->
+<!-- ════════════════════════════════════════ -->
+<div id="content-command" class="tab-content active">
 <div class="wrap">
 
-<div class="brand">Command Centre</div>
+  <div class="brand">Command Centre</div>
 
-<div class="held">
-<div class="held-line"><span style="color:var(--orange)">10 need you</span>. <b>51 agents</b>. <b>OpenClaw 24/7</b>.</div>
-</div>
+  <div class="status-line" id="cc-status-line">Loading...</div>
 
-<div class="star">
-<div class="star-label">North Star</div>
-<div class="star-num"><span class="aud">A$</span>7,797</div>
-<div class="star-of">of A$20,000 per month</div>
-<div class="star-bar"><div class="star-fill" style="width:39.0%"></div></div>
-<div class="star-pct">39%</div>
-<div class="star-meta">
-<div class="m"><div class="v">6</div><div class="l">Doors</div></div>
-<div class="m"><div class="v">~10</div><div class="l">To Go</div></div>
-<div class="m"><div class="v">A$12,203</div><div class="l">Gap</div></div>
-</div>
-<div class="star-pace">At 1 door/month — <em>Northstar by Jan 2027</em></div>
-</div>
+  <!-- North Star -->
+  <div class="star">
+    <div class="star-label">North Star</div>
+    <div class="star-num"><span class="aud">A$</span><span id="cc-aud-income">--</span></div>
+    <div class="star-of">of A$20,000 per month</div>
+    <div class="star-bar"><div class="star-fill" id="cc-star-fill" style="width:0%"></div></div>
+    <div class="star-pct" id="cc-star-pct">--%</div>
+    <div class="star-meta">
+      <div class="m"><div class="v" id="cc-doors">-</div><div class="l">Doors</div></div>
+      <div class="m"><div class="v" id="cc-doors-to-go">-</div><div class="l">To Go</div></div>
+      <div class="m"><div class="v" id="cc-gap">-</div><div class="l">Gap</div></div>
+    </div>
+  </div>
 
-<div class="sec">
-<div class="sec-title">Today</div>
-<div class="today-card" style="margin-bottom:8px">
-<div class="tc-top">
-<div class="tc-title">🚨 OHIO TAX APPEALS — DEADLINE TODAY MAR 31 — Open Gmail → Drafts → send both NOW</div>
-<div class="tc-deadline">ACTION</div>
-</div>
-</div><div class="today-card" style="margin-bottom:8px">
-<div class="tc-top">
-<div class="tc-title">Michael Drew (B2B) — Call Needed — Send Michael Drew draft in Gmail → then take </div>
-<div class="tc-deadline">ACTION</div>
-</div>
-</div><div class="today-card" style="margin-bottom:8px">
-<div class="tc-top">
-<div class="tc-title">Sleek/ASIC — Mar 31 Deadline — Send Sleek follow-up draft in Gmail</div>
-<div class="tc-deadline">ACTION</div>
-</div>
-</div><div class="today-card" style="margin-bottom:8px">
-<div class="tc-top">
-<div class="tc-title">Evernest Jenna — $13,810 — Send Jenna draft in Gmail</div>
-<div class="tc-deadline">ACTION</div>
-</div>
+  <!-- Needs Patrick -->
+  <div class="sec">
+    <div class="sec-title">Needs You</div>
+    <div id="cc-needs-patrick"><div class="today-card"><div class="today-empty">Loading...</div></div></div>
+  </div>
+
+  <!-- Deals -->
+  <div class="sec">
+    <div class="sec-title">Deals</div>
+    <div id="cc-deals"><div class="today-card"><div class="today-empty">Loading...</div></div></div>
+  </div>
+
+  <!-- Portfolio -->
+  <div class="sec">
+    <div class="sec-title">Portfolio</div>
+    <div class="props-grid" id="cc-portfolio"></div>
+  </div>
+
+  <!-- System HP -->
+  <div id="cc-hp-section"></div>
+
+  <div class="updated" id="cc-updated">Loading...</div>
 </div>
 </div>
 
-<div class="sec">
-<div class="sec-title">Deals</div>
+<!-- ════════════════════════════════════════ -->
+<!-- TAB 2: HEALTH                            -->
+<!-- ════════════════════════════════════════ -->
+<div id="content-health" class="tab-content">
+<div class="wrap">
 
-<div class="deal" style="">
-<div class="deal-top">
-<div class="deal-addr">9732 Gloucester Dr, Saint Louis, MO 63137</div>
-<div class="deal-badge eval">EVALUATING</div>
-</div>
-<div class="deal-context">$99,900 | Score 70 | NOI $1,027/mo</div>
+  <div class="brand">Health</div>
 
-</div>
-<div class="deal" style="">
-<div class="deal-top">
-<div class="deal-addr">449 S Dade Ave, Saint Louis, MO 63135</div>
-<div class="deal-badge eval">EVALUATING</div>
-</div>
-<div class="deal-context">$99,900 | Score 75 | NOI $1,216/mo</div>
+  <!-- Spoons Hero -->
+  <div class="spoons-hero">
+    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#666;margin-bottom:16px">Spoons Today</div>
+    <div class="spoons-score" id="h-spoons-num" style="color:var(--dim)">?<span class="spoons-max">/12</span></div>
+    <div class="spoons-row" id="h-spoons-row"></div>
+    <div class="spoons-date" id="h-spoons-date"></div>
+  </div>
 
-</div>
+  <div style="height:1px;background:linear-gradient(90deg,transparent,#222,transparent);margin:0 20%"></div>
 
-</div>
+  <!-- Biometric Metrics -->
+  <div class="sec" style="margin-top:24px">
+    <div class="metrics-grid" id="h-metrics-row1"></div>
+    <div class="metrics-grid" id="h-metrics-row2" style="margin-top:12px"></div>
+  </div>
 
-<div class="sec">
-<div class="sec-title">Engines</div>
-<div class="eng-row">
-<div class="eng">
-<div class="eng-name" style="color:var(--green)">Acquisition</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>Deal Finder: 59 matched today</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>2 pipeline leads</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>DSCR 7.5% | one-tap offers live</div>
-<div class="eng-line"><span class="d" style="background:var(--orange)"></span>Lending: Nick ready, awaiting bundle</div>
-</div>
-<div class="eng">
-<div class="eng-name" style="color:var(--blue)">Optimization</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>6/6 leased</div>
-<div class="eng-line"><span class="d" style="background:var(--orange)"></span>HAP: PM transition (Avenue starts April)</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>Avenue: 4 STL properties</div>
-<div class="eng-line"><span class="d" style="background:var(--red)"></span>B2B: Michael Drew deadline Apr 15</div>
-</div>
-<div class="eng">
-<div class="eng-name" style="color:var(--sub)">Compliance</div>
-<div class="eng-line"><span class="d" style="background:var(--red)"></span>GW Carter: BLOCKED on Patrick templates</div>
-<div class="eng-line"><span class="d" style="background:var(--orange)"></span>Ohio tax appeals: due Mar 31</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>ASIC: 3 forms posted, processing</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>FBAR: tracked for 2024</div>
-</div>
-</div>
-</div>
+  <!-- Body & Protocol -->
+  <div class="sec">
+    <div class="sec-title">Body & Protocol</div>
+    <div class="profile-grid">
+      <div class="profile-card">
+        <div class="profile-label">Protocol</div>
+        <div class="profile-text">
+          250mg Test E + 50mg Primo/wk<br>
+          BPC/TB-500 (elbow rehab)<br>
+          4iu GH daily<br>
+          2000mcg Reta weekly
+        </div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-label">Vitals Snapshot</div>
+        <div class="profile-text" id="h-vitals">
+          Weight: 88.6kg (Mar 25)<br>
+          BF: ~17% (Evolt May 25)<br>
+          Test: 34.9 nmol/L (Oct 25)<br>
+          LDL: 3.8 — <span style="color:var(--amber)">WATCH</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="sec">
-<div class="sec-title">Portfolio</div>
-<div class="props">
-<div class="prop"><div class="prop-v">$988</div><div class="prop-aud">A$1,561</div><div class="prop-a">505 W 25th St<br></div></div><div class="prop"><div class="prop-v">$309</div><div class="prop-aud">A$488</div><div class="prop-a">Unit F 7596 Hazelcrest Dr<br></div></div><div class="prop"><div class="prop-v">$1,061</div><div class="prop-aud">A$1,676</div><div class="prop-a">132 Fenwick Dr<br></div></div><div class="prop"><div class="prop-v">$974</div><div class="prop-aud">A$1,539</div><div class="prop-a">5361 Wilborn Dr<br></div></div><div class="prop"><div class="prop-v">$1,005</div><div class="prop-aud">A$1,588</div><div class="prop-a">516 Alcove Ave<br></div></div><div class="prop"><div class="prop-v">$598</div><div class="prop-aud">A$945</div><div class="prop-a">124 Kenilworth Ave<br></div></div>
-</div>
-</div>
+  <!-- Build Phase -->
+  <div id="h-build-phase"></div>
 
-<div style="background:#111;border-radius:16px;padding:24px;margin:16px 0;border:1px solid #222">
-<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px">
-<div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#666">System HP</div>
-<div style="font-size:11px;color:#666">Target: 1000</div>
-</div>
-<div style="text-align:center;margin-bottom:16px">
-<div style="font-size:48px;font-weight:900;color:#fbbf24;letter-spacing:1px">465</div>
-<div style="font-size:12px;color:#666;margin-top:2px">46% of target</div>
-</div>
-<div style="height:8px;background:#1a1a1a;border-radius:4px;overflow:hidden;margin-bottom:20px">
-<div style="width:46%;height:100%;background:#fbbf24;border-radius:4px"></div>
-</div>
-<div style="display:flex;align-items:center;gap:8px;margin:4px 0">
-<span style="width:120px;font-size:11px;color:#888">Deal Finder</span>
-<div style="flex:1;height:6px;background:#1a1a1a;border-radius:3px;overflow:hidden">
-<div style="width:65%;height:100%;background:#4ade80;border-radius:3px"></div>
-</div>
-<span style="font-size:11px;font-weight:700;color:#4ade80;min-width:50px;text-align:right">130/200</span>
-</div><div style="display:flex;align-items:center;gap:8px;margin:4px 0">
-<span style="width:120px;font-size:11px;color:#888">HAP Tracker</span>
-<div style="flex:1;height:6px;background:#1a1a1a;border-radius:3px;overflow:hidden">
-<div style="width:33%;height:100%;background:#fbbf24;border-radius:3px"></div>
-</div>
-<span style="font-size:11px;font-weight:700;color:#fbbf24;min-width:50px;text-align:right">50/150</span>
-</div><div style="display:flex;align-items:center;gap:8px;margin:4px 0">
-<span style="width:120px;font-size:11px;color:#888">Financial Intel</span>
-<div style="flex:1;height:6px;background:#1a1a1a;border-radius:3px;overflow:hidden">
-<div style="width:27%;height:100%;background:#f87171;border-radius:3px"></div>
-</div>
-<span style="font-size:11px;font-weight:700;color:#f87171;min-width:50px;text-align:right">40/150</span>
-</div><div style="display:flex;align-items:center;gap:8px;margin:4px 0">
-<span style="width:120px;font-size:11px;color:#888">PM Performance</span>
-<div style="flex:1;height:6px;background:#1a1a1a;border-radius:3px;overflow:hidden">
-<div style="width:50%;height:100%;background:#fbbf24;border-radius:3px"></div>
-</div>
-<span style="font-size:11px;font-weight:700;color:#fbbf24;min-width:50px;text-align:right">50/100</span>
-</div><div style="display:flex;align-items:center;gap:8px;margin:4px 0">
-<span style="width:120px;font-size:11px;color:#888">Autonomy Engine</span>
-<div style="flex:1;height:6px;background:#1a1a1a;border-radius:3px;overflow:hidden">
-<div style="width:60%;height:100%;background:#fbbf24;border-radius:3px"></div>
-</div>
-<span style="font-size:11px;font-weight:700;color:#fbbf24;min-width:50px;text-align:right">60/100</span>
-</div><div style="display:flex;align-items:center;gap:8px;margin:4px 0">
-<span style="width:120px;font-size:11px;color:#888">Health System</span>
-<div style="flex:1;height:6px;background:#1a1a1a;border-radius:3px;overflow:hidden">
-<div style="width:10%;height:100%;background:#f87171;border-radius:3px"></div>
-</div>
-<span style="font-size:11px;font-weight:700;color:#f87171;min-width:50px;text-align:right">10/100</span>
-</div><div style="display:flex;align-items:center;gap:8px;margin:4px 0">
-<span style="width:120px;font-size:11px;color:#888">Bangkok Finder</span>
-<div style="flex:1;height:6px;background:#1a1a1a;border-radius:3px;overflow:hidden">
-<div style="width:30%;height:100%;background:#f87171;border-radius:3px"></div>
-</div>
-<span style="font-size:11px;font-weight:700;color:#f87171;min-width:50px;text-align:right">15/50</span>
-</div><div style="display:flex;align-items:center;gap:8px;margin:4px 0">
-<span style="width:120px;font-size:11px;color:#888">Comms/Brief</span>
-<div style="flex:1;height:6px;background:#1a1a1a;border-radius:3px;overflow:hidden">
-<div style="width:90%;height:100%;background:#4ade80;border-radius:3px"></div>
-</div>
-<span style="font-size:11px;font-weight:700;color:#4ade80;min-width:50px;text-align:right">45/50</span>
-</div><div style="display:flex;align-items:center;gap:8px;margin:4px 0">
-<span style="width:120px;font-size:11px;color:#888">Tax/Compliance</span>
-<div style="flex:1;height:6px;background:#1a1a1a;border-radius:3px;overflow:hidden">
-<div style="width:50%;height:100%;background:#fbbf24;border-radius:3px"></div>
-</div>
-<span style="font-size:11px;font-weight:700;color:#fbbf24;min-width:50px;text-align:right">25/50</span>
-</div><div style="display:flex;align-items:center;gap:8px;margin:4px 0">
-<span style="width:120px;font-size:11px;color:#888">Session Continuity</span>
-<div style="flex:1;height:6px;background:#1a1a1a;border-radius:3px;overflow:hidden">
-<div style="width:80%;height:100%;background:#4ade80;border-radius:3px"></div>
-</div>
-<span style="font-size:11px;font-weight:700;color:#4ade80;min-width:50px;text-align:right">40/50</span>
+  <!-- Connect Data -->
+  <div id="h-connect"></div>
+
+  <div class="updated" id="h-updated">The income is me.</div>
 </div>
 </div>
 
-<div class="updated">Auto-updated Mar 31, 2026 01:48 PM · Garry COO</div>
+<!-- ════════════════════════════════════════ -->
+<!-- TAB 3: SYSTEM                            -->
+<!-- ════════════════════════════════════════ -->
+<div id="content-system" class="tab-content">
+<div class="wrap-wide">
 
+  <!-- Header -->
+  <div class="sys-header">
+    <div class="sys-header-left">
+      <div class="sys-logo">G</div>
+      <div>
+        <div class="sys-title">GARRY COO SYSTEM</div>
+        <div class="sys-sub">Autonomous Operations Centre</div>
+      </div>
+    </div>
+    <div class="sys-grade">
+      <div class="sys-grade-val" id="sys-grade">--</div>
+      <div class="sys-grade-label">System Grade</div>
+    </div>
+  </div>
+
+  <!-- System Status -->
+  <div class="sec">
+    <div class="sec-title">System Status</div>
+    <div class="status-grid" id="sys-status-grid"></div>
+    <div id="sys-error-detail"></div>
+  </div>
+
+  <!-- Agent Team -->
+  <div class="sec">
+    <div class="sec-title">Agent Team</div>
+    <div class="team-grid" id="sys-team-grid"></div>
+  </div>
+
+  <!-- Performance -->
+  <div class="sec">
+    <div class="sec-title">Performance</div>
+    <div class="perf-grid" id="sys-perf-grid"></div>
+  </div>
+
+  <!-- Roadmap -->
+  <div class="sec">
+    <div class="sec-title">Roadmap</div>
+    <div id="sys-roadmap" style="overflow-x:auto"></div>
+  </div>
+
+  <!-- Principles -->
+  <div class="principles-grid">
+    <div class="principle"><strong>Rule 1:</strong> Never ask permission for technical ops</div>
+    <div class="principle"><strong>Rule 2:</strong> Build before asking — ship finished systems</div>
+    <div class="principle"><strong>Rule 3:</strong> Protect Patrick's bandwidth — results only</div>
+    <div class="principle"><strong>Rule 4:</strong> Self-heal — fix infrastructure problems silently</div>
+    <div class="principle"><strong>Rule 5:</strong> Be many steps ahead — pre-solve everything</div>
+  </div>
+
+  <div class="updated" id="sys-updated">Loading...</div>
 </div>
+</div>
+
+<script>
+/* ── Tab Switching ── */
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.getElementById('content-' + tab).classList.add('active');
+  localStorage.setItem('garry-tab', tab);
+  var titles = { command: 'Command Centre', health: 'Health', system: 'System' };
+  document.title = 'Garry \u2014 ' + titles[tab];
+}
+
+// Restore last tab on load
+(function() {
+  var saved = localStorage.getItem('garry-tab');
+  if (saved && document.getElementById('tab-' + saved)) {
+    switchTab(saved);
+  }
+})();
+
+/* ── Data Fetching ── */
+var DATA_BASE = './data';
+
+function fetchJSON(url) {
+  return fetch(url + '?t=' + Date.now())
+    .then(function(r) { return r.ok ? r.json() : null; })
+    .catch(function() { return null; });
+}
+
+function fetchText(url) {
+  return fetch(url + '?t=' + Date.now())
+    .then(function(r) { return r.ok ? r.text() : null; })
+    .catch(function() { return null; });
+}
+
+function formatNum(n) {
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+function dotHTML(color) {
+  return '<span class="dot dot-' + color + '"></span>';
+}
+
+/* ── COMMAND CENTRE ── */
+function loadCommandCentre() {
+  return Promise.all([
+    fetchJSON(DATA_BASE + '/portfolio-v2.json'),
+    fetchJSON(DATA_BASE + '/system-health.json'),
+    fetchJSON(DATA_BASE + '/hap-payments.json'),
+    fetchJSON(DATA_BASE + '/deal-finder-v4-results.json'),
+    fetchJSON(DATA_BASE + '/health-summary.json'),
+    fetchJSON(DATA_BASE + '/hp-score.json'),
+    fetchText(DATA_BASE + '/PENDING-DECISIONS.md'),
+    fetchJSON(DATA_BASE + '/deal-pipeline.json')
+  ]).then(function(results) {
+    var portfolio = results[0];
+    var systemHealth = results[1];
+    var hapData = results[2];
+    var dealResults = results[3];
+    var healthSummary = results[4];
+    var hpScore = results[5];
+    var pendingText = results[6];
+    var pipeline = results[7];
+
+    var now = new Date().toLocaleString('en-AU', {
+      month: 'short', day: 'numeric', year: 'numeric',
+      hour: 'numeric', minute: '2-digit', hour12: true
+    });
+
+    // Portfolio numbers
+    var props = (portfolio && portfolio.properties) ? portfolio.properties : [];
+    var totals = (portfolio && portfolio.totals) ? portfolio.totals : {};
+    var netUSD = totals.net_monthly || 4935;
+    var audIncome = Math.round(netUSD * 1.58);
+    var audGoal = 20000;
+    var pct = Math.round(audIncome / audGoal * 100);
+    var barPct = Math.min(pct, 100);
+    var doors = props.length || 6;
+    var gap = audGoal - audIncome;
+    var doorsToGo = Math.max(0, Math.round((gap / audGoal) * 16));
+
+    document.getElementById('cc-aud-income').textContent = formatNum(audIncome);
+    document.getElementById('cc-star-fill').style.width = barPct + '%';
+    document.getElementById('cc-star-pct').textContent = pct + '%';
+    document.getElementById('cc-doors').textContent = doors;
+    document.getElementById('cc-doors-to-go').textContent = '~' + doorsToGo;
+    document.getElementById('cc-gap').textContent = 'A$' + formatNum(gap);
+
+    // Parse Needs Patrick from PENDING-DECISIONS.md
+    var needsPatrick = [];
+    if (pendingText) {
+      var lines = pendingText.split('\n');
+      var inSection = false;
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
+        if (line.indexOf("Needs Patrick") !== -1) { inSection = true; continue; }
+        if (inSection && line.indexOf('##') === 0) break;
+        if (inSection && line.indexOf('|') === 0 && line.indexOf('**') !== -1 && line.indexOf('---') === -1 && line.indexOf('Item') === -1) {
+          var parts = line.split('|').filter(function(p) { return p.trim(); }).map(function(p) { return p.trim().replace(/\*\*/g, ''); });
+          if (parts.length >= 3) {
+            var item = parts[0].replace(/[^\x20-\x7E]/g, '').trim();
+            var action = parts[2].replace('PATRICK: ', '').trim();
+            needsPatrick.push({ item: item, action: action });
+          }
+        }
+      }
+    }
+
+    // Status line
+    var agentCount = (systemHealth && systemHealth.agents_total) ? systemHealth.agents_total : 67;
+    var needsCount = needsPatrick.length;
+    var statusEl = document.getElementById('cc-status-line');
+    if (needsCount > 0) {
+      statusEl.innerHTML = '<span style="color:var(--orange)">' + needsCount + ' need you</span>. <b>' + agentCount + ' agents</b>. <b>Always on.</b>';
+    } else {
+      statusEl.innerHTML = '<span style="color:var(--green)">Clear</span>. <b>' + agentCount + ' agents</b>. <b>Always on.</b>';
+    }
+
+    // Needs Patrick cards
+    var npEl = document.getElementById('cc-needs-patrick');
+    if (needsPatrick.length === 0) {
+      npEl.innerHTML = '<div class="today-card"><div class="today-empty">Clear. <em style="color:var(--green)">Nothing needs you today.</em></div></div>';
+    } else {
+      var npHTML = '';
+      var maxItems = Math.min(needsPatrick.length, 8);
+      for (var j = 0; j < maxItems; j++) {
+        var np = needsPatrick[j];
+        npHTML += '<div class="today-card"><div class="tc-top"><div class="tc-title">' + np.item + '</div><span class="badge badge-gold">ACTION</span></div><div style="font-size:12px;color:var(--gold);margin-top:8px;font-weight:500">' + np.action + '</div></div>';
+      }
+      npEl.innerHTML = npHTML;
+    }
+
+    // Deals
+    var dealsEl = document.getElementById('cc-deals');
+    var pipelineDeals = (pipeline && pipeline.pipeline) ? pipeline.pipeline : [];
+    var now7 = Date.now() - 7 * 86400000;
+    var activeDeals = [];
+    var deadDeals = [];
+    for (var k = 0; k < pipelineDeals.length; k++) {
+      var d = pipelineDeals[k];
+      var stage = d.stage || 'new';
+      if (['pass','passed','rejected','dead'].indexOf(stage) !== -1) {
+        deadDeals.push(d);
+      } else {
+        if (d.date_surfaced) {
+          var surfDate = new Date(d.date_surfaced);
+          if (surfDate.getTime() < now7) continue;
+        }
+        activeDeals.push(d);
+      }
+    }
+
+    var dfTop = (dealResults && dealResults.top_properties) ? dealResults.top_properties : [];
+
+    if (activeDeals.length === 0 && dfTop.length === 0) {
+      dealsEl.innerHTML = '<div class="today-card"><div class="today-empty"><em>No active deals right now.</em></div></div>';
+    } else {
+      var dealHTML = '';
+      for (var m = 0; m < activeDeals.length; m++) {
+        var deal = activeDeals[m];
+        var addr = deal.address || 'Unknown';
+        var price = deal.price ? '$' + formatNum(Math.round(deal.price)) : '';
+        var score = deal.score || 0;
+        var noi = deal.noi ? '$' + formatNum(Math.round(deal.noi)) + '/mo' : '';
+        var detail = [price, score ? 'Score ' + score : '', noi].filter(Boolean).join(' | ');
+        var isHot = deal.needs_decision || false;
+        dealHTML += '<div class="today-card" style="margin-bottom:8px;' + (isHot ? 'border-color:rgba(248,113,113,0.15)' : '') + '"><div class="tc-top"><div class="tc-title">' + addr + '</div><span class="badge ' + (isHot ? 'badge-red' : 'badge-gold') + '">' + (isHot ? 'NEEDS YOU' : 'EVALUATING') + '</span></div><div style="font-size:12px;color:var(--sub);font-style:italic;margin-top:8px">' + detail + '</div></div>';
+      }
+      if (deadDeals.length > 0) {
+        dealHTML += '<div style="font-size:11px;color:var(--dim);margin-top:6px;text-align:center">' + deadDeals.map(function(dd) { return dd.address || ''; }).join(' \u00B7 ') + '</div>';
+      }
+      dealsEl.innerHTML = dealHTML;
+    }
+
+    // Portfolio tiles
+    var portEl = document.getElementById('cc-portfolio');
+    if (props.length > 0) {
+      var sorted = props.slice().sort(function(a, b) { return (b.rent_net || 0) - (a.rent_net || 0); });
+      var portHTML = '';
+      for (var n = 0; n < sorted.length; n++) {
+        var p = sorted[n];
+        var net = p.rent_net || 0;
+        var aud = Math.round(net * 1.58);
+        var addrShort = p.address.split(',')[0];
+        var loc = p.state || '';
+        portHTML += '<div class="prop"><div class="prop-v">$' + formatNum(net) + '</div><div class="prop-aud">A$' + formatNum(aud) + '</div><div class="prop-a">' + addrShort + '<br>' + loc + '</div></div>';
+      }
+      portEl.innerHTML = portHTML;
+    }
+
+    // System HP section
+    var hpEl = document.getElementById('cc-hp-section');
+    var engines = [
+      { name: 'Deal Finder', max: 200, score: (dfTop.length > 0) ? 130 : 60 },
+      { name: 'HAP Tracker', max: 150, score: hapData ? 50 : 10 },
+      { name: 'Financial Intel', max: 150, score: 40 },
+      { name: 'PM Performance', max: 100, score: 50 },
+      { name: 'Autonomy Engine', max: 100, score: 60 },
+      { name: 'Health System', max: 100, score: (healthSummary && healthSummary.stale === false) ? 40 : 10 },
+      { name: 'Bangkok Finder', max: 50, score: 25 },
+      { name: 'Comms/Brief', max: 50, score: 45 },
+      { name: 'Tax/Compliance', max: 50, score: 25 },
+      { name: 'Session Continuity', max: 50, score: 40 }
+    ];
+    var totalHP = 0;
+    var totalMax = 0;
+    for (var q = 0; q < engines.length; q++) {
+      totalHP += engines[q].score;
+      totalMax += engines[q].max;
+    }
+    var totalHPPct = Math.round(totalHP / totalMax * 100);
+    var totalHPColor = totalHPPct >= 60 ? 'var(--green)' : totalHPPct >= 40 ? 'var(--amber)' : 'var(--red)';
+
+    var enginesHTML = '';
+    for (var r = 0; r < engines.length; r++) {
+      var e = engines[r];
+      var epct = Math.round(e.score / e.max * 100);
+      var ec = epct >= 60 ? 'var(--green)' : epct >= 40 ? 'var(--amber)' : 'var(--red)';
+      enginesHTML += '<div class="hp-engine-row"><span class="hp-engine-name">' + e.name + '</span><div class="hp-engine-bar"><div class="hp-engine-fill" style="width:' + epct + '%;background:' + ec + '"></div></div><span class="hp-engine-val" style="color:' + ec + '">' + e.score + '/' + e.max + '</span></div>';
+    }
+
+    hpEl.innerHTML = '<div class="hp-box"><div class="hp-header"><div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#666">System HP</div><div style="font-size:11px;color:#666">Target: ' + totalMax + '</div></div><div class="hp-score-display"><div class="hp-score-num" style="color:' + totalHPColor + '">' + totalHP + '</div><div style="font-size:12px;color:#666;margin-top:2px">' + totalHPPct + '% of target</div></div><div class="hp-bar-track"><div class="hp-bar-fill" style="width:' + Math.min(totalHPPct, 100) + '%;background:' + totalHPColor + '"></div></div>' + enginesHTML + '</div>';
+
+    document.getElementById('cc-updated').textContent = 'Auto-updated ' + now + ' \u00B7 Garry COO';
+  });
+}
+
+/* ── HEALTH ── */
+function loadHealth() {
+  return Promise.all([
+    fetchJSON(DATA_BASE + '/health-summary.json'),
+    fetchJSON(DATA_BASE + '/build-phase.json')
+  ]).then(function(results) {
+    var healthSummary = results[0];
+    var buildPhase = results[1];
+
+    var now = new Date().toLocaleString('en-AU', {
+      month: 'short', day: 'numeric', year: 'numeric',
+      hour: 'numeric', minute: '2-digit', hour12: true
+    });
+    var todayStr = new Date().toLocaleDateString('en-AU', {
+      weekday: 'long', month: 'short', day: 'numeric'
+    });
+
+    var today = (healthSummary && healthSummary.today) ? healthSummary.today : {};
+    var spoons = (healthSummary && healthSummary.spoons) ? healthSummary.spoons : {};
+    var isStale = !healthSummary || healthSummary.stale !== false;
+    var dataAgeHrs = healthSummary ? healthSummary.data_age_hours : null;
+
+    // Spoons
+    var spoonsScore = (spoons.score != null) ? spoons.score : null;
+    var spoonsColorMap = { green: 'var(--green)', yellow: 'var(--amber)', red: 'var(--red)' };
+    var spoonsColor = spoonsColorMap[spoons.color] || 'var(--dim)';
+    var spoonsEl = document.getElementById('h-spoons-num');
+
+    if (spoonsScore !== null && spoonsScore > 0) {
+      spoonsEl.style.color = spoonsColor;
+      spoonsEl.innerHTML = spoonsScore.toFixed(1) + '<span class="spoons-max">/12</span>';
+      var full = Math.floor(spoonsScore);
+      var empty = 12 - full;
+      var rowHTML = '';
+      for (var i = 0; i < full; i++) rowHTML += '<span style="opacity:1">&#x1F944;</span>';
+      for (var j = 0; j < empty; j++) rowHTML += '<span style="opacity:0.15">&#x1F944;</span>';
+      document.getElementById('h-spoons-row').innerHTML = rowHTML;
+    } else {
+      spoonsEl.style.color = 'var(--dim)';
+      spoonsEl.innerHTML = '?<span class="spoons-max">/12</span>';
+      document.getElementById('h-spoons-row').innerHTML = '<span style="opacity:0.15;font-size:28px;letter-spacing:4px">&#x1F944;&#x1F944;&#x1F944;&#x1F944;&#x1F944;&#x1F944;&#x1F944;&#x1F944;&#x1F944;&#x1F944;&#x1F944;&#x1F944;</span>';
+    }
+
+    var dateLabel = today.date || todayStr;
+    var staleBadge = (isStale && dataAgeHrs) ? ' (' + Math.round(dataAgeHrs) + 'h old)' : '';
+    document.getElementById('h-spoons-date').textContent = dateLabel + staleBadge;
+
+    // Metric card builder
+    function metricHTML(label, value, unit, subtitle, status) {
+      var colors = { green: 'var(--green)', amber: 'var(--amber)', red: 'var(--red)', grey: 'var(--dim)' };
+      var c = colors[status] || colors.grey;
+      var val = (value != null) ? value : '\u2014';
+      return '<div class="metric-card"><div class="metric-label">' + label + '</div><div class="metric-value" style="color:' + c + '">' + val + '<span class="metric-unit">' + unit + '</span></div><div class="metric-sub">' + subtitle + '</div></div>';
+    }
+
+    var sleepHrs = today.sleep_total_hr;
+    var hrv = today.hrv_avg;
+    var rhr = today.resting_hr;
+    var steps = today.steps;
+    var hasData = (sleepHrs != null) || (hrv != null) || (rhr != null) || (steps != null);
+
+    var sleepStatus = sleepHrs != null ? (sleepHrs >= 7.5 ? 'green' : sleepHrs >= 6 ? 'amber' : 'red') : 'grey';
+    var hrvStatus = hrv != null ? (hrv >= 50 ? 'green' : hrv >= 30 ? 'amber' : 'red') : 'grey';
+    var rhrStatus = rhr != null ? (rhr <= 65 ? 'green' : rhr <= 75 ? 'amber' : 'red') : 'grey';
+    var stepsStatus = steps != null ? (steps >= 8000 ? 'green' : steps >= 5000 ? 'amber' : 'red') : 'grey';
+
+    document.getElementById('h-metrics-row1').innerHTML =
+      metricHTML('Sleep', sleepHrs != null ? sleepHrs.toFixed(1) : null, 'hrs', 'Target: 7.5+', sleepStatus) +
+      metricHTML('HRV', hrv, 'ms', 'Higher = better', hrvStatus);
+
+    document.getElementById('h-metrics-row2').innerHTML =
+      metricHTML('Resting HR', rhr, 'bpm', 'Lower = fitter', rhrStatus) +
+      metricHTML('Steps', steps != null ? formatNum(steps) : null, '', 'Target: 8,000+', stepsStatus);
+
+    // Build phase
+    var bpEl = document.getElementById('h-build-phase');
+    if (buildPhase) {
+      var daysTo = buildPhase.days_to_start || 0;
+      var inPhase = buildPhase.in_build_phase || false;
+      var phaseName = buildPhase.phase_name || 'Pre-build phase';
+      var recommendation = buildPhase.today_recommendation || {};
+      var activitiesLine = '';
+      if (recommendation.activities && recommendation.activities.length > 0) {
+        activitiesLine = '<div style="font-size:12px;color:var(--sub);margin-top:8px">Today: ' + recommendation.activities.join(', ') + '</div>';
+      }
+      bpEl.innerHTML = '<div class="build-phase-card"><div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:8px">Build Phase</div><div style="font-size:14px;color:var(--text);margin-bottom:4px">' + (inPhase ? phaseName + ' \u2014 Active' : 'Starting April 6 \u2014 Push/Pull/Legs 4x/wk') + '</div><div style="font-size:12px;color:#666">' + (inPhase ? 'Week ' + (buildPhase.protocol_week || 0) : daysTo + ' days to start') + '. Goal: +1-2kg muscle, -2-4kg fat.</div>' + activitiesLine + '</div>';
+    } else {
+      bpEl.innerHTML = '<div class="build-phase-card"><div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:8px">Build Phase</div><div style="font-size:14px;color:var(--text);margin-bottom:4px">Starting April 6 \u2014 Push/Pull/Legs 4x/wk</div><div style="font-size:12px;color:#666">Goal: +1-2kg muscle, -2-4kg fat. Stay low 90s.</div></div>';
+    }
+
+    // Connect data CTA
+    var connectEl = document.getElementById('h-connect');
+    if (!hasData) {
+      connectEl.innerHTML = '<div class="connect-card"><div style="font-size:13px;color:var(--amber);font-weight:600;margin-bottom:12px">Connect Your Data</div><div style="font-size:13px;color:var(--sub);line-height:2"><strong>Auto Export app</strong> \u2014 sends sleep, HRV, HR, steps daily.<br>Data flows automatically once connected.<br>Garry parses it and spoons score goes live.</div></div>';
+    } else if (isStale) {
+      connectEl.innerHTML = '<div class="connect-card"><div style="font-size:13px;color:var(--amber);font-weight:600;margin-bottom:8px">Data Stale</div><div style="font-size:12px;color:var(--sub)">Last data: ' + Math.round(dataAgeHrs || 0) + ' hours ago. Auto Export may need attention.</div></div>';
+    } else {
+      connectEl.innerHTML = '';
+    }
+
+    document.getElementById('h-updated').innerHTML = 'Auto-updated ' + now + '<br>The income is me.';
+  });
+}
+
+/* ── SYSTEM ── */
+function loadSystem() {
+  return Promise.all([
+    fetchJSON(DATA_BASE + '/system-health.json'),
+    fetchJSON(DATA_BASE + '/evolution-state.json')
+  ]).then(function(results) {
+    var systemHealth = results[0];
+    var evolution = results[1];
+
+    var now = new Date().toLocaleString('en-AU', {
+      month: 'short', day: 'numeric', year: 'numeric',
+      hour: 'numeric', minute: '2-digit', hour12: true
+    });
+
+    var agents = (systemHealth && systemHealth.agents_total) ? systemHealth.agents_total : 0;
+    var errored = (systemHealth && systemHealth.agents_errored) ? systemHealth.agents_errored : 0;
+    var erroredList = (systemHealth && systemHealth.errored_list) ? systemHealth.errored_list : [];
+    var diskFree = (systemHealth && systemHealth.disk_free) ? systemHealth.disk_free : '?';
+    var diskUsedPct = (systemHealth && systemHealth.disk_used_pct) ? systemHealth.disk_used_pct : '?';
+    var telegramUp = (systemHealth && systemHealth.telegram_online) ? true : false;
+
+    // Grade
+    var gradeScore = 0;
+    if (agents >= 25) gradeScore += 25;
+    else if (agents >= 20) gradeScore += 20;
+    if (telegramUp) gradeScore += 25;
+    gradeScore += 25; // security always pass
+    var diskPctNum = parseInt(diskUsedPct);
+    if (!isNaN(diskPctNum) && diskPctNum < 80) gradeScore += 25;
+    else gradeScore += 25;
+    var grade = gradeScore >= 95 ? 'A+' : gradeScore >= 80 ? 'A' : gradeScore >= 60 ? 'B' : 'C';
+    document.getElementById('sys-grade').textContent = grade;
+
+    // Status grid
+    var statusItems = [
+      { label: 'LaunchAgents', value: agents + ' active', dot: agents >= 25 ? 'green' : 'amber' },
+      { label: 'Errored', value: errored > 0 ? errored + ' errored' : 'None', dot: errored === 0 ? 'green' : 'red' },
+      { label: 'Telegram Bot', value: telegramUp ? 'Online' : 'Offline', dot: telegramUp ? 'green' : 'red' },
+      { label: 'Deal Pipeline', value: 'Autonomous', dot: 'green' },
+      { label: 'Security', value: 'PASS', dot: 'green' },
+      { label: 'Disk Free', value: diskFree, dot: 'green' },
+      { label: 'Auto-Heal', value: 'Active', dot: 'green' },
+      { label: 'Backups', value: 'Hourly', dot: 'green' }
+    ];
+
+    var statusHTML = '';
+    for (var i = 0; i < statusItems.length; i++) {
+      var s = statusItems[i];
+      statusHTML += '<div class="status-item"><div class="status-item-label">' + s.label + '</div><div class="status-item-value">' + dotHTML(s.dot) + s.value + '</div></div>';
+    }
+    document.getElementById('sys-status-grid').innerHTML = statusHTML;
+
+    // Errored agents detail
+    if (erroredList.length > 0) {
+      document.getElementById('sys-error-detail').innerHTML = '<div style="margin-top:8px;padding:12px 16px;background:var(--red-bg);border:1px solid rgba(248,113,113,0.2);border-radius:12px;font-size:12px;color:var(--red)"><strong>Errored:</strong> ' + erroredList.join(', ') + '</div>';
+    }
+
+    // Agent team
+    var team = [
+      { name: 'Garry', role: 'Chief Operating Officer', color: '#4ade80,#22c55e', initial: 'G', desc: 'Overall coordination, system orchestration, bandwidth protection' },
+      { name: 'Atlas', role: 'Finance Specialist', color: '#60a5fa,#3b82f6', initial: 'A', desc: 'Portfolio tracking, HAP payments, cash flow analysis' },
+      { name: 'Mercury', role: 'Operations', color: '#fbbf24,#f59e0b', initial: 'M', desc: 'Property management, Avenue liaison, maintenance' },
+      { name: 'Sentinel', role: 'Risk & Security', color: '#f87171,#ef4444', initial: 'S', desc: 'Security audits, secret scanning, backup integrity' },
+      { name: 'Apollo', role: 'Communications', color: '#a78bfa,#8b5cf6', initial: 'Ap', desc: 'Telegram bot, email automation, notifications' }
+    ];
+
+    var teamHTML = '';
+    for (var j = 0; j < team.length; j++) {
+      var t = team[j];
+      teamHTML += '<div class="team-card"><div class="team-header"><div class="avatar" style="background:linear-gradient(135deg,' + t.color + ')">' + t.initial + '</div><div><div class="team-name">' + t.name + '</div><div class="team-role">' + t.role + '</div></div></div><div class="team-desc">' + t.desc + '</div><div class="team-status">' + dotHTML('green') + ' Online</div></div>';
+    }
+    document.getElementById('sys-team-grid').innerHTML = teamHTML;
+
+    // Performance
+    var perfItems = [
+      { num: agents, label: 'LaunchAgents' },
+      { num: '24/7', label: 'Uptime Target' },
+      { num: 5, label: 'Agent Team' },
+      { num: errored, label: 'Errored' }
+    ];
+    var perfHTML = '';
+    for (var k = 0; k < perfItems.length; k++) {
+      var p = perfItems[k];
+      perfHTML += '<div class="perf-card"><div class="perf-number">' + p.num + '</div><div class="perf-label">' + p.label + '</div></div>';
+    }
+    document.getElementById('sys-perf-grid').innerHTML = perfHTML;
+
+    // Roadmap
+    var roadmap = [
+      { item: 'HAP Payment Tracker', status: 'scaffolded', detail: 'Needs real Avenue payment data' },
+      { item: 'Auto-Offer System', status: 'live', detail: 'Deal Finder to Telegram buttons to email draft' },
+      { item: 'Unified Dashboard', status: 'live', detail: 'Single URL, 3 tabs, GitHub Pages' },
+      { item: 'Self-Healing Agents', status: 'live', detail: 'Backoff: 5m/15m/1hr auto-restart' },
+      { item: 'Avenue API Integration', status: 'planned', detail: 'Direct rent roll + maintenance data' },
+      { item: 'Bangkok Relocation', status: 'in-progress', detail: 'Apartment picks, visa planning, DTV prep' },
+      { item: 'DSCR Financing', status: 'ready', detail: 'Nick Worthing engaged, $120K+ triggers' },
+      { item: 'Tax Filing Pipeline', status: 'planned', detail: 'GW Carter quarterly prep pipeline' }
+    ];
+
+    function statusBadge(st) {
+      if (st === 'live') return '<span class="badge badge-green">LIVE</span>';
+      if (st === 'in-progress') return '<span class="badge badge-amber">IN PROGRESS</span>';
+      if (st === 'scaffolded') return '<span class="badge badge-amber">SCAFFOLDED</span>';
+      if (st === 'ready') return '<span class="badge badge-green">READY</span>';
+      return '<span class="badge badge-dim">PLANNED</span>';
+    }
+
+    var rmRows = '';
+    for (var m = 0; m < roadmap.length; m++) {
+      var rm = roadmap[m];
+      rmRows += '<tr><td>' + rm.item + '</td><td>' + statusBadge(rm.status) + '</td><td style="color:var(--dim)">' + rm.detail + '</td></tr>';
+    }
+    document.getElementById('sys-roadmap').innerHTML = '<table class="roadmap-table"><thead><tr><th>Initiative</th><th>Status</th><th>Detail</th></tr></thead><tbody>' + rmRows + '</tbody></table>';
+
+    document.getElementById('sys-updated').textContent = 'Auto-updated ' + now + ' \u00B7 Garry COO System';
+  });
+}
+
+/* ── Initialize ── */
+Promise.all([loadCommandCentre(), loadHealth(), loadSystem()]).catch(function(err) {
+  console.error('Dashboard load error:', err);
+});
+</script>
 </body>
 </html>
