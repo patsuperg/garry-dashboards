@@ -27,7 +27,8 @@ Last Updated: 2026-03-30 (Session #44 — Garry COO)
 |------|---------|--------|
 | **Evernest Settlement — $13,810** | Jenna draft in Gmail (Mar 30). Disbursement expected 2nd Friday or last biz day of month per Laurie. | **PATRICK SENDS JENNA DRAFT → Garry monitors** |
 | **Close AU Entities** | Patrick sent uncoded lines to Sleek Mar 29. Garry sent follow-up draft today. ASIC forms posted Mar 24. | **AWAITING SLEEK CONFIRMATION** |
-| **Deal Finder v4 + Lindia** | Lindia's off-market deal GONE. Follow-up sent. Deal Finder v4 building — S8 Pro integration. | **AWAITING NEW DEALS + v4 RESULTS** |
+| **Lindia NEW 3-pack** | 8352 Eton $90K + 8830 Tyrell $93K + 181 Bascom $110K (market rent). Must buy as package $293K. Garry score: PASS (~8.7% net cap, Bascom not S8). | **PATRICK: Confirm pass or want more detail?** |
+| **Lindia Prospective Properties list** | PDF list received Mar 30. She's gathering rental rates + confirming vacant conditions. Garry asked for details. | **AWAITING LINDIA RENTAL DATA** |
 | **Autonomy Framework v3** | Approved. Read and deployed this session. | **LIVE** |
 | **Lending Plan** | Nick DSCR: 60% LTV, 7.5%, $100K+ bundled. Doc package READY. Warren/ICG10 outreach sent. | **GARRY CHASES — awaiting responses** |
 | **US Tax — GW Carter** | Engagement letters signed ($2,515). Gary BLOCKED on Patrick's templates. Karl CC'd. 5472/1120 due Apr 15. 1040NR due June 15. 871(d) election confirmed for both returns. | **BLOCKED ON PATRICK — templates needed** |
