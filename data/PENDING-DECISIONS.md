@@ -12,7 +12,7 @@ Last Updated: 2026-03-30 (Session #44 — Garry COO)
 |------|---------|--------|
 | **🚨 OHIO TAX APPEAL — LAKE COUNTY KENILWORTH — DEADLINE TODAY** | TaxProper (Lorain/505 W 25th) SENT ✓. Lake County Appeal (Kenilworth/124 Kenilworth Ave Painesville) draft CREATED → contact@lakecountyappeal.com. $65 + 37.5% savings. | **PATRICK: Gmail Drafts → "URGENT: Same-Day Filing Request — 124 Kenilworth" → SEND NOW** |
 | **Michael Drew (B2B) — Call Needed** | He replied Mar 26: "I have answers to everything, almost everything is sorted." Garry drafted a reply asking for his available times. Deadline Apr 15. | **PATRICK: Send Michael Drew draft in Gmail → then take the call** |
-| **Sleek/ASIC — Mar 31 Deadline** | Patrick sent uncoded lines Mar 29. Garry drafted follow-up asking for BAS + ASIC closure confirmation. | **PATRICK: Send Sleek follow-up draft in Gmail** |
+| **Sleek/ASIC — Mar 31 Deadline** | Patrick sent uncoded lines Mar 29. Garry sent follow-up to Gabriela Mar 31 14:52 AEDT re ASIC closure + BAS. | **SENT ✓ — Awaiting Sleek confirmation** |
 | **Evernest Jenna — $13,810** | Garry's chase draft to Jenna is in Gmail drafts. | **PATRICK: Send Jenna draft in Gmail** |
 | **Subscription Kill List** | Roger Directive 15: ALL confirmed dead except LegalZoom ($50/mo virtual mailbox). Kill: Shopify $285, Evernest $500, FB Ads $250, Adobe $54, Calendly $500, Xero. | **PATRICK: Cancel each (Garry can draft steps)** |
 | **Theodore Ave Decision** | 7032 Theodore, 63136. $94K, vacant turnkey, 14.6% cap, $1,098/mo NOI. Better at $85-88K. Same zip as Wilborn. | **PATRICK: Pursue or pass?** |
