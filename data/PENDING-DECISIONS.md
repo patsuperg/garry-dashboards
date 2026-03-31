@@ -2,7 +2,7 @@
 
 **Purpose:** Things Patrick is thinking about. Claude checks this every session and proactively surfaces relevant info.
 
-Last Updated: 2026-03-30 (Session #44 — Garry COO)
+Last Updated: 2026-03-31 (Session #45 — Garry COO)
 
 ---
 
@@ -10,13 +10,14 @@ Last Updated: 2026-03-30 (Session #44 — Garry COO)
 
 | Item | Context | Action |
 |------|---------|--------|
-| **🚨 OHIO TAX APPEAL — LAKE COUNTY KENILWORTH — DEADLINE TODAY** | TaxProper (Lorain/505 W 25th) SENT ✓. Lake County Appeal (Kenilworth/124 Kenilworth Ave Painesville) draft CREATED → contact@lakecountyappeal.com. $65 + 37.5% savings. | **PATRICK: Gmail Drafts → "URGENT: Same-Day Filing Request — 124 Kenilworth" → SEND NOW** |
-| **Michael Drew (B2B) — Call Needed** | He replied Mar 26: "I have answers to everything, almost everything is sorted." Garry drafted a reply asking for his available times. Deadline Apr 15. | **PATRICK: Send Michael Drew draft in Gmail → then take the call** |
+| **✅ OHIO TAX APPEALS — BOTH SENT** | TaxProper (Lorain) SENT ✓ 14:52 AEDT. Lake County/Kenilworth SENT ✓ 15:39 AEDT Mar 31. Awaiting confirmation. | **DONE — awaiting Lake County Appeal response** |
+| **⚠️ Ciatto Lender — SEND DRAFT NOW** | Michael Ciatto (private lender, 124 Kenilworth, $80K @ 7%) threatened to move loan to servicer after late Feb + missed March. Patrick sent double payment Mar 24+26. Draft in Gmail confirms both payments + reassures April is set. No response from Ciatto since Mar 24. | **PATRICK: Gmail Drafts → "Re: 124 Kenilworth Ave Mortgage Payments" → SEND ASAP** |
+| **Michael Drew (B2B) — Written Response OVERDUE** | Patrick told Michael Mar 26: written responses required by Mar 30. Michael missed it. 3 items outstanding: Kenilworth income, Lorain Dec HAP, water warranty. Deadline Apr 15. | **PATRICK: Gmail Drafts → "Re: Performance Review — Action Required by April 15" → SEND** |
 | **Sleek/ASIC — Mar 31 Deadline** | Patrick sent uncoded lines Mar 29. Garry sent follow-up to Gabriela Mar 31 14:52 AEDT re ASIC closure + BAS. | **SENT ✓ — Awaiting Sleek confirmation** |
-| **Evernest Jenna — $13,810** | Garry's chase draft to Jenna is in Gmail drafts. | **PATRICK: Send Jenna draft in Gmail** |
+| **Evernest Jenna — $13,810** | Heather has NO visibility. 45-day hold from Mar 20 = possible May 4. Last chase Mar 27. New draft ready. | **PATRICK: Gmail Drafts → "Re: Disbursement Update — $13,810 Settlement" → SEND** |
 | **Subscription Kill List** | Roger Directive 15: ALL confirmed dead except LegalZoom ($50/mo virtual mailbox). Kill: Shopify $285, Evernest $500, FB Ads $250, Adobe $54, Calendly $500, Xero. | **PATRICK: Cancel each (Garry can draft steps)** |
 | **Theodore Ave Decision** | 7032 Theodore, 63136. $94K, vacant turnkey, 14.6% cap, $1,098/mo NOI. Better at $85-88K. Same zip as Wilborn. | **PATRICK: Pursue or pass?** |
-| **Frollo CSV Export** | Banks connected (ANZ + Macquarie). Need first CSV export emailed with subject GARRY-FINANCE. | **PATRICK: Export from Frollo app** |
+| **Frollo CSV Export** | Banks connected (ANZ + Macquarie). Account type confirmed ✓ (personal, not Broker — helpdesk Mar 31). Need first CSV export emailed with subject GARRY-FINANCE. | **PATRICK: Export from Frollo app** |
 | **Health Shortcut** | iOS Shortcuts not built. No biometric data flowing. Health dashboard shows "Not Connected." Instructions at ~/AI/Claude/Infrastructure/apple-health-shortcut.md. 3 min job. | **PATRICK: Build shortcut on iPhone** |
 | **MSD Sewer — $263.28/$332.72** | In collections. Fenwick property. Emailed MSD to clarify $332.72 vs $263.28 discrepancy and requested billing name update. Dispute deadline Apr 14. | **AWAITING MSD RESPONSE** |
 | **ASIC Forms x3 — IN TRANSIT/DELIVERED** | All 3 forms express posted Mar 24 (UHF, Spartans Property, Fitness Supplies). AusPost tracking 79852088 05. 6 calendar days elapsed (4 business days) — should be delivered/in ASIC queue. Direct tracking verification attempted. | **DONE — awaiting ASIC processing** |
