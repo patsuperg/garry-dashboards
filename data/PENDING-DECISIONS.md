@@ -10,7 +10,7 @@ Last Updated: 2026-03-30 (Session #44 — Garry COO)
 
 | Item | Context | Action |
 |------|---------|--------|
-| **🚨 OHIO TAX APPEALS — DEADLINE TODAY MAR 31** | 2 Gmail drafts ready: TaxProper (Lorain) + Lake County Appeal (Kenilworth). $225-338/yr savings. Zero cost. Deadline is today. | **PATRICK: Open Gmail → Drafts → send both NOW** |
+| **🚨 OHIO TAX APPEAL — LAKE COUNTY KENILWORTH — DEADLINE TODAY** | TaxProper (Lorain/505 W 25th) SENT ✓. Lake County Appeal (Kenilworth/124 Kenilworth Ave Painesville) draft CREATED → contact@lakecountyappeal.com. $65 + 37.5% savings. | **PATRICK: Gmail Drafts → "URGENT: Same-Day Filing Request — 124 Kenilworth" → SEND NOW** |
 | **Michael Drew (B2B) — Call Needed** | He replied Mar 26: "I have answers to everything, almost everything is sorted." Garry drafted a reply asking for his available times. Deadline Apr 15. | **PATRICK: Send Michael Drew draft in Gmail → then take the call** |
 | **Sleek/ASIC — Mar 31 Deadline** | Patrick sent uncoded lines Mar 29. Garry drafted follow-up asking for BAS + ASIC closure confirmation. | **PATRICK: Send Sleek follow-up draft in Gmail** |
 | **Evernest Jenna — $13,810** | Garry's chase draft to Jenna is in Gmail drafts. | **PATRICK: Send Jenna draft in Gmail** |
@@ -31,7 +31,7 @@ Last Updated: 2026-03-30 (Session #44 — Garry COO)
 | **Lindia Prospective Properties list** | PDF list received Mar 30 (Prospective Properties.pdf + Photos.pdf). Lindia in the field today confirming vacant conditions. Awaiting rental rates + S8 confirmation. Garry acknowledgement draft in Gmail Drafts (ready to send). | **PATRICK: Send acknowledgement draft → AWAITING LINDIA DATA** |
 | **Autonomy Framework v3** | Approved. Read and deployed this session. | **LIVE** |
 | **Lending Plan** | Nick DSCR: 60% LTV, 7.5%, $100K+ bundled. Doc package READY. Warren/ICG10 outreach sent. | **GARRY CHASES — awaiting responses** |
-| **US Tax — GW Carter** | Engagement letters signed ($2,515). Gary BLOCKED on Patrick's templates. Karl CC'd. 5472/1120 due Apr 15. 1040NR due June 15. 871(d) election confirmed for both returns. | **BLOCKED ON PATRICK — templates needed** |
+| **US Tax — GW Carter** | Templates submitted Mar 30. Karl confirmed receipt Mar 30: "We will prepare your Forms 5472 and 2025 1040NR as soon as we can." 5472/1120 due Apr 15. 1040NR due June 15. | **IN PROGRESS — Karl has everything** |
 | **Gmail Cleanup + Filters** | 43 filters LIVE (12 original + 31 GARRY-FINANCE). Deal Finder + ECM stay in inbox. | **DONE** |
 | **Autonomy Expansion** | 6 new systems: Bangkok finder, financial intelligence, subscription audit, contact CRM, health export, eight sleep. All built Session #39. | **LIVE — monitoring** |
 | **Eight Sleep SMS → Garry** | Morning SMS goes to Talkatone (US number). Garry can't read SMS directly. Need workaround — check tomorrow. | **GARRY FIGURES OUT** |
