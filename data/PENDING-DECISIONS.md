@@ -1,9 +1,9 @@
 # PENDING DECISIONS
-Updated: 2026-03-31
+Updated: 2026-04-01
 
 ## URGENT
 1. **Google Workspace payment** — Apr 1 deadline. Zac nudged. If not done, email dies.
-2. **MSD Sewer Fenwick** — $263.28, Apr 14 deadline. Instructions ready in memory file.
+2. **MSD Sewer Fenwick** — $332.72 (collections balance), Apr 14 deadline. Portal open in Safari, Ref EG6889.
 
 ## THIS WEEK
 3. **B2B response** — Apr 7 deadline. If no written response, initiate PM transition.
@@ -13,6 +13,13 @@ Updated: 2026-03-31
 7. **Lindia 3-pack deal** — Patrick said he'd review. Needs analysis.
 8. **ECM login** — Password may have changed. Manual login needed.
 9. **Frollo** — Clear phone browser cache, retry password reset.
+
+## RESOLVED (Apr 1)
+- ✅ ADHD Calendar — 4 Mon-Fri blocks live in Google Calendar (Melbourne time)
+- ✅ Foundation Reset — Phase 1+2 complete (5 docs, commands updated, 13 scripts archived)
+- ✅ Power List template — sample note created in Apple Notes Power List folder
+- ✅ Garry Evolution Proposal reviewed — Patrick approved, analysis provided, Iris failure catalog found
+- ✅ Nutrition Systems — $2,234.16 refund processed
 
 ## RESOLVED (Mar 31)
 - ✅ Ciatto — payments confirmed sent, draft no longer needed
