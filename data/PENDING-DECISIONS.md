@@ -1,31 +1,30 @@
 # PENDING DECISIONS
-Updated: 2026-04-01
+Updated: 2026-04-02
 
 ## URGENT
-1. **Google Workspace payment** — Apr 1 deadline. Zac nudged. If not done, email dies.
+1. **B2B Apr 7 deadline** — PMA-backed escalation sent. Written response required on: repair invoices ($8,182), warranty claim, $825 PM fee credit, $150 Kenilworth fee credit, Dec HAP $1,278, specific Kenilworth income date. No response = 30-day termination notice.
 2. **MSD Sewer Fenwick** — $332.72 (collections balance), Apr 14 deadline. Portal open in Safari, Ref EG6889.
 
 ## THIS WEEK
-3. **B2B response** — Apr 7 deadline. If no written response, initiate PM transition.
-4. **Ohio PM selection** — 6 companies contacted, responses incoming. Patrick reviews scorecard.
-5. **Michael Drew follow-up** — Draft in Gmail. Send after Apr 7 if Betty doesn't respond.
-6. **Evernest $13,810** — Cornered with their own language. Watch for response.
-7. **Lindia 3-pack deal** — Patrick said he'd review. Needs analysis.
-8. **ECM login** — Password may have changed. Manual login needed.
-9. **Frollo** — Clear phone browser cache, retry password reset.
+3. **Ohio PM responses** — Tactical Property (Angel Chaney) + HoltonWise (Steve Wise) — written questions sent Apr 2, awaiting responses. Evaluate against requirements when received.
+4. **Evernest $13,810** — Cornered with their own language. Watch for response. Next window Apr 10.
+5. **Lindia 3-pack deal** — Patrick said he'd review. Needs analysis.
 
-## RESOLVED (Apr 1-2)
-- ✅ ADHD Calendar — 4 Mon-Fri blocks live in Google Calendar (Melbourne time)
-- ✅ Foundation Reset — Phase 1+2 complete (5 docs, commands updated, 13 scripts archived)
-- ✅ Power List automation — LaunchAgent wired (com.garry.power-list, 7am daily). Script rewritten. Tested and verified.
-- ✅ Garry Evolution Proposal reviewed — Patrick approved, analysis provided, Iris failure catalog found
-- ✅ Nutrition Systems — $2,234.16 refund processed
+## WAITING ON
+- Avenue/Heather — $5,304 back-pay + Wilborn court date
+- Nutrition Systems — $2,234.16 refund in transit
+- Karl Disney (CPA) — preparing Forms 5472 + 2025 1040NR
+- Tactical Property response to 7 written questions
+- HoltonWise response to 7 written questions
+- B2B written response by Apr 7
 
-## RESOLVED (Mar 31)
-- ✅ Ciatto — payments confirmed sent, draft no longer needed
-- ✅ Mac never-sleep — `sudo pmset` command run
-- ✅ Autonomy Framework v4 — deployed
-- ✅ Ohio tax appeals — BOTH sent Mar 31
-- ✅ Sleek/ASIC — follow-up sent Mar 31
-- ✅ System rebuild — simplified to 3-layer architecture
-- ✅ Zac/Google Workspace — nudge sent with billing link
+## RESOLVED (Apr 2)
+- ✅ B2B escalation reply — PMA-backed, comprehensive, SENT
+- ✅ Ohio PM replies — Tactical + HoltonWise, SENT
+- ✅ 43 scripts Telegram fix — all rewired to telegram-notify.sh
+- ✅ iTerm2 installed + configured — flow control disabled, scrollback unlimited
+- ✅ Memory updated — 6 new entries (gmail send, COO standard, transcripts, Adobe, B2B project, Ohio PM project)
+- ✅ Google Drive — estimate analysis files moved to property folders
+- ✅ Google Workspace — done (confirmed prior session)
+- ✅ MSD Sewer — done (confirmed prior session)
+- ✅ Adobe plan — cancelled weeks ago (NEVER surface again)
