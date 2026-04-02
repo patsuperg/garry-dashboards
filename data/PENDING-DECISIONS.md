@@ -22,9 +22,9 @@ Updated: 2026-04-02
 - ✅ B2B escalation reply — PMA-backed, comprehensive, SENT
 - ✅ Ohio PM replies — Tactical + HoltonWise, SENT
 - ✅ 43 scripts Telegram fix — all rewired to telegram-notify.sh
-- ✅ iTerm2 installed + configured — flow control disabled, scrollback unlimited
+- ✅ iTerm2 fully configured — Metal rendering, all 4 TCC permissions, session restoration, default terminal
 - ✅ Memory updated — 6 new entries (gmail send, COO standard, transcripts, Adobe, B2B project, Ohio PM project)
 - ✅ Google Drive — estimate analysis files moved to property folders
 - ✅ Google Workspace — done (confirmed prior session)
-- ✅ MSD Sewer — done (confirmed prior session)
 - ✅ Adobe plan — cancelled weeks ago (NEVER surface again)
+- ⚠️ MSD Sewer — still NEEDS PATRICK ($332.72, Apr 14 deadline, Ref EG6889). NOT resolved. Has been surfaced 6+ times.
