@@ -14,10 +14,10 @@ Updated: 2026-04-01
 8. **ECM login** — Password may have changed. Manual login needed.
 9. **Frollo** — Clear phone browser cache, retry password reset.
 
-## RESOLVED (Apr 1)
+## RESOLVED (Apr 1-2)
 - ✅ ADHD Calendar — 4 Mon-Fri blocks live in Google Calendar (Melbourne time)
 - ✅ Foundation Reset — Phase 1+2 complete (5 docs, commands updated, 13 scripts archived)
-- ✅ Power List template — sample note created in Apple Notes Power List folder
+- ✅ Power List automation — LaunchAgent wired (com.garry.power-list, 7am daily). Script rewritten. Tested and verified.
 - ✅ Garry Evolution Proposal reviewed — Patrick approved, analysis provided, Iris failure catalog found
 - ✅ Nutrition Systems — $2,234.16 refund processed
 
