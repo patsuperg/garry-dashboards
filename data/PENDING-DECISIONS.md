@@ -1,9 +1,8 @@
 # PENDING DECISIONS
-Updated: 2026-04-02
+Updated: 2026-04-05
 
-## URGENT
-1. **B2B Apr 7 deadline** — PMA-backed escalation sent. Written response required on: repair invoices ($8,182), warranty claim, $825 PM fee credit, $150 Kenilworth fee credit, Dec HAP $1,278, specific Kenilworth income date. No response = 30-day termination notice.
-2. ~~MSD Sewer Fenwick — PAID Apr 1 ($332.72, Ref EG6889)~~
+## CRITICAL — 2 DAYS
+1. **B2B Apr 7 deadline** — PMA-backed escalation sent Apr 2. No response. Written response required on: repair invoices ($8,182), warranty claim, $825 PM fee credit, $150 Kenilworth fee credit, Dec HAP $1,278, Kenilworth income date. **No response by Apr 7 = send 30-day termination notice.**
 
 ## THIS WEEK
 3. **Ohio PM responses** — Tactical Property (Angel Chaney) + HoltonWise (Steve Wise) — written questions sent Apr 2, awaiting responses. Evaluate against requirements when received.
