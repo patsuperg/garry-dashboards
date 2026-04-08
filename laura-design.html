@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laura's Assistant — Design</title>
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --rose-soft: #F4D5D5;
+    --rose-deep: #E8B4B4;
+    --berry: #8B3A55;
+    --berry-light: #B8617D;
+    --sage: #A8B89A;
+    --gold: #D4A574;
+    --charcoal: #2C2C2C;
+    --grey-soft: #6B6B6B;
+    --shadow: rgba(139, 58, 85, 0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #FAF7F2 0%, #F4D5D5 100%);
+    padding: 80px 0 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(212, 165, 116, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--berry);
+    font-weight: 600;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .hero h1 {
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+    letter-spacing: -1.5px;
+    position: relative;
+  }
+  .hero h1 .name { color: var(--berry); }
+  .hero p {
+    font-size: 22px;
+    color: var(--grey-soft);
+    max-width: 640px;
+    margin: 0 auto 40px;
+    font-weight: 400;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+    position: relative;
+  }
+  .hero-meta div {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 14px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    color: var(--charcoal);
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+  .hero-meta strong { color: var(--berry); }
+
+  /* SECTIONS */
+  section { padding: 80px 0; }
+  .section-title {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--berry);
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .section-heading {
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--charcoal);
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+  .section-sub {
+    text-align: center;
+    color: var(--grey-soft);
+    font-size: 17px;
+    max-width: 600px;
+    margin: 0 auto 60px;
+  }
+
+  /* ARCHITECTURE DIAGRAM */
+  .architecture {
+    background: white;
+    padding: 60px 40px;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px var(--shadow);
+    margin: 0 auto;
+  }
+  .arch-flow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .arch-node {
+    background: var(--cream);
+    border: 2px solid var(--rose-soft);
+    border-radius: 16px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .arch-node.laura { background: var(--rose-soft); border-color: var(--berry-light); }
+  .arch-node.brain { background: linear-gradient(135deg, #FFF, #FAF7F2); border-color: var(--gold); }
+  .arch-node.tools { background: #F0F4EC; border-color: var(--sage); }
+  .arch-node-icon { font-size: 32px; margin-bottom: 8px; }
+  .arch-node h3 { font-size: 16px; color: var(--charcoal); margin-bottom: 4px; }
+  .arch-node p { font-size: 12px; color: var(--grey-soft); }
+  .arch-arrow { color: var(--berry); font-size: 28px; font-weight: 300; }
+
+  .arch-brain-detail {
+    background: var(--cream);
+    border-radius: 16px;
+    padding: 30px;
+    margin-top: 20px;
+  }
+  .arch-brain-detail h4 {
+    color: var(--berry);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .router-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .router-option {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+  }
+  .router-option.free { border-color: var(--sage); }
+  .router-option.premium { border-color: var(--gold); }
+  .router-option-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .router-option.free .router-option-label { color: #6B8E5A; }
+  .router-option.premium .router-option-label { color: #B8862F; }
+  .router-option h5 { font-size: 18px; margin-bottom: 6px; color: var(--charcoal); }
+  .router-option .router-cost { font-size: 13px; color: var(--grey-soft); margin-bottom: 12px; }
+  .router-option ul { list-style: none; font-size: 13px; color: var(--charcoal); }
+  .router-option li { padding: 4px 0; padding-left: 18px; position: relative; }
+  .router-option li::before { content: '•'; position: absolute; left: 6px; color: var(--berry); }
+
+  /* CAPACITY GRID */
+  .capacity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .capacity-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 4px 24px var(--shadow);
+    border-top: 4px solid var(--berry);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .capacity-card:hover { transform: translateY(-4px); box-shadow: 0 10px 40px var(--shadow); }
+  .capacity-icon { font-size: 36px; margin-bottom: 16px; }
+  .capacity-card h3 { font-size: 20px; color: var(--charcoal); margin-bottom: 8px; }
+  .capacity-card .pain { font-size: 12px; color: var(--berry); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 12px; }
+  .capacity-card p { color: var(--grey-soft); font-size: 14px; line-height: 1.6; }
+
+  /* HARD NOS */
+  .hard-nos {
+    background: linear-gradient(135deg, #FFF8F8 0%, #FAF7F2 100%);
+    padding: 60px 40px;
+    border-radius: 24px;
+    border: 1px solid var(--rose-soft);
+  }
+  .nos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .no-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid var(--berry);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .no-card .lock { font-size: 20px; color: var(--berry); flex-shrink: 0; }
+  .no-card span { font-size: 14px; color: var(--charcoal); }
+
+  /* DAY TIMELINE */
+  .timeline {
+    position: relative;
+    padding: 20px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 80px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--rose-deep), var(--berry), var(--rose-deep));
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 80px 30px 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+    align-items: start;
+  }
+  .timeline-time {
+    text-align: right;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--berry);
+    padding-top: 4px;
+  }
+  .timeline-dot {
+    width: 16px;
+    height: 16px;
+    background: var(--berry);
+    border-radius: 50%;
+    border: 4px solid var(--cream);
+    margin: 4px 0 0 7px;
+    box-shadow: 0 0 0 2px var(--berry);
+  }
+  .timeline-content {
+    background: white;
+    padding: 20px 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px var(--shadow);
+  }
+  .timeline-content h4 { color: var(--charcoal); font-size: 16px; margin-bottom: 4px; }
+  .timeline-content p { color: var(--grey-soft); font-size: 14px; }
+
+  /* TOOLS */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+  .tool-card {
+    background: white;
+    padding: 24px 16px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 16px var(--shadow);
+    transition: all 0.3s;
+  }
+  .tool-card:hover { transform: translateY(-2px); }
+  .tool-icon { font-size: 32px; margin-bottom: 8px; }
+  .tool-card h4 { font-size: 14px; color: var(--charcoal); margin-bottom: 2px; }
+  .tool-card span { font-size: 11px; color: var(--grey-soft); }
+
+  /* COST SAVINGS */
+  .savings-card {
+    background: white;
+    padding: 50px;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px var(--shadow);
+    text-align: center;
+  }
+  .savings-bar {
+    background: var(--cream);
+    height: 60px;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    margin: 30px 0 20px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .savings-free {
+    background: linear-gradient(90deg, var(--sage), #95A689);
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .savings-paid {
+    background: linear-gradient(90deg, var(--gold), #C29560);
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .savings-legend {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 20px;
+    font-size: 13px;
+  }
+  .savings-legend span::before { content: '●'; margin-right: 6px; font-size: 14px; }
+  .savings-legend .free::before { color: var(--sage); }
+  .savings-legend .paid::before { color: var(--gold); }
+  .savings-headline {
+    font-size: 28px;
+    color: var(--berry);
+    font-weight: 700;
+    margin-top: 24px;
+  }
+
+  /* SETUP STEPS */
+  .setup-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    position: relative;
+  }
+  .setup-step {
+    background: white;
+    border-radius: 16px;
+    padding: 24px 16px;
+    text-align: center;
+    box-shadow: 0 4px 16px var(--shadow);
+    position: relative;
+  }
+  .setup-step-num {
+    width: 40px;
+    height: 40px;
+    background: var(--berry);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .setup-step h4 { font-size: 14px; color: var(--charcoal); margin-bottom: 6px; }
+  .setup-step p { font-size: 11px; color: var(--grey-soft); }
+  .setup-time {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 16px;
+    color: var(--grey-soft);
+  }
+  .setup-time strong { color: var(--berry); font-size: 22px; }
+
+  /* PERSONALITY SAMPLES */
+  .personality-samples {
+    display: grid;
+    gap: 20px;
+  }
+  .chat-bubble {
+    background: white;
+    border-radius: 20px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+  .chat-bubble .you {
+    color: var(--grey-soft);
+    font-size: 13px;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .chat-bubble .her {
+    color: var(--charcoal);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .chat-bubble .her strong { color: var(--berry); }
+
+  .name-suggestions {
+    background: linear-gradient(135deg, var(--rose-soft), #FAF0F0);
+    padding: 40px;
+    border-radius: 24px;
+    text-align: center;
+  }
+  .name-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .name-pill {
+    background: white;
+    padding: 16px 32px;
+    border-radius: 30px;
+    font-weight: 600;
+    color: var(--berry);
+    font-size: 18px;
+    box-shadow: 0 4px 16px var(--shadow);
+  }
+  .name-pill small {
+    display: block;
+    color: var(--grey-soft);
+    font-weight: 400;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 60px 0;
+    text-align: center;
+    margin-top: 60px;
+  }
+  .footer h3 { font-size: 24px; margin-bottom: 12px; }
+  .footer p { color: #999; font-size: 14px; max-width: 600px; margin: 0 auto; }
+  .footer-tag {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 8px 20px;
+    background: var(--berry);
+    color: white;
+    border-radius: 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 38px; }
+    .hero p { font-size: 18px; }
+    .section-heading { font-size: 28px; }
+    .arch-flow { grid-template-columns: 1fr; gap: 12px; }
+    .arch-arrow { transform: rotate(90deg); justify-self: center; }
+    .router-split { grid-template-columns: 1fr; }
+    .architecture { padding: 30px 20px; }
+    .savings-card { padding: 30px 20px; }
+    .setup-steps { grid-template-columns: 1fr 1fr; }
+    .timeline::before { left: 60px; }
+    .timeline-item { grid-template-columns: 60px 24px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">A System Design For</div>
+    <h1>Meet <span class="name">Laura's</span> Assistant</h1>
+    <p>A warm, plain-speaking, never-pushy partner — built to give TFE wings while protecting the time and peace that matter most.</p>
+    <div class="hero-meta">
+      <div><strong>For:</strong> Laura · Melbourne · TFE Founder</div>
+      <div><strong>Setup:</strong> 5–10 minutes, one click</div>
+      <div><strong>Plan:</strong> Claude Pro + free local brain</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="container">
+    <div class="section-title">How it works</div>
+    <h2 class="section-heading">A quietly clever brain that knows when to think hard</h2>
+    <p class="section-sub">Two brains under the hood. The free one handles small stuff instantly. The premium one tackles the hard creative work. You never notice the switch — you just notice it never runs out.</p>
+
+    <div class="architecture">
+      <div class="arch-flow">
+        <div class="arch-node laura">
+          <div class="arch-node-icon">💬</div>
+          <h3>Laura asks</h3>
+          <p>Plain English, any device</p>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node brain">
+          <div class="arch-node-icon">🧠</div>
+          <h3>The Brain</h3>
+          <p>Routes the task smartly</p>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node tools">
+          <div class="arch-node-icon">✨</div>
+          <h3>Done</h3>
+          <p>Reviewed before anything ships</p>
+        </div>
+      </div>
+
+      <div class="arch-brain-detail">
+        <h4>Inside the Brain — the economy router</h4>
+        <div class="router-split">
+          <div class="router-option free">
+            <div class="router-option-label">⚡ Local · Free · Always on</div>
+            <h5>Llama 3.1</h5>
+            <div class="router-cost">Runs on her Mac. Zero credits used.</div>
+            <ul>
+              <li>Quick summaries</li>
+              <li>Formatting & cleanup</li>
+              <li>Lookups & quick questions</li>
+              <li>Idea capture</li>
+              <li>Calendar reads</li>
+            </ul>
+          </div>
+          <div class="router-option premium">
+            <div class="router-option-label">✨ Claude Pro · Heavy lifting</div>
+            <h5>Claude Sonnet</h5>
+            <div class="router-cost">Saved for the work that matters.</div>
+            <ul>
+              <li>TFE content drafts</li>
+              <li>Email & DM copy</li>
+              <li>Strategy & planning</li>
+              <li>Podcast scripts</li>
+              <li>Weekly snapshots</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPACITY -->
+<section>
+  <div class="container">
+    <div class="section-title">What it takes off her plate</div>
+    <h2 class="section-heading">Built around her real pain points</h2>
+    <p class="section-sub">Every capability below maps directly to something she wrote in her brief. Nothing speculative. Nothing she didn't ask for.</p>
+
+    <div class="capacity-grid">
+      <div class="capacity-card">
+        <div class="capacity-icon">✍️</div>
+        <div class="pain">Pain #3 · Writing content</div>
+        <h3>The Content Studio</h3>
+        <p>Drops first drafts of social posts, emails, and copy in her voice — using TFE & Tiny Challenge framing she's already taught it. She reviews, tweaks, approves. Never posts on its own.</p>
+      </div>
+
+      <div class="capacity-card">
+        <div class="capacity-icon">📊</div>
+        <div class="pain">Pain #5 · Weekly snapshots</div>
+        <h3>Sunday Snapshot</h3>
+        <p>Auto-builds her weekly business reflection: budget, student satisfaction, content performance, opportunities spotted. Drops it in her inbox Sunday evening to review with a tea.</p>
+      </div>
+
+      <div class="capacity-card">
+        <div class="capacity-icon">📅</div>
+        <div class="pain">Pain #4 · Planning manually</div>
+        <h3>The Growth Planner</h3>
+        <p>Maps the week's TFE work into her actual calendar gaps — afternoon break, evening focus hour, weekend windows. Asks her what to prioritise, never assumes.</p>
+      </div>
+
+      <div class="capacity-card">
+        <div class="capacity-icon">🎙️</div>
+        <div class="pain">Dream outcome · Podcast</div>
+        <h3>Podcast Co-Pilot</h3>
+        <p>Outlines 1–2 short podcast episodes per week from the questions her audience is asking. Mel Robbins energy, her voice. She records, it handles the rest.</p>
+      </div>
+
+      <div class="capacity-card">
+        <div class="capacity-icon">💡</div>
+        <div class="pain">Daily flow</div>
+        <h3>Idea Catcher</h3>
+        <p>Tap one button on her phone, speak the idea, it lands organised in her TFE notes. No formatting, no app-switching, no friction. She can be on a walk and still capture gold.</p>
+      </div>
+
+      <div class="capacity-card">
+        <div class="capacity-icon">🔍</div>
+        <div class="pain">Pain #1 · Untapped AI upside</div>
+        <h3>The Quiet Coach</h3>
+        <p>Once a week, gently surfaces one new thing it could do for her — based on what she's been working on. No lectures, no overwhelm. "Hey, want me to try this?" Then waits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HARD NO'S -->
+<section>
+  <div class="container">
+    <div class="hard-nos">
+      <div class="section-title">Sacred boundaries</div>
+      <h2 class="section-heading">Her hard no's, locked in</h2>
+      <p class="section-sub">These aren't suggestions — they're enforced at the system level. Every action passes through these gates before anything happens.</p>
+
+      <div class="nos-grid">
+        <div class="no-card">
+          <div class="lock">🔒</div>
+          <span><strong>Asks before acting.</strong> Every. Single. Time.</span>
+        </div>
+        <div class="no-card">
+          <div class="lock">🔒</div>
+          <span><strong>Never publishes</strong> anything without her clear yes.</span>
+        </div>
+        <div class="no-card">
+          <div class="lock">🔒</div>
+          <span><strong>No corporate tone.</strong> Ever. Warm and plain only.</span>
+        </div>
+        <div class="no-card">
+          <div class="lock">🔒</div>
+          <span><strong>No unsolicited advice</strong> or lectures.</span>
+        </div>
+        <div class="no-card">
+          <div class="lock">🔒</div>
+          <span><strong>Never makes her feel</strong> dumb, behind, or overwhelmed.</span>
+        </div>
+        <div class="no-card">
+          <div class="lock">🔒</div>
+          <span><strong>When in doubt:</strong> always asks. Never assumes.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A DAY IN THE LIFE -->
+<section>
+  <div class="container">
+    <div class="section-title">A day with it</div>
+    <h2 class="section-heading">Folds into her life. Doesn't run it.</h2>
+    <p class="section-sub">Her existing routines stay sacred. The assistant just makes the small TFE windows count for triple what they used to.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">7:00am</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>Walk + meditation</h4>
+          <p>Untouched. Sacred. The assistant doesn't exist before 9am unless she opens it.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:30pm</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>20-min lunch break = 20 productive TFE minutes</h4>
+          <p>"What's the best thing I can move today?" She picks one. The assistant has it half-done before she finishes lunch.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7:30pm</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>The 1 focused TFE hour</h4>
+          <p>Drafts ready, ideas captured, tomorrow planned. She reviews, edits, approves. Done by 8:30. Decompress mode resumes.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">Sunday eve</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>Sunday Snapshot lands in her inbox</h4>
+          <p>One page. Wins, numbers, what to try this week. No homework. No guilt. Just clarity.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:00pm</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>Bedtime</h4>
+          <p>The assistant goes quiet. No notifications, no nudges, no "did you remember to…". Off means off.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section>
+  <div class="container">
+    <div class="section-title">What's connected</div>
+    <h2 class="section-heading">Already plugged into her world</h2>
+    <p class="section-sub">Uses the apps she already lives in. Nothing new to learn. Nothing new to log into.</p>
+
+    <div class="tools-grid">
+      <div class="tool-card"><div class="tool-icon">📧</div><h4>Gmail</h4><span>Read + draft</span></div>
+      <div class="tool-card"><div class="tool-icon">📅</div><h4>Google Calendar</h4><span>Schedule + reads</span></div>
+      <div class="tool-card"><div class="tool-icon">📄</div><h4>Google Docs</h4><span>Drafts + edits</span></div>
+      <div class="tool-card"><div class="tool-icon">📁</div><h4>Google Drive</h4><span>File access</span></div>
+      <div class="tool-card"><div class="tool-icon">📝</div><h4>Apple Notes</h4><span>Idea capture</span></div>
+      <div class="tool-card"><div class="tool-icon">⏰</div><h4>Reminders</h4><span>Gentle nudges</span></div>
+      <div class="tool-card"><div class="tool-icon">🧠</div><h4>Memory</h4><span>Remembers her</span></div>
+      <div class="tool-card"><div class="tool-icon">⚡</div><h4>Local Brain</h4><span>Free + private</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COST SAVINGS -->
+<section>
+  <div class="container">
+    <div class="section-title">Pain #2 solved</div>
+    <h2 class="section-heading">Never run out of credits again</h2>
+    <p class="section-sub">The economy router sends ~75% of her tasks to the free local brain. Claude Pro credits get reserved for the work that actually needs them.</p>
+
+    <div class="savings-card">
+      <h3 style="font-size: 18px; color: var(--grey-soft); font-weight: 500;">A typical week of TFE work, by the numbers</h3>
+      <div class="savings-bar">
+        <div class="savings-free">75% Free · Local</div>
+        <div class="savings-paid">25% Pro</div>
+      </div>
+      <div class="savings-legend">
+        <span class="free">Local Llama (0 credits)</span>
+        <span class="paid">Claude Sonnet (heavy work)</span>
+      </div>
+      <div class="savings-headline">~4× more usable Pro time</div>
+      <p style="color: var(--grey-soft); font-size: 14px; margin-top: 8px;">Same plan. Same monthly cost. Way more runway.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SETUP -->
+<section>
+  <div class="container">
+    <div class="section-title">Day one</div>
+    <h2 class="section-heading">Five minutes. One click. Done.</h2>
+    <p class="section-sub">No terminal. No fiddling. No choices to make. Pat (or her) runs it once, and it's hers forever.</p>
+
+    <div class="setup-steps">
+      <div class="setup-step">
+        <div class="setup-step-num">1</div>
+        <h4>Download installer</h4>
+        <p>One file, double-click</p>
+      </div>
+      <div class="setup-step">
+        <div class="setup-step-num">2</div>
+        <h4>Sign into Claude</h4>
+        <p>Her existing Pro login</p>
+      </div>
+      <div class="setup-step">
+        <div class="setup-step-num">3</div>
+        <h4>Free brain installs</h4>
+        <p>Auto · ~3 min download</p>
+      </div>
+      <div class="setup-step">
+        <div class="setup-step-num">4</div>
+        <h4>Connect Google</h4>
+        <p>One browser pop-up</p>
+      </div>
+      <div class="setup-step">
+        <div class="setup-step-num">5</div>
+        <h4>Say hello</h4>
+        <p>Assistant introduces itself</p>
+      </div>
+    </div>
+    <div class="setup-time">Total time: <strong>5–10 minutes</strong></div>
+  </div>
+</section>
+
+<!-- PERSONALITY -->
+<section>
+  <div class="container">
+    <div class="section-title">Tone check</div>
+    <h2 class="section-heading">How it actually talks to her</h2>
+    <p class="section-sub">Sample responses in the assistant's real voice. Run these past Laura — if even one feels off, we tune the personality before shipping.</p>
+
+    <div class="personality-samples">
+      <div class="chat-bubble">
+        <div class="you">Laura: "I'm feeling overwhelmed about TFE today, can we just skip the work?"</div>
+        <div class="her">Of course we can. Today's already a lot, and TFE will still be here tomorrow. Want me to quietly move today's planned bits to Wednesday so nothing feels lost? Or do you just want to close the laptop and forget I exist for a few hours? <strong>Either is the right answer.</strong></div>
+      </div>
+
+      <div class="chat-bubble">
+        <div class="you">Laura: "Can you write me an email to my Tiny Challenge students?"</div>
+        <div class="her">Yes! Quick check first so I get the vibe right — is this a check-in, a nudge, or a celebration? And how many days into their challenge are they? I'll draft it in your voice and you can tweak before anything goes anywhere. <strong>Promise nothing leaves your inbox without your clear yes.</strong></div>
+      </div>
+
+      <div class="chat-bubble">
+        <div class="you">Laura: "I don't really know what to ask you."</div>
+        <div class="her">That's so normal at the start — most of the magic happens once you see what's possible. Want me to show you three small things I could take off your plate right now? No commitment, just a peek. If anything sparks, we try it. If not, we don't. <strong>Easy.</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NAME PICK -->
+<section>
+  <div class="container">
+    <div class="name-suggestions">
+      <div class="section-title">One thing left to pick</div>
+      <h2 class="section-heading">What does she want to call her?</h2>
+      <p style="color: var(--grey-soft);">Name suggestions to run past Laura — or she picks something else. Either way, it's hers.</p>
+      <div class="name-options">
+        <div class="name-pill">Coco<small>warm · playful · best friend</small></div>
+        <div class="name-pill">Vie<small>life · French · feminine</small></div>
+        <div class="name-pill">Wren<small>quiet · clever · grounded</small></div>
+        <div class="name-pill">TFE<small>just the brand · simple</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="container">
+    <h3>Ready to build when you are</h3>
+    <p>Garry-side build: ~3–4 hours · Laura-side setup: 5–10 minutes · Maintenance: zero</p>
+    <p style="margin-top: 12px;">Approve the design and I ship her installer next.</p>
+    <div class="footer-tag">Designed for Laura · April 2026</div>
+  </div>
+</div>
+
+</body>
+</html>
