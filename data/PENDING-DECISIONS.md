@@ -21,7 +21,6 @@
 - **Mackay Goodwin (Cyanergy)** — PoD form + creditor meeting dates
 - **Heather Stone (Avenue)** — Hazelcrest comps + Wilborn set-out confirmation + Eaton back-pay $5,304 ~Apr 10
 - **Luke Allan** — Iris repo access reply
-- **Laura** — Jenny install reaction
 
 ## RESOLVED APR 9 PM
 - ✅ Form 5472 — 5 corrections confirmed + $19,631 zeroed → awaiting revised draft
