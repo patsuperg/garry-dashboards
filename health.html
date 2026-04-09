@@ -2,105 +2,164 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="refresh" content="300">
-<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Health · Patrick</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Health Dashboard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a0a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', system-ui, sans-serif; padding: 24px; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+  h1 { font-size: 1.8rem; color: #fff; letter-spacing: -0.5px; }
+  .ts { color: #555; font-size: 0.8rem; }
+  h2 { font-size: 1.1rem; color: #fff; margin-bottom: 14px; font-weight: 600; }
+  .section { margin-bottom: 28px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+  .card { background: #141414; border: 1px solid #222; border-radius: 14px; padding: 20px; }
+  .card .num { font-size: 2.5rem; font-weight: 700; line-height: 1; }
+  .card .lbl { font-size: 0.8rem; color: #888; margin-top: 6px; }
+  .green { color: #00d4aa; } .red { color: #e74c3c; } .yellow { color: #f39c12; } .white { color: #fff; } .blue { color: #3498db; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 16px; font-size: 0.7rem; font-weight: 600; }
+  .badge-green { background: rgba(0,212,170,0.15); color: #00d4aa; }
+  .badge-yellow { background: rgba(243,156,18,0.15); color: #f39c12; }
+  .badge-red { background: rgba(231,76,60,0.15); color: #e74c3c; }
+  .supp-item { padding: 8px 12px; background: #1a1a1a; border-radius: 8px; font-size: 0.8rem; margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .supp-name { color: #ccc; } .supp-dose { color: #00d4aa; font-weight: 600; }
+  @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } }
+</style>
 </head>
-<body style="margin:0;padding:0;background:#050508;color:#f0f0f2;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 20px 40px">
-<div style="max-width:540px;margin:0 auto">
-
-<!-- HEADER -->
-<div style="text-align:center;padding:24px 0 8px;opacity:0.4;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#5a5a64">Health</div>
-
-<!-- SPOONS HERO -->
-<div style="text-align:center;padding:32px 0 24px">
-<div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#666;margin-bottom:16px">Spoons Today</div>
-<div style="font-size:96px;font-weight:900;color:#5a5a64;line-height:1;letter-spacing:-3px">?<span style="font-size:32px;color:#444;font-weight:400">/12</span></div>
-<div style="margin:20px 0 8px"><span style="font-size:28px;letter-spacing:4px;opacity:0.2">🥄🥄🥄🥄🥄🥄🥄🥄🥄🥄🥄🥄</span></div>
-<div style="font-size:12px;color:#555">Thursday, Apr 09</div>
+<body>
+<div class="header">
+  <div><h1>Health Dashboard</h1><span class="badge badge-green">LIVE</span></div>
+  <div class="ts">Auto-updated: Apr 09, 2026 18:57 AEDT<br>Data: 0h ago</div>
 </div>
 
-<div style="height:1px;background:linear-gradient(90deg,transparent,#222,transparent);margin:0 20%"></div>
-
-<!-- WHOOP-STYLE METRICS -->
-<div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
-<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
-<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">Sleep</div>
-<div style="font-size:36px;font-weight:800;color:#5a5a64">—<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">hrs</span></div>
-<div style="font-size:11px;color:#555;margin-top:6px">Target: 7.5+</div>
-</div>
-<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
-<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">HRV</div>
-<div style="font-size:36px;font-weight:800;color:#5a5a64">—<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">ms</span></div>
-<div style="font-size:11px;color:#555;margin-top:6px">Higher = better</div>
-</div>
-</div>
-<div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
-<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
-<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">Resting HR</div>
-<div style="font-size:36px;font-weight:800;color:#5a5a64">—<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">bpm</span></div>
-<div style="font-size:11px;color:#555;margin-top:6px">Lower = fitter</div>
-</div>
-<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
-<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">Steps</div>
-<div style="font-size:36px;font-weight:800;color:#5a5a64">—<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px"></span></div>
-<div style="font-size:11px;color:#555;margin-top:6px">Target: 8,000+</div>
-</div>
-</div>
-
-<!-- BODY & PROTOCOL -->
-<div style="margin-top:28px">
-<div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#5a5a64;font-weight:600;margin-bottom:12px">Body & Protocol</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
-<div style="background:#0c0c10;border:1px solid #18181c;border-radius:12px;padding:16px">
-<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:8px">Protocol</div>
-<div style="font-size:13px;color:#a0a0a8;line-height:1.8">
-250mg Test E + 50mg Primo/wk<br>
-BPC/TB-500 (elbow rehab → Apr)<br>
-4iu GH daily<br>
-2000mcg Reta weekly
-</div>
-</div>
-<div style="background:#0c0c10;border:1px solid #18181c;border-radius:12px;padding:16px">
-<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:8px">Vitals Snapshot</div>
-<div style="font-size:13px;color:#a0a0a8;line-height:1.8">
-Weight: 88.6kg (Mar 25)<br>
-BF: ~17% (Evolt May 25)<br>
-Test: 34.9 nmol/L (Oct 25)<br>
-LDL: 3.8 — <span style="color:#fbbf24">WATCH</span>
-</div>
-</div>
-</div>
+<div style="display:flex;gap:40px;justify-content:center;align-items:center;margin-bottom:32px;flex-wrap:wrap;">
+  <div style="text-align:center;">
+          <svg width="160" height="160" viewBox="0 0 160 160">
+            <circle cx="80" cy="80" r="70" fill="none" stroke="#1a1a1a" stroke-width="10"/>
+            <circle cx="80" cy="80" r="70" fill="none" stroke="#f39c12" stroke-width="10"
+              stroke-dasharray="238.23724166666662 439.82259999999997" stroke-linecap="round" transform="rotate(-90 80 80)"/>
+            <text x="80" y="72" text-anchor="middle" fill="#f39c12" font-size="2.8rem" font-weight="700">6</text>
+            <text x="80" y="98" text-anchor="middle" fill="#888" font-size="0.8rem">/ 12 SPOONS</text>
+          </svg>
+        </div>
+  <div style="display:flex;gap:24px;">
+    <div style="text-align:center;">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#1a1a1a" stroke-width="8"/>
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#6c5ce7" stroke-width="8"
+              stroke-dasharray="0.0 326.72535999999997" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            <text x="60" y="55" text-anchor="middle" fill="#fff" font-size="1.8rem" font-weight="700">0%</text>
+            <text x="60" y="75" text-anchor="middle" fill="#888" font-size="0.7rem">SLEEP</text>
+          </svg>
+        </div>
+    <div style="text-align:center;">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#1a1a1a" stroke-width="8"/>
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#00d4aa" stroke-width="8"
+              stroke-dasharray="150.2936656 326.72535999999997" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            <text x="60" y="55" text-anchor="middle" fill="#fff" font-size="1.8rem" font-weight="700">46%</text>
+            <text x="60" y="75" text-anchor="middle" fill="#888" font-size="0.7rem">RECOVERY</text>
+          </svg>
+        </div>
+    <div style="text-align:center;">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#1a1a1a" stroke-width="8"/>
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#fdcb6e" stroke-width="8"
+              stroke-dasharray="191.36771085714284 326.72535999999997" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            <text x="60" y="55" text-anchor="middle" fill="#fff" font-size="1.8rem" font-weight="700">59%</text>
+            <text x="60" y="75" text-anchor="middle" fill="#888" font-size="0.7rem">STRAIN</text>
+          </svg>
+        </div>
+  </div>
 </div>
 
-<!-- BUILD PHASE -->
-<div style="background:#0c0c10;border:1px solid #1a3a1a;border-radius:16px;padding:20px;margin-top:16px">
-<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#34d399;margin-bottom:8px">Build Phase</div>
-<div style="font-size:14px;color:#e0e0e0;margin-bottom:4px">Starting April 6 — Push/Pull/Legs 4x/wk</div>
-<div style="font-size:12px;color:#666">Goal: +1-2kg muscle, -2-4kg fat. Stay low 90s. Bangkok gym: TBD</div>
+<div class="grid">
+  <div class="card" style="text-align:center;"><div class="num green" style="font-size:1.8rem;">10.4<span style="font-size:0.8rem;color:#888;">h</span></div><div class="lbl">Sleep</div></div>
+  <div class="card" style="text-align:center;"><div class="num red" style="font-size:1.8rem;">94<span style="font-size:0.8rem;color:#888;">bpm</span></div><div class="lbl">Resting HR</div></div>
+  <div class="card" style="text-align:center;"><div class="num red" style="font-size:1.8rem;">16<span style="font-size:0.8rem;color:#888;">ms</span></div><div class="lbl">HRV</div></div>
+  <div class="card" style="text-align:center;"><div class="num yellow" style="font-size:1.8rem;">5,884<span style="font-size:0.8rem;color:#888;"></span></div><div class="lbl">Steps</div></div>
 </div>
 
-<!-- CONNECT DATA -->
-<div style="background:#0c0c10;border:1px solid #3a2a0a;border-radius:16px;padding:24px;margin-top:20px">
-<div style="font-size:13px;color:#fbbf24;font-weight:600;margin-bottom:12px">Connect Your Data</div>
-<div style="font-size:13px;color:#a0a0a8;line-height:2">
-<strong>iPhone Shortcut (3 min):</strong> ~/AI/Claude/Infrastructure/apple-health-shortcut.md<br>
-Sends sleep, HRV, HR, steps, workouts to Gmail daily at 6:30am.<br>
-Garry parses it → dashboard auto-populates → spoons score goes live.
-</div>
+<div class="grid">
+  <div class="card" style="text-align:center;"><div class="num white" style="font-size:1.8rem;">—<span style="font-size:0.8rem;color:#888;">kg</span></div><div class="lbl">Weight</div></div>
+  <div class="card" style="text-align:center;"><div class="num red" style="font-size:1.8rem;">—<span style="font-size:0.8rem;color:#888;">kcal</span></div><div class="lbl">Calories</div></div>
+  <div class="card" style="text-align:center;"><div class="num green" style="font-size:1.8rem;">208g<span style="font-size:0.8rem;color:#888;"></span></div><div class="lbl">Protein</div></div>
+  <div class="card" style="text-align:center;"><div class="num green" style="font-size:1.8rem;">58<span style="font-size:0.8rem;color:#888;">min</span></div><div class="lbl">Exercise</div></div>
 </div>
 
-<!-- FOOTER -->
-<div style="text-align:center;color:#333;font-size:11px;padding:32px 0 16px">
-Auto-updated Apr 09, 2026 06:46 PM<br>
-The income is me.
+<div class="section">
+  <h2>Current Protocol</h2>
+  <div class="grid-3">
+    <div class="card">
+      <h2 style="font-size:0.9rem;">Anabolics</h2>
+      <div class="supp-item"><span class="supp-name">Test Enanthate</span><span class="supp-dose">250mg/wk</span></div>
+      <div class="supp-item"><span class="supp-name">Primobolan</span><span class="supp-dose">50mg/wk</span></div>
+      <div class="supp-item"><span class="supp-name">Growth Hormone</span><span class="supp-dose">4iu/day</span></div>
+    </div>
+    <div class="card">
+      <h2 style="font-size:0.9rem;">Peptides</h2>
+      <div class="supp-item"><span class="supp-name">BPC-157/TB-500</span><span class="supp-dose">750mcg/day</span></div>
+      <div class="supp-item"><span class="supp-name">CHK CU</span><span class="supp-dose">2mg/day</span></div>
+      <div class="supp-item"><span class="supp-name">Retatrutide</span><span class="supp-dose">2000mcg/wk</span></div>
+    </div>
+    <div class="card">
+      <h2 style="font-size:0.9rem;">Key Supplements</h2>
+      <div class="supp-item"><span class="supp-name">Fish Oil</span><span class="supp-dose">5-6g/day</span></div>
+      <div class="supp-item"><span class="supp-name">Creatine</span><span class="supp-dose">10g/day</span></div>
+      <div class="supp-item"><span class="supp-name">NAD+</span><span class="supp-dose">1g/day</span></div>
+      <div class="supp-item"><span class="supp-name">Resveratrol</span><span class="supp-dose">1g/day</span></div>
+      <div class="supp-item"><span class="supp-name">Glutathione</span><span class="supp-dose">1000mg/day</span></div>
+      <div class="supp-item"><span class="supp-name">Collagen</span><span class="supp-dose">15g/day</span></div>
+    </div>
+  </div>
 </div>
 
+<div class="section">
+  <h2>Bloodwork Snapshot (Oct 2025)</h2>
+  <div class="grid">
+    <div class="card" style="text-align:center;border-top:3px solid #00d4aa;">
+      <div style="font-size:1.5rem;font-weight:700;color:#00d4aa;">34.9</div>
+      <div class="lbl">Total Test (nmol/L)</div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #e74c3c;">
+      <div style="font-size:1.5rem;font-weight:700;color:#e74c3c;">3.8</div>
+      <div class="lbl">LDL (mmol/L) — HIGH</div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #f39c12;">
+      <div style="font-size:1.5rem;font-weight:700;color:#f39c12;">0.50</div>
+      <div class="lbl">HCT — watch &gt;0.52</div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #00d4aa;">
+      <div style="font-size:1.5rem;font-weight:700;color:#00d4aa;">0.1</div>
+      <div class="lbl">hsCRP (excellent)</div>
+    </div>
+  </div>
 </div>
-</body>
-</html>
+
+<div class="section">
+  <h2>Body Composition (Evolt History)</h2>
+  <div class="grid" style="grid-template-columns:repeat(5,1fr);">
+    <div class="card" style="text-align:center;"><div style="font-size:0.7rem;color:#888;">Apr 8</div><div style="font-weight:700;">92.4kg</div><div style="color:#888;font-size:0.75rem;">18.4% BF</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:0.7rem;color:#888;">Apr 17</div><div style="font-weight:700;">—</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:0.7rem;color:#888;">Apr 28</div><div style="font-weight:700;">—</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:0.7rem;color:#888;">May 12</div><div style="font-weight:700;">—</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:0.7rem;color:#888;">May 27</div><div style="font-weight:700;">93kg</div><div style="color:#00d4aa;font-size:0.75rem;">17.0% BF</div></div>
+  </div>
+  <p style="color:#888;font-size:0.8rem;">Latest INSMART (Mar 25): 88.6kg, BMI 28.3. Next Evolt scan: Bangkok gym TBD.</p>
+</div>
+
+<div class="section">
+  <h2>Training</h2>
+  <div class="card">
+    <div style="display:flex;gap:24px;flex-wrap:wrap;">
+      <div><strong style="color:#fff;">Split:</strong> <span style="color:#888;">Push / Pull / Legs, 3-4x/wk</span></div>
+      <div><strong style="color:#fff;">Elbow:</strong> <span style="color:#f39c12;">Rehabbing — BPC completing mid-April</span></div>
+      <div><strong style="color:#fff;">Status:</strong> <span style="color:#00d4aa;">Drive returning, feeling good</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:16px;color:#333;font-size:0.7rem;">Health Dashboard — Auto-updates every 30min from Apple Health Auto Export</div>
+</body></html>
