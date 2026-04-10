@@ -119,6 +119,53 @@ def parse_state(state):
     except:
         deals_meta = {}
 
+    # === LIVE DEAL FINDER INJECTION ===
+    # Pull TODAY's top deals from deal-finder-v4-results.json and inject into the deals list
+    # so the Command Centre actually shows what the daily scrape found, not just metadata.
+    finder_path = os.path.expanduser("~/AI/Claude/Infrastructure/data/deal-finder-v4-results.json")
+    try:
+        with open(finder_path) as f:
+            finder = json.load(f)
+        run_at = finder.get("run_at", "")
+        summary = finder.get("summary", {})
+        top_props = finder.get("top_properties", []) or []
+
+        # Update deals_meta with the FRESH numbers from deal-finder-v4
+        if summary:
+            deals_meta['total_scanned'] = summary.get('total_scraped', deals_meta.get('total_scanned', 0))
+            deals_meta['total_matched'] = summary.get('in_coverage_area', deals_meta.get('total_matched', 0))
+            deals_meta['dscr_eligible'] = summary.get('dscr_eligible', 0)
+            deals_meta['top_garry_score'] = summary.get('top_garry_score', 0)
+            deals_meta['scan_date'] = run_at[:10] if run_at else deals_meta.get('scan_date', '')
+            deals_meta['run_at'] = run_at
+
+        # Inject the top 5 properties as decision-ready deal cards
+        for prop in top_props[:5]:
+            addr_full = prop.get("address", "Unknown")
+            addr_short = addr_full.split(",")[0].strip() if "," in addr_full else addr_full
+            zip_code = prop.get("zip", "")
+            score = prop.get("garry_score", 0)
+            cashflow = prop.get("cashflow", 0)
+            price = prop.get("price", 0)
+            cap = prop.get("cap_rate", 0)
+            beds = prop.get("bedrooms", 0)
+            dscr_ok = prop.get("dscr_eligible", False)
+
+            # Build the detail line — keep it dense, COO-style
+            detail = f"${price:,.0f} | {beds}BR | Score {score:.0f} | ${cashflow:,.0f}/mo CF | {cap:.1f}% cap"
+            if dscr_ok:
+                detail += " | DSCR ✓"
+
+            # Status: NEW for now, would be "AGENT CONTACTED" once outreach autopilot ships
+            deals.append({
+                'name': f"{addr_short} ({zip_code})",
+                'detail': detail,
+                'status': 'new_finder',
+            })
+    except Exception as exc:
+        # Don't crash the dashboard if deal-finder data missing
+        pass
+
     # Needs Patrick — pull from PENDING-DECISIONS.md
     dates = []
     pending_path = os.path.expanduser("~/AI/Claude/PENDING-DECISIONS.md")
@@ -211,7 +258,7 @@ def generate_command_centre(properties, total, deals, dates, health, deals_meta=
     gap = round(aud_goal - aud_income)
     doors_to_go = max(0, round((gap / aud_goal) * 16))  # estimate
 
-    # Active deals — decisions Patrick must make
+    # Active deals — Power 4 bundle + pending pipeline
     decision_cards = ""
     dead_list = []
     approved_deals = [d for d in deals if d['status'] == 'active']
