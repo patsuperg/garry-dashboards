@@ -16,6 +16,10 @@ python3 "$(dirname "$0")/refresh-state.py" 2>/dev/null
 # Step 3: Regenerate ALL dashboards from fresh data
 python3 generate.py 2>/dev/null
 
+# Step 3b: Regenerate health dashboard from live health-summary.json
+# health-dashboard-generator.py is the authoritative source — generate.py is now neutered for health.html
+python3 "$INFRA/health-dashboard-generator.py" 2>/dev/null
+
 # Step 4: Push ALL dashboard files + data directory
 git add index.html garry.html health.html command-centre.html system-map.html health-data.json data/ 2>/dev/null
 

@@ -65,37 +65,40 @@ def parse_state(state):
     total_match = re.search(r'Total net: \$([\d,]+)/mo', state)
     total = total_match.group(1).replace(',','') if total_match else "4935"
 
-    # Deals — pull from deal-pipeline.json (live data)
+    # Deals — pull from property-pipeline.json (live reviewed data)
     deals = []
-    pipeline_path = os.path.expanduser("~/AI/Projects/Section8/deal-pipeline.json")
+    pipeline_path = os.path.expanduser("~/AI/Claude/Section8/property-pipeline.json")
     try:
         with open(pipeline_path) as f:
             pipeline = json.load(f)
-        for entry in pipeline.get("pipeline", []):
-            stage = entry.get("stage", "new")
-            if stage in ("pass", "passed", "rejected", "dead"):
-                status = "dead"
-            elif stage in ("reviewing", "enquired", "under_contract"):
-                status = "active"
-            else:
-                status = "active"
+        for key, entry in pipeline.get("properties", {}).items():
+            entry_status = entry.get("status", "")
+            verdict = entry.get("patrick_verdict") or ""
             addr = entry.get("address", "Unknown")
-            score = entry.get("score", 0)
-            noi = entry.get("noi", 0)
             price = entry.get("price", 0)
-            detail = f"${price:,.0f} | Score {score} | NOI ${noi:,.0f}/mo" if price else ""
-            # Only show recent (last 7 days)
-            from datetime import timedelta
-            surfaced = entry.get("date_surfaced", "")
-            if surfaced:
-                try:
-                    surf_date = datetime.strptime(surfaced, "%Y-%m-%d")
-                    if (datetime.now() - surf_date).days > 7:
-                        continue
-                except:
-                    pass
-            deals.append({'name': addr, 'detail': detail, 'status': status})
-    except:
+            fmr = entry.get("fmr", 0)
+            beds = entry.get("bedrooms", "?")
+            cf_toms = entry.get("cashflow_per_toms_ai_s8pro", 0)
+            cf_finder = entry.get("cashflow_advertised", 0) or entry.get("cashflow_advertised_deal_finder", 0)
+            cashflow = cf_toms if cf_toms else cf_finder
+
+            if "APPROVED" in entry_status.upper():
+                status = "active"
+                addr_short = addr.split(",")[0].strip() if "," in addr else addr
+                notes = entry.get("patrick_notes", "")
+                rank_note = ""
+                if "STRONGEST" in str(verdict).upper() or "#1" in entry_status:
+                    rank_note = " | RANKED #1"
+                elif "INSPECTION" in entry_status.upper():
+                    rank_note = " | BOOK INSPECTION"
+                detail = f"${price:,.0f} | {beds}BR | FMR ${fmr:,} | ${cashflow:,.0f}/mo CF{rank_note}"
+                deals.append({'name': addr_short, 'detail': detail, 'status': status})
+            elif "PENDING" in entry_status.upper():
+                # Show pending reviews as dim pipeline entries
+                addr_short = addr.split(",")[0].strip() if "," in addr else addr
+                detail = f"${price:,.0f} | FMR ${fmr:,} | Awaiting review"
+                deals.append({'name': addr_short, 'detail': detail, 'status': 'pending'})
+    except Exception as exc:
         pass
 
     # Deal finder last scan stats
@@ -211,27 +214,39 @@ def generate_command_centre(properties, total, deals, dates, health, deals_meta=
     # Active deals — decisions Patrick must make
     decision_cards = ""
     dead_list = []
-    active_deals = [d for d in deals if d['status'] != 'dead']
+    approved_deals = [d for d in deals if d['status'] == 'active']
+    pending_deals = [d for d in deals if d['status'] == 'pending']
     dead_deals = [d for d in deals if d['status'] == 'dead']
 
-    for d in active_deals:
-        if 'pending' in d['status']:
-            badge_cls = "hold"
-            badge_txt = "ON HOLD"
+    # Show approved deals first (the Power 4)
+    for d in approved_deals:
+        if 'INSPECTION' in d['detail'].upper():
+            badge_cls = "hot"
+            badge_txt = "BOOK INSPECTION"
+        elif '#1' in d['detail'] or 'RANKED' in d['detail'].upper():
+            badge_cls = "eval"
+            badge_txt = "TOP PICK"
         else:
-            badge_cls = "hot" if 'DECISION' in d['detail'].upper() or 'inspection' in d['detail'].lower() else "eval"
-            badge_txt = "NEEDS YOU" if 'DECISION' in d['detail'].upper() else "EVALUATING"
-        action = ""
-        if 'DECISION' in d['detail'].upper():
-            action = f'<div class="deal-action">What\'s your call?</div>'
+            badge_cls = "eval"
+            badge_txt = "APPROVED"
         decision_cards += f"""
-<div class="deal" style="{'border-color:rgba(248,113,113,0.15)' if badge_cls == 'hot' else ''}">
+<div class="deal" style="{'border-color:rgba(52,211,153,0.15)' if badge_cls == 'eval' else 'border-color:rgba(248,113,113,0.15)'}">
 <div class="deal-top">
 <div class="deal-addr">{d['name']}</div>
 <div class="deal-badge {badge_cls}">{badge_txt}</div>
 </div>
 <div class="deal-context">{d['detail']}</div>
-{action}
+</div>"""
+
+    # Show pending deals below (dimmer)
+    for d in pending_deals:
+        decision_cards += f"""
+<div class="deal" style="opacity:0.6">
+<div class="deal-top">
+<div class="deal-addr">{d['name']}</div>
+<div class="deal-badge hold">PENDING REVIEW</div>
+</div>
+<div class="deal-context">{d['detail']}</div>
 </div>"""
 
     for d in dead_deals:
@@ -288,9 +303,9 @@ def generate_command_centre(properties, total, deals, dates, health, deals_meta=
     scan_fresh = 'today' in scan_date.lower() or datetime.now().strftime('%Y-%m-%d') in scan_date if scan_date else False
 
     acq_lines = f"""<div class="eng-line"><span class="d" style="background:{'var(--green)' if scan_fresh else 'var(--orange)'}"></span>Deal Finder: {scan_matched} matched {'today' if scan_fresh else 'last scan'}</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>{len(active_deals)} pipeline leads</div>
+<div class="eng-line"><span class="d" style="background:var(--green)"></span>{len(approved_deals)} approved + {len(pending_deals)} pending</div>
 <div class="eng-line"><span class="d" style="background:var(--green)"></span>DSCR 7.5% | one-tap offers live</div>
-<div class="eng-line"><span class="d" style="background:var(--orange)"></span>Lending: Nick ready, awaiting bundle</div>"""
+<div class="eng-line"><span class="d" style="background:var(--green)"></span>Lending: Power 4 bundle — Nick ready</div>"""
 
     # HAP status from real data
     hs = hap_status or {}
@@ -1142,10 +1157,11 @@ def main():
     with open(os.path.join(OUTPUT_DIR, "garry.html"), "w") as f:
         f.write(garry_html)
 
-    # Generate Health Dashboard (legacy)
-    health_html = generate_health_dashboard(health)
-    with open(os.path.join(OUTPUT_DIR, "health.html"), "w") as f:
-        f.write(health_html)
+    # Health Dashboard — SKIPPED. health-dashboard-generator.py is the authoritative source.
+    # generate_health_dashboard() writes placeholder "?" values. Do not overwrite real data.
+    # health_html = generate_health_dashboard(health)
+    # with open(os.path.join(OUTPUT_DIR, "health.html"), "w") as f:
+    #     f.write(health_html)
 
     # Generate Command Centre (legacy — saved as command-centre.html, NOT index.html)
     cc_html = generate_command_centre(properties, total, deals, dates, health, deals_meta, hap_status)
