@@ -258,30 +258,42 @@ def generate_command_centre(properties, total, deals, dates, health, deals_meta=
     gap = round(aud_goal - aud_income)
     doors_to_go = max(0, round((gap / aud_goal) * 16))  # estimate
 
-    # Active deals — decisions Patrick must make
+    # Active deals — Power 4 bundle + pending pipeline
     decision_cards = ""
     dead_list = []
-    active_deals = [d for d in deals if d['status'] != 'dead']
+    approved_deals = [d for d in deals if d['status'] == 'active']
+    pending_deals = [d for d in deals if d['status'] == 'pending']
     dead_deals = [d for d in deals if d['status'] == 'dead']
 
-    for d in active_deals:
-        if 'pending' in d['status']:
-            badge_cls = "hold"
-            badge_txt = "ON HOLD"
+    # Show approved deals first (the Power 4)
+    for d in approved_deals:
+        if 'INSPECTION' in d['detail'].upper():
+            badge_cls = "hot"
+            badge_txt = "BOOK INSPECTION"
+        elif '#1' in d['detail'] or 'RANKED' in d['detail'].upper():
+            badge_cls = "eval"
+            badge_txt = "TOP PICK"
         else:
-            badge_cls = "hot" if 'DECISION' in d['detail'].upper() or 'inspection' in d['detail'].lower() else "eval"
-            badge_txt = "NEEDS YOU" if 'DECISION' in d['detail'].upper() else "EVALUATING"
-        action = ""
-        if 'DECISION' in d['detail'].upper():
-            action = f'<div class="deal-action">What\'s your call?</div>'
+            badge_cls = "eval"
+            badge_txt = "APPROVED"
         decision_cards += f"""
-<div class="deal" style="{'border-color:rgba(248,113,113,0.15)' if badge_cls == 'hot' else ''}">
+<div class="deal" style="{'border-color:rgba(52,211,153,0.15)' if badge_cls == 'eval' else 'border-color:rgba(248,113,113,0.15)'}">
 <div class="deal-top">
 <div class="deal-addr">{d['name']}</div>
 <div class="deal-badge {badge_cls}">{badge_txt}</div>
 </div>
 <div class="deal-context">{d['detail']}</div>
-{action}
+</div>"""
+
+    # Show pending deals below (dimmer)
+    for d in pending_deals:
+        decision_cards += f"""
+<div class="deal" style="opacity:0.6">
+<div class="deal-top">
+<div class="deal-addr">{d['name']}</div>
+<div class="deal-badge hold">PENDING REVIEW</div>
+</div>
+<div class="deal-context">{d['detail']}</div>
 </div>"""
 
     for d in dead_deals:
@@ -338,9 +350,9 @@ def generate_command_centre(properties, total, deals, dates, health, deals_meta=
     scan_fresh = 'today' in scan_date.lower() or datetime.now().strftime('%Y-%m-%d') in scan_date if scan_date else False
 
     acq_lines = f"""<div class="eng-line"><span class="d" style="background:{'var(--green)' if scan_fresh else 'var(--orange)'}"></span>Deal Finder: {scan_matched} matched {'today' if scan_fresh else 'last scan'}</div>
-<div class="eng-line"><span class="d" style="background:var(--green)"></span>{len(active_deals)} pipeline leads</div>
+<div class="eng-line"><span class="d" style="background:var(--green)"></span>{len(approved_deals)} approved + {len(pending_deals)} pending</div>
 <div class="eng-line"><span class="d" style="background:var(--green)"></span>DSCR 7.5% | one-tap offers live</div>
-<div class="eng-line"><span class="d" style="background:var(--orange)"></span>Lending: Nick ready, awaiting bundle</div>"""
+<div class="eng-line"><span class="d" style="background:var(--green)"></span>Lending: Power 4 bundle — Nick ready</div>"""
 
     # HAP status from real data
     hs = hap_status or {}
