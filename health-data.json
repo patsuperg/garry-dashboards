@@ -1,109 +1,61 @@
 {
-  "generated": "2026-04-10T15:27:13.066358",
+  "generated": "2026-04-11T15:54:52.505332",
   "today": {
-    "date": "2026-04-09",
-    "spoons": 4,
+    "date": "2026-04-11",
+    "spoons": 2,
+    "eight_sleep_note": "Manual update from Eight Sleep screenshots. RHR +12 above avg, HRV severely depleted (8ms vs avg 25ms). Real sleep 6h34m across 2 sessions (Eight Sleep showed 4h21m due to split).",
     "breakdown": {
       "hrv": {
-        "value": 64.3,
-        "pts": 2,
+        "value": 8.0,
+        "pts": 0,
         "max": 3,
-        "unit": "ms"
+        "unit": "ms",
+        "source": "Eight Sleep",
+        "avg": 25
       },
       "rhr": {
-        "value": 80.0,
+        "value": 86.0,
         "pts": 0,
         "max": 2,
-        "unit": "bpm"
+        "unit": "bpm",
+        "avg": 74
       },
       "steps": {
-        "value": 4842,
+        "value": 0,
         "pts": 0,
         "max": 2,
         "unit": "steps"
       },
       "active_energy": {
-        "value": 570,
-        "pts": 1,
+        "value": 0,
+        "pts": 0,
         "max": 2,
         "unit": "kcal"
       },
       "spo2": {
-        "value": 97.7,
+        "value": 0,
         "pts": 1,
         "max": 1,
         "unit": "%"
       },
       "sleep": {
-        "value": 0,
-        "pts": 0,
+        "value": 6.57,
+        "pts": 1,
         "max": 2,
-        "unit": "hr"
+        "unit": "hr",
+        "note": "6h34m real (2 sessions)"
       }
     },
     "raw": {
-      "steps": 4842.104,
-      "hrv": 64.32,
-      "rhr": 80.0,
-      "active_energy_kj": 2384.845,
-      "spo2": 97.66666666666667,
-      "hr_avg": 93.74786163522012
+      "sleep_hrs": 6.57,
+      "rhr": 86.0,
+      "hrv_eightsleep": 8.0,
+      "sleep_fitness_score": 49,
+      "sleep_quality_pct": 57,
+      "ttfa_min": 38
     }
   },
   "history": [
-    {
-      "date": "2026-04-03",
-      "spoons": 6,
-      "breakdown": {
-        "hrv": {
-          "value": 56.8,
-          "pts": 2,
-          "max": 3,
-          "unit": "ms"
-        },
-        "rhr": {
-          "value": 83.0,
-          "pts": 0,
-          "max": 2,
-          "unit": "bpm"
-        },
-        "steps": {
-          "value": 9142,
-          "pts": 1,
-          "max": 2,
-          "unit": "steps"
-        },
-        "active_energy": {
-          "value": 755,
-          "pts": 2,
-          "max": 2,
-          "unit": "kcal"
-        },
-        "spo2": {
-          "value": 96.2,
-          "pts": 1,
-          "max": 1,
-          "unit": "%"
-        },
-        "sleep": {
-          "value": 0.0,
-          "pts": 0,
-          "max": 2,
-          "unit": "hr"
-        }
-      },
-      "raw": {
-        "steps": 9142.404,
-        "hrv": 56.79,
-        "rhr": 83.0,
-        "sleep_hr": 0.0,
-        "sleep_deep": 0.7833333333333333,
-        "sleep_rem": 1.7000000000000002,
-        "active_energy_kj": 3157.671,
-        "spo2": 96.2,
-        "hr_avg": 95.2597489539749
-      }
-    },
     {
       "date": "2026-04-04",
       "spoons": 6,
