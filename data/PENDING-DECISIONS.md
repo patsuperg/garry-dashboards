@@ -3,7 +3,6 @@
 
 ## NEEDS PATRICK
 
-1. **GNA refund return $345.04** — They double-paid. Return one to BSB 332-002 / Acc 552-840-067 / Global Nutrition Australia Pty Ltd.
 2. **Power 4 verdicts** — When Lindia replies with occupancy/lease/condition data, Patrick reviews and confirms offers.
 3. **Nick DSCR pre-approval** — Approve sending Power 4 package to Nick for underwriting.
 
