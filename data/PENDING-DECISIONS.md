@@ -1,25 +1,25 @@
 # PENDING DECISIONS — Patrick Action Required
-*Auto-generated from THREADS.md | 2026-04-14 08:30 AEST*
-*Only items that genuinely need Patrick. Everything else Garry handles.*
+*Auto-generated 2026-04-14 10:15 AEST*
+*ESSENTIALS ONLY — Patrick is tired. Low-level tasks blocked.*
 
 ---
 
-## SIGN (DocuSign / Dotloop)
-1. **Hazelcrest listing contract** — Heather fixing Line 25-26 fee first, then sign same day in Dotloop
-2. **Glen Garry offer** — Lindia sending DocuSign once prepared
-3. **Prigge offer** — Lindia sending DocuSign once prepared
-4. **Angel PMAs (x2)** — 505 W 25th + 124 Kenilworth — sign both, fires B2B notice
+## SIGN — ALL IN INBOX NOW
+1. **Glen Garry DocuSign** — Special Sale Contract + BCR. Open inbox, sign.
+2. **Prigge DocuSign** — Special Sale Contract + BCR. Open inbox, sign.
+3. **Angel PMA — 505 W 25th** — Dotloop, two docs. Open inbox, sign.
 
-## SPEND / FINANCIAL
-5. **ASIC annual fee — UHF — ~$311 AUD** — due ~Apr 27. Patrick said fees get wiped on deregistration — Garry to confirm next session, likely no action needed.
-6. **MSD Sewer $263.28** — Apr 14 deadline. Pay at CCM or MSD portal.
-7. **GNA return $345.04** — Send bank transfer to Klavdia Kozlova (GNA)
+## PAY TODAY
+4. **MSD Sewer $263.28** — DEADLINE TODAY. Pay at CCM or MSD portal.
 
-## INFORMATION / CALLS
-8. **CBA — account 8448 / guarantee G591979** — Call CBA to confirm term deposit balance → unlocks Barry Plant overpayment demand (~$1,700-2,200)
+## WHEN READY (not urgent today)
+5. **GW Carter — 8288-B Hazelcrest** — Garry has draft ready. Say "send it" and it goes.
+6. **GNA return $345.04** — Bank transfer to Klavdia Kozlova when convenient.
+7. **CBA call** — Account 8448 / guarantee G591979 balance → unlocks Barry Plant recovery.
 
-## MONITORING (Garry handles, Patrick just aware)
-- Nick valuation reply → Garry notifies when received
-- Insurance quotes → Garry notifies when NREIG/Steadily respond
-- Angel PMAs → Garry follows up Apr 15, sends B2B on signing
-- ASIC acknowledgment → Garry watching, flags Apr 21 if nothing
+## WAITING ON (Garry monitors)
+- Nick: valuation floor reply
+- Angel: 124 Kenilworth PMA (follow up Apr 15)
+- Lindia: Maryellen walkthrough + Midridge inspection booking
+- Insurance quotes: NREIG + Steadily (follow up Apr 16 if nothing)
+- ASIC: Spartans Property + Fitness Supplies deregistration (flag Apr 21)
