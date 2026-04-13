@@ -1,27 +1,25 @@
-# PENDING DECISIONS
-*Auto-generated from THREADS.md — 2026-04-14 06:15 AEST*
+# PENDING DECISIONS — Patrick Action Required
+*Auto-generated from THREADS.md | 2026-04-14 08:30 AEST*
+*Only items that genuinely need Patrick. Everything else Garry handles.*
 
-## NEEDS PATRICK
-1. **Sign Hazelcrest listing contract** — once Garry verifies Dotloop v4-2 and unrepresented buyer fee resolved. Re-download PDF to Downloads so Garry can read it.
-2. **Approve GW Carter 8288-B email** — Garry drafting. This starts the FIRPTA withholding certificate process to save ~$8,250 on Hazelcrest sale.
-3. ~~**MSD sewer $263.28**~~ — PAID. Done.
-4. **Sign Form 535** — Cyanergy PoD. Emailed to you. Sign page 2, attach to Gmail draft, send.
-5. **GNA refund return $345.04** — BSB 332-002 / Acc 552-840-067 / Global Nutrition Australia Pty Ltd.
-6. **Power 4 verdicts** — When Lindia replies with occupancy/lease/condition data, review and confirm offers.
-7. **Nick DSCR pre-approval** — Approve sending Power 4 package to Nick for underwriting.
+---
 
-## WAITING ON OTHERS (Garry chases autonomously)
-- **Heather Stone** — Dotloop contract + unrepresented buyer fee pushback
-- **GW Carter CPA** — 8288-B filing (to be initiated)
-- **Lindia Robins** — Power 4 property details
-- **NREIG (Kathy Garcia)** — insurance quotes for 4 properties
-- **Steadily** — insurance quotes for 4 properties
-- **Tactical (Angel Chaney)** — PM counter-reply / PMA draft
-- **Cyanergy / Mackay Goodwin** — PoD receipt confirmation + creditor meeting dates
-- **AusPost (Sandeep Jaswal)** — $304.41 narrowed claim response
-- **EHP Labs** — Apr 16 check-in date
+## SIGN (DocuSign / Dotloop)
+1. **Hazelcrest listing contract** — Heather fixing Line 25-26 fee first, then sign same day in Dotloop
+2. **Glen Garry offer** — Lindia sending DocuSign once prepared
+3. **Prigge offer** — Lindia sending DocuSign once prepared
+4. **Angel PMAs (x2)** — 505 W 25th + 124 Kenilworth — sign both, fires B2B notice
 
-## GARRY HANDLES AUTONOMOUSLY (no Patrick input needed)
-- **Jenny/Laura/TFE** — all infrastructure, monitoring, improvements, troubleshooting
-- **Hazelcrest contract verification** — once PDF accessible
-- **GW Carter 8288-B draft** — ready for Patrick approval next session
+## SPEND / FINANCIAL
+5. **ASIC annual fee — UHF — ~$311 AUD** — due ~Apr 27. Patrick said fees get wiped on deregistration — Garry to confirm next session, likely no action needed.
+6. **MSD Sewer $263.28** — Apr 14 deadline. Pay at CCM or MSD portal.
+7. **GNA return $345.04** — Send bank transfer to Klavdia Kozlova (GNA)
+
+## INFORMATION / CALLS
+8. **CBA — account 8448 / guarantee G591979** — Call CBA to confirm term deposit balance → unlocks Barry Plant overpayment demand (~$1,700-2,200)
+
+## MONITORING (Garry handles, Patrick just aware)
+- Nick valuation reply → Garry notifies when received
+- Insurance quotes → Garry notifies when NREIG/Steadily respond
+- Angel PMAs → Garry follows up Apr 15, sends B2B on signing
+- ASIC acknowledgment → Garry watching, flags Apr 21 if nothing
