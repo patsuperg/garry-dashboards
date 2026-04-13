@@ -1,12 +1,12 @@
 {
-  "updated": "2026-04-13T17:09:56.717080+00:00",
+  "updated": "2026-04-13T17:40:01.897663+00:00",
   "data_age_hours": 0,
   "stale": false,
   "today": {
     "date": "2026-04-14",
     "hr_avg": 89,
-    "resting_hr": 70.98,
-    "hrv_avg": 44.62,
+    "resting_hr": 88.8,
+    "hrv_avg": 23.31,
     "steps": 5395,
     "active_energy_kcal": 367,
     "resting_energy_kcal": 1440,
@@ -18,7 +18,7 @@
     "sleep_awake_hr": null,
     "sleep_in_bed_hr": null,
     "spo2_avg": 99.0,
-    "resp_rate_avg": 13.07,
+    "resp_rate_avg": 13.02,
     "weight_kg": null,
     "distance_km": null,
     "dietary_kcal": null,
@@ -56,18 +56,18 @@
     "partial": false
   },
   "spoons": {
-    "score": 10.19,
+    "score": 7.38,
     "sleep_component": 5.88,
-    "recovery_component": 2.68,
-    "strain_component": 1.63,
+    "recovery_component": 1.4,
+    "strain_component": 0.1,
     "source": "eightsleep",
     "inputs": {
       "es_sleep_score_0_100": 99,
       "sleep_hours": 7.76,
-      "hrv_avg_ms": 44.62,
-      "rmssd_avg": 44.62,
-      "hr_avg_bpm": 70.98,
-      "resp_rate_avg": 13.07
+      "hrv_avg_ms": 23.31,
+      "rmssd_avg": 23.31,
+      "hr_avg_bpm": 88.8,
+      "resp_rate_avg": 13.02
     }
   },
   "sleep_pct": 0,
@@ -79,7 +79,7 @@
     "hrv": 28,
     "resting_hr": 85
   },
-  "last_pipeline_refresh": "2026-04-13T17:22:02.729610+00:00",
+  "last_pipeline_refresh": "2026-04-13T17:52:04.521386+00:00",
   "export_connected": false,
   "data_source": "eightsleep"
 }
