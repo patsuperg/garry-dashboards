@@ -587,7 +587,6 @@
       const res = await fetch('journey-data.json');
       DATA = await res.json();
       renderInvestment();
-      renderStats();
       renderScores();
       renderChart();
       renderTimeline();
@@ -667,23 +666,6 @@
     function renderHeroWeeks() {
       const weeks = weeksBetween(DATA.profile.started, DATA.profile.lastUpdated);
       document.getElementById('hero-weeks').textContent = `${weeks} weeks in`;
-    }
-
-    function renderStats() {
-      const sessions = DATA.milestones.filter(m => m.type === 'session').length;
-      const breakthroughs = DATA.milestones.filter(m => m.type === 'breakthrough').length;
-      const insights = DATA.milestones.filter(m => m.type === 'insight').length;
-      const avgGain = DATA.goals.reduce((sum, g) => {
-        const latest = g.history[g.history.length - 1].score;
-        return sum + (latest - g.startScore);
-      }, 0) / DATA.goals.length;
-
-      document.getElementById('stats-bar').innerHTML = `
-        <div class="stat"><div class="num">${sessions}</div><div class="label">Sessions</div></div>
-        <div class="stat"><div class="num">${breakthroughs}</div><div class="label">Breakthroughs</div></div>
-        <div class="stat"><div class="num">${insights}</div><div class="label">Insights</div></div>
-        <div class="stat"><div class="num">+${avgGain.toFixed(1)}</div><div class="label">Avg Growth</div></div>
-      `;
     }
 
     function renderScores() {
