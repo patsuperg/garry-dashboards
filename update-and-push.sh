@@ -21,7 +21,7 @@ python3 generate.py 2>/dev/null
 python3 "$INFRA/health-dashboard-generator.py" 2>/dev/null
 
 # Step 4: Push ALL dashboard files + data directory
-git add index.html garry.html health.html command-centre.html system-map.html health-data.json data/ 2>/dev/null
+git add index.html garry.html health.html command-centre.html system-map.html health-data.json journey.html journey-data.json data/ 2>/dev/null
 
 # Only push if something changed
 if git diff --cached --quiet 2>/dev/null; then
