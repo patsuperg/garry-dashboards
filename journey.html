@@ -63,6 +63,69 @@
     .hero .meta span { display: flex; align-items: center; gap: 6px; }
     .hero .meta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
 
+    /* INVESTMENT COUNTERS */
+    .investment {
+      padding: 40px 24px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, transparent 0%, rgba(124, 109, 240, 0.04) 100%);
+    }
+    .investment .season-label {
+      text-align: center;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .investment .season-name {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+    .counters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .counter {
+      text-align: center;
+      padding: 20px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .counter .num {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .counter .num.purple { color: var(--accent); }
+    .counter .num.blue { color: var(--blue); }
+    .counter .num.gold { color: var(--gold); }
+    .counter .num.green { color: var(--green); }
+    .counter .num.rose { color: var(--rose); }
+    .counter .num.orange { color: var(--orange); }
+    .counter .unit {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 600px) {
+      .counters { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .counter { padding: 16px 8px; }
+      .counter .num { font-size: 1.8rem; }
+    }
+
     /* NAV */
     .nav {
       position: sticky;
@@ -456,6 +519,12 @@
     </div>
   </div>
 
+  <div class="investment">
+    <div class="season-label">What some might call</div>
+    <div class="season-name" id="season-name"></div>
+    <div class="counters" id="counters"></div>
+  </div>
+
   <nav class="nav">
     <a href="#progress" class="active">Progress</a>
     <a href="#storyboard">Timeline</a>
@@ -468,7 +537,6 @@
     <section class="section" id="progress">
       <h2 class="section-title">Where I Started vs. Where I Am</h2>
 
-      <div id="stats-bar" class="stats-bar"></div>
       <div id="scores-grid" class="scores-grid"></div>
 
       <div class="chart-container">
@@ -518,6 +586,7 @@
     async function init() {
       const res = await fetch('journey-data.json');
       DATA = await res.json();
+      renderInvestment();
       renderStats();
       renderScores();
       renderChart();
@@ -528,6 +597,62 @@
       setupFilters();
       setupNav();
       animateBars();
+    }
+
+    function animateCount(el, target, duration = 1500) {
+      const start = performance.now();
+      const suffix = el.dataset.suffix || '';
+      const isK = target >= 1000;
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * target);
+        if (isK && target >= 10000) {
+          el.textContent = (current / 1000).toFixed(current >= target ? 0 : 0) + 'k' + suffix;
+        } else {
+          el.textContent = current.toLocaleString() + suffix;
+        }
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    function renderInvestment() {
+      const inv = DATA.investment;
+      if (!inv) return;
+
+      document.getElementById('season-name').textContent = DATA.profile.seasonName || '';
+
+      const counters = [
+        { num: inv.wordsWritten, unit: 'Words Written', color: 'purple' },
+        { num: inv.hoursInvested, unit: 'Hours Invested', color: 'blue', suffix: '+' },
+        { num: inv.therapySessions, unit: 'Therapy Sessions', color: 'green' },
+        { num: inv.deepDives, unit: 'Deep Dives', color: 'gold', suffix: '+' },
+        { num: inv.journalEntries, unit: 'Journal Entries', color: 'orange', suffix: '+' },
+        { num: inv.videoHoursWatched, unit: 'Hours of Video', color: 'rose', suffix: '+' }
+      ];
+
+      const container = document.getElementById('counters');
+      container.innerHTML = counters.map((c, i) => `
+        <div class="counter">
+          <div class="num ${c.color}" data-target="${c.num}" data-suffix="${c.suffix || ''}" id="counter-${i}">0</div>
+          <div class="unit">${c.unit}</div>
+        </div>
+      `).join('');
+
+      // Animate counters on scroll into view
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            counters.forEach((c, i) => {
+              const el = document.getElementById('counter-' + i);
+              setTimeout(() => animateCount(el, c.num, 1800), i * 150);
+            });
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(container);
     }
 
     function formatDate(dateStr) {
