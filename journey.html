@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Journey</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --surface-2: #1a1a24;
+      --border: #2a2a3a;
+      --text: #e8e8f0;
+      --text-muted: #8888a0;
+      --accent: #7c6df0;
+      --accent-glow: rgba(124, 109, 240, 0.15);
+      --gold: #f0c050;
+      --green: #50d080;
+      --blue: #50a0f0;
+      --rose: #f07080;
+      --orange: #f0a050;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER */
+    .hero {
+      padding: 80px 24px 60px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(124, 109, 240, 0.08) 0%, transparent 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .hero .meta {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .hero .meta span { display: flex; align-items: center; gap: 6px; }
+    .hero .meta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 15, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 14px 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .nav a:hover, .nav a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* CONTAINER */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* SECTION */
+    .section {
+      padding: 60px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 32px;
+      letter-spacing: -0.02em;
+    }
+
+    /* SCORE CARDS */
+    .scores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .score-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .score-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+    }
+    .score-card .label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    .score-card .scores {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .score-card .from {
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      text-decoration-color: var(--rose);
+    }
+    .score-card .arrow { color: var(--text-muted); font-size: 1.2rem; }
+    .score-card .to {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--green);
+    }
+    .score-card .bar-track {
+      margin-top: 16px;
+      height: 6px;
+      background: var(--surface-2);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .score-card .bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--green));
+      transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0;
+    }
+
+    /* CHART */
+    .chart-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+    .chart-container canvas { width: 100% !important; max-height: 300px; }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+      animation: fadeInUp 0.4s ease-out both;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -32px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 3px solid var(--bg);
+      z-index: 1;
+    }
+    .timeline-dot.session { background: var(--blue); }
+    .timeline-dot.breakthrough { background: var(--gold); box-shadow: 0 0 12px rgba(240, 192, 80, 0.4); }
+    .timeline-dot.insight { background: var(--accent); }
+    .timeline-dot.practice { background: var(--green); }
+
+    .timeline-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      transition: border-color 0.2s;
+      cursor: pointer;
+    }
+    .timeline-card:hover { border-color: var(--accent); }
+    .timeline-card.has-story .timeline-title::after {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid var(--text-muted);
+      border-bottom: 2px solid var(--text-muted);
+      transform: rotate(-45deg);
+      margin-left: 10px;
+      transition: transform 0.3s;
+      vertical-align: middle;
+    }
+    .timeline-card.expanded .timeline-title::after {
+      transform: rotate(45deg);
+    }
+    .timeline-story {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.3s ease;
+      opacity: 0;
+      margin-top: 0;
+    }
+    .timeline-card.expanded .timeline-story {
+      max-height: 2000px;
+      opacity: 1;
+      margin-top: 16px;
+    }
+    .timeline-story-inner {
+      padding: 16px 20px;
+      background: var(--surface-2);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.8;
+      white-space: pre-wrap;
+    }
+    .timeline-date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    .timeline-type {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .timeline-type.session { background: rgba(80, 160, 240, 0.15); color: var(--blue); }
+    .timeline-type.breakthrough { background: rgba(240, 192, 80, 0.15); color: var(--gold); }
+    .timeline-type.insight { background: rgba(124, 109, 240, 0.15); color: var(--accent); }
+    .timeline-type.practice { background: rgba(80, 208, 128, 0.15); color: var(--green); }
+
+    .timeline-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .timeline-summary {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .timeline-quote {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: var(--accent-glow);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* QUOTES WALL */
+    .quotes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .quote-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      position: relative;
+    }
+    .quote-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      font-size: 3rem;
+      color: var(--accent);
+      opacity: 0.3;
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+    .quote-card p {
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      padding-top: 16px;
+    }
+    .quote-card .quote-date {
+      margin-top: 12px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-style: normal;
+    }
+
+    /* LEGEND */
+    .legend {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      padding: 24px 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 40px;
+    }
+    .stat { flex: 1; min-width: 120px; text-align: center; }
+    .stat .num {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat .label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer .updated { margin-bottom: 8px; }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* FILTER BUTTONS */
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .filter-btn {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .hero { padding: 60px 20px 40px; }
+      .hero h1 { font-size: 2rem; }
+      .hero .meta { flex-direction: column; align-items: center; gap: 8px; }
+      .scores-grid { grid-template-columns: 1fr 1fr; }
+      .stats-bar { gap: 16px; padding: 20px; }
+      .stat .num { font-size: 1.6rem; }
+      .container { padding: 0 16px; }
+      .timeline { padding-left: 28px; }
+      .timeline-card { padding: 16px; }
+      .quotes-grid { grid-template-columns: 1fr; }
+      .chart-container { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <h1>The Journey</h1>
+    <p class="subtitle">A living record of the work</p>
+    <div class="meta">
+      <span><span class="dot"></span> Started 20 Jan 2026</span>
+      <span>With Meg Bonnell</span>
+      <span id="hero-weeks"></span>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <a href="#progress" class="active">Progress</a>
+    <a href="#storyboard">Timeline</a>
+    <a href="#quotes">In His Words</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- PROGRESS SECTION -->
+    <section class="section" id="progress">
+      <h2 class="section-title">Where I Started vs. Where I Am</h2>
+
+      <div id="stats-bar" class="stats-bar"></div>
+      <div id="scores-grid" class="scores-grid"></div>
+
+      <div class="chart-container">
+        <canvas id="progressChart"></canvas>
+      </div>
+    </section>
+
+    <!-- TIMELINE SECTION -->
+    <section class="section" id="storyboard">
+      <h2 class="section-title">The Storyboard</h2>
+
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> Session</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div> Breakthrough</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div> Insight</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Practice</div>
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="session">Sessions</button>
+        <button class="filter-btn" data-filter="breakthrough">Breakthroughs</button>
+        <button class="filter-btn" data-filter="insight">Insights</button>
+        <button class="filter-btn" data-filter="practice">Practice</button>
+      </div>
+
+      <div id="timeline-container" class="timeline"></div>
+    </section>
+
+    <!-- QUOTES SECTION -->
+    <section class="section" id="quotes">
+      <h2 class="section-title">In His Words</h2>
+      <div id="quotes-grid" class="quotes-grid"></div>
+    </section>
+
+  </div>
+
+  <footer class="footer">
+    <div class="updated" id="last-updated"></div>
+    <div>This page updates autonomously as the work continues.</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script>
+    let DATA = null;
+
+    async function init() {
+      const res = await fetch('journey-data.json');
+      DATA = await res.json();
+      renderStats();
+      renderScores();
+      renderChart();
+      renderTimeline();
+      renderQuotes();
+      renderFooter();
+      renderHeroWeeks();
+      setupFilters();
+      setupNav();
+      animateBars();
+    }
+
+    function formatDate(dateStr) {
+      const d = new Date(dateStr + 'T00:00:00');
+      return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+
+    function weeksBetween(d1, d2) {
+      return Math.floor((new Date(d2) - new Date(d1)) / (7 * 24 * 60 * 60 * 1000));
+    }
+
+    function renderHeroWeeks() {
+      const weeks = weeksBetween(DATA.profile.started, DATA.profile.lastUpdated);
+      document.getElementById('hero-weeks').textContent = `${weeks} weeks in`;
+    }
+
+    function renderStats() {
+      const sessions = DATA.milestones.filter(m => m.type === 'session').length;
+      const breakthroughs = DATA.milestones.filter(m => m.type === 'breakthrough').length;
+      const insights = DATA.milestones.filter(m => m.type === 'insight').length;
+      const avgGain = DATA.goals.reduce((sum, g) => {
+        const latest = g.history[g.history.length - 1].score;
+        return sum + (latest - g.startScore);
+      }, 0) / DATA.goals.length;
+
+      document.getElementById('stats-bar').innerHTML = `
+        <div class="stat"><div class="num">${sessions}</div><div class="label">Sessions</div></div>
+        <div class="stat"><div class="num">${breakthroughs}</div><div class="label">Breakthroughs</div></div>
+        <div class="stat"><div class="num">${insights}</div><div class="label">Insights</div></div>
+        <div class="stat"><div class="num">+${avgGain.toFixed(1)}</div><div class="label">Avg Growth</div></div>
+      `;
+    }
+
+    function renderScores() {
+      const grid = document.getElementById('scores-grid');
+      grid.innerHTML = DATA.goals.map(g => {
+        const latest = g.history[g.history.length - 1];
+        const pct = (latest.score / 10) * 100;
+        return `
+          <div class="score-card">
+            <div class="label">${g.title}</div>
+            <div class="scores">
+              <span class="from">${g.startScore}/10</span>
+              <span class="arrow">&rarr;</span>
+              <span class="to">${latest.score}/10</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" data-width="${pct}"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function animateBars() {
+      setTimeout(() => {
+        document.querySelectorAll('.bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }, 300);
+    }
+
+    function renderChart() {
+      const ctx = document.getElementById('progressChart').getContext('2d');
+      const colors = ['#7c6df0', '#50a0f0', '#50d080', '#f0a050'];
+
+      // Collect all unique dates across all goals, sorted
+      const allDates = [...new Set(
+        DATA.goals.flatMap(g => g.history.map(h => h.date))
+      )].sort();
+      const labels = allDates.map(d => formatDate(d));
+
+      const datasets = DATA.goals.map((g, i) => {
+        const dateMap = Object.fromEntries(g.history.map(h => [h.date, h.score]));
+        return {
+          label: g.title,
+          data: allDates.map(d => dateMap[d] ?? null),
+          borderColor: colors[i],
+          backgroundColor: colors[i] + '20',
+          fill: false,
+          tension: 0.3,
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          borderWidth: 2,
+          spanGaps: true
+        };
+      });
+
+      new Chart(ctx, {
+        type: 'line',
+        data: { labels, datasets },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { color: '#8888a0', font: { size: 11 } }
+            },
+            y: {
+              min: 0, max: 10,
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { color: '#8888a0', stepSize: 2, font: { size: 11 } }
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#8888a0', padding: 16, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } }
+            },
+            tooltip: {
+              backgroundColor: '#1a1a24',
+              titleColor: '#e8e8f0',
+              bodyColor: '#8888a0',
+              borderColor: '#2a2a3a',
+              borderWidth: 1,
+              cornerRadius: 8,
+              padding: 12
+            }
+          }
+        }
+      });
+    }
+
+    function renderTimeline(filter = 'all') {
+      const container = document.getElementById('timeline-container');
+      const items = filter === 'all'
+        ? DATA.milestones
+        : DATA.milestones.filter(m => m.type === filter);
+
+      container.innerHTML = items.map((m, i) => `
+        <div class="timeline-item" style="animation-delay: ${i * 0.05}s" data-type="${m.type}">
+          <div class="timeline-dot ${m.type}"></div>
+          <div class="timeline-card ${m.story ? 'has-story' : ''}" onclick="this.classList.toggle('expanded')">
+            <div class="timeline-date">${formatDate(m.date)}</div>
+            <span class="timeline-type ${m.type}">${m.type}</span>
+            <div class="timeline-title">${m.title}</div>
+            <div class="timeline-summary">${m.summary}</div>
+            ${m.quote ? `<div class="timeline-quote">${m.quote}</div>` : ''}
+            ${m.story ? `<div class="timeline-story"><div class="timeline-story-inner">${m.story}</div></div>` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderQuotes() {
+      const quotes = DATA.milestones
+        .filter(m => m.quote)
+        .reverse();
+
+      document.getElementById('quotes-grid').innerHTML = quotes.map(m => `
+        <div class="quote-card">
+          <p>${m.quote}</p>
+          <div class="quote-date">${formatDate(m.date)} &mdash; ${m.title}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderFooter() {
+      document.getElementById('last-updated').textContent =
+        `Last updated ${formatDate(DATA.profile.lastUpdated)}`;
+    }
+
+    function setupFilters() {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderTimeline(btn.dataset.filter);
+        });
+      });
+    }
+
+    function setupNav() {
+      const links = document.querySelectorAll('.nav a');
+      const sectionMap = { 'progress': 'progress', 'storyboard': 'storyboard', 'quotes': 'quotes' };
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('active'));
+            const link = document.querySelector(`.nav a[href="#${entry.target.id}"]`);
+            if (link) link.classList.add('active');
+          }
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+      links.forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    }
+
+    init();
+  </script>
+</body>
+</html>
