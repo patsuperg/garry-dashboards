@@ -569,13 +569,14 @@ function toggleMusic() {
 
 
 
+
 <!-- ─────────── PHOTO GALLERY ─────────── -->
 <section id="gallery" style="max-width:100%; padding: 0;">
   <div style="max-width:720px; margin:0 auto; padding: 80px 24px 40px;">
     <div class="reveal">
       <div class="section-label">Six Years of Us</div>
       <h2>Every moment that <em>made us</em></h2>
-      <p>101 photos. August 2019 to now. Tap any photo to see it properly.</p>
+      <p>106 photos &amp; videos. August 2019 to now. Tap any to see it properly.</p>
     </div>
   </div>
 
@@ -583,7 +584,7 @@ function toggleMusic() {
   <div class="gallery-year reveal">
     <div class="gallery-year-label">2019</div>
     <div class="gallery-grid">
-      <div class="gallery-item" onclick="openLightbox('laura-photos/photo_000.jpg', 'Lux Bar, Chapel Street · The First Night')" style="background-image:url('laura-photos/photo_000.jpg')"><span class="gallery-date">Lux Bar, Chapel Street · The First Night</span></div>
+      <div class="gallery-item gallery-first" onclick="openLightbox('laura-photos/photo_000.jpg', 'Lux Bar, Chapel Street · The First Night')" style="background-image:url('laura-photos/photo_000.jpg')"><span class="gallery-date">Lux Bar, Chapel Street · The First Night</span></div>
       <div class="gallery-item" onclick="openLightbox('laura-photos/photo_001.jpg', 'Oct 19, 2019')" style="background-image:url('laura-photos/photo_001.jpg')"><span class="gallery-date">Oct 19, 2019</span></div>
       <div class="gallery-item" onclick="openLightbox('laura-photos/photo_002.jpg', 'Nov 17, 2019')" style="background-image:url('laura-photos/photo_002.jpg')"><span class="gallery-date">Nov 17, 2019</span></div>
     </div>
@@ -725,7 +726,12 @@ function toggleMusic() {
   <div class="gallery-year reveal">
     <div class="gallery-year-label">2026</div>
     <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox('laura-photos/photo_2026_3.jpg', 'Feb 2026')" style="background-image:url('laura-photos/photo_2026_3.jpg')"><span class="gallery-date">Feb 2026</span></div>
       <div class="gallery-item" onclick="openLightbox('laura-photos/photo_100.jpg', 'Feb 21, 2026')" style="background-image:url('laura-photos/photo_100.jpg')"><span class="gallery-date">Feb 21, 2026</span></div>
+      <div class="gallery-item" onclick="openLightbox('laura-photos/photo_2026_2.jpg', 'Mel Robbins Show · Mar 2026')" style="background-image:url('laura-photos/photo_2026_2.jpg')"><span class="gallery-date">Mel Robbins Show · Mar 2026</span></div>
+      <div class="gallery-item" onclick="openLightbox('laura-photos/photo_2026_1.jpg', 'Birthday Dinner · Apr 2026')" style="background-image:url('laura-photos/photo_2026_1.jpg')"><span class="gallery-date">Birthday Dinner · Apr 2026</span></div>
+      <div class="gallery-item" onclick="openLightboxVideo('laura-photos/video_2026_4.mp4', 'Apr 2026')" style="position:relative;"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;" src="laura-photos/video_2026_4.mp4"></video><span class="gallery-date">Apr 2026</span></div>
+      <div class="gallery-item" onclick="openLightboxVideo('laura-photos/video_2026_5.mp4', 'Apr 2026')" style="position:relative;"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;" src="laura-photos/video_2026_5.mp4"></video><span class="gallery-date">Apr 2026</span></div>
     </div>
   </div>
 
@@ -734,6 +740,7 @@ function toggleMusic() {
 <!-- LIGHTBOX -->
 <div id="lightbox" onclick="closeLightbox()" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:9999; align-items:center; justify-content:center; flex-direction:column; cursor:pointer;">
   <img id="lb-img" src="" style="max-width:92vw; max-height:88vh; object-fit:contain; border-radius:4px; box-shadow:0 0 80px rgba(0,0,0,0.8);">
+  <video id="lb-video" src="" autoplay loop muted playsinline style="display:none; max-width:92vw; max-height:88vh; object-fit:contain; border-radius:4px; box-shadow:0 0 80px rgba(0,0,0,0.8);"></video>
   <div id="lb-date" style="color:rgba(250,246,240,0.5); font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; margin-top:20px; font-family:'Lato',sans-serif;"></div>
   <div style="color:rgba(250,246,240,0.2); font-size:0.6rem; letter-spacing:0.2em; margin-top:8px; font-family:'Lato',sans-serif;">tap anywhere to close</div>
 </div>
@@ -741,12 +748,28 @@ function toggleMusic() {
 <script>
 function openLightbox(src, date) {
   const lb = document.getElementById('lightbox');
-  document.getElementById('lb-img').src = src;
+  const img = document.getElementById('lb-img');
+  const vid = document.getElementById('lb-video');
+  img.src = src; img.style.display = '';
+  vid.style.display = 'none'; vid.src = '';
+  document.getElementById('lb-date').textContent = date;
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function openLightboxVideo(src, date) {
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lb-img');
+  const vid = document.getElementById('lb-video');
+  img.style.display = 'none'; img.src = '';
+  vid.src = src; vid.style.display = '';
   document.getElementById('lb-date').textContent = date;
   lb.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
 function closeLightbox() {
+  const vid = document.getElementById('lb-video');
+  vid.pause(); vid.src = '';
+  document.getElementById('lb-img').src = '';
   document.getElementById('lightbox').style.display = 'none';
   document.body.style.overflow = '';
 }
@@ -811,7 +834,7 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox()
     <h2>Happy Birthday, <em>Princess</em></h2>
     <p>Thank you for being every little bit of beautiful — cute, impatient, not tech savvy — and for bringing into my life the perfect gift I'd always dreamt of, and making my life complete.</p>
     <p>Today is your birthday. Friday we celebrate it with some of your favourite humans. But every day feels like a birthday to me — because you are the best gift I could've ever hoped for.</p>
-    <p>I love you. Completely. Ridiculously. Always.</p>
+    <p>I love you, baby. And I'll be right here by your side — to protect you, love you & find your phone. Forever.</p>
     <div class="signature">
       Your Husband
       <span class="name">Patrick · April 15, 2026</span>
