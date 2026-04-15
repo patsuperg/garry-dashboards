@@ -5,18 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday, Laura ❤️</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@500;700&family=Nunito:wght@300;400;500&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --cream:   #FAF6F0;
-    --rose:    #B84F69;
-    --rose-lt: #E8839A;
-    --gold:    #C9963A;
-    --sage:    #7A9E7E;
-    --dark:    #2A1F1F;
-    --mid:     #5A3E3E;
+    --cream:     #FDF7F4;
+    --rose:      #C4A0D4;
+    --rose-lt:   #DFC8EC;
+    --gold:      #E8B86D;
+    --gold-lt:   #FFE4A0;
+    --peach:     #FFBF96;
+    --sky:       #9DD4E8;
+    --mint:      #98D4B0;
+    --sunshine:  #FFE066;
+    --lavender:  #C4A0D4;
+    --dark:      #3A2D4A;
+    --mid:       #6B5B7A;
   }
 
   html { scroll-behavior: smooth; }
@@ -24,7 +29,7 @@
   body {
     background: var(--cream);
     color: var(--dark);
-    font-family: 'Lato', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 300;
     line-height: 1.8;
     overflow-x: hidden;
@@ -50,7 +55,7 @@
     justify-content: center;
     text-align: center;
     padding: 60px 24px;
-    background: linear-gradient(160deg, #2A1520 0%, #4A2030 50%, #2A1520 100%);
+    background: linear-gradient(160deg, #1E183A 0%, #2D2055 50%, #1E183A 100%);
     position: relative;
     overflow: hidden;
   }
@@ -59,12 +64,12 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 60%, rgba(184,79,105,0.25) 0%, transparent 70%);
+    background: radial-gradient(ellipse at 50% 60%, rgba(196,160,212,0.3) 0%, transparent 70%);
     pointer-events: none;
   }
 
   .hero-label {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 300;
     letter-spacing: 0.35em;
     font-size: 0.7rem;
@@ -76,7 +81,7 @@
   }
 
   .hero-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2.8rem, 8vw, 6rem);
     color: #FAF0F3;
     line-height: 1.1;
@@ -86,8 +91,10 @@
   }
 
   .hero-title em {
-    font-style: italic;
-    color: var(--rose-lt);
+    font-family: 'Dancing Script', cursive;
+    font-style: normal;
+    font-weight: 700;
+    color: var(--peach);
   }
 
   .hero-sub {
@@ -159,7 +166,7 @@
   }
 
   h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: clamp(1.8rem, 5vw, 2.8rem);
     color: var(--dark);
     line-height: 1.2;
@@ -168,7 +175,7 @@
 
   h2 em {
     font-style: italic;
-    color: var(--rose);
+    color: var(--lavender);
   }
 
   p {
@@ -197,7 +204,7 @@
 
   .panel .section-label { color: var(--gold); }
   .panel h2 { color: var(--cream); }
-  .panel h2 em { color: var(--rose-lt); }
+  .panel h2 em { color: var(--peach); }
   .panel p { color: rgba(250,246,240,0.7); margin: 0 auto 20px; }
 
   /* ── TIMELINE ── */
@@ -235,7 +242,7 @@
   }
 
   .timeline-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 1.3rem;
     color: var(--dark);
     margin-bottom: 10px;
@@ -249,25 +256,25 @@
 
   /* ── QUOTE BLOCK ── */
   .quote {
-    border-left: 3px solid var(--rose);
+    border-left: 3px solid var(--lavender);
     padding: 24px 32px;
     margin: 48px 0;
-    background: rgba(184,79,105,0.04);
+    background: rgba(196,160,212,0.06);
     border-radius: 0 8px 8px 0;
   }
 
   .quote p {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 1.2rem;
-    color: var(--rose);
+    color: var(--lavender);
     margin: 0;
     line-height: 1.7;
   }
 
   /* ── HOLDING SPACE FEATURE ── */
   .hs-card {
-    background: linear-gradient(135deg, #1A2A1E 0%, #0F1F14 100%);
+    background: linear-gradient(135deg, #1E183A 0%, #2A2050 100%);
     border-radius: 16px;
     padding: 48px 40px;
     margin-top: 48px;
@@ -280,13 +287,13 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 0%, rgba(122,158,126,0.2) 0%, transparent 60%);
+    background: radial-gradient(ellipse at 50% 0%, rgba(157,212,232,0.2) 0%, transparent 60%);
   }
 
   .hs-card .day-count {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 4rem;
-    color: var(--sage);
+    color: var(--sky);
     line-height: 1;
     margin-bottom: 8px;
     position: relative;
@@ -296,13 +303,13 @@
     font-size: 0.7rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: rgba(122,158,126,0.6);
+    color: rgba(157,212,232,0.6);
     margin-bottom: 28px;
     position: relative;
   }
 
   .hs-card h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 1.5rem;
     color: #FAF6F0;
     margin-bottom: 16px;
@@ -319,7 +326,7 @@
 
   /* ── CLOSING ── */
   #closing {
-    background: linear-gradient(160deg, #2A1520 0%, #3D1A28 50%, #2A1520 100%);
+    background: linear-gradient(160deg, #1E183A 0%, #2D2055 50%, #1E183A 100%);
     padding: 120px 24px;
     text-align: center;
     position: relative;
@@ -330,20 +337,20 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 50%, rgba(184,79,105,0.15) 0%, transparent 70%);
+    background: radial-gradient(ellipse at 50% 50%, rgba(196,160,212,0.18) 0%, transparent 70%);
   }
 
   #closing .section-label { color: var(--gold); }
 
   #closing h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2rem, 6vw, 3.5rem);
     color: #FAF0F3;
     margin-bottom: 40px;
     position: relative;
   }
 
-  #closing h2 em { color: var(--rose-lt); }
+  #closing h2 em { color: var(--peach); }
 
   #closing p {
     color: rgba(250,246,240,0.7);
@@ -355,7 +362,7 @@
 
   .signature {
     margin-top: 60px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 1.4rem;
     color: var(--rose-lt);
@@ -366,7 +373,7 @@
     display: block;
     font-size: 1rem;
     font-style: normal;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Nunito', sans-serif;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: rgba(250,246,240,0.4);
@@ -403,7 +410,7 @@
     margin-bottom: 60px;
   }
   .gallery-year-label {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2rem, 6vw, 3.5rem);
     color: var(--dark);
     text-align: center;
@@ -446,7 +453,7 @@
     padding: 20px 10px 8px;
     opacity: 0;
     transition: opacity 0.3s ease;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Nunito', sans-serif;
   }
 
 </style>
@@ -457,12 +464,12 @@
 <audio id="audio-player" src="perfect-duet.mp3" loop preload="none"></audio>
 <div id="music-bar" style="position:fixed; bottom:24px; right:24px; z-index:8888; cursor:pointer;" onclick="toggleMusic()">
   <div style="display:flex; align-items:center; gap:12px; background:rgba(42,21,32,0.92); backdrop-filter:blur(16px); border:1px solid rgba(184,79,105,0.4); border-radius:50px; padding:14px 22px; box-shadow:0 4px 24px rgba(0,0,0,0.4);">
-    <div style="width:36px; height:36px; border-radius:50%; background:var(--rose); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+    <div style="width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--lavender),var(--peach)); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
       <span id="music-emoji" style="font-size:16px;">♪</span>
     </div>
     <div>
-      <div style="font-family:'Lato',sans-serif; font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(250,246,240,0.9); font-weight:400;" id="music-label">Tap here, cutie ♡</div>
-      <div style="font-family:'Lato',sans-serif; font-size:0.6rem; letter-spacing:0.1em; color:rgba(250,246,240,0.4); margin-top:2px;">Perfect — Ed Sheeran & Beyoncé</div>
+      <div style="font-family:'Nunito',sans-serif; font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(250,246,240,0.9); font-weight:400;" id="music-label">Tap here, cutie ♡</div>
+      <div style="font-family:'Nunito',sans-serif; font-size:0.6rem; letter-spacing:0.1em; color:rgba(250,246,240,0.4); margin-top:2px;">Perfect — Ed Sheeran & Beyoncé</div>
     </div>
   </div>
 </div>
@@ -487,7 +494,7 @@ function toggleMusic() {
 <!-- PETALS -->
 <script>
 (function() {
-  const colors = ['#E8839A','#C9963A','#FAD4DD','#B84F69'];
+  const colors = ['#FFD700','#E8B86D','#FFE4A0','#F4C430','#FFF0A0','#E8C840'];
   for (let i = 0; i < 18; i++) {
     const p = document.createElement('div');
     p.className = 'petal';
@@ -741,8 +748,8 @@ function toggleMusic() {
 <div id="lightbox" onclick="closeLightbox()" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:9999; align-items:center; justify-content:center; flex-direction:column; cursor:pointer;">
   <img id="lb-img" src="" style="max-width:92vw; max-height:88vh; object-fit:contain; border-radius:4px; box-shadow:0 0 80px rgba(0,0,0,0.8);">
   <video id="lb-video" src="" autoplay loop muted playsinline style="display:none; max-width:92vw; max-height:88vh; object-fit:contain; border-radius:4px; box-shadow:0 0 80px rgba(0,0,0,0.8);"></video>
-  <div id="lb-date" style="color:rgba(250,246,240,0.5); font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; margin-top:20px; font-family:'Lato',sans-serif;"></div>
-  <div style="color:rgba(250,246,240,0.2); font-size:0.6rem; letter-spacing:0.2em; margin-top:8px; font-family:'Lato',sans-serif;">tap anywhere to close</div>
+  <div id="lb-date" style="color:rgba(250,246,240,0.5); font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; margin-top:20px; font-family:'Nunito',sans-serif;"></div>
+  <div style="color:rgba(250,246,240,0.2); font-size:0.6rem; letter-spacing:0.2em; margin-top:8px; font-family:'Nunito',sans-serif;">tap anywhere to close</div>
 </div>
 
 <script>
