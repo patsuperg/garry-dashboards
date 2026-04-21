@@ -2,200 +2,341 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Patrick's Command Centre</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="refresh" content="300">
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+<title>Command Centre · Patrick</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0a0a0a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', system-ui, sans-serif; padding: 24px; }
-  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
-  h1 { font-size: 1.8rem; color: #fff; letter-spacing: -0.5px; }
-  .ts { color: #555; font-size: 0.8rem; }
-  h2 { font-size: 1.1rem; color: #fff; margin-bottom: 14px; font-weight: 600; }
-  .section { margin-bottom: 28px; }
-  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
-  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
-  .card { background: #141414; border: 1px solid #222; border-radius: 14px; padding: 20px; }
-  .card .num { font-size: 2.5rem; font-weight: 700; line-height: 1; }
-  .card .lbl { font-size: 0.8rem; color: #888; margin-top: 6px; }
-  .green { color: #00d4aa; }
-  .red { color: #e74c3c; }
-  .yellow { color: #f39c12; }
-  .white { color: #fff; }
-  .badge { display: inline-block; padding: 3px 10px; border-radius: 16px; font-size: 0.7rem; font-weight: 600; }
-  .badge-green { background: rgba(0,212,170,0.15); color: #00d4aa; }
-  .badge-red { background: rgba(231,76,60,0.15); color: #e74c3c; }
-  .badge-yellow { background: rgba(243,156,18,0.15); color: #f39c12; }
-  .badge-blue { background: rgba(52,152,219,0.15); color: #3498db; }
-  .progress-track { height: 32px; background: #1a1a1a; border-radius: 16px; overflow: hidden; position: relative; margin: 12px 0; }
-  .progress-fill { height: 100%; border-radius: 16px; display: flex; align-items: center; padding-left: 14px; font-weight: 700; font-size: 0.85rem; }
-  .prop-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-  .prop-table th { text-align: left; padding: 10px 12px; border-bottom: 2px solid #333; color: #888; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; }
-  .prop-table td { padding: 10px 12px; border-bottom: 1px solid #1a1a1a; }
-  .prop-table tr:hover { background: #1a1a1a; }
-  .decision { background: #1a1a1a; border-radius: 10px; padding: 14px 16px; margin-bottom: 8px; border-left: 3px solid; }
-  .decision-urgent { border-color: #e74c3c; }
-  .decision-normal { border-color: #f39c12; }
-  .decision .title { font-weight: 600; font-size: 0.9rem; color: #fff; }
-  .decision .desc { font-size: 0.8rem; color: #888; margin-top: 4px; }
-  .timeline-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #1a1a1a; }
-  .timeline-date { width: 80px; font-size: 0.8rem; color: #f39c12; font-weight: 600; flex-shrink: 0; }
-  .timeline-body { font-size: 0.85rem; color: #ccc; }
-  .timeline-urgent .timeline-date { color: #e74c3c; }
-  .hap-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
-  .hap-card { background: #1a1a1a; border-radius: 8px; padding: 12px 8px; text-align: center; }
-  .hap-card .name { font-size: 0.7rem; color: #888; }
-  .hap-card .amt { font-size: 0.95rem; font-weight: 700; margin-top: 4px; }
-  .hap-card .status { font-size: 0.65rem; margin-top: 4px; }
-  @media (max-width: 768px) {
-    .grid { grid-template-columns: repeat(2, 1fr); }
-    .grid-3 { grid-template-columns: 1fr; }
-    .hap-grid { grid-template-columns: repeat(3, 1fr); }
-    .prop-table { font-size: 0.75rem; }
-  }
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#050508;--surface:#0c0c10;--surface-2:#141418;--border:#18181c;--border-2:#24242a;
+  --text:#f0f0f2;--sub:#a0a0a8;--dim:#5a5a64;
+  --green:#34d399;--gold:#daa520;--red:#f87171;--orange:#fb923c;--blue:#60a5fa}
+body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 18px 40px}
+.wrap{max-width:560px;margin:0 auto}
+
+/* PHASE HERO */
+.phase-hero{background:linear-gradient(135deg,rgba(52,211,153,0.08),rgba(96,165,250,0.05));
+  border:1px solid rgba(52,211,153,0.15);border-radius:18px;padding:22px;margin:24px 0 20px}
+.phase-label{font-size:10px;letter-spacing:3px;color:var(--green);font-weight:700;text-transform:uppercase}
+.phase-title{font-size:22px;font-weight:800;margin-top:6px;letter-spacing:-0.5px}
+.phase-sub{font-size:12px;color:var(--sub);margin-top:8px;line-height:1.5}
+
+/* HERO GRID */
+.hero-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:20px}
+.hero-main{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;text-align:center}
+.hero-num{font-size:44px;font-weight:800;line-height:1;letter-spacing:-1.5px}
+.hero-num .cur{font-size:20px;color:var(--gold);vertical-align:top;margin-right:3px}
+.hero-goal{font-size:11px;color:var(--dim);margin-top:4px}
+.hero-bar{width:100%;height:6px;background:#151518;border-radius:3px;margin-top:14px;overflow:hidden}
+.hero-fill{height:100%;background:linear-gradient(90deg,var(--gold),#f0c040);border-radius:3px}
+.hero-pct{font-size:11px;color:var(--gold);margin-top:6px;font-weight:700}
+.hero-side{display:flex;flex-direction:column;gap:10px}
+.side-tile{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center;flex:1}
+.side-v{font-size:20px;font-weight:800}
+.side-l{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:1.2px;margin-top:3px}
+
+/* SECTIONS */
+.sec{margin-bottom:28px}
+.sec-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between}
+.sec-title .badge{font-size:10px;background:rgba(251,146,60,0.1);color:var(--orange);padding:2px 8px;border-radius:10px;letter-spacing:0.5px}
+
+/* DEAL CARD */
+.deal-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px}
+.deal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}
+.deal-addr{font-size:16px;font-weight:700}
+.deal-sub{font-size:11px;color:var(--sub);font-weight:400}
+.deal-badge{font-size:9px;font-weight:700;padding:4px 10px;border-radius:10px;letter-spacing:0.5px;white-space:nowrap}
+.deal-line{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:11px;margin-bottom:10px}
+.deal-k{color:var(--dim);font-size:9px;text-transform:uppercase;letter-spacing:0.8px}
+.deal-v{color:var(--text);font-weight:700;font-size:13px;margin-bottom:4px}
+.deal-stage{font-size:11px;color:var(--sub);padding:8px 0;border-top:1px solid var(--border)}
+.deal-lenders{font-size:11px;color:var(--sub);padding-top:6px}
+.deal-action{font-size:12px;color:var(--gold);font-weight:500;margin-top:8px}
+
+/* NEEDS */
+.need-card{display:flex;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:14px;margin-bottom:10px}
+.need-num{font-size:22px;font-weight:800;color:var(--orange);margin-right:14px;min-width:26px}
+.need-body{flex:1}
+.need-title{font-size:14px;font-weight:600;margin-bottom:4px}
+.need-ctx{font-size:11px;color:var(--sub);line-height:1.5}
+.empty-good{background:var(--surface);border:1px solid rgba(52,211,153,0.15);border-radius:12px;padding:18px;text-align:center;color:var(--green);font-size:13px}
+.empty{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;color:var(--dim);font-size:12px}
+
+/* WAITING */
+.wait-row{display:flex;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:6px;font-size:12px}
+.wait-item{color:var(--text);font-weight:500;flex:1}
+.wait-from{color:var(--dim);font-size:11px}
+
+/* PORTFOLIO */
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.prop-tile{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px}
+.prop-top{display:flex;justify-content:space-between;align-items:center}
+.prop-net{font-size:16px;font-weight:800;color:var(--green)}
+.prop-grade{font-size:10px;font-weight:800;padding:1px 6px;border-radius:4px;background:rgba(255,255,255,0.05)}
+.prop-addr{font-size:10px;color:var(--sub);margin-top:6px;line-height:1.3}
+.prop-retenant{font-size:9px;color:var(--orange);margin-top:4px}
+
+/* HAP */
+.hap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.hap-tile{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+.hap-name{font-size:10px;color:var(--dim)}
+.hap-amt{font-size:14px;font-weight:700;margin-top:4px}
+.hap-status{font-size:8px;margin-top:3px;text-transform:uppercase;letter-spacing:0.5px}
+
+/* THREADS */
+.thread-row{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:6px}
+.thread-name{font-size:13px;font-weight:600}
+.thread-status{font-size:11px;color:var(--sub);margin-top:4px;line-height:1.4}
+
+/* WINS */
+.win-row{font-size:11px;color:var(--sub);padding:6px 0;border-bottom:1px solid var(--border);line-height:1.4}
+
+/* FOOTER */
+.foot{text-align:center;font-size:10px;color:var(--dim);margin-top:24px;letter-spacing:0.8px;line-height:1.6}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin:0 4px;vertical-align:middle}
+@media(max-width:540px){
+  .hero-grid{grid-template-columns:1fr}
+  .props,.deal-line{grid-template-columns:repeat(2,1fr)}
+}
 </style>
 </head>
 <body>
-<div class="header">
-  <div>
-    <h1>Patrick's Command Centre</h1>
-    <span class="badge badge-green">ALL LEASED</span>
-    <span class="badge badge-yellow">0/6 HAP</span>
-  </div>
-  <div class="ts">Auto-updated: Apr 21, 2026 22:33 AEDT<br>All income in AUD (×1.58)</div>
+<div class="wrap">
+
+<!-- PHASE HERO -->
+<div class="phase-hero">
+  <div class="phase-label">Current Phase</div>
+  <div class="phase-title">ACQUISITION PHASE</div>
+  <div class="phase-sub">Mary Ave closing · 6/16 doors to next milestone · Bangkok in 8d</div>
 </div>
 
-<div class="grid">
-  <div class="card">
-    <div class="num green">A$7,797</div>
-    <div class="lbl">Net Monthly (AUD)</div>
+<!-- HERO NUMBERS -->
+<div class="hero-grid">
+  <div class="hero-main">
+    <div class="hero-num"><span class="cur">A$</span>6,883</div>
+    <div class="hero-goal">of A$20,000/mo · North Star</div>
+    <div class="hero-bar"><div class="hero-fill" style="width:34%"></div></div>
+    <div class="hero-pct">34% · Gap A$13,117/mo</div>
   </div>
-  <div class="card">
-      <div class="num" style="color:#f39c12;font-size:2.5rem;">8/12</div>
-      <div class="lbl">Spoons Score</div>
+  <div class="hero-side">
+    <div class="side-tile">
+      <div class="side-v" style="color:var(--green)">$180K</div>
+      <div class="side-l">Deployable USD</div>
     </div>
-  <div class="card">
-    <div class="num white">6</div>
-    <div class="lbl">Properties — All Leased</div>
-  </div>
-  <div class="card">
-    <div class="num yellow">39.0%</div>
-    <div class="lbl">→ A$20,000/mo target</div>
+    <div class="side-tile">
+      <div class="side-v" style="color:var(--blue)">8d</div>
+      <div class="side-l">Bangkok</div>
+    </div>
   </div>
 </div>
 
-<div class="card" style="margin-bottom:24px;">
-  <h2>A$20,000/mo Target</h2>
-  <div class="progress-track">
-    <div class="progress-fill" style="width:39.0%;background:linear-gradient(90deg,#00a882,#00d4aa);">A$7,797</div>
+<!-- NEEDS PATRICK -->
+<div class="sec">
+  <div class="sec-title">Needs Patrick <span class="badge">3 open</span></div>
+  
+<div class="need-card">
+  <div class="need-num">#1</div>
+  <div class="need-body">
+    <div class="need-title">S8 Pro community post (CruzCTRL) — 30-second paste</div>
+    <div class="need-ctx">Tap Tom Cruz's network for STL handyman refs. Draft ready to paste:
+```
+Looking for handyman / turnover vendor recommendations — STL 63136.
+</div>
   </div>
-  <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:#555;margin-top:4px;">
-    <span>A$0</span><span style="color:#f39c12;">A$11,850 next</span><span>A$20K</span>
+</div>
+<div class="need-card">
+  <div class="need-num">#2</div>
+  <div class="need-body">
+    <div class="need-title">Wilborn bid decision (once Heather itemizes)</div>
+    <div class="need-ctx">Current bid $3,490. Kickback sent demanding:
+- Line-by-line pricing for unlabelled $2,425 scope
+- Deposit capped at 50% (not 75%)
+- Budget c</div>
   </div>
-  <p style="color:#888;font-size:0.8rem;margin-top:12px;">Need 2-3 more doors at ~A$1,400/mo net each to hit next milestone.</p>
+</div>
+<div class="need-card">
+  <div class="need-num">#3</div>
+  <div class="need-body">
+    <div class="need-title">Thumbtack CAPTCHA solve — one-time</div>
+    <div class="need-ctx">Thumbtack account created (creds saved). First login triggered hCaptcha. Patrick solves once, Playwright saves session, all future posts are</div>
+  </div>
+</div>
 </div>
 
-<div class="section">
-  <h2>Portfolio — 6 Properties</h2>
-  <table class="prop-table">
-    <thead><tr><th>Property</th><th>Rent (USD)</th><th>Net (AUD)</th><th>PM</th><th>Status</th><th>Notes</th></tr></thead>
-    <tbody><tr>
-          <td>505 W 25th St, Lorain, OH 44052</td>
-          <td>$1,383 USD</td>
-          <td class="green">A$1,561</td>
-          <td>BTR</td>
-          <td><span class="badge badge-green">LEASED</span></td>
-          <td style="color:#e74c3c;font-size:0.8rem;">Ohio property, tax appeal due Mar 31</td>
-        </tr><tr>
-          <td>7596 Hazelcrest Dr Unit F, Hazelwood, MO 63042</td>
-          <td>$775 USD</td>
-          <td class="red">A$488</td>
-          <td>Avenue Residential</td>
-          <td><span class="badge badge-green">LEASED</span></td>
-          <td style="color:#888;font-size:0.8rem;">Lowest net — review expenses</td>
-        </tr><tr>
-          <td>132 Fenwick Dr, Saint Louis, MO 63135</td>
-          <td>$1,450 USD</td>
-          <td class="green">A$1,676</td>
-          <td>Avenue Residential</td>
-          <td><span class="badge badge-green">LEASED</span></td>
-          <td style="color:#e74c3c;font-size:0.8rem;">MSD sewer issue — Garry solving</td>
-        </tr><tr>
-          <td>5361 Wilborn Dr, St Louis, MO 63136</td>
-          <td>$1,400 USD</td>
-          <td class="green">A$1,539</td>
-          <td>Avenue Residential</td>
-          <td><span class="badge badge-green">LEASED</span></td>
-          <td style="color:#888;font-size:0.8rem;">Evernest negligence — part of $13.8K claim</td>
-        </tr><tr>
-          <td>516 Alcove Ave, Bellefontaine Neighbors, MO 63137</td>
-          <td>$1,490 USD</td>
-          <td class="green">A$1,588</td>
-          <td>Avenue Residential</td>
-          <td><span class="badge badge-green">LEASED</span></td>
-          <td style="color:#888;font-size:0.8rem;"></td>
-        </tr><tr>
-          <td>124 Kenilworth Ave, Painesville, OH 44077</td>
-          <td>$1,360 USD</td>
-          <td class="yellow">A$945</td>
-          <td>BTR</td>
-          <td><span class="badge badge-green">LEASED</span></td>
-          <td style="color:#e74c3c;font-size:0.8rem;">Ohio property, tax appeal due Mar 31</td>
-        </tr></tbody>
-  </table>
+<!-- ACTIVE DEALS -->
+<div class="sec">
+  <div class="sec-title">Active Deals <span class="badge" style="background:rgba(248,113,113,0.1);color:var(--red)">1 HOT</span></div>
+  
+<div class="deal-card">
+  <div class="deal-head">
+    <div class="deal-addr">Mary Ave <span class="deal-sub">· 2432 Mary Ave, STL 63136</span></div>
+    <div class="deal-badge" style="background:rgba(248,113,113,0.12);color:#f87171">HOT · UNDER CONTRACT</div>
+  </div>
+  <div class="deal-line">
+    <span class="deal-k">Price</span><span class="deal-v">$100,000</span>
+    <span class="deal-k">FMR</span><span class="deal-v">$1,806</span>
+    <span class="deal-k">Target rent</span><span class="deal-v">$1,571</span>
+    <span class="deal-k">CF (opt)</span><span class="deal-v">$840/mo</span>
+  </div>
+  <div class="deal-stage">Stage: <b>INSPECTION COMPLETE</b> · Close target: 2026-05-20 · T-29d</div>
+  <div class="deal-lenders">Brannon Harnish ✓ · Nick Worthing ⋯</div>
+  <div class="deal-action">Next: Await Nick pre-approval + NREIG quote</div>
+</div>
 </div>
 
-<div class="section">
-  <h2>HAP Status — April 2026</h2>
-  <div class="hap-grid"><div class="hap-card">
-          <div class="name">25th</div>
-          <div class="amt yellow">$1,383</div>
-          <div class="status yellow">PENDING</div>
-        </div><div class="hap-card">
-          <div class="name">Hazelcrest</div>
-          <div class="amt yellow">$775</div>
-          <div class="status yellow">PENDING</div>
-        </div><div class="hap-card">
-          <div class="name">Fenwick</div>
-          <div class="amt yellow">$1,450</div>
-          <div class="status yellow">PENDING</div>
-        </div><div class="hap-card">
-          <div class="name">Wilborn</div>
-          <div class="amt yellow">$1,400</div>
-          <div class="status yellow">PENDING</div>
-        </div><div class="hap-card">
-          <div class="name">Alcove</div>
-          <div class="amt yellow">$1,490</div>
-          <div class="status yellow">PENDING</div>
-        </div><div class="hap-card">
-          <div class="name">Kenilworth</div>
-          <div class="amt yellow">$1,360</div>
-          <div class="status yellow">PENDING</div>
-        </div></div>
-  <p style="color:#888;font-size:0.8rem;margin-top:12px;">0/6 received. Avenue transition — first payouts April 10.</p>
+<!-- ACTIVE THREADS -->
+<div class="sec">
+  <div class="sec-title">Active Workstreams · 4</div>
+  
+<div class="thread-row">
+  <div class="thread-name">🔥 Mary Ave Purchase</div>
+  <div class="thread-status">UNDER CONTRACT. Inspection TODAY Tue Apr 21 9am STL (~1am Melbourne). Report landing overnight.</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">🔥 Credit Building</div>
+  <div class="thread-status">All systems live Apr 21. Personal + business tracks running in parallel.</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">🔥 STL Deal Pipeline</div>
+  <div class="thread-status">Mary Ave under contract. Lindia hunting next 4BR. $160K ready to deploy.</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">🔥 STL Property Tax Appeals</div>
+  <div class="thread-status">Background agent running. Window open until Jul 14, 2026.</div>
+</div>
 </div>
 
-<div class="section">
-  <h2>Deals Pipeline</h2>
-  <div class="grid-3"><div class="card"><div style="color:#555;">No active deals</div></div></div>
+<!-- WAITING ON -->
+<div class="sec">
+  <div class="sec-title">Waiting On · 5 items</div>
+  
+<div class="wait-row">
+  <div class="wait-item">Mary Ave inspection result</div>
+  <div class="wait-from">DJ Canosa / Evergreen (Tue Apr 21 9am STL)</div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">Wilborn bid itemization</div>
+  <div class="wait-from">Heather Stone</div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">Earl lease term + ledger</div>
+  <div class="wait-from">Lindia Robins</div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">Ewell/Renfrew rental comps</div>
+  <div class="wait-from">Lindia Robins</div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">Mary Ave pre-approval letter</div>
+  <div class="wait-from">Nick Worthing</div>
+</div>
 </div>
 
-<div class="section">
-  <h2>Needs Patrick</h2>
-  <p style="color:#00d4aa;">All clear. Nothing needs you right now.</p>
+<!-- PORTFOLIO -->
+<div class="sec">
+  <div class="sec-title">Portfolio · 6 doors · re-tenant windows</div>
+  <div class="props">
+<div class="prop-tile">
+  <div class="prop-top">
+    <div class="prop-net">A$1,378</div>
+    <div class="prop-grade" style="color:#34d399">A</div>
+  </div>
+  <div class="prop-addr">505 W 25th St</div>
+  <div class="prop-retenant">+$9/mo at re-tenant · 14mo left</div>
+</div>
+<div class="prop-tile">
+  <div class="prop-top">
+    <div class="prop-net">A$431</div>
+    <div class="prop-grade" style="color:#f87171">SELL</div>
+  </div>
+  <div class="prop-addr">7596 Hazelcrest Dr Unit F</div>
+  <div class="prop-retenant" style="color:#f87171">SELLING</div>
+</div>
+<div class="prop-tile">
+  <div class="prop-top">
+    <div class="prop-net">A$1,480</div>
+    <div class="prop-grade" style="color:#fbbf24">B</div>
+  </div>
+  <div class="prop-addr">132 Fenwick Dr</div>
+  <div class="prop-retenant">+$121/mo at re-tenant · 4mo left</div>
+</div>
+<div class="prop-tile">
+  <div class="prop-top">
+    <div class="prop-net">A$1,359</div>
+    <div class="prop-grade" style="color:#fbbf24">B</div>
+  </div>
+  <div class="prop-addr">5361 Wilborn Dr</div>
+  <div class="prop-retenant">+$171/mo at re-tenant · 8mo left</div>
+</div>
+<div class="prop-tile">
+  <div class="prop-top">
+    <div class="prop-net">A$1,402</div>
+    <div class="prop-grade" style="color:#34d399">A</div>
+  </div>
+  <div class="prop-addr">516 Alcove Ave</div>
+  <div class="prop-retenant">+$81/mo at re-tenant · 10mo left</div>
+</div>
+<div class="prop-tile">
+  <div class="prop-top">
+    <div class="prop-net">A$834</div>
+    <div class="prop-grade" style="color:#fbbf24">B</div>
+  </div>
+  <div class="prop-addr">124 Kenilworth Ave</div>
+  <div class="prop-retenant">+$32/mo at re-tenant · 11mo left</div>
+</div></div>
 </div>
 
-<div class="section">
-  <h2>Deadlines — Next 14 Days</h2>
-  <p style="color:#555;">No upcoming deadlines.</p>
+<!-- HAP -->
+<div class="sec">
+  <div class="sec-title">HAP 2026-04 · 0/6</div>
+  <div class="hap-grid">
+<div class="hap-tile">
+  <div class="hap-name">St</div>
+  <div class="hap-amt" style="color:#fbbf24">$1383</div>
+  <div class="hap-status" style="color:#fbbf24">PENDING</div>
+</div>
+<div class="hap-tile">
+  <div class="hap-name">Dr</div>
+  <div class="hap-amt" style="color:#fbbf24">$775</div>
+  <div class="hap-status" style="color:#fbbf24">PENDING</div>
+</div>
+<div class="hap-tile">
+  <div class="hap-name">Dr</div>
+  <div class="hap-amt" style="color:#fbbf24">$1450</div>
+  <div class="hap-status" style="color:#fbbf24">PENDING</div>
+</div>
+<div class="hap-tile">
+  <div class="hap-name">Dr</div>
+  <div class="hap-amt" style="color:#fbbf24">$1400</div>
+  <div class="hap-status" style="color:#fbbf24">PENDING</div>
+</div>
+<div class="hap-tile">
+  <div class="hap-name">Ave</div>
+  <div class="hap-amt" style="color:#fbbf24">$1490</div>
+  <div class="hap-status" style="color:#fbbf24">PENDING</div>
+</div>
+<div class="hap-tile">
+  <div class="hap-name">Ave</div>
+  <div class="hap-amt" style="color:#fbbf24">$1360</div>
+  <div class="hap-status" style="color:#fbbf24">PENDING</div>
+</div></div>
 </div>
 
-<div class="section">
-  <h2>Garry Status</h2>
-  <p style="color:#555;">All quiet.</p>
+<!-- WINS -->
+<div class="sec">
+  <div class="sec-title">Recent Wins · 48h</div>
+  <div class="win-row">✓ Generated dashboards + copied data at 2026-04-21 22:01:10</div><div class="win-row">✓ Dashboards updated and pushed at Tue Apr 21 22:01:11 AEST 2026</div><div class="win-row">✓ Generated dashboards + copied data at 2026-04-21 22:31:11</div><div class="win-row">✓ Dashboards updated and pushed at Tue Apr 21 22:31:12 AEST 2026</div>
 </div>
 
-<div style="text-align:center;padding:16px;color:#333;font-size:0.7rem;">
-  Command Centre — Auto-updates every 30min — All AUD (×1.58)
+<!-- FOOTER -->
+<div class="foot">
+  Auto-updated Tue Apr 21 2026 · 10:38 PM · 1 USD = 1.3948 AUD<br>
+  <span class="dot" style="background:#34d399"></span>Data 0min old ·
+  <span style="color:#34d399">● FX live</span> ·
+  <span style="color:var(--dim)">Garry 24/7</span>
+</div>
+
 </div>
 </body>
 </html>
