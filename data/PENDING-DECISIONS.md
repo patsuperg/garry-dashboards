@@ -1,20 +1,11 @@
 # PENDING DECISIONS
-*Updated: 2026-04-22 13:30 AEST*
-
----
-
-## 🔥 URGENT — NEEDS PATRICK NOW
-
-### 1. Mary Ave — Sign DocuSign extension (DEADLINE: before Apr 23)
-Lindia sent amendment to extend offer deadline. Seller can't respond until Apr 23. Offer dies without your signature.
-- Check email from lrobins@evernest.co — sign the DocuSign link
-- **2 min. If you don't sign, the offer lapses.**
+*Updated: 2026-04-22 15:07 AEST — DocuSign extension SIGNED ✓ Apr 22*
 
 ---
 
 ## NEEDS PATRICK — WHEN FREE
 
-### 2. Wilborn — Thumbtack job post (3 min)
+### 1. Wilborn — Thumbtack job post (3 min)
 1. Go to thumbtack.com → login (patrick@spartansuppz.com / Sp@rtan12)
 2. "Get estimates" → Handyman → Location: 5361 Wilborn Ave, St Louis MO 63136
 3. Paste:
@@ -24,7 +15,7 @@ Scope: Full deep clean · Replace 4x window blinds · Lawn mowing + fence trim �
 Budget: Under $1,500. Timeline: ASAP / 10 days. Note: utilities not yet connected.
 ```
 
-### 3. Wilborn — S8 Pro/CruzCTRL community post (30 sec)
+### 2. Wilborn — S8 Pro/CruzCTRL community post (30 sec)
 Paste in Tom Cruz's S8 Pro community:
 ```
 Looking for handyman / turnover vendor recommendations — STL 63136.
@@ -33,7 +24,7 @@ Looking to build a repeat relationship — scaling into 63136/63137/63135.
 DM any vendors you've used and trust. — Patrick
 ```
 
-### 4. Wilborn utilities (~$500-800 deposits)
+### 3. Wilborn utilities (~$500-800 deposits)
 Heather getting cost estimates. She'll email. Reply "approved" and Garry handles everything.
 
 ---
