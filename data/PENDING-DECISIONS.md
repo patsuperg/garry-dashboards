@@ -1,88 +1,67 @@
 # PENDING DECISIONS
-*Updated: 2026-04-20 17:25 AEST — Session close*
+*Updated: 2026-04-22 11:52 AEST*
 
-## NEEDS PATRICK — ACTION ITEMS
+## 🔥 URGENT — NEEDS PATRICK NOW
 
-### 1. S8 Pro community post (CruzCTRL) — 30-second paste
-Tap Tom Cruz's network for STL handyman refs. Draft ready to paste:
+### 1. Mary Ave — Sign DocuSign extension (DEADLINE: before Apr 23)
+Lindia sent amendment to extend offer deadline. Seller can't respond until Apr 23. Offer dies without your signature.
+- Check email from lrobins@evernest.co — sign the DocuSign link
+- **2 min. If you don't sign, the offer lapses.**
+
+---
+
+## NEEDS PATRICK — WHEN BACK FROM TRAINING
+
+### 2. Wilborn — Thumbtack job post (3 min)
+Thumbtack is JS-heavy — can't automate. You post it, contractors bid.
+1. Go to thumbtack.com → login (patrick@spartansuppz.com / Sp@rtan12)
+2. "Get estimates" → Handyman → Location: 5361 Wilborn Ave, St Louis MO 63136
+3. Paste this:
+```
+Property turnover prep for vacant rental — needs to pass Section 8 occupancy inspection.
+Scope: Full deep clean · Replace 4x window blinds · Lawn mowing + fence trim · Install 8x smoke/CO detectors · Switch plate covers + light bulbs · Touch-up for HQS compliance
+Budget: Under $1,500. Timeline: ASAP / 10 days. Note: utilities not yet connected.
+```
+Budget: $1,500 · Timeline: 1-2 weeks
+
+### 3. Wilborn — S8 Pro/CruzCTRL community post (30 sec)
+Paste this in Tom Cruz's S8 Pro community:
 ```
 Looking for handyman / turnover vendor recommendations — STL 63136.
-Scope small (deep clean, blinds, lawn, smoke/CO detectors, switch
-covers, bulbs), budget $1,500, 10-day timeline. Empire Investing LLC.
+Scope small (deep clean, blinds, lawn, smoke/CO detectors, switch covers, bulbs), budget $1,500, 10-day timeline. Empire Investing LLC.
 Looking to build a repeat relationship — scaling into 63136/63137/63135.
 DM any vendors you've used and trust. — Patrick
 ```
 
-### 2. Wilborn bid decision (once Heather itemizes)
-Current bid $3,490. Kickback sent demanding:
-- Line-by-line pricing for unlabelled $2,425 scope
-- Deposit capped at 50% (not 75%)
-- Budget ceiling $1,500
-Patrick decides: approve revised bid OR walk to alternate contractor pool (7 other channels fired).
-
-### 3. Thumbtack CAPTCHA solve — one-time
-Thumbtack account created (creds saved). First login triggered hCaptcha. Patrick solves once, Playwright saves session, all future posts are autonomous.
-
-## WAITING ON OTHERS (I'll monitor Gmail)
-
-| Item | From | Why it matters |
-|---|---|---|
-| **Mary Ave inspection result** | DJ Canosa / Evergreen (Tue Apr 21 9am STL) | Proceed / renegotiate / walk on $100K deal |
-| Wilborn bid itemization | Heather Stone | Unblock rehab → re-rent → CF |
-| Earl lease term + ledger | Lindia Robins | Grade deal A/B/C — determines offer timing |
-| Ewell/Renfrew rental comps | Lindia Robins | Sleeper leads at $104.9K 4BR 63137 |
-| Mary Ave pre-approval letter | Nick Worthing | Backup to Brannon, $95–$115K band requested |
-| NREIG quotes | Meghan Harre / Kathy Garcia | Mary Ave + Earl + master policy scaling |
-| Do The Work quote | Justin Dario | Wilborn contractor alternate |
-| House Doctors quote | form submitted | Wilborn contractor alternate |
-| Ace Handyman quote | form submitted | Wilborn contractor alternate |
-| Evernest preferred vendor | Lindia Robins | Turnover crew for 63136 |
-| Brannon cash-out refi terms | Brannon Harnish | 4 free-and-clear — HOLD until ICG10 5.25% unlocks |
-| Hazelcrest countersign | Heather Stone | All Patrick docs done — brings $45K deployable |
-| STL assessed values agent | Background | Tax appeal filing Jul 14 deadline |
-
-## NEW TODAY — AUDIT LATER
-
-### SBR refund chase (UHF Pty Ltd / Barry Plant Geelong)
-- $3,414.50 potentially owed (First + Final SBR distributions)
-- Contact: Dale Patfield, geelongcommercial@barryplant.com.au
-- Dale's Apr 13 reply claims "full and final settlement" — Patrick wants CBA term deposit statement as ammo to chase further
-- Next action: pull CBA term deposit statement (Bank Guarantee G591979), then respond to Dale with documented reconciliation
-- Free money sitting there — worth 30 min of ops effort
-
-## PRE-APPROVED AUTONOMOUS AUTHORITY (no check-in needed)
-
-- All PM outreach (vetting, communication, written record)
-- Contractor quote requests + vetting
-- Email drafts + sends within approved strategy
-- External asks for docs, quotes, info
-- Infrastructure fixes, script builds
-- Memory/state file updates
-
-## NEVER AUTONOMOUS (always ping Patrick)
-
-- Any spending (even $1)
-- Signing contracts / LOIs
-- Irreversible financial actions
-- Committing to bids / purchases
-
+### 4. Wilborn — Utilities approval (once Heather replies with costs)
+Heather is getting cost estimates for: Ameren Electric, Spire Gas, American Water, MSD Sewer, Republic Trash.
+Expected: ~$500-800 in deposits. Patrick approves spend → Garry coordinates everything.
 
 ---
 
-## Added Apr 20, 2026
+## WAITING ON OTHERS (Garry monitors Gmail)
 
-### PENDING: empinv.com DNS Setup
-- Add MX records in Namecheap Advanced DNS for ImprovMX
-- MX1: @ -> mx1.improvmx.com, priority 10
-- MX2: @ -> mx2.improvmx.com, priority 20
-- Update SPF TXT record to: v=spf1 include:spf.improvmx.com ~all
-- Test forwarding: send email to pat@empinv.com, verify arrives in Gmail
-- Decide on SMTP for "Send as" (ImprovMX $9/mo vs Namecheap $1/mo vs forwarding-only)
+| Item | From | Status |
+|---|---|---|
+| **Mary Ave seller response** | Seller via Lindia | Due Apr 23 — accept/counter/reject |
+| **Wilborn contractor quotes** | Google search results | Background agent running → Telegram shortly |
+| **Darren (Dalou) quote** | Darren@daloupropertyservices.com | Quote request sent Apr 22, awaiting |
+| **Justin Dario quote** | Justin.Dario@gmail.com | Sent Apr 20, no response |
+| **Heather — utility costs** | heather@avenuestl.com | Email sent Apr 22 |
+| **Earl lease + ledger** | Lindia Robins | Needed to grade deal A/B/C |
+| **Ewell/Renfrew comps** | Lindia Robins | Sleeper leads $104.9K 4BR 63137 |
+| **NREIG quotes** | Meghan/Kathy Garcia | Mary Ave + master policy scaling |
+| **Hazelcrest countersign** | Heather Stone | Listing contract — Patrick docs all done |
+| **Brannon refi terms** | Brannon Harnish | HOLD until ICG10 5.25% unlocks (Oct) |
+| **STL assessed values** | Background agent | Tax appeal — deadline Jul 14 |
 
-### RESOLVED: Gmail/Drive cleanup
-- 56K+ emails trashed, 3,254 Drive dupes trashed, 64 Shopify cache folders trashed
-- Storage: 30.4 GB -> 18.8 GB
-- Autonomous gmail-organizer running every 30 min
+## PRE-APPROVED AUTONOMOUS AUTHORITY (no check-in needed)
+- All PM outreach, email sends, vetting, monitoring
+- Contractor quote REQUESTS (not access coordination)
+- Infrastructure fixes, script builds, memory updates
 
-### RESOLVED: iTerm drag-and-drop
-- Downloads sync + path translation set up and working
+## NEVER AUTONOMOUS
+- Any spending (even $1)
+- Signing contracts / DocuSigns
+- Arranging site access (until Patrick approves the contractor)
+- Irreversible financial actions
