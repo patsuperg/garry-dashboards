@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Holding Space — Laura's Launch Kit</title>
+  <style>
+    :root {
+      --bg: #fdf9ff;
+      --surface: #ffffff;
+      --primary: #7c5cbf;
+      --primary-light: #9b7dd4;
+      --primary-pale: #ede5ff;
+      --accent: #c4a7e7;
+      --soft: #f4eeff;
+      --text: #2d2035;
+      --text-light: #6b5a7e;
+      --border: #e8d9f8;
+      --success: #6ab189;
+      --shadow: 0 2px 16px rgba(124,92,191,0.10);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #7c5cbf 0%, #9b7dd4 50%, #c4a7e7 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 24px 48px;
+    }
+    .hero .eyebrow {
+      font-family: sans-serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: normal;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+    .hero p {
+      font-size: 17px;
+      opacity: 0.9;
+      max-width: 520px;
+      margin: 0 auto 28px;
+      font-family: sans-serif;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.20);
+      border: 1px solid rgba(255,255,255,0.40);
+      border-radius: 100px;
+      padding: 8px 22px;
+      font-family: sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+
+    .nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      overflow-x: auto;
+    }
+    .nav ul {
+      display: flex;
+      list-style: none;
+      gap: 0;
+      min-width: max-content;
+      margin: 0 auto;
+      max-width: 900px;
+    }
+    .nav li a {
+      display: block;
+      padding: 14px 20px;
+      text-decoration: none;
+      font-family: sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      color: var(--text-light);
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .nav li a:hover { color: var(--primary); border-bottom-color: var(--accent); }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    .section-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: normal;
+      color: var(--text);
+    }
+    .section-header p {
+      font-family: sans-serif;
+      font-size: 13px;
+      color: var(--text-light);
+      margin-top: 3px;
+    }
+
+    /* Email cards */
+    .email-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .email-header {
+      background: var(--soft);
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .email-day {
+      font-family: sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .email-title {
+      font-size: 17px;
+      color: var(--text);
+      margin-top: 4px;
+    }
+    .subject-options {
+      background: var(--primary-pale);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: sans-serif;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+    .subject-options strong {
+      display: block;
+      color: var(--primary);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .subject-options li {
+      margin-left: 16px;
+      margin-bottom: 3px;
+    }
+    .email-body {
+      padding: 28px 28px 24px;
+    }
+    .email-body p {
+      margin-bottom: 16px;
+      font-size: 16px;
+      color: var(--text);
+    }
+    .email-body p:last-child { margin-bottom: 0; }
+    .email-body .sign-off {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-light);
+    }
+    .highlight-box {
+      background: var(--soft);
+      border-left: 3px solid var(--primary);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+    .cta-box {
+      background: linear-gradient(135deg, var(--primary-pale), #f8f4ff);
+      border: 1.5px solid var(--accent);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      text-align: center;
+    }
+    .cta-box .cta-label {
+      font-family: sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .cta-box p {
+      margin-bottom: 12px !important;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 13px 30px;
+      border-radius: 100px;
+      font-family: sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
+    .upsell-special {
+      background: linear-gradient(135deg, #7c5cbf 0%, #9b7dd4 100%);
+      color: white;
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 24px 0;
+    }
+    .upsell-special .price {
+      font-size: 32px;
+      font-weight: bold;
+      font-family: sans-serif;
+    }
+    .upsell-special .price span {
+      font-size: 16px;
+      opacity: 0.8;
+      text-decoration: line-through;
+      margin-left: 10px;
+    }
+    .upsell-special p { color: rgba(255,255,255,0.9); margin-bottom: 10px; }
+    .upsell-special .includes { margin: 12px 0; }
+    .upsell-special .includes li {
+      font-family: sans-serif;
+      font-size: 14px;
+      padding: 3px 0;
+      color: rgba(255,255,255,0.9);
+      list-style: none;
+      padding-left: 20px;
+      position: relative;
+    }
+    .upsell-special .includes li::before { content: "✓"; position: absolute; left: 0; color: #c4a7e7; }
+    .upsell-btn {
+      display: inline-block;
+      background: white;
+      color: var(--primary);
+      padding: 13px 32px;
+      border-radius: 100px;
+      font-family: sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: 14px;
+    }
+
+    /* Landing page copy */
+    .copy-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+    .copy-block-header {
+      background: var(--soft);
+      padding: 14px 22px;
+      border-bottom: 1px solid var(--border);
+      font-family: sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .copy-block-body {
+      padding: 24px 24px;
+      font-size: 15px;
+    }
+    .copy-block-body h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    .copy-block-body p { margin-bottom: 14px; }
+    .copy-block-body ul { margin: 10px 0 14px 22px; }
+    .copy-block-body li { margin-bottom: 6px; }
+
+    /* Checklist */
+    .checklist {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .checklist-group {
+      border-bottom: 1px solid var(--border);
+    }
+    .checklist-group:last-child { border-bottom: none; }
+    .checklist-group-title {
+      background: var(--soft);
+      padding: 12px 22px;
+      font-family: sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 22px;
+      border-bottom: 1px solid var(--border);
+    }
+    .checklist-item:last-child { border-bottom: none; }
+    .check-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .check-text { font-size: 15px; }
+    .check-text strong { color: var(--text); }
+    .check-text .note {
+      display: block;
+      font-family: sans-serif;
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 3px;
+    }
+
+    /* ManyChat */
+    .mc-flow {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .mc-step {
+      border-bottom: 1px solid var(--border);
+      padding: 22px 26px;
+    }
+    .mc-step:last-child { border-bottom: none; }
+    .mc-step-label {
+      font-family: sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .mc-step h4 {
+      font-size: 17px;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    .mc-bubble {
+      background: var(--soft);
+      border-radius: 0 14px 14px 14px;
+      padding: 14px 18px;
+      font-size: 15px;
+      max-width: 500px;
+      margin: 10px 0;
+      border: 1px solid var(--border);
+    }
+    .mc-bubble.from-user {
+      background: var(--primary-pale);
+      border-radius: 14px 0 14px 14px;
+      margin-left: auto;
+      max-width: 360px;
+      text-align: right;
+      border-color: var(--accent);
+    }
+    .mc-bubble p { margin-bottom: 8px; font-size: 15px; }
+    .mc-bubble p:last-child { margin-bottom: 0; }
+    .mc-note {
+      font-family: sans-serif;
+      font-size: 12px;
+      color: var(--text-light);
+      background: #fffbf0;
+      border: 1px solid #f0e0b0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-top: 12px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-family: sans-serif;
+      font-size: 13px;
+      color: var(--text-light);
+      background: var(--soft);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      .email-header { flex-direction: column; }
+      .email-body { padding: 20px 18px; }
+      .copy-block-body { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="eyebrow">Holding Space — Complete Launch Kit</div>
+  <h1>Your 5-Day Challenge is Ready to Launch</h1>
+  <p>Everything you need — all 5 emails written in your voice, landing page copy, Skool setup, and ManyChat script. Just copy, paste, and go.</p>
+  <div class="badge">Built for Laura · April 2026</div>
+</div>
+
+<nav class="nav">
+  <ul>
+    <li><a href="#emails">📧 5 Challenge Emails</a></li>
+    <li><a href="#landing">🌸 Landing Page Copy</a></li>
+    <li><a href="#skool">✅ Skool Setup</a></li>
+    <li><a href="#manychat">💬 ManyChat Script</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════════ SECTION 1 ═══ -->
+<div id="emails">
+<div class="container">
+<div class="section">
+
+  <div class="section-header">
+    <div class="section-number">1</div>
+    <div>
+      <h2>Your 5-Day Challenge Emails</h2>
+      <p>Written in your voice. Copy each one straight into your email platform.</p>
+    </div>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="email-card">
+    <div class="email-header">
+      <div>
+        <div class="email-day">Day 1</div>
+        <div class="email-title">Welcome + What "Holding Space" Really Means</div>
+      </div>
+      <div class="subject-options">
+        <strong>Subject Line Options</strong>
+        <ul>
+          <li>Welcome — and the thing nobody tells you about being present</li>
+          <li>You're here. Here's what the next 5 days look like.</li>
+          <li>The skill that changed how I show up in every relationship</li>
+        </ul>
+      </div>
+    </div>
+    <div class="email-body">
+      <p>Hi [First Name],</p>
+      <p>Welcome to the Hold Space Challenge. I'm so glad you're here.</p>
+      <p>Before we dive in, I want to say something: the fact that you signed up for this already tells me something about you. You care — deeply — about the people in your life. You want to show up better for them. And you've probably spent a lot of time wondering why connection sometimes feels so hard, even with the people you love most.</p>
+      <p>Me too. That's actually how I found this work.</p>
+      <p>Over the next five days, I'm going to share the one skill that shifted everything for me and for the women I coach. It's called <em>holding space</em>.</p>
+
+      <div class="highlight-box">
+        Holding space isn't about having the right words. It's not about fixing anything. It's the art of being so fully present with someone that they feel safe enough to be completely themselves — without needing to perform, shrink, or be strong for you.
+      </div>
+
+      <p>It sounds simple. But most of us were never taught how to do it. We were taught to fix, to advise, to silver-lining, to make people feel better as quickly as possible. And all of that — as well-intentioned as it is — actually creates distance.</p>
+      <p>So for the next five days, we're going to slow that down. One small practice a day. Nothing overwhelming. Just you, a quiet moment, and a shift in how you're with people.</p>
+      <p>Today's practice is just this: <strong>notice.</strong></p>
+      <p>The next time someone shares something with you — a frustration, a worry, even something small — just notice your first impulse. Do you want to fix it? Minimise it? Relate it back to yourself? There's no wrong answer. Just noticing is the beginning.</p>
+      <p>Reply and tell me what you noticed, if you'd like. I genuinely read every reply.</p>
+      <p>Talk tomorrow.</p>
+      <div class="sign-off">
+        With warmth,<br />
+        Laura<br />
+        <em>Holding Space Coach</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="email-card">
+    <div class="email-header">
+      <div>
+        <div class="email-day">Day 2</div>
+        <div class="email-title">The Listening Shift — Why You Keep Getting Interrupted</div>
+      </div>
+      <div class="subject-options">
+        <strong>Subject Line Options</strong>
+        <ul>
+          <li>Why your good intentions are pushing people away</li>
+          <li>The moment I realised I wasn't really listening</li>
+          <li>Day 2: The one thing that blocks real connection</li>
+        </ul>
+      </div>
+    </div>
+    <div class="email-body">
+      <p>Hi [First Name],</p>
+      <p>Hope you had a moment to try yesterday's practice — even for just a minute.</p>
+      <p>Today I want to talk about something that nobody likes to admit.</p>
+      <p>Most of us aren't actually listening when we think we are. We're <em>waiting to respond.</em></p>
+      <p>There's a difference. Real listening — the kind that makes someone feel truly heard — requires something we don't usually give: space. Space for silence. Space for someone to find their words. Space for emotion to surface without us rushing in to smooth it over.</p>
+
+      <div class="highlight-box">
+        When someone says "I'm just so overwhelmed" and we immediately say "but look at everything you've achieved!" — we mean it kindly. But what we're actually communicating is: <em>your feelings are a problem I need to solve.</em>
+      </div>
+
+      <p>It doesn't feel good to be on the receiving end of that. Even when it comes from love.</p>
+      <p>The shift is small but powerful: instead of solving, try staying.</p>
+      <p>That might sound like: <em>"Tell me more."</em> Or: <em>"That sounds really hard."</em> Or sometimes — and this is the brave one — just silence. A nod. Staying present without filling the gap.</p>
+      <p><strong>Today's practice:</strong> In your next real conversation, count to three before you respond. Three seconds of space. See what comes up — for them, and for you.</p>
+      <p>It might feel uncomfortable. That discomfort? That's where the magic is.</p>
+      <p>See you tomorrow.</p>
+      <div class="sign-off">
+        With warmth,<br />
+        Laura
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="email-card">
+    <div class="email-header">
+      <div>
+        <div class="email-day">Day 3</div>
+        <div class="email-title">Your Body Knows — The Somatic Side of Connection</div>
+      </div>
+      <div class="subject-options">
+        <strong>Subject Line Options</strong>
+        <ul>
+          <li>Day 3: What your body does in hard conversations</li>
+          <li>Your nervous system is speaking — are you listening?</li>
+          <li>This is why you shut down (or blow up) under pressure</li>
+        </ul>
+      </div>
+    </div>
+    <div class="email-body">
+      <p>Hi [First Name],</p>
+      <p>How did yesterday go? Did those three seconds of silence feel like three years? (They do, at first. You're doing great.)</p>
+      <p>Today we're going somewhere a little deeper. We're going into the body.</p>
+      <p>Here's something I've noticed with almost every woman I've worked with: when a hard conversation happens, we leave our bodies. We go into our heads. We start managing — managing the other person, managing our own reaction, managing how we look.</p>
+      <p>And from that place, we can't actually hold space for anyone. Because we're not even present with ourselves.</p>
+
+      <div class="highlight-box">
+        You can't give someone else what you don't have. Presence starts inside you.
+      </div>
+
+      <p>When you feel tension rise in a conversation — a tight chest, a clenched jaw, the urge to either flee or fight — that's your nervous system doing its job. But it's also information. It's telling you something needs attention before you can really be with the other person.</p>
+      <p><strong>Today's practice:</strong> Before your next meaningful conversation, spend one minute with one hand on your heart. Take three slow breaths. Let your shoulders drop. Ask yourself: <em>am I actually here right now?</em></p>
+      <p>This isn't woo-woo. This is regulation. And a regulated nervous system is the foundation of every meaningful connection.</p>
+      <p>One more thing — I'd love to hear from you. How are you finding the challenge so far? Hit reply and tell me. This is a conversation, not a lecture.</p>
+      <p>Talk tomorrow.</p>
+      <div class="sign-off">
+        With warmth,<br />
+        Laura
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="email-card">
+    <div class="email-header">
+      <div>
+        <div class="email-day">Day 4</div>
+        <div class="email-title">The Hard One — Holding Space When You're Hurting Too</div>
+      </div>
+      <div class="subject-options">
+        <strong>Subject Line Options</strong>
+        <ul>
+          <li>Day 4: What to do when you're the one who needs support</li>
+          <li>You can't pour from an empty cup (and what to do about it)</li>
+          <li>The most important person to hold space for is you</li>
+        </ul>
+      </div>
+    </div>
+    <div class="email-body">
+      <p>Hi [First Name],</p>
+      <p>We need to talk about something that often gets left out of conversations about connection.</p>
+      <p>What happens when <em>you're</em> the one who's struggling — but someone still needs you to be present?</p>
+      <p>This comes up a lot for the women I work with. Partners, friends, kids, parents — they all need something from you. And there's a quiet, persistent pressure to be "together," to be strong, to hold space for others even when nobody's holding space for you.</p>
+      <p>And here's the honest truth: you can't do it well from that place. Not really.</p>
+
+      <div class="highlight-box">
+        Holding space for others without holding space for yourself first isn't generosity. It's self-abandonment.
+      </div>
+
+      <p>The most connected, caring women I know are also the women who've learned to ask for what they need. Who can say to a partner: <em>"I want to be there for you, and I also need ten minutes first."</em> Who can reach out to a friend and say: <em>"I'm not okay. Can you just listen for a minute?"</em></p>
+      <p>That's not weakness. That's the full practice.</p>
+      <p><strong>Today's practice:</strong> Ask yourself: who holds space for me? And if the answer is "nobody" or "I don't let them" — sit with that for a moment. What would it feel like to let someone in?</p>
+      <p>Tomorrow is Day 5 — our last day together. I have something special for you. Watch your inbox.</p>
+      <div class="sign-off">
+        With warmth,<br />
+        Laura
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="email-card">
+    <div class="email-header">
+      <div>
+        <div class="email-day">Day 5 — Final Day + Special Invitation</div>
+        <div class="email-title">You've Shown Up. Here's What's Next.</div>
+      </div>
+      <div class="subject-options">
+        <strong>Subject Line Options</strong>
+        <ul>
+          <li>Day 5: You did it — and I have something for you</li>
+          <li>The last day + an invitation (founding member price inside)</li>
+          <li>What these 5 days were really about — and what comes next</li>
+        </ul>
+      </div>
+    </div>
+    <div class="email-body">
+      <p>Hi [First Name],</p>
+      <p>You made it. Five days. And if you've been doing the practices — even imperfectly, even just once or twice — something has already shifted. I know it has, because that's what this work does.</p>
+      <p>Today I want to reflect on what we covered, because I think it's more than it looks like on the surface.</p>
+      <p>We talked about <strong>noticing your impulse to fix</strong> — and choosing presence instead. We talked about <strong>the power of three seconds of silence</strong>, and what opens up when you stop rushing to fill the space. We talked about <strong>coming back to your body</strong> before hard conversations. And we talked about the brave, often neglected practice of <strong>holding space for yourself</strong>.</p>
+      <p>These five practices? They're not tips. They're the foundation of everything. Every connected relationship. Every conversation that actually goes somewhere real. Every moment where someone feels genuinely seen by you — or you by them.</p>
+
+      <div class="highlight-box">
+        Holding space is a skill. And like any skill, it deepens with guidance, practice, and community.
+      </div>
+
+      <p>Which brings me to what I want to share with you today.</p>
+      <p>I've built a full course and community around this work — called <strong>Holding Space</strong> — and I'm opening the doors to founding members right now.</p>
+
+      <div class="upsell-special">
+        <div style="font-family:sans-serif; font-size:13px; letter-spacing:2px; text-transform:uppercase; opacity:0.85; margin-bottom:10px;">Founding Member Invitation</div>
+        <div class="price">$247 AUD <span>$397</span></div>
+        <p style="margin-top:10px;">One-time payment. Lifetime access. You're in before the price goes up — forever.</p>
+        <ul class="includes">
+          <li>The full Holding Space course — 6 modules, go at your own pace</li>
+          <li>A private community of women doing this work together</li>
+          <li>Weekly live calls with me (Q&A + coaching)</li>
+          <li>Bonus: the exact scripts I use in difficult conversations</li>
+          <li>Bonus: a guided self-compassion audio practice</li>
+          <li>Founding member badge + locked-in price forever</li>
+        </ul>
+        <a href="[YOUR SKOOL LINK]" class="upsell-btn">Join as a Founding Member →</a>
+      </div>
+
+      <p>This is for you if you've felt the shift this week. If you want to keep going — with more depth, more structure, and a community around you who gets it.</p>
+      <p>The founding member price is $247 AUD and it's only available to people from this challenge. Once I open to the public, it goes to $397. This window closes in 48 hours.</p>
+      <p>And if it's not right for you right now — that's completely okay. I'm genuinely grateful you spent these five days with me. You're already a better version of the person who signed up.</p>
+      <p>Whatever you decide — thank you. Really. This work only exists because of women like you who are brave enough to care this deeply about their relationships.</p>
+      <div class="cta-box">
+        <div class="cta-label">Ready to go deeper?</div>
+        <p>Join the Holding Space course + community as a founding member for $247 AUD. 48 hours only.</p>
+        <a href="[YOUR SKOOL LINK]" class="cta-btn">Yes, I'm in →</a>
+      </div>
+      <div class="sign-off">
+        With so much warmth,<br />
+        Laura<br /><br />
+        <em>P.S. — If you have questions before joining, just hit reply. I'm a real person who reads these. I'd love to hear from you.</em>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ SECTION 2 ═══ -->
+<div id="landing" style="background: var(--soft);">
+<div class="container">
+<div class="section">
+
+  <div class="section-header">
+    <div class="section-number">2</div>
+    <div>
+      <h2>Landing Page Copy</h2>
+      <p>Paste this into Skool, Carrd, or any page builder. Copy each block in order.</p>
+    </div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-header">Block 1 — Headline + Sub</div>
+    <div class="copy-block-body">
+      <h3>What if the people in your life finally felt truly understood by you — and you by them?</h3>
+      <p>Join the free 5-Day Hold Space Challenge and learn the one skill that transforms every relationship you have.</p>
+      <p><strong>[Button: Start the Free Challenge →]</strong></p>
+    </div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-header">Block 2 — Who It's For</div>
+    <div class="copy-block-body">
+      <p><strong>This challenge is for you if...</strong></p>
+      <ul>
+        <li>You care deeply about your relationships — but sometimes feel disconnected or stuck in the same patterns</li>
+        <li>You want to be more present, but conversations often feel reactive or rushed</li>
+        <li>You've tried harder, communicated more, but something still feels like it's missing</li>
+        <li>You're ready to go inward — not fix others, but grow yourself</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-header">Block 3 — What You'll Learn (5 Days)</div>
+    <div class="copy-block-body">
+      <p><strong>Over 5 days, delivered to your inbox:</strong></p>
+      <ul>
+        <li><strong>Day 1:</strong> What "holding space" actually means — and why it changes everything</li>
+        <li><strong>Day 2:</strong> The listening shift — how to stop waiting to respond and start actually hearing</li>
+        <li><strong>Day 3:</strong> Your body in connection — how to regulate before you relate</li>
+        <li><strong>Day 4:</strong> Holding space for yourself — the practice nobody talks about</li>
+        <li><strong>Day 5:</strong> Putting it all together — and what's next</li>
+      </ul>
+      <p style="margin-top:14px;">Each email includes a simple, practical exercise. Five minutes a day. Real shifts.</p>
+    </div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-header">Block 4 — About Laura</div>
+    <div class="copy-block-body">
+      <p><strong>Hi, I'm Laura.</strong></p>
+      <p>I'm a relationship and emotional intelligence coach, and I've spent years learning (and often the hard way) what actually creates deep, lasting connection — both as a coach and as a human being in my own relationships.</p>
+      <p>I created the Hold Space Challenge because I see the same thing over and over: smart, caring women who genuinely want to connect, but were never given the tools. This challenge is those tools — distilled into five days.</p>
+      <p>No fluff. No toxic positivity. Just real, practical ways to show up more fully for the people you love.</p>
+    </div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-header">Block 5 — Sign-Up Form Copy</div>
+    <div class="copy-block-body">
+      <h3>Join the free challenge — starts as soon as you sign up.</h3>
+      <p>Enter your name and email below and your Day 1 email will land in your inbox within minutes.</p>
+      <p><strong>[Name field]</strong><br />
+      <strong>[Email field]</strong><br />
+      <strong>[Button: Yes, send me Day 1 →]</strong></p>
+      <p style="font-size:13px; color:#888;">No spam, ever. Unsubscribe any time. Your details are safe.</p>
+    </div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-header">Block 6 — Social Proof / Testimonials (add yours here)</div>
+    <div class="copy-block-body">
+      <p><em>Placeholder — add 2-3 quotes from clients or challenge participants once you have them. Example format:</em></p>
+      <p style="background:var(--soft); padding:16px; border-radius:10px; font-style:italic;">"I've done a lot of personal development work, but this was different. After just Day 2 I had the most honest conversation with my partner we'd had in months."<br />— Sarah, 34</p>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ SECTION 3 ═══ -->
+<div id="skool">
+<div class="container">
+<div class="section">
+
+  <div class="section-header">
+    <div class="section-number">3</div>
+    <div>
+      <h2>Skool Setup Checklist</h2>
+      <p>20 steps. Do them in order. You can do this in an afternoon.</p>
+    </div>
+  </div>
+
+  <div class="checklist">
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">Part A — Create Your Community</div>
+      <div class="checklist-item">
+        <div class="check-num">1</div>
+        <div class="check-text">
+          <strong>Go to skool.com and click "Create Community"</strong>
+          <span class="note">Sign up or log in first. It's free to create, you only pay when you charge members.</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">2</div>
+        <div class="check-text">
+          <strong>Name it: "Holding Space"</strong>
+          <span class="note">URL will be skool.com/holding-space (or similar — grab it before someone else does)</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">3</div>
+        <div class="check-text">
+          <strong>Set the price: $247 AUD / one-time</strong>
+          <span class="note">Skool supports one-time payments. Connect your Stripe account when prompted.</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">4</div>
+        <div class="check-text">
+          <strong>Upload a cover image</strong>
+          <span class="note">Soft purple/lilac — something that feels calm and warm. Canva has great free templates. Size: 1600 x 900px.</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">5</div>
+        <div class="check-text">
+          <strong>Write your community description</strong>
+          <span class="note">Use this: "A course and community for women learning to hold space — for themselves and the people they love. Deepen your emotional intelligence. Transform your relationships."</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">Part B — Build Your Course</div>
+      <div class="checklist-item">
+        <div class="check-num">6</div>
+        <div class="check-text">
+          <strong>Click "Classroom" → "Add Course"</strong>
+          <span class="note">Name it "Holding Space" — same as the community.</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">7</div>
+        <div class="check-text">
+          <strong>Create 6 modules with these titles:</strong>
+          <span class="note">1. Welcome &amp; What Holding Space Really Means · 2. The Art of Real Listening · 3. Your Body in Connection · 4. Holding Space for Yourself · 5. Holding Space in Hard Conversations · 6. Living It — Putting It All Together</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">8</div>
+        <div class="check-text">
+          <strong>Add content to each module</strong>
+          <span class="note">Start with Module 1 only — record a 10-15 min Loom video, upload it to the lesson. You can build the rest as you go (founding members expect some content to be "coming soon").</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">9</div>
+        <div class="check-text">
+          <strong>Add a PDF or worksheet to at least 2 modules</strong>
+          <span class="note">Even a simple one-page reflection guide in Canva. Makes it feel complete and valuable.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">Part C — Set Up the Community</div>
+      <div class="checklist-item">
+        <div class="check-num">10</div>
+        <div class="check-text">
+          <strong>Create a "Welcome" post in the Community tab</strong>
+          <span class="note">Pin it. Tell people who they'll meet here, what to do first, and how to introduce themselves.</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">11</div>
+        <div class="check-text">
+          <strong>Create a pinned "Start Here" post</strong>
+          <span class="note">Links to Module 1, the community guidelines, and your weekly live call schedule.</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">12</div>
+        <div class="check-text">
+          <strong>Set up your weekly live call in the Events tab</strong>
+          <span class="note">Pick a recurring day/time. Even 30 minutes per week. Zoom link or Skool's built-in streaming.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">Part D — Connect Your Email List</div>
+      <div class="checklist-item">
+        <div class="check-num">13</div>
+        <div class="check-text">
+          <strong>Choose an email platform (if you don't have one)</strong>
+          <span class="note">Use MailerLite (free up to 1,000 subs) or ConvertKit. Both integrate with Skool or work standalone.</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">14</div>
+        <div class="check-text">
+          <strong>Create a new email sequence called "Hold Space Challenge"</strong>
+          <span class="note">Set it to send 1 email per day for 5 days, starting immediately on signup. Paste in the 5 emails from Section 1 above.</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">15</div>
+        <div class="check-text">
+          <strong>Create a sign-up form / landing page</strong>
+          <span class="note">Use your email platform's built-in landing page builder. Paste the copy from Section 2. You don't need a separate website.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">Part E — Go Live</div>
+      <div class="checklist-item">
+        <div class="check-num">16</div>
+        <div class="check-text">
+          <strong>Set your Skool community to "Public" or "Paid"</strong>
+          <span class="note">Don't leave it in Draft mode. Make it visible so people can find it when they click your link.</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">17</div>
+        <div class="check-text">
+          <strong>Test the full journey yourself</strong>
+          <span class="note">Sign up via your own landing page. Make sure you get the Day 1 email. Click the Day 5 Skool link. Make sure payment works.</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">18</div>
+        <div class="check-text">
+          <strong>Post your challenge link on Instagram Stories</strong>
+          <span class="note">Use the ManyChat script in Section 4. Or just drop the link directly. "DM me 'HOLD' to get Day 1" is the simplest version.</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">19</div>
+        <div class="check-text">
+          <strong>Tell 5 people personally</strong>
+          <span class="note">Text or DM 5 women you know who'd benefit. Personal invites convert at 3x the rate of public posts.</span>
+        </div>
+      </div>
+      <div class="checklist-item">
+        <div class="check-num">20</div>
+        <div class="check-text">
+          <strong>Post in your Stories daily during the challenge</strong>
+          <span class="note">"Day 2 of my free challenge just went out — it's about the thing nobody tells you about listening. DM me 'HOLD' to join." Keep enrollments open the full 5 days.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ SECTION 4 ═══ -->
+<div id="manychat" style="background: var(--soft);">
+<div class="container">
+<div class="section">
+
+  <div class="section-header">
+    <div class="section-number">4</div>
+    <div>
+      <h2>ManyChat Instagram Automation Script</h2>
+      <p>3-step flow. Someone comments a keyword → they get the link automatically, no manual work needed.</p>
+    </div>
+  </div>
+
+  <div class="mc-flow">
+
+    <div class="mc-step">
+      <div class="mc-step-label">Setup — Before You Start</div>
+      <h4>What you need</h4>
+      <p style="font-size:15px; margin-bottom:12px;">Go to manychat.com and connect your Instagram account. It's free for the basic plan which covers this automation. You'll create a "Flow" triggered by a keyword comment.</p>
+      <div class="mc-note">
+        <strong>Trigger keyword:</strong> Set ManyChat to fire this flow whenever someone comments <strong>HOLD</strong> on any of your posts or Reels. You can also add variations like "hold", "Hold Space", "yes please".<br /><br />
+        <strong>Your Instagram post caption to drive this:</strong><br />
+        "I'm running a FREE 5-day challenge — "Hold Space" — and it might be the most important thing you do for your relationships this month. Comment <strong>HOLD</strong> below and I'll send you Day 1 instantly. ✨"
+      </div>
+    </div>
+
+    <div class="mc-step">
+      <div class="mc-step-label">Step 1 — Instant DM (fires the second they comment)</div>
+      <h4>First DM — Warm Welcome</h4>
+      <div class="mc-bubble">
+        <p>Hey! 💜 So glad you're here.</p>
+        <p>I'm Laura — and the Hold Space Challenge is my favourite thing I've ever created. Over 5 days, I'm going to share the skill that changed how I show up in every relationship I have.</p>
+        <p>Here's your link to join — it's completely free and Day 1 hits your inbox right away:</p>
+        <p><strong>→ [YOUR LANDING PAGE LINK]</strong></p>
+        <p>Can't wait to do this with you. 🌸</p>
+      </div>
+      <div class="mc-note">In ManyChat, add a "Button" block under this message with the label "Get Day 1 →" that links to your landing page. Makes it one tap for them.</div>
+    </div>
+
+    <div class="mc-step">
+      <div class="mc-step-label">Step 2 — Follow-Up DM (24 hours later, if they haven't signed up)</div>
+      <h4>Nudge — In Case They Got Busy</h4>
+      <div class="mc-bubble">
+        <p>Hey, just checking in — did you get a chance to sign up for the challenge? 💜</p>
+        <p>Life gets busy (I totally get it!) — I just wanted to make sure the link didn't get lost.</p>
+        <p>Here it is again: <strong>[YOUR LANDING PAGE LINK]</strong></p>
+        <p>Day 1 is about something really important — the moment I realised I wasn't actually listening to the people I loved. I think you'll recognise yourself in it.</p>
+      </div>
+      <div class="mc-note">Set this to send only if they have NOT clicked the link in Step 1. ManyChat lets you set this condition under "Smart Delay + Condition."</div>
+    </div>
+
+    <div class="mc-step">
+      <div class="mc-step-label">Step 3 — Upsell DM (Day 6 — after they complete the challenge)</div>
+      <h4>Founding Member Invitation</h4>
+      <div class="mc-note" style="margin-bottom: 14px;">This one you send manually to your email list OR set as an automatic DM if you tag challenge completers in ManyChat. Your email sequence handles this better — see Day 5 email above. Use this DM as a backup or alongside the email.</div>
+      <div class="mc-bubble">
+        <p>Hey! I hope Day 5 landed for you — it's my favourite one to write. 💜</p>
+        <p>I have one more thing to share: I'm opening Holding Space (the full course + community) to founding members right now, at a special price that's only available to challenge participants.</p>
+        <p>If you've felt the shift this week and want to go deeper — this is for you: <strong>[YOUR SKOOL LINK]</strong></p>
+        <p>Founding member price: $247 AUD (goes to $397 after 48 hours). Just tap the link to see what's included. And if you have questions, just reply here — I'm a real person 😊</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div>
+</div>
+
+<div class="footer">
+  Built by Garry for Laura · Holding Space Launch Kit · April 2026<br />
+  <span style="opacity:0.6; font-size:12px;">Replace all [BRACKETED LINKS] with your real URLs before sending.</span>
+</div>
+
+</body>
+</html>
