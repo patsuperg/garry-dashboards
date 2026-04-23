@@ -4,204 +4,174 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta http-equiv="refresh" content="300">
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Health · Patrick</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#050508;--surface:#0c0c10;--border:#18181c;--text:#f0f0f2;--sub:#a0a0a8;--dim:#5a5a64;
-  --green:#34d399;--blue:#60a5fa;--orange:#fb923c;--red:#f87171}
-body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-  -webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 18px 40px}
-.wrap{max-width:560px;margin:0 auto}
-
-/* PHASE HERO */
-.phase-hero{background:linear-gradient(135deg,rgba(52,211,153,0.08),rgba(96,165,250,0.05));
-  border:1px solid rgba(52,211,153,0.15);border-radius:18px;padding:22px;margin:24px 0 20px}
-.phase-label{font-size:10px;letter-spacing:3px;color:#34d399;font-weight:700;text-transform:uppercase}
-.phase-title{font-size:22px;font-weight:800;margin-top:6px;letter-spacing:-0.5px}
-.phase-meta{display:flex;gap:20px;margin-top:12px}
-.phase-m{flex:1}
-.phase-m-v{font-size:18px;font-weight:800;color:var(--text)}
-.phase-m-l{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
-.phase-goal{font-size:12px;color:var(--sub);margin-top:10px}
-
-/* SPOONS */
-.spoons{text-align:center;padding:24px 0;border-bottom:1px solid var(--border);margin-bottom:24px}
-.spoons-l{font-size:10px;letter-spacing:3px;color:var(--dim);text-transform:uppercase}
-.spoons-n{font-size:72px;font-weight:900;color:#34d399;line-height:1;letter-spacing:-2px;margin:12px 0}
-.spoons-n span{font-size:24px;color:#444}
-.spoons-e{font-size:18px;letter-spacing:4px}
-.spoons-meta{font-size:11px;color:var(--dim);margin-top:8px}
-
-/* TREND */
-.trend-row{display:flex;align-items:flex-end;gap:6px;justify-content:center;margin-top:14px;height:46px}
-.trend-bar{width:14px;border-radius:3px 3px 0 0}
-
-/* VITALS */
-.vitals-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px}
-.vital{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center}
-.vital-l{font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-bottom:10px}
-.vital-v{font-size:32px;font-weight:800;line-height:1}
-.vital-v span{font-size:12px;color:var(--dim);font-weight:400;margin-left:4px}
-.vital-sub{font-size:10px;color:var(--dim);margin-top:6px}
-
-/* SECTIONS */
-.sec{margin-bottom:28px}
-.sec-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:12px}
-
-/* REHAB */
-.rehab{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
-.rehab-head{display:flex;justify-content:space-between;margin-bottom:10px;font-size:12px}
-.rehab-bar{height:8px;background:#151518;border-radius:4px;overflow:hidden}
-.rehab-fill{height:100%;background:var(--blue);border-radius:4px}
-
-/* BLOODS */
-.bloods{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center}
-.bloods-l{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
-.bloods-d{font-size:13px;font-weight:600;margin-top:2px}
-.bloods-days{font-size:22px;font-weight:800;color:var(--blue)}
-
-/* DOSING */
-.dose{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:8px}
-.dose-head{display:flex;justify-content:space-between;align-items:center}
-.dose-name{font-size:13px;font-weight:700}
-.dose-tag{font-size:9px;color:var(--dim);background:#111;padding:3px 8px;border-radius:10px;letter-spacing:0.5px}
-.dose-freq{font-size:11px;color:var(--sub);margin-top:4px}
-
-/* BODY SCAN */
-.body-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.body-tile{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
-.body-l{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:0.8px}
-.body-v{font-size:20px;font-weight:800;margin-top:4px}
-.body-v span{font-size:10px;color:var(--dim);font-weight:400;margin-left:2px}
-
-/* FOOT */
-.foot{text-align:center;font-size:10px;color:var(--dim);margin-top:24px;line-height:1.6;letter-spacing:0.6px}
-@media(max-width:540px){
-  .body-grid{grid-template-columns:repeat(2,1fr)}
-}
-</style>
 </head>
-<body>
-<div class="wrap">
+<body style="margin:0;padding:0;background:#050508;color:#f0f0f2;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 20px 40px">
+<div style="max-width:540px;margin:0 auto">
 
-<!-- PHASE HERO (phase-first, matches Patrick's request) -->
-<div class="phase-hero">
-  <div class="phase-label">Current Phase</div>
-  <div class="phase-title">BUILD PHASE</div>
-  <div class="phase-meta">
-    <div class="phase-m"><div class="phase-m-v">Wk 2</div><div class="phase-m-l">Protocol</div></div>
-    <div class="phase-m"><div class="phase-m-v">83d</div><div class="phase-m-l">Next bloods</div></div>
-    <div class="phase-m"><div class="phase-m-v">11/12</div><div class="phase-m-l">Elbow rehab</div></div>
-  </div>
-  <div class="phase-goal">→ Max volume, 3,200+ kcal, 280g protein</div>
-</div>
+<!-- HEADER -->
+<div style="text-align:center;padding:24px 0 8px;opacity:0.4;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#5a5a64">Health</div>
 
-<!-- SPOONS -->
-<div class="spoons">
-  <div class="spoons-l">Spoons Today · 2026-04-15</div>
-  <div class="spoons-n">8<span>/12</span></div>
-  <div class="spoons-e">🥄🥄🥄🥄🥄🥄🥄🥄····</div>
-  <div class="spoons-meta"><span style="color:#f87171">● EXPORT DOWN</span></div>
-  <div class="trend-row"><div class="trend-bar" style="height:20px;background:#fbbf24" title="2026-04-09 · 6/12"></div><div class="trend-bar" style="height:20px;background:#fbbf24" title="2026-04-10 · 6/12"></div><div class="trend-bar" style="height:13px;background:#f87171" title="2026-04-11 · 4/12"></div><div class="trend-bar" style="height:20px;background:#fbbf24" title="2026-04-12 · 6/12"></div><div class="trend-bar" style="height:20px;background:#fbbf24" title="2026-04-13 · 6/12"></div><div class="trend-bar" style="height:10px;background:#f87171" title="2026-04-14 · 3/12"></div><div class="trend-bar" style="height:4px;background:#f87171" title="2026-04-15 · 0/12"></div></div>
+<!-- SPOONS HERO -->
+<div style="text-align:center;padding:32px 0 24px">
+<div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#666;margin-bottom:16px">Spoons Today · 2026-04-15</div>
+<div style="font-size:96px;font-weight:900;color:#EF4444;line-height:1;letter-spacing:-3px">4<span style="font-size:32px;color:#444;font-weight:400">/12</span></div>
+<div style="margin:20px 0 8px"><span style="font-size:24px;letter-spacing:4px">🥄🥄🥄🥄🥄·······</span></div>
+<div style="font-size:12px;color:#555">Thursday, Apr 23 · <span style="color:#10B981">● FRESH</span></div>
 </div>
 
-<!-- VITALS -->
-<div class="vitals-grid">
-  <div class="vital">
-    <div class="vital-l">Sleep</div>
-    <div class="vital-v" style="color:#5a5a64">—<span>hrs</span></div>
-    <div class="vital-sub">Target 7.5+ </div>
-  </div>
-  <div class="vital">
-    <div class="vital-l">HRV</div>
-    <div class="vital-v" style="color:#f87171">12<span>ms</span></div>
-    <div class="vital-sub">Higher = better <span style="font-size:9px;color:#666">· recent</span></div>
-  </div>
-  <div class="vital">
-    <div class="vital-l">Resting HR</div>
-    <div class="vital-v" style="color:#f87171">97<span>bpm</span></div>
-    <div class="vital-sub">Lower = fitter <span style="font-size:9px;color:#666">· recent</span></div>
-  </div>
-  <div class="vital">
-    <div class="vital-l">Steps</div>
-    <div class="vital-v" style="color:#f87171">730</div>
-    <div class="vital-sub">Target 8,000+ </div>
-  </div>
-</div>
+<div style="height:1px;background:linear-gradient(90deg,transparent,#222,transparent);margin:0 20%"></div>
 
-<!-- NEXT BLOODS -->
-<div class="sec">
-  <div class="sec-title">Bloods</div>
-  <div class="bloods">
-    <div>
-      <div class="bloods-l">Next Panel</div>
-      <div class="bloods-d">Jul 15, 2026 · Aussie Scripts $45 TRT</div>
-    </div>
-    <div class="bloods-days">83d</div>
-  </div>
+<!-- WHOOP-STYLE METRICS -->
+<div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">Sleep</div>
+<div style="font-size:36px;font-weight:800;color:#F97316">6.6<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">hrs</span></div>
+<div style="font-size:11px;color:#555;margin-top:6px">83% of 8h target</div>
 </div>
-
-<!-- ELBOW REHAB -->
-<div class="sec">
-  <div class="sec-title">Elbow Rehab</div>
-  <div class="rehab">
-    <div class="rehab-head">
-      <span>Week 11 of 12</span>
-      <span style="color:var(--blue)">92% to pain-free pressing</span>
-    </div>
-    <div class="rehab-bar"><div class="rehab-fill" style="width:92%"></div></div>
-  </div>
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">HRV</div>
+<div style="font-size:36px;font-weight:800;color:#EF4444">16<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">ms</span></div>
+<div style="font-size:11px;color:#555;margin-top:6px">Higher = better</div>
 </div>
-
-<!-- BODY SCAN -->
-
-
-<!-- PROTOCOL DOSING -->
-<div class="sec">
-  <div class="sec-title">Protocol Dosing · Build</div>
-  
-<div class="dose">
-  <div class="dose-head">
-    <div class="dose-name" style="color:#34d399">Test E — 125mg IM</div>
-    <div class="dose-tag">FOUNDATION</div>
-  </div>
-  <div class="dose-freq">Mon + Thu</div>
 </div>
-<div class="dose">
-  <div class="dose-head">
-    <div class="dose-name" style="color:#34d399">Deca — 100mg IM</div>
-    <div class="dose-tag">WK 2</div>
-  </div>
-  <div class="dose-freq">Mon + Thu</div>
+<div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">Resting HR</div>
+<div style="font-size:36px;font-weight:800;color:#EF4444">90<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">bpm</span></div>
+<div style="font-size:11px;color:#555;margin-top:6px">Lower = fitter</div>
 </div>
-<div class="dose">
-  <div class="dose-head">
-    <div class="dose-name" style="color:#34d399">GH — 4iu SubQ</div>
-    <div class="dose-tag">RECOMP</div>
-  </div>
-  <div class="dose-freq">Daily</div>
-</div>
-<div class="dose">
-  <div class="dose-head">
-    <div class="dose-name" style="color:#34d399">Retatrutide — 2mg SubQ</div>
-    <div class="dose-tag">FAT CTRL</div>
-  </div>
-  <div class="dose-freq">Weekly</div>
-</div>
-<div class="dose">
-  <div class="dose-head">
-    <div class="dose-name" style="color:#60a5fa">BPC-157 / TB-500 — 250µg / 2.5mg</div>
-    <div class="dose-tag">ELBOW REHAB</div>
-  </div>
-  <div class="dose-freq">Daily / 2x wk</div>
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">Steps</div>
+<div style="font-size:36px;font-weight:800;color:#f0f0f2">730</div>
+<div style="font-size:11px;color:#555;margin-top:6px">Target: 8,000+</div>
 </div>
 </div>
 
-<!-- FOOT -->
-<div class="foot">
-  Auto-updated Thu Apr 23 · 2:36 PM<br>
-  Data: Apple Health + Eight Sleep + Evolt 360<br>
-  <em>The income is me.</em>
+<!-- RECOVERY + STRAIN -->
+<div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:20px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:10px">Recovery</div>
+<div style="font-size:32px;font-weight:800;color:#5a5a64">—</div>
+</div>
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:20px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:10px">Strain</div>
+<div style="font-size:32px;font-weight:800;color:#F97316">—<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">/21</span></div>
+</div>
+</div>
+
+<!-- YESTERDAY + WEEKLY -->
+<div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:16px;flex:1;min-width:140px">
+<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:10px">Yesterday</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Steps: <strong style="color:#e0e0e0">730</strong><br>
+Sleep: <strong style="color:#e0e0e0">6.6h</strong><br>
+HRV: <strong style="color:#e0e0e0">16ms</strong>
+</div>
+</div>
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:16px;flex:1;min-width:140px">
+<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:10px">Weekly Avg</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Steps: <strong style="color:#e0e0e0">10,604</strong><br>
+Sleep: <strong style="color:#e0e0e0">6.6h</strong><br>
+HRV: <strong style="color:#e0e0e0">23ms</strong> · RHR: <strong style="color:#e0e0e0">87bpm</strong>
+</div>
+</div>
+</div>
+
+
+
+<!-- PROTOCOL & DOSING -->
+<div style="margin-top:28px">
+<div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#5a5a64;font-weight:600;margin-bottom:12px">Protocol & Dosing — Lean Bulk Phase</div>
+
+<div style="background:#0c0c10;border:1px solid #1a2a1a;border-radius:14px;padding:18px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#34d399">Test E — 250mg/wk</div>
+<div style="font-size:11px;color:#666;background:#111;padding:3px 10px;border-radius:20px">FOUNDATION</div>
+</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Inject: <strong style="color:#e0e0e0">125mg Mon + 125mg Thu</strong> (stable blood levels)<br>
+Site: <strong style="color:#e0e0e0">Glute or quad IM</strong> · Rotate sides<br>
+Phase note: <span style="color:#34d399">Ideal for lean bulk — quality gains, manageable sides</span>
+</div>
+</div>
+
+<div style="background:#0c0c10;border:1px solid #1a2a1a;border-radius:14px;padding:18px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#34d399">Deca — 200mg/wk</div>
+<div style="font-size:11px;color:#34d399;background:#0a1a0a;padding:3px 10px;border-radius:20px">● STARTED APR 13</div>
+</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Inject: <strong style="color:#e0e0e0">100mg Mon + 100mg Thu</strong> — 0.5ml each, same syringe as Test E<br>
+Test:Deca ratio: <strong style="color:#34d399">1.25:1 ✓</strong> — above minimum, no Deca dick risk<br>
+Phase note: <span style="color:#34d399">Elbow synergy with BPC/TB-500. Joint lubrication + anabolic drive. Monitor prolactin if sides arise.</span>
+</div>
+</div>
+
+<div style="background:#0c0c10;border:1px solid #1a2a1a;border-radius:14px;padding:18px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#34d399">GH — 4iu/day</div>
+<div style="font-size:11px;color:#666;background:#111;padding:3px 10px;border-radius:20px">RECOVERY + RECOMP</div>
+</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Timing: <strong style="color:#e0e0e0">2iu fasted AM + 2iu post-workout</strong> (or 4iu AM if no PM session)<br>
+SubQ injection, rotate abdomen/thigh<br>
+Phase note: <span style="color:#34d399">4iu is the sweet spot for lean gains + recovery without joint sides</span>
+</div>
+</div>
+
+<div style="background:#0c0c10;border:1px solid #1a2a1a;border-radius:14px;padding:18px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#34d399">Retatrutide — 2,000mcg/wk</div>
+<div style="font-size:11px;color:#666;background:#111;padding:3px 10px;border-radius:20px">FAT CONTROL</div>
+</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Inject: <strong style="color:#e0e0e0">2mg once weekly SubQ</strong> (same day each week)<br>
+Mechanism: GLP-1 + GIP + Glucagon agonist — fat oxidation + appetite control<br>
+Phase note: <span style="color:#34d399">Critical during lean bulk — keeps fat gain in check while in surplus. Don't drop this.</span>
+</div>
+</div>
+
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:18px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#60a5fa">BPC-157 + TB-500 — Elbow Rehab</div>
+<div style="font-size:11px;color:#666;background:#111;padding:3px 10px;border-radius:20px">REPAIR</div>
+</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+BPC-157: <strong style="color:#e0e0e0">250mcg/day SubQ near elbow</strong><br>
+TB-500: <strong style="color:#e0e0e0">2.5mg 2x/wk SubQ</strong> (loading) → 2.5mg/wk maintenance<br>
+Phase note: <span style="color:#60a5fa">Continue until elbow is 100% — don't train heavy pressing until pain-free</span>
+</div>
+</div>
+
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:12px;padding:14px;margin-top:12px">
+<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:8px">Yesterday · 2026-04-15</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.8">
+HRV: <strong style="color:#e0e0e0">16ms</strong> &nbsp;·&nbsp; RHR: <strong style="color:#e0e0e0">—</strong> &nbsp;·&nbsp; Sleep: <strong style="color:#e0e0e0">6.6h</strong> &nbsp;·&nbsp; Steps: <strong style="color:#e0e0e0">730</strong>
+</div>
+</div>
+</div>
+
+
+<!-- PHASE RECOMMENDATION -->
+<div style="background:#0c0c10;border:1px solid #1a2a3a;border-radius:16px;padding:20px;margin-top:16px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#34d399;margin-bottom:8px">Build Phase</div>
+<div style="font-size:13px;color:#e0e0e0;margin-bottom:10px;line-height:1.6">Lean enough to push hard. Surplus + protein = growth.</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:2">Eat 3,200–3,500 kcal · 280g+ protein · Max volume</div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center;color:#333;font-size:11px;padding:32px 0 16px">
+Auto-updated Thu Apr 23 2026 · 2:51 PM<br>
+Data: Eight Sleep + Evolt 360 () + Apple Watch<br>
+The income is me.
 </div>
 
 </div>
