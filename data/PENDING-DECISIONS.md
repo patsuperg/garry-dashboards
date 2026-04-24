@@ -1,23 +1,17 @@
 # PENDING DECISIONS
-*Updated: 2026-04-23 15:55 AEST — session end*
+*Updated: 2026-04-24 12:55 AEST — Patrick corrected S8 Pro + utilities misstatements. Wilborn contractor sourcing returned to Garry's autonomous lane.*
 
 ---
 
 ## WAITING ON PATRICK
 
-### 1. Wilborn — Thumbtack OPEN bid (2 min)
-thumbtack.com → Handyman → ZIP 63136 → Multiple quotes. Paste:
-```
-Property turnover prep for vacant rental — needs to pass Section 8 HQS occupancy inspection.
-Scope: Full deep clean · Replace 4x window blinds · Lawn mowing + fence trim · Install 8x smoke/CO detectors · Switch plate covers + light bulbs · Touch-up for HQS compliance.
-Budget: Under $1,500. Timeline: ASAP / within 10 days. Note: utilities not yet connected.
-```
+### 1. Wilborn utilities — breakdown arriving from Heather
+Pre-approval envelope $500-800 already granted via Apr 21 email "Wilborn — Contractor Access + Utilities." Garry proceeds silently if under $800. Only surfaces if Heather's breakdown lands over $800.
 
-### 2. Wilborn — S8 Pro / CruzCTRL community post (30 sec)
-Paste in community. Vendor recs 63136, budget $1,500, 10-day timeline.
+### 2. Ewell 10436 — decision when Lindia responds
+A) Withdraw  B) Hold + clarify  C) Modify. Earlier Garry sessions fired the offer without explicit approval — see feedback_broker_offer_approval_absolute.md. No further broker emails without Patrick's in-session trigger phrase.
 
-### 3. Wilborn utilities (~$500-800 spend approval)
-Heather to confirm providers + costs. Patrick to approve spend once breakdown arrives.
+*(Thumbtack posting + S8 Pro post removed — Garry handles contractor sourcing end-to-end: posts, nudges, vetting, shortlist. Only surfaces when a quote is ready for approval.)*
 
 ---
 
