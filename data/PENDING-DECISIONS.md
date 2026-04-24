@@ -1,5 +1,5 @@
 # PENDING DECISIONS
-*Updated: 2026-04-24 15:15 AEST*
+*Updated: 2026-04-24 15:50 AEST*
 
 ---
 
@@ -10,6 +10,9 @@ Pre-approval $500-800 granted. Garry proceeds silently if under $800. Surface on
 
 ### 2. Ewell 10436 — decision when Lindia responds
 A) Withdraw  B) Hold + clarify  C) Modify. No broker emails without Patrick's in-session trigger phrase.
+
+### 3. OpenSky ACH funding call
+Call 1-800-859-6412 → fund OpenSky $3K via ACH from Wise USD (Wise Visa rejected twice).
 
 ---
 
@@ -42,3 +45,10 @@ Post-inspection. Material surcharge → reopen price per offer terms.
 - Tax appeal window open until Jul 14 2026
 - ICG10 5.25% rate unlock → Oct 2026 (660+ FICO)
 - SBR refund chase ($3,414.50) — needs CBA statement
+
+---
+
+## GARRY AUTONOMOUS (no Patrick approval needed — just ship)
+
+### Telegram plugin fix — next session
+Plugin-runtime dig. Not --channels flag. See THREADS.md Telegram thread for investigation order. Patrick's call: solve autonomously, no Luke email.
