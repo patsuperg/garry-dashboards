@@ -1,5 +1,5 @@
 # PENDING DECISIONS
-*Updated: 2026-04-24 15:50 AEST*
+*Updated: 2026-04-24 16:20 AEST*
 
 ---
 
@@ -14,6 +14,9 @@ A) Withdraw  B) Hold + clarify  C) Modify. No broker emails without Patrick's in
 ### 3. OpenSky ACH funding call
 Call 1-800-859-6412 → fund OpenSky $3K via ACH from Wise USD (Wise Visa rejected twice).
 
+### 4. Pat Health Project — December bloodwork
+Not on Mac or in Gmail. Check phone camera roll or iMedical portal. Drop into `~/Desktop/Pat Health Project/` then upload to claude.ai with the other 9 files.
+
 ---
 
 ## WAITING ON OTHERS
@@ -23,9 +26,6 @@ Patrick-approved. Watching for response.
 
 ### Lindia — Ewell counter response
 Our offer $82K esc $85K (Apr 23). Ceiling = $85K.
-
-### Lindia — Earl residency info + tenant lease
-Standing $95K esc $100K. Gated on lease ledger.
 
 ### Heather — Hazelcrest listing countersign
 Nudge Apr 23. FIRPTA with GW Carter.
