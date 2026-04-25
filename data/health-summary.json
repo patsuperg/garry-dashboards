@@ -1,10 +1,10 @@
 {
-  "updated": "2026-04-26T07:05:00.396930",
-  "source": "apple-health-ring",
-  "data_age_hours": 0,
-  "stale": false,
+  "updated": "2026-04-25T23:30:01.284976+00:00",
+  "source": "hae-autosync",
+  "data_age_hours": 45,
+  "stale": true,
   "today": {
-    "date": "2026-04-26",
+    "date": "2026-04-25",
     "sleep_total_hr": null,
     "sleep_deep_hr": null,
     "sleep_rem_hr": null,
@@ -19,28 +19,33 @@
     "stand_hours": null
   },
   "yesterday": {
-    "date": "2026-04-25",
+    "date": "2026-04-26",
     "sleep_total_hr": null,
     "sleep_deep_hr": null,
     "sleep_rem_hr": null,
+    "sleep_core_hr": null,
+    "sleep_awake_hr": null,
+    "sleep_in_bed_hr": null,
     "hrv_avg": null,
     "resting_hr": null,
+    "resp_rate_avg": null,
     "steps": null,
-    "active_energy_kcal": null
+    "active_energy_kcal": null,
+    "stand_hours": null
+  },
+  "spoons": {
+    "score": null,
+    "label": "STALE \u2014 no data",
+    "color": "gray",
+    "sleep_norm": null,
+    "hrv_norm": null,
+    "activity_norm": null
   },
   "weekly_avg": {
     "hrv": 23.8,
     "resting_hr": 86.8,
     "steps": 8264.0
   },
-  "recovery_pct": null,
-  "strain_score": null,
-  "spoons": {
-    "score": null,
-    "label": "from ring",
-    "color": "red"
-  },
-  "weight_kg": null,
-  "last_pipeline_refresh": "2026-04-25T23:19:16.525630+00:00",
+  "last_pipeline_refresh": "2026-04-25T23:48:43.772814+00:00",
   "export_connected": false
 }
