@@ -10,10 +10,11 @@ Last Updated: 2026-04-27 (Closed-Loop v1 + Utility Jobs Queued)
 
 | Item | Context | Status |
 |------|---------|--------|
-| **Overnight migrator runs 22:00 AEST tonight** | Generates @team_job wrappers for 77 LaunchAgents. Skips already-migrated + core agents. Wrappers land in dept folders (apollo/mercury/sentinel/garry_coo) per regex routing. Plists NOT flipped yet — that's a 2nd-pass safety step. | **AUTO-FIRES tonight** |
-| **Tomorrow morning: flip plists to wrappers** | After Chich reviews overnight migration output, run a 2nd-pass script that updates plists' ProgramArguments to invoke the wrappers via `python -m garry_worker.<dept>.<stem>`. Once flipped, agents start logging telemetry to team-state.db and Sentinel can audit them. | **CHICH — tomorrow morning** |
-| **3 utility jobs LIVE on Anthropic Computer Use** | Spire (gas), MO American Water, Ameren MO (electric) for 5361 Wilborn Ave / Empire Investing LLC. Engine swapped Gemini-Vision → Anthropic real CU per Patrick directive Apr 27 14:50 AEST. Worker re-fired all 3, escalations sent to Telegram (Use Computer Use / Skip). Headed Chromium pops on Patrick's Mac during fill. Submit step = second Telegram approval. | **PATRICK — tap each Telegram approval as they arrive** |
-| **Anthropic credit top-up — DECISION REVERSED** | Was recommending $50 auto-recharge. Patrick: "free always unless it makes money." Reversed — Gemini Flash free tier is the new default, Anthropic only for revenue-justified jobs. NO top-up needed. | **CLOSED** |
+| **Overnight migrator runs 22:00 AEST tonight** | Generates @team_job wrappers for 77 LaunchAgents. Skips already-migrated + core agents. Wrappers land in dept folders (apollo/mercury/sentinel/garry_coo) per regex routing. | **AUTO-FIRES 22:00 AEST** |
+| **Plist-flipper runs 06:00 AEST** | Auto-2nd-pass: rewrites plists to invoke wrappers, kickstarts agents, reverts on failure. **NO MANUAL CHICH REVIEW NEEDED** (per closed-loop principle). | **AUTO-FIRES 06:00 AEST** |
+| **3 utility jobs — Wilborn (PRE-APPROVED + retrying via Ollama)** | Spire / Water / Ameren for 5361 Wilborn under Empire Investing LLC. Patrick gave blanket pre-approval including final submit. First Gemini run failed (HTTP 429 — quota=0 on free tier). Switched to local Ollama llava:7b on Mini ($0, unlimited). `garry_coo.utility_retry_when_ready` agent polls Ollama; auto-retries jobs once model is pulled. | **AUTO — IN FLIGHT** |
+| **Gemini API key — quota issue** | Patrick's `~/AI/Claude/credentials/gemini-api-key.txt` returns HTTP 429 with "limit: 0". Free tier not active on the project. Workaround: Ollama covers it. **Followup:** Patrick generates a fresh key from https://aistudio.google.com/app/apikey when convenient (~60 sec) — paste back, Chich replaces the dud key. Not urgent. | **PATRICK — when convenient** |
+| **Anthropic credit top-up — DECISION REVERSED** | Per "free unless makes money." Default is Ollama → Gemini → Anthropic (revenue-justified only). No top-up needed. | **CLOSED** |
 
 Files:
 - `~/AI/Claude/team-charter.md` — authoritative 8-principle charter
