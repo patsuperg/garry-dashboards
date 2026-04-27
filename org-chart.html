@@ -3,496 +3,365 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Garry COO — Org Chart</title>
+<title>Garry — Org Chart</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
-    background: #080810;
+    background: #07070e;
     color: #e0e8ff;
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
     min-height: 100vh;
-    padding: 40px 24px 60px;
+    padding: 40px 24px 80px;
   }
-
   body::before {
     content: '';
     position: fixed;
     inset: 0;
     background-image:
-      linear-gradient(rgba(0,212,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,255,0.025) 1px, transparent 1px);
-    background-size: 48px 48px;
+      linear-gradient(rgba(0,212,255,0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.022) 1px, transparent 1px);
+    background-size: 52px 52px;
     pointer-events: none;
+    z-index: 0;
   }
-
   .wrapper {
     position: relative;
-    max-width: 1100px;
+    z-index: 1;
+    max-width: 1120px;
     margin: 0 auto;
   }
 
-  /* ── HEADER ── */
-  .header {
-    text-align: center;
-    margin-bottom: 52px;
-  }
-  .eyebrow {
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    color: #00d4ff;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  h1 {
-    font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: #fff;
-  }
+  /* ─── HEADER ─── */
+  .header { text-align: center; margin-bottom: 56px; }
+  .eyebrow { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; color: #00d4ff; text-transform: uppercase; margin-bottom: 10px; }
+  h1 { font-size: 2.1rem; font-weight: 800; letter-spacing: -0.03em; color: #fff; }
   h1 span { color: #00d4ff; }
-  .subtitle {
-    margin-top: 8px;
-    font-size: 0.85rem;
-    color: #4a5580;
-    letter-spacing: 0.04em;
+  .sub { margin-top: 8px; font-size: 0.82rem; color: #333d60; letter-spacing: 0.04em; }
+
+  /* ─── NODES ─── */
+  .node { border-radius: 13px; padding: 16px 22px; text-align: center; }
+  .node-lbl { font-size: 0.57rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 3px; }
+  .node-title { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em; }
+  .node-role { font-size: 0.7rem; margin-top: 3px; opacity: 0.55; }
+
+  .n-patrick { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.12); width: 210px; }
+  .n-patrick .node-lbl { color: #8892b0; }
+  .n-patrick .node-title { color: #fff; }
+
+  .n-garry { background: linear-gradient(135deg,rgba(0,212,255,0.11),rgba(0,212,255,0.03)); border: 1.5px solid rgba(0,212,255,0.32); width: 260px; box-shadow: 0 0 36px rgba(0,212,255,0.07); }
+  .n-garry .node-lbl { color: #00d4ff; }
+  .n-garry .node-title { color: #00d4ff; }
+
+  /* ─── CONNECTOR ─── */
+  .vline { width: 2px; background: linear-gradient(to bottom, rgba(0,212,255,0.25), rgba(0,212,255,0.08)); }
+  .vline-s { height: 26px; }
+  .vline-m { height: 36px; }
+
+  /* ─── HORIZONTAL BRIDGE ─── */
+  .bridge-wrap {
+    position: relative; height: 36px; width: 100%; max-width: 980px;
+    display: flex; justify-content: center;
+  }
+  .bridge-wrap::before {
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 2px; height: 18px; background: rgba(0,212,255,0.22);
+  }
+  .bridge-wrap::after {
+    content: ''; position: absolute; top: 18px;
+    left: 9%; right: 9%; height: 2px; background: rgba(0,212,255,0.12);
   }
 
-  /* ── CHART CONTAINER ── */
-  .chart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
+  /* ─── SPECIALIST CARDS ─── */
+  .team-row { display: flex; justify-content: center; gap: 14px; width: 100%; max-width: 980px; }
+  .spec-col { display: flex; flex-direction: column; align-items: center; flex: 1; }
+  .spec-drop { width: 2px; height: 18px; background: rgba(0,212,255,0.18); }
+  .spec-card {
+    border-radius: 12px; padding: 15px 12px 13px; text-align: center;
+    width: 100%; max-width: 182px;
   }
+  .spec-icon { font-size: 1.5rem; margin-bottom: 7px; }
+  .spec-code { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 2px; }
+  .spec-name { font-size: 0.9rem; font-weight: 800; }
+  .spec-handles { margin-top: 10px; display: flex; flex-direction: column; gap: 3px; text-align: left; }
+  .spec-h { font-size: 0.65rem; color: rgba(224,232,255,0.48); padding: 3px 6px; border-radius: 4px; background: rgba(255,255,255,0.025); border-left: 2px solid; }
 
-  /* ── NODES ── */
-  .node {
-    border-radius: 14px;
-    padding: 18px 24px;
-    text-align: center;
-    position: relative;
-  }
+  .s-atlas { background: linear-gradient(160deg,rgba(0,255,136,0.08),rgba(0,255,136,0.01)); border: 1.5px solid rgba(0,255,136,0.18); }
+  .s-atlas .spec-code,.s-atlas .spec-name { color: #00ff88; }
+  .s-atlas .spec-h { border-color: rgba(0,255,136,0.28); }
 
-  .node-label {
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .node-title {
-    font-size: 1.15rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-  }
-  .node-role {
-    font-size: 0.72rem;
-    margin-top: 3px;
-    opacity: 0.65;
-  }
+  .s-mercury { background: linear-gradient(160deg,rgba(0,212,255,0.08),rgba(0,212,255,0.01)); border: 1.5px solid rgba(0,212,255,0.18); }
+  .s-mercury .spec-code,.s-mercury .spec-name { color: #00d4ff; }
+  .s-mercury .spec-h { border-color: rgba(0,212,255,0.28); }
 
-  /* Patrick */
-  .node-patrick {
-    background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
-    border: 1.5px solid rgba(255,255,255,0.15);
-    width: 220px;
-  }
-  .node-patrick .node-label { color: #a0aec0; }
-  .node-patrick .node-title { color: #fff; }
+  .s-sentinel { background: linear-gradient(160deg,rgba(255,107,0,0.08),rgba(255,107,0,0.01)); border: 1.5px solid rgba(255,107,0,0.18); }
+  .s-sentinel .spec-code,.s-sentinel .spec-name { color: #ff9f40; }
+  .s-sentinel .spec-h { border-color: rgba(255,107,0,0.28); }
 
-  /* Garry */
-  .node-garry {
-    background: linear-gradient(135deg, rgba(0,212,255,0.12), rgba(0,212,255,0.04));
-    border: 1.5px solid rgba(0,212,255,0.35);
-    width: 260px;
-    box-shadow: 0 0 32px rgba(0,212,255,0.08);
-  }
-  .node-garry .node-label { color: #00d4ff; }
-  .node-garry .node-title { color: #00d4ff; }
-  .node-garry .node-role { color: #7eb8c8; }
+  .s-apollo { background: linear-gradient(160deg,rgba(139,92,246,0.1),rgba(139,92,246,0.01)); border: 1.5px solid rgba(139,92,246,0.22); }
+  .s-apollo .spec-code,.s-apollo .spec-name { color: #a78bfa; }
+  .s-apollo .spec-h { border-color: rgba(139,92,246,0.32); }
 
-  /* ── CONNECTOR ── */
-  .connector {
-    width: 2px;
-    background: linear-gradient(to bottom, rgba(0,212,255,0.3), rgba(0,212,255,0.1));
-    flex-shrink: 0;
-  }
-  .connector-short { height: 28px; }
-  .connector-med { height: 36px; }
+  .s-may { background: linear-gradient(160deg,rgba(255,210,0,0.08),rgba(255,210,0,0.01)); border: 1.5px solid rgba(255,210,0,0.2); }
+  .s-may .spec-code,.s-may .spec-name { color: #ffd700; }
+  .s-may .spec-h { border-color: rgba(255,210,0,0.3); }
 
-  /* ── DEPARTMENTS ROW ── */
-  .dept-row {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 16px;
-    width: 100%;
-  }
+  /* ─── DIVIDER ─── */
+  .divider { width: 100%; height: 1px; background: linear-gradient(90deg,transparent,rgba(0,212,255,0.07),transparent); margin: 44px 0 0; max-width: 980px; }
 
-  /* Horizontal bridge line above departments */
-  .h-bridge-wrap {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    height: 36px;
-  }
-  .h-bridge-wrap::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 18px;
-    background: rgba(0,212,255,0.25);
-  }
-  .h-bridge-wrap::after {
-    content: '';
-    position: absolute;
-    top: 18px;
-    /* spans from first dept to last dept - approx 78% of container */
-    left: 11%;
-    right: 11%;
-    height: 2px;
-    background: rgba(0,212,255,0.15);
-  }
+  /* ─── AUTOMATED PIPELINES ─── */
+  .pipelines-lbl { text-align: center; font-size: 0.57rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #232840; margin: 16px 0 18px; }
+  .pipelines-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 980px; width: 100%; }
+  .pipe-card { border-radius: 10px; padding: 14px 12px 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); }
+  .pipe-icon { font-size: 1.25rem; margin-bottom: 6px; }
+  .pipe-name { font-size: 0.7rem; font-weight: 700; color: rgba(224,232,255,0.75); margin-bottom: 2px; }
+  .pipe-count { font-size: 0.58rem; color: rgba(224,232,255,0.25); margin-bottom: 8px; }
+  .pipe-items { display: flex; flex-direction: column; gap: 3px; }
+  .pipe-item { font-size: 0.62rem; color: rgba(224,232,255,0.35); padding-left: 8px; border-left: 1.5px solid rgba(255,255,255,0.08); }
 
-  /* Department connector drops */
-  .dept-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-  }
-  .dept-drop {
-    width: 2px;
-    height: 18px;
-    background: rgba(0,212,255,0.2);
-    flex-shrink: 0;
-  }
-
-  /* Department card */
-  .dept-card {
-    border-radius: 12px;
-    padding: 16px 14px 14px;
-    text-align: center;
-    width: 100%;
-    max-width: 200px;
-  }
-  .dept-card .dept-icon {
-    font-size: 1.6rem;
-    margin-bottom: 8px;
-  }
-  .dept-card .dept-name {
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    margin-bottom: 2px;
-  }
-  .dept-card .dept-title {
-    font-size: 0.95rem;
-    font-weight: 800;
-  }
-  .dept-card .dept-handles {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    text-align: left;
-  }
-  .dept-card .handle-item {
-    font-size: 0.68rem;
-    color: rgba(224,232,255,0.55);
-    padding: 3px 6px;
-    border-radius: 4px;
-    background: rgba(255,255,255,0.03);
-    border-left: 2px solid;
-  }
-
-  /* Atlas - Finance */
-  .dept-atlas {
-    background: linear-gradient(160deg, rgba(0,255,136,0.08), rgba(0,255,136,0.02));
-    border: 1.5px solid rgba(0,255,136,0.2);
-  }
-  .dept-atlas .dept-name { color: #00ff88; }
-  .dept-atlas .dept-title { color: #00ff88; }
-  .dept-atlas .handle-item { border-color: rgba(0,255,136,0.3); }
-
-  /* Mercury - Ops */
-  .dept-mercury {
-    background: linear-gradient(160deg, rgba(0,212,255,0.08), rgba(0,212,255,0.02));
-    border: 1.5px solid rgba(0,212,255,0.2);
-  }
-  .dept-mercury .dept-name { color: #00d4ff; }
-  .dept-mercury .dept-title { color: #00d4ff; }
-  .dept-mercury .handle-item { border-color: rgba(0,212,255,0.3); }
-
-  /* Sentinel - Risk */
-  .dept-sentinel {
-    background: linear-gradient(160deg, rgba(255,107,0,0.08), rgba(255,107,0,0.02));
-    border: 1.5px solid rgba(255,107,0,0.2);
-  }
-  .dept-sentinel .dept-name { color: #ff9f40; }
-  .dept-sentinel .dept-title { color: #ff9f40; }
-  .dept-sentinel .handle-item { border-color: rgba(255,107,0,0.3); }
-
-  /* Apollo - Comms */
-  .dept-apollo {
-    background: linear-gradient(160deg, rgba(139,92,246,0.1), rgba(139,92,246,0.02));
-    border: 1.5px solid rgba(139,92,246,0.25);
-  }
-  .dept-apollo .dept-name { color: #a78bfa; }
-  .dept-apollo .dept-title { color: #a78bfa; }
-  .dept-apollo .handle-item { border-color: rgba(139,92,246,0.35); }
-
-  /* ── AUTOMATED SYSTEMS ── */
-  .systems-section {
-    width: 100%;
-    margin-top: 48px;
-  }
-  .systems-label {
-    text-align: center;
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #2a3560;
-    margin-bottom: 16px;
-  }
-  .systems-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-  }
-  .sys-card {
-    border-radius: 10px;
-    padding: 14px 12px;
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(255,255,255,0.07);
-  }
-  .sys-card .sys-icon { font-size: 1.3rem; margin-bottom: 6px; }
-  .sys-card .sys-name {
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: rgba(224,232,255,0.8);
-    margin-bottom: 8px;
-  }
-  .sys-card .sys-items {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-  .sys-card .sys-item {
-    font-size: 0.63rem;
-    color: rgba(224,232,255,0.38);
-    padding-left: 8px;
-    border-left: 1.5px solid rgba(255,255,255,0.1);
-  }
-
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0,212,255,0.08), transparent);
-    margin: 40px 0 0;
-  }
-
-  /* ── FOOTER ── */
-  .footer {
-    text-align: center;
-    margin-top: 40px;
-    font-size: 0.6rem;
-    color: #1e2540;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
+  /* ─── LAYOUT HELPERS ─── */
+  .chart { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .footer { text-align: center; margin-top: 48px; font-size: 0.58rem; color: #1a1f3a; letter-spacing: 0.1em; text-transform: uppercase; }
 </style>
 </head>
 <body>
 <div class="wrapper">
 
   <div class="header">
-    <div class="eyebrow">Empire Investing — COO Structure</div>
-    <h1>The <span>Garry</span> System</h1>
-    <div class="subtitle">Autonomous COO · 29 agents · 24/7 operations</div>
+    <div class="eyebrow">Empire Investing — COO System</div>
+    <h1>The <span>Garry</span> Org</h1>
+    <div class="sub">82 active agents · 24/7 · Updated 2026-04-27</div>
   </div>
 
   <div class="chart">
 
-    <!-- Patrick -->
-    <div class="node node-patrick">
-      <div class="node-label">Founder</div>
+    <!-- PATRICK -->
+    <div class="node n-patrick">
+      <div class="node-lbl">Founder</div>
       <div class="node-title">Patrick</div>
-      <div class="node-role">Vision · Approvals · Enjoys life</div>
+      <div class="node-role">Vision · Approves 4 things only</div>
     </div>
 
-    <div class="connector connector-short"></div>
+    <div class="vline vline-s"></div>
 
-    <!-- Garry -->
-    <div class="node node-garry">
-      <div class="node-label">Chief Operating Officer</div>
+    <!-- GARRY -->
+    <div class="node n-garry">
+      <div class="node-lbl">Chief Operating Officer</div>
       <div class="node-title">Garry</div>
-      <div class="node-role">Runs everything. Escalates 4 things only.</div>
+      <div class="node-role">Runs everything else autonomously</div>
     </div>
 
-    <!-- Bridge to departments -->
-    <div class="h-bridge-wrap" style="width:100%; max-width:900px;"></div>
+    <!-- Bridge to specialists -->
+    <div class="bridge-wrap" style="max-width:980px;"></div>
 
-    <!-- 4 Departments -->
-    <div class="dept-row" style="max-width:900px; width:100%;">
+    <!-- 5 SPECIALIST TEAM -->
+    <div class="team-row">
 
-      <div class="dept-col">
-        <div class="dept-drop"></div>
-        <div class="dept-card dept-atlas">
-          <div class="dept-icon">💰</div>
-          <div class="dept-name">Atlas</div>
-          <div class="dept-title">Finance</div>
-          <div class="dept-handles">
-            <div class="handle-item">HAP & rental income</div>
-            <div class="handle-item">Deal analysis & cap rates</div>
-            <div class="handle-item">Tax prep (GW Carter)</div>
-            <div class="handle-item">Capital deployment</div>
-            <div class="handle-item">FX tracking (AUD)</div>
+      <div class="spec-col">
+        <div class="spec-drop"></div>
+        <div class="spec-card s-atlas">
+          <div class="spec-icon">💰</div>
+          <div class="spec-code">Atlas</div>
+          <div class="spec-name">Finance</div>
+          <div class="spec-handles">
+            <div class="spec-h">HAP & rental income</div>
+            <div class="spec-h">Capital One / credit</div>
+            <div class="spec-h">Deal financials</div>
+            <div class="spec-h">Tax (GW Carter)</div>
+            <div class="spec-h">FX & ledger</div>
           </div>
         </div>
       </div>
 
-      <div class="dept-col">
-        <div class="dept-drop"></div>
-        <div class="dept-card dept-mercury">
-          <div class="dept-icon">⚙️</div>
-          <div class="dept-name">Mercury</div>
-          <div class="dept-title">Operations</div>
-          <div class="dept-handles">
-            <div class="handle-item">PM comms (Avenue / B2B)</div>
-            <div class="handle-item">Utility setups</div>
-            <div class="handle-item">Maintenance requests</div>
-            <div class="handle-item">Agent scheduling</div>
-            <div class="handle-item">System self-healing</div>
+      <div class="spec-col">
+        <div class="spec-drop"></div>
+        <div class="spec-card s-mercury">
+          <div class="spec-icon">⚙️</div>
+          <div class="spec-code">Mercury</div>
+          <div class="spec-name">Operations</div>
+          <div class="spec-handles">
+            <div class="spec-h">PM comms (Avenue/B2B)</div>
+            <div class="spec-h">Maintenance & repairs</div>
+            <div class="spec-h">Tenant ops</div>
+            <div class="spec-h">Self-healing systems</div>
+            <div class="spec-h">Utility coordination</div>
           </div>
         </div>
       </div>
 
-      <div class="dept-col">
-        <div class="dept-drop"></div>
-        <div class="dept-card dept-sentinel">
-          <div class="dept-icon">🛡</div>
-          <div class="dept-name">Sentinel</div>
-          <div class="dept-title">Risk & QA</div>
-          <div class="dept-handles">
-            <div class="handle-item">Roger QA (every 15 min)</div>
-            <div class="handle-item">Deadline tracking</div>
-            <div class="handle-item">Corrections log</div>
-            <div class="handle-item">Lease & legal flags</div>
-            <div class="handle-item">Eviction monitoring</div>
+      <div class="spec-col">
+        <div class="spec-drop"></div>
+        <div class="spec-card s-sentinel">
+          <div class="spec-icon">🛡</div>
+          <div class="spec-code">Sentinel</div>
+          <div class="spec-name">Risk & QA</div>
+          <div class="spec-handles">
+            <div class="spec-h">Roger QA (every 15 min)</div>
+            <div class="spec-h">Deadlines & flags</div>
+            <div class="spec-h">Lease & legal watch</div>
+            <div class="spec-h">Emergency escalation</div>
+            <div class="spec-h">Aging watchdog</div>
           </div>
         </div>
       </div>
 
-      <div class="dept-col">
-        <div class="dept-drop"></div>
-        <div class="dept-card dept-apollo">
-          <div class="dept-icon">📡</div>
-          <div class="dept-name">Apollo</div>
-          <div class="dept-title">Comms</div>
-          <div class="dept-handles">
-            <div class="handle-item">Email drafts & replies</div>
-            <div class="handle-item">Telegram alerts</div>
-            <div class="handle-item">PM & tenant liaison</div>
-            <div class="handle-item">Deal outreach gate</div>
-            <div class="handle-item">Laura / Jenny support</div>
+      <div class="spec-col">
+        <div class="spec-drop"></div>
+        <div class="spec-card s-apollo">
+          <div class="spec-icon">📡</div>
+          <div class="spec-code">Apollo</div>
+          <div class="spec-name">Comms</div>
+          <div class="spec-handles">
+            <div class="spec-h">Email routing & replies</div>
+            <div class="spec-h">Telegram alerts</div>
+            <div class="spec-h">PM & tenant liaison</div>
+            <div class="spec-h">ECM physical mail</div>
+            <div class="spec-h">Outreach gate</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-col">
+        <div class="spec-drop"></div>
+        <div class="spec-card s-may">
+          <div class="spec-icon">🤖</div>
+          <div class="spec-code">May</div>
+          <div class="spec-name">Task Worker</div>
+          <div class="spec-handles">
+            <div class="spec-h">Job queue execution</div>
+            <div class="spec-h">Utility form filling</div>
+            <div class="spec-h">Browser automation</div>
+            <div class="spec-h">Computer Use vision</div>
+            <div class="spec-h">Escalates to Patrick</div>
           </div>
         </div>
       </div>
 
     </div>
 
-    <!-- Divider -->
-    <div class="divider" style="max-width:900px;"></div>
+    <!-- DIVIDER -->
+    <div class="divider"></div>
 
-    <!-- Automated Systems -->
-    <div class="systems-section" style="max-width:900px;">
-      <div class="systems-label">Automated systems running 24/7</div>
-      <div class="systems-grid">
+    <!-- AUTOMATED PIPELINES -->
+    <div class="pipelines-lbl">Automated pipelines running 24/7</div>
 
-        <div class="sys-card">
-          <div class="sys-icon">❤️</div>
-          <div class="sys-name">Health Pipeline</div>
-          <div class="sys-items">
-            <div class="sys-item">Kogan Aura ring BLE</div>
-            <div class="sys-item">Apple Health export</div>
-            <div class="sys-item">Spoons scoring</div>
-            <div class="sys-item">Dashboard (GitHub Pages)</div>
-            <div class="sys-item">Stale-data gate</div>
-          </div>
-        </div>
+    <div class="pipelines-grid">
 
-        <div class="sys-card">
-          <div class="sys-icon">🏠</div>
-          <div class="sys-name">Deal Finder</div>
-          <div class="sys-items">
-            <div class="sys-item">STL + Ohio scanning</div>
-            <div class="sys-item">S8 rent ceiling check</div>
-            <div class="sys-item">Cap rate filter</div>
-            <div class="sys-item">Telegram deal alerts</div>
-            <div class="sys-item">Lindia pipeline</div>
-          </div>
-        </div>
-
-        <div class="sys-card">
-          <div class="sys-icon">📊</div>
-          <div class="sys-name">Dashboards</div>
-          <div class="sys-items">
-            <div class="sys-item">Command Centre</div>
-            <div class="sys-item">Health dashboard</div>
-            <div class="sys-item">Portfolio tracker</div>
-            <div class="sys-item">Pushes every 30 min</div>
-            <div class="sys-item">dashboards.empinv.com</div>
-          </div>
-        </div>
-
-        <div class="sys-card">
-          <div class="sys-icon">🧠</div>
-          <div class="sys-name">Memory & Context</div>
-          <div class="sys-items">
-            <div class="sys-item">CURRENT-STATE.md</div>
-            <div class="sys-item">THREADS.md</div>
-            <div class="sys-item">ChromaDB (481 chunks)</div>
-            <div class="sys-item">Auto-inject on load</div>
-            <div class="sys-item">Overnight evolution</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Jenny — separate entity -->
-    <div class="divider" style="max-width:900px;"></div>
-    <div class="systems-section" style="max-width:900px;">
-      <div class="systems-label">Separate system — Laura's team</div>
-      <div style="display:flex; justify-content:center;">
-        <div class="dept-card" style="background:linear-gradient(160deg,rgba(255,182,193,0.08),rgba(255,182,193,0.02));border:1.5px solid rgba(255,182,193,0.22);max-width:280px;width:100%;">
-          <div class="dept-icon">🌸</div>
-          <div class="dept-name" style="color:#ffb6c1;">Jenny</div>
-          <div class="dept-title" style="color:#ffb6c1;">Laura's AI Assistant</div>
-          <div class="dept-handles" style="margin-top:12px;">
-            <div class="handle-item" style="border-color:rgba(255,182,193,0.3);">Infinite encouragement</div>
-            <div class="handle-item" style="border-color:rgba(255,182,193,0.3);">Course delivery support</div>
-            <div class="handle-item" style="border-color:rgba(255,182,193,0.3);">Claude Sonnet + Ollama</div>
-            <div class="handle-item" style="border-color:rgba(255,182,193,0.3);">Shipped to Laura Apr 8</div>
-          </div>
+      <div class="pipe-card">
+        <div class="pipe-icon">❤️</div>
+        <div class="pipe-name">Health Hub</div>
+        <div class="pipe-count">11 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Kogan Aura BLE (10 min)</div>
+          <div class="pipe-item">Apple Health export (30 min)</div>
+          <div class="pipe-item">Spoons scoring</div>
+          <div class="pipe-item">Morning & evening nudge</div>
+          <div class="pipe-item">Stale-data kill switch</div>
+          <div class="pipe-item">OpenClaw health inject</div>
         </div>
       </div>
+
+      <div class="pipe-card">
+        <div class="pipe-icon">🏠</div>
+        <div class="pipe-name">Deal Engine</div>
+        <div class="pipe-count">6 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Deal Finder v4</div>
+          <div class="pipe-item">Scout + Scout Runner</div>
+          <div class="pipe-item">Deal Monitor (5 min)</div>
+          <div class="pipe-item">PM Tracker</div>
+          <div class="pipe-item">Income stmt requester</div>
+          <div class="pipe-item">PM nudge watcher</div>
+        </div>
+      </div>
+
+      <div class="pipe-card">
+        <div class="pipe-icon">📊</div>
+        <div class="pipe-name">Dashboards</div>
+        <div class="pipe-count">5 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Command Centre (30 min)</div>
+          <div class="pipe-item">KPI dashboard (15 min)</div>
+          <div class="pipe-item">Cashflow dashboard</div>
+          <div class="pipe-item">Dashboard watchdog (5 min)</div>
+          <div class="pipe-item">dashboards.empinv.com</div>
+        </div>
+      </div>
+
+      <div class="pipe-card">
+        <div class="pipe-icon">💳</div>
+        <div class="pipe-name">Finance Automation</div>
+        <div class="pipe-count">7 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Atlas daily run</div>
+          <div class="pipe-item">HAP tracker</div>
+          <div class="pipe-item">Ledger watcher (1 hr)</div>
+          <div class="pipe-item">Capital One notify</div>
+          <div class="pipe-item">Capital One paydown</div>
+          <div class="pipe-item">Credit monitor & accountability</div>
+        </div>
+      </div>
+
+      <div class="pipe-card">
+        <div class="pipe-icon">📬</div>
+        <div class="pipe-name">Comms Automation</div>
+        <div class="pipe-count">7 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Email router (10 min)</div>
+          <div class="pipe-item">Inbox monitor (30 min)</div>
+          <div class="pipe-item">Inbox autosweep</div>
+          <div class="pipe-item">Gmail organizer (30 min)</div>
+          <div class="pipe-item">ECM processor</div>
+          <div class="pipe-item">Morning brief · Nothing-day nudge</div>
+        </div>
+      </div>
+
+      <div class="pipe-card">
+        <div class="pipe-icon">🧠</div>
+        <div class="pipe-name">Memory & Evolution</div>
+        <div class="pipe-count">8 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Session context injector</div>
+          <div class="pipe-item">Roger QA digest (15 min)</div>
+          <div class="pipe-item">Overnight runner (2am)</div>
+          <div class="pipe-item">Overnight evolution (12:30am)</div>
+          <div class="pipe-item">Weekly synthesis</div>
+          <div class="pipe-item">Luke repo sync · Metrics tracker</div>
+        </div>
+      </div>
+
+      <div class="pipe-card">
+        <div class="pipe-icon">🌏</div>
+        <div class="pipe-name">Life OS</div>
+        <div class="pipe-count">9 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Power List (daily)</div>
+          <div class="pipe-item">Meg session prep (Sun 6am)</div>
+          <div class="pipe-item">Voice capture (5 min)</div>
+          <div class="pipe-item">Bangkok finder</div>
+          <div class="pipe-item">Screenshot watcher</div>
+          <div class="pipe-item">Downloads archive · Mac cleanup</div>
+        </div>
+      </div>
+
+      <div class="pipe-card">
+        <div class="pipe-icon">⚙️</div>
+        <div class="pipe-name">Infrastructure</div>
+        <div class="pipe-count">7 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Telegram session (Garry live)</div>
+          <div class="pipe-item">Escalation listener</div>
+          <div class="pipe-item">OpenClaw gateway</div>
+          <div class="pipe-item">GitHub backup</div>
+          <div class="pipe-item">Emergency escalator</div>
+          <div class="pipe-item">Log rotate · Keep-awake</div>
+        </div>
+      </div>
+
     </div>
 
   </div><!-- /chart -->
 
-  <div class="footer">
-    Garry COO System · Empire Investing · Updated 2026-04-27
-  </div>
+  <div class="footer">Garry COO System · Empire Investing · 2026-04-27</div>
 
 </div>
 </body>
