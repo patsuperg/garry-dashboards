@@ -194,7 +194,7 @@ tr:hover td{background:var(--card)}
 <h2>Performance</h2>
 <div class="perf-grid">
   <div class="perf-card">
-    <div class="perf-number">0</div>
+    <div class="perf-number">7</div>
     <div class="perf-label">Active Automations</div>
   </div>
   <div class="perf-card">
@@ -218,6 +218,62 @@ tr:hover td{background:var(--card)}
   </thead>
   <tbody>
     
+        <tr>
+          <td>Every 60s</td>
+          <td>Continuous</td>
+          <td>**Sentinel — heartbeat watcher**</td>
+          <td style="color:var(--dim);font-size:.75rem">garry_worker.sentinel.heartbeat_watcher</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Every 120s</td>
+          <td>Continuous</td>
+          <td>**Sentinel — expectation checker**</td>
+          <td style="color:var(--dim);font-size:.75rem">garry_worker.sentinel.expectation_checker</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Every 180s</td>
+          <td>Continuous</td>
+          <td>**Mercury — self-healing repair**</td>
+          <td style="color:var(--dim);font-size:.75rem">garry_worker.mercury.repair</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>22:00 AEST</td>
+          <td>One-shot tonight, then awaiting Chich review</td>
+          <td>**Garry COO — overnight migrator**</td>
+          <td style="color:var(--dim);font-size:.75rem">garry_worker.garry_coo.overnight_migrator</td>
+          <td><span class="badge badge-amber">SCHEDULED (com.garry.coo.overnight-migrator)</span></td>
+        </tr>
+        <tr>
+          <td>Every 30 min</td>
+          <td>Continuous</td>
+          <td>**Apollo — Gmail organiser (now @team_job-wrapped)**</td>
+          <td style="color:var(--dim);font-size:.75rem">garry_worker.apollo.gmail_organizer</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Continuous</td>
+          <td>Daemon</td>
+          <td>**May worker**</td>
+          <td style="color:var(--dim);font-size:.75rem">garry_worker (LaunchAgent)</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Continuous</td>
+          <td>Daemon</td>
+          <td>**Apollo — Telegram callback listener**</td>
+          <td style="color:var(--dim);font-size:.75rem">garry-escalation-listener.py</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td>Continuous</td>
+          <td>Air</td>
+          <td>**Screenshot → Mini path watcher**</td>
+          <td style="color:var(--dim);font-size:.75rem">screenshot-clipboard-watcher.sh</td>
+          <td><span class="badge badge-green">ACTIVE</span></td>
+        </tr>
   </tbody>
 </table>
 
