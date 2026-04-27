@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garry COO — Org Chart</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #080810;
+    color: #e0e8ff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    min-height: 100vh;
+    padding: 40px 24px 60px;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  .wrapper {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    margin-bottom: 52px;
+  }
+  .eyebrow {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: #00d4ff;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+  h1 span { color: #00d4ff; }
+  .subtitle {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #4a5580;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── CHART CONTAINER ── */
+  .chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* ── NODES ── */
+  .node {
+    border-radius: 14px;
+    padding: 18px 24px;
+    text-align: center;
+    position: relative;
+  }
+
+  .node-label {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .node-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .node-role {
+    font-size: 0.72rem;
+    margin-top: 3px;
+    opacity: 0.65;
+  }
+
+  /* Patrick */
+  .node-patrick {
+    background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+    border: 1.5px solid rgba(255,255,255,0.15);
+    width: 220px;
+  }
+  .node-patrick .node-label { color: #a0aec0; }
+  .node-patrick .node-title { color: #fff; }
+
+  /* Garry */
+  .node-garry {
+    background: linear-gradient(135deg, rgba(0,212,255,0.12), rgba(0,212,255,0.04));
+    border: 1.5px solid rgba(0,212,255,0.35);
+    width: 260px;
+    box-shadow: 0 0 32px rgba(0,212,255,0.08);
+  }
+  .node-garry .node-label { color: #00d4ff; }
+  .node-garry .node-title { color: #00d4ff; }
+  .node-garry .node-role { color: #7eb8c8; }
+
+  /* ── CONNECTOR ── */
+  .connector {
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(0,212,255,0.3), rgba(0,212,255,0.1));
+    flex-shrink: 0;
+  }
+  .connector-short { height: 28px; }
+  .connector-med { height: 36px; }
+
+  /* ── DEPARTMENTS ROW ── */
+  .dept-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+  }
+
+  /* Horizontal bridge line above departments */
+  .h-bridge-wrap {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 36px;
+  }
+  .h-bridge-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 18px;
+    background: rgba(0,212,255,0.25);
+  }
+  .h-bridge-wrap::after {
+    content: '';
+    position: absolute;
+    top: 18px;
+    /* spans from first dept to last dept - approx 78% of container */
+    left: 11%;
+    right: 11%;
+    height: 2px;
+    background: rgba(0,212,255,0.15);
+  }
+
+  /* Department connector drops */
+  .dept-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+  .dept-drop {
+    width: 2px;
+    height: 18px;
+    background: rgba(0,212,255,0.2);
+    flex-shrink: 0;
+  }
+
+  /* Department card */
+  .dept-card {
+    border-radius: 12px;
+    padding: 16px 14px 14px;
+    text-align: center;
+    width: 100%;
+    max-width: 200px;
+  }
+  .dept-card .dept-icon {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+  .dept-card .dept-name {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .dept-card .dept-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+  }
+  .dept-card .dept-handles {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+  }
+  .dept-card .handle-item {
+    font-size: 0.68rem;
+    color: rgba(224,232,255,0.55);
+    padding: 3px 6px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.03);
+    border-left: 2px solid;
+  }
+
+  /* Atlas - Finance */
+  .dept-atlas {
+    background: linear-gradient(160deg, rgba(0,255,136,0.08), rgba(0,255,136,0.02));
+    border: 1.5px solid rgba(0,255,136,0.2);
+  }
+  .dept-atlas .dept-name { color: #00ff88; }
+  .dept-atlas .dept-title { color: #00ff88; }
+  .dept-atlas .handle-item { border-color: rgba(0,255,136,0.3); }
+
+  /* Mercury - Ops */
+  .dept-mercury {
+    background: linear-gradient(160deg, rgba(0,212,255,0.08), rgba(0,212,255,0.02));
+    border: 1.5px solid rgba(0,212,255,0.2);
+  }
+  .dept-mercury .dept-name { color: #00d4ff; }
+  .dept-mercury .dept-title { color: #00d4ff; }
+  .dept-mercury .handle-item { border-color: rgba(0,212,255,0.3); }
+
+  /* Sentinel - Risk */
+  .dept-sentinel {
+    background: linear-gradient(160deg, rgba(255,107,0,0.08), rgba(255,107,0,0.02));
+    border: 1.5px solid rgba(255,107,0,0.2);
+  }
+  .dept-sentinel .dept-name { color: #ff9f40; }
+  .dept-sentinel .dept-title { color: #ff9f40; }
+  .dept-sentinel .handle-item { border-color: rgba(255,107,0,0.3); }
+
+  /* Apollo - Comms */
+  .dept-apollo {
+    background: linear-gradient(160deg, rgba(139,92,246,0.1), rgba(139,92,246,0.02));
+    border: 1.5px solid rgba(139,92,246,0.25);
+  }
+  .dept-apollo .dept-name { color: #a78bfa; }
+  .dept-apollo .dept-title { color: #a78bfa; }
+  .dept-apollo .handle-item { border-color: rgba(139,92,246,0.35); }
+
+  /* ── AUTOMATED SYSTEMS ── */
+  .systems-section {
+    width: 100%;
+    margin-top: 48px;
+  }
+  .systems-label {
+    text-align: center;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #2a3560;
+    margin-bottom: 16px;
+  }
+  .systems-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .sys-card {
+    border-radius: 10px;
+    padding: 14px 12px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .sys-card .sys-icon { font-size: 1.3rem; margin-bottom: 6px; }
+  .sys-card .sys-name {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: rgba(224,232,255,0.8);
+    margin-bottom: 8px;
+  }
+  .sys-card .sys-items {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .sys-card .sys-item {
+    font-size: 0.63rem;
+    color: rgba(224,232,255,0.38);
+    padding-left: 8px;
+    border-left: 1.5px solid rgba(255,255,255,0.1);
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,212,255,0.08), transparent);
+    margin: 40px 0 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.6rem;
+    color: #1e2540;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="eyebrow">Empire Investing — COO Structure</div>
+    <h1>The <span>Garry</span> System</h1>
+    <div class="subtitle">Autonomous COO · 29 agents · 24/7 operations</div>
+  </div>
+
+  <div class="chart">
+
+    <!-- Patrick -->
+    <div class="node node-patrick">
+      <div class="node-label">Founder</div>
+      <div class="node-title">Patrick</div>
+      <div class="node-role">Vision · Approvals · Enjoys life</div>
+    </div>
+
+    <div class="connector connector-short"></div>
+
+    <!-- Garry -->
+    <div class="node node-garry">
+      <div class="node-label">Chief Operating Officer</div>
+      <div class="node-title">Garry</div>
+      <div class="node-role">Runs everything. Escalates 4 things only.</div>
+    </div>
+
+    <!-- Bridge to departments -->
+    <div class="h-bridge-wrap" style="width:100%; max-width:900px;"></div>
+
+    <!-- 4 Departments -->
+    <div class="dept-row" style="max-width:900px; width:100%;">
+
+      <div class="dept-col">
+        <div class="dept-drop"></div>
+        <div class="dept-card dept-atlas">
+          <div class="dept-icon">💰</div>
+          <div class="dept-name">Atlas</div>
+          <div class="dept-title">Finance</div>
+          <div class="dept-handles">
+            <div class="handle-item">HAP & rental income</div>
+            <div class="handle-item">Deal analysis & cap rates</div>
+            <div class="handle-item">Tax prep (GW Carter)</div>
+            <div class="handle-item">Capital deployment</div>
+            <div class="handle-item">FX tracking (AUD)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dept-col">
+        <div class="dept-drop"></div>
+        <div class="dept-card dept-mercury">
+          <div class="dept-icon">⚙️</div>
+          <div class="dept-name">Mercury</div>
+          <div class="dept-title">Operations</div>
+          <div class="dept-handles">
+            <div class="handle-item">PM comms (Avenue / B2B)</div>
+            <div class="handle-item">Utility setups</div>
+            <div class="handle-item">Maintenance requests</div>
+            <div class="handle-item">Agent scheduling</div>
+            <div class="handle-item">System self-healing</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dept-col">
+        <div class="dept-drop"></div>
+        <div class="dept-card dept-sentinel">
+          <div class="dept-icon">🛡</div>
+          <div class="dept-name">Sentinel</div>
+          <div class="dept-title">Risk & QA</div>
+          <div class="dept-handles">
+            <div class="handle-item">Roger QA (every 15 min)</div>
+            <div class="handle-item">Deadline tracking</div>
+            <div class="handle-item">Corrections log</div>
+            <div class="handle-item">Lease & legal flags</div>
+            <div class="handle-item">Eviction monitoring</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dept-col">
+        <div class="dept-drop"></div>
+        <div class="dept-card dept-apollo">
+          <div class="dept-icon">📡</div>
+          <div class="dept-name">Apollo</div>
+          <div class="dept-title">Comms</div>
+          <div class="dept-handles">
+            <div class="handle-item">Email drafts & replies</div>
+            <div class="handle-item">Telegram alerts</div>
+            <div class="handle-item">PM & tenant liaison</div>
+            <div class="handle-item">Deal outreach gate</div>
+            <div class="handle-item">Laura / Jenny support</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="divider" style="max-width:900px;"></div>
+
+    <!-- Automated Systems -->
+    <div class="systems-section" style="max-width:900px;">
+      <div class="systems-label">Automated systems running 24/7</div>
+      <div class="systems-grid">
+
+        <div class="sys-card">
+          <div class="sys-icon">❤️</div>
+          <div class="sys-name">Health Pipeline</div>
+          <div class="sys-items">
+            <div class="sys-item">Kogan Aura ring BLE</div>
+            <div class="sys-item">Apple Health export</div>
+            <div class="sys-item">Spoons scoring</div>
+            <div class="sys-item">Dashboard (GitHub Pages)</div>
+            <div class="sys-item">Stale-data gate</div>
+          </div>
+        </div>
+
+        <div class="sys-card">
+          <div class="sys-icon">🏠</div>
+          <div class="sys-name">Deal Finder</div>
+          <div class="sys-items">
+            <div class="sys-item">STL + Ohio scanning</div>
+            <div class="sys-item">S8 rent ceiling check</div>
+            <div class="sys-item">Cap rate filter</div>
+            <div class="sys-item">Telegram deal alerts</div>
+            <div class="sys-item">Lindia pipeline</div>
+          </div>
+        </div>
+
+        <div class="sys-card">
+          <div class="sys-icon">📊</div>
+          <div class="sys-name">Dashboards</div>
+          <div class="sys-items">
+            <div class="sys-item">Command Centre</div>
+            <div class="sys-item">Health dashboard</div>
+            <div class="sys-item">Portfolio tracker</div>
+            <div class="sys-item">Pushes every 30 min</div>
+            <div class="sys-item">dashboards.empinv.com</div>
+          </div>
+        </div>
+
+        <div class="sys-card">
+          <div class="sys-icon">🧠</div>
+          <div class="sys-name">Memory & Context</div>
+          <div class="sys-items">
+            <div class="sys-item">CURRENT-STATE.md</div>
+            <div class="sys-item">THREADS.md</div>
+            <div class="sys-item">ChromaDB (481 chunks)</div>
+            <div class="sys-item">Auto-inject on load</div>
+            <div class="sys-item">Overnight evolution</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /chart -->
+
+  <div class="footer">
+    Garry COO System · Empire Investing · Updated 2026-04-27
+  </div>
+
+</div>
+</body>
+</html>
