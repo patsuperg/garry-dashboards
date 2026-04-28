@@ -1,24 +1,33 @@
 # PENDING DECISIONS
-*Updated: 2026-04-28 22:00 AEST*
+*Updated: 2026-04-29 02:55 AEST by Chich*
 
 ---
 
-## WAITING ON PATRICK
+## WAITING ON PATRICK (iron-rule four only)
 
 ### 1. GW Carter 8288-B — Accept engagement letter (FIRPTA protection for Hazelcrest)
 Email from gary@gwcarter.com: "Engagement Letter: 2026 Sale of Real Property, Form 8288-B, POA/Mailing." Gary sent Apr 15, followed up Apr 27. Click the Quotient link to accept. This authorises GW Carter to file Form 8288-B before closing to prevent $8,250 FIRPTA withholding on the Hazelcrest sale. ~60 days to closing — don't let this slip another week.
+*[Iron-rule: signing engagement letter = document signing approval]*
 
-### 2. Wilborn utilities — awaiting Mercury repair deployment
-All 3 utility setups (Spire/Water/Ameren) failed silently after Patrick approved Apr 27. Mercury repair queued. Will re-escalate via Telegram once loop-break + fd-fix + Ameren phone fallback is deployed. No action needed from Patrick until new Telegram escalations arrive.
-
-### 3. OpenSky ACH funding
+### 2. OpenSky ACH funding ($3K)
 Call 1-800-859-6412. Fund $3K via ACH from Wise USD. (Wise Visa rejected twice — phone call required.) Credit builder tradeline needs funding to report.
+*[Iron-rule: spending decision + external phone call]*
 
-### 4. HomeKit — pair in 30 seconds
+### 3. HomeKit — pair in 30 seconds
 Apple Home → + → Add Accessory → QR at /tmp/homekit_qr_fresh.png or PIN 639-05-120. WiFi only, mobile data off.
+*[Patrick-only: physical interaction with phone needed]*
 
-### 5. Pat Health Project — December bloodwork
-Not on Mac or in Gmail. Check phone camera roll or iMedical portal → `~/Desktop/Pat Health Project/`
+---
+
+## CHICH HANDLING (no Patrick action — surfacing only if blocked)
+
+### Wilborn utilities (Spire/Water/Ameren) — approved Apr 27, in-flight under Mercury
+Patrick approved utility setup Apr 27. All 3 setups failed silently — Mercury repair was queued but Sentinel/Mercury heartbeats stalled ~Apr 27-28. Chich revived com.garry.mercury.repair Apr 29. Will execute the queued utility_setup jobs. Surfacing only if Mercury fails again or if a setup hits a true iron-rule gate (e.g. confirmation-before-final-submit, a security question only Patrick knows). Otherwise this is mine to ensure handled.
+
+---
+
+## REMOVED 2026-04-29
+- Pat Health Project December bloodwork — not relevant per Patrick (29 Apr).
 
 ---
 
