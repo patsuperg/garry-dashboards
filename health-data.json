@@ -1,35 +1,51 @@
 {
-  "generated": "2026-04-30T09:38:25.327614",
+  "generated": "2026-04-30T09:41:21.468084",
   "today": {
     "date": "2026-04-30",
     "spoons": 0,
     "breakdown": {
+      "hrv": {
+        "value": 0,
+        "pts": 0,
+        "max": 3,
+        "unit": "ms"
+      },
       "rhr": {
-        "value": 94,
+        "value": null,
         "pts": 0,
         "max": 2,
         "unit": "bpm"
       },
       "steps": {
-        "value": 612,
+        "value": 613,
         "pts": 0,
         "max": 2,
         "unit": "steps"
+      },
+      "active_energy": {
+        "value": 30,
+        "pts": 0,
+        "max": 2,
+        "unit": "kcal"
+      },
+      "spo2": {
+        "value": null,
+        "pts": 0,
+        "max": 1,
+        "unit": "%"
+      },
+      "sleep": {
+        "value": 0,
+        "pts": 0,
+        "max": 2,
+        "unit": "hr"
       }
     },
     "raw": {
-      "steps": 120.97,
-      "active_energy_kj": 22.049000000000003
-    },
-    "sleep_breakdown": {
-      "total_hr": null,
-      "deep_hr": null,
-      "rem_hr": null,
-      "core_hr": null,
-      "awake_hr": null
-    },
-    "exercise_min": 0,
-    "stand_min": 28
+      "steps": 612.98,
+      "active_energy_kj": 124.894,
+      "hr_avg": 99.33333333333333
+    }
   },
   "history": [
     {
@@ -378,7 +394,7 @@
           "unit": "%"
         },
         "sleep": {
-          "value": 0,
+          "value": 4.4,
           "pts": 0,
           "max": 2,
           "unit": "hr"
@@ -388,9 +404,12 @@
         "steps": 7988.277,
         "hrv": 29.05,
         "rhr": 93.0,
+        "sleep_hr": 4.375,
+        "sleep_deep": 1.2916666666666665,
+        "sleep_rem": 0.925,
         "active_energy_kj": 3368.156,
         "spo2": 98.25,
-        "hr_avg": 104.57171568627452
+        "hr_avg": 102.96839285714285
       }
     },
     {
@@ -410,13 +429,13 @@
           "unit": "bpm"
         },
         "steps": {
-          "value": 121,
+          "value": 613,
           "pts": 0,
           "max": 2,
           "unit": "steps"
         },
         "active_energy": {
-          "value": 5,
+          "value": 30,
           "pts": 0,
           "max": 2,
           "unit": "kcal"
@@ -435,8 +454,9 @@
         }
       },
       "raw": {
-        "steps": 120.97,
-        "active_energy_kj": 22.049000000000003
+        "steps": 612.98,
+        "active_energy_kj": 124.894,
+        "hr_avg": 99.33333333333333
       }
     }
   ],
