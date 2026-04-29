@@ -13,10 +13,6 @@ Email from gary@gwcarter.com: "Engagement Letter: 2026 Sale of Real Property, Fo
 Call 1-800-859-6412. Fund $3K via ACH from Wise USD. (Wise Visa rejected twice — phone call required.) Credit builder tradeline needs funding to report.
 *[Iron-rule: spending decision + external phone call]*
 
-### 3. HomeKit — pair in 30 seconds
-Apple Home → + → Add Accessory → QR at /tmp/homekit_qr_fresh.png or PIN 639-05-120. WiFi only, mobile data off.
-*[Patrick-only: physical interaction with phone needed]*
-
 ---
 
 ## CHICH HANDLING (no Patrick action — surfacing only if blocked)
@@ -28,6 +24,7 @@ Patrick approved utility setup Apr 27. All 3 setups failed silently — Mercury 
 
 ## REMOVED 2026-04-29
 - Pat Health Project December bloodwork — not relevant per Patrick (29 Apr).
+- HomeKit pairing — PIN 639-05-120 delivered to Patrick Apr 29. His when ready, not surfaced again.
 
 ---
 
