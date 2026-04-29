@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="300">
+<title>Command Center — Patrick</title>
+<style>
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+       background: #0a0e14; color: #e6e1cf; margin: 0; padding: 0; }
+header.page { padding: 24px 32px; border-bottom: 1px solid #1f2730; display: flex; justify-content: space-between; align-items: baseline; }
+h1 { margin: 0; font-size: 28px; font-weight: 600; }
+.subtitle { color: #8a9199; font-size: 14px; }
+.tabs-nav { display: flex; gap: 4px; padding: 0 32px; border-bottom: 1px solid #1f2730; background: #0a0e14; position: sticky; top: 0; z-index: 10; }
+.tab-btn { padding: 14px 20px; background: none; border: none; color: #8a9199; cursor: pointer; font-size: 15px; font-weight: 500;
+            border-bottom: 2px solid transparent; transition: all 0.15s; }
+.tab-btn:hover { color: #e6e1cf; }
+.tab-btn.active { color: #e6e1cf; border-bottom-color: #ff7d4d; }
+.tab-btn .count { display: inline-block; padding: 2px 8px; margin-left: 4px; background: #1f2730; border-radius: 10px; font-size: 12px; }
+.tab-panel { display: none; padding: 24px 32px; }
+.tab-panel.active { display: block; }
+.task { background: #131a23; border: 1px solid #1f2730; border-radius: 10px; padding: 18px 22px; margin-bottom: 12px; }
+.task header { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+.owner { padding: 3px 10px; border-radius: 4px; color: #0a0e14; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+.status { padding: 3px 10px; border-radius: 4px; background: #1f2730; color: #b8c1cc; font-size: 12px; }
+.priority { font-size: 12px; color: #ff7d4d; font-weight: 600; }
+.updated { margin-left: auto; color: #5a6470; font-size: 12px; }
+.task h3 { margin: 4px 0 8px 0; font-size: 17px; font-weight: 600; color: #e6e1cf; }
+.task .desc { color: #b8c1cc; font-size: 14px; line-height: 1.5; margin: 6px 0 10px 0; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.tag { background: #1f2730; color: #8a9199; padding: 2px 8px; border-radius: 3px; font-size: 11px; }
+.blocked-reason { background: #2a1e1e; border-left: 3px solid #ff5e5b; padding: 8px 12px; margin-top: 8px; color: #ff9999; font-size: 13px; border-radius: 4px; }
+.events { margin-top: 10px; font-size: 12px; }
+.events summary { cursor: pointer; color: #5a8db8; user-select: none; }
+.events ul { margin: 6px 0 0 0; padding-left: 16px; color: #8a9199; }
+.events li { margin: 3px 0; line-height: 1.4; }
+.ev-ts { color: #5a6470; }
+.ev-type { color: #ff7d4d; font-weight: 500; }
+.ev-actor { color: #7dc8ff; }
+.empty { color: #5a6470; font-style: italic; padding: 32px; text-align: center; }
+footer { padding: 16px 32px; border-top: 1px solid #1f2730; color: #5a6470; font-size: 12px; }
+</style>
+</head><body>
+<header class="page">
+  <div>
+    <h1>Command Center</h1>
+    <div class="subtitle">Patrick · Empire Investing LLC · single source of truth</div>
+  </div>
+  <div class="subtitle">Generated 2026-04-29 15:36 AEST · auto-refresh 5min</div>
+</header>
+<nav class="tabs-nav"><button class="tab-btn active" data-tab="active">🟢 Active <span class="count">11</span></button><button class="tab-btn" data-tab="needs_patrick">🔥 Needs Patrick <span class="count">0</span></button><button class="tab-btn" data-tab="blocked">⚠ Blocked <span class="count">1</span></button><button class="tab-btn" data-tab="archive">📚 Archive <span class="count">12</span></button></nav>
+<section class="tab-panel active" data-panel="active">
+    <article class="task" data-status="queued" data-owner="chich" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Queued</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Health pipeline v2 — proper sleep_total fallback</h3>
+      <p class="desc">v1 estimates total sleep from deep+REM × 2.5. v2 should pull last-night&#x27;s actual total from yesterday&#x27;s complete CSV when today&#x27;s is partial.</p>
+      <div class="tags"><span class="tag">health</span><span class="tag">spoons</span><span class="tag">overnight</span></div>
+      
+      <details class="events"><summary>Event log (1 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Health pipeline v2 \u2014 proper sleep_total fallback&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;queued&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="queued" data-owner="chich" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Queued</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Session framework calibration tuning</h3>
+      <p class="desc">session-usage-poller token-limit estimate is too tight (showing 225%). Recalibrate against Patrick&#x27;s actual Max 5x rolling window from Settings panel.</p>
+      <div class="tags"><span class="tag">sessions</span><span class="tag">overnight</span></div>
+      
+      <details class="events"><summary>Event log (1 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Session framework calibration tuning&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;queued&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="queued" data-owner="chich" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Queued</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>portfolio.json + PORTFOLIO-TRACKER.md refresh</h3>
+      <p class="desc">Update with current PM state (Avenue STL, Tactical Ohio), Hazelcrest sale pending, current acquisition pipeline.</p>
+      <div class="tags"><span class="tag">portfolio</span><span class="tag">overnight</span></div>
+      
+      <details class="events"><summary>Event log (1 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;portfolio.json + PORTFOLIO-TRACKER.md refresh&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;queued&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="queued" data-owner="chich" data-priority="high">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Queued</span>
+        <span class="priority">🔴 high</span>
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Journey dashboard autonomous updater</h3>
+      <p class="desc">Take over from Garry. Pulls from Patrick-Resources/{Relationship,Development,Therapy} + Apple Notes therapy folders. Daily refresh of journey.html.</p>
+      <div class="tags"><span class="tag">journey</span><span class="tag">inner-work</span><span class="tag">overnight</span></div>
+      
+      <details class="events"><summary>Event log (1 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Journey dashboard autonomous updater&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;queued&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="queued" data-owner="chich" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Queued</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Ohio May-1 watchpoint watcher</h3>
+      <p class="desc">Auto-fires reminders on May 1 (Tactical payee change), May 16 (B2B termination), May 31 (B2B disburse), June 5 (Tactical first rent + Kenilworth recovery start).</p>
+      <div class="tags"><span class="tag">ohio</span><span class="tag">watchpoint</span><span class="tag">overnight</span></div>
+      
+      <details class="events"><summary>Event log (1 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Ohio May-1 watchpoint watcher&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;queued&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="queued" data-owner="chich" data-priority="high">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Queued</span>
+        <span class="priority">🔴 high</span>
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Wise daily cashflow integration</h3>
+      <p class="desc">Daily auto-pull via Wise API. Per-property rent reconciliation. Missing-rent alert on day 6. Output to morning brief.</p>
+      <div class="tags"><span class="tag">wise</span><span class="tag">cashflow</span><span class="tag">overnight</span></div>
+      
+      <details class="events"><summary>Event log (1 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Wise daily cashflow integration&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;queued&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="queued" data-owner="chich" data-priority="high">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Queued</span>
+        <span class="priority">🔴 high</span>
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Communication cadence cleanup across team</h3>
+      <p class="desc">Audit every Telegram-sending LaunchAgent. Retire chronic noise. Convert FYI-style to log-only. Enforce Mon-Fri 8-5 essential-only rule.</p>
+      <div class="tags"><span class="tag">cadence</span><span class="tag">cleanup</span><span class="tag">overnight</span></div>
+      
+      <details class="events"><summary>Event log (1 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Communication cadence cleanup across team&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;queued&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="queued" data-owner="garry" data-priority="high">
+      <header>
+        <span class="owner" style="background:#ffd54d">garry</span>
+        <span class="status">Queued</span>
+        <span class="priority">🔴 high</span>
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Payment Standard zip mapping (STL)</h3>
+      <p class="desc">Map every STL-area zip code Payment Standard %. Output ranked list. Anything ≥110% = priority hunting ground. Garry job 45273d9f.</p>
+      <div class="tags"><span class="tag">payment-standard</span><span class="tag">research</span><span class="tag">overnight</span></div>
+      
+      <details class="events"><summary>Event log (1 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Payment Standard zip mapping (STL)&quot;,&quot;owner&quot;:&quot;garry&quot;,&quot;status&quot;:&quot;queued&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="queued" data-owner="chich" data-priority="high">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Queued</span>
+        <span class="priority">🔴 high</span>
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Deal Finder v4 audit + S8 Pro integration gap fix</h3>
+      <p class="desc">Map every S8 Pro data field (Tom AI ratings, crime, HQS, demand) vs current Deal Finder ingestion. Fix gaps. Daily fresh scrape, pass=permanent removal.</p>
+      <div class="tags"><span class="tag">dealfinder</span><span class="tag">s8pro</span><span class="tag">overnight</span></div>
+      
+      <details class="events"><summary>Event log (1 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Deal Finder v4 audit + S8 Pro integration gap fix&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;queued&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="queued" data-owner="chich" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Queued</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Section 8 Pro Course extraction (Apple Notes)</h3>
+      <p class="desc">Extract Patrick&#x27;s notes from Apple Notes folder &#x27;Section 8 Pro Course&#x27; for context absorption. Source.</p>
+      <div class="tags"><span class="tag">s8pro</span><span class="tag">knowledge</span><span class="tag">overnight</span></div>
+      
+      <details class="events"><summary>Event log (1 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Section 8 Pro Course extraction (Apple Notes)&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;queued&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="in_progress" data-owner="chich" data-priority="high">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">In progress</span>
+        <span class="priority">🔴 high</span>
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Command Center build</h3>
+      <p class="desc">Single source of truth for all task state. SQLite + static HTML at patsuperg.github.io/garry-dashboards/command-center.html. 4 tabs. Auto-logging from all agents + overnight QA.</p>
+      <div class="tags"><span class="tag">meta</span><span class="tag">command-center</span><span class="tag">active</span></div>
+      
+      <details class="events"><summary>Event log (1 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Command Center build&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;in_progress&quot;}</li></ul></details>
+    </article>
+    </section><section class="tab-panel" data-panel="needs_patrick"><p class="empty">Nothing here. Clean.</p></section><section class="tab-panel" data-panel="blocked">
+    <article class="task" data-status="blocked" data-owner="chich" data-priority="low">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Blocked</span>
+        <span class="priority">⚪ low</span>
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Scrypted Ring camera HomeKit pairing</h3>
+      <p class="desc">Pairing wedged. Patrick has tried multiple times. Bridge identity in partial state, iPhone has cached failed-pair. Park until headroom.</p>
+      <div class="tags"><span class="tag">scrypted</span><span class="tag">homekit</span><span class="tag">parked</span></div>
+      
+      <details class="events"><summary>Event log (2 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Scrypted Ring camera HomeKit pairing&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;blocked&quot;}</li><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">blocked</span> <span class="ev-actor">by chich</span> · {&quot;from&quot;:&quot;blocked&quot;,&quot;to&quot;:&quot;blocked&quot;}</li></ul></details>
+    </article>
+    </section><section class="tab-panel" data-panel="archive">
+    <article class="task" data-status="done" data-owner="patrick" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#ff7d4d">patrick</span>
+        <span class="status">Done</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Tank dictation app referral</h3>
+      <p class="desc">Tank confirmed handy.computer (Jake&#x27;s recommendation). Shipped same session.</p>
+      <div class="tags"><span class="tag">context</span><span class="tag">shipped</span></div>
+      
+      <details class="events"><summary>Event log (2 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Tank dictation app referral&quot;,&quot;owner&quot;:&quot;patrick&quot;,&quot;status&quot;:&quot;done&quot;}</li><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">done</span> <span class="ev-actor">by chich</span> · {&quot;from&quot;:&quot;done&quot;,&quot;to&quot;:&quot;done&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="done" data-owner="chich" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Done</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Session framework v1 (poller + handoff + start hook)</h3>
+      <p class="desc">session-usage-poller.py + session-handoff-generator.py + SessionStart hook upgrade. Calibration tuning queued.</p>
+      <div class="tags"><span class="tag">sessions</span><span class="tag">shipped</span></div>
+      
+      <details class="events"><summary>Event log (2 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Session framework v1 (poller + handoff + start hook)&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;done&quot;}</li><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">done</span> <span class="ev-actor">by chich</span> · {&quot;from&quot;:&quot;done&quot;,&quot;to&quot;:&quot;done&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="done" data-owner="chich" data-priority="high">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Done</span>
+        <span class="priority">🔴 high</span>
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Permissions session — Air settings cleaned + aliases</h3>
+      <p class="desc">Removed 6 fake settings keys. Added defaultMode bypassPermissions + skipDangerousModePermissionPrompt. garry/garry-max aliases now pass --dangerously-skip-permissions.</p>
+      <div class="tags"><span class="tag">infra</span><span class="tag">shipped</span></div>
+      
+      <details class="events"><summary>Event log (2 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Permissions session \u2014 Air settings cleaned + aliases&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;done&quot;}</li><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">done</span> <span class="ev-actor">by chich</span> · {&quot;from&quot;:&quot;done&quot;,&quot;to&quot;:&quot;done&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="done" data-owner="chich" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Done</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Whisper venv + voice-capture cleanup</h3>
+      <p class="desc">Reclaimed 1.65 GB across Air + Mini. Retired voice-capture LaunchAgent (0 memos all-time). Spartans-dictate zombie silenced.</p>
+      <div class="tags"><span class="tag">cleanup</span><span class="tag">shipped</span></div>
+      
+      <details class="events"><summary>Event log (2 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Whisper venv + voice-capture cleanup&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;done&quot;}</li><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">done</span> <span class="ev-actor">by chich</span> · {&quot;from&quot;:&quot;done&quot;,&quot;to&quot;:&quot;done&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="done" data-owner="chich" data-priority="high">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Done</span>
+        <span class="priority">🔴 high</span>
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Health pipeline fix v1 (spoon score live)</h3>
+      <p class="desc">Bridge from dashboard health-data.json → health-summary.json. Spoon score 7/12 live. LaunchAgent every 30 min. Telegram pinged.</p>
+      <div class="tags"><span class="tag">health</span><span class="tag">spoons</span><span class="tag">shipped</span></div>
+      
+      <details class="events"><summary>Event log (2 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Health pipeline fix v1 (spoon score live)&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;done&quot;}</li><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">done</span> <span class="ev-actor">by chich</span> · {&quot;from&quot;:&quot;done&quot;,&quot;to&quot;:&quot;done&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="done" data-owner="chich" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Done</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Buy-box reconciliation update (Apr 29 locks)</h3>
+      <p class="desc">PATRICKS-BUY-BOX.md updated: 4BR/1BA STL only, $400/mo cashflow floor, conventional 80% LTV via Brannon, Payment Standard 120% opportunity flagged.</p>
+      <div class="tags"><span class="tag">buybox</span><span class="tag">shipped</span></div>
+      
+      <details class="events"><summary>Event log (2 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Buy-box reconciliation update (Apr 29 locks)&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;done&quot;}</li><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">done</span> <span class="ev-actor">by chich</span> · {&quot;from&quot;:&quot;done&quot;,&quot;to&quot;:&quot;done&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="done" data-owner="chich" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Done</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Active acquisition pipeline capture (Mary/Earl/Ewell/Midridge)</h3>
+      <p class="desc">Found via Gmail. Mary DEAD, Earl DEAD, Midridge passed, Ewell ACTIVE awaiting inspection.</p>
+      <div class="tags"><span class="tag">pipeline</span><span class="tag">shipped</span></div>
+      
+      <details class="events"><summary>Event log (2 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Active acquisition pipeline capture (Mary/Earl/Ewell/Midridge)&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;done&quot;}</li><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">done</span> <span class="ev-actor">by chich</span> · {&quot;from&quot;:&quot;done&quot;,&quot;to&quot;:&quot;done&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="done" data-owner="chich" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Done</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Ohio PM transition audit (B2B → Tactical)</h3>
+      <p class="desc">Gmail thread sweep. Locked timeline: Apr 16 termination notice → May 16 effective → June 1 Tactical active. Angel Marie Chaney = managing broker.</p>
+      <div class="tags"><span class="tag">ohio</span><span class="tag">pm</span><span class="tag">shipped</span></div>
+      
+      <details class="events"><summary>Event log (2 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Ohio PM transition audit (B2B \u2192 Tactical)&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;done&quot;}</li><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">done</span> <span class="ev-actor">by chich</span> · {&quot;from&quot;:&quot;done&quot;,&quot;to&quot;:&quot;done&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="done" data-owner="chich" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Done</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Garry data sweep</h3>
+      <p class="desc">Walked Garry&#x27;s full data surface — vault, queue, dirs. Identified gaps + stale data. Mercury creds empty.</p>
+      <div class="tags"><span class="tag">audit</span><span class="tag">shipped</span></div>
+      
+      <details class="events"><summary>Event log (2 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Garry data sweep&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;done&quot;}</li><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">done</span> <span class="ev-actor">by chich</span> · {&quot;from&quot;:&quot;done&quot;,&quot;to&quot;:&quot;done&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="done" data-owner="chich" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Done</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Wise API key verification</h3>
+      <p class="desc">Confirmed read-only key in vault works. Profile pulled successfully. Replaces empty Mercury creds.</p>
+      <div class="tags"><span class="tag">wise</span><span class="tag">cashflow</span><span class="tag">shipped</span></div>
+      
+      <details class="events"><summary>Event log (2 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Wise API key verification&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;done&quot;}</li><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">done</span> <span class="ev-actor">by chich</span> · {&quot;from&quot;:&quot;done&quot;,&quot;to&quot;:&quot;done&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="done" data-owner="chich" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Done</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>Handy install + Dictionary populate (Air + Mini)</h3>
+      <p class="desc">Moonshine V2 Small on Air, Parakeet V3 on Mini. 169 terms loaded. Hotkey fn (push-to-talk).</p>
+      <div class="tags"><span class="tag">dictation</span><span class="tag">handy</span><span class="tag">shipped</span></div>
+      
+      <details class="events"><summary>Event log (2 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;Handy install + Dictionary populate (Air + Mini)&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;done&quot;}</li><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">done</span> <span class="ev-actor">by chich</span> · {&quot;from&quot;:&quot;done&quot;,&quot;to&quot;:&quot;done&quot;}</li></ul></details>
+    </article>
+    
+
+    <article class="task" data-status="done" data-owner="chich" data-priority="normal">
+      <header>
+        <span class="owner" style="background:#7dc8ff">chich</span>
+        <span class="status">Done</span>
+        
+        <span class="updated">updated Apr 29 15:35</span>
+      </header>
+      <h3>iPhone Shortcut + Mini dictation relay</h3>
+      <p class="desc">Built faster-whisper relay on Mini at 100.74.63.29:7777, iOS Shortcut to record→POST→clipboard. Sub-second response. 228-term dictionary biasing.</p>
+      <div class="tags"><span class="tag">dictation</span><span class="tag">iphone</span><span class="tag">shipped</span></div>
+      
+      <details class="events"><summary>Event log (2 entries)</summary><ul><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">created</span> <span class="ev-actor">by chich</span> · {&quot;title&quot;:&quot;iPhone Shortcut + Mini dictation relay&quot;,&quot;owner&quot;:&quot;chich&quot;,&quot;status&quot;:&quot;done&quot;}</li><li><span class="ev-ts">Apr 29 15:35</span> <span class="ev-type">done</span> <span class="ev-actor">by chich</span> · {&quot;from&quot;:&quot;done&quot;,&quot;to&quot;:&quot;done&quot;}</li></ul></details>
+    </article>
+    </section>
+<footer>
+  Tasks auto-logged by all agents (Chich, Garry, Mercury, Sentinel, Apollo, May).
+  Updates land on every state change + every 5 min.
+  Source DB: <code>~/AI/Claude/Infrastructure/command-center.db</code>
+</footer>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelector('[data-panel="' + btn.dataset.tab + '"]').classList.add('active');
+  });
+});
+</script>
+</body></html>
