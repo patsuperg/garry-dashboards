@@ -1,5 +1,5 @@
 # PENDING DECISIONS
-*Updated: 2026-04-29 14:50 AEST by Garry — GW Carter signed*
+*Updated: 2026-04-29 15:45 AEST by Garry — Fenwick HAP dispute email sent, GW Carter signed*
 
 ---
 
@@ -23,13 +23,10 @@ Patrick approved utility setup Apr 27. All 3 setups failed silently — Mercury 
 
 ---
 
-## REMOVED
-- Pat Health Project December bloodwork — not relevant per Patrick (29 Apr).
-- HomeKit pairing — PIN 639-05-120 delivered to Patrick Apr 29. His when ready.
-
----
-
 ## WAITING ON OTHERS
+
+### Evernest (Laurie Lezama) — Fenwick April HAP accounting 🔥
+Email sent Apr 29 (ID: 19dd7bc7cb2dcd48). Demanded: (1) was April HAP for 132 Fenwick included in settlement + amount + disbursement date, OR (2) forward funds immediately. Heather Stone (Avenue) CC'd. March $3,954 was back-pay from Eaton — not April HAP. Awaiting reply.
 
 ### Lindia — Ewell inspection scheduling
 Garry emailed Apr 28: schedule Evergreen Property Inspectors (Will/Paul Frost), Patrick pays invoice direct. Awaiting confirmation of date.
