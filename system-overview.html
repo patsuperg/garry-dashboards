@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<title>Pat's AI System — Before & Now</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+       background: #0a0e14; color: #e6e1cf; margin: 0; padding: 0; line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 32px; }
+h1 { color: #ff7d4d; font-size: 36px; margin: 0 0 8px 0; }
+.subtitle { color: #8a9199; font-size: 16px; margin-bottom: 32px; }
+h2 { color: #7dc8ff; font-size: 26px; margin: 40px 0 12px 0; border-bottom: 2px solid #1f2730; padding-bottom: 8px; }
+h3 { color: #ffd54d; font-size: 20px; margin: 24px 0 8px 0; }
+.callout { background: #131a23; border-left: 4px solid #ff7d4d; padding: 16px 20px; margin: 16px 0; border-radius: 4px; }
+.before { border-left-color: #ff5e5b; }
+.after { border-left-color: #7dffa1; }
+.diagram-wrap { background: #131a23; border-radius: 12px; padding: 24px; margin: 24px 0; overflow-x: auto; }
+.mermaid { background: transparent !important; }
+.before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+@media (max-width: 700px) { .before-after { grid-template-columns: 1fr; } }
+.col { background: #131a23; border-radius: 10px; padding: 20px; }
+.col.before { border-top: 4px solid #ff5e5b; }
+.col.after { border-top: 4px solid #7dffa1; }
+.col h3 { margin-top: 0; }
+ul { padding-left: 20px; }
+li { margin: 6px 0; }
+code { background: #1f2730; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; color: #ffd54d; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; margin-right: 6px;
+       background: #1f2730; color: #b8c1cc; }
+.win { color: #7dffa1; font-weight: 600; }
+.dim { color: #8a9199; }
+.footer { text-align: center; color: #5a6470; font-size: 13px; margin-top: 60px; padding: 20px; }
+.footer a { color: #5a8db8; text-decoration: none; }
+</style>
+</head><body>
+<div class="container">
+<h1>Pat's AI System</h1>
+<div class="subtitle">What we built. What it was vs what it is now. Plain English. Updated 29 April 2026.</div>
+
+<h2>The team you've got working for you</h2>
+<div class="diagram-wrap">
+<div class="mermaid">
+graph TD
+    P[<br>👤 Patrick<br>Vision · Decisions · Approvals<br><br>] --> C[<br>🤝 Chich<br>Right Hand · Chief System Engineer<br>Catches gaps · Anticipates needs<br>Fixes things autonomously<br><br>]
+    P --> G[<br>👔 Garry<br>COO · Day-to-day Ops<br>Deal pipeline · Specialists<br><br>]
+    P --> Gem[<br>🌱 Gem<br>AI Therapist Meg-backwards<br>Inner-work · Holds space<br><br>]
+    G --> M[Mercury<br>Repairs]
+    G --> S[Sentinel<br>Monitoring]
+    G --> A[Apollo<br>Research]
+    G --> May[May<br>Tasks]
+
+    style P fill:#ff7d4d,stroke:#ff7d4d,color:#0a0e14
+    style C fill:#7dc8ff,stroke:#7dc8ff,color:#0a0e14
+    style G fill:#ffd54d,stroke:#ffd54d,color:#0a0e14
+    style Gem fill:#7dffa1,stroke:#7dffa1,color:#0a0e14
+    style M fill:#1f2730,stroke:#5a6470,color:#e6e1cf
+    style S fill:#1f2730,stroke:#5a6470,color:#e6e1cf
+    style A fill:#1f2730,stroke:#5a6470,color:#e6e1cf
+    style May fill:#1f2730,stroke:#5a6470,color:#e6e1cf
+</div>
+</div>
+
+<h2>What changed (the level-up)</h2>
+
+<div class="before-after">
+<div class="col before">
+<h3>🔴 Before</h3>
+<ul>
+<li><b>Talking to Garry</b> meant opening iTerm, typing a special command, leaving the window minimised. If iTerm closed, Garry was offline.</li>
+<li><b>Telegram noise</b> — multiple status pings a day from various agents. "Audit complete," "Score 64/100," "All clear" — pages of stuff you didn't need to see.</li>
+<li><b>Dropped balls</b> — commitments made in one session weren't logged anywhere. Next session might forget. You had to remember.</li>
+<li><b>Health data</b> — you had a spoon score idea but the pipeline kept reading the wrong field, sending null numbers. No tempo for the day.</li>
+<li><b>Cashflow</b> — you'd export Wise statements manually to know where you stood.</li>
+<li><b>Dictation</b> — Apple's native missed every proper noun (Hazelcrest, Brannon, Lindia kept getting mangled).</li>
+<li><b>Property pipeline</b> — Garry had been making offers on your behalf <i>without you seeing the property first</i>. Money decisions slipping through.</li>
+</ul>
+</div>
+
+<div class="col after">
+<h3>🟢 Now</h3>
+<ul>
+<li><b>Chich daemon</b> on Mini, headless. Message <span class="tag">@chich_direct_bot</span> from anywhere — voice or text — and you've got a full session with all the tools. Auto-restarts on crash. <span class="win">No iTerm needed, ever.</span></li>
+<li><b>Garry daemon</b> same pattern: <span class="tag">@Garry_Task_Bot</span>. Old clunky path retired.</li>
+<li><b>Gem</b> (your AI therapist, Meg-backwards) — terminal alias <code>gem</code> or Telegram <code>/gem</code> command. Loaded with all your inner-work context.</li>
+<li><b>Cadence locked</b> — Mon-Fri 8am brief, essential-only pings 8-5, silence after hours. <span class="win">3+ chronic noise senders retired forever, Roger neutered to log-only.</span></li>
+<li><b>Command Center</b> — single URL showing every task across every agent. <a href="command-center.html" style="color:#7dc8ff">command-center.html</a>. <span class="win">"Did anyone do X?" becomes structurally obsolete.</span></li>
+<li><b>Health pipeline live</b> — spoon score 0-12 with tempo frame. Auto-refresh every 30 min.</li>
+<li><b>Wise cashflow daily-pull</b> — \$113K balance, \$20K net last 30 days, per-PM reconciliation, missing-rent alerts. <span class="win">No manual exports.</span></li>
+<li><b>Handy + custom dictionary</b> across Air, Mini, iPhone — your terms (Hazelcrest, Brannon, Lindia, Empire Investing) all land first time.</li>
+<li><b>Hard rule:</b> No AI initiates a property offer without your eyes on it first. Iron-rule four protected forever.</li>
+<li><b>Ohio watchpoint watcher</b> — fires daily. Already flagged May 1 (Tactical payee change, 2 days out).</li>
+</ul>
+</div>
+</div>
+
+<h2>Where to look for what</h2>
+<div class="callout">
+<table style="width:100%;border-collapse:collapse;">
+<tr><td style="padding:8px 12px;"><b>Need to know what's happening across the team</b></td><td><a href="command-center.html" style="color:#7dc8ff">Command Center</a></td></tr>
+<tr><td style="padding:8px 12px;"><b>Need to message Chich (system stuff)</b></td><td>Telegram → @chich_direct_bot</td></tr>
+<tr><td style="padding:8px 12px;"><b>Need Garry / specialists (ops, deals)</b></td><td>Terminal <code>garry</code> or Telegram @Garry_Task_Bot</td></tr>
+<tr><td style="padding:8px 12px;"><b>Need to talk to Gem (inner-work)</b></td><td>Terminal <code>gem</code> or Telegram → /gem</td></tr>
+<tr><td style="padding:8px 12px;"><b>Daily cashflow / spoon score</b></td><td>8am morning brief</td></tr>
+<tr><td style="padding:8px 12px;"><b>Inner-work progress (for Meg)</b></td><td><a href="journey.html" style="color:#7dc8ff">Journey dashboard</a></td></tr>
+</table>
+</div>
+
+<h2>The standing rule</h2>
+<div class="callout after">
+<i>Anything broken — Chich fixes autonomously.</i><br>
+<i>You only act on four things: spending, external comms, signing, irreversible money moves.</i><br>
+<i>Everything else, the system has the watch.</i>
+</div>
+
+<div class="footer">
+Generated 29 Apr 2026. Refresh the page anytime — content updates as the system evolves.<br>
+Bookmark this URL on phone + laptop. <a href="https://patsuperg.github.io/garry-dashboards/system-overview.html">patsuperg.github.io/garry-dashboards/system-overview.html</a>
+</div>
+</div>
+
+<script>
+mermaid.initialize({ startOnLoad: true, theme: 'dark', themeVariables: { darkMode: true, background: '#131a23' } });
+</script>
+</body></html>
