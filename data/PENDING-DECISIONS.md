@@ -1,12 +1,14 @@
 # PENDING DECISIONS
-*Updated: 2026-04-29 02:55 AEST by Chich*
+*Updated: 2026-04-29 14:00 AEST by Chich*
 
 ---
 
 ## WAITING ON PATRICK (iron-rule four only)
 
 ### 1. GW Carter 8288-B — Accept engagement letter (FIRPTA protection for Hazelcrest)
-Email from gary@gwcarter.com: "Engagement Letter: 2026 Sale of Real Property, Form 8288-B, POA/Mailing." Gary sent Apr 15, followed up Apr 27. Click the Quotient link to accept. This authorises GW Carter to file Form 8288-B before closing to prevent $8,250 FIRPTA withholding on the Hazelcrest sale. ~60 days to closing — don't let this slip another week.
+Patrick reviewed the full engagement letter screenshots Apr 29 — confirmed it's legitimate and correct. Fee: $825 total (8288-B filing $800 + POA/mailing $25). Gary Carter CPA, Edina MN. 25% retainer (~$206) upfront, balance on completion. Patrick said "Will do."
+**Action:** Click the Quotient link in the email from gary@gwcarter.com. Subject: "Engagement Letter: 2026 Sale of Real Property, Form 8288-B, POA/Mailing."
+Without signing: $8,250 withheld at Hazelcrest closing pending IRS refund.
 *[Iron-rule: signing engagement letter = document signing approval]*
 
 ### 2. OpenSky ACH funding ($3K)
@@ -18,13 +20,13 @@ Call 1-800-859-6412. Fund $3K via ACH from Wise USD. (Wise Visa rejected twice �
 ## CHICH HANDLING (no Patrick action — surfacing only if blocked)
 
 ### Wilborn utilities (Spire/Water/Ameren) — approved Apr 27, in-flight under Mercury
-Patrick approved utility setup Apr 27. All 3 setups failed silently — Mercury repair was queued but Sentinel/Mercury heartbeats stalled ~Apr 27-28. Chich revived com.garry.mercury.repair Apr 29. Will execute the queued utility_setup jobs. Surfacing only if Mercury fails again or if a setup hits a true iron-rule gate (e.g. confirmation-before-final-submit, a security question only Patrick knows). Otherwise this is mine to ensure handled.
+Patrick approved utility setup Apr 27. All 3 setups failed silently — Mercury repair was queued (job `4673ec1f`): (1) max-click loop-break, (2) fd-leak fix for MO Water, (3) phone fallback for Ameren WAF. Chich owns this to completion. Surfacing only if Mercury fails again or hits a true iron-rule gate.
 
 ---
 
-## REMOVED 2026-04-29
+## REMOVED
 - Pat Health Project December bloodwork — not relevant per Patrick (29 Apr).
-- HomeKit pairing — PIN 639-05-120 delivered to Patrick Apr 29. His when ready, not surfaced again.
+- HomeKit pairing — PIN 639-05-120 delivered to Patrick Apr 29. His when ready.
 
 ---
 
