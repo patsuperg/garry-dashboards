@@ -1,19 +1,18 @@
 # PENDING DECISIONS
-*Updated: 2026-04-29 14:00 AEST by Chich*
+*Updated: 2026-04-29 14:50 AEST by Garry — GW Carter signed*
 
 ---
 
 ## WAITING ON PATRICK (iron-rule four only)
 
-### 1. GW Carter 8288-B — Accept engagement letter (FIRPTA protection for Hazelcrest)
-Patrick reviewed the full engagement letter screenshots Apr 29 — confirmed it's legitimate and correct. Fee: $825 total (8288-B filing $800 + POA/mailing $25). Gary Carter CPA, Edina MN. 25% retainer (~$206) upfront, balance on completion. Patrick said "Will do."
-**Action:** Click the Quotient link in the email from gary@gwcarter.com. Subject: "Engagement Letter: 2026 Sale of Real Property, Form 8288-B, POA/Mailing."
-Without signing: $8,250 withheld at Hazelcrest closing pending IRS refund.
-*[Iron-rule: signing engagement letter = document signing approval]*
-
-### 2. OpenSky ACH funding ($3K)
+### 1. OpenSky ACH funding ($3K)
 Call 1-800-859-6412. Fund $3K via ACH from Wise USD. (Wise Visa rejected twice — phone call required.) Credit builder tradeline needs funding to report.
 *[Iron-rule: spending decision + external phone call]*
+
+---
+
+## ✅ CLOSED 2026-04-29
+- **GW Carter 8288-B engagement letter** — Patrick confirmed signed Apr 29 14:50 AEST. FIRPTA $8,250 withholding gate closed for Hazelcrest sale. Gary Carter retained at $825 total.
 
 ---
 
