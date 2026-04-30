@@ -1,5 +1,5 @@
 # PENDING DECISIONS
-*Updated: 2026-04-29 15:45 AEST by Garry — Fenwick HAP dispute email sent, GW Carter signed*
+*Updated: 2026-04-30 AEST by Chich — 41 falsely-archived tasks triaged. Iron-rule items added below.*
 
 ---
 
@@ -8,6 +8,50 @@
 ### 1. OpenSky ACH funding ($3K)
 Call 1-800-859-6412. Fund $3K via ACH from Wise USD. (Wise Visa rejected twice — phone call required.) Credit builder tradeline needs funding to report.
 *[Iron-rule: spending decision + external phone call]*
+
+---
+
+### 2. NREIG (Kathy Garcia) — Add Fenwick + Lorain to master policy
+**Ask:** Approve Garry emailing Kathy Garcia (kathy@nreig.com) to add 132 Fenwick Dr and 505 W 25th St (Lorain OH) to Empire Investing LLC master policy.
+**Why iron rule:** External contact to insurance agent = iron-rule item.
+**Context:** Kathy Garcia's Apr 20 email unanswered. Follow-up due May 2. Both properties are unprotected under master policy until added.
+**When Patrick says "send it":** Garry drafts and sends the email immediately.
+*[Iron-rule: external contact — Garry cannot send without approval]*
+
+---
+
+### 3. Steadily — Request Ewell insurance quote post-inspection
+**Ask:** Approve Garry contacting Bill Bland (agent+bland@steadily.com) for Ewell (10436 Ewell Ave) insurance quote once inspection is complete.
+**Why iron rule:** External contact to insurance agent = iron-rule item.
+**Context:** Inspection not yet done (blocker: Lindia scheduling Evergreen). Once inspection complete, Garry requests quote. Material surcharge → reopen price negotiation with seller.
+**When Patrick says "send it":** Garry emails Bill immediately post-inspection.
+*[Iron-rule: external contact — approval pre-granted for AFTER inspection completion]*
+
+---
+
+### 4. B2B — Chase handover ledger, deposits, and vendor list (deadline May 16)
+**Ask:** Approve Garry emailing Michael Drew (B2B PM) to chase:
+- Security deposits (amount unknown — ledger not received)
+- Rent ledgers for Kenilworth + 505 W 25th
+- Executed lease agreements (both tenants)
+- HAP contracts + Section 8 documentation
+- Vendor list + open work orders
+- $825 B2B credit dispute confirmation
+**Why iron rule:** External contact to property manager = iron-rule item.
+**Context:** B2B handover due May 16. These 6 items block Tactical onboarding. Chase by May 9 hard deadline (gives 7 days to resolve disputes before handover).
+**When Patrick says "send it":** Garry sends chase email immediately.
+*[Iron-rule: external contact — Garry cannot send without approval]*
+
+---
+
+### 5. ATO call — $36,885.64 UHF debt write-off
+**Ask:** Patrick to call ATO on 13 28 66 to:
+1. Confirm SBR 001 write-off to $0 (BAS reallocation of $8,283 sent Feb 23)
+2. Request written confirmation of $0 balance
+3. Unblock ASIC deregistration of UHF (depends on ATO $0 confirm)
+**Why Patrick must do this:** ATO requires the registered account holder to call. Garry cannot call the ATO on Patrick's behalf.
+**Context:** $36,885.64 still showing on ATO portal as of Apr 30. Secure mail sent Feb 23, BAS reallocation escalated Mar 6 — both awaiting ATO response. ASIC deregistration date ~Jun 2.
+*[Iron-rule: external government phone call — Patrick only]*
 
 ---
 
