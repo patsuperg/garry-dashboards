@@ -1,36 +1,51 @@
 {
-  "generated": "2026-04-30T11:38:40.931732",
+  "generated": "2026-04-30T11:41:31.908346",
   "today": {
     "date": "2026-04-30",
     "spoons": 0,
     "breakdown": {
+      "hrv": {
+        "value": 0,
+        "pts": 0,
+        "max": 3,
+        "unit": "ms"
+      },
       "rhr": {
-        "value": 94,
+        "value": null,
         "pts": 0,
         "max": 2,
         "unit": "bpm"
       },
       "steps": {
-        "value": 612,
+        "value": 613,
         "pts": 0,
         "max": 2,
         "unit": "steps"
+      },
+      "active_energy": {
+        "value": 30,
+        "pts": 0,
+        "max": 2,
+        "unit": "kcal"
+      },
+      "spo2": {
+        "value": null,
+        "pts": 0,
+        "max": 1,
+        "unit": "%"
+      },
+      "sleep": {
+        "value": 0,
+        "pts": 0,
+        "max": 2,
+        "unit": "hr"
       }
     },
     "raw": {
       "steps": 612.98,
       "active_energy_kj": 124.894,
       "hr_avg": 99.33333333333333
-    },
-    "sleep_breakdown": {
-      "total_hr": null,
-      "deep_hr": null,
-      "rem_hr": null,
-      "core_hr": null,
-      "awake_hr": null
-    },
-    "exercise_min": 0,
-    "stand_min": 28
+    }
   },
   "history": [
     {
@@ -467,13 +482,5 @@
     "chronological_age": 37,
     "latest_scale_kg": 88.2,
     "latest_scale_date": "2026-04-20"
-  },
-  "ring": {
-    "source": "Kogan Aura",
-    "ts": "2026-04-30T11:36:43.015998",
-    "battery_pct": 48,
-    "hr_bpm": 0,
-    "steps": 0,
-    "spo2_pct": null
   }
 }
