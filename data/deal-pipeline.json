@@ -407,6 +407,33 @@
         "Cheap renovations in-person despite paper-quality = recurring Lindia signal \u2014 apply higher trust to her in-person assessment over listing photos",
         "Always cross-check finder candidates against excluded-properties.json before surfacing"
       ]
+    },
+    {
+      "date": "2026-05-02",
+      "property": "2432 Mary Ave, Saint Louis, MO 63136",
+      "finder_score": 80,
+      "patrick_score": 0,
+      "delta": "DEAL FINDER FAILURE \u2014 RESURFACED A REJECTED PROPERTY",
+      "feedback": "Garry deal-finder-v4 surfaced Mary Ave at #3 score 80 despite Patrick already having walked from this property post-inspection. excluded_properties array exists in pipeline but finder isn't consulting it. ROOT CAUSE FIX REQUIRED: deal-finder-v4 must hard-filter against excluded_properties[].address before scoring.",
+      "rules_learned": [
+        "Deal finder MUST consult excluded_properties[] AND project_active_acquisition_pipeline.md DEAD column before surfacing any property",
+        "Properties Patrick walked from post-inspection = permanent exclude, never re-show",
+        "Audit pass needed: scan all of Garry's recent deal-finder outputs for any address that's been previously rejected"
+      ]
+    },
+    {
+      "date": "2026-05-02",
+      "property": "117 Bayview Dr, Saint Louis (Ferguson) MO 63135",
+      "finder_score": null,
+      "patrick_score": 0,
+      "delta": "PASS",
+      "feedback": "Three structural reasons to pass: (1) Ferguson zip 63135 = population below the 80k S8 Pro threshold, S8 demand depth too thin for long-term occupancy. (2) 28 shootings within 1mi radius \u2014 crime risk too high. (3) Visible roof sagging in listing photos. (4) 3BR \u2014 Patrick prefers 4BR. The 'OK cash flow' on the deal does not compensate for the stacked risk+location+bedroom-count drag.",
+      "rules_learned": [
+        "BEDROOM RULE: Prefer 4BR over 3BR. 3BR with only OK cash flow = pass. 3BR is acceptable only if cash flow is exceptional AND location is best-tier.",
+        "FERGUSON / 63135 RULE: Population <80k = S8 Pro flags as 'Bad' for Location & Neighborhood Suitability. Treat 63135 (Ferguson) as a hard-penalty zip \u2014 most properties there should not surface.",
+        "CRIME THRESHOLD: 25+ shootings within 1mi radius (recent year) = automatic pass regardless of financials.",
+        "VISIBLE ROOF SAGGING in listing photos = exclude or hard-penalize. Do not surface as candidate."
+      ]
     }
   ],
   "excluded_properties": [
@@ -423,9 +450,30 @@
       "exclusion_reason": "HARD PASS FOREVER \u2014 too big (1638 sqft vs <1200 target), cheap renos in-person per Lindia, ugly, not S8 compliant",
       "excluded_date": "2026-05-02",
       "excluded_by": "Patrick (via Chich bot 2026-05-01 22:36 AEST)"
+    },
+    {
+      "address": "2432 Mary Ave, Saint Louis, MO 63136",
+      "zip": "63136",
+      "asking": 104900,
+      "beds": 4,
+      "baths": 1,
+      "exclusion_reason": "ALREADY REJECTED \u2014 offer was in, did inspection, did not inspect well. Walked. Should never resurface.",
+      "excluded_date": "2026-05-02",
+      "excluded_by": "Patrick (deal finder leak \u2014 Mary Ave was already in DEAD column of project_active_acquisition_pipeline.md)"
+    },
+    {
+      "address": "117 Bayview Dr, Saint Louis, MO 63135",
+      "zip": "63135",
+      "city_actual": "Ferguson",
+      "beds": 3,
+      "baths": 1,
+      "zillow_zpid": "2652791",
+      "exclusion_reason": "PASS \u2014 Ferguson location (population <80k S8 Pro threshold), 28 shootings within 1mi (last 03/14/26), roof shows sagging, only 3BR. Cash flow OK but risk + location + 3BR marginality push it to a pass.",
+      "excluded_date": "2026-05-02",
+      "excluded_by": "Patrick"
     }
   ],
-  "last_deal_finder_run": "2026-05-02T06:34:33.643801",
-  "deal_finder_age_hours": 7.7,
-  "last_refresh": "2026-05-02T04:16:34.637797+00:00"
+  "last_deal_finder_run": "2026-05-02T14:46:36.741693",
+  "deal_finder_age_hours": 0.0,
+  "last_refresh": "2026-05-02T04:46:37.484280+00:00"
 }
