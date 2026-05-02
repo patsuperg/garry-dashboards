@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garry — Org Chart</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #07070e;
+    color: #e0e8ff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    min-height: 100vh;
+    padding: 40px 24px 80px;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.022) 1px, transparent 1px);
+    background-size: 52px 52px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  /* ─── HEADER ─── */
+  .header { text-align: center; margin-bottom: 56px; }
+  .eyebrow { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; color: #00d4ff; text-transform: uppercase; margin-bottom: 10px; }
+  h1 { font-size: 2.1rem; font-weight: 800; letter-spacing: -0.03em; color: #fff; }
+  h1 span { color: #00d4ff; }
+  .sub { margin-top: 8px; font-size: 0.82rem; color: #333d60; letter-spacing: 0.04em; }
+
+  /* ─── NODES ─── */
+  .node { border-radius: 13px; padding: 16px 22px; text-align: center; }
+  .node-lbl { font-size: 0.57rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 3px; }
+  .node-title { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em; }
+  .node-role { font-size: 0.7rem; margin-top: 3px; opacity: 0.55; }
+
+  .n-patrick { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.12); width: 210px; }
+  .n-patrick .node-lbl { color: #8892b0; }
+  .n-patrick .node-title { color: #fff; }
+
+  .n-garry { background: linear-gradient(135deg,rgba(0,212,255,0.11),rgba(0,212,255,0.03)); border: 1.5px solid rgba(0,212,255,0.32); width: 260px; box-shadow: 0 0 36px rgba(0,212,255,0.07); }
+  .n-garry .node-lbl { color: #00d4ff; }
+  .n-garry .node-title { color: #00d4ff; }
+
+  .n-chich-rh { background: linear-gradient(135deg,rgba(255,94,196,0.13),rgba(255,94,196,0.03)); border: 1.5px solid rgba(255,94,196,0.36); width: 280px; box-shadow: 0 0 38px rgba(255,94,196,0.09); }
+  .n-chich-rh .node-lbl { color: #ff5ec4; }
+  .n-chich-rh .node-title { color: #ff5ec4; }
+
+  /* ─── CONNECTOR ─── */
+  .vline { width: 2px; background: linear-gradient(to bottom, rgba(0,212,255,0.25), rgba(0,212,255,0.08)); }
+  .vline-s { height: 26px; }
+  .vline-m { height: 36px; }
+
+  /* ─── HORIZONTAL BRIDGE ─── */
+  .bridge-wrap {
+    position: relative; height: 36px; width: 100%; max-width: 980px;
+    display: flex; justify-content: center;
+  }
+  .bridge-wrap::before {
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 2px; height: 18px; background: rgba(0,212,255,0.22);
+  }
+  .bridge-wrap::after {
+    content: ''; position: absolute; top: 18px;
+    left: 9%; right: 9%; height: 2px; background: rgba(0,212,255,0.12);
+  }
+
+  /* ─── SPECIALIST CARDS ─── */
+  .team-row { display: flex; justify-content: center; gap: 14px; width: 100%; max-width: 980px; }
+  .spec-col { display: flex; flex-direction: column; align-items: center; flex: 1; }
+  .spec-drop { width: 2px; height: 18px; background: rgba(0,212,255,0.18); }
+  .spec-card {
+    border-radius: 12px; padding: 15px 12px 13px; text-align: center;
+    width: 100%; max-width: 182px;
+  }
+  .spec-icon { font-size: 1.5rem; margin-bottom: 7px; }
+  .spec-code { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 2px; }
+  .spec-name { font-size: 0.9rem; font-weight: 800; }
+  .spec-handles { margin-top: 10px; display: flex; flex-direction: column; gap: 3px; text-align: left; }
+  .spec-h { font-size: 0.65rem; color: rgba(224,232,255,0.48); padding: 3px 6px; border-radius: 4px; background: rgba(255,255,255,0.025); border-left: 2px solid; }
+
+  .s-atlas { background: linear-gradient(160deg,rgba(0,255,136,0.08),rgba(0,255,136,0.01)); border: 1.5px solid rgba(0,255,136,0.18); }
+  .s-atlas .spec-code,.s-atlas .spec-name { color: #00ff88; }
+  .s-atlas .spec-h { border-color: rgba(0,255,136,0.28); }
+
+  .s-mercury { background: linear-gradient(160deg,rgba(0,212,255,0.08),rgba(0,212,255,0.01)); border: 1.5px solid rgba(0,212,255,0.18); }
+  .s-mercury .spec-code,.s-mercury .spec-name { color: #00d4ff; }
+  .s-mercury .spec-h { border-color: rgba(0,212,255,0.28); }
+
+  .s-sentinel { background: linear-gradient(160deg,rgba(255,107,0,0.08),rgba(255,107,0,0.01)); border: 1.5px solid rgba(255,107,0,0.18); }
+  .s-sentinel .spec-code,.s-sentinel .spec-name { color: #ff9f40; }
+  .s-sentinel .spec-h { border-color: rgba(255,107,0,0.28); }
+
+  .s-apollo { background: linear-gradient(160deg,rgba(139,92,246,0.1),rgba(139,92,246,0.01)); border: 1.5px solid rgba(139,92,246,0.22); }
+  .s-apollo .spec-code,.s-apollo .spec-name { color: #a78bfa; }
+  .s-apollo .spec-h { border-color: rgba(139,92,246,0.32); }
+
+  .s-may { background: linear-gradient(160deg,rgba(255,210,0,0.08),rgba(255,210,0,0.01)); border: 1.5px solid rgba(255,210,0,0.2); }
+  .s-may .spec-code,.s-may .spec-name { color: #ffd700; }
+  .s-may .spec-h { border-color: rgba(255,210,0,0.3); }
+
+  .s-chich { background: linear-gradient(160deg,rgba(255,94,196,0.10),rgba(255,94,196,0.01)); border: 1.5px solid rgba(255,94,196,0.24); box-shadow: 0 0 20px rgba(255,94,196,0.05); }
+  .s-chich .spec-code,.s-chich .spec-name { color: #ff5ec4; }
+  .s-chich .spec-h { border-color: rgba(255,94,196,0.34); }
+
+  /* ─── DIVIDER ─── */
+  .divider { width: 100%; height: 1px; background: linear-gradient(90deg,transparent,rgba(0,212,255,0.07),transparent); margin: 44px 0 0; max-width: 980px; }
+
+  /* ─── AUTOMATED PIPELINES ─── */
+  .pipelines-lbl { text-align: center; font-size: 0.57rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #232840; margin: 16px 0 18px; }
+  .pipelines-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 980px; width: 100%; }
+  .pipe-card { border-radius: 10px; padding: 14px 12px 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); }
+  .pipe-icon { font-size: 1.25rem; margin-bottom: 6px; }
+  .pipe-name { font-size: 0.7rem; font-weight: 700; color: rgba(224,232,255,0.75); margin-bottom: 2px; }
+  .pipe-count { font-size: 0.58rem; color: rgba(224,232,255,0.25); margin-bottom: 8px; }
+  .pipe-items { display: flex; flex-direction: column; gap: 3px; }
+  .pipe-item { font-size: 0.62rem; color: rgba(224,232,255,0.35); padding-left: 8px; border-left: 1.5px solid rgba(255,255,255,0.08); }
+
+  /* ─── LAYOUT HELPERS ─── */
+  .chart { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .footer { text-align: center; margin-top: 48px; font-size: 0.58rem; color: #1a1f3a; letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="eyebrow">Empire Investing — COO System</div>
+    <h1>The <span>Garry</span> Org</h1>
+    <div class="sub">49 active agents · 24/7 · Updated 2026-04-29 · Chich: Right Hand & Chief System Engineer</div>
+  </div>
+
+  <div class="chart">
+
+    <!-- PATRICK -->
+    <div class="node n-patrick">
+      <div class="node-lbl">Founder</div>
+      <div class="node-title">Patrick</div>
+      <div class="node-role">Vision · Approves 4 things only</div>
+    </div>
+
+    <div class="vline vline-s"></div>
+
+    <!-- CHICH — RIGHT HAND (elevated 2026-04-29) -->
+    <div class="node n-chich-rh">
+      <div class="node-lbl">Right Hand · Chief System Engineer & Architect</div>
+      <div class="node-title">Chich</div>
+      <div class="node-role">Standing authority · audits, repairs, anticipates · iron-rule four gate</div>
+    </div>
+
+    <div class="vline vline-s"></div>
+
+    <!-- GARRY -->
+    <div class="node n-garry">
+      <div class="node-lbl">Chief Operating Officer</div>
+      <div class="node-title">Garry</div>
+      <div class="node-role">Directs the specialist team day-to-day</div>
+    </div>
+
+    <!-- Bridge to specialists -->
+    <div class="bridge-wrap" style="max-width:980px;"></div>
+
+    <!-- 5 SPECIALIST TEAM (Chich elevated to Right Hand 2026-04-29) -->
+    <div class="team-row">
+
+      <div class="spec-col">
+        <div class="spec-drop"></div>
+        <div class="spec-card s-atlas">
+          <div class="spec-icon">💰</div>
+          <div class="spec-code">Atlas</div>
+          <div class="spec-name">Finance</div>
+          <div class="spec-handles">
+            <div class="spec-h">HAP & rental income</div>
+            <div class="spec-h">Capital One / credit</div>
+            <div class="spec-h">Deal financials</div>
+            <div class="spec-h">Tax (GW Carter)</div>
+            <div class="spec-h">FX & ledger</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-col">
+        <div class="spec-drop"></div>
+        <div class="spec-card s-mercury">
+          <div class="spec-icon">⚙️</div>
+          <div class="spec-code">Mercury</div>
+          <div class="spec-name">Operations</div>
+          <div class="spec-handles">
+            <div class="spec-h">PM comms (Avenue/B2B)</div>
+            <div class="spec-h">Maintenance & repairs</div>
+            <div class="spec-h">Tenant ops</div>
+            <div class="spec-h">Self-healing systems</div>
+            <div class="spec-h">Utility coordination</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-col">
+        <div class="spec-drop"></div>
+        <div class="spec-card s-sentinel">
+          <div class="spec-icon">🛡</div>
+          <div class="spec-code">Sentinel</div>
+          <div class="spec-name">Risk & QA</div>
+          <div class="spec-handles">
+            <div class="spec-h">Roger QA (every 15 min)</div>
+            <div class="spec-h">Deadlines & flags</div>
+            <div class="spec-h">Lease & legal watch</div>
+            <div class="spec-h">Emergency escalation</div>
+            <div class="spec-h">Aging watchdog</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-col">
+        <div class="spec-drop"></div>
+        <div class="spec-card s-apollo">
+          <div class="spec-icon">📡</div>
+          <div class="spec-code">Apollo</div>
+          <div class="spec-name">Comms</div>
+          <div class="spec-handles">
+            <div class="spec-h">Email routing & replies</div>
+            <div class="spec-h">Telegram alerts</div>
+            <div class="spec-h">PM & tenant liaison</div>
+            <div class="spec-h">ECM physical mail</div>
+            <div class="spec-h">Outreach gate</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="spec-col">
+        <div class="spec-drop"></div>
+        <div class="spec-card s-may">
+          <div class="spec-icon">🤖</div>
+          <div class="spec-code">May</div>
+          <div class="spec-name">Task Worker</div>
+          <div class="spec-handles">
+            <div class="spec-h">Job queue execution</div>
+            <div class="spec-h">Utility form filling</div>
+            <div class="spec-h">Browser automation</div>
+            <div class="spec-h">Computer Use vision</div>
+            <div class="spec-h">Escalates to Patrick</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="divider"></div>
+
+    <!-- AUTOMATED PIPELINES -->
+    <div class="pipelines-lbl">Automated pipelines running 24/7</div>
+
+    <div class="pipelines-grid">
+
+      <div class="pipe-card">
+        <div class="pipe-icon">❤️</div>
+        <div class="pipe-name">Health Hub</div>
+        <div class="pipe-count">11 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Kogan Aura BLE (10 min)</div>
+          <div class="pipe-item">Apple Health export (30 min)</div>
+          <div class="pipe-item">Spoons scoring</div>
+          <div class="pipe-item">Morning & evening nudge</div>
+          <div class="pipe-item">Stale-data kill switch</div>
+          <div class="pipe-item">OpenClaw health inject</div>
+        </div>
+      </div>
+
+      <div class="pipe-card">
+        <div class="pipe-icon">🏠</div>
+        <div class="pipe-name">Deal Engine</div>
+        <div class="pipe-count">6 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Deal Finder v4</div>
+          <div class="pipe-item">Scout + Scout Runner</div>
+          <div class="pipe-item">Deal Monitor (5 min)</div>
+          <div class="pipe-item">PM Tracker</div>
+          <div class="pipe-item">Income stmt requester</div>
+          <div class="pipe-item">PM nudge watcher</div>
+        </div>
+      </div>
+
+      <div class="pipe-card">
+        <div class="pipe-icon">📊</div>
+        <div class="pipe-name">Dashboards</div>
+        <div class="pipe-count">5 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Command Centre (30 min)</div>
+          <div class="pipe-item">KPI dashboard (15 min)</div>
+          <div class="pipe-item">Cashflow dashboard</div>
+          <div class="pipe-item">Dashboard watchdog (5 min)</div>
+          <div class="pipe-item">dashboards.empinv.com</div>
+        </div>
+      </div>
+
+      <div class="pipe-card">
+        <div class="pipe-icon">💳</div>
+        <div class="pipe-name">Finance Automation</div>
+        <div class="pipe-count">7 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Atlas daily run</div>
+          <div class="pipe-item">HAP tracker</div>
+          <div class="pipe-item">Ledger watcher (1 hr)</div>
+          <div class="pipe-item">Capital One notify</div>
+          <div class="pipe-item">Capital One paydown</div>
+          <div class="pipe-item">Credit monitor & accountability</div>
+        </div>
+      </div>
+
+      <div class="pipe-card">
+        <div class="pipe-icon">📬</div>
+        <div class="pipe-name">Comms Automation</div>
+        <div class="pipe-count">7 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Email router (10 min)</div>
+          <div class="pipe-item">Inbox monitor (30 min)</div>
+          <div class="pipe-item">Inbox autosweep</div>
+          <div class="pipe-item">Gmail organizer (30 min)</div>
+          <div class="pipe-item">ECM processor</div>
+          <div class="pipe-item">Morning brief · Nothing-day nudge</div>
+        </div>
+      </div>
+
+      <div class="pipe-card">
+        <div class="pipe-icon">🧠</div>
+        <div class="pipe-name">Memory & Evolution</div>
+        <div class="pipe-count">8 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Session context injector</div>
+          <div class="pipe-item">Roger QA digest (15 min)</div>
+          <div class="pipe-item">Overnight runner (2am)</div>
+          <div class="pipe-item">Overnight evolution (12:30am)</div>
+          <div class="pipe-item">Weekly synthesis</div>
+          <div class="pipe-item">State writer (5 min)</div>
+          <div class="pipe-item">Luke repo sync · Metrics tracker</div>
+        </div>
+      </div>
+
+      <div class="pipe-card">
+        <div class="pipe-icon">🌏</div>
+        <div class="pipe-name">Life OS</div>
+        <div class="pipe-count">9 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Power List (daily)</div>
+          <div class="pipe-item">Meg session prep (Sun 6am)</div>
+          <div class="pipe-item">Voice capture (5 min)</div>
+          <div class="pipe-item">Bangkok finder</div>
+          <div class="pipe-item">Screenshot watcher</div>
+          <div class="pipe-item">Downloads archive · Mac cleanup</div>
+        </div>
+      </div>
+
+      <div class="pipe-card">
+        <div class="pipe-icon">⚙️</div>
+        <div class="pipe-name">Infrastructure</div>
+        <div class="pipe-count">7 agents</div>
+        <div class="pipe-items">
+          <div class="pipe-item">Telegram session (Garry live)</div>
+          <div class="pipe-item">Escalation listener</div>
+          <div class="pipe-item">OpenClaw gateway</div>
+          <div class="pipe-item">GitHub backup</div>
+          <div class="pipe-item">Emergency escalator</div>
+          <div class="pipe-item">Log rotate · Keep-awake</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /chart -->
+
+  <div class="footer">Garry COO System · Empire Investing · 2026-04-29</div>
+
+</div>
+</body>
+</html>
