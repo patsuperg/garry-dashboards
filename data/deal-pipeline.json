@@ -434,6 +434,28 @@
         "CRIME THRESHOLD: 25+ shootings within 1mi radius (recent year) = automatic pass regardless of financials.",
         "VISIBLE ROOF SAGGING in listing photos = exclude or hard-penalize. Do not surface as candidate."
       ]
+    },
+    {
+      "date": "2026-05-02",
+      "property": "848 Laredo Ave, Saint Louis, MO 63138",
+      "feedback": "Surfaced as #1 because cached sqft=0 (missing data) and 4BR boosted score. Patrick excluded \u2014 too big. Reinforces existing rule: sqft missing = MUST fetch from Zillow before scoring, OR exclude. Also: 4BR/3BA layout is a tell for oversized \u2014 target 4BR/1BA, max 2BA.",
+      "rules_learned": [
+        "sqft=0 or missing = NEVER surface as top pick. Either fetch live from Zillow OR auto-exclude.",
+        "4BR/3BA = oversized red flag. Target is 4BR/1BA, occasionally 4BR/2BA. 3+ baths = exclude.",
+        "Patrick's hard sqft cap reaffirmed: 900-1200 ideal, anything >1500 sqft = penalty, >2000 = exclude."
+      ]
+    },
+    {
+      "date": "2026-05-02",
+      "property": "1427 Fairmeadows Ln, Saint Louis, MO 63138 (soft pass)",
+      "feedback": "Patrick reviewed live Zillow. 169 days on market (stale). Tenanted with NO rent rate disclosed. Listing says 'showings with accepted offer only' (blocks pre-offer inspection). 'Sold as-is, no repairs/inspections by seller'. No S8 mention = likely market-rate tenant requiring eviction + S8 re-lease. Soft pass \u2014 not excluded forever but deprioritized.",
+      "rules_learned": [
+        "DOM > 90 days = warning flag (-10 score). >150 days = harder penalty (-20).",
+        "Tenanted property without disclosed rent rate = eviction risk + cash flow unknown = penalty.",
+        "Listing says 'showings with accepted offer only' = no pre-offer inspection = HARD penalty (Patrick won't make blind binding offers).",
+        "Listing says 'sold as-is, no inspections by seller' = penalty (signals seller knows there's stuff wrong).",
+        "Listing missing the words 'Section 8' / 'voucher' / 'HCV' but tenanted = assume market-rate, need to model 30-60 day eviction + re-lease lag in cash flow."
+      ]
     }
   ],
   "excluded_properties": [
@@ -471,9 +493,18 @@
       "exclusion_reason": "PASS \u2014 Ferguson location (population <80k S8 Pro threshold), 28 shootings within 1mi (last 03/14/26), roof shows sagging, only 3BR. Cash flow OK but risk + location + 3BR marginality push it to a pass.",
       "excluded_date": "2026-05-02",
       "excluded_by": "Patrick"
+    },
+    {
+      "address": "848 Laredo Ave, Saint Louis, MO 63138",
+      "zip": "63138",
+      "beds": 4,
+      "baths": 3,
+      "exclusion_reason": "TOO BIG \u2014 Patrick: 'way too big, twice as big as we want.' Target 900-1200 sqft, this is ~2400+ sqft territory. 4BR/3BA layout = oversized for S8 single-family.",
+      "excluded_date": "2026-05-02",
+      "excluded_by": "Patrick"
     }
   ],
-  "last_deal_finder_run": "2026-05-02T14:46:36.741693",
-  "deal_finder_age_hours": 0.0,
-  "last_refresh": "2026-05-02T04:46:37.484280+00:00"
+  "last_deal_finder_run": "2026-05-02T15:05:22.006121",
+  "deal_finder_age_hours": 0.2,
+  "last_refresh": "2026-05-02T05:16:39.814101+00:00"
 }
