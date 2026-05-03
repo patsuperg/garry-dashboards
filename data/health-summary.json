@@ -1,24 +1,9 @@
 {
-  "updated": "2026-05-02T23:30:02.894579+00:00",
-  "source": "hae-autosync",
+  "updated": "2026-05-03T09:59:46.792360+10:00",
+  "source": "dashboard-bridge",
   "data_age_hours": 0,
-  "stale": true,
+  "stale": false,
   "today": {
-    "date": "2026-05-02",
-    "sleep_total_hr": null,
-    "sleep_deep_hr": null,
-    "sleep_rem_hr": null,
-    "sleep_core_hr": null,
-    "sleep_awake_hr": null,
-    "sleep_in_bed_hr": null,
-    "hrv_avg": null,
-    "resting_hr": null,
-    "resp_rate_avg": null,
-    "steps": null,
-    "active_energy_kcal": null,
-    "stand_hours": null
-  },
-  "yesterday": {
     "date": "2026-05-02",
     "sleep_total_hr": 9.516666666666667,
     "sleep_deep_hr": 1.3083333333333333,
@@ -33,15 +18,33 @@
     "active_energy_kcal": 875,
     "stand_hours": null
   },
-  "spoons": {
-    "score": null,
-    "label": "STALE \u2014 no data",
-    "color": "gray",
-    "sleep_norm": null,
-    "hrv_norm": null,
-    "activity_norm": null
+  "yesterday": {
+    "date": "2026-05-01",
+    "sleep_total_hr": 9.516666666666667,
+    "sleep_deep_hr": 1.4416666666666667,
+    "sleep_rem_hr": 2.25,
+    "sleep_core_hr": null,
+    "sleep_awake_hr": null,
+    "sleep_in_bed_hr": null,
+    "hrv_avg": 39.58,
+    "resting_hr": 84.0,
+    "resp_rate_avg": null,
+    "steps": 8068,
+    "active_energy_kcal": 892,
+    "stand_hours": null
   },
-  "weekly_avg": {},
-  "last_pipeline_refresh": "2026-05-02T23:48:18.106790+00:00",
+  "spoons": {
+    "score": 12,
+    "label": "Peak \u2014 push hard",
+    "color": "green",
+    "sleep_norm": 1.0,
+    "hrv_norm": 0.96975,
+    "activity_norm": 1.0,
+    "sleep_hr_used": 9.516666666666667,
+    "hrv_used": 53.79,
+    "steps_used": 10590,
+    "computed_at": "2026-05-03T09:59:46.792375+10:00"
+  },
+  "last_pipeline_refresh": "2026-05-03T00:18:20.481569+00:00",
   "export_connected": false
 }
