@@ -1,47 +1,56 @@
 {
-  "generated": "2026-05-03T17:16:25.968784",
+  "generated": "2026-05-03T17:18:57.313813",
   "today": {
     "date": "2026-05-03",
-    "spoons": 6,
+    "spoons": 3,
     "breakdown": {
+      "hrv": {
+        "value": 0,
+        "pts": 0,
+        "max": 3,
+        "unit": "ms"
+      },
+      "rhr": {
+        "value": 81.0,
+        "pts": 0,
+        "max": 2,
+        "unit": "bpm"
+      },
+      "steps": {
+        "value": 4259,
+        "pts": 0,
+        "max": 2,
+        "unit": "steps"
+      },
+      "active_energy": {
+        "value": 526,
+        "pts": 1,
+        "max": 2,
+        "unit": "kcal"
+      },
+      "spo2": {
+        "value": null,
+        "pts": 0,
+        "max": 1,
+        "unit": "%"
+      },
       "sleep": {
         "value": 37.83,
         "pts": 5,
         "max": 5,
         "unit": "hr",
         "deep_rem_hr": 12.73
-      },
-      "rhr": {
-        "value": 81,
-        "pts": 0,
-        "max": 2,
-        "unit": "bpm"
-      },
-      "steps": {
-        "value": 4258,
-        "pts": 1,
-        "max": 2,
-        "unit": "steps"
       }
     },
     "raw": {
-      "steps": 1541.0339999999999,
+      "steps": 4258.9039999999995,
       "rhr": 81.0,
       "sleep_hr": 9.516666666666667,
-      "sleep_deep": 2.5,
-      "sleep_rem": 3.866666666666667,
-      "active_energy_kj": 501.25,
-      "hr_avg": 83.61359999999999
-    },
-    "sleep_breakdown": {
-      "total_hr": 37.83333333333333,
-      "deep_hr": 5.0,
-      "rem_hr": 7.733333333333343,
-      "core_hr": 25.099999999999987,
-      "awake_hr": 1.5333333333333332
-    },
-    "exercise_min": 59,
-    "stand_min": 112
+      "sleep_deep": 5.0,
+      "sleep_rem": 7.733333333333343,
+      "active_energy_kj": 2201.26,
+      "hr_avg": 98.97567901234568
+    }
   },
   "history": [
     {
@@ -397,7 +406,7 @@
           "unit": "%"
         },
         "sleep": {
-          "value": 11.0,
+          "value": 22.0,
           "pts": 2,
           "max": 2,
           "unit": "hr"
@@ -407,9 +416,9 @@
         "steps": 10628.780999999999,
         "hrv": 53.79,
         "rhr": 84.0,
-        "sleep_hr": 11.016666666666666,
-        "sleep_deep": 2.616666666666667,
-        "sleep_rem": 2.45,
+        "sleep_hr": 22.033333333333328,
+        "sleep_deep": 5.233333333333332,
+        "sleep_rem": 4.8999999999999995,
         "active_energy_kj": 3666.7690000000002,
         "spo2": 97.0,
         "hr_avg": 95.78022727272727
@@ -417,7 +426,7 @@
     },
     {
       "date": "2026-05-03",
-      "spoons": 2,
+      "spoons": 3,
       "breakdown": {
         "hrv": {
           "value": 0,
@@ -432,14 +441,14 @@
           "unit": "bpm"
         },
         "steps": {
-          "value": 1541,
+          "value": 4259,
           "pts": 0,
           "max": 2,
           "unit": "steps"
         },
         "active_energy": {
-          "value": 120,
-          "pts": 0,
+          "value": 526,
+          "pts": 1,
           "max": 2,
           "unit": "kcal"
         },
@@ -450,21 +459,21 @@
           "unit": "%"
         },
         "sleep": {
-          "value": 18.92,
+          "value": 37.83,
           "pts": 5,
           "max": 5,
           "unit": "hr",
-          "deep_rem_hr": 6.37
+          "deep_rem_hr": 12.73
         }
       },
       "raw": {
-        "steps": 1541.0339999999999,
+        "steps": 4258.9039999999995,
         "rhr": 81.0,
         "sleep_hr": 9.516666666666667,
-        "sleep_deep": 2.5,
-        "sleep_rem": 3.866666666666667,
-        "active_energy_kj": 501.25,
-        "hr_avg": 83.61359999999999
+        "sleep_deep": 5.0,
+        "sleep_rem": 7.733333333333343,
+        "active_energy_kj": 2201.26,
+        "hr_avg": 98.97567901234568
       }
     }
   ],
