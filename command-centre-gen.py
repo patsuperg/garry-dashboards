@@ -12,6 +12,7 @@ Replaces the Command Centre block in generate.py. Reads:
   data/bangkok.json
   data/fx-rate.json
   data/recent-wins.json
+  ~/AI/Projects/Section8/deal-pipeline.json  (watchlist)
 
 Writes:
   garry-dashboards/command-centre.html
@@ -27,10 +28,21 @@ BASE = Path.home() / "AI/Claude"
 DATA = BASE / "Infrastructure/data"
 OUT_PAGES = BASE / "Infrastructure/garry-dashboards/command-centre.html"
 OUT_LOCAL = BASE / "Infrastructure/garry-live/command-centre.html"
+PIPELINE_JSON = Path.home() / "AI/Projects/Section8/deal-pipeline.json"
 
 
 def load(name, default=None):
     p = DATA / name
+    if not p.exists():
+        return default if default is not None else {}
+    try:
+        return json.loads(p.read_text())
+    except Exception:
+        return default if default is not None else {}
+
+
+def load_file(path, default=None):
+    p = Path(path)
     if not p.exists():
         return default if default is not None else {}
     try:
@@ -73,6 +85,14 @@ def render():
 
     # ── Active deals ──
     deals = active_deals.get("deals", [])
+
+    # ── Deal Pipeline (watchlist from deal-pipeline.json + active-deals stages) ──
+    pipeline_raw = load_file(PIPELINE_JSON, {})
+    watchlist_raw = pipeline_raw.get("watchlist", [])
+    # Build unified pipeline stages from active-deals + watchlist
+    pipeline_under_contract = [d for d in deals if d.get("status", "").upper() in ("UNDER CONTRACT", "CONTRACT SIGNED")]
+    pipeline_offer_submitted = [d for d in deals if d.get("status", "").upper() in ("OFFER SUBMITTED", "INSPECTION IN PROGRESS", "INSPECTION PAID")]
+    pipeline_watchlist = watchlist_raw
 
     # ── Needs Patrick ──
     needs = pending.get("needs_patrick", [])[:3]
@@ -122,6 +142,91 @@ def render():
 </div>"""
     if not deal_cards:
         deal_cards = '<div class="empty">No active deals — Lindia watching 63135/36/37</div>'
+
+    # ════════════ DEAL PIPELINE ════════════
+    def pipeline_stage_badge(label, color_var, count):
+        return f'<div class="pipe-stage-label" style="color:{color_var}">{label} <span class="pipe-count">{count}</span></div>'
+
+    def pipeline_contract_row(d):
+        close_target = d.get("close_target", "TBD")
+        signed = d.get("signed_date", "")
+        notes = d.get("notes", "")
+        # Inspection window: 10 days from signed date
+        insp_note = ""
+        if signed:
+            try:
+                from datetime import timedelta
+                sd = datetime.strptime(signed, "%Y-%m-%d")
+                insp_end = sd + timedelta(days=10)
+                days_left = (insp_end - datetime.now()).days
+                insp_note = f' · Inspection window: {"OPEN" if days_left >= 0 else "CLOSED"} ({max(0,days_left)}d left)'
+            except Exception:
+                pass
+        return f"""<div class="pipe-row pipe-contract">
+  <div class="pipe-row-top">
+    <div class="pipe-addr">{d.get('name','')}</div>
+    <div class="pipe-price">${(d.get('price') or 0):,}</div>
+  </div>
+  <div class="pipe-meta">Close: {close_target}{insp_note}</div>
+  <div class="pipe-next">Next: {d.get('next_action','')}</div>
+  {f'<div class="pipe-note">{notes[:140]}</div>' if notes else ''}
+</div>"""
+
+    def pipeline_offer_row(d):
+        return f"""<div class="pipe-row pipe-offer">
+  <div class="pipe-row-top">
+    <div class="pipe-addr">{d.get('name','')}</div>
+    <div class="pipe-price">${(d.get('price') or 0):,}</div>
+  </div>
+  <div class="pipe-meta">Stage: {d.get('stage','')}</div>
+  <div class="pipe-next">Next: {d.get('next_action','')}</div>
+</div>"""
+
+    def pipeline_watchlist_row(w):
+        addr = w.get("address", "").split(",")[0]
+        asking = w.get("asking", 0)
+        beds = w.get("beds", "?")
+        status_detail = w.get("status_detail", "")
+        pros = w.get("pros", "")
+        cons = w.get("cons", "")
+        min_rent = w.get("minimum_rent_needed")
+        notes = w.get("notes", "")
+        min_rent_str = f' · Min rent needed: ${min_rent:,}/mo' if min_rent else ''
+        return f"""<div class="pipe-row pipe-watch">
+  <div class="pipe-row-top">
+    <div class="pipe-addr">{addr}</div>
+    <div class="pipe-price">${asking:,} · {beds}BR</div>
+  </div>
+  {f'<div class="pipe-pros">+ {pros[:120]}</div>' if pros else ''}
+  {f'<div class="pipe-cons">- {cons[:120]}</div>' if cons else ''}
+  {f'<div class="pipe-meta">{status_detail}{min_rent_str}</div>' if status_detail or min_rent else ''}
+  {f'<div class="pipe-note">{notes[:120]}</div>' if notes else ''}
+</div>"""
+
+    pipeline_html = ""
+    # Under Contract
+    pipeline_html += pipeline_stage_badge("UNDER CONTRACT", "var(--green)", len(pipeline_under_contract))
+    if pipeline_under_contract:
+        for d in pipeline_under_contract:
+            pipeline_html += pipeline_contract_row(d)
+    else:
+        pipeline_html += '<div class="pipe-empty">Nothing under contract</div>'
+
+    # Offer Submitted / Inspection
+    pipeline_html += pipeline_stage_badge("OFFER SUBMITTED / INSPECTION", "var(--orange)", len(pipeline_offer_submitted))
+    if pipeline_offer_submitted:
+        for d in pipeline_offer_submitted:
+            pipeline_html += pipeline_offer_row(d)
+    else:
+        pipeline_html += '<div class="pipe-empty">No active offers</div>'
+
+    # Watchlist
+    pipeline_html += pipeline_stage_badge("WATCHLIST", "var(--blue)", len(pipeline_watchlist))
+    if pipeline_watchlist:
+        for w in pipeline_watchlist:
+            pipeline_html += pipeline_watchlist_row(w)
+    else:
+        pipeline_html += '<div class="pipe-empty">Watchlist clear</div>'
 
     # ════════════ NEEDS PATRICK ════════════
     needs_cards = ""
@@ -310,6 +415,23 @@ body{{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple
 .thread-name{{font-size:13px;font-weight:600}}
 .thread-status{{font-size:11px;color:var(--sub);margin-top:4px;line-height:1.4}}
 
+/* PIPELINE */
+.pipe-stage-label{{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin:14px 0 6px 2px}}
+.pipe-count{{background:rgba(255,255,255,0.07);border-radius:8px;padding:1px 7px;font-size:10px;margin-left:4px}}
+.pipe-row{{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:8px}}
+.pipe-contract{{border-left:3px solid var(--green)}}
+.pipe-offer{{border-left:3px solid var(--orange)}}
+.pipe-watch{{border-left:3px solid var(--blue)}}
+.pipe-row-top{{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}}
+.pipe-addr{{font-size:15px;font-weight:700;color:var(--text)}}
+.pipe-price{{font-size:12px;color:var(--gold);font-weight:600}}
+.pipe-meta{{font-size:11px;color:var(--sub);margin-bottom:4px}}
+.pipe-next{{font-size:12px;color:var(--gold);font-weight:500}}
+.pipe-pros{{font-size:11px;color:var(--green);margin-bottom:2px;line-height:1.4}}
+.pipe-cons{{font-size:11px;color:var(--red);margin-bottom:4px;line-height:1.4}}
+.pipe-note{{font-size:10px;color:var(--dim);margin-top:6px;font-style:italic;line-height:1.4}}
+.pipe-empty{{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:11px;color:var(--dim);text-align:center;margin-bottom:8px}}
+
 /* WINS */
 .win-row{{font-size:11px;color:var(--sub);padding:6px 0;border-bottom:1px solid var(--border);line-height:1.4}}
 
@@ -356,6 +478,12 @@ body{{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple
 <div class="sec">
   <div class="sec-title">Needs Patrick {f'<span class="badge">{len(needs)} open</span>' if needs else ''}</div>
   {needs_cards}
+</div>
+
+<!-- DEAL PIPELINE -->
+<div class="sec">
+  <div class="sec-title">Deal Pipeline <span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">{len(pipeline_under_contract)} contract · {len(pipeline_offer_submitted)} offer · {len(pipeline_watchlist)} watch</span></div>
+  {pipeline_html}
 </div>
 
 <!-- ACTIVE DEALS -->
