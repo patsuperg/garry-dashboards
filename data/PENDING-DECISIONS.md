@@ -32,7 +32,7 @@ Call 13 28 66. Patrick must call personally. UHF ABN + deregistration to cite.
 ## WAITING FOR EXTERNAL (no action yet)
 
 - Ewell inspection — Lindia scheduling Evergreen (Will/Paul Frost)
-- Fenwick April HAP — Evernest reply pending
+- Fenwick April HAP — Jenna Simmons (jenna.simmons@evernest.co) — Evernest has HAP, hasn't forwarded it. Chase if no reply by May 2.
 - Elmdale S8 voucher — Lindia response pending ($1,100+ = buy at $107K)
 - Sleek Deed of Loan Forgiveness — Gab drafting
 - GW Carter Form 5472 revised — Alex pending

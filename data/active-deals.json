@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-05-04T04:00:54.046390+00:00",
+  "deals": [
+    {
+      "name": "272 Elmdale Dr",
+      "address": "272 Elmdale Dr, Ferguson MO 63135",
+      "price": 107000,
+      "bedrooms": 4,
+      "fmr": 1920,
+      "current_rent": 0,
+      "retenant_target": 1670,
+      "status": "UNDER CONTRACT",
+      "stage": "CONTRACT SIGNED \u2014 inspection window open",
+      "next_action": "10-day inspection window (from May 4). Confirm S8 voucher with STL Housing Authority.",
+      "close_target": "2026-06-04",
+      "days_to_close": 31,
+      "lenders": [
+        {
+          "name": "Brannon Harnish",
+          "status": "PRE-APPROVED",
+          "terms": "80% LTV / 7.73% / 30yr"
+        }
+      ],
+      "optimised_cf_per_month": 661,
+      "badge": "HOT",
+      "badge_color": "green",
+      "earnest": 1000,
+      "signed_date": "2026-05-04",
+      "notes": "CF $661/mo | DSCR 2.08 | CoC 37.1% | Down $21,400. Address discrepancy: contract says Elmdale CT Florissant 63031, riders say Elmdale Dr Ferguson 63135 \u2014 fix with Lindia before close."
+    },
+    {
+      "name": "Ewell 10436",
+      "address": "10436 Ewell Ave, STL",
+      "price": 82000,
+      "bedrooms": null,
+      "fmr": null,
+      "current_rent": 0,
+      "retenant_target": 0,
+      "status": "INSPECTION IN PROGRESS",
+      "stage": "Evergreen inspection paid May 1 \u2014 awaiting report",
+      "next_action": "Await Evergreen inspection report \u2192 Steadily quote \u2192 decide",
+      "close_target": "TBD",
+      "days_to_close": null,
+      "lenders": [
+        {
+          "name": "Brannon Harnish",
+          "status": "PRE-APPROVED",
+          "terms": "80% LTV / 7.73%"
+        }
+      ],
+      "optimised_cf_per_month": 594,
+      "badge": "PENDING",
+      "badge_color": "orange",
+      "notes": "Ceiling $85K. CF $594/mo, DSCR 2.25x. Water pooling on patio = flag for inspection report."
+    }
+  ],
+  "count": 2,
+  "under_contract": 1,
+  "_note": "Mary Ave (2432) EXCLUDED \u2014 Patrick passed after inspection. See excluded_properties in deal-pipeline.json."
+}

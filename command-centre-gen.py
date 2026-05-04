@@ -94,7 +94,7 @@ def render():
 
     # ── Phase ──
     phase_label = "ACQUISITION PHASE"
-    phase_sub = f"Mary Ave closing · {doors}/16 doors to next milestone · Bangkok in {bk_days}d" if bk_days > 0 else f"Mary Ave closing · {doors}/16 doors to next milestone"
+    phase_sub = f"272 Elmdale under contract · {doors}/16 doors to next milestone · Bangkok in {bk_days}d" if bk_days > 0 else f"272 Elmdale under contract · {doors}/16 doors to next milestone"
 
     # ════════════ DEAL CARDS ════════════
     deal_cards = ""
@@ -111,10 +111,10 @@ def render():
     <div class="deal-badge" style="background:{badge_bg};color:{badge_color}">{d.get('badge','')} · {d.get('status','')}</div>
   </div>
   <div class="deal-line">
-    <span class="deal-k">Price</span><span class="deal-v">${d.get('price',0):,}</span>
-    <span class="deal-k">FMR</span><span class="deal-v">${d.get('fmr',0):,}</span>
-    <span class="deal-k">Target rent</span><span class="deal-v">${d.get('retenant_target',0):,}</span>
-    <span class="deal-k">CF (opt)</span><span class="deal-v">${d.get('optimised_cf_per_month',0):,}/mo</span>
+    <span class="deal-k">Price</span><span class="deal-v">${(d.get('price') or 0):,}</span>
+    <span class="deal-k">FMR</span><span class="deal-v">${(d.get('fmr') or 0):,}</span>
+    <span class="deal-k">Target rent</span><span class="deal-v">${(d.get('retenant_target') or 0):,}</span>
+    <span class="deal-k">CF (opt)</span><span class="deal-v">${(d.get('optimised_cf_per_month') or 0):,}/mo</span>
   </div>
   <div class="deal-stage">Stage: <b>{d.get('stage','')}</b> · Close target: {d.get('close_target','')} · T-{d.get('days_to_close','?')}d</div>
   <div class="deal-lenders">{lenders_str}</div>

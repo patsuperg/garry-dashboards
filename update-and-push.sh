@@ -10,11 +10,17 @@ INFRA="/Users/patrickdickson/AI/Claude/Infrastructure"
 # Step 1: Refresh ALL data files from live sources
 python3 "$INFRA/data-refresh.py" 2>&1
 
+# Step 1b: Refresh extras (active-deals, pending-decisions, threads, FX, Bangkok, capital)
+python3 "$INFRA/data-refresh-extras.py" 2>&1
+
 # Step 2: Refresh CURRENT-STATE.md from updated data
 python3 "$(dirname "$0")/refresh-state.py" 2>/dev/null
 
 # Step 3: Regenerate ALL dashboards from fresh data
 python3 generate.py 2>/dev/null
+
+# Step 3a: Regenerate elite Command Centre
+python3 command-centre-gen.py 2>/dev/null
 
 # Step 3b: Regenerate health dashboard from live health-summary.json
 # health-dashboard-generator.py is the authoritative source — generate.py is now neutered for health.html
