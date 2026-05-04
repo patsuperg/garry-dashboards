@@ -1,51 +1,56 @@
 # PENDING DECISIONS
-*Updated 2026-05-04 15:00 AEDT — full Gmail audit run*
+*Auto-generated 2026-05-04 15:35 AEDT*
 
 ---
 
 ## CRITICAL — ACT NOW
 
-**#1 — Sign Elmdale DocuSign** ⚠️ UNSIGNED IN INBOX
-Lindia sent Broker Compensation Rider-108.pdf TWICE (May 1 + May 4). Sitting unsigned in Gmail now.
-Subject: "272 ELMDALE CT FLORISSANT, MO 63031". Open Gmail → sign now. 2 minutes.
+**#1 — ATO Call — UHF $47,520 across 2 accounts**
+Call 13 28 66. Tue-Thu 8-10am AEST (not May 5). Full prep at `~/AI/Claude/Outputs/ato-call-prep-uhf-2026-05-04.md`
+⚠️ FIRST: check ATO portal — "PROCESSING Operations" from Apr 13 completed TODAY. A letter may have arrived.
 
-**#2 — DTV Visa — Apply by May 12**
-Apply at thaievisa.go.th. 25 business days processing. Mid-June departure = May 12 is the hard deadline. Every day lost is margin gone.
-
-**#3 — Ameren Wilborn utility setup**
-Call 800-552-7583 (~5 min). Business account for 5361 Wilborn Ave, St Louis MO. Empire Investing LLC. WAF blocks all automation.
+**#2 — Ameren Wilborn utility setup**
+Call 800-552-7583 (~5 min). Business account for 5361 Wilborn Ave, STL 63136. Empire Investing LLC. Cannot be automated.
 
 ---
 
 ## IRON RULE — NEEDS PATRICK APPROVAL
 
-**#4 — NREIG: Fenwick + Lorain follow-up with Nohemi Alfaro**
-Email to Kathy sent April 20 ✅. Nohemi Alfaro (nohemi@nreig.com) looped in same day. No reply from Nohemi found. Say "send it" to have Garry chase Nohemi for quotes and confirm properties added.
+**#3 — NREIG form: confirm 5 property data points (then Garry submits)**
+For Fenwick (63135) + 505 W 25th (Lorain): year built, square footage, roof/electric/plumbing/HVAC last updated.
+Once Patrick provides these, Garry fills and submits the Formstack form via Playwright.
 
-**#5 — Steadily: Ewell insurance quote**
-Post-inspection. Bill Bland (agent+bland@steadily.com). Ewell inspection is TOMORROW May 5 at 9am CDT. Say "send it" once report arrives.
+**#4 — Steadily: Ewell insurance quote**
+Post-inspection. Bill Bland (agent+bland@steadily.com). Ewell inspection May 5 — say "send it" once report arrives.
 
-**#6 — B2B handover pack chase (Michael Drew)**
-Still no deposits, ledgers, leases, HAP docs from Michael Drew. May 16 termination is 12 days away. Say "send it" to trigger Garry chase email.
-
-**#7 — ATO call: $36,885.64 UHF debt write-off**
-Call 13 28 66. Patrick must call personally. UHF ABN + deregistration to cite. Critical before Bangkok departure.
+**#5 — Empire Investing Pty Ltd ASIC status**
+Not showing active in ABR — likely already deregistered. Confirm via myGov/ASIC login or Sleek/Gabriela.
 
 ---
 
-## WAITING FOR EXTERNAL (no action needed from Patrick)
+## WAITING FOR EXTERNAL (no action from Patrick needed)
 
-- **Jenna Simmons (Fenwick April HAP)** — Patrick sent firm 3-question email May 4. Ball in Jenna's court. No reply yet.
-- **Ewell inspection report** — Evergreen inspecting TOMORROW May 5 at 9:00am CDT. Report expected May 5-6.
-- **GW Carter Form 8288-B** (Hazelcrest FIRPTA) — Karl started after Apr 30 payment. In progress.
-- **Sleek/Gab Deed of Loan Forgiveness** — Requested Apr 28. Awaiting Gabriela draft. Deregistration ~June 2.
-- **272 Elmdale: 10-day inspection window** — Opens May 4, closes May 14.
-- **NREIG quotes from Nohemi Alfaro** — In progress since Apr 20.
+- **Jenna Simmons (Fenwick April HAP)** — Patrick chased May 4. No reply. Garry auto-chases May 6.
+- **Ewell inspection report** — Evergreen inspecting May 5 at 9am CDT. Report expected same day.
+- **Michael Drew (B2B handover pack)** — Chase sent May 4. May 14 deadline. Pack not yet received.
+- **GW Carter Form 8288-B** — Karl working on it. No action needed.
+- **Sleek/Gab Deed of Loan Forgiveness** — Requested Apr 28. Still outstanding.
+- **Lindia: Elmdale address discrepancy + S8 voucher confirmation** — Lindia's actions, not Patrick's.
+- **NREIG quotes from Nohemi Alfaro** — Waiting since Apr 20.
 
 ---
 
-## RESOLVED — REMOVE FROM TRACKING
+## UPCOMING DATES
 
-- ~~GW Carter FIRPTA engagement~~ ✅ Signed Apr 29, paid Apr 30, 2024 Form 5472 EXECUTED May 4
-- ~~Jenna Simmons not chased~~ ✅ Patrick sent firm follow-up May 4 02:56 AEST
-- ~~B2B May rent~~ ✅ Wise received B2B remittance May 1
+| Date | Event |
+|------|-------|
+| May 5, 2026 | Ewell inspection 9am CDT |
+| May 6, 2026 | Crown Net-30 $54.28 due (PAYDEX risk) |
+| May 6, 2026 | Auto-chase Jenna Simmons if no reply |
+| May 14, 2026 | B2B handover pack deadline to Michael Drew |
+| May 16, 2026 | B2B termination effective |
+| June 2, 2026 | UHF Pty Ltd formal ASIC deregistration |
+| June 4, 2026 | Elmdale closing |
+| June 10, 2026 | B2B final remittance (Patrick in Bangkok) |
+| Mid-June 2026 | Bangkok departure |
+| Mid-Sep 2026 | Return to AU — apply DTV visa |
