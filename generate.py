@@ -1210,10 +1210,11 @@ def main():
     # with open(os.path.join(OUTPUT_DIR, "health.html"), "w") as f:
     #     f.write(health_html)
 
-    # Generate Command Centre (legacy — saved as command-centre.html, NOT index.html)
-    cc_html = generate_command_centre(properties, total, deals, dates, health, deals_meta, hap_status)
-    with open(os.path.join(OUTPUT_DIR, "command-centre.html"), "w") as f:
-        f.write(cc_html)
+    # command-centre.html is now maintained as a static tabbed dashboard — do not auto-overwrite.
+    # Edit command-centre.html directly. Generator writes to command-centre-legacy.html if needed for reference.
+    # cc_html = generate_command_centre(properties, total, deals, dates, health, deals_meta, hap_status)
+    # with open(os.path.join(OUTPUT_DIR, "command-centre.html"), "w") as f:
+    #     f.write(cc_html)
 
     print(f"Generated dashboards + copied data at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"  Portfolio: {len(properties)} properties, ${total}/mo net")
