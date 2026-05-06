@@ -5,34 +5,11 @@
 
 ## NEEDS PATRICK — full instructions included (no more vague blockers)
 
-### 1. AMEREN WILBORN — 10 MIN [PRIORITY #1 — Heather blocked, -$974/mo every week]
-**Do NOT use the residential flow (that requires SSN). Use the landlord portal — accepts EIN.**
-
-**Path A — Portal (try this first, Safari):**
-1. `https://www.ameren.com/partners/account-and-data/property-management` → Register → Property Owner/Manager
-2. Entity: **Empire Investing LLC** | FEIN: **36-5136157**
-3. Email: patrick@spartansuppz.com | Phone: 334-304-6237
-4. Property: 5361 Wilborn Ave, Saint Louis, MO 63136
-
-**Path B — Phone (if portal hits any wall):**
-- Call **800-487-5795** (Landlord line, M-F 7am-5:30pm CST — NOT the 877 residential number)
-- "Landlord. Need service at 5361 Wilborn Ave STL MO 63136. Empire Investing LLC. EIN 36-5136157."
+### ~~1. AMEREN WILBORN~~ — ✅ RESOLVED MAY 6 (Heather Stone setting up tomorrow)
 
 ---
 
-### 2. MERCURY — COMPLETE APPLICATION [PRIORITY #2 — 15 min]
-**Paused at address step. Use these exact fields:**
-
-| Field | Value |
-|-------|-------|
-| Company legal address | 2722 Erie Ave Ste 219 #149467, Cincinnati, OH 45208 |
-| Personal/controller address | 47 Stenhouse Ave, Brooklyn VIC 3012, Australia |
-| ITIN | 903-59-5898 |
-| EIN | 36-5136157 |
-| Business name | Empire Investing LLC |
-| Formation date | 2026-04-21 |
-
-Mercury debit card arrives 5-7 days after approval → use it to fund OpenSky instantly.
+### ~~2. MERCURY — COMPLETE APPLICATION~~ — ✅ SUBMITTED MAY 6 (in review ~1 day)
 
 ---
 
