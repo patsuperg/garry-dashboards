@@ -1,20 +1,29 @@
 {
-  "auto_fixes_24h": [],
+  "auto_fixes_24h": [
+    {
+      "action": "bump_timeout(timeout 5400 -> 6750 (backup=deal_finder_v4.py.bak-sentinel-20260507T122104)); kickstart(kickstart ok)",
+      "fault": "subprocess_timeout",
+      "human_notified": false,
+      "outcome": "success",
+      "service": "deal-finder",
+      "ts": "2026-05-07T02:21:03+00:00"
+    }
+  ],
   "open_issues": [],
   "sentinel_self": {
-    "last_heartbeat": "2026-05-07T02:20:34+00:00",
+    "last_heartbeat": "2026-05-07T02:21:03+00:00",
     "status": "healthy",
     "uptime_24h_pct": 100.0
   },
   "sentinel_version": "1.0",
   "services": [
     {
-      "auto_fixes_applied_24h": 0,
-      "consecutive_failures": 0,
+      "auto_fixes_applied_24h": 1,
+      "consecutive_failures": 1,
       "display_name": "Deal Finder",
       "id": "deal-finder",
-      "last_24h_failures": 0,
-      "last_24h_runs": 2,
+      "last_24h_failures": 1,
+      "last_24h_runs": 4,
       "last_run_at": "2026-05-06T06:45:46.503174",
       "last_run_outcome": "unknown",
       "next_expected_run": "2026-05-07T20:00:00+00:00",
@@ -23,5 +32,5 @@
     }
   ],
   "telegram_pings_24h": [],
-  "updated_at": "2026-05-07T02:20:41+00:00"
+  "updated_at": "2026-05-07T02:21:45+00:00"
 }
