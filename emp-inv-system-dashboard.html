@@ -131,6 +131,11 @@ footer.page .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: cente
 
 <div id="error-box" class="error-box" style="display:none;"></div>
 
+<div id="stale-banner" style="display:none; background:#3d0a0a; border:2px solid #ff4444; color:#ffdddd; padding:16px 20px; margin:16px 0; border-radius:8px; font-weight:600;">
+  <div style="font-size:18px; margin-bottom:6px;">⚠ DATA STALE — DASHBOARD MAY BE LYING</div>
+  <div id="stale-detail" style="font-weight:400; font-size:14px; line-height:1.5;"></div>
+</div>
+
 <div class="banner" id="banner">
   <div class="stat"><div class="label">Last refresh</div><div class="value muted" id="b-refresh">…</div></div>
   <div class="stat"><div class="label">Sentinel self</div><div class="value" id="b-sentinel">…</div></div>
@@ -230,9 +235,48 @@ function renderBanner(state) {
 
   const sStatus = (sentinel.status || 'unknown').toLowerCase();
   const sUptime = sentinel.uptime_24h_pct != null ? Number(sentinel.uptime_24h_pct).toFixed(1) + '%' : '—';
+  // Push freshness — surface in Sentinel pill
+  const pushStatus = (sentinel.push_status || 'unknown').toLowerCase();
+  const consecFails = sentinel.consecutive_push_failures || 0;
+  let pushNote = '';
+  if (pushStatus === 'degraded' || pushStatus === 'down') {
+    pushNote = ' <span class="pill ' + escape(pushStatus) + '" style="margin-left:6px;">push ' + escape(pushStatus) + ' (' + consecFails + ' fails)</span>';
+  }
   document.getElementById('b-sentinel').innerHTML =
     '<span class="pill ' + escape(sStatus) + '">' + escape(sStatus) + '</span> ' +
-    '<span style="color:var(--muted);font-size:12px;font-weight:500;">uptime ' + escape(sUptime) + '</span>';
+    '<span style="color:var(--muted);font-size:12px;font-weight:500;">uptime ' + escape(sUptime) + '</span>' + pushNote;
+
+  // Client-side staleness check — if dashboard JSON is older than 10 min, flag it RED
+  const staleBanner = document.getElementById('stale-banner');
+  const staleDetail = document.getElementById('stale-detail');
+  try {
+    const updatedMs = new Date(state.updated_at).getTime();
+    const ageSec = Math.round((Date.now() - updatedMs) / 1000);
+    if (ageSec > 600) {
+      const ageMin = Math.round(ageSec / 60);
+      staleBanner.style.display = 'block';
+      staleDetail.innerHTML = 'State JSON last updated <strong>' + ageMin + ' minutes ago</strong>. ' +
+        'Either Sentinel publisher is stuck or git push is failing. ' +
+        'The status below reflects state at the last update — not now. ' +
+        'Auto-fixes are not running, OR pushes are dropping. ' +
+        '<br>Last successful push: ' + (sentinel.last_successful_push_at ? fmtAEST(sentinel.last_successful_push_at) + ' (' + fmtRel(sentinel.last_successful_push_at) + ')' : '—') + ' · ' +
+        'Consecutive push failures: ' + consecFails;
+    } else if (pushStatus === 'degraded' || pushStatus === 'down') {
+      // Push failing but data still fresh — soft warning only
+      staleBanner.style.display = 'block';
+      staleBanner.style.background = '#3a2c0a';
+      staleBanner.style.borderColor = '#cc9900';
+      staleBanner.style.color = '#ffe9b3';
+      staleBanner.querySelector('div').innerHTML = '⚠ PUSH DEGRADED';
+      staleDetail.innerHTML = 'State JSON push to GitHub failing — ' + consecFails + ' consecutive failures. ' +
+        'Dashboard is still fresh from local writes, but external observers see a stale snapshot. ' +
+        'Sentinel will retry every minute.';
+    } else {
+      staleBanner.style.display = 'none';
+    }
+  } catch (e) {
+    /* ignore staleness compute errors */
+  }
 
   const failedSvc = services.filter(s => ['failed', 'degraded'].includes((s.status || '').toLowerCase())).length;
   const attention = failedSvc + issues.length;
