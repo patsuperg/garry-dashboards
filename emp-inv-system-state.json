@@ -1,93 +1,27 @@
 {
-  "updated_at": "2026-05-07T02:18:05Z",
-  "sentinel_version": "1.0",
-  "placeholder": true,
-  "sentinel_self": {
-    "status": "healthy",
-    "last_heartbeat": "2026-05-07T02:18:05Z",
-    "uptime_24h_pct": 100.0
-  },
-  "services": [
-    {
-      "id": "deal-finder",
-      "display_name": "Deal Finder",
-      "status": "unknown",
-      "last_run_at": null,
-      "next_expected_run": null,
-      "last_run_outcome": "unknown",
-      "consecutive_failures": 0,
-      "last_24h_runs": 0,
-      "last_24h_failures": 0,
-      "auto_fixes_applied_24h": 0,
-      "notes": "awaiting first heartbeat"
-    },
-    {
-      "id": "morning-brief",
-      "display_name": "Morning Brief",
-      "status": "unknown",
-      "last_run_at": null,
-      "next_expected_run": null,
-      "last_run_outcome": "unknown",
-      "consecutive_failures": 0,
-      "last_24h_runs": 0,
-      "last_24h_failures": 0,
-      "auto_fixes_applied_24h": 0,
-      "notes": "awaiting first heartbeat"
-    },
-    {
-      "id": "health-morning-brief",
-      "display_name": "Health Morning Brief",
-      "status": "unknown",
-      "last_run_at": null,
-      "next_expected_run": null,
-      "last_run_outcome": "unknown",
-      "consecutive_failures": 0,
-      "last_24h_runs": 0,
-      "last_24h_failures": 0,
-      "auto_fixes_applied_24h": 0,
-      "notes": "awaiting first heartbeat"
-    },
-    {
-      "id": "garry-bot",
-      "display_name": "Garry Bot",
-      "status": "unknown",
-      "last_run_at": null,
-      "next_expected_run": null,
-      "last_run_outcome": "unknown",
-      "consecutive_failures": 0,
-      "last_24h_runs": 0,
-      "last_24h_failures": 0,
-      "auto_fixes_applied_24h": 0,
-      "notes": "awaiting first heartbeat"
-    },
-    {
-      "id": "chich-bot",
-      "display_name": "Chich Bot",
-      "status": "unknown",
-      "last_run_at": null,
-      "next_expected_run": null,
-      "last_run_outcome": "unknown",
-      "consecutive_failures": 0,
-      "last_24h_runs": 0,
-      "last_24h_failures": 0,
-      "auto_fixes_applied_24h": 0,
-      "notes": "awaiting first heartbeat"
-    },
-    {
-      "id": "credit-pipeline-watchdog",
-      "display_name": "Credit Pipeline Watchdog",
-      "status": "unknown",
-      "last_run_at": null,
-      "next_expected_run": null,
-      "last_run_outcome": "unknown",
-      "consecutive_failures": 0,
-      "last_24h_runs": 0,
-      "last_24h_failures": 0,
-      "auto_fixes_applied_24h": 0,
-      "notes": "awaiting first heartbeat"
-    }
-  ],
   "auto_fixes_24h": [],
   "open_issues": [],
-  "telegram_pings_24h": []
+  "sentinel_self": {
+    "last_heartbeat": "2026-05-07T02:20:13+00:00",
+    "status": "healthy",
+    "uptime_24h_pct": 100.0
+  },
+  "sentinel_version": "1.0",
+  "services": [
+    {
+      "auto_fixes_applied_24h": 0,
+      "consecutive_failures": 0,
+      "display_name": "Deal Finder",
+      "id": "deal-finder",
+      "last_24h_failures": 0,
+      "last_24h_runs": 1,
+      "last_run_at": "2026-05-06T06:45:46.503174",
+      "last_run_outcome": "unknown",
+      "next_expected_run": "2026-05-07T20:00:00+00:00",
+      "notes": "deal-finder process currently running",
+      "status": "recovering"
+    }
+  ],
+  "telegram_pings_24h": [],
+  "updated_at": "2026-05-07T02:20:13+00:00"
 }
