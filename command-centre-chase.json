@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-05-07T13:00:00+10:00",
+  "source": "stub — Phase 1 hand-seeded from MEMORY.md + decisions-state.json waiting_on_others",
+  "is_stub": true,
+  "stats": {
+    "total": 4,
+    "by_status": {
+      "open": 4
+    }
+  },
+  "chases": [
+    {
+      "id": "chase-capital-one-spark",
+      "what": "Capital One Spark reissue confirmation",
+      "who": "Capital One",
+      "since_iso": "2026-04-25T00:00:00+10:00",
+      "last_action_iso": "2026-05-05T18:00:00+10:00",
+      "status": "open",
+      "owner": "Mercury",
+      "notes": "Watchdog pinging on status change. Awaiting reissued card + confirmation email."
+    },
+    {
+      "id": "chase-msd-sewer",
+      "what": "MSD Sewer dispute — Fenwick ($263.28 / $332.72 discrepancy)",
+      "who": "MSD (Metropolitan Sewer District)",
+      "since_iso": "2026-03-25T00:00:00+10:00",
+      "last_action_iso": "2026-04-14T00:00:00+10:00",
+      "status": "open",
+      "owner": "Garry",
+      "notes": "In collections. Disputed amount discrepancy + requested billing-name update. Past dispute deadline — escalate."
+    },
+    {
+      "id": "chase-frollo-csv",
+      "what": "Frollo CSV export (first GARRY-FINANCE feed)",
+      "who": "Patrick (manual export from Frollo app)",
+      "since_iso": "2026-03-31T00:00:00+10:00",
+      "last_action_iso": "2026-04-29T00:00:00+10:00",
+      "status": "open",
+      "owner": "Garry",
+      "notes": "ANZ + Macquarie connected. Need first CSV emailed with subject GARRY-FINANCE to seed Mercury."
+    },
+    {
+      "id": "chase-brannon-nexa",
+      "what": "Brannon Nexa — $75k loan strategy",
+      "who": "Brannon (Nexa lender)",
+      "since_iso": "2026-04-29T00:00:00+10:00",
+      "last_action_iso": "2026-05-01T00:00:00+10:00",
+      "status": "open",
+      "owner": "Garry",
+      "notes": "Active acquisition pipeline (Mary Ave / Earl / Ewell / Midridge). Awaiting term sheet + LTV confirmation."
+    }
+  ]
+}

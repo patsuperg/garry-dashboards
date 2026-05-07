@@ -1,0 +1,85 @@
+{
+  "generated_at": "2026-05-07T13:00:00+10:00",
+  "source": "stub — Phase 1 hand-seeded; Phase 2 will plug into live project ledger",
+  "is_stub": true,
+  "stats": {
+    "total": 7,
+    "by_status": {
+      "done": 5,
+      "in_progress": 1,
+      "in_transit": 1
+    }
+  },
+  "projects": [
+    {
+      "id": "sentinel-v1",
+      "name": "Sentinel v1",
+      "owner": "Chich",
+      "status": "done",
+      "last_update_iso": "2026-05-06T22:30:00+10:00",
+      "next_action": "Ongoing audit cadence — no action required",
+      "blocked_by": null,
+      "notes": "Closed-loop QA framework live. Auditor + Repair + Improvement capabilities running."
+    },
+    {
+      "id": "property-ledger",
+      "name": "Property ledger (decisions)",
+      "owner": "Chich",
+      "status": "done",
+      "last_update_iso": "2026-05-07T12:26:48+10:00",
+      "next_action": "Continues publishing command-centre-properties.json every 60s",
+      "blocked_by": null,
+      "notes": "13 properties tracked, 32 decision events. Single source of truth for property state."
+    },
+    {
+      "id": "credit-pipeline-watchdog",
+      "name": "Credit pipeline watchdog",
+      "owner": "Mercury",
+      "status": "done",
+      "last_update_iso": "2026-05-05T18:00:00+10:00",
+      "next_action": "Monitors Capital One Spark + AmEx + Citi for status changes",
+      "blocked_by": null,
+      "notes": "Auto-pings Patrick if a decision/reissue lands."
+    },
+    {
+      "id": "iphone-dictation",
+      "name": "iPhone dictation pipeline",
+      "owner": "Chich",
+      "status": "done",
+      "last_update_iso": "2026-04-29T22:00:00+10:00",
+      "next_action": "Stable — Tailscale + Mini Parakeet V3 path",
+      "blocked_by": null,
+      "notes": "Sub-second response, 228-term Patrick Dictionary. Hotkey Option+Space."
+    },
+    {
+      "id": "mercury-banking",
+      "name": "Mercury banking integration",
+      "owner": "Mercury",
+      "status": "in_transit",
+      "last_update_iso": "2026-05-07T08:00:00+10:00",
+      "next_action": "Awaiting first full sync of Avenue + B2B statements",
+      "blocked_by": "Avenue statement timing — pull cadence still being tuned",
+      "notes": "API-direct path, no app-tap dependency. Bulletproof feed target."
+    },
+    {
+      "id": "command-centre-rebuild",
+      "name": "Command-centre rebuild",
+      "owner": "Chich",
+      "status": "in_progress",
+      "last_update_iso": "2026-05-07T13:00:00+10:00",
+      "next_action": "Phase 2: replace stub feeds with live project/decision/chase writers",
+      "blocked_by": null,
+      "notes": "Phase 1 LIVE — Properties + Deals reading real data, Projects/Decisions/Chase on stubs."
+    },
+    {
+      "id": "inventory-expansion",
+      "name": "Inventory expansion (deal sourcing)",
+      "owner": "Garry",
+      "status": "done",
+      "last_update_iso": "2026-05-04T14:00:00+10:00",
+      "next_action": "Deal Finder v4 continues sourcing daily",
+      "blocked_by": null,
+      "notes": "STL + Ohio coverage. S8 Pro data layer integrated."
+    }
+  ]
+}
