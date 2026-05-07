@@ -60,6 +60,9 @@ header.page .subtitle { color: var(--muted); font-size: 13px; }
 .pill.failure { background: rgba(255, 94, 91, 0.15); color: var(--red); }
 .pill.partial { background: rgba(245, 196, 81, 0.15); color: var(--yellow); }
 .pill.timeout { background: rgba(245, 196, 81, 0.15); color: var(--yellow); }
+.pill.unmonitorable { background: rgba(107, 119, 133, 0.15); color: var(--grey); border: 1px dashed rgba(107, 119, 133, 0.6); }
+.pill.skipped { background: rgba(107, 119, 133, 0.15); color: var(--grey); }
+.cat-tag { font-size: 10px; padding: 1px 6px; border-radius: 4px; background: var(--border); color: var(--muted); margin-left: 6px; text-transform: uppercase; letter-spacing: 0.4px; }
 
 .services { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
 .service-card {
@@ -135,6 +138,17 @@ footer.page .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: cente
   <div class="stat"><div class="label">Auto-fixes 24h</div><div class="value muted" id="b-fixes">…</div></div>
 </div>
 
+<div class="banner" id="summary-banner">
+  <div class="stat"><div class="label">Checks run · 24h</div><div class="value" id="b-total-checks">…</div></div>
+  <div class="stat"><div class="label">Services monitored</div><div class="value" id="b-monitored">…</div></div>
+  <div class="stat"><div class="label">Healthy</div><div class="value" id="b-healthy" style="color:var(--green);">…</div></div>
+  <div class="stat"><div class="label">Degraded</div><div class="value" id="b-degraded" style="color:var(--yellow);">…</div></div>
+  <div class="stat"><div class="label">Failed</div><div class="value" id="b-failed" style="color:var(--red);">…</div></div>
+  <div class="stat"><div class="label">Unmonitorable</div><div class="value muted" id="b-unmonitorable">…</div></div>
+  <div class="stat"><div class="label">Auto-fixes applied</div><div class="value" id="b-fixes-applied">…</div></div>
+  <div class="stat"><div class="label">Telegram pings</div><div class="value muted" id="b-pings-count">…</div></div>
+</div>
+
 <section class="section">
   <h2>Services <span class="count" id="services-count">0</span></h2>
   <div id="services" class="services"></div>
@@ -203,13 +217,14 @@ const escape = (s) => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
-const STATUS_ORDER = { failed: 0, degraded: 1, recovering: 2, unknown: 3, healthy: 4 };
+const STATUS_ORDER = { failed: 0, degraded: 1, recovering: 2, unmonitorable: 3, unknown: 4, healthy: 5 };
 
 function renderBanner(state) {
   const sentinel = state.sentinel_self || {};
   const services = Array.isArray(state.services) ? state.services : [];
   const issues = Array.isArray(state.open_issues) ? state.open_issues : [];
   const fixes = Array.isArray(state.auto_fixes_24h) ? state.auto_fixes_24h : [];
+  const summary = state.summary_24h || {};
 
   document.getElementById('b-refresh').textContent = fmtAEST(state.updated_at) + ' (' + fmtRel(state.updated_at) + ')';
 
@@ -229,6 +244,16 @@ function renderBanner(state) {
     : attention + ' ' + (attention === 1 ? 'item' : 'items');
 
   document.getElementById('b-fixes').textContent = fixes.length + ' applied';
+
+  // 24h summary banner — explicit numbers, no empty states
+  document.getElementById('b-total-checks').textContent = (summary.total_checks_run ?? 0).toLocaleString();
+  document.getElementById('b-monitored').textContent = (summary.services_monitored ?? services.length);
+  document.getElementById('b-healthy').textContent = (summary.services_healthy ?? 0);
+  document.getElementById('b-degraded').textContent = (summary.services_degraded ?? 0);
+  document.getElementById('b-failed').textContent = (summary.services_failed ?? 0);
+  document.getElementById('b-unmonitorable').textContent = (summary.services_unmonitorable ?? 0);
+  document.getElementById('b-fixes-applied').textContent = (summary.auto_fixes_applied ?? fixes.length);
+  document.getElementById('b-pings-count').textContent = (summary.telegram_pings_sent ?? 0);
 }
 
 function renderServices(services) {
@@ -251,14 +276,19 @@ function renderServices(services) {
     const runs = Number(s.last_24h_runs || 0);
     const fails = Number(s.last_24h_failures || 0);
     const rate = runs > 0 ? Math.round((fails / runs) * 100) : 0;
+    const cat = (s.category || '').toLowerCase();
+    const pattern = s.expected_run_pattern || '';
+    const lastSuccess = s.last_success_at;
     return '<div class="service-card ' + escape(status) + '">' +
       '<div class="top">' +
-        '<div class="name">' + escape(s.display_name || s.id || 'unknown') + '</div>' +
+        '<div class="name">' + escape(s.display_name || s.id || 'unknown') + (cat ? '<span class="cat-tag">' + escape(cat) + '</span>' : '') + '</div>' +
         '<span class="pill ' + escape(status) + '">' + escape(status) + '</span>' +
       '</div>' +
       '<div class="meta">' +
         '<span class="k">Last run</span><span class="v">' + escape(fmtRel(s.last_run_at)) + ' · <span class="pill ' + escape(outcome) + '" style="padding:1px 7px;font-size:10px;">' + escape(outcome) + '</span></span>' +
+        '<span class="k">Last success</span><span class="v">' + escape(fmtRel(lastSuccess)) + '</span>' +
         '<span class="k">Next run</span><span class="v">' + escape(fmtRel(s.next_expected_run)) + '</span>' +
+        (pattern ? '<span class="k">Pattern</span><span class="v" style="font-size:11px;color:var(--muted);">' + escape(pattern) + '</span>' : '') +
         '<span class="k">Consec fails</span><span class="v ' + (consec > 0 ? 'bad' : '') + '">' + consec + '</span>' +
         '<span class="k">24h fail rate</span><span class="v ' + (rate > 0 ? 'bad' : '') + '">' + rate + '% (' + fails + '/' + runs + ')</span>' +
         '<span class="k">Auto-fixes 24h</span><span class="v">' + Number(s.auto_fixes_applied_24h || 0) + '</span>' +
@@ -268,11 +298,16 @@ function renderServices(services) {
   }).join('');
 }
 
-function renderFixes(fixes) {
+function renderFixes(fixes, summary) {
   const root = document.getElementById('fixes');
   document.getElementById('fixes-count').textContent = fixes.length;
   if (!fixes.length) {
-    root.innerHTML = '<div class="empty good">No auto-fixes needed in last 24h — clean run.</div>';
+    const totalChecks = (summary && summary.total_checks_run != null) ? Number(summary.total_checks_run) : 0;
+    const monitored = (summary && summary.services_monitored != null) ? Number(summary.services_monitored) : 0;
+    root.innerHTML = '<div class="empty good">' +
+      '0 of ' + totalChecks.toLocaleString() + ' checks needed intervention · ' +
+      monitored + ' services monitored · all auto-fix lanes idle.' +
+      '</div>';
     return;
   }
   const sorted = fixes.slice().sort((a, b) => String(b.ts || '').localeCompare(String(a.ts || '')));
@@ -292,11 +327,19 @@ function renderFixes(fixes) {
     '<tbody>' + rows + '</tbody></table></div>';
 }
 
-function renderIssues(issues) {
+function renderIssues(issues, summary) {
   const root = document.getElementById('issues');
   document.getElementById('issues-count').textContent = issues.length;
   if (!issues.length) {
-    root.innerHTML = '<div class="empty good">No open issues. All systems healthy.</div>';
+    const monitored = (summary && summary.services_monitored != null) ? Number(summary.services_monitored) : 0;
+    const healthy = (summary && summary.services_healthy != null) ? Number(summary.services_healthy) : 0;
+    const degraded = (summary && summary.services_degraded != null) ? Number(summary.services_degraded) : 0;
+    const failed = (summary && summary.services_failed != null) ? Number(summary.services_failed) : 0;
+    const unmon = (summary && summary.services_unmonitorable != null) ? Number(summary.services_unmonitorable) : 0;
+    root.innerHTML = '<div class="empty good">' +
+      '0 open issues · ' + healthy + '/' + monitored + ' healthy · ' +
+      degraded + ' degraded · ' + failed + ' failed · ' + unmon + ' unmonitorable.' +
+      '</div>';
     return;
   }
   const sorted = issues.slice().sort((a, b) => String(a.first_seen || '').localeCompare(String(b.first_seen || '')));
@@ -313,11 +356,15 @@ function renderIssues(issues) {
     '<tbody>' + rows + '</tbody></table></div>';
 }
 
-function renderPings(pings) {
+function renderPings(pings, summary) {
   const root = document.getElementById('pings');
   document.getElementById('pings-count').textContent = pings.length;
   if (!pings.length) {
-    root.innerHTML = '<div class="empty good">Zero pings sent — Patrick undisturbed.</div>';
+    const totalChecks = (summary && summary.total_checks_run != null) ? Number(summary.total_checks_run) : 0;
+    root.innerHTML = '<div class="empty good">' +
+      '0 of ' + totalChecks.toLocaleString() + ' checks escalated to Patrick · ' +
+      'all events handled silently by Chich.' +
+      '</div>';
     return;
   }
   const sorted = pings.slice().sort((a, b) => String(b.ts || '').localeCompare(String(a.ts || '')));
@@ -347,11 +394,12 @@ async function load() {
           && state.services.every(s => (s.status || '').toLowerCase() === 'unknown'));
     document.getElementById('placeholder-banner').style.display = isPlaceholder ? 'block' : 'none';
 
+    const summary = state.summary_24h || {};
     renderBanner(state);
     renderServices(Array.isArray(state.services) ? state.services : []);
-    renderFixes(Array.isArray(state.auto_fixes_24h) ? state.auto_fixes_24h : []);
-    renderIssues(Array.isArray(state.open_issues) ? state.open_issues : []);
-    renderPings(Array.isArray(state.telegram_pings_24h) ? state.telegram_pings_24h : []);
+    renderFixes(Array.isArray(state.auto_fixes_24h) ? state.auto_fixes_24h : [], summary);
+    renderIssues(Array.isArray(state.open_issues) ? state.open_issues : [], summary);
+    renderPings(Array.isArray(state.telegram_pings_24h) ? state.telegram_pings_24h : [], summary);
   } catch (e) {
     errBox.style.display = 'block';
     errBox.textContent = 'Failed to load ' + STATE_URL + ': ' + (e.message || e) + ' — Sentinel may not have published yet.';
