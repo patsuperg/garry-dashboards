@@ -68,9 +68,7 @@ Garry ports to Amaysim PAYG ($10/year, works internationally). Nothing else requ
 
 ---
 
-### 11. GW Carter SignFile — EXPIRES JUNE 3
-5472/1120 annual filing. Garry will surface the doc. Patrick signs.
-Hard deadline June 3 — before Bangkok departure.
+### 11. GW Carter SignFile — SIGNED + SUBMITTED May 7 ✅
 
 ---
 
