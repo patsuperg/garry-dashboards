@@ -38,9 +38,7 @@ If no reply by May 9: escalation call OR legal threat. Tell Garry which → Garr
 
 ---
 
-### 6. Bangkok health insurance — PICK A / B / C
-A) Cigna ~$145/mo | B) AXA ~$135/mo | C) Pacific Cross ~$95/mo
-Both Patrick + Laura need cover. Say the letter → Garry handles application.
+### 6. Bangkok health insurance — NOT PURSUING (Patrick confirmed May 7). Do not raise unless asked.
 
 ---
 
@@ -50,9 +48,7 @@ Do it now. Garry will prep binding form PDF for signing before departure.
 
 ---
 
-### 8. Mercury IO Card — APPLY NOW
-Log into Mercury dashboard → apply for IO Card (no credit check, account already approved).
-Takes 2 min. Opens business tradeline reporting immediately.
+### 8. Mercury IO Card ✅ — DONE May 7
 
 ---
 
@@ -62,8 +58,8 @@ Sign up at bitkub.com, complete KYC with passport. Do before departure.
 
 ---
 
-### 10. Bangkok: LD Mobile account number
-Find LD Mobile account number (check app or old bill) → tell Garry.
+### 10. Bangkok: Aldi Mobile account number
+Find Aldi Mobile account number (check app or old bill) → tell Garry.
 Garry ports to Amaysim PAYG ($10/year, works internationally). Nothing else required from Patrick.
 
 ---
