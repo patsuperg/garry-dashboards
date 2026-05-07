@@ -19,15 +19,15 @@ python3 "$(dirname "$0")/refresh-state.py" 2>/dev/null
 # Step 3: Regenerate ALL dashboards from fresh data
 python3 generate.py 2>/dev/null
 
-# Step 3a: Regenerate elite Command Centre
-python3 command-centre-gen.py 2>/dev/null
+# Step 3a: command-centre-gen.py DISABLED 2026-05-07 — rebuilt v2 (tabbed, Properties+Deals+Projects+Decisions+Chase) is now canonical.
+# python3 command-centre-gen.py 2>/dev/null
 
 # Step 3b: Regenerate health dashboard from live health-summary.json
 # health-dashboard-generator.py is the authoritative source — generate.py is now neutered for health.html
 python3 "$INFRA/health-dashboard-generator.py" 2>/dev/null
 
 # Step 4: Push ALL dashboard files + data directory
-git add index.html garry.html health.html command-centre.html system-map.html health-data.json journey.html journey-data.json data/ 2>/dev/null
+git add index.html garry.html health.html system-map.html health-data.json journey.html journey-data.json data/ 2>/dev/null
 
 # Only push if something changed
 if git diff --cached --quiet 2>/dev/null; then
