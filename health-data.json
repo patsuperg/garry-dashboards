@@ -1,16 +1,9 @@
 {
-  "generated": "2026-05-09T20:10:38.087050",
+  "generated": "2026-05-09T20:17:26.906280",
   "today": {
     "date": "2026-05-09",
     "spoons": 5,
     "breakdown": {
-      "sleep": {
-        "value": 5.98,
-        "pts": 3,
-        "max": 5,
-        "unit": "hr",
-        "deep_rem_hr": 2.63
-      },
       "hrv": {
         "value": 25.8,
         "pts": 1,
@@ -18,7 +11,7 @@
         "unit": "ms"
       },
       "rhr": {
-        "value": 88,
+        "value": 88.0,
         "pts": 0,
         "max": 2,
         "unit": "bpm"
@@ -28,6 +21,25 @@
         "pts": 1,
         "max": 2,
         "unit": "steps"
+      },
+      "active_energy": {
+        "value": 496,
+        "pts": 1,
+        "max": 2,
+        "unit": "kcal"
+      },
+      "spo2": {
+        "value": 98.5,
+        "pts": 1,
+        "max": 1,
+        "unit": "%"
+      },
+      "sleep": {
+        "value": 5.98,
+        "pts": 3,
+        "max": 5,
+        "unit": "hr",
+        "deep_rem_hr": 2.63
       }
     },
     "raw": {
@@ -40,16 +52,7 @@
       "active_energy_kj": 2075.998,
       "spo2": 98.5,
       "hr_avg": 93.6739455782313
-    },
-    "sleep_breakdown": {
-      "total_hr": 5.9833333333333325,
-      "deep_hr": 1.1083333333333334,
-      "rem_hr": 1.525,
-      "core_hr": 3.349999999999999,
-      "awake_hr": 1.4583333333333335
-    },
-    "exercise_min": 20,
-    "stand_min": 129
+    }
   },
   "history": [
     {
@@ -405,7 +408,7 @@
           "unit": "%"
         },
         "sleep": {
-          "value": 7.8,
+          "value": 15.6,
           "pts": 2,
           "max": 2,
           "unit": "hr"
@@ -415,9 +418,9 @@
         "steps": 9094.979,
         "hrv": 49.02,
         "rhr": 79.0,
-        "sleep_hr": 7.816666666666667,
-        "sleep_deep": 1.8583333333333334,
-        "sleep_rem": 1.7166666666666668,
+        "sleep_hr": 15.633333333333333,
+        "sleep_deep": 3.7166666666666663,
+        "sleep_rem": 3.433333333333333,
         "active_energy_kj": 4706.739,
         "spo2": 97.14285714285714,
         "hr_avg": 100.05910071942446
