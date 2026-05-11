@@ -1,10 +1,10 @@
 {
-  "generated": "2026-05-11T22:35:51.578991",
+  "generated": "2026-05-11T22:36:16.974177+10:00",
   "source": "health-engine v1",
-  "device": "Apple Watch + Oura Kogan ring (via Auto Export)",
+  "device": "Apple Watch + Oura Kogan ring (via Auto Export) + Eight Sleep",
   "today": {
     "date": "2026-05-11",
-    "spoons": 6,
+    "spoons": 12,
     "spoons_max": 12,
     "spoons_label": "Peak \u2014 push hard",
     "spoons_color": "green",
@@ -12,17 +12,17 @@
       "sleep": {
         "value": 100,
         "unit": "%",
-        "raw_hr": 8.08,
+        "raw_hr": 11.05,
         "color": "blue",
-        "label": "8.1h",
-        "subtitle": "deep 2.5h / REM 1.4h"
+        "label": "11.1h",
+        "subtitle": "deep 1.1h / REM 2.9h"
       },
       "recovery": {
-        "value": 79,
+        "value": 100,
         "unit": "%",
         "color": "green",
         "label": "GREEN \u2014 push hard",
-        "subtitle": "HRV 23.8ms / RHR 80.0bpm"
+        "subtitle": "HRV 62ms / RHR 61bpm"
       },
       "strain": {
         "value": 2.0,
@@ -47,49 +47,24 @@
       }
     },
     "sleep_breakdown": {
-      "total_hr": 22.516666666666666,
-      "deep_hr": 2.3,
-      "rem_hr": 5.883333333333333,
-      "core_hr": 14.333333333333332,
-      "awake_hr": 1.0833333333333335
+      "total_hr": 11.05,
+      "deep_hr": 1.15,
+      "rem_hr": 2.85,
+      "core_hr": 7.05,
+      "awake_hr": 0.7,
+      "in_bed_hr": 11.73,
+      "source_override": "eight_sleep",
+      "hrv_overnight": 62,
+      "rhr_overnight": 61
     },
-    "hrv_overnight": 23.8,
-    "rhr_overnight": 80.0,
+    "hrv_overnight": 62,
+    "rhr_overnight": 61,
     "baseline_14d": {
       "hrv": 19.9,
       "rhr": 84.0,
       "sleep_hr": 7.3,
       "days_sampled": 14
-    },
-    "breakdown": {
-      "sleep": {
-        "value": 22.52,
-        "pts": 5,
-        "max": 5,
-        "unit": "hr",
-        "deep_rem_hr": 8.18
-      },
-      "hrv": {
-        "value": 34.6,
-        "pts": 1,
-        "max": 3,
-        "unit": "ms"
-      },
-      "rhr": {
-        "value": 79,
-        "pts": 0,
-        "max": 2,
-        "unit": "bpm"
-      },
-      "steps": {
-        "value": 2234,
-        "pts": 0,
-        "max": 2,
-        "unit": "steps"
-      }
-    },
-    "exercise_min": 9,
-    "stand_min": 36
+    }
   },
   "history": [
     {
