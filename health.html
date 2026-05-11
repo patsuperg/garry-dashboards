@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Pat's Health Dashboard</title>
 <style>
   :root {
@@ -283,6 +286,9 @@ async function render() {
     renderBaseline(t);
   } catch (e) {
     document.getElementById("updated").textContent = "load error: " + e.message;
+    document.getElementById("rings").innerHTML =
+      '<div style="grid-column:1/-1;padding:20px;text-align:center;color:var(--red);font-size:13px">' +
+      'JSON fetch failed: ' + e.message + '<br><small style="color:var(--text-dim)">Pull to refresh. If persists, ping Chich.</small></div>';
   }
 }
 
