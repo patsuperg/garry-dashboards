@@ -6,25 +6,51 @@
 <title>Bangkok Apartment Shortlist — Patrick + Laura</title>
 <style>
   :root {
-    --bg: #fafaf9;
-    --card: #ffffff;
-    --border: #e5e7eb;
-    --ink: #18181b;
-    --ink-dim: #52525b;
-    --ink-faint: #a1a1aa;
-    --accent: #18181b;
-    --tier-a: #16a34a;
-    --tier-a-bg: #dcfce7;
-    --tier-b: #ca8a04;
-    --tier-b-bg: #fef9c3;
-    --killed: #dc2626;
-    --killed-bg: #fee2e2;
-    --good: #16a34a;
-    --warn: #ca8a04;
-    --bad: #dc2626;
-    --link: #2563eb;
-    --section-bg: #f4f4f5;
+    /* Patrick + Laura warm palette — cream/berry/sage/gold */
+    --bg: #FAF7F2;
+    --card: #FFFFFF;
+    --border: #EFE4E2;
+    --ink: #2C2C2C;
+    --ink-dim: #6B6B6B;
+    --ink-faint: #A89B98;
+    --accent: #8B3A55;
+    --berry: #8B3A55;
+    --berry-light: #B8617D;
+    --rose-soft: #F4D5D5;
+    --rose-bg: #FCEDED;
+    --sage: #A8B89A;
+    --sage-bg: #E8EDE2;
+    --gold: #D4A574;
+    --gold-bg: #FAEFE0;
+    --tier-a: #6B8E5A;
+    --tier-a-bg: #E8EDE2;
+    --tier-b: #B8842F;
+    --tier-b-bg: #FAEFE0;
+    --killed: #B8617D;
+    --killed-bg: #FCEDED;
+    --good: #6B8E5A;
+    --warn: #B8842F;
+    --bad: #C44A6B;
+    --link: #8B3A55;
+    --section-bg: #FCEDED;
+    --shadow: rgba(139, 58, 85, 0.08);
   }
+  /* Patrick + Laura style overrides */
+  h1, h2.section-title, h3.subsection { color: #8B3A55; }
+  .tldr { box-shadow: 0 4px 20px rgba(139, 58, 85, 0.08); background: linear-gradient(135deg, #FFFFFF 0%, #FCEDED 100%); }
+  .tldr h2 { color: #8B3A55; }
+  .rank { background: #8B3A55; }
+  .listing-link { background: #8B3A55; }
+  .listing-link:hover { background: #B8617D; opacity: 1; }
+  .card { box-shadow: 0 4px 20px rgba(139, 58, 85, 0.08); }
+  .specs { background: #FCEDED; }
+  .transit-flow { background: linear-gradient(135deg, #FFFFFF 0%, #FCEDED 50%); }
+  .transit-flow code { background: #FCEDED; color: #8B3A55; }
+  .pool-hall .near { color: #6B8E5A; }
+  .area-card h4 { color: #8B3A55; }
+  .killed-card .killed-name { color: #8B3A55; }
+  th { color: #8B3A55; background: #FCEDED; }
+  tr:hover { background: #FCEDED; }
   * { box-sizing: border-box; }
   body {
     margin: 0;
@@ -197,9 +223,9 @@
 
 <div class="tldr">
   <h2>TL;DR</h2>
-  <p><strong>Top finalist (East Sukhumvit):</strong> Ideo Mobi 66 (dream pick, ฿65K) and The Line 101 (Trial 2, ฿35K).</p>
-  <p><strong>NEW star from overnight research:</strong> <strong>Life Asoke Hype</strong> — AP Thai's <em>Life</em> series (different brand from the rejected Rhythm line) — modern bright open-plan, <strong>no bathtub</strong> ✓, glass shower, <strong>best lift density on shortlist (1:52)</strong>, in-building business center + co-working space ✓, <strong>1 MRT stop from Hustlers Bangkok</strong> (Patrick's favourite pool hall — 12 × 9ft Brunswicks). All for <strong>฿35K / 64sqm / Floor 31 furnished</strong>.</p>
-  <p><strong>Best value alternative:</strong> Life Asoke Rama 9 at ฿30K for 60sqm — but has a bathtub and is in a 2,248-unit complex with reported peak-hour lift slowness.</p>
+  <p><strong>Ranking priority:</strong> BTS-direct buildings ranked above MRT/ARL — Patrick prefers BTS Sukhumvit Line (simpler, more familiar territory).</p>
+  <p><strong>Top two finalists (both BTS-direct):</strong> Ideo Mobi 66 (dream pick, ฿65K, BTS Udom Suk 160m) and The Line 101 (Trial 2, ฿35K, BTS Punnawithi 180m).</p>
+  <p><strong>NEW star from overnight research:</strong> <strong>Life Asoke Hype</strong> — AP Thai's <em>Life</em> series (different brand from the rejected Rhythm line) — modern bright open-plan, <strong>no bathtub</strong> ✓, glass shower, <strong>best lift density on shortlist (1:52)</strong>, in-building business center + co-working space ✓, <strong>1 MRT stop from Hustlers Bangkok</strong> (Patrick's favourite pool hall — 12 × 9ft Brunswicks). ฿35K / 64sqm / Floor 31 furnished. Ranks #3 because ARL/MRT not BTS-direct, but quality justifies inclusion in the top tier.</p>
 </div>
 
 <section>
@@ -224,7 +250,7 @@
         <tr>
           <td><strong>1</strong></td>
           <td><strong>Ideo Mobi 66</strong></td>
-          <td>Udom Suk 160m</td>
+          <td><strong>BTS</strong> Udom Suk 160m</td>
           <td>฿65K</td>
           <td>80.5</td>
           <td>25</td>
@@ -235,20 +261,8 @@
         </tr>
         <tr>
           <td><strong>2</strong></td>
-          <td><strong>Life Asoke Hype</strong></td>
-          <td>Makkasan/Asok 420m ARL</td>
-          <td>฿35K</td>
-          <td>64</td>
-          <td>31</td>
-          <td class="density-good">1:52</td>
-          <td class="nope">Hustlers 1 MRT stop</td>
-          <td class="check">✓ + business center</td>
-          <td class="check">✓ shower only</td>
-        </tr>
-        <tr>
-          <td><strong>3</strong></td>
           <td><strong>The Line 101</strong></td>
-          <td>Punnawithi 180m</td>
+          <td><strong>BTS</strong> Punnawithi 180m</td>
           <td>฿35K</td>
           <td>62</td>
           <td>33</td>
@@ -258,21 +272,21 @@
           <td class="nope">tbd</td>
         </tr>
         <tr>
-          <td><strong>4</strong></td>
-          <td><strong>Life Asoke Rama 9</strong></td>
-          <td>Phra Ram 9 MRT 360m</td>
-          <td>฿30K</td>
-          <td>60</td>
-          <td>22</td>
-          <td class="density-bad">~1:150+</td>
-          <td class="nope">none nearby</td>
-          <td class="check">✓ + sky bar</td>
-          <td class="nope">has bathtub</td>
+          <td><strong>3</strong></td>
+          <td><strong>Life Asoke Hype</strong></td>
+          <td>ARL Makkasan 420m / MRT</td>
+          <td>฿35K</td>
+          <td>64</td>
+          <td>31</td>
+          <td class="density-good">1:52</td>
+          <td class="nope">Hustlers 1 MRT stop</td>
+          <td class="check">✓ + business center</td>
+          <td class="check">✓ shower only</td>
         </tr>
         <tr>
-          <td><strong>5</strong></td>
+          <td><strong>4</strong></td>
           <td><strong>The Reserve Phahol-Pradipat</strong></td>
-          <td>Saphan Khwai 500m</td>
+          <td><strong>BTS</strong> Saphan Khwai 500m</td>
           <td>฿35K</td>
           <td>64</td>
           <td>21</td>
@@ -282,9 +296,9 @@
           <td class="nope">tbd</td>
         </tr>
         <tr>
-          <td><strong>6</strong></td>
+          <td><strong>5</strong></td>
           <td><strong>M Jatujak</strong></td>
-          <td>Saphan Khwai 450m</td>
+          <td><strong>BTS</strong> Saphan Khwai 450m</td>
           <td>฿26K</td>
           <td>65</td>
           <td>20</td>
@@ -292,6 +306,18 @@
           <td class="nope">none confirmed</td>
           <td class="nope">indoor stadium + yoga</td>
           <td class="nope">tbd</td>
+        </tr>
+        <tr>
+          <td><strong>6</strong></td>
+          <td><strong>Life Asoke Rama 9</strong></td>
+          <td>MRT Phra Ram 9 360m</td>
+          <td>฿30K</td>
+          <td>60</td>
+          <td>22</td>
+          <td class="density-bad">~1:150+</td>
+          <td class="nope">none nearby</td>
+          <td class="check">✓ + sky bar</td>
+          <td class="nope">has bathtub</td>
         </tr>
       </tbody>
     </table>
@@ -448,10 +474,51 @@
     </div>
   </div>
 
-  <!-- Card 2: Life Asoke Hype -->
+  <!-- Card 2: The Line 101 -->
   <div class="card">
     <div class="card-header">
       <div class="rank">2</div>
+      <h3>The Line Sukhumvit 101</h3>
+      <span class="badge tier-a">Tier A</span>
+    </div>
+    <div class="area">East Sukhumvit · Punnawithi BTS 180m · Sansiri · 2020</div>
+    <div class="headline">฿35,000/mo · 62sqm · 2BR/2BA · Floor 33 · Fully Furnished</div>
+    <a class="listing-link" href="https://propertyscout.co.th/en/2-br-condo-the-line-sukhumvit-101-near-bts-punnawithi-2543452/" target="_blank">View Listing →</a>
+    <div class="specs">
+      <div class="spec"><div class="spec-label">Lift Density</div><div class="spec-value bad">1:156 (5 lifts / 778 units) — HIGHEST</div></div>
+      <div class="spec"><div class="spec-label">Pool Table</div><div class="spec-value good">✓ Games room 5th flr (verify contents)</div></div>
+      <div class="spec"><div class="spec-label">Building Size</div><div class="spec-value">37 floors · 778 units</div></div>
+      <div class="spec"><div class="spec-label">Coworking</div><div class="spec-value good">✓ + Co-Kitchen + Multi-Sport Court</div></div>
+    </div>
+    <div class="pros-cons">
+      <div class="pros">
+        <h4>Why This Building</h4>
+        <ul>
+          <li>Best amenity stack on the shortlist — Olympic pool, games room, coworking, co-kitchen, multi-sport court, jacuzzi</li>
+          <li>Danny lives 2min away — area validation built in</li>
+          <li>180m to Punnawithi BTS ✓</li>
+          <li>Sansiri quality build, 2020 (newer)</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <h4>Watch For</h4>
+        <ul>
+          <li><strong>Highest lift density on shortlist (1:156)</strong> — must test at 8am peak Day 1 of Trial 2</li>
+          <li>Games room contents not confirmed (pool table? ping pong? foosball?) — verify on tour</li>
+          <li>Bathroom config not confirmed — verify shower-only</li>
+        </ul>
+      </div>
+    </div>
+    <div class="backups">
+      <div class="backups-label">Browse more 2BR rentals:</div>
+      <a href="https://propertyscout.co.th/en/bangkok/condo/line-sukhumvit-101/rentals/2-bedrooms/" target="_blank">All available 2BR at Line 101</a>
+    </div>
+  </div>
+
+  <!-- Card 3: Life Asoke Hype -->
+  <div class="card">
+    <div class="card-header">
+      <div class="rank">3</div>
       <h3>Life Asoke Hype</h3>
       <span class="badge tier-a">Tier A</span>
       <span class="badge new-star">🌟 New Find</span>
@@ -500,51 +567,98 @@
     </div>
   </div>
 
-  <!-- Card 3: The Line 101 -->
+  <!-- Card 4: The Reserve Phahol-Pradipat -->
   <div class="card">
     <div class="card-header">
-      <div class="rank">3</div>
-      <h3>The Line Sukhumvit 101</h3>
-      <span class="badge tier-a">Tier A</span>
+      <div class="rank">4</div>
+      <h3>The Reserve Phahol-Pradipat</h3>
+      <span class="badge tier-b">Tier B</span>
     </div>
-    <div class="area">East Sukhumvit · Punnawithi BTS 180m · Sansiri · 2020</div>
-    <div class="headline">฿35,000/mo · 62sqm · 2BR/2BA · Floor 33 · Fully Furnished</div>
-    <a class="listing-link" href="https://propertyscout.co.th/en/2-br-condo-the-line-sukhumvit-101-near-bts-punnawithi-2543452/" target="_blank">View Listing →</a>
+    <div class="area">Saphan Khwai · BTS Saphan Khwai 500m · Pruksa Real Estate · 2019</div>
+    <div class="headline">฿35,000/mo · 64sqm · 2BR/2BA · Floor 21 · Fully Furnished</div>
+    <a class="listing-link" href="https://propertyscout.co.th/en/2-br-condo-the-reserve-phahol-pradipat-near-bts-saphan-khwai-2735424/" target="_blank">View Listing →</a>
     <div class="specs">
-      <div class="spec"><div class="spec-label">Lift Density</div><div class="spec-value bad">1:156 (5 lifts / 778 units) — HIGHEST</div></div>
-      <div class="spec"><div class="spec-label">Pool Table</div><div class="spec-value good">✓ Games room 5th flr (verify contents)</div></div>
-      <div class="spec"><div class="spec-label">Building Size</div><div class="spec-value">37 floors · 778 units</div></div>
-      <div class="spec"><div class="spec-label">Coworking</div><div class="spec-value good">✓ + Co-Kitchen + Multi-Sport Court</div></div>
+      <div class="spec"><div class="spec-label">Lift Density</div><div class="spec-value good">~1:90 est (260 units, small bldg)</div></div>
+      <div class="spec"><div class="spec-label">Pool Table</div><div class="spec-value">None confirmed</div></div>
+      <div class="spec"><div class="spec-label">Building Size</div><div class="spec-value">25 floors · 260 units (small = good)</div></div>
+      <div class="spec"><div class="spec-label">Coworking</div><div class="spec-value">Multipurpose Hall + Sky Lounge + Clubhouse</div></div>
     </div>
     <div class="pros-cons">
       <div class="pros">
         <h4>Why This Building</h4>
         <ul>
-          <li>Best amenity stack on the shortlist — Olympic pool, games room, coworking, co-kitchen, multi-sport court, jacuzzi</li>
-          <li>Danny lives 2min away — area validation built in</li>
-          <li>180m to Punnawithi BTS ✓</li>
-          <li>Sansiri quality build, 2020 (newer)</li>
+          <li>Newer build (2019) with small unit count = expected good lift density</li>
+          <li>Pruksa quality (same developer as The Tree 64)</li>
+          <li>Sky Lounge + Clubhouse + Multipurpose Hall could work for work-from-building</li>
+          <li>15K under cap</li>
         </ul>
       </div>
       <div class="cons">
         <h4>Watch For</h4>
         <ul>
-          <li><strong>Highest lift density on shortlist (1:156)</strong> — must test at 8am peak Day 1 of Trial 2</li>
-          <li>Games room contents not confirmed (pool table? ping pong? foosball?) — verify on tour</li>
-          <li>Bathroom config not confirmed — verify shower-only</li>
+          <li>500m BTS (just over your 400m rule)</li>
+          <li>Interior vibe NOT well documented in listings — needs in-person check</li>
+          <li>No major pool hall confirmed in Saphan Khwai area</li>
+          <li>No explicit coworking space (Multipurpose Hall as substitute)</li>
         </ul>
       </div>
     </div>
     <div class="backups">
-      <div class="backups-label">Browse more 2BR rentals:</div>
-      <a href="https://propertyscout.co.th/en/bangkok/condo/line-sukhumvit-101/rentals/2-bedrooms/" target="_blank">All available 2BR at Line 101</a>
+      <div class="backups-label">Backup units:</div>
+      <a href="https://propertyscout.co.th/en/2-br-condo-the-reserve-phahol-pradipat-near-bts-saphan-khwai-2328724/" target="_blank">฿40K / 63sqm / Floor 24</a>
     </div>
   </div>
 
-  <!-- Card 4: Life Asoke Rama 9 -->
+  <!-- Card 5: M Jatujak -->
   <div class="card">
     <div class="card-header">
-      <div class="rank">4</div>
+      <div class="rank">5</div>
+      <h3>M Jatujak</h3>
+      <span class="badge tier-b">Tier B</span>
+      <span class="badge new-star">💰 Cheapest</span>
+    </div>
+    <div class="area">Saphan Khwai · BTS Saphan Khwai 450m · Major Development · 2017</div>
+    <div class="headline">฿26,000/mo · 65sqm · 2BR/2BA · Floor 20 · Fully Furnished</div>
+    <a class="listing-link" href="https://propertyscout.co.th/en/2-br-condo-m-jatujak-near-bts-saphan-khwai-2746434/" target="_blank">View Listing →</a>
+    <div class="specs">
+      <div class="spec"><div class="spec-label">Lift Density</div><div class="spec-value warn">~1:120 est (864 units / 2 towers)</div></div>
+      <div class="spec"><div class="spec-label">Pool Table</div><div class="spec-value">None confirmed</div></div>
+      <div class="spec"><div class="spec-label">Building Size</div><div class="spec-value">2 towers · 864 units · 32-34 floors</div></div>
+      <div class="spec"><div class="spec-label">Pet Friendly</div><div class="spec-value good">✓</div></div>
+      <div class="spec"><div class="spec-label">Other</div><div class="spec-value">Indoor stadium + saltwater pool + sports arena + yoga + sky pool lounge</div></div>
+    </div>
+    <div class="pros-cons">
+      <div class="pros">
+        <h4>Why This Building</h4>
+        <ul>
+          <li><strong>Cheapest in-spec 2BR on entire shortlist</strong> — ฿26K = 24K under cap</li>
+          <li>"62+ facilities" including indoor stadium + sports arena + sky pool lounge</li>
+          <li>Pet friendly (only one on shortlist)</li>
+          <li>Annual saving vs Life Asoke Hype = ฿108K</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <h4>Watch For</h4>
+        <ul>
+          <li>Major Development is mid-tier vs Ananda/Sansiri/AP — fit-out quality unknown for taste</li>
+          <li>450m BTS over rule</li>
+          <li>864 units across 2 towers = density concerns</li>
+          <li>No coworking confirmed</li>
+          <li>No pool hall confirmed nearby</li>
+        </ul>
+      </div>
+    </div>
+    <div class="backups">
+      <div class="backups-label">Backup units:</div>
+      <a href="https://propertyscout.co.th/en/2-br-condo-m-jatujak-near-bts-saphan-khwai-509461/" target="_blank">฿29K / 65sqm / Floor 29</a>
+      <a href="https://propertyscout.co.th/en/2-br-condo-m-jatujak-near-bts-saphan-khwai-2085900/" target="_blank">฿27K / 59sqm</a>
+    </div>
+  </div>
+
+<!-- Card 6: Life Asoke Rama 9 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="rank">6</div>
       <h3>Life Asoke Rama 9</h3>
       <span class="badge tier-b">Tier B</span>
       <span class="badge new-star">💰 Best Value</span>
@@ -589,95 +703,7 @@
     </div>
   </div>
 
-  <!-- Card 5: The Reserve Phahol-Pradipat -->
-  <div class="card">
-    <div class="card-header">
-      <div class="rank">5</div>
-      <h3>The Reserve Phahol-Pradipat</h3>
-      <span class="badge tier-b">Tier B</span>
-    </div>
-    <div class="area">Saphan Khwai · BTS Saphan Khwai 500m · Pruksa Real Estate · 2019</div>
-    <div class="headline">฿35,000/mo · 64sqm · 2BR/2BA · Floor 21 · Fully Furnished</div>
-    <a class="listing-link" href="https://propertyscout.co.th/en/2-br-condo-the-reserve-phahol-pradipat-near-bts-saphan-khwai-2735424/" target="_blank">View Listing →</a>
-    <div class="specs">
-      <div class="spec"><div class="spec-label">Lift Density</div><div class="spec-value good">~1:90 est (260 units, small bldg)</div></div>
-      <div class="spec"><div class="spec-label">Pool Table</div><div class="spec-value">None confirmed</div></div>
-      <div class="spec"><div class="spec-label">Building Size</div><div class="spec-value">25 floors · 260 units (small = good)</div></div>
-      <div class="spec"><div class="spec-label">Coworking</div><div class="spec-value">Multipurpose Hall + Sky Lounge + Clubhouse</div></div>
-    </div>
-    <div class="pros-cons">
-      <div class="pros">
-        <h4>Why This Building</h4>
-        <ul>
-          <li>Newer build (2019) with small unit count = expected good lift density</li>
-          <li>Pruksa quality (same developer as The Tree 64)</li>
-          <li>Sky Lounge + Clubhouse + Multipurpose Hall could work for work-from-building</li>
-          <li>15K under cap</li>
-        </ul>
-      </div>
-      <div class="cons">
-        <h4>Watch For</h4>
-        <ul>
-          <li>500m BTS (just over your 400m rule)</li>
-          <li>Interior vibe NOT well documented in listings — needs in-person check</li>
-          <li>No major pool hall confirmed in Saphan Khwai area</li>
-          <li>No explicit coworking space (Multipurpose Hall as substitute)</li>
-        </ul>
-      </div>
-    </div>
-    <div class="backups">
-      <div class="backups-label">Backup units:</div>
-      <a href="https://propertyscout.co.th/en/2-br-condo-the-reserve-phahol-pradipat-near-bts-saphan-khwai-2328724/" target="_blank">฿40K / 63sqm / Floor 24</a>
-    </div>
-  </div>
-
-  <!-- Card 6: M Jatujak -->
-  <div class="card">
-    <div class="card-header">
-      <div class="rank">6</div>
-      <h3>M Jatujak</h3>
-      <span class="badge tier-b">Tier B</span>
-      <span class="badge new-star">💰 Cheapest</span>
-    </div>
-    <div class="area">Saphan Khwai · BTS Saphan Khwai 450m · Major Development · 2017</div>
-    <div class="headline">฿26,000/mo · 65sqm · 2BR/2BA · Floor 20 · Fully Furnished</div>
-    <a class="listing-link" href="https://propertyscout.co.th/en/2-br-condo-m-jatujak-near-bts-saphan-khwai-2746434/" target="_blank">View Listing →</a>
-    <div class="specs">
-      <div class="spec"><div class="spec-label">Lift Density</div><div class="spec-value warn">~1:120 est (864 units / 2 towers)</div></div>
-      <div class="spec"><div class="spec-label">Pool Table</div><div class="spec-value">None confirmed</div></div>
-      <div class="spec"><div class="spec-label">Building Size</div><div class="spec-value">2 towers · 864 units · 32-34 floors</div></div>
-      <div class="spec"><div class="spec-label">Pet Friendly</div><div class="spec-value good">✓</div></div>
-      <div class="spec"><div class="spec-label">Other</div><div class="spec-value">Indoor stadium + saltwater pool + sports arena + yoga + sky pool lounge</div></div>
-    </div>
-    <div class="pros-cons">
-      <div class="pros">
-        <h4>Why This Building</h4>
-        <ul>
-          <li><strong>Cheapest in-spec 2BR on entire shortlist</strong> — ฿26K = 24K under cap</li>
-          <li>"62+ facilities" including indoor stadium + sports arena + sky pool lounge</li>
-          <li>Pet friendly (only one on shortlist)</li>
-          <li>Annual saving vs Life Asoke Hype = ฿108K</li>
-        </ul>
-      </div>
-      <div class="cons">
-        <h4>Watch For</h4>
-        <ul>
-          <li>Major Development is mid-tier vs Ananda/Sansiri/AP — fit-out quality unknown for taste</li>
-          <li>450m BTS over rule</li>
-          <li>864 units across 2 towers = density concerns</li>
-          <li>No coworking confirmed</li>
-          <li>No pool hall confirmed nearby</li>
-        </ul>
-      </div>
-    </div>
-    <div class="backups">
-      <div class="backups-label">Backup units:</div>
-      <a href="https://propertyscout.co.th/en/2-br-condo-m-jatujak-near-bts-saphan-khwai-509461/" target="_blank">฿29K / 65sqm / Floor 29</a>
-      <a href="https://propertyscout.co.th/en/2-br-condo-m-jatujak-near-bts-saphan-khwai-2085900/" target="_blank">฿27K / 59sqm</a>
-    </div>
-  </div>
-
-</section>
+  </section>
 
 <section>
   <h2 class="section-title">🎱 Pool Hall Map</h2>
@@ -702,11 +728,6 @@
       <h4>The Sportsman</h4>
       <div class="meta">Washington Square, Phrom Phong</div>
       <div class="near">→ 5min walk from Phrom Phong BTS, 2 stops west of Ekkamai</div>
-    </div>
-    <div class="pool-hall">
-      <h4>Ball in Hand</h4>
-      <div class="meta">Sukhumvit Soi 4 (Nana area)</div>
-      <div class="near">→ 2 BTS stops from Asok</div>
     </div>
     <div class="pool-hall">
       <h4>Players Pool Hall</h4>
