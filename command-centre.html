@@ -16,9 +16,9 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .wrap{max-width:560px;margin:0 auto}
 
 /* PHASE HERO */
-.phase-hero{background:linear-gradient(135deg,rgba(52,211,153,0.08),rgba(96,165,250,0.05));
-  border:1px solid rgba(52,211,153,0.15);border-radius:18px;padding:22px;margin:24px 0 20px}
-.phase-label{font-size:10px;letter-spacing:3px;color:var(--green);font-weight:700;text-transform:uppercase}
+.phase-hero{background:linear-gradient(135deg,rgba(251,146,60,0.08),rgba(96,165,250,0.05));
+  border:1px solid rgba(251,146,60,0.2);border-radius:18px;padding:22px;margin:24px 0 20px}
+.phase-label{font-size:10px;letter-spacing:3px;color:var(--orange);font-weight:700;text-transform:uppercase}
 .phase-title{font-size:22px;font-weight:800;margin-top:6px;letter-spacing:-0.5px}
 .phase-sub{font-size:12px;color:var(--sub);margin-top:8px;line-height:1.5}
 
@@ -41,19 +41,6 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .sec-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between}
 .sec-title .badge{font-size:10px;background:rgba(251,146,60,0.1);color:var(--orange);padding:2px 8px;border-radius:10px;letter-spacing:0.5px}
 
-/* DEAL CARD */
-.deal-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px}
-.deal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}
-.deal-addr{font-size:16px;font-weight:700}
-.deal-sub{font-size:11px;color:var(--sub);font-weight:400}
-.deal-badge{font-size:9px;font-weight:700;padding:4px 10px;border-radius:10px;letter-spacing:0.5px;white-space:nowrap}
-.deal-line{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:11px;margin-bottom:10px}
-.deal-k{color:var(--dim);font-size:9px;text-transform:uppercase;letter-spacing:0.8px}
-.deal-v{color:var(--text);font-weight:700;font-size:13px;margin-bottom:4px}
-.deal-stage{font-size:11px;color:var(--sub);padding:8px 0;border-top:1px solid var(--border)}
-.deal-lenders{font-size:11px;color:var(--sub);padding-top:6px}
-.deal-action{font-size:12px;color:var(--gold);font-weight:500;margin-top:8px}
-
 /* NEEDS */
 .need-card{display:flex;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:14px;margin-bottom:10px}
 .need-num{font-size:22px;font-weight:800;color:var(--orange);margin-right:14px;min-width:26px}
@@ -66,7 +53,7 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 /* WAITING */
 .wait-row{display:flex;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:6px;font-size:12px}
 .wait-item{color:var(--text);font-weight:500;flex:1}
-.wait-from{color:var(--dim);font-size:11px}
+.wait-from{color:var(--dim);font-size:11px;text-align:right;margin-left:8px}
 
 /* PORTFOLIO */
 .props{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
@@ -75,7 +62,7 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .prop-net{font-size:16px;font-weight:800;color:var(--green)}
 .prop-grade{font-size:10px;font-weight:800;padding:1px 6px;border-radius:4px;background:rgba(255,255,255,0.05)}
 .prop-addr{font-size:10px;color:var(--sub);margin-top:6px;line-height:1.3}
-.prop-retenant{font-size:9px;color:var(--orange);margin-top:4px}
+.prop-retenant{font-size:9px;color:var(--dim);margin-top:4px}
 
 /* HAP */
 .hap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
@@ -106,15 +93,12 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .pipe-note{font-size:10px;color:var(--dim);margin-top:6px;font-style:italic;line-height:1.4}
 .pipe-empty{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:11px;color:var(--dim);text-align:center;margin-bottom:8px}
 
-/* WINS */
-.win-row{font-size:11px;color:var(--sub);padding:6px 0;border-bottom:1px solid var(--border);line-height:1.4}
-
 /* FOOTER */
 .foot{text-align:center;font-size:10px;color:var(--dim);margin-top:24px;letter-spacing:0.8px;line-height:1.6}
 .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin:0 4px;vertical-align:middle}
 @media(max-width:540px){
   .hero-grid{grid-template-columns:1fr}
-  .props,.deal-line{grid-template-columns:repeat(2,1fr)}
+  .props{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -124,154 +108,163 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 <!-- PHASE HERO -->
 <div class="phase-hero">
   <div class="phase-label">Current Phase</div>
-  <div class="phase-title">ACQUISITION PHASE</div>
-  <div class="phase-sub">272 Elmdale under contract · 6/16 doors to next milestone</div>
+  <div class="phase-title">STABILISE + ACQUIRE</div>
+  <div class="phase-sub">Wilborn rehab pending · No active contracts · Bangkok 36d · Hazelcrest listing in progress</div>
 </div>
 
 <!-- HERO NUMBERS -->
 <div class="hero-grid">
   <div class="hero-main">
-    <div class="hero-num"><span class="cur">A$</span>6,820</div>
+    <div class="hero-num"><span class="cur">A$</span>4,800</div>
     <div class="hero-goal">of A$20,000/mo · North Star</div>
-    <div class="hero-bar"><div class="hero-fill" style="width:34%"></div></div>
-    <div class="hero-pct">34% · Gap A$13,180/mo</div>
+    <div class="hero-bar"><div class="hero-fill" style="width:24%"></div></div>
+    <div class="hero-pct">24% · Gap A$15,200/mo</div>
   </div>
   <div class="hero-side">
     <div class="side-tile">
-      <div class="side-v" style="color:var(--green)">$180K</div>
-      <div class="side-l">Deployable USD</div>
+      <div class="side-v" style="color:var(--blue)">36d</div>
+      <div class="side-l">Bangkok</div>
     </div>
     <div class="side-tile">
-      <div class="side-v" style="color:var(--blue)">-12d</div>
-      <div class="side-l">Bangkok</div>
+      <div class="side-v" style="color:var(--gold)">1:1.5748</div>
+      <div class="side-l">USD/AUD</div>
     </div>
   </div>
 </div>
 
 <!-- NEEDS PATRICK -->
 <div class="sec">
-  <div class="sec-title">Needs Patrick </div>
-  <div class="empty-good">All clear. Nothing needs you right now.</div>
-</div>
-
-<!-- DEAL PIPELINE -->
-<div class="sec">
-  <div class="sec-title">Deal Pipeline <span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">1 contract · 1 offer · 2 watch</span></div>
-  <div class="pipe-stage-label" style="color:var(--green)">UNDER CONTRACT <span class="pipe-count">1</span></div><div class="pipe-row pipe-contract">
-  <div class="pipe-row-top">
-    <div class="pipe-addr">272 Elmdale Dr</div>
-    <div class="pipe-price">$107,000</div>
-  </div>
-  <div class="pipe-meta">Close: 2026-06-04 · Inspection window: OPEN (2d left)</div>
-  <div class="pipe-next">Next: 10-day inspection window (from May 4). Confirm S8 voucher with STL Housing Authority.</div>
-  <div class="pipe-note">CF $661/mo | DSCR 2.08 | CoC 37.1% | Down $21,400. Address discrepancy: contract says Elmdale CT Florissant 63031, riders say Elmdale Dr Fer</div>
-</div><div class="pipe-stage-label" style="color:var(--orange)">OFFER SUBMITTED / INSPECTION <span class="pipe-count">1</span></div><div class="pipe-row pipe-offer">
-  <div class="pipe-row-top">
-    <div class="pipe-addr">Ewell 10436</div>
-    <div class="pipe-price">$82,000</div>
-  </div>
-  <div class="pipe-meta">Stage: Evergreen inspection paid May 1 — awaiting report</div>
-  <div class="pipe-next">Next: Await Evergreen inspection report → Steadily quote → decide</div>
-</div><div class="pipe-stage-label" style="color:var(--blue)">WATCHLIST <span class="pipe-count">2</span></div><div class="pipe-row pipe-watch">
-  <div class="pipe-row-top">
-    <div class="pipe-addr">311 Superior Dr</div>
-    <div class="pipe-price">$109,900 · 3BR</div>
-  </div>
-  <div class="pipe-pros">+ Proven 63135 zip (same as Fenwick), clean interior, decent kitchen, 3 proper bedrooms on main floor</div>
-  <div class="pipe-cons">- 3BR only (prefers 4BR), garage has internal access to basement (can't lock separately), slope/retaining wall concern, 20</div>
-  <div class="pipe-meta">maybe</div>
-  <div class="pipe-note">Would only work at lower price OR if current rent is higher than Zillow history suggests. Need lease info to confirm.</div>
-</div><div class="pipe-row pipe-watch">
-  <div class="pipe-row-top">
-    <div class="pipe-addr">1427 Fairmeadows Ln</div>
-    <div class="pipe-price">$115,000 · 4BR</div>
-  </div>
-  <div class="pipe-pros">+ 4BR, 63138 Spanish Lake, decent neighborhood street view, crime 16/mile, HQS Good, manageable condition</div>
-  <div class="pipe-cons">- Tenant-occupied as-is — need current rent and lease expiry. Floor plan suggests only 2BR main floor + basement. Need to </div>
-  <div class="pipe-meta">pending_lease_info · Min rent needed: $1,442/mo</div>
-  <div class="pipe-note">HOLD — compile with other watchlist properties and route through Lindia to get lease info from listing agent.</div>
-</div>
-</div>
-
-<!-- ACTIVE DEALS -->
-<div class="sec">
-  <div class="sec-title">Active Deals <span class="badge" style="background:rgba(248,113,113,0.1);color:var(--red)">2 HOT</span></div>
+  <div class="sec-title">Needs Patrick <span class="badge">6 items</span></div>
   
-<div class="deal-card">
-  <div class="deal-head">
-    <div class="deal-addr">272 Elmdale Dr <span class="deal-sub">· 272 Elmdale Dr, Ferguson MO 63135</span></div>
-    <div class="deal-badge" style="background:rgba(52,211,153,0.12);color:#34d399">HOT · UNDER CONTRACT</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">1</div>
+  <div class="need-body">
+    <div class="need-title">Tactical Ohio: submit payee change forms to LMHA + Lake County HA</div>
+    <div class="need-ctx">Per locked plan, Tactical (Angel Marie Chaney) submits the HA payee-change forms today. Confirm via email check or direc…</div>
   </div>
-  <div class="deal-line">
-    <span class="deal-k">Price</span><span class="deal-v">$107,000</span>
-    <span class="deal-k">FMR</span><span class="deal-v">$1,920</span>
-    <span class="deal-k">Target rent</span><span class="deal-v">$1,670</span>
-    <span class="deal-k">CF (opt)</span><span class="deal-v">$661/mo</span>
+</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">2</div>
+  <div class="need-body">
+    <div class="need-title">Tactical Ohio: submit payee change forms to LMHA + Lake County HA</div>
+    <div class="need-ctx">Per locked plan, Tactical (Angel Marie Chaney) submits the HA payee-change forms today. Confirm via email check or direc…</div>
   </div>
-  <div class="deal-stage">Stage: <b>CONTRACT SIGNED — inspection window open</b> · Close target: 2026-06-04 · T-24d</div>
-  <div class="deal-lenders">Brannon Harnish ✓</div>
-  <div class="deal-action">Next: 10-day inspection window (from May 4). Confirm S8 voucher with STL Housing Authority.</div>
 </div>
-<div class="deal-card">
-  <div class="deal-head">
-    <div class="deal-addr">Ewell 10436 <span class="deal-sub">· 10436 Ewell Ave, STL</span></div>
-    <div class="deal-badge" style="background:rgba(251,146,60,0.12);color:#fb923c">PENDING · INSPECTION IN PROGRESS</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">3</div>
+  <div class="need-body">
+    <div class="need-title">Tactical Ohio: submit payee change forms to LMHA + Lake County HA</div>
+    <div class="need-ctx">Per locked plan, Tactical (Angel Marie Chaney) submits the HA payee-change forms today. Confirm via email check or direc…</div>
   </div>
-  <div class="deal-line">
-    <span class="deal-k">Price</span><span class="deal-v">$82,000</span>
-    <span class="deal-k">FMR</span><span class="deal-v">$0</span>
-    <span class="deal-k">Target rent</span><span class="deal-v">$0</span>
-    <span class="deal-k">CF (opt)</span><span class="deal-v">$594/mo</span>
+</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">4</div>
+  <div class="need-body">
+    <div class="need-title">Tactical Ohio: submit payee change forms to LMHA + Lake County HA</div>
+    <div class="need-ctx">Per locked plan, Tactical (Angel Marie Chaney) submits the HA payee-change forms today. Confirm via email check or direc…</div>
   </div>
-  <div class="deal-stage">Stage: <b>Evergreen inspection paid May 1 — awaiting report</b> · Close target: TBD · T-Noned</div>
-  <div class="deal-lenders">Brannon Harnish ✓</div>
-  <div class="deal-action">Next: Await Evergreen inspection report → Steadily quote → decide</div>
 </div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">5</div>
+  <div class="need-body">
+    <div class="need-title">Tactical Ohio: submit payee change forms to LMHA + Lake County HA</div>
+    <div class="need-ctx">Per locked plan, Tactical (Angel Marie Chaney) submits the HA payee-change forms today. Confirm via email check or direc…</div>
+  </div>
 </div>
-
-<!-- ACTIVE THREADS -->
-<div class="sec">
-  <div class="sec-title">Active Workstreams · 3</div>
-  
-<div class="thread-row">
-  <div class="thread-name">🔥 Fenwick April HAP</div>
-  <div class="thread-status">Jenna replied May 4 with settlement breakdown (Aug-Feb only, no April HAP). Garry assessed — pushback correct.</div>
-</div>
-<div class="thread-row">
-  <div class="thread-name">🔥 Wilborn Eviction + Rehab</div>
-  <div class="thread-status">Eviction done. Ameren LIVE ✅. Spire + MO Water done. Rehab quote ghost — Darren (Dalou) no reply since May 1 c</div>
-</div>
-<div class="thread-row">
-  <div class="thread-name">🔥 Credit Building</div>
-  <div class="thread-status">Stack clarified May 6. Self Credit Builder BLOCKED (ITIN). Ava = mobile only, needs Mercury first. Brex blocke</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">6</div>
+  <div class="need-body">
+    <div class="need-title">Tactical Ohio: submit payee change forms to LMHA + Lake County HA</div>
+    <div class="need-ctx">Per locked plan, Tactical (Angel Marie Chaney) submits the HA payee-change forms today. Confirm via email check or direc…</div>
+  </div>
 </div>
 </div>
 
 <!-- WAITING ON -->
 <div class="sec">
-  <div class="sec-title">Waiting On · 0 items</div>
-  <div class="empty">No outbound asks pending</div>
+  <div class="sec-title">Waiting On · 2 items</div>
+  
+<div class="wait-row">
+  <div class="wait-item">Sleek Deed of Loan Forgiveness</div>
+  <div class="wait-from">Gabriela · May 13 — tomorrow</div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">Wilborn contractor quote</div>
+  <div class="wait-from">Heather (Avenue) · Awaiting new bids</div>
+</div>
+</div>
+
+<!-- ACTIVE THREADS -->
+<div class="sec">
+  <div class="sec-title">Active Workstreams · 4</div>
+  
+<div class="thread-row">
+  <div class="thread-name">Wilborn rehab</div>
+  <div class="thread-status">Original contractor fell through. Seeking new bids via Heather (Avenue). Property vacant — every week = lost income.</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Sleek deed of forgiveness</div>
+  <div class="thread-status">Gabriela (Sleek) preparing Deed of Loan Forgiveness. Due May 13. Chase if not received by EOD.</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Bangkok prep</div>
+  <div class="thread-status">Flight booked June 17 (ref JSMFJK). 36 days out. DTV visa application due ~Jun 1. AU exit admin in progress.</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Hazelcrest sale</div>
+  <div class="thread-status">Listed. GW Carter FIRPTA engagement letter to sign (Quotient link in email). Capital freed → 2 financed STL deals.</div>
+</div>
+</div>
+
+<!-- DEAL PIPELINE -->
+<div class="sec">
+  <div class="sec-title">Deal Pipeline <span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">0 contracts · 2 watchlist</span></div>
+  <div class="pipe-stage-label" style="color:var(--green)">UNDER CONTRACT <span class="pipe-count">0</span></div>
+  <div class="pipe-empty">No active contracts. Wilborn rehab first — then next acquisition.</div>
+  <div class="pipe-stage-label" style="color:var(--blue)">WATCHLIST <span class="pipe-count">2</span></div>
+  
+<div class="pipe-row pipe-watch">
+  <div class="pipe-row-top">
+    <div class="pipe-addr">1427 Fairmeadows Ln</div>
+    <div class="pipe-price">$115,000 · 4BR</div>
+  </div>
+  <div class="pipe-pros">+ 4BR, decent neighbourhood, HQS Good</div>
+  <div class="pipe-cons">- Tenant-occupied as-is — need current rent + lease expiry. Min rent $1,442/mo needed.</div>
+  <div class="pipe-meta">63138 Spanish Lake · pending lease info</div>
+  <div class="pipe-note">HOLD — route through Heather to get lease info from listing agent.</div>
+</div>
+<div class="pipe-row pipe-watch">
+  <div class="pipe-row-top">
+    <div class="pipe-addr">146 Grampian</div>
+    <div class="pipe-price">TBC</div>
+  </div>
+  <div class="pipe-pros">+ Under review</div>
+  <div class="pipe-cons">- Insufficient data yet</div>
+  <div class="pipe-meta">Watchlist — scouting</div>
+  <div class="pipe-note">Monitoring. No offer submitted.</div>
+</div>
 </div>
 
 <!-- PORTFOLIO -->
 <div class="sec">
-  <div class="sec-title">Portfolio · 6 doors · re-tenant windows</div>
+  <div class="sec-title">Portfolio · 6 doors</div>
   <div class="props">
+  
 <div class="prop-tile">
   <div class="prop-top">
     <div class="prop-net">A$1,365</div>
     <div class="prop-grade" style="color:#34d399">A</div>
   </div>
   <div class="prop-addr">505 W 25th St</div>
-  <div class="prop-retenant">+$9/mo at re-tenant · 14mo left</div>
+  <div class="prop-retenant" style="color:var(--dim)">Leased · Ohio</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
     <div class="prop-net">A$427</div>
     <div class="prop-grade" style="color:#f87171">SELL</div>
   </div>
-  <div class="prop-addr">7596 Hazelcrest Dr Unit F</div>
-  <div class="prop-retenant" style="color:#f87171">SELLING</div>
+  <div class="prop-addr">7596 Hazelcrest Dr</div>
+  <div class="prop-retenant" style="color:#f87171">Listed for sale</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
@@ -279,7 +272,7 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
     <div class="prop-grade" style="color:#fbbf24">B</div>
   </div>
   <div class="prop-addr">132 Fenwick Dr</div>
-  <div class="prop-retenant">+$121/mo at re-tenant · 4mo left</div>
+  <div class="prop-retenant" style="color:var(--dim)">Section 8 · MO</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
@@ -287,7 +280,7 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
     <div class="prop-grade" style="color:#fbbf24">B</div>
   </div>
   <div class="prop-addr">5361 Wilborn Dr</div>
-  <div class="prop-retenant">+$171/mo at re-tenant · 8mo left</div>
+  <div class="prop-retenant" style="color:#fb923c">VACANT — rehab pending</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
@@ -295,7 +288,7 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
     <div class="prop-grade" style="color:#34d399">A</div>
   </div>
   <div class="prop-addr">516 Alcove Ave</div>
-  <div class="prop-retenant">+$81/mo at re-tenant · 10mo left</div>
+  <div class="prop-retenant" style="color:var(--dim)">Section 8 · MO</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
@@ -303,57 +296,54 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
     <div class="prop-grade" style="color:#fbbf24">B</div>
   </div>
   <div class="prop-addr">124 Kenilworth Ave</div>
-  <div class="prop-retenant">+$32/mo at re-tenant · 11mo left</div>
-</div></div>
+  <div class="prop-retenant" style="color:var(--dim)">Ohio</div>
+</div>
+  </div>
 </div>
 
 <!-- HAP -->
 <div class="sec">
-  <div class="sec-title">HAP 2026-05 · 0/6</div>
+  <div class="sec-title">HAP 2026-05 · 0/6 received</div>
   <div class="hap-grid">
+  
 <div class="hap-tile">
-  <div class="hap-name">505_w_25th</div>
-  <div class="hap-amt" style="color:#fbbf24">$1383</div>
+  <div class="hap-name">505 W 25th</div>
+  <div class="hap-amt" style="color:#fbbf24">$1,383</div>
   <div class="hap-status" style="color:#fbbf24">PENDING</div>
 </div>
 <div class="hap-tile">
-  <div class="hap-name">hazelcrest</div>
+  <div class="hap-name">Hazelcrest</div>
   <div class="hap-amt" style="color:#fbbf24">$775</div>
   <div class="hap-status" style="color:#fbbf24">PENDING</div>
 </div>
 <div class="hap-tile">
-  <div class="hap-name">fenwick</div>
-  <div class="hap-amt" style="color:#fbbf24">$1450</div>
+  <div class="hap-name">Fenwick</div>
+  <div class="hap-amt" style="color:#fbbf24">$1,450</div>
   <div class="hap-status" style="color:#fbbf24">PENDING</div>
 </div>
 <div class="hap-tile">
-  <div class="hap-name">wilborn</div>
-  <div class="hap-amt" style="color:#fbbf24">$1400</div>
+  <div class="hap-name">Wilborn</div>
+  <div class="hap-amt" style="color:#fbbf24">$1,400</div>
   <div class="hap-status" style="color:#fbbf24">PENDING</div>
 </div>
 <div class="hap-tile">
-  <div class="hap-name">alcove</div>
-  <div class="hap-amt" style="color:#fbbf24">$1490</div>
+  <div class="hap-name">Alcove</div>
+  <div class="hap-amt" style="color:#fbbf24">$1,490</div>
   <div class="hap-status" style="color:#fbbf24">PENDING</div>
 </div>
 <div class="hap-tile">
-  <div class="hap-name">kenilworth</div>
-  <div class="hap-amt" style="color:#fbbf24">$1360</div>
+  <div class="hap-name">Kenilworth</div>
+  <div class="hap-amt" style="color:#fbbf24">$1,360</div>
   <div class="hap-status" style="color:#fbbf24">PENDING</div>
-</div></div>
 </div>
-
-<!-- WINS -->
-<div class="sec">
-  <div class="sec-title">Recent Wins · 48h</div>
-  <div class="empty">Building win cache...</div>
+  </div>
 </div>
 
 <!-- FOOTER -->
 <div class="foot">
-  Auto-updated Mon May 11 2026 · 10:29 PM · 1 USD = 1.3820 AUD<br>
-  <span class="dot" style="background:#34d399"></span>Data 0min old ·
-  <span style="color:#34d399">● FX live</span> ·
+  Auto-updated Tue May 12 2026 · 01:44 PM · 1 AUD = 0.6350 USD<br>
+  <span class="dot" style="background:#34d399"></span>Live DB ·
+  <span style="color:#60a5fa">Bangkok 36d</span> ·
   <span style="color:var(--dim)">Garry 24/7</span>
 </div>
 
