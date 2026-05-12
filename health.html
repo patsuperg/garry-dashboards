@@ -7,368 +7,203 @@
 <title>Health · Patrick</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#050508;--surface:#0d0d12;--border:#1c1c24;
-  --text:#f0f0f2;--sub:#9090a0;--dim:#545464;
-  --green:#34d399;--blue:#60a5fa;--purple:#a78bfa;
-  --red:#f87171;--yellow:#fbbf24
-}
-body{
-  background:var(--bg);color:var(--text);
-  font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-  -webkit-font-smoothing:antialiased;min-height:100vh;
-  padding:max(env(safe-area-inset-top),16px) 18px 56px
-}
+:root{--bg:#050508;--surface:#0c0c10;--border:#18181c;--text:#f0f0f2;--sub:#a0a0a8;--dim:#5a5a64;
+  --green:#34d399;--blue:#60a5fa;--orange:#fb923c;--red:#f87171}
+body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 18px 40px}
 .wrap{max-width:560px;margin:0 auto}
 
 /* PHASE HERO */
-.phase-hero{
-  background:linear-gradient(135deg,rgba(52,211,153,0.07),rgba(96,165,250,0.04));
-  border:1px solid rgba(52,211,153,0.2);border-radius:20px;padding:22px 22px 18px;
-  margin-bottom:20px
-}
-.phase-label{font-size:9px;letter-spacing:3.5px;color:var(--green);font-weight:700;text-transform:uppercase}
-.phase-title{font-size:26px;font-weight:900;margin-top:5px;letter-spacing:-0.5px}
-.phase-meta{display:flex;margin-top:16px;border-top:1px solid rgba(255,255,255,0.05);padding-top:14px}
-.phase-m{flex:1;padding:0 14px;border-right:1px solid var(--border)}
-.phase-m:first-child{padding-left:0}
-.phase-m:last-child{border-right:none}
-.phase-m-v{font-size:21px;font-weight:800}
-.phase-m-l{font-size:8.5px;color:var(--dim);text-transform:uppercase;letter-spacing:1.2px;margin-top:3px}
-.phase-goal{font-size:12px;color:var(--sub);margin-top:14px;line-height:1.5}
-
-/* RINGS */
-.rings{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
-.ring-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:20px;
-  padding:20px 16px 18px;display:flex;flex-direction:column;align-items:center
-}
-.ring-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:14px}
-.ring-wrap{position:relative;width:116px;height:116px}
-.ring-wrap svg{display:block;transform:rotate(-90deg)}
-.ring-track{fill:none;stroke:#1a1a24;stroke-width:11}
-.ring-fill{fill:none;stroke-width:11;stroke-linecap:round}
-.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
-.ring-val{font-size:24px;font-weight:900;letter-spacing:-0.5px}
-.ring-unit{font-size:11px;color:var(--dim);font-weight:400;margin-top:1px}
-.ring-sub{font-size:10px;color:var(--sub);margin-top:12px;text-align:center;line-height:1.45;min-height:30px}
+.phase-hero{background:linear-gradient(135deg,rgba(52,211,153,0.08),rgba(96,165,250,0.05));
+  border:1px solid rgba(52,211,153,0.15);border-radius:18px;padding:22px;margin:24px 0 20px}
+.phase-label{font-size:10px;letter-spacing:3px;color:#34d399;font-weight:700;text-transform:uppercase}
+.phase-title{font-size:22px;font-weight:800;margin-top:6px;letter-spacing:-0.5px}
+.phase-meta{display:flex;gap:20px;margin-top:12px}
+.phase-m{flex:1}
+.phase-m-v{font-size:18px;font-weight:800;color:var(--text)}
+.phase-m-l{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.phase-goal{font-size:12px;color:var(--sub);margin-top:10px}
 
 /* SPOONS */
-.spoons-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:20px;padding:22px 20px 20px;margin-bottom:20px
-}
-.card-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
-.card-title{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);font-weight:700}
-.card-date{font-size:10px;color:var(--dim)}
-.spoons-big{font-size:64px;font-weight:900;letter-spacing:-2px;line-height:1}
-.spoons-big span{font-size:24px;color:#2a2a36;font-weight:500}
-.spoons-lbl{font-size:12px;font-weight:600;margin-top:4px;margin-bottom:16px}
-.spoons-icons{font-size:17px;letter-spacing:4px;line-height:1.5;margin-bottom:18px}
-.trend-row{display:flex;align-items:flex-end;gap:4px;justify-content:center}
-.tbar-wrap{display:flex;flex-direction:column;align-items:center;gap:4px}
-.tbar{border-radius:3px 3px 0 0;min-height:4px}
-.tbar-d{font-size:7.5px;color:var(--dim)}
+.spoons{text-align:center;padding:24px 0;border-bottom:1px solid var(--border);margin-bottom:24px}
+.spoons-l{font-size:10px;letter-spacing:3px;color:var(--dim);text-transform:uppercase}
+.spoons-n{font-size:72px;font-weight:900;color:#34d399;line-height:1;letter-spacing:-2px;margin:12px 0}
+.spoons-n span{font-size:24px;color:#444}
+.spoons-e{font-size:18px;letter-spacing:4px}
+.spoons-meta{font-size:11px;color:var(--dim);margin-top:8px}
 
-/* SLEEP BREAKDOWN */
-.sleep-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:20px;padding:20px;margin-bottom:20px
-}
-.sec-title{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:16px}
-.stages{display:flex}
-.stage{flex:1;text-align:center;border-right:1px solid var(--border);padding:0 8px}
-.stage:first-child{padding-left:0}
-.stage:last-child{border-right:none}
-.stage-v{font-size:22px;font-weight:800}
-.stage-l{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:0.8px;margin-top:4px}
-.stage-bar{height:4px;background:var(--border);border-radius:2px;margin-top:10px;overflow:hidden}
-.stage-fill{height:100%;border-radius:2px}
+/* TREND */
+.trend-row{display:flex;align-items:flex-end;gap:6px;justify-content:center;margin-top:14px;height:46px}
+.trend-bar{width:14px;border-radius:3px 3px 0 0}
 
-/* VITALS PAIR */
-.vitals-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
-.vital-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:20px;text-align:center}
-.vital-lbl{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:10px}
-.vital-val{font-size:38px;font-weight:900;letter-spacing:-1px;line-height:1}
-.vital-unit{font-size:13px;color:var(--dim);font-weight:400;margin-left:2px}
-.vital-baseline{font-size:10px;color:var(--sub);margin-top:8px}
+/* VITALS */
+.vitals-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px}
+.vital{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center}
+.vital-l{font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-bottom:10px}
+.vital-v{font-size:32px;font-weight:800;line-height:1}
+.vital-v span{font-size:12px;color:var(--dim);font-weight:400;margin-left:4px}
+.vital-sub{font-size:10px;color:var(--dim);margin-top:6px}
 
-/* HISTORY HEAT with NUMBERS */
-.history-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:20px;margin-bottom:20px}
-.hist-table{display:grid;gap:5px}
-.hist-row{display:flex;align-items:center;gap:4px}
-.hist-row-lbl{font-size:8px;color:var(--dim);width:36px;text-align:right;flex-shrink:0;letter-spacing:0.5px}
-.hist-cells{display:flex;gap:4px;flex:1}
-.hist-cell{
-  flex:1;height:26px;border-radius:5px;min-width:0;
-  display:flex;align-items:center;justify-content:center;
-  font-size:7px;font-weight:700;color:rgba(255,255,255,0.9);
-  letter-spacing:0.2px
-}
-.hist-dates{display:flex;gap:4px;margin-top:4px;margin-left:40px}
-.hist-date{flex:1;font-size:7px;color:var(--dim);text-align:center}
-.hist-legend{display:flex;gap:14px;margin-top:12px;flex-wrap:wrap}
-.leg-item{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--dim)}
-.leg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+/* SECTIONS */
+.sec{margin-bottom:28px}
+.sec-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:12px}
+
+/* REHAB */
+.rehab{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
+.rehab-head{display:flex;justify-content:space-between;margin-bottom:10px;font-size:12px}
+.rehab-bar{height:8px;background:#151518;border-radius:4px;overflow:hidden}
+.rehab-fill{height:100%;background:var(--blue);border-radius:4px}
+
+/* BLOODS */
+.bloods{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center}
+.bloods-l{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+.bloods-d{font-size:13px;font-weight:600;margin-top:2px}
+.bloods-days{font-size:22px;font-weight:800;color:var(--blue)}
 
 /* DOSING */
-.dosing{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
-.dose{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.dose{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:8px}
+.dose-head{display:flex;justify-content:space-between;align-items:center}
 .dose-name{font-size:13px;font-weight:700}
-.dose-freq{font-size:10px;color:var(--dim);margin-top:4px}
-.dose-tag{font-size:8.5px;background:#0a0a10;border:1px solid var(--border);padding:4px 10px;border-radius:8px;letter-spacing:0.5px;color:var(--sub)}
+.dose-tag{font-size:9px;color:var(--dim);background:#111;padding:3px 8px;border-radius:10px;letter-spacing:0.5px}
+.dose-freq{font-size:11px;color:var(--sub);margin-top:4px}
 
-/* BOTTOM */
-.bottom-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
-.bot-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px}
-.bot-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
-.bot-val{font-size:30px;font-weight:900;line-height:1}
-.bot-sub{font-size:11px;color:var(--sub);margin-top:5px}
-.rehab-bar{height:5px;background:var(--border);border-radius:3px;margin-top:12px;overflow:hidden}
-.rehab-fill{height:100%;border-radius:3px;background:var(--blue)}
+/* BODY SCAN */
+.body-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.body-tile{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
+.body-l{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:0.8px}
+.body-v{font-size:20px;font-weight:800;margin-top:4px}
+.body-v span{font-size:10px;color:var(--dim);font-weight:400;margin-left:2px}
 
 /* FOOT */
-.foot{text-align:center;font-size:10px;color:var(--dim);line-height:1.8;letter-spacing:0.5px}
-
-@media(max-width:380px){.ring-val{font-size:20px}.spoons-big{font-size:52px}}
+.foot{text-align:center;font-size:10px;color:var(--dim);margin-top:24px;line-height:1.6;letter-spacing:0.6px}
+@media(max-width:540px){
+  .body-grid{grid-template-columns:repeat(2,1fr)}
+}
 </style>
 </head>
 <body>
-<div class="wrap" id="app">
-  <div class="foot" style="margin-top:60px;font-size:14px">Syncing…</div>
-</div>
-<script>
-const R = 47, C = +(2 * Math.PI * R).toFixed(2);
+<div class="wrap">
 
-function ofs(pct){ return +(C - C * Math.min(Math.max(pct,0),100)/100).toFixed(2); }
-
-function ringColor(key, val){
-  if(key==='sleep') return '#60a5fa';
-  if(key==='recovery') return val>=66?'#34d399':val>=33?'#fbbf24':'#f87171';
-  if(key==='strain') return '#a78bfa';
-  if(key==='stress') return val<=30?'#34d399':val<=60?'#fbbf24':'#f87171';
-  return '#60a5fa';
-}
-function spoonsColor(n,max){ const r=n/max; return r>=0.75?'#34d399':r>=0.5?'#fbbf24':'#f87171'; }
-function histColor(type,val){
-  if(type==='spoon') return val>=8?'#34d399':val>=5?'#fbbf24':'#f87171';
-  if(type==='sleep')  return val>=7?'#60a5fa':val>=5.5?'#fbbf24':'#f87171';
-  if(type==='hrv')    return val>=35?'#34d399':val>=18?'#fbbf24':'#f87171';
-  if(type==='stress') return val<=30?'#34d399':val<=60?'#fbbf24':'#f87171';
-  return '#1c1c24';
-}
-function dayLabel(ds){ return['Su','Mo','Tu','We','Th','Fr','Sa'][new Date(ds+'T12:00:00').getDay()]; }
-
-function buildRing(key, label, rd){
-  const raw = rd.value??0;
-  const pct = key==='strain'?Math.min((raw/21)*100,100):raw;
-  const color = ringColor(key,pct);
-  const fin  = ofs(pct);
-  let valStr, unitStr;
-  if(key==='sleep'){   valStr=rd.label??`${raw}%`; unitStr=''; }
-  else if(key==='strain'){ valStr=raw===0?'—':raw.toFixed(1); unitStr=raw===0?'':'/21'; }
-  else { valStr=(raw===0&&key==='stress')?'—':Math.round(raw); unitStr=(raw===0&&key==='stress')?'':'%'; }
-  return `
-<div class="ring-card">
-  <div class="ring-label">${label}</div>
-  <div class="ring-wrap">
-    <svg width="116" height="116" viewBox="0 0 116 116">
-      <circle class="ring-track" cx="58" cy="58" r="${R}"/>
-      <circle class="ring-fill" cx="58" cy="58" r="${R}"
-        stroke="${color}" stroke-dasharray="${C}" stroke-dashoffset="${C}"
-        data-fin="${fin}" id="r-${key}"/>
-    </svg>
-    <div class="ring-center">
-      <div class="ring-val" style="color:${color}">${valStr}</div>
-      <div class="ring-unit">${unitStr}</div>
-    </div>
-  </div>
-  <div class="ring-sub">${(rd.subtitle??'').replace('—','–')}</div>
-</div>`;
-}
-
-function histRow(label, type, vals, fmtFn){
-  const cells = vals.map(([d,v]) => {
-    const c = histColor(type, v??0);
-    const txt = v!=null ? fmtFn(v) : '';
-    return `<div class="hist-cell" style="background:${c}" title="${d}: ${txt}">${txt}</div>`;
-  }).join('');
-  return `<div class="hist-row"><div class="hist-row-lbl">${label}</div><div class="hist-cells">${cells}</div></div>`;
-}
-
-function render(data){
-  const today   = data.today??{};
-  const history = data.history??[];
-  const rings   = today.rings??{};
-  const sb      = today.sleep_breakdown??{};
-  const base    = today.baseline_14d??{};
-
-  const sn   = today.spoons??0, smax=today.spoons_max??12;
-  const slbl = today.spoons_label??'';
-  const sclr = spoonsColor(sn,smax);
-  const spoonsIcons = '🥄'.repeat(sn)+`<span style="opacity:0.12">${'🥄'.repeat(smax-sn)}</span>`;
-
-  // 7-day trend
-  const last7  = history.slice(-7);
-  const tBars  = last7.map(h=>{
-    const sp=h.spoons??0, ht=Math.max(4,Math.round((sp/12)*44));
-    return `<div class="tbar-wrap">
-      <div class="tbar" style="width:20px;height:${ht}px;background:${spoonsColor(sp,12)}" title="${h.date} · ${sp}/12"></div>
-      <div class="tbar-d">${(h.date??'').slice(5)}</div>
-    </div>`;
-  }).join('');
-
-  // Sleep stages
-  const tot=sb.total_hr||1;
-  const stg=(val,lbl,pct,clr)=>`
-<div class="stage">
-  <div class="stage-v" style="color:${clr}">${(val||0).toFixed(1)}<span style="font-size:11px;color:var(--dim);font-weight:400">h</span></div>
-  <div class="stage-l">${lbl}</div>
-  <div class="stage-bar"><div class="stage-fill" style="width:${pct}%;background:${clr}"></div></div>
-</div>`;
-
-  // History heatmap — last 14 days WITH values
-  const last14 = history.slice(-14);
-  const hDates = last14.map(h=>`<div class="hist-date">${dayLabel(h.date??'')}</div>`).join('');
-  const hvSpoon = last14.map(h=>[h.date, h.spoons??null]);
-  const hvSleep  = last14.map(h=>[h.date, h.sleep_hr??null]);
-  const hvHrv    = last14.map(h=>[h.date, h.hrv??null]);
-  const hvStress = last14.map(h=>[h.date, h.stress_pct??null]);
-
-  // HRV/RHR colors
-  const hrv=today.hrv_overnight??0, rhr=today.rhr_overnight??0;
-  const bhrv=base.hrv??0, brhr=base.rhr??0;
-  const hrvClr=hrv>=bhrv*1.1?'#34d399':hrv>=bhrv*0.85?'#60a5fa':'#f87171';
-  const rhrClr=rhr<=brhr*0.95?'#34d399':rhr<=brhr*1.05?'#60a5fa':'#f87171';
-
-  // Phase calc
-  const now=new Date();
-  const cycleStart=new Date('2026-05-08');
-  const bloodsDate=new Date('2026-07-15');
-  const wk=Math.floor((now-cycleStart)/86400000/7)+1;
-  const dBlood=Math.ceil((bloodsDate-now)/86400000);
-
-  const gen=data.generated
-    ?new Date(data.generated).toLocaleString('en-AU',{timeZone:'Australia/Melbourne',hour:'numeric',minute:'2-digit',month:'short',day:'numeric'})
-    :'';
-
-  document.getElementById('app').innerHTML = `
+<!-- PHASE HERO (phase-first, matches Patrick's request) -->
 <div class="phase-hero">
   <div class="phase-label">Current Phase</div>
   <div class="phase-title">BUILD PHASE</div>
   <div class="phase-meta">
-    <div class="phase-m"><div class="phase-m-v">Wk ${wk}</div><div class="phase-m-l">Protocol</div></div>
-    <div class="phase-m"><div class="phase-m-v">${dBlood}d</div><div class="phase-m-l">Next Bloods</div></div>
-    <div class="phase-m"><div class="phase-m-v">Wk 14</div><div class="phase-m-l">Elbow Rehab</div></div>
+    <div class="phase-m"><div class="phase-m-v">Wk 5</div><div class="phase-m-l">Protocol</div></div>
+    <div class="phase-m"><div class="phase-m-v">64d</div><div class="phase-m-l">Next bloods</div></div>
+    <div class="phase-m"><div class="phase-m-v">14/12</div><div class="phase-m-l">Elbow rehab</div></div>
   </div>
-  <div class="phase-goal">→ 2,700+ kcal · 220g protein minimum</div>
+  <div class="phase-goal">→ Max volume, 3,200+ kcal, 280g protein</div>
 </div>
 
-<div class="rings">
-  ${buildRing('sleep','Sleep',rings.sleep??{value:0})}
-  ${buildRing('recovery','Recovery',rings.recovery??{value:0})}
-  ${buildRing('strain','Strain',rings.strain??{value:0})}
-  ${buildRing('stress','Stress',rings.stress??{value:0})}
+<!-- SPOONS -->
+<div class="spoons">
+  <div class="spoons-l">Spoons Today · 2026-05-12</div>
+  <div class="spoons-n">8<span>/12</span></div>
+  <div class="spoons-e">🥄🥄🥄🥄🥄🥄🥄🥄····</div>
+  <div class="spoons-meta"><span style="color:#f87171">● EXPORT DOWN</span></div>
+  <div class="trend-row"><div class="trend-bar" style="height:20px;background:#fbbf24" title="2026-05-05 · 6/12"></div><div class="trend-bar" style="height:20px;background:#fbbf24" title="2026-05-06 · 6/12"></div><div class="trend-bar" style="height:13px;background:#f87171" title="2026-05-07 · 4/12"></div><div class="trend-bar" style="height:6px;background:#f87171" title="2026-05-08 · 2/12"></div><div class="trend-bar" style="height:23px;background:#fbbf24" title="2026-05-09 · 7/12"></div><div class="trend-bar" style="height:16px;background:#fbbf24" title="2026-05-10 · 5/12"></div><div class="trend-bar" style="height:13px;background:#f87171" title="2026-05-11 · 4/12"></div></div>
 </div>
 
-<div class="spoons-card">
-  <div class="card-header"><div class="card-title">Energy Today</div><div class="card-date">${today.date??''}</div></div>
-  <div class="spoons-big" style="color:${sclr}">${sn}<span>/${smax}</span></div>
-  <div class="spoons-lbl" style="color:${sclr}">${slbl}</div>
-  <div class="spoons-icons">${spoonsIcons}</div>
-  <div class="trend-row">${tBars}</div>
-</div>
-
-<div class="sleep-card">
-  <div class="sec-title">Sleep Breakdown</div>
-  <div class="stages">
-    ${stg(sb.deep_hr,'Deep',((sb.deep_hr||0)/tot*100).toFixed(0),'#60a5fa')}
-    ${stg(sb.rem_hr,'REM',((sb.rem_hr||0)/tot*100).toFixed(0),'#a78bfa')}
-    ${stg(sb.core_hr,'Core',((sb.core_hr||0)/tot*100).toFixed(0),'var(--sub)')}
-    ${stg(sb.total_hr,'Total',100,'#34d399')}
+<!-- VITALS -->
+<div class="vitals-grid">
+  <div class="vital">
+    <div class="vital-l">Sleep</div>
+    <div class="vital-v" style="color:#f87171">5.3<span>hrs</span></div>
+    <div class="vital-sub">Target 7.5+ </div>
   </div>
-</div>
-
-<div class="vitals-pair">
-  <div class="vital-card">
-    <div class="vital-lbl">HRV</div>
-    <div class="vital-val" style="color:${hrvClr}">${hrv.toFixed(0)}<span class="vital-unit">ms</span></div>
-    <div class="vital-baseline">7d avg ${bhrv?bhrv.toFixed(1):'—'} ms</div>
+  <div class="vital">
+    <div class="vital-l">HRV</div>
+    <div class="vital-v" style="color:#fbbf24">29<span>ms</span></div>
+    <div class="vital-sub">Higher = better </div>
   </div>
-  <div class="vital-card">
-    <div class="vital-lbl">Resting HR</div>
-    <div class="vital-val" style="color:${rhrClr}">${rhr.toFixed(0)}<span class="vital-unit">bpm</span></div>
-    <div class="vital-baseline">7d avg ${brhr?brhr.toFixed(1):'—'} bpm</div>
+  <div class="vital">
+    <div class="vital-l">Resting HR</div>
+    <div class="vital-v" style="color:#fbbf24">70<span>bpm</span></div>
+    <div class="vital-sub">Lower = fitter </div>
+  </div>
+  <div class="vital">
+    <div class="vital-l">Steps</div>
+    <div class="vital-v" style="color:#5a5a64">—</div>
+    <div class="vital-sub">Target 8,000+ </div>
   </div>
 </div>
 
-<div class="history-card">
-  <div class="sec-title">14-Day History</div>
-  <div class="hist-table">
-    ${histRow('Spoons', 'spoon', hvSpoon, v=>Math.round(v))}
-    ${histRow('Sleep',  'sleep', hvSleep,  v=>v.toFixed(1))}
-    ${histRow('HRV',    'hrv',   hvHrv,    v=>Math.round(v))}
-    ${histRow('Stress', 'stress',hvStress, v=>v!=null?Math.round(v)+'%':'—')}
-  </div>
-  <div class="hist-dates">${hDates}</div>
-  <div class="hist-legend">
-    <div class="leg-item"><div class="leg-dot" style="background:#34d399"></div>Good</div>
-    <div class="leg-item"><div class="leg-dot" style="background:#fbbf24"></div>Mid</div>
-    <div class="leg-item"><div class="leg-dot" style="background:#f87171"></div>Low</div>
-    <div class="leg-item"><div class="leg-dot" style="background:#60a5fa"></div>Sleep</div>
+<!-- NEXT BLOODS -->
+<div class="sec">
+  <div class="sec-title">Bloods</div>
+  <div class="bloods">
+    <div>
+      <div class="bloods-l">Next Panel</div>
+      <div class="bloods-d">Jul 15, 2026 · Aussie Scripts $45 TRT</div>
+    </div>
+    <div class="bloods-days">64d</div>
   </div>
 </div>
 
-<div class="sec-title" style="margin-bottom:12px">Protocol · Build</div>
-<div class="dosing">
-  <div class="dose">
-    <div><div class="dose-name" style="color:#34d399">Test E — 250mg IM</div><div class="dose-freq">Thu · Mon split · from May 8</div></div>
-    <div class="dose-tag">FOUNDATION</div>
-  </div>
-  <div class="dose">
-    <div><div class="dose-name" style="color:#34d399">Deca — 200mg IM</div><div class="dose-freq">Thu · Mon split · from May 8</div></div>
-    <div class="dose-tag">BUILD</div>
-  </div>
-  <div class="dose">
-    <div><div class="dose-name" style="color:#60a5fa">BPC-157 / TB-500 — 250µg / 2.5mg</div><div class="dose-freq">Daily / 2× wk · Elbow rehab</div></div>
-    <div class="dose-tag">REHAB</div>
-  </div>
-</div>
-
-<div class="bottom-pair">
-  <div class="bot-card">
-    <div class="bot-lbl">Next Panel</div>
-    <div class="bot-val" style="color:var(--blue)">${dBlood}d</div>
-    <div class="bot-sub">Jul 15 · Aussie Scripts $45</div>
-  </div>
-  <div class="bot-card">
-    <div class="bot-lbl">Elbow Rehab</div>
-    <div class="bot-val" style="color:var(--blue)">Wk 14</div>
-    <div class="bot-sub">Pain-free pressing ✓</div>
+<!-- ELBOW REHAB -->
+<div class="sec">
+  <div class="sec-title">Elbow Rehab</div>
+  <div class="rehab">
+    <div class="rehab-head">
+      <span>Week 14 of 12</span>
+      <span style="color:var(--blue)">100% to pain-free pressing</span>
+    </div>
     <div class="rehab-bar"><div class="rehab-fill" style="width:100%"></div></div>
   </div>
 </div>
 
+<!-- BODY SCAN -->
+
+
+<!-- PROTOCOL DOSING -->
+<div class="sec">
+  <div class="sec-title">Protocol Dosing · Build</div>
+  
+<div class="dose">
+  <div class="dose-head">
+    <div class="dose-name" style="color:#34d399">Test E — 250mg IM</div>
+    <div class="dose-tag">FOUNDATION</div>
+  </div>
+  <div class="dose-freq">Weekly</div>
+</div>
+<div class="dose">
+  <div class="dose-head">
+    <div class="dose-name" style="color:#34d399">Primo — 50mg IM</div>
+    <div class="dose-tag">BUILD</div>
+  </div>
+  <div class="dose-freq">Weekly</div>
+</div>
+<div class="dose">
+  <div class="dose-head">
+    <div class="dose-name" style="color:#34d399">GH — 4iu SubQ</div>
+    <div class="dose-tag">RECOMP</div>
+  </div>
+  <div class="dose-freq">Daily</div>
+</div>
+<div class="dose">
+  <div class="dose-head">
+    <div class="dose-name" style="color:#34d399">Retatrutide — 2mg SubQ</div>
+    <div class="dose-tag">FAT CTRL</div>
+  </div>
+  <div class="dose-freq">Weekly</div>
+</div>
+<div class="dose">
+  <div class="dose-head">
+    <div class="dose-name" style="color:#60a5fa">BPC-157 / TB-500 — 250µg / 2.5mg</div>
+    <div class="dose-tag">ELBOW REHAB</div>
+  </div>
+  <div class="dose-freq">Daily / 2x wk</div>
+</div>
+</div>
+
+<!-- FOOT -->
 <div class="foot">
-  Synced ${gen} AEST · Eight Sleep + Apple Health + Aura Ring<br>
+  Auto-updated Tue May 12 · 2:34 PM<br>
+  Data: Apple Health + Eight Sleep + Evolt 360<br>
   <em>The income is me.</em>
-</div>`;
+</div>
 
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-    document.querySelectorAll('.ring-fill').forEach(el=>{
-      el.style.transition='stroke-dashoffset 1.4s cubic-bezier(0.34,1.06,0.64,1)';
-      el.style.strokeDashoffset=el.getAttribute('data-fin');
-    });
-  }));
-}
-
-fetch('./health-data.json?t='+Date.now())
-  .then(r=>{if(!r.ok)throw new Error(r.status);return r.json();})
-  .then(render)
-  .catch(err=>{
-    document.getElementById('app').innerHTML=
-      `<div class="foot" style="margin-top:80px;color:var(--red)">⚠ Failed to load health data<br><small style="opacity:0.6">${err.message}</small></div>`;
-  });
-</script>
+</div>
 </body>
 </html>
