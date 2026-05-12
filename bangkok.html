@@ -3,213 +3,191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bangkok Apartment Shortlist — Patrick + Laura</title>
+<title>Bangkok Apartment Finder — Patrick + Laura</title>
 <style>
-  :root {
-    /* Patrick + Laura warm palette — cream/berry/sage/gold */
-    --bg: #FAF7F2;
-    --card: #FFFFFF;
-    --border: #EFE4E2;
-    --ink: #2C2C2C;
-    --ink-dim: #6B6B6B;
-    --ink-faint: #A89B98;
-    --accent: #8B3A55;
-    --berry: #8B3A55;
-    --berry-light: #B8617D;
-    --rose-soft: #F4D5D5;
-    --rose-bg: #FCEDED;
-    --sage: #A8B89A;
-    --sage-bg: #E8EDE2;
-    --gold: #D4A574;
-    --gold-bg: #FAEFE0;
-    --tier-a: #6B8E5A;
-    --tier-a-bg: #E8EDE2;
-    --tier-b: #B8842F;
-    --tier-b-bg: #FAEFE0;
-    --killed: #B8617D;
-    --killed-bg: #FCEDED;
-    --good: #6B8E5A;
-    --warn: #B8842F;
-    --bad: #C44A6B;
-    --link: #8B3A55;
-    --section-bg: #FCEDED;
-    --shadow: rgba(139, 58, 85, 0.08);
-  }
-  /* Patrick + Laura style overrides */
-  h1, h2.section-title, h3.subsection { color: #8B3A55; }
-  .tldr { box-shadow: 0 4px 20px rgba(139, 58, 85, 0.08); background: linear-gradient(135deg, #FFFFFF 0%, #FCEDED 100%); }
-  .tldr h2 { color: #8B3A55; }
-  .rank { background: #8B3A55; }
-  .listing-link { background: #8B3A55; }
-  .listing-link:hover { background: #B8617D; opacity: 1; }
-  .card { box-shadow: 0 4px 20px rgba(139, 58, 85, 0.08); }
-  .specs { background: #FCEDED; }
-  .transit-flow { background: linear-gradient(135deg, #FFFFFF 0%, #FCEDED 50%); }
-  .transit-flow code { background: #FCEDED; color: #8B3A55; }
-  .pool-hall .near { color: #6B8E5A; }
-  .area-card h4 { color: #8B3A55; }
-  .killed-card .killed-name { color: #8B3A55; }
-  th { color: #8B3A55; background: #FCEDED; }
-  tr:hover { background: #FCEDED; }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    line-height: 1.55;
-    -webkit-text-size-adjust: 100%;
-  }
-  .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
-  header { margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-  h1 { font-size: 28px; margin: 0 0 8px; font-weight: 700; letter-spacing: -0.01em; }
-  .subtitle { color: var(--ink-dim); font-size: 14px; }
-  .tldr {
-    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-    padding: 20px; margin-bottom: 32px; box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-  }
-  .tldr h2 {
-    font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;
-    color: var(--ink-faint); margin: 0 0 12px; font-weight: 600;
-  }
-  .tldr p { margin: 0 0 12px; font-size: 15px; }
-  .tldr p:last-child { margin-bottom: 0; }
-  section { margin-bottom: 40px; }
-  h2.section-title { font-size: 22px; margin: 0 0 20px; font-weight: 700; }
-  h3.subsection { font-size: 17px; margin: 24px 0 12px; font-weight: 600; }
-  .card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-    padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-  }
-  .card-header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; margin-bottom: 12px; }
-  .rank {
-    background: var(--ink); color: white; width: 32px; height: 32px;
-    border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 14px; flex-shrink: 0;
-  }
-  .card h3 { margin: 0; font-size: 20px; font-weight: 700; flex: 1; }
-  .area { color: var(--ink-dim); font-size: 14px; }
-  .badge {
-    display: inline-block; padding: 2px 10px; border-radius: 99px;
-    font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;
-  }
-  .badge.tier-a { background: var(--tier-a-bg); color: var(--tier-a); }
-  .badge.tier-b { background: var(--tier-b-bg); color: var(--tier-b); }
-  .badge.killed { background: var(--killed-bg); color: var(--killed); }
-  .badge.dream { background: #fef3c7; color: #b45309; }
-  .badge.new-star { background: #ddd6fe; color: #6d28d9; }
-  .headline { font-size: 16px; margin: 8px 0 16px; color: var(--ink); font-weight: 500; }
-  .listing-link {
-    display: inline-block; padding: 8px 14px; background: var(--ink);
-    color: white; text-decoration: none; border-radius: 6px;
-    font-size: 14px; font-weight: 500; margin-top: 8px;
-  }
-  .listing-link:hover { opacity: 0.85; }
-  .specs {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px; margin: 16px 0; padding: 12px;
-    background: var(--bg); border-radius: 8px;
-  }
-  .spec { font-size: 13px; }
-  .spec-label {
-    color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.04em;
-    font-size: 11px; font-weight: 600; margin-bottom: 2px;
-  }
-  .spec-value { color: var(--ink); font-weight: 500; }
-  .spec-value.good { color: var(--good); }
-  .spec-value.warn { color: var(--warn); }
-  .spec-value.bad { color: var(--bad); }
-  .pros-cons { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 12px; }
-  @media (min-width: 640px) { .pros-cons { grid-template-columns: 1fr 1fr; } }
-  .pros, .cons { padding: 12px; border-radius: 8px; font-size: 14px; }
-  .pros { background: #f0fdf4; border: 1px solid #bbf7d0; }
-  .cons { background: #fef3c7; border: 1px solid #fde68a; }
-  .pros h4, .cons h4 {
-    margin: 0 0 8px; font-size: 12px; text-transform: uppercase;
-    letter-spacing: 0.04em; font-weight: 700;
-  }
-  .pros h4 { color: #15803d; }
-  .cons h4 { color: #a16207; }
-  .pros ul, .cons ul { margin: 0; padding-left: 20px; }
-  .pros li, .cons li { margin-bottom: 4px; }
-  .backups {
-    margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--border);
-    font-size: 13px;
-  }
-  .backups-label { font-weight: 600; color: var(--ink-dim); margin-bottom: 6px; }
-  .backups a {
-    color: var(--link); text-decoration: none; margin-right: 8px;
-    display: inline-block; margin-bottom: 4px;
-  }
-  .backups a:hover { text-decoration: underline; }
-  .comparison-table {
-    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-    overflow: hidden; margin-bottom: 32px; overflow-x: auto;
-  }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 700px; }
-  th, td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--border); }
-  th {
-    background: var(--bg); font-weight: 600; font-size: 11px;
-    text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-faint); white-space: nowrap;
-  }
-  tr:last-child td { border-bottom: none; }
-  tr:hover { background: var(--bg); }
-  .density-good { color: var(--good); font-weight: 600; }
-  .density-warn { color: var(--warn); font-weight: 600; }
-  .density-bad { color: var(--bad); font-weight: 600; }
-  .check { color: var(--good); font-weight: 700; }
-  .nope { color: var(--ink-faint); }
-  a { color: var(--link); }
-  .pool-hall-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-  @media (min-width: 640px) { .pool-hall-grid { grid-template-columns: 1fr 1fr; } }
-  .pool-hall { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
-  .pool-hall h4 { margin: 0 0 6px; font-size: 16px; }
-  .pool-hall .meta { color: var(--ink-dim); font-size: 13px; margin-bottom: 4px; }
-  .pool-hall .near { color: var(--good); font-size: 13px; font-weight: 500; }
-  details {
-    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
-    padding: 14px 18px; margin-bottom: 8px;
-  }
-  details summary { cursor: pointer; font-weight: 600; font-size: 14px; color: var(--ink-dim); }
-  details summary:hover { color: var(--ink); }
-  details[open] summary { margin-bottom: 12px; }
-  details ul { margin: 12px 0 0; padding-left: 22px; font-size: 14px; }
-  details li { margin-bottom: 8px; color: var(--ink-dim); }
-  details li strong { color: var(--ink); }
-  .area-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-  @media (min-width: 768px) { .area-grid { grid-template-columns: 1fr 1fr; } }
-  .area-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px;
-  }
-  .area-card h4 { margin: 0 0 6px; font-size: 17px; font-weight: 700; }
-  .area-card .area-meta { color: var(--ink-faint); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
-  .area-card p { margin: 8px 0; font-size: 14px; }
-  .area-card .verdict { margin-top: 10px; padding: 8px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; }
-  .area-card .verdict.good { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
-  .area-card .verdict.mixed { background: #fef3c7; color: #a16207; border: 1px solid #fde68a; }
-  .area-card .verdict.bad { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; }
-  .transit-flow {
-    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
-    padding: 18px; margin: 16px 0; font-size: 14px;
-  }
-  .transit-flow code {
-    background: var(--bg); padding: 2px 6px; border-radius: 4px; font-family: ui-monospace, "SF Mono", monospace; font-size: 12px;
-  }
-  .nav-back {
-    display: inline-block; margin-bottom: 16px; color: var(--ink-dim);
-    text-decoration: none; font-size: 13px;
-  }
-  .nav-back:hover { color: var(--ink); }
-  footer {
-    margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border);
-    color: var(--ink-faint); font-size: 12px;
-  }
-  .killed-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
-    padding: 12px 16px; margin-bottom: 8px;
-  }
-  .killed-card .killed-name { font-weight: 600; color: var(--ink); margin-bottom: 2px; }
-  .killed-card .killed-reason { font-size: 13px; color: var(--ink-dim); }
+:root {
+  --bg: #0D0D1A; --surface: #16162A; --card: #1E1E33; --card-hover: #252542;
+  --border: #2A2A45; --border-bright: #3A3A5C;
+  --ink: #E8E8F5; --ink-dim: #8A8AA8; --ink-faint: #555570;
+  --gold: #F5A623; --gold-dim: #2A2010;
+  --green: #4CAF7D; --green-dim: #0F2B1C;
+  --red: #FF5C5C; --red-dim: #2A1010;
+  --amber: #FFB340; --amber-dim: #261C08;
+  --blue: #5B8BFF; --blue-dim: #10163A;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; font-size: 15px; }
+.container { max-width: 1000px; margin: 0 auto; padding: 24px 16px 80px; }
+
+/* HEADER */
+header { padding: 28px 0 22px; border-bottom: 1px solid var(--border); margin-bottom: 28px; }
+.nav-back { color: var(--ink-dim); text-decoration: none; font-size: 13px; display: inline-block; margin-bottom: 14px; }
+.nav-back:hover { color: var(--ink); }
+h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; }
+.header-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+.chip { background: var(--surface); border: 1px solid var(--border-bright); border-radius: 99px; padding: 3px 11px; font-size: 12px; font-weight: 500; color: var(--ink-dim); }
+.chip.hot { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+
+/* QUICK NAV */
+.quick-nav { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 28px; }
+.quick-nav a { background: var(--surface); border: 1px solid var(--border-bright); color: var(--ink-dim); text-decoration: none; padding: 6px 13px; border-radius: 6px; font-size: 13px; font-weight: 500; }
+.quick-nav a:hover { background: var(--card); color: var(--ink); }
+
+/* SECTION */
+.sec-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.sec-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+section { margin-bottom: 40px; }
+
+/* CARD */
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 13px; }
+.card:hover { border-color: var(--border-bright); }
+.card-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+.card-header h3 { margin: 0; flex: 1; min-width: 160px; font-size: 17px; }
+
+/* BADGES */
+.badge { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+.badge.tier-a { background: var(--green-dim); color: var(--green); border: 1px solid var(--green); }
+.badge.tier-b { background: var(--amber-dim); color: var(--amber); border: 1px solid var(--amber); }
+.badge.killed { background: var(--red-dim); color: var(--red); border: 1px solid var(--red); }
+.badge.dream { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold); }
+.badge.new { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue); }
+
+/* RANK */
+.rank { width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; background: var(--gold); color: #0D0D1A; }
+.rank.b { background: var(--amber); }
+.rank.c { background: var(--blue); color: #0D0D1A; }
+.rank.dim { background: var(--border-bright); color: var(--ink-dim); }
+
+/* META */
+.bldg-meta { font-size: 13px; color: var(--ink-dim); margin-bottom: 8px; }
+.headline { font-size: 15px; font-weight: 600; color: var(--gold); margin-bottom: 13px; }
+
+/* CTA */
+.cta { display: inline-flex; align-items: center; gap: 6px; background: var(--gold); color: #0D0D1A; text-decoration: none; padding: 7px 14px; border-radius: 7px; font-size: 13px; font-weight: 700; margin-bottom: 13px; transition: opacity 0.15s; }
+.cta:hover { opacity: 0.85; }
+.cta.sec { background: transparent; border: 1px solid var(--border-bright); color: var(--ink-dim); font-weight: 500; }
+.cta.sec:hover { border-color: var(--gold); color: var(--gold); background: transparent; }
+
+/* SPECS */
+.specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 13px 0; padding: 13px; background: var(--surface); border-radius: 8px; }
+.spec-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); margin-bottom: 2px; }
+.spec-value { font-size: 13px; font-weight: 500; }
+.spec-value.good { color: var(--green); }
+.spec-value.warn { color: var(--amber); }
+.spec-value.bad { color: var(--red); }
+
+/* PROS/CONS */
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 11px; }
+@media (max-width: 580px) { .pros-cons { grid-template-columns: 1fr; } }
+.pros { background: var(--green-dim); border: 1px solid #1E3E2A; padding: 12px 14px; border-radius: 8px; font-size: 13px; }
+.cons { background: var(--amber-dim); border: 1px solid #3A2D10; padding: 12px 14px; border-radius: 8px; font-size: 13px; }
+.pros h4 { color: var(--green); font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 7px; }
+.cons h4 { color: var(--amber); font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 7px; }
+.pros ul, .cons ul { padding-left: 17px; }
+.pros li, .cons li { margin-bottom: 3px; color: var(--ink-dim); }
+.pros li strong, .cons li strong { color: var(--ink); }
+
+/* BACKUPS */
+.backups { margin-top: 11px; padding-top: 11px; border-top: 1px dashed var(--border); }
+.backups-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); margin-bottom: 5px; }
+.backups a { color: var(--gold); text-decoration: none; font-size: 12px; display: inline-block; margin-right: 10px; margin-bottom: 3px; }
+.backups a:hover { text-decoration: underline; }
+
+/* TIP */
+.tip { margin-top: 11px; padding: 10px 13px; border-radius: 8px; font-size: 13px; background: var(--gold-dim); border: 1px solid #3A2E10; color: var(--ink-dim); }
+.tip strong { color: var(--gold); }
+.tip.green { background: var(--green-dim); border-color: #1E3E2A; }
+.tip.green strong { color: var(--green); }
+
+/* AREA ACCORDION */
+details.area-drop { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 11px; overflow: hidden; }
+details.area-drop[open] { border-color: var(--border-bright); }
+details.area-drop > summary { padding: 16px 18px; cursor: pointer; display: flex; align-items: center; gap: 13px; user-select: none; list-style: none; transition: background 0.15s; }
+details.area-drop > summary::-webkit-details-marker { display: none; }
+details.area-drop > summary:hover { background: var(--card-hover); }
+details.area-drop[open] > summary { background: var(--card-hover); border-bottom: 1px solid var(--border); }
+.drop-icon { width: 20px; height: 20px; border-radius: 50%; background: var(--border-bright); display: inline-flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; transition: transform 0.2s; color: var(--ink-dim); }
+details.area-drop[open] > summary .drop-icon { transform: rotate(180deg); }
+.drop-title { font-size: 16px; font-weight: 700; flex: 1; }
+.drop-sub { font-size: 12px; color: var(--ink-dim); margin-top: 2px; }
+.drop-count { font-size: 12px; color: var(--ink-faint); white-space: nowrap; }
+.drop-body { padding: 18px; }
+.area-note { background: var(--surface); border-radius: 8px; padding: 11px 13px; margin-bottom: 14px; font-size: 13px; color: var(--ink-dim); line-height: 1.5; }
+.verdict { display: inline-block; margin-top: 5px; font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 99px; }
+.verdict.good { background: var(--green-dim); color: var(--green); }
+.verdict.mixed { background: var(--amber-dim); color: var(--amber); }
+.verdict.bad { background: var(--red-dim); color: var(--red); }
+
+/* TABLE */
+.table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 30px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 700px; }
+th { background: var(--surface); padding: 10px 11px; text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); white-space: nowrap; }
+td { padding: 11px 11px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--surface); }
+.chk { color: var(--green); font-weight: 700; }
+.nope { color: var(--ink-faint); }
+.gc { color: var(--green); font-weight: 600; }
+.wc { color: var(--amber); font-weight: 600; }
+.bc { color: var(--red); font-weight: 600; }
+.killed-row td { opacity: 0.35; }
+
+/* SHORT STAY HERO */
+.ss-hero { background: linear-gradient(135deg, #0D1A2E, #162440); border: 1px solid #1E3A5A; border-radius: 14px; padding: 22px; margin-bottom: 30px; }
+.ss-hero h2 { color: #7AB8FF; font-size: 18px; margin-bottom: 4px; }
+.ss-sub { color: #4A7AAA; font-size: 13px; margin-bottom: 18px; }
+.ss-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 11px; }
+.ss-card { background: #0F1E30; border: 1px solid #1E3A5A; border-radius: 10px; padding: 14px; }
+.ss-card.pick { border-color: var(--green); background: linear-gradient(135deg, #0F1E30, #0F2B1C); }
+.ss-card h4 { font-size: 14px; font-weight: 700; color: #E8F4FF; margin: 4px 0; }
+.ss-area { font-size: 11px; color: #4A7AAA; margin-bottom: 6px; }
+.ss-price { font-size: 16px; font-weight: 700; color: #7AB8FF; margin-bottom: 7px; }
+.ss-detail { font-size: 12px; color: #4A7AAA; line-height: 1.5; }
+.garry-badge { display: inline-block; background: var(--green-dim); border: 1px solid var(--green); color: var(--green); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 99px; margin-bottom: 4px; }
+.ss-btn { display: inline-block; margin-top: 10px; padding: 6px 12px; background: #1E3A5A; border: 1px solid #2A5A8A; color: #7AB8FF; border-radius: 6px; font-size: 12px; font-weight: 600; text-decoration: none; }
+.ss-btn:hover { background: #2A4A6A; }
+.ss-btn.g { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.ss-note { margin-top: 14px; padding: 11px 13px; background: rgba(76,175,125,0.08); border: 1px solid rgba(76,175,125,0.25); border-radius: 8px; font-size: 13px; color: #4CAF7D; }
+
+/* POOL HALLS */
+.pool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.pool-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 13px; }
+.pool-card.pref { border-color: var(--gold); }
+.pool-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+.pool-card .pl { font-size: 12px; color: var(--ink-dim); margin-bottom: 5px; }
+.pool-card .pn { font-size: 12px; }
+.pool-card .pn.good { color: var(--green); }
+.pool-card .pn.dead { color: var(--red); }
+.pool-card .pn.neutral { color: var(--ink-dim); }
+
+/* KILLED SECTION */
+details.ks { margin-bottom: 9px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+details.ks[open] { border-color: var(--border-bright); }
+details.ks > summary { background: var(--surface); padding: 13px 16px; cursor: pointer; font-weight: 600; font-size: 14px; color: var(--ink-dim); list-style: none; display: flex; align-items: center; justify-content: space-between; }
+details.ks > summary::-webkit-details-marker { display: none; }
+details.ks > summary:hover { color: var(--ink); }
+details.ks[open] > summary { background: var(--card-hover); border-bottom: 1px solid var(--border); }
+.kb { padding: 14px 18px; }
+.ki { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.ki:last-child { border-bottom: none; }
+.kn { font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+.kr { color: var(--ink-dim); }
+.ks-sub { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); margin: 12px 0 7px; }
+
+/* DECISIONS */
+.decision-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+.decision-item:last-child { border-bottom: none; }
+.dec-num { width: 24px; height: 24px; background: var(--gold-dim); border: 1px solid var(--gold); color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+.dec-text { font-size: 14px; color: var(--ink-dim); line-height: 1.5; }
+.dec-text strong { color: var(--ink); }
+
+/* TRANSIT */
+.transit-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; font-size: 13px; }
+.transit-box code { background: var(--border); padding: 2px 5px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 11px; color: var(--blue); }
+
+a { color: var(--gold); }
+a:hover { text-decoration: underline; }
+footer { margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--border); color: var(--ink-faint); font-size: 12px; }
 </style>
 </head>
 <body>
@@ -217,819 +195,480 @@
 
 <header>
   <a class="nav-back" href="./index.html">← Garry Dashboards</a>
-  <h1>Bangkok Apartment Shortlist</h1>
-  <div class="subtitle">Patrick + Laura · Arrive evening 17 June 2026 (hotel 2 nights) · Short-stay trial from 19 June · Generated 11–12 May 2026</div>
+  <h1>Bangkok Apartment Finder</h1>
+  <div class="header-chips">
+    <span class="chip hot">✈ June 17 arrival</span>
+    <span class="chip">Hotel Jun 17–18</span>
+    <span class="chip">Trials from Jun 19</span>
+    <span class="chip">Patrick + Laura</span>
+    <span class="chip">Updated May 12, 2026</span>
+  </div>
 </header>
 
-<!-- ===== SHORT-STAY TRIAL SECTION ===== -->
-<section style="background: #EAF4FF; border: 1.5px solid #7BB8E8; border-radius: 14px; padding: 20px 24px; margin-bottom: 32px;">
-  <h2 style="color: #1A5FA3; font-size: 20px; margin: 0 0 6px; font-weight: 700;">Short-Stay Trial — June 19 to July 3–17, 2026</h2>
-  <p style="color: #2C4A6E; font-size: 14px; margin: 0 0 16px;">Hotel first 2 nights (June 17–18). Short-stay apartment from June 19 for 1–4 weeks while you find and vibe-check the permanent condo. All prices in AUD at ~23.5 THB/AUD.</p>
+<nav class="quick-nav">
+  <a href="#short-stay">Short-Stay Trial</a>
+  <a href="#compare">Quick Compare</a>
+  <a href="#areas">By Area ▾</a>
+  <a href="#pool">Pool Halls</a>
+  <a href="#killed">Killed</a>
+  <a href="#decisions">Decisions</a>
+</nav>
 
-  <h3 style="color: #1A5FA3; font-size: 15px; font-weight: 700; margin: 0 0 12px;">Top 3 Short-Stay Options</h3>
-
-  <!-- Short Stay Option 1 -->
-  <div class="card" style="margin-bottom: 14px; border-left: 4px solid #1A5FA3;">
-    <div class="card-header">
-      <div class="rank" style="background: #1A5FA3;">1</div>
-      <h3 style="font-size: 18px;">Somerset Ekamai Bangkok</h3>
-      <span class="badge tier-a">Serviced Apt</span>
-      <span class="badge dream" style="background: #EAF4FF; color: #1A5FA3;">Best All-Round</span>
-    </div>
-    <div class="area">Ekkamai BTS E7 · 450m to BTS · Ascott Group · Established, highly rated</div>
-    <div class="headline">~฿70,000–90,000/mo (≈ AUD 2,980–3,830) · 1BR · 30-night minimum · Fully serviced</div>
-    <a class="listing-link" href="https://www.discoverasr.com/en/somerset-serviced-residence/thailand/somerset-ekamai-bangkok" target="_blank" style="background: #1A5FA3;">View / Book →</a>
-    <div class="specs">
-      <div class="spec"><div class="spec-label">Min Stay</div><div class="spec-value warn">30 nights</div></div>
-      <div class="spec"><div class="spec-label">Nightly Rate</div><div class="spec-value">~฿2,500/night (≈ AUD 106)</div></div>
-      <div class="spec"><div class="spec-label">BTS Distance</div><div class="spec-value warn">450m to Ekkamai BTS</div></div>
-      <div class="spec"><div class="spec-label">Housekeeping</div><div class="spec-value good">✓ Daily / weekly</div></div>
-      <div class="spec"><div class="spec-label">Kitchen</div><div class="spec-value good">✓ Fully equipped</div></div>
-      <div class="spec"><div class="spec-label">Pool + Gym</div><div class="spec-value good">✓ Both on-site</div></div>
-    </div>
-    <div class="pros-cons">
-      <div class="pros">
-        <h4>Why Pick This</h4>
-        <ul>
-          <li>Ascott-operated — professional management, reliable quality, no dodgy landlord risk</li>
-          <li>Fully furnished + daily housekeeping — zero setup friction on arrival</li>
-          <li>Ekkamai neighbourhood: same BTS corridor as your target condos (Line 101, Ideo 66) — you're already in the right zone for vibe-checking</li>
-          <li>Walking distance from Danny (Punnawithi, 2 stops south)</li>
-          <li>Pool + gym included — no separate memberships needed</li>
-          <li>1BR enough for trial period; Laura gets a proper base while you hunt</li>
-        </ul>
+<!-- SHORT-STAY -->
+<section id="short-stay">
+  <div class="sec-title">Short-Stay Trial — June 19 Onwards</div>
+  <div class="ss-hero">
+    <h2>Land June 17. Hotel 2 nights. Trials start June 19.</h2>
+    <p class="ss-sub">1–4 weeks per building before signing a 12-month lease. June = low season — best leverage for trial negotiations.</p>
+    <div class="ss-grid">
+      <div class="ss-card">
+        <div class="ss-area">Ascott Group · Ekkamai BTS E7 · 450m</div>
+        <h4>Somerset Ekamai Bangkok</h4>
+        <div class="ss-price">~AUD 3,000–3,800/mo</div>
+        <div class="ss-detail">30-night min · Full kitchen · Daily housekeeping · Pool + gym · Zero-friction arrival. Same BTS corridor as target condos.</div>
+        <a class="ss-btn" href="https://www.discoverasr.com/en/somerset-serviced-residence/thailand/somerset-ekamai-bangkok" target="_blank">View / Book →</a>
       </div>
-      <div class="cons">
-        <h4>Watch For</h4>
-        <ul>
-          <li>30-night minimum — if you want to leave early, check cancellation policy</li>
-          <li>More expensive per month than self-managed Airbnb — but you're paying for zero friction</li>
-          <li>450m BTS is walkable but not ideal in June heat (tuk-tuk shuttle may help)</li>
-          <li>Book early — professional serviced apartments in this area fill up</li>
-        </ul>
+      <div class="ss-card pick">
+        <div class="garry-badge">✓ Garry's Pick</div>
+        <div class="ss-area">Blueground · Thong Lo / Ekkamai BTS</div>
+        <h4>Blueground Thong Lo</h4>
+        <div class="ss-price">~AUD 1,900–2,800/mo</div>
+        <div class="ss-detail">1-month min · Full kitchen · Jun 22 availability · Residential feel · Right BTS corridor for condo trials · Budget ~AUD 2,500 all-in</div>
+        <a class="ss-btn g" href="https://www.theblueground.com/m/furnished-apartments/bangkok-tha" target="_blank">Browse Jun 19 →</a>
+      </div>
+      <div class="ss-card">
+        <div class="ss-area">DiscoverASR · Asok BTS + MRT hub · Soi 16</div>
+        <h4>Citadines Sukhumvit 16</h4>
+        <div class="ss-price">~AUD 1,500–2,800/mo</div>
+        <div class="ss-detail">3-night min (most flexible) · Daily housekeeping · Kitchenette only · Best transit access · Good fallback</div>
+        <a class="ss-btn" href="https://www.discoverasr.com/en/citadines/thailand/citadines-sukhumvit-16-bangkok" target="_blank">View / Book →</a>
       </div>
     </div>
-    <div class="backups" style="font-size: 13px; margin-top: 12px; padding-top: 10px; border-top: 1px dashed #d0d0d0;">
-      <div class="backups-label">Also check pricing on:</div>
-      <a href="https://www.thesqua.re/bangkok/serviced-apartments/somerset-ekamai-bangkok-556967708" target="_blank">TheSqua.re listing</a>
-      <a href="https://www.silverdoor.com/somerset-ekamai-apartments-bangkok-9445" target="_blank">Silverdoor listing</a>
+    <div class="ss-note">
+      <strong>Pricing benchmarks</strong> — mid-quality 2BR short-stay: ฿2,500–4,500/night · ฿17,500–31,500/week. Ideo 66 Floor 25 landlord: propose 2-week trial at ฿120–130K before signing 12-month lease. Per-building: Ideo 66 ฿25–35K/wk · Line 101 ฿18–28K/wk · Life Asoke Hype ฿16–25K/wk.
     </div>
-  </div>
-
-  <!-- Short Stay Option 2 -->
-  <div class="card" style="margin-bottom: 14px; border-left: 4px solid #1A5FA3;">
-    <div class="card-header">
-      <div class="rank" style="background: #1A5FA3;">2</div>
-      <h3 style="font-size: 18px;">Blueground — Thong Lo / Ekkamai</h3>
-      <span class="badge tier-a">Furnished Apt</span>
-      <span class="badge tier-b">Most Flexible</span>
-    </div>
-    <div class="area">Thong Lo or Ekkamai · BTS Thong Lo E6 or Ekkamai E7 · Multiple buildings available</div>
-    <div class="headline">~฿45,000–65,000/mo (≈ AUD 1,915–2,765) · 1BR · 1-month minimum · Self-managed</div>
-    <a class="listing-link" href="https://www.theblueground.com/m/furnished-apartments/bangkok-tha/f/bedrooms-1" target="_blank" style="background: #1A5FA3;">Browse Availability →</a>
-    <div class="specs">
-      <div class="spec"><div class="spec-label">Min Stay</div><div class="spec-value good">1 month</div></div>
-      <div class="spec"><div class="spec-label">Jun 19 Availability</div><div class="spec-value good">Units available from Jun 22 (Thong Lo)</div></div>
-      <div class="spec"><div class="spec-label">BTS Distance</div><div class="spec-value good">Direct BTS Thong Lo / Ekkamai area</div></div>
-      <div class="spec"><div class="spec-label">Housekeeping</div><div class="spec-value warn">Periodic (not daily)</div></div>
-      <div class="spec"><div class="spec-label">Kitchen</div><div class="spec-value good">✓ Fully equipped</div></div>
-      <div class="spec"><div class="spec-label">Management</div><div class="spec-value good">Professional (Blueground managed)</div></div>
-    </div>
-    <div class="pros-cons">
-      <div class="pros">
-        <h4>Why Pick This</h4>
-        <ul>
-          <li><strong>Cheaper than Somerset</strong> by ~฿20K/month — roughly AUD 850 saved over 4 weeks</li>
-          <li>Thong Lo/Ekkamai BTS direct — best expat neighbourhood, walkable to all the good stuff</li>
-          <li>Professional managed building (not Airbnb individual host) — no scam risk, reliable check-in</li>
-          <li>1BR feels more like a permanent base; better for settling + exploring than a hotel feel</li>
-          <li>Jun 22 units available — can bridge hotel gap (Jun 17-18 hotel → Jun 19-21 hold if needed)</li>
-        </ul>
-      </div>
-      <div class="cons">
-        <h4>Watch For</h4>
-        <ul>
-          <li>No daily housekeeping — you're more self-sufficient (fine for your style)</li>
-          <li>Exact unit interior varies — check photos before booking, some are smaller (37sqm units exist)</li>
-          <li>Pricing not always shown upfront — enter Jun 19 dates to see real price</li>
-          <li>Jun 19 gap: check if Jun 22 unit means 3 nights extra in hotel (manageable)</li>
-        </ul>
-      </div>
-    </div>
-    <div class="backups" style="font-size: 13px; margin-top: 12px; padding-top: 10px; border-top: 1px dashed #d0d0d0;">
-      <div class="backups-label">Direct links to search with Jun 19 dates:</div>
-      <a href="https://www.theblueground.com/m/furnished-apartments/bangkok-tha" target="_blank">All Bangkok (enter Jun 19 dates)</a>
-    </div>
-  </div>
-
-  <!-- Short Stay Option 3 -->
-  <div class="card" style="margin-bottom: 8px; border-left: 4px solid #1A5FA3;">
-    <div class="card-header">
-      <div class="rank" style="background: #1A5FA3;">3</div>
-      <h3 style="font-size: 18px;">Citadines Sukhumvit 16 Bangkok</h3>
-      <span class="badge tier-a">Serviced Apt</span>
-      <span class="badge" style="background: #EAF4FF; color: #1A5FA3;">Most Flexible Min Stay</span>
-    </div>
-    <div class="area">Asok / Sukhumvit Soi 16 · BTS Asok + MRT Sukhumvit interchange · DiscoverASR group</div>
-    <div class="headline">~฿35,000–42,000/mo (≈ AUD 1,490–1,790) · Studio or 1BR · 3-night minimum · Serviced</div>
-    <a class="listing-link" href="https://www.discoverasr.com/en/citadines/thailand/citadines-sukhumvit-16-bangkok" target="_blank" style="background: #1A5FA3;">View / Book →</a>
-    <div class="specs">
-      <div class="spec"><div class="spec-label">Min Stay</div><div class="spec-value good">3 nights (most flexible on list)</div></div>
-      <div class="spec"><div class="spec-label">Monthly Rate</div><div class="spec-value good">USD 1,498–1,800 (~AUD 2,320–2,790)</div></div>
-      <div class="spec"><div class="spec-label">BTS Distance</div><div class="spec-value good">Walking distance Asok BTS</div></div>
-      <div class="spec"><div class="spec-label">Housekeeping</div><div class="spec-value good">✓ Daily</div></div>
-      <div class="spec"><div class="spec-label">Kitchen</div><div class="spec-value warn">Kitchenette (hob + microwave)</div></div>
-      <div class="spec"><div class="spec-label">Pool + Gym</div><div class="spec-value good">✓ Both on-site</div></div>
-    </div>
-    <div class="pros-cons">
-      <div class="pros">
-        <h4>Why Pick This</h4>
-        <ul>
-          <li><strong>Most flexible minimum stay</strong> — 3 nights, so you're not locked in if plans change</li>
-          <li>Asok BTS + MRT interchange = best transit hub in all Bangkok — every line accessible</li>
-          <li>Cheapest of the 3 serviced options per month</li>
-          <li>Daily housekeeping — hotel-style comfort</li>
-          <li>Good fallback if Somerset or Blueground don't have Jun 19 availability</li>
-          <li>1 MRT stop from Life Asoke Hype (your #3 long-term pick) — easy viewing trips</li>
-        </ul>
-      </div>
-      <div class="cons">
-        <h4>Watch For</h4>
-        <ul>
-          <li>Kitchenette only (not full kitchen) — eating out more than cooking</li>
-          <li>Studio size can feel tight for 2 people over several weeks</li>
-          <li>Asok area is busy and commercial — more urban/hotel zone than residential neighbourhood feel</li>
-          <li>Less immersive for neighbourhood vibe-check compared to Ekkamai/Thong Lo base</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- Short-Stay Comparison Table -->
-  <h3 style="color: #1A5FA3; font-size: 15px; font-weight: 700; margin: 20px 0 10px;">Quick Comparison</h3>
-  <div class="comparison-table" style="margin-bottom: 0;">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Property</th>
-          <th>Area / BTS</th>
-          <th>Monthly (AUD)</th>
-          <th>Min Stay</th>
-          <th>Kitchen</th>
-          <th>Housekeeping</th>
-          <th>Best For</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>1</strong></td>
-          <td><strong>Somerset Ekamai</strong></td>
-          <td>Ekkamai BTS E7</td>
-          <td>~AUD 3,000–3,800</td>
-          <td class="density-warn">30 nights</td>
-          <td class="check">✓ Full</td>
-          <td class="check">✓ Daily</td>
-          <td>Zero friction arrival + same BTS corridor as target condos</td>
-        </tr>
-        <tr>
-          <td><strong>2</strong></td>
-          <td><strong>Blueground Thong Lo</strong></td>
-          <td>Thong Lo / Ekkamai BTS</td>
-          <td>~AUD 1,900–2,800</td>
-          <td class="density-good">1 month</td>
-          <td class="check">✓ Full</td>
-          <td class="density-warn">Periodic</td>
-          <td>Best value + residential feel in premium neighbourhood</td>
-        </tr>
-        <tr>
-          <td><strong>3</strong></td>
-          <td><strong>Citadines Sukhumvit 16</strong></td>
-          <td>Asok BTS / MRT hub</td>
-          <td>~AUD 1,500–2,800</td>
-          <td class="density-good">3 nights</td>
-          <td class="density-warn">Kitchenette</td>
-          <td class="check">✓ Daily</td>
-          <td>Max flexibility + best transit access</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div style="background: #D6EAF8; border-radius: 8px; padding: 12px 16px; margin-top: 16px; font-size: 14px; color: #1A5FA3;">
-    <strong>Garry's recommendation:</strong> Book <strong>Blueground Thong Lo</strong> for June 19 (or Somerset Ekamai if the gap to Jun 22 is a problem). You land in the right neighbourhood immediately — Ekkamai/Thong Lo BTS corridor puts you within 2 BTS stops of every target condo on the long-term shortlist. June is low season = prices are at yearly floor. Budget AUD 2,500–3,000 for the trial month all-in.
   </div>
 </section>
-<!-- ===== END SHORT-STAY TRIAL SECTION ===== -->
 
-<div class="tldr">
-  <h2>TL;DR — Long-Term Shortlist</h2>
-  <p><strong>Ranking priority:</strong> BTS-direct buildings ranked above MRT/ARL — Patrick prefers BTS Sukhumvit Line (simpler, more familiar territory).</p>
-  <p><strong>Top two finalists (both BTS-direct):</strong> Ideo Mobi 66 (dream pick, ฿65K, BTS Udom Suk 160m) and The Line 101 (Trial 2, ฿35K, BTS Punnawithi 180m).</p>
-  <p><strong>NEW star from overnight research:</strong> <strong>Life Asoke Hype</strong> — AP Thai's <em>Life</em> series (different brand from the rejected Rhythm line) — modern bright open-plan, <strong>no bathtub</strong> ✓, glass shower, <strong>best lift density on shortlist (1:52)</strong>, in-building business center + co-working space ✓, <strong>1 MRT stop from Hustlers Bangkok</strong> (Patrick's favourite pool hall — 12 × 9ft Brunswicks). ฿35K / 64sqm / Floor 31 furnished. Ranks #3 because ARL/MRT not BTS-direct, but quality justifies inclusion in the top tier.</p>
-</div>
-
-<section>
-  <h2 class="section-title">📊 At-a-Glance Comparison</h2>
-  <div class="comparison-table">
+<!-- COMPARISON TABLE -->
+<section id="compare">
+  <div class="sec-title">At-a-Glance Comparison</div>
+  <div class="table-wrap">
     <table>
       <thead>
-        <tr>
-          <th>#</th>
-          <th>Building</th>
-          <th>Area / BTS</th>
-          <th>Rent</th>
-          <th>Sqm</th>
-          <th>Floor</th>
-          <th>Lift Density</th>
-          <th>Pool Table</th>
-          <th>Coworking</th>
-          <th>No Bathtub</th>
-        </tr>
+        <tr><th>#</th><th>Building</th><th>Area / Transit</th><th>Rent/mo</th><th>sqm</th><th>Lift ratio</th><th>Pool table</th><th>Cowork</th><th>Shower only</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td><strong>1</strong></td>
-          <td><strong>Ideo Mobi 66</strong></td>
-          <td><strong>BTS</strong> Udom Suk 160m</td>
-          <td>฿65K</td>
-          <td>80.5</td>
-          <td>25</td>
-          <td class="density-warn">1:99</td>
-          <td class="check">✓ in-building</td>
-          <td class="nope">sky lounge</td>
-          <td class="nope">tbd</td>
-        </tr>
-        <tr>
-          <td><strong>2</strong></td>
-          <td><strong>The Line 101</strong></td>
-          <td><strong>BTS</strong> Punnawithi 180m</td>
-          <td>฿35K</td>
-          <td>62</td>
-          <td>33</td>
-          <td class="density-bad">1:156</td>
-          <td class="check">✓ games room</td>
-          <td class="check">✓ + co-kitchen</td>
-          <td class="nope">tbd</td>
-        </tr>
-        <tr>
-          <td><strong>3</strong></td>
-          <td><strong>Life Asoke Hype</strong></td>
-          <td>ARL Makkasan 420m / MRT</td>
-          <td>฿35K</td>
-          <td>64</td>
-          <td>31</td>
-          <td class="density-good">1:52</td>
-          <td class="nope">Hustlers 1 MRT stop</td>
-          <td class="check">✓ + business center</td>
-          <td class="check">✓ shower only</td>
-        </tr>
-        <tr>
-          <td><strong>4</strong></td>
-          <td><strong>The Reserve Phahol-Pradipat</strong></td>
-          <td><strong>BTS</strong> Saphan Khwai 500m</td>
-          <td>฿35K</td>
-          <td>64</td>
-          <td>21</td>
-          <td class="density-good">~1:90 est</td>
-          <td class="nope">none confirmed</td>
-          <td class="nope">multipurpose hall</td>
-          <td class="nope">tbd</td>
-        </tr>
-        <tr>
-          <td><strong>5</strong></td>
-          <td><strong>M Jatujak</strong></td>
-          <td><strong>BTS</strong> Saphan Khwai 450m</td>
-          <td>฿26K</td>
-          <td>65</td>
-          <td>20</td>
-          <td class="density-warn">~1:120 est</td>
-          <td class="nope">none confirmed</td>
-          <td class="nope">indoor stadium + yoga</td>
-          <td class="nope">tbd</td>
-        </tr>
-        <tr>
-          <td><strong>6</strong></td>
-          <td><strong>Life Asoke Rama 9</strong></td>
-          <td>MRT Phra Ram 9 360m</td>
-          <td>฿30K</td>
-          <td>60</td>
-          <td>22</td>
-          <td class="density-bad">~1:150+</td>
-          <td class="nope">none nearby</td>
-          <td class="check">✓ + sky bar</td>
-          <td class="nope">has bathtub</td>
-        </tr>
+        <tr><td><strong>1</strong></td><td><strong>Ideo Mobi 66</strong> <span class="badge dream">Dream</span></td><td>BTS Udom Suk 160m</td><td class="wc">฿65K</td><td>80.5</td><td class="wc">1:99</td><td class="chk">✓ in-bldg</td><td class="nope">sky lounge</td><td class="nope">TBC</td></tr>
+        <tr><td><strong>2</strong></td><td><strong>The Line 101</strong> <span class="badge tier-a">Tier A</span></td><td>BTS Punnawithi 180m</td><td class="gc">฿35K</td><td>62</td><td class="bc">1:156 ⚠</td><td class="chk">✓ games room</td><td class="chk">✓</td><td class="nope">TBC</td></tr>
+        <tr><td><strong>3</strong></td><td><strong>Life Asoke Hype</strong> <span class="badge tier-a">Tier A</span></td><td>ARL Makkasan 420m</td><td class="gc">฿35K</td><td>64</td><td class="gc">1:52 ★</td><td class="nope">1 MRT stop</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+        <tr><td><strong>4</strong></td><td><strong>Ideo Phaholyothin</strong> <span class="badge new">New</span></td><td>BTS Saphan Khwai 150m</td><td class="gc">฿35–40K</td><td>60–64</td><td class="gc">~1:65</td><td class="nope">none</td><td class="chk">✓</td><td class="chk">✓ confirmed</td></tr>
+        <tr><td><strong>5</strong></td><td><strong>Ideo Q Phahol</strong> <span class="badge new">2024</span></td><td>BTS Saphan Khwai 90m</td><td class="gc">฿28–38K est</td><td>57–72</td><td class="wc">~1:112</td><td class="nope">none</td><td class="chk">✓</td><td class="nope">TBC</td></tr>
+        <tr><td><strong>6</strong></td><td><strong>Life Asoke Rama 9</strong> <span class="badge tier-b">Tier B</span></td><td>MRT Phra Ram 9 360m</td><td class="gc">฿30K</td><td>60</td><td class="bc">1:150+ ⚠</td><td class="nope">none</td><td class="chk">✓</td><td class="bc">✗ bathtub</td></tr>
+        <tr class="killed-row"><td>—</td><td><s>Reserve Phahol-Pradipat</s> <span class="badge killed">Killed</span></td><td>BTS Saphan Khwai 500m</td><td>฿35K</td><td>64</td><td>—</td><td class="nope">—</td><td class="nope">—</td><td class="nope">dim interior</td></tr>
+        <tr class="killed-row"><td>—</td><td><s>M Jatujak</s> <span class="badge killed">Killed</span></td><td>BTS Saphan Khwai 450m</td><td>฿26K</td><td>65</td><td>—</td><td class="nope">—</td><td class="nope">—</td><td class="nope">dark tones</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<section>
-  <h2 class="section-title">🗺️ Bangkok Area Analysis</h2>
-  <p>Beyond the East Sukhumvit corridor (where Ideo Mobi 66 and Line 101 sit), here's the broader research on which Bangkok areas were considered and why.</p>
+<!-- AREAS -->
+<section id="areas">
+  <div class="sec-title">Apartments by Area</div>
 
-  <h3 class="subsection">Areas Actively Pursued</h3>
-  <div class="area-grid">
-    <div class="area-card">
-      <h4>East Sukhumvit Corridor</h4>
-      <div class="area-meta">Ekkamai E7 → Udom Suk E14 · BTS Sukhumvit Line</div>
-      <p>Where Patrick already knows the territory (2 yrs in Onnut previously). Quieter than central Sukhumvit, more sqm per baht. Has Patrick's existing friends nearby (Danny at Punnawithi, Kung).</p>
-      <p><strong>Verdict:</strong> Two finalists locked here — Ideo Mobi 66 + Line 101.</p>
-      <div class="verdict good">★ Top tier — familiar + premium-feel buildings available at budget</div>
-    </div>
+  <!-- EAST SUKHUMVIT -->
+  <details class="area-drop" open>
+    <summary>
+      <span class="drop-icon">▼</span>
+      <div><div class="drop-title">East Sukhumvit — Your Home Turf ⭐</div><div class="drop-sub">Ekkamai → Udom Suk · BTS Sukhumvit Line</div></div>
+      <span class="drop-count">2 finalists</span>
+    </summary>
+    <div class="drop-body">
+      <div class="area-note">Patrick's known territory (2 yrs in On Nut). Quieter than central Sukhumvit, better sqm-per-baht. Danny lives nearby at Punnawithi. Both Tier A finalists sit here.<span class="verdict good">★ Top tier</span></div>
 
-    <div class="area-card">
-      <h4>Makkasan / Asok Corridor</h4>
-      <div class="area-meta">ARL Makkasan / MRT Phra Ram 9 · MRT Blue Line + ARL</div>
-      <p>Mid-zone between central Sukhumvit and Rama 9. Newer 2020+ AP Thai builds, brighter design vibe, premium amenity stacks at mid-tier rent. Walking-distance to Hustlers Bangkok via 1 MRT stop.</p>
-      <p><strong>Verdict:</strong> Surprise top contender — Life Asoke Hype emerged as #2 overall.</p>
-      <div class="verdict good">★ Top tier — Life Asoke Hype is the standout new find</div>
-    </div>
-
-    <div class="area-card">
-      <h4>Rama 9 / Phra Ram 9</h4>
-      <div class="area-meta">MRT Phra Ram 9 · MRT Blue Line</div>
-      <p>Bangkok's "new CBD" — Central Plaza Grand Rama 9, Stock Exchange, brand-new condo construction. Premium amenities at lower price than central Sukhumvit. More Thai professional + Chinese expat, less Western. Connects to BTS via 1 MRT stop.</p>
-      <p><strong>Verdict:</strong> Life Asoke Rama 9 = best value (฿30K/60sqm) but the 2,248-unit complex flagged for lift slowness, has bathtub.</p>
-      <div class="verdict mixed">Mixed — strong value but density + bathtub trade-offs</div>
-    </div>
-
-    <div class="area-card">
-      <h4>Saphan Khwai / Phaholyothin North</h4>
-      <div class="area-meta">BTS Saphan Khwai N7 · BTS Sukhumvit Line North</div>
-      <p>Chatuchak/Mo Chit area, weekend market territory. More Thai-local vibe, much cheaper, newer buildings. Less Western expat infrastructure. No major dedicated pool halls confirmed in area.</p>
-      <p><strong>Verdict:</strong> The Reserve Phahol-Pradipat (newer Pruksa 2019) and M Jatujak (cheapest at ฿26K) sit here. Both need vibe-check + pool hall scouting.</p>
-      <div class="verdict mixed">Mixed — solid backups but no pool hall scene</div>
-    </div>
-  </div>
-
-  <h3 class="subsection">Areas Ruled Out</h3>
-  <div class="area-grid">
-    <div class="area-card">
-      <h4>Phrom Phong / Thong Lo (BTS E5–E6)</h4>
-      <div class="area-meta">Premium expat central Sukhumvit</div>
-      <p>Best dining + nightlife + pool halls (The Sportsman). High expat density. BUT — 60sqm 2BR furnished typically ฿55–80K. Budget would only buy older/smaller units in this zone.</p>
-      <div class="verdict bad">Budget mismatch — only stretches to sub-60sqm at 50K cap</div>
-    </div>
-
-    <div class="area-card">
-      <h4>Asok BTS direct (BTS E4)</h4>
-      <div class="area-meta">Transit interchange hub</div>
-      <p>BTS Asok + MRT Sukhumvit interchange. Best transit in Bangkok. Hustlers Bangkok right here. BUT — premium tier, 60sqm furnished tight at ฿50K cap, older buildings dominate the in-budget range.</p>
-      <div class="verdict bad">Budget squeezed — Life Asoke Hype gives you Asok access via 1 MRT stop at half the rent</div>
-    </div>
-
-    <div class="area-card">
-      <h4>Ari (BTS N5)</h4>
-      <div class="area-meta">North Sukhumvit Line · hipster/foodie zone</div>
-      <p>Bangkok's creative neighbourhood — cafes, indie restaurants, mixed Thai-yuppie scene. Mid-rise buildings. Noble Reflex Ari was the only credible building in budget — single in-spec 2BR rented until Oct 2026.</p>
-      <div class="verdict bad">Live stock empty — only 2BR in budget is unavailable</div>
-    </div>
-
-    <div class="area-card">
-      <h4>Sukhumvit east of Udom Suk (Bang Na+, Bearing+)</h4>
-      <div class="area-meta">Outer Sukhumvit Line</div>
-      <p>Too suburban. Removes the urban-energy benefits Patrick wants. Long BTS commute back to Asok / central areas.</p>
-      <div class="verdict bad">Too far out — defeats the "near everything" purpose</div>
-    </div>
-
-    <div class="area-card">
-      <h4>Silom / Sathorn (BTS Silom Line)</h4>
-      <div class="area-meta">CBD financial district</div>
-      <p>Office-heavy area. Different transit line, not familiar to Patrick. Weekend dead zones. Mostly older premium buildings or new luxury well over budget.</p>
-      <div class="verdict bad">Wrong vibe — business district feel, not residential lifestyle</div>
-    </div>
-
-    <div class="area-card">
-      <h4>Lat Phrao / Huai Khwang / outer MRT</h4>
-      <div class="area-meta">MRT Blue Line north/east of Rama 9</div>
-      <p>Much cheaper. Heavy Thai-local feel, less expat infrastructure (groceries, gyms). Far from BTS Sukhumvit familiarity.</p>
-      <div class="verdict bad">Too removed from Sukhumvit ecosystem Patrick knows</div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2 class="section-title">🚇 BTS / MRT / ARL Transit Map (Life Asoke Hype Focus)</h2>
-  <p>Life Asoke Hype sits in the Makkasan area between BTS Sukhumvit Line and MRT Blue Line. The three transit stations within walking distance:</p>
-
-  <div class="transit-flow">
-    <strong>From Life Asoke Hype to BTS Asok / Hustlers Bangkok:</strong><br><br>
-    <code>Walk 5min</code> → <code>MRT Phra Ram 9</code> → <code>MRT 1 stop (3min)</code> → <code>MRT Sukhumvit = BTS Asok interchange</code> → <code>Walk 2min</code> → <strong>Hustlers Bangkok (Times Square)</strong><br><br>
-    <strong>Total: ~10 minutes</strong>
-  </div>
-
-  <div class="transit-flow">
-    <strong>From Life Asoke Hype to BTS Sukhumvit Line (Punnawithi, Ekkamai, Phrom Phong, etc.):</strong><br><br>
-    <code>Walk 5min</code> → <code>MRT Phra Ram 9</code> → <code>MRT 1 stop</code> → <code>MRT Sukhumvit / BTS Asok interchange</code> → <code>BTS east or west</code><br><br>
-    <strong>Total to any BTS Sukhumvit stop: ~15–25 minutes depending on destination</strong>
-  </div>
-
-  <p><strong>Key insight:</strong> Living at Life Asoke Hype doesn't put you on the BTS Sukhumvit Line directly, but the 1-MRT-stop transfer to Asok means you're effectively plugged into the entire BTS network within 10 minutes. The MRT runs every 3–5 minutes during the day, so it's not a daily friction.</p>
-</section>
-
-<section>
-  <h2 class="section-title">🏠 Detailed Building Cards</h2>
-
-  <!-- Card 1: Ideo Mobi 66 -->
-  <div class="card">
-    <div class="card-header">
-      <div class="rank">1</div>
-      <h3>Ideo Mobi Sukhumvit 66</h3>
-      <span class="badge tier-a">Tier A</span>
-      <span class="badge dream">⭐ Dream Pick</span>
-    </div>
-    <div class="area">East Sukhumvit · Udom Suk BTS 160m · Ananda Development · 2017</div>
-    <div class="headline">฿65,000/mo · 80.5sqm · 2BR/2BA · Floor 25 · Fully Furnished</div>
-    <a class="listing-link" href="https://propertyscout.co.th/en/2-br-condo-ideo-mobi-sukhumvit-66-near-bts-udom-suk-654082/" target="_blank">View Listing →</a>
-    <div class="specs">
-      <div class="spec"><div class="spec-label">Lift Density</div><div class="spec-value warn">1:99 (3 lifts / 298 units)</div></div>
-      <div class="spec"><div class="spec-label">Pool Table</div><div class="spec-value good">✓ In-building games room</div></div>
-      <div class="spec"><div class="spec-label">Building Size</div><div class="spec-value">28 floors · 298 units</div></div>
-      <div class="spec"><div class="spec-label">Common Work Area</div><div class="spec-value">Sky lounge</div></div>
-    </div>
-    <div class="pros-cons">
-      <div class="pros">
-        <h4>Why This Building</h4>
-        <ul>
-          <li>Premium fit-out + Australian-home feel (open-plan + island kitchen + big bedrooms with desk space)</li>
-          <li>In-building pool table + games room confirmed</li>
-          <li>True Digital Park + Cloud 11 mall 1 BTS stop away</li>
-          <li>The unit Patrick vibed off in photos — anchor pick</li>
-        </ul>
+      <div class="card">
+        <div class="card-header">
+          <div class="rank">1</div>
+          <h3>Ideo Mobi Sukhumvit 66</h3>
+          <span class="badge dream">Dream Pick</span><span class="badge tier-a">Tier A</span>
+        </div>
+        <div class="bldg-meta">BTS Udom Suk 160m · Ananda · 2017 · 28 floors / 298 units</div>
+        <div class="headline">฿65,000/mo · 80.5sqm · 2BR · Floor 25 · Fully Furnished</div>
+        <a class="cta" href="https://propertyscout.co.th/en/2-br-condo-ideo-mobi-sukhumvit-66-near-bts-udom-suk-654082/" target="_blank">View Listing →</a>
+        <div class="specs">
+          <div><div class="spec-label">Lift Density</div><div class="spec-value warn">1:99 (3 lifts)</div></div>
+          <div><div class="spec-label">Pool Table</div><div class="spec-value good">✓ In-building games room</div></div>
+          <div><div class="spec-label">Coworking</div><div class="spec-value warn">Sky lounge only</div></div>
+          <div><div class="spec-label">Developer</div><div class="spec-value good">Ananda ✓</div></div>
+        </div>
+        <div class="pros-cons">
+          <div class="pros"><h4>Why This Building</h4><ul>
+            <li><strong>Premium fit-out</strong> — open-plan, island kitchen, largest floorplan (80.5sqm)</li>
+            <li><strong>In-building pool table</strong> confirmed</li>
+            <li>True Digital Park + Cloud 11 mall 1 BTS stop away</li>
+            <li>The anchor pick — Patrick vibed off the photos</li>
+          </ul></div>
+          <div class="cons"><h4>Watch For</h4><ul>
+            <li><strong>฿15K over 50K long-lease cap</strong> — best as Trial 1 first</li>
+            <li>1:99 lift density — test at peak hour</li>
+            <li>No in-building coworking</li>
+          </ul></div>
+        </div>
+        <div class="tip"><strong>Trial strategy:</strong> Ask Floor 25 landlord for 2-week trial at ฿120–130K before signing 12-month lease. Most Bangkok landlords accept to secure a long-term tenant.</div>
+        <div class="backups">
+          <div class="backups-label">Backup units</div>
+          <a href="https://propertyscout.co.th/en/2-br-condo-ideo-mobi-sukhumvit-66-near-bts-udom-suk-2876909/" target="_blank">฿60K / 81sqm / Floor 8</a>
+          <a href="https://propertyscout.co.th/en/2-br-condo-ideo-mobi-sukhumvit-66-near-bts-udom-suk-1351540/" target="_blank">฿50K / 80sqm / Floor 22 unfurnished</a>
+        </div>
       </div>
-      <div class="cons">
-        <h4>Watch For</h4>
-        <ul>
-          <li>฿15K over the 50K long-lease cap — best as Trial 1 booking</li>
-          <li>1:99 lift density acceptable but test at peak hour</li>
-          <li>No in-building coworking space</li>
-        </ul>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="rank">2</div>
+          <h3>The Line Sukhumvit 101</h3>
+          <span class="badge tier-a">Tier A</span>
+        </div>
+        <div class="bldg-meta">BTS Punnawithi 180m · Sansiri · 2020 · 37 floors / 778 units</div>
+        <div class="headline">฿35,000/mo · 62sqm · 2BR · Floor 33 · Fully Furnished</div>
+        <a class="cta" href="https://propertyscout.co.th/en/2-br-condo-the-line-sukhumvit-101-near-bts-punnawithi-2543452/" target="_blank">View Listing →</a>
+        <div class="specs">
+          <div><div class="spec-label">Lift Density</div><div class="spec-value bad">1:156 — highest risk ⚠</div></div>
+          <div><div class="spec-label">Pool Table</div><div class="spec-value good">✓ Games room Floor 5</div></div>
+          <div><div class="spec-label">Coworking</div><div class="spec-value good">✓ + Co-Kitchen + Sport</div></div>
+          <div><div class="spec-label">Short-stay</div><div class="spec-value warn">฿18–28K/week est</div></div>
+        </div>
+        <div class="pros-cons">
+          <div class="pros"><h4>Why This Building</h4><ul>
+            <li><strong>Best amenity stack</strong> — Olympic pool, games room, coworking, co-kitchen, multi-sport, jacuzzi</li>
+            <li>Danny lives 2 min away — area already validated</li>
+            <li>Sansiri quality · 2020 build · 180m BTS</li>
+          </ul></div>
+          <div class="cons"><h4>Watch For</h4><ul>
+            <li><strong>1:156 highest lift density</strong> — test at 8am Day 1 of trial. Queuing = disqualifying.</li>
+            <li>Games room exact contents unconfirmed — verify pool table on tour</li>
+            <li>Bathroom config not confirmed — check shower-only</li>
+          </ul></div>
+        </div>
+        <div class="tip"><strong>Day 1 test:</strong> Lift at 8–9am weekday. The trial protects you from discovering this on Month 2 of a 12-month lease.</div>
+        <div class="backups">
+          <div class="backups-label">More units</div>
+          <a href="https://propertyscout.co.th/en/bangkok/condo/line-sukhumvit-101/rentals/2-bedrooms/" target="_blank">All 2BR at The Line 101</a>
+        </div>
       </div>
     </div>
-    <div class="backups">
-      <div class="backups-label">Backup units in same building:</div>
-      <a href="https://propertyscout.co.th/en/2-br-condo-ideo-mobi-sukhumvit-66-near-bts-udom-suk-2876909/" target="_blank">฿60K / 81sqm / Floor 8 furnished</a>
-      <a href="https://propertyscout.co.th/en/2-br-condo-ideo-mobi-sukhumvit-66-near-bts-udom-suk-1351540/" target="_blank">฿50K / 80sqm / Floor 22 unfurnished</a>
-    </div>
-  </div>
+  </details>
 
-  <!-- Card 2: The Line 101 -->
-  <div class="card">
-    <div class="card-header">
-      <div class="rank">2</div>
-      <h3>The Line Sukhumvit 101</h3>
-      <span class="badge tier-a">Tier A</span>
-    </div>
-    <div class="area">East Sukhumvit · Punnawithi BTS 180m · Sansiri · 2020</div>
-    <div class="headline">฿35,000/mo · 62sqm · 2BR/2BA · Floor 33 · Fully Furnished</div>
-    <a class="listing-link" href="https://propertyscout.co.th/en/2-br-condo-the-line-sukhumvit-101-near-bts-punnawithi-2543452/" target="_blank">View Listing →</a>
-    <div class="specs">
-      <div class="spec"><div class="spec-label">Lift Density</div><div class="spec-value bad">1:156 (5 lifts / 778 units) — HIGHEST</div></div>
-      <div class="spec"><div class="spec-label">Pool Table</div><div class="spec-value good">✓ Games room 5th flr (verify contents)</div></div>
-      <div class="spec"><div class="spec-label">Building Size</div><div class="spec-value">37 floors · 778 units</div></div>
-      <div class="spec"><div class="spec-label">Coworking</div><div class="spec-value good">✓ + Co-Kitchen + Multi-Sport Court</div></div>
-    </div>
-    <div class="pros-cons">
-      <div class="pros">
-        <h4>Why This Building</h4>
-        <ul>
-          <li>Best amenity stack on the shortlist — Olympic pool, games room, coworking, co-kitchen, multi-sport court, jacuzzi</li>
-          <li>Danny lives 2min away — area validation built in</li>
-          <li>180m to Punnawithi BTS ✓</li>
-          <li>Sansiri quality build, 2020 (newer)</li>
-        </ul>
-      </div>
-      <div class="cons">
-        <h4>Watch For</h4>
-        <ul>
-          <li><strong>Highest lift density on shortlist (1:156)</strong> — must test at 8am peak Day 1 of Trial 2</li>
-          <li>Games room contents not confirmed (pool table? ping pong? foosball?) — verify on tour</li>
-          <li>Bathroom config not confirmed — verify shower-only</li>
-        </ul>
-      </div>
-    </div>
-    <div class="backups">
-      <div class="backups-label">Browse more 2BR rentals:</div>
-      <a href="https://propertyscout.co.th/en/bangkok/condo/line-sukhumvit-101/rentals/2-bedrooms/" target="_blank">All available 2BR at Line 101</a>
-    </div>
-  </div>
+  <!-- MAKKASAN -->
+  <details class="area-drop">
+    <summary>
+      <span class="drop-icon">▼</span>
+      <div><div class="drop-title">Makkasan / Asok Corridor — The Dark Horse</div><div class="drop-sub">ARL Makkasan · MRT Phra Ram 9 · 1 MRT stop to BTS Asok</div></div>
+      <span class="drop-count">1 finalist</span>
+    </summary>
+    <div class="drop-body">
+      <div class="area-note">AP Thai "Life" series — modern bright open-plan. Best lift density on the entire shortlist. 10 min to S1 Signature pool hall.<span class="verdict good">★ Dark horse pick</span></div>
 
-  <!-- Card 3: Life Asoke Hype -->
-  <div class="card">
-    <div class="card-header">
-      <div class="rank">3</div>
-      <h3>Life Asoke Hype</h3>
-      <span class="badge tier-a">Tier A</span>
-      <span class="badge new-star">🌟 New Find</span>
-    </div>
-    <div class="area">Makkasan / Asok corridor · ARL Makkasan 420m / MRT Phra Ram 9 700m · AP Thai (<strong>Life</strong> series — NOT Rhythm) · 2021</div>
-    <div class="headline">฿35,000/mo · 64sqm · 2BR/2BA · Floor 31 · Fully Furnished</div>
-    <a class="listing-link" href="https://propertyscout.co.th/en/2-br-condo-life-asoke-hype-near-arl-makkasan-2698503/" target="_blank">View Listing →</a>
-    <div class="specs">
-      <div class="spec"><div class="spec-label">Lift Density</div><div class="spec-value good">1:52 (7 lifts / 365 units) — BEST</div></div>
-      <div class="spec"><div class="spec-label">Pool Table</div><div class="spec-value">1 MRT stop to Hustlers (9ft Brunswicks)</div></div>
-      <div class="spec"><div class="spec-label">Building Size</div><div class="spec-value">40 floors · 365 units</div></div>
-      <div class="spec"><div class="spec-label">Coworking</div><div class="spec-value good">✓ Business Center + Co-Working</div></div>
-      <div class="spec"><div class="spec-label">Bathroom</div><div class="spec-value good">Glass shower only ✓</div></div>
-      <div class="spec"><div class="spec-label">Vibe</div><div class="spec-value">Modern bright open-plan + floor-to-ceiling windows</div></div>
-    </div>
-    <div class="pros-cons">
-      <div class="pros">
-        <h4>Why This Building</h4>
-        <ul>
-          <li><strong>Best lift density on shortlist by far (1:52)</strong> — your Sukhumvit 87 Ramada nightmare can't happen here</li>
-          <li><strong>~10 min total to Hustlers</strong> Bangkok via 1 MRT stop — your favourite pool hall, 9ft Brunswicks</li>
-          <li>AP Thai "Life" series — modern bright open-plan (different brand from the Rhythm series you killed)</li>
-          <li>No bathtub — glass shower only (matches your preference)</li>
-          <li>In-building business center + coworking space ✓</li>
-          <li>2021 build = newer than Ideo Mobi 66 (2017)</li>
-          <li>30K under long-lease cap = ฿360K annual savings vs Ideo Mobi 66 dream unit</li>
-          <li>5 backup units in same building 60-66sqm at ฿36-40K</li>
-        </ul>
-      </div>
-      <div class="cons">
-        <h4>Watch For</h4>
-        <ul>
-          <li>BTS Sukhumvit Line is 1 MRT stop away (not directly on it like Ideo Mobi 66 or Line 101)</li>
-          <li>AP Thai is the same developer as Rhythm — verify Life series interior matches your aesthetic in person</li>
-          <li>Only 5 photos in listing — vibe-check needs in-person viewing</li>
-          <li>No in-building pool table (Hustlers + Asia Billiards both 1 MRT stop away)</li>
-        </ul>
+      <div class="card">
+        <div class="card-header">
+          <div class="rank">3</div>
+          <h3>Life Asoke Hype</h3>
+          <span class="badge tier-a">Tier A</span><span class="badge new">New Find</span>
+        </div>
+        <div class="bldg-meta">ARL Makkasan 420m / MRT Phra Ram 9 700m · AP Thai (Life series, NOT Rhythm) · 2021 · 40 floors / 365 units</div>
+        <div class="headline">฿35,000/mo · 64sqm · 2BR · Floor 31 · Fully Furnished</div>
+        <a class="cta" href="https://propertyscout.co.th/en/2-br-condo-life-asoke-hype-near-arl-makkasan-2698503/" target="_blank">View Listing →</a>
+        <div class="specs">
+          <div><div class="spec-label">Lift Density</div><div class="spec-value good">1:52 — BEST ★</div></div>
+          <div><div class="spec-label">Bathroom</div><div class="spec-value good">Glass shower only ✓</div></div>
+          <div><div class="spec-label">Coworking</div><div class="spec-value good">✓ Business center</div></div>
+          <div><div class="spec-label">Short-stay</div><div class="spec-value warn">฿16–25K/week est</div></div>
+        </div>
+        <div class="pros-cons">
+          <div class="pros"><h4>Why This Building</h4><ul>
+            <li><strong>1:52 lift density — unmatched</strong> on shortlist</li>
+            <li><strong>~10 min to S1 Signature</strong> via 1 MRT stop to Asok</li>
+            <li>No bathtub — glass shower confirmed</li>
+            <li>2021 build · In-building coworking ✓</li>
+            <li>฿30K/mo under long-lease cap = ฿360K/yr vs Ideo 66</li>
+          </ul></div>
+          <div class="cons"><h4>Watch For</h4><ul>
+            <li>Not on BTS directly — 1 MRT stop transfer to BTS Asok</li>
+            <li>AP Thai = same developer as Rhythm (killed). Verify Life series interior in person.</li>
+            <li>No in-building pool table (pool halls 1 MRT stop away)</li>
+          </ul></div>
+        </div>
+        <div class="tip green"><strong>Why this trial matters most:</strong> Proves whether MRT-not-BTS friction is real or imagined. If fine → ฿360K/yr saved vs Ideo 66.</div>
+        <div style="margin-top:13px;padding-top:13px;border-top:1px dashed var(--border);">
+          <div class="spec-label" style="margin-bottom:7px;">Transit from Life Asoke Hype</div>
+          <div class="transit-box"><strong>→ S1 Signature / BTS Asok:</strong> <code>Walk 5min</code> → <code>MRT Phra Ram 9</code> → <code>1 stop (3min)</code> → <code>BTS Asok</code> → <strong>~10 min total</strong></div>
+          <div class="transit-box"><strong>→ Any BTS Sukhumvit stop:</strong> <code>MRT 1 stop</code> → <code>BTS Asok interchange</code> → BTS east or west → <strong>~15–25 min</strong></div>
+        </div>
+        <div class="backups">
+          <div class="backups-label">Backup units</div>
+          <a href="https://propertyscout.co.th/en/2-br-condo-life-asoke-hype-near-arl-makkasan-2859983/" target="_blank">฿36K / 65sqm / Floor 23</a>
+          <a href="https://propertyscout.co.th/en/2-br-condo-life-asoke-hype-near-arl-makkasan-2803251/" target="_blank">฿38K / 66sqm / Floor 8</a>
+          <a href="https://propertyscout.co.th/en/2-br-condo-life-asoke-hype-near-arl-makkasan-2159310/" target="_blank">฿38.5K / 60sqm / Floor 30</a>
+          <a href="https://propertyscout.co.th/en/2-br-condo-life-asoke-hype-near-arl-makkasan-2864830/" target="_blank">฿40K / 62sqm / Floor 8</a>
+        </div>
       </div>
     </div>
-    <div class="backups">
-      <div class="backups-label">Backup units in same building:</div>
-      <a href="https://propertyscout.co.th/en/2-br-condo-life-asoke-hype-near-arl-makkasan-2859983/" target="_blank">฿36K / 65sqm / Floor 23</a>
-      <a href="https://propertyscout.co.th/en/2-br-condo-life-asoke-hype-near-arl-makkasan-2803251/" target="_blank">฿38K / 66sqm / Floor 8</a>
-      <a href="https://propertyscout.co.th/en/2-br-condo-life-asoke-hype-near-arl-makkasan-2159310/" target="_blank">฿38.5K / 60sqm / Floor 30</a>
-      <a href="https://propertyscout.co.th/en/2-br-condo-life-asoke-hype-near-arl-makkasan-2864830/" target="_blank">฿40K / 62sqm / Floor 8</a>
-    </div>
-  </div>
+  </details>
 
-  <!-- Card 4: The Reserve Phahol-Pradipat -->
-  <div class="card">
-    <div class="card-header">
-      <div class="rank">4</div>
-      <h3>The Reserve Phahol-Pradipat</h3>
-      <span class="badge tier-b">Tier B</span>
-    </div>
-    <div class="area">Saphan Khwai · BTS Saphan Khwai 500m · Pruksa Real Estate · 2019</div>
-    <div class="headline">฿35,000/mo · 64sqm · 2BR/2BA · Floor 21 · Fully Furnished</div>
-    <a class="listing-link" href="https://propertyscout.co.th/en/2-br-condo-the-reserve-phahol-pradipat-near-bts-saphan-khwai-2735424/" target="_blank">View Listing →</a>
-    <div class="specs">
-      <div class="spec"><div class="spec-label">Lift Density</div><div class="spec-value good">~1:90 est (260 units, small bldg)</div></div>
-      <div class="spec"><div class="spec-label">Pool Table</div><div class="spec-value">None confirmed</div></div>
-      <div class="spec"><div class="spec-label">Building Size</div><div class="spec-value">25 floors · 260 units (small = good)</div></div>
-      <div class="spec"><div class="spec-label">Coworking</div><div class="spec-value">Multipurpose Hall + Sky Lounge + Clubhouse</div></div>
-    </div>
-    <div class="pros-cons">
-      <div class="pros">
-        <h4>Why This Building</h4>
-        <ul>
-          <li>Newer build (2019) with small unit count = expected good lift density</li>
-          <li>Pruksa quality (same developer as The Tree 64)</li>
-          <li>Sky Lounge + Clubhouse + Multipurpose Hall could work for work-from-building</li>
-          <li>15K under cap</li>
-        </ul>
-      </div>
-      <div class="cons">
-        <h4>Watch For</h4>
-        <ul>
-          <li>500m BTS (just over your 400m rule)</li>
-          <li>Interior vibe NOT well documented in listings — needs in-person check</li>
-          <li>No major pool hall confirmed in Saphan Khwai area</li>
-          <li>No explicit coworking space (Multipurpose Hall as substitute)</li>
-        </ul>
-      </div>
-    </div>
-    <div class="backups">
-      <div class="backups-label">Backup units:</div>
-      <a href="https://propertyscout.co.th/en/2-br-condo-the-reserve-phahol-pradipat-near-bts-saphan-khwai-2328724/" target="_blank">฿40K / 63sqm / Floor 24</a>
-    </div>
-  </div>
+  <!-- SAPHAN KHWAI -->
+  <details class="area-drop">
+    <summary>
+      <span class="drop-icon">▼</span>
+      <div><div class="drop-title">Saphan Khwai / Mo Chit — New Territory</div><div class="drop-sub">BTS Saphan Khwai N7 · Chatuchak area · Both Ananda</div></div>
+      <span class="drop-count">2 options</span>
+    </summary>
+    <div class="drop-body">
+      <div class="area-note">More Thai-local, cheaper, newer Ananda builds. Reserve + M Jatujak both killed — replaced by better options. No confirmed pool hall in area.<span class="verdict mixed">Upgraded — pool hall gap remains</span></div>
 
-  <!-- Card 5: M Jatujak -->
-  <div class="card">
-    <div class="card-header">
-      <div class="rank">5</div>
-      <h3>M Jatujak</h3>
-      <span class="badge tier-b">Tier B</span>
-      <span class="badge new-star">💰 Cheapest</span>
-    </div>
-    <div class="area">Saphan Khwai · BTS Saphan Khwai 450m · Major Development · 2017</div>
-    <div class="headline">฿26,000/mo · 65sqm · 2BR/2BA · Floor 20 · Fully Furnished</div>
-    <a class="listing-link" href="https://propertyscout.co.th/en/2-br-condo-m-jatujak-near-bts-saphan-khwai-2746434/" target="_blank">View Listing →</a>
-    <div class="specs">
-      <div class="spec"><div class="spec-label">Lift Density</div><div class="spec-value warn">~1:120 est (864 units / 2 towers)</div></div>
-      <div class="spec"><div class="spec-label">Pool Table</div><div class="spec-value">None confirmed</div></div>
-      <div class="spec"><div class="spec-label">Building Size</div><div class="spec-value">2 towers · 864 units · 32-34 floors</div></div>
-      <div class="spec"><div class="spec-label">Pet Friendly</div><div class="spec-value good">✓</div></div>
-      <div class="spec"><div class="spec-label">Other</div><div class="spec-value">Indoor stadium + saltwater pool + sports arena + yoga + sky pool lounge</div></div>
-    </div>
-    <div class="pros-cons">
-      <div class="pros">
-        <h4>Why This Building</h4>
-        <ul>
-          <li><strong>Cheapest in-spec 2BR on entire shortlist</strong> — ฿26K = 24K under cap</li>
-          <li>"62+ facilities" including indoor stadium + sports arena + sky pool lounge</li>
-          <li>Pet friendly (only one on shortlist)</li>
-          <li>Annual saving vs Life Asoke Hype = ฿108K</li>
-        </ul>
+      <div class="card">
+        <div class="card-header">
+          <div class="rank b">4</div>
+          <h3>Ideo Phaholyothin Chatuchak</h3>
+          <span class="badge tier-b">Tier B</span><span class="badge new">Replaces Reserve</span>
+        </div>
+        <div class="bldg-meta">BTS Saphan Khwai 150–250m · Ananda · 2018 · 35 floors / 390 units</div>
+        <div class="headline">฿35,000–40,000/mo · 60–64sqm · 2BR · Floors 16–32 · Fully Furnished</div>
+        <a class="cta" href="https://propertyscout.co.th/en/2-br-condo-ideo-phaholyothin-chatuchak-near-bts-saphan-khwai-2610842/" target="_blank">Lead Listing: ฿36K / Floor 32 →</a>
+        <div class="specs">
+          <div><div class="spec-label">Lift Density</div><div class="spec-value good">~1:65 est (390 units)</div></div>
+          <div><div class="spec-label">Bathroom</div><div class="spec-value good">Glass shower, no tub ✓</div></div>
+          <div><div class="spec-label">Amenities</div><div class="spec-value good">Cowork + Lounge + Library + Sauna + Jacuzzi</div></div>
+          <div><div class="spec-label">BTS Distance</div><div class="spec-value good">150–250m</div></div>
+        </div>
+        <div class="pros-cons">
+          <div class="pros"><h4>Why Replaces The Reserve</h4><ul>
+            <li><strong>Ananda developer</strong> — same brand as Ideo Mobi 66</li>
+            <li><strong>Glass shower confirmed</strong> — no bathtub</li>
+            <li><strong>150–250m BTS</strong> — beats Reserve's 500m by 3×</li>
+            <li>Live inventory: 60sqm Floor 32 ฿35–36K now · Floor 30 ฿26K Jun 2026</li>
+          </ul></div>
+          <div class="cons"><h4>Watch For</h4><ul>
+            <li>2018 build — verify photos still look fresh</li>
+            <li>No pool table · No confirmed pool hall in area</li>
+            <li>2.60m ceiling (vs 2.7m in Line Phahol)</li>
+          </ul></div>
+        </div>
+        <div class="backups">
+          <div class="backups-label">All live listings</div>
+          <a href="https://propertyscout.co.th/en/2-br-condo-ideo-phaholyothin-chatuchak-near-bts-saphan-khwai-2610842/" target="_blank">฿36K Floor 32 — LIVE NOW</a>
+          <a href="https://propertyscout.co.th/en/2-br-condo-ideo-phaholyothin-chatuchak-near-bts-saphan-khwai-2029264/" target="_blank">฿35K Floor 32</a>
+          <a href="https://propertyscout.co.th/en/2-br-condo-ideo-phaholyothin-chatuchak-near-bts-saphan-khwai-825754/" target="_blank">฿26K Floor 30 — Jun 2026</a>
+          <a href="https://propertyscout.co.th/en/2-br-condo-ideo-phaholyothin-chatuchak-near-bts-saphan-khwai-2592383/" target="_blank">฿38K Floor 23</a>
+          <a href="https://propertyscout.co.th/en/2-br-condo-ideo-phaholyothin-chatuchak-near-bts-saphan-khwai-392688/" target="_blank">฿40K Floor 16 — Oct 2026</a>
+        </div>
       </div>
-      <div class="cons">
-        <h4>Watch For</h4>
-        <ul>
-          <li>Major Development is mid-tier vs Ananda/Sansiri/AP — fit-out quality unknown for taste</li>
-          <li>450m BTS over rule</li>
-          <li>864 units across 2 towers = density concerns</li>
-          <li>No coworking confirmed</li>
-          <li>No pool hall confirmed nearby</li>
-        </ul>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="rank c">5</div>
+          <h3>Ideo Q Phahol-Saphan Khwai</h3>
+          <span class="badge tier-b">Tier B</span><span class="badge new">2024 — Wildcard</span>
+        </div>
+        <div class="bldg-meta">BTS Saphan Khwai 90m · Ananda · 2024 · 39 floors / 1,119 units</div>
+        <div class="headline">฿28,000–40,000/mo est · 57–72sqm · 2BR · No listings yet — contact agent</div>
+        <a class="cta sec" href="https://propertyscout.co.th/en/bangkok/condo/ideo-q-phahol-saphan-khwai/rentals/2-bedrooms/" target="_blank">Browse Rentals →</a>
+        <div class="specs">
+          <div><div class="spec-label">BTS Distance</div><div class="spec-value good">90m — CLOSEST on shortlist ★</div></div>
+          <div><div class="spec-label">Year Built</div><div class="spec-value good">2024 — NEWEST ★</div></div>
+          <div><div class="spec-label">Lift Density</div><div class="spec-value warn">~1:112 est (1,119 units)</div></div>
+          <div><div class="spec-label">Extras</div><div class="spec-value">Climbing wall + 7-Eleven + hydrotherapy + rooftop</div></div>
+        </div>
+        <div class="pros-cons">
+          <div class="pros"><h4>Why This Building</h4><ul>
+            <li><strong>Newest on shortlist (2024)</strong> — freshest fit-out guaranteed</li>
+            <li><strong>90m to BTS</strong> — best proximity researched</li>
+            <li>Ananda brand trust · 2BR up to 72sqm · Co-working confirmed</li>
+          </ul></div>
+          <div class="cons"><h4>Watch For</h4><ul>
+            <li><strong>No rental listings yet</strong> — needs direct agent contact</li>
+            <li>1,119 units = larger building, lift density TBC</li>
+            <li>Bathroom type not confirmed · No pool hall nearby</li>
+          </ul></div>
+        </div>
+        <div class="backups">
+          <div class="backups-label">Search listings</div>
+          <a href="https://propertyscout.co.th/en/bangkok/condo/ideo-q-phahol-saphan-khwai/rentals/2-bedrooms/" target="_blank">PropertyScout 2BR</a>
+          <a href="https://propertyhub.in.th/en/condo-for-rent/project-ideo-q-phahol-saphankhwai" target="_blank">PropertyHub</a>
+        </div>
       </div>
     </div>
-    <div class="backups">
-      <div class="backups-label">Backup units:</div>
-      <a href="https://propertyscout.co.th/en/2-br-condo-m-jatujak-near-bts-saphan-khwai-509461/" target="_blank">฿29K / 65sqm / Floor 29</a>
-      <a href="https://propertyscout.co.th/en/2-br-condo-m-jatujak-near-bts-saphan-khwai-2085900/" target="_blank">฿27K / 59sqm</a>
-    </div>
-  </div>
+  </details>
 
-<!-- Card 6: Life Asoke Rama 9 -->
-  <div class="card">
-    <div class="card-header">
-      <div class="rank">6</div>
-      <h3>Life Asoke Rama 9</h3>
-      <span class="badge tier-b">Tier B</span>
-      <span class="badge new-star">💰 Best Value</span>
-    </div>
-    <div class="area">Rama 9 / Phra Ram 9 · MRT Phra Ram 9 360m · AP Thai (Life series) · ~2020</div>
-    <div class="headline">฿30,000/mo · 60sqm · 2BR/2BA · Floor 22 · Fully Furnished</div>
-    <a class="listing-link" href="https://propertyscout.co.th/en/2-br-condo-life-asoke-rama-9-near-mrt-phra-ram-9-2889142/" target="_blank">View Listing →</a>
-    <div class="specs">
-      <div class="spec"><div class="spec-label">Lift Density</div><div class="spec-value bad">Flagged — 2,248 units across 2 towers, reviews mention slow morning rush</div></div>
-      <div class="spec"><div class="spec-label">Pool Table</div><div class="spec-value">None nearby confirmed</div></div>
-      <div class="spec"><div class="spec-label">Building Size</div><div class="spec-value">2 towers · 42 + 45 floors · 2,248 units (LARGEST on shortlist)</div></div>
-      <div class="spec"><div class="spec-label">Coworking</div><div class="spec-value good">✓ + Sky Bar + Amphitheatre</div></div>
-      <div class="spec"><div class="spec-label">Bathroom</div><div class="spec-value bad">Has bathtub (fails your preference)</div></div>
-      <div class="spec"><div class="spec-label">Kitchen</div><div class="spec-value warn">Open-plan but no island bench</div></div>
-    </div>
-    <div class="pros-cons">
-      <div class="pros">
-        <h4>Why This Building</h4>
-        <ul>
-          <li><strong>Cheapest 60sqm 2BR on shortlist at ฿30K</strong> — 20K under cap = ฿240K/yr savings</li>
-          <li>Premium amenity stack — 3 infinity pools incl Olympic 50m, sky bar, coworking, amphitheatre, professional gym</li>
-          <li>360m to MRT Phra Ram 9 ✓ (within 400m rule)</li>
-          <li>AP Thai Life series — modern bright design</li>
-        </ul>
-      </div>
-      <div class="cons">
-        <h4>Watch For</h4>
-        <ul>
-          <li><strong>Bathtub present</strong> — your no-tub preference fails here</li>
-          <li><strong>2,248 units</strong> = largest building on shortlist — Reddit/expat reviews report lift slowness at morning peak</li>
-          <li>No island kitchen (one of your aesthetic anchors)</li>
-          <li>No pool hall confirmed nearby — would need local scouting</li>
-          <li>Not on BTS Sukhumvit Line (switches your daily transit pattern)</li>
-        </ul>
+  <!-- RAMA 9 -->
+  <details class="area-drop">
+    <summary>
+      <span class="drop-icon">▼</span>
+      <div><div class="drop-title">Rama 9 — Best Value</div><div class="drop-sub">MRT Phra Ram 9 · New CBD · Cheapest on shortlist but bathtub fails</div></div>
+      <span class="drop-count">1 option</span>
+    </summary>
+    <div class="drop-body">
+      <div class="area-note">Bangkok's "new CBD" — Central Plaza Grand Rama 9. Best value but 2,248-unit complex and bathtub present are the trade-offs.<span class="verdict mixed">Value standout with real trade-offs</span></div>
+      <div class="card">
+        <div class="card-header">
+          <div class="rank dim">6</div>
+          <h3>Life Asoke Rama 9</h3>
+          <span class="badge tier-b">Tier B</span>
+        </div>
+        <div class="bldg-meta">MRT Phra Ram 9 360m · AP Thai (Life series) · ~2020 · 2 towers / 2,248 units</div>
+        <div class="headline">฿30,000/mo · 60sqm · 2BR · Floor 22 · Fully Furnished</div>
+        <a class="cta sec" href="https://propertyscout.co.th/en/2-br-condo-life-asoke-rama-9-near-mrt-phra-ram-9-2889142/" target="_blank">View Listing →</a>
+        <div class="specs">
+          <div><div class="spec-label">Lift Density</div><div class="spec-value bad">Flagged — 2,248 units</div></div>
+          <div><div class="spec-label">Bathroom</div><div class="spec-value bad">Has bathtub ✗</div></div>
+          <div><div class="spec-label">Monthly Saving</div><div class="spec-value good">฿240K/yr vs Tier A</div></div>
+          <div><div class="spec-label">Amenities</div><div class="spec-value good">3 pools incl 50m + sky bar</div></div>
+        </div>
+        <div class="pros-cons">
+          <div class="pros"><h4>Why This Building</h4><ul>
+            <li><strong>Cheapest 60sqm 2BR at ฿30K</strong></li>
+            <li>3 infinity pools, sky bar, amphitheatre, co-working</li>
+            <li>AP Thai Life series — modern bright design</li>
+          </ul></div>
+          <div class="cons"><h4>Watch For</h4><ul>
+            <li><strong>Bathtub present</strong> — fails your preference</li>
+            <li><strong>2,248 units</strong> — expat reviews flag lift slowness at peak</li>
+            <li>Not on BTS · No pool hall nearby</li>
+          </ul></div>
+        </div>
+        <div class="backups">
+          <div class="backups-label">Backup units</div>
+          <a href="https://propertyscout.co.th/en/2-br-condo-life-asoke-rama-9-near-mrt-phra-ram-9-2865649/" target="_blank">฿30K Floor 22</a>
+          <a href="https://propertyscout.co.th/en/2-br-condo-life-asoke-rama-9-near-mrt-phra-ram-9-2571565/" target="_blank">฿43K Floor 37</a>
+        </div>
       </div>
     </div>
-    <div class="backups">
-      <div class="backups-label">Backup units in same building:</div>
-      <a href="https://propertyscout.co.th/en/2-br-condo-life-asoke-rama-9-near-mrt-phra-ram-9-2865649/" target="_blank">฿30K / 60sqm / Floor 22 (twin)</a>
-      <a href="https://propertyscout.co.th/en/2-br-condo-life-asoke-rama-9-near-mrt-phra-ram-9-2571565/" target="_blank">฿43K / 60sqm / Floor 37</a>
-      <a href="https://propertyscout.co.th/en/2-br-condo-life-asoke-rama-9-near-mrt-phra-ram-9-2728234/" target="_blank">฿38K / 54sqm / Floor 30</a>
-    </div>
-  </div>
+  </details>
 
-  </section>
-
-<section>
-  <h2 class="section-title">🎱 Pool Hall Map</h2>
-  <div class="pool-hall-grid">
-    <div class="pool-hall">
-      <h4>S1 Signature Snooker Club &amp; Pool Bar ⭐ PATRICK'S #1</h4>
-      <div class="meta">Sukhumvit Soi 50 (between On Nut and Bang Chak BTS)</div>
-      <div class="near">→ Walking distance from Ideo Mobi 66 + short BTS ride from The Line 101. Local, low-key, no hostess vibe. Equivalent to C&amp;Billiards (Patrick's Melbourne local). CONFIRMED PREFERRED.</div>
-    </div>
-    <div class="pool-hall">
-      <h4>Hustlers Bangkok ❌ REMOVED</h4>
-      <div class="meta">Times Square Bldg, Sukhumvit Soi 13 — near Asok BTS</div>
-      <div class="near">→ Wrong vibe: nighttime/drinking venue, hostess-style girls, high-level players. Not Patrick's scene.</div>
-    </div>
-    <div class="pool-hall">
-      <h4>Asia Billiards Sukhumvit 13</h4>
-      <div class="meta">The Trendy Office Building · 11am-10pm daily</div>
-      <div class="near">→ Same Asok corridor as Hustlers — 1 MRT stop from Life Asoke Hype</div>
-    </div>
-    <div class="pool-hall">
-      <h4>The Sportsman</h4>
-      <div class="meta">Washington Square, Phrom Phong</div>
-      <div class="near">→ 5min walk from Phrom Phong BTS, 2 stops west of Ekkamai</div>
-    </div>
-    <div class="pool-hall">
-      <h4>Players Pool Hall</h4>
-      <div class="meta">Down an alley near Asok BTS</div>
-      <div class="near">→ Asok corridor backup</div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2 class="section-title">❌ Killed Buildings — Detailed Reasoning</h2>
-  <details>
-    <summary>15 buildings ruled out — click to expand each section</summary>
-
-    <h3 class="subsection">East Sukhumvit Corridor (Killed)</h3>
-    <div class="killed-card">
-      <div class="killed-name">Rhythm Sukhumvit 50 (BTS On Nut)</div>
-      <div class="killed-reason">Patrick visited in person Nov 2025 (during nose surgery trip). Verdict: "Pretty dark and ugly and small." Confirmed pool table in building but aesthetic fail.</div>
-    </div>
-    <div class="killed-card">
-      <div class="killed-name">Rhythm Sukhumvit 44/1 (BTS Phra Khanong)</div>
-      <div class="killed-reason">Patrick photo-check 11 May 2026: "Rooms too small, pokey, looks cheap and noisy."</div>
-    </div>
-    <div class="killed-card">
-      <div class="killed-name">Rhythm Sukhumvit 44</div>
-      <div class="killed-reason">Patrick 11 May 2026: "Too old and ugly now. Looks like an old man's building, dorky as shit." Pattern confirmed: AP Thai's entire Rhythm series rejected.</div>
-    </div>
-    <div class="killed-card">
-      <div class="killed-name">The Tree Sukhumvit 64 — Double Volume Type (BTS Punnawithi)</div>
-      <div class="killed-reason">Unique two-storey 90sqm layout at ฿35K was intriguing. Killed because: 370m BTS too far for daily life, almost certainly no pool table (small building), no common work area, "building doesn't look that appealing first glance" per Patrick.</div>
-    </div>
-    <div class="killed-card">
-      <div class="killed-name">Ideo Verve Sukhumvit (BTS On Nut, 70m)</div>
-      <div class="killed-reason">Closest BTS proximity on shortlist (70m at the station corner) and Patrick considered it. Killed after consideration — pool table not confirmed, only 9 photos in listing made vibe-check hard, ultimately Patrick passed.</div>
-    </div>
-    <div class="killed-card">
-      <div class="killed-name">Ideo Mobi Sukhumvit 81 (BTS On Nut, 210m)</div>
-      <div class="killed-reason">Patrick stayed in 1BR here previously and recalled "ok" experience. Pool table confirmed in amenities. But available 2BR inventory all sub-60sqm (45-55sqm) — too small. Only 3BR option (63sqm split across 3 rooms) was too cramped.</div>
-    </div>
-    <div class="killed-card">
-      <div class="killed-name">The Lofts Ekkamai (BTS Ekkamai)</div>
-      <div class="killed-reason">Patrick photo-check 11 May: "Old, looks shit now, stark thin echoey interiors, blinds (not sheers), no rugs, hard surfaces = massive echo chamber, terrible soundproofing." Soundproofing fail.</div>
-    </div>
-    <div class="killed-card">
-      <div class="killed-name">Ideo Sukhumvit 93 — small units (BTS Bang Chak)</div>
-      <div class="killed-reason">Building OK but 2BR units 52-58sqm felt "like a shoebox" per Patrick on photos. 3BR options were ฿69K — 19K over budget. Killed.</div>
-    </div>
-    <div class="killed-card">
-      <div class="killed-name">Knightsbridge Prime Onnut (BTS On Nut, 600m)</div>
-      <div class="killed-reason">600m to BTS breaks Patrick's ≤400m walking rule. Has duplex layouts but distance ruled it out.</div>
-    </div>
-    <div class="killed-card">
-      <div class="killed-name">Mori Haus (BTS On Nut)</div>
-      <div class="killed-reason">March 2026 blacklist still in effect. Not contradicted by Patrick.</div>
-    </div>
-
-    <h3 class="subsection">Other Areas (Killed in Overnight Research)</h3>
-    <div class="killed-card">
-      <div class="killed-name">Noble Reflex Ari (BTS Ari, 200m)</div>
-      <div class="killed-reason">Was strong Ari candidate. Only 1 in-budget 2BR exists (76sqm at ฿43K) — already RENTED UNTIL OCT 2026. Other available unit ฿80K/130sqm well over budget and also rented. No live stock.</div>
-    </div>
-    <div class="killed-card">
-      <div class="killed-name">Belle Grand Rama 9 (MRT Phra Ram 9, 510m)</div>
-      <div class="killed-reason">1,991 units = excessive density. 510m MRT over 400m rule. No premium amenity stack listed (basic pool/gym/security only). Killed.</div>
-    </div>
-    <div class="killed-card">
-      <div class="killed-name">Centric Ari Station</div>
-      <div class="killed-reason">2BR maxes at 50sqm — below 60sqm minimum.</div>
-    </div>
-    <div class="killed-card">
-      <div class="killed-name">Lumpini Park Rama 9 Ratchada</div>
-      <div class="killed-reason">2BR maxes at 45sqm — way below 60sqm minimum.</div>
-    </div>
-
-    <h3 class="subsection">Developer Blacklist (Entire Portfolio)</h3>
-    <div class="killed-card">
-      <div class="killed-name">Whizdom / MQDC (Whizdom 101, Connect, Inspire, Essence, Avenue)</div>
-      <div class="killed-reason">Patrick: developer ruled out after viewing Whizdom Inspire. Skip entire portfolio.</div>
-    </div>
-    <div class="killed-card">
-      <div class="killed-name">The Room (all buildings)</div>
-      <div class="killed-reason">Patrick lived in one ~10yrs ago with ex-wife. Building sucked. Off list regardless of location.</div>
+  <!-- RULED OUT AREAS -->
+  <details class="area-drop">
+    <summary>
+      <span class="drop-icon">▼</span>
+      <div><div class="drop-title" style="color:var(--ink-dim);">Ruled-Out Areas</div><div class="drop-sub">Phrom Phong · Asok · Ari · Bang Na · Silom · Outer MRT</div></div>
+      <span class="drop-count" style="color:var(--red);">6 killed</span>
+    </summary>
+    <div class="drop-body">
+      <div class="ki"><div class="kn">Phrom Phong / Thong Lo (BTS E5–E6)</div><div class="kr">Budget mismatch — 60sqm 2BR typically ฿55–80K. Can't stretch to 60sqm at ฿50K cap.</div></div>
+      <div class="ki"><div class="kn">Asok BTS direct (BTS E4)</div><div class="kr">Budget squeezed — older buildings dominate in-budget range. Life Asoke Hype gives Asok access via 1 MRT stop at half the rent.</div></div>
+      <div class="ki"><div class="kn">Ari (BTS N5)</div><div class="kr">Live stock empty — Noble Reflex Ari (only in-budget 2BR) rented until Oct 2026.</div></div>
+      <div class="ki"><div class="kn">Bang Na / Bearing / outer Sukhumvit</div><div class="kr">Too suburban. Defeats the "near everything" purpose.</div></div>
+      <div class="ki"><div class="kn">Silom / Sathorn</div><div class="kr">Wrong vibe — CBD financial district, weekend dead zones, different transit line.</div></div>
+      <div class="ki"><div class="kn">Lat Phrao / Huai Khwang / outer MRT</div><div class="kr">Heavy Thai-local, less expat infrastructure, far from Sukhumvit ecosystem Patrick knows.</div></div>
     </div>
   </details>
 </section>
 
-<section>
-  <h2 class="section-title">✅ Decisions Patrick + Laura Need to Make</h2>
+<!-- POOL HALLS -->
+<section id="pool">
+  <div class="sec-title">Pool Halls</div>
+  <div class="pool-grid">
+    <div class="pool-card pref">
+      <h4>S1 Signature ⭐ #1</h4>
+      <div class="pl">Sukhumvit Soi 50 · between On Nut + Bang Chak BTS</div>
+      <div class="pn good">Walking distance from Ideo 66 · Short BTS from Line 101 · Local, low-key, no hostess. Patrick's CM Billiards equivalent.</div>
+    </div>
+    <div class="pool-card">
+      <h4>Asia Billiards</h4>
+      <div class="pl">Trendy Office Bldg · Sukhumvit Soi 13 · 11am–10pm</div>
+      <div class="pn neutral">Asok corridor — 1 MRT stop from Life Asoke Hype</div>
+    </div>
+    <div class="pool-card">
+      <h4>The Sportsman</h4>
+      <div class="pl">Washington Square, Phrom Phong</div>
+      <div class="pn neutral">5 min walk from Phrom Phong BTS</div>
+    </div>
+    <div class="pool-card">
+      <h4>Players Pool Hall</h4>
+      <div class="pl">Near Asok BTS</div>
+      <div class="pn neutral">Asok corridor backup</div>
+    </div>
+    <div class="pool-card">
+      <h4>Hustlers Bangkok ❌</h4>
+      <div class="pl">Times Square, Sukhumvit Soi 13</div>
+      <div class="pn dead">REMOVED — nighttime/hostess venue, wrong vibe</div>
+    </div>
+  </div>
+</section>
+
+<!-- KILLED -->
+<section id="killed">
+  <div class="sec-title">Killed Buildings</div>
+
+  <details class="ks">
+    <summary>East Sukhumvit — 10 buildings killed <span>▼</span></summary>
+    <div class="kb">
+      <div class="ki"><div class="kn">Rhythm Sukhumvit 50</div><div class="kr">Patrick in-person Nov 2025: "Pretty dark and ugly and small." Pool table present but aesthetic fail.</div></div>
+      <div class="ki"><div class="kn">Rhythm Sukhumvit 44/1</div><div class="kr">May 11 2026: "Rooms too small, pokey, looks cheap and noisy."</div></div>
+      <div class="ki"><div class="kn">Rhythm Sukhumvit 44</div><div class="kr">May 11: "Too old and ugly. Looks like an old man's building, dorky as shit." Entire AP Thai Rhythm series rejected.</div></div>
+      <div class="ki"><div class="kn">The Tree Sukhumvit 64</div><div class="kr">370m BTS over rule, no pool table, no coworking. "Building doesn't look that appealing."</div></div>
+      <div class="ki"><div class="kn">Ideo Verve Sukhumvit (On Nut, 70m BTS)</div><div class="kr">Closest BTS proximity on shortlist. Pool table not confirmed, only 9 photos. Patrick passed.</div></div>
+      <div class="ki"><div class="kn">Ideo Mobi Sukhumvit 81</div><div class="kr">Patrick stayed here previously. Available 2BR all sub-60sqm (45–55sqm) — too small.</div></div>
+      <div class="ki"><div class="kn">The Lofts Ekkamai</div><div class="kr">May 11: "Old, looks shit, stark thin echoey interiors, terrible soundproofing."</div></div>
+      <div class="ki"><div class="kn">Ideo Sukhumvit 93 (small units)</div><div class="kr">2BR 52–58sqm only. "Like a shoebox." 3BR ฿69K — 19K over budget.</div></div>
+      <div class="ki"><div class="kn">Knightsbridge Prime On Nut</div><div class="kr">600m BTS breaks ≤400m rule.</div></div>
+      <div class="ki"><div class="kn">Mori Haus</div><div class="kr">March 2026 blacklist.</div></div>
+    </div>
+  </details>
+
+  <details class="ks">
+    <summary>Saphan Khwai — 2 killed, replaced by Ananda alternatives <span>▼</span></summary>
+    <div class="kb">
+      <div class="ki"><div class="kn">The Reserve Phahol-Pradipat</div><div class="kr">May 12: jail-like aesthetic, dim/dark interiors. 500m BTS exceeds 400m rule. Replaced by Ideo Phaholyothin Chatuchak.</div></div>
+      <div class="ki"><div class="kn">M Jatujak</div><div class="kr">May 12: "Modern Tropical/Urban Forest" = dark earth tones — opposite of what Patrick wants. 864-unit density. Mid-tier developer. Replaced by Ideo Phaholyothin Chatuchak.</div></div>
+    </div>
+  </details>
+
+  <details class="ks">
+    <summary>Other areas — 4 buildings killed <span>▼</span></summary>
+    <div class="kb">
+      <div class="ki"><div class="kn">Noble Reflex Ari</div><div class="kr">Only in-budget 2BR (76sqm ฿43K) rented until Oct 2026. No live stock.</div></div>
+      <div class="ki"><div class="kn">Belle Grand Rama 9</div><div class="kr">1,991 units excessive density. 510m MRT over 400m rule.</div></div>
+      <div class="ki"><div class="kn">Centric Ari Station</div><div class="kr">2BR maxes at 50sqm — below 60sqm minimum.</div></div>
+      <div class="ki"><div class="kn">Lumpini Park Rama 9 Ratchada</div><div class="kr">2BR maxes at 45sqm.</div></div>
+    </div>
+  </details>
+
+  <details class="ks">
+    <summary>Developer blacklist <span>▼</span></summary>
+    <div class="kb">
+      <div class="ki"><div class="kn">Whizdom / MQDC (all buildings)</div><div class="kr">Ruled out after Patrick viewed Whizdom Inspire. Skip entire portfolio.</div></div>
+      <div class="ki"><div class="kn">The Room (all buildings)</div><div class="kr">Patrick lived in one ~10 yrs ago. Building sucked. Off list regardless of location.</div></div>
+    </div>
+  </details>
+</section>
+
+<!-- DECISIONS -->
+<section id="decisions">
+  <div class="sec-title">Decisions Needed</div>
   <div class="card">
-    <ul style="margin: 0; padding-left: 22px;">
-      <li><strong>Vibe-check Life Asoke Hype</strong> — open the listing, do the 5 photos pass the bright/modern test like Ideo Mobi 66 did?</li>
-      <li><strong>AP Thai concern</strong> — Your Rhythm rejection was the Rhythm BRAND specifically. The "Life" series is a different product line (newer, brighter, more open-plan). Are you open to AP Thai's Life branding?</li>
-      <li><strong>Trial 3 selection</strong> — Recommendation: Life Asoke Hype (premium tier + Hustlers + best lifts). Alternative: Life Asoke Rama 9 (best value but bathtub + density).</li>
-      <li><strong>Pool table priority</strong> — With Hustlers (your favourite) confirmed at Asok, does in-building pool table still matter? Or is "1 MRT stop to the best in Bangkok" actually better?</li>
-      <li><strong>Saphan Khwai scout</strong> — The Reserve (#5) and M Jatujak (#6) both decent options but need a pool hall scouted in that area. Worth a day trip?</li>
-    </ul>
+    <div class="decision-item">
+      <div class="dec-num">1</div>
+      <div class="dec-text"><strong>Book Trial 1 (Ideo Mobi 66)</strong> — Contact Floor 25 landlord via PropertyScout. Propose 2-week trial starting ~Jun 19 at ฿120–130K. Don't wait.</div>
+    </div>
+    <div class="decision-item">
+      <div class="dec-num">2</div>
+      <div class="dec-text"><strong>Vibe-check Ideo Phaholyothin Chatuchak</strong> — Ananda 2018, glass shower confirmed, 150m BTS, ฿36K Floor 32 live now. Do the photos pass your bright/modern test? <a href="https://propertyscout.co.th/en/2-br-condo-ideo-phaholyothin-chatuchak-near-bts-saphan-khwai-2610842/" target="_blank">Open listing</a></div>
+    </div>
+    <div class="decision-item">
+      <div class="dec-num">3</div>
+      <div class="dec-text"><strong>Life Asoke Hype vibe-check</strong> — 5 listing photos. Does the "Life" series interior pass bright/modern? <a href="https://propertyscout.co.th/en/2-br-condo-life-asoke-hype-near-arl-makkasan-2698503/" target="_blank">Open listing</a></div>
+    </div>
+    <div class="decision-item">
+      <div class="dec-num">4</div>
+      <div class="dec-text"><strong>Ideo Q Phahol (2024, 90m BTS)</strong> — Newest build, no rental listings yet. Worth contacting an agent to unlock off-market units?</div>
+    </div>
+    <div class="decision-item">
+      <div class="dec-num">5</div>
+      <div class="dec-text"><strong>Pool hall scouting for Saphan Khwai</strong> — No confirmed pool hall in area. Relevant if committing long-term to either Ideo Phaholyothin or Ideo Q.</div>
+    </div>
   </div>
 </section>
 
 <footer>
-  Bangkok Apartment Shortlist · Patrick + Laura · Move 17 June 2026 · Research compiled 11–12 May 2026 by Chich based on Patrick's locked criteria.<br>
-  Source data: PropertyScout, FazWaz, Hipflat, AP Thai, MQDC, Sansiri, Ananda, Pruksa, Origin Property, expat forums.
+  Bangkok Apartment Finder · Patrick + Laura · Arrive June 17, 2026 · Research compiled 11–12 May 2026 · Sources: PropertyScout, DDProperty, Airbnb, AirROI, Ananda, Sansiri, AP Thai, expat forums.
 </footer>
 
 </div>
