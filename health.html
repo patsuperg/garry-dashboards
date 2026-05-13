@@ -181,9 +181,22 @@
     margin: 14px 4px 0; font-size: 11px; color: var(--text-dim); line-height: 1.55;
   }
 
+  .body-status {
+    flex: 1; min-width: 0;
+    border-left: 1px solid #28282f;
+    padding-left: 18px;
+    font-size: 12px; line-height: 1.6;
+  }
+  .body-status .sl { margin-bottom: 3px; }
+  .body-status .sl.ok   { color: var(--text-dim); }
+  .body-status .sl.warn { color: var(--yellow); }
+  .body-status .sl.low  { color: var(--orange); }
+  .body-status .sl.crit { color: var(--red); }
+
   @media (max-width: 480px) {
     .rings { grid-template-columns: repeat(2, 1fr); }
     .spoons-num { font-size: 52px; }
+    .body-status { display: none; }
   }
 </style>
 </head>
@@ -203,6 +216,7 @@
       <div class="label" id="spoons-label">loading…</div>
       <div class="sub" id="spoons-date"></div>
     </div>
+    <div class="body-status" id="body-status"></div>
   </div>
 
   <!-- 4 Rings -->
@@ -257,6 +271,49 @@ function fmtRing(name, ring, displayUnit, valueFmt) {
       <div class="name">${name}</div>
       <div class="sub">${ring.subtitle || ""}</div>
     </div>`;
+}
+
+function bodyStatus(t) {
+  const hrv = t.hrv_overnight;
+  const b30 = t.baseline_30d && t.baseline_30d.hrv;
+  const b14 = t.baseline_14d && t.baseline_14d.hrv;
+  const baseline = b30 || b14;
+  const recovery = t.rings && t.rings.recovery && t.rings.recovery.value;
+  if (!hrv || !baseline) return [];
+
+  const drop = Math.round((1 - hrv / baseline) * 100);
+  const lines = [];
+
+  // HRV line
+  if (drop > 35) {
+    lines.push({ text: `HRV ${drop}% below your 30-day average — nervous system under real load today.`, cls: "crit" });
+  } else if (drop > 20) {
+    lines.push({ text: `HRV ${drop}% below your 30-day average — quieter than normal.`, cls: "warn" });
+  } else if (drop > 10) {
+    lines.push({ text: `HRV ${drop}% below your 30-day average — slight dip, worth noting.`, cls: "ok" });
+  } else if (drop < -5) {
+    lines.push({ text: `HRV above baseline — nervous system well-recovered.`, cls: "ok" });
+  } else {
+    lines.push({ text: `HRV tracking close to your baseline — nervous system stable.`, cls: "ok" });
+  }
+
+  // Recovery + instruction line
+  if (recovery == null) return lines;
+  if (recovery >= 67 && drop <= 10) {
+    lines.push({ text: `Recovery green. Full output available today.`, cls: "ok" });
+  } else if (recovery >= 67 && drop > 10) {
+    lines.push({ text: `Recovery green but HRV says don't push. Normal output only.`, cls: "warn" });
+  } else if (recovery >= 34 && drop > 20) {
+    lines.push({ text: `${recovery}% recovery. Do the work, stop on time. No extras today.`, cls: "warn" });
+  } else if (recovery >= 34) {
+    lines.push({ text: `${recovery}% recovery — half tank. Normal output is fine.`, cls: "ok" });
+  } else if (drop > 20) {
+    lines.push({ text: `${recovery}% recovery + HRV down. Rebuild day. Stop early.`, cls: "crit" });
+  } else {
+    lines.push({ text: `${recovery}% recovery — low tank. Protect the evening.`, cls: "warn" });
+  }
+
+  return lines;
 }
 
 function spoonColorClass(score) {
@@ -378,6 +435,14 @@ async function render() {
 
     renderHistory(data.history || [], t.date);
     renderBaseline(t);
+
+    const bsLines = bodyStatus(t);
+    const bsEl = document.getElementById("body-status");
+    if (bsEl) {
+      bsEl.innerHTML = bsLines.length
+        ? bsLines.map(l => `<div class="sl ${l.cls}">${l.text}</div>`).join("")
+        : "";
+    }
   } catch (e) {
     document.getElementById("updated").textContent = "load error: " + e.message;
     document.getElementById("rings").innerHTML =
