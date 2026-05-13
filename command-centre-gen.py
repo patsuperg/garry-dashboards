@@ -114,7 +114,7 @@ def render():
 
     # ── Phase ──
     phase_label = "ACQUISITION PHASE"
-    phase_sub = f"272 Elmdale under contract · {doors}/16 doors to next milestone · Bangkok in {bk_days}d" if bk_days > 0 else f"272 Elmdale under contract · {doors}/16 doors to next milestone"
+    phase_sub = f"Active portfolio · {doors}/16 doors to next milestone · Bangkok in {bk_days}d" if bk_days > 0 else f"Active portfolio · {doors}/16 doors to next milestone"
 
     # ════════════ DEAL CARDS ════════════
     deal_cards = ""
