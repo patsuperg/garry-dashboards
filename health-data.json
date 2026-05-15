@@ -1,13 +1,13 @@
 {
-  "generated": "2026-05-16T05:00:35.758040+10:00",
+  "generated": "2026-05-16T05:15:38.942267+10:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
-  "coaching": "Elevated stress is the drag today \u2014 protect your afternoon from calendar noise.",
+  "coaching": "Fully charged and light load \u2014 ideal window for deep work or a hard session.",
   "today": {
     "date": "2026-05-16",
-    "spoons": 9,
+    "spoons": 11,
     "spoons_max": 12,
-    "spoons_label": "Solid \u2014 normal load",
+    "spoons_label": "Peak \u2014 push hard",
     "spoons_color": "green",
     "rings": {
       "sleep": {
@@ -41,11 +41,11 @@
         "subtitle": "166kcal / 1360st / 0min ex"
       },
       "stress": {
-        "value": 94,
+        "value": 0,
         "unit": "%",
-        "color": "red",
-        "label": "high",
-        "subtitle": "HR 99bpm vs RHR 71"
+        "color": "gray",
+        "label": "no HR data",
+        "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
@@ -183,13 +183,5 @@
       "hrv": 23.8,
       "rhr": 80.0
     }
-  ],
-  "ring": {
-    "source": "Kogan Aura",
-    "ts": "2026-05-16T05:01:54.673381",
-    "battery_pct": 64,
-    "hr_bpm": 0,
-    "steps": 0,
-    "spo2_pct": null
-  }
+  ]
 }
