@@ -93,6 +93,25 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .pipe-note{font-size:10px;color:var(--dim);margin-top:6px;font-style:italic;line-height:1.4}
 .pipe-empty{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:11px;color:var(--dim);text-align:center;margin-bottom:8px}
 
+/* PROJECTS ACCORDION */
+.proj-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden}
+.proj-card[open]{border-color:var(--border-2)}
+.proj-summary{list-style:none;padding:14px 16px 10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.proj-summary::-webkit-details-marker{display:none}
+.proj-title-row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.proj-title{font-size:14px;font-weight:700;color:var(--text);flex:1}
+.proj-status{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
+.proj-bar-wrap{width:100%;height:4px;background:#151518;border-radius:2px;overflow:hidden}
+.proj-bar-fill{height:100%;background:linear-gradient(90deg,#34d399,#60a5fa);border-radius:2px;transition:width 0.3s}
+.proj-progress-label{font-size:9px;color:var(--dim);margin-top:5px;text-align:right}
+.proj-subtasks{border-top:1px solid var(--border);padding:12px 16px}
+.st-row{display:flex;align-items:baseline;gap:8px;padding:5px 0;border-bottom:1px solid rgba(24,24,28,0.7)}
+.st-row:last-child{border-bottom:none}
+.st-done{color:#5a5a64;font-size:11px;min-width:14px}
+.st-pending{color:#a0a0a8;font-size:11px;min-width:14px}
+.st-text{font-size:12px;color:var(--text);flex:1;line-height:1.4}
+.st-owner{font-size:10px;font-weight:600;white-space:nowrap}
+
 /* DONE LOG */
 .done-row{display:flex;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:6px;gap:10px}
 .done-date{font-size:10px;color:var(--dim);white-space:nowrap;min-width:68px;padding-top:2px}
@@ -138,6 +157,202 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
       <div class="side-l">USD/AUD</div>
     </div>
   </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="sec">
+  <div class="sec-title">Projects <span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">5 active</span></div>
+  
+<details class="proj-card">
+  <summary class="proj-summary">
+    <div class="proj-title-row">
+      <span class="proj-title">Wilborn Rehab &amp; Re-Let</span>
+      <span class="proj-status" style="color:#fb923c">IN PROGRESS</span>
+    </div>
+    <div class="proj-bar-wrap">
+      <div class="proj-bar-fill" style="width:43%"></div>
+    </div>
+    <div class="proj-progress-label">3/7 done</div>
+  </summary>
+  <div class="proj-subtasks">
+    
+<div class="st-row">
+  <span class="st-done">&#10003;</span>
+  <span class="st-text" style="color:#5a5a64;text-decoration:line-through">Eviction executed Apr 21</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-done">&#10003;</span>
+  <span class="st-text" style="color:#5a5a64;text-decoration:line-through">Locksmith + rekey complete</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-done">&#10003;</span>
+  <span class="st-text" style="color:#5a5a64;text-decoration:line-through">Lawn cleanup done</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Contractor quote for repairs</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Repairs complete</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">List for re-let via Avenue</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">New tenant placed</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+  </div>
+</details>
+<details class="proj-card" open>
+  <summary class="proj-summary">
+    <div class="proj-title-row">
+      <span class="proj-title">505 W 25th — Inspection Ready</span>
+      <span class="proj-status" style="color:#f87171">CRITICAL <span style="color:#a0a0a8;font-size:10px;font-weight:600">· May 31 (16d)</span></span>
+    </div>
+    <div class="proj-bar-wrap">
+      <div class="proj-bar-fill" style="width:0%"></div>
+    </div>
+    <div class="proj-progress-label">0/4 done</div>
+  </summary>
+  <div class="proj-subtasks">
+    
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Follow up Angel/Tactical on repair status — URGENT</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Contractor booked (must be in by May 26)</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Repairs completed</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Inspection May 31 — PASS</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+  </div>
+</details>
+<details class="proj-card">
+  <summary class="proj-summary">
+    <div class="proj-title-row">
+      <span class="proj-title">Ohio PM Transition — B2B → Tactical/Angel</span>
+      <span class="proj-status" style="color:#fb923c">IN PROGRESS</span>
+    </div>
+    <div class="proj-bar-wrap">
+      <div class="proj-bar-fill" style="width:25%"></div>
+    </div>
+    <div class="proj-progress-label">1/4 done</div>
+  </summary>
+  <div class="proj-subtasks">
+    
+<div class="st-row">
+  <span class="st-done">&#10003;</span>
+  <span class="st-text" style="color:#5a5a64;text-decoration:line-through">B2B Realty terminated</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Tactical/Angel onboarding confirmed</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">First statement received from new PM</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Kenilworth zero-income resolved</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+  </div>
+</details>
+<details class="proj-card">
+  <summary class="proj-summary">
+    <div class="proj-title-row">
+      <span class="proj-title">Hazelcrest — Listed for Sale</span>
+      <span class="proj-status" style="color:#fb923c">IN PROGRESS</span>
+    </div>
+    <div class="proj-bar-wrap">
+      <div class="proj-bar-fill" style="width:25%"></div>
+    </div>
+    <div class="proj-progress-label">1/4 done</div>
+  </summary>
+  <div class="proj-subtasks">
+    
+<div class="st-row">
+  <span class="st-done">&#10003;</span>
+  <span class="st-text" style="color:#5a5a64;text-decoration:line-through">Listed for sale</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Offer received</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Contract signed</span>
+  <span class="st-owner" style="color:#fb923c">Patrick</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Close</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+  </div>
+</details>
+<details class="proj-card">
+  <summary class="proj-summary">
+    <div class="proj-title-row">
+      <span class="proj-title">Acquisition Pipeline — K Wise Ready</span>
+      <span class="proj-status" style="color:#fb923c">IN PROGRESS</span>
+    </div>
+    <div class="proj-bar-wrap">
+      <div class="proj-bar-fill" style="width:0%"></div>
+    </div>
+    <div class="proj-progress-label">0/4 done</div>
+  </summary>
+  <div class="proj-subtasks">
+    
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">303 Midridge Dr — /mo CF, decision pending</span>
+  <span class="st-owner" style="color:#fb923c">Patrick</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Mary Ave — status check</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Earl — status check</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Ewell — status check</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+  </div>
+</details>
 </div>
 
 <!-- NEEDS PATRICK -->
@@ -465,7 +680,7 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 
 <!-- FOOTER -->
 <div class="foot">
-  Auto-updated Fri May 15 2026 · 01:36 PM · 1 AUD = 0.6350 USD<br>
+  Auto-updated Fri May 15 2026 · 01:38 PM · 1 AUD = 0.6350 USD<br>
   <span class="dot" style="background:#34d399"></span>Live DB ·
   <span style="color:#60a5fa">Bangkok 33d</span> ·
   <span style="color:var(--dim)">Garry 24/7</span>
