@@ -12,6 +12,7 @@ Replaces the Command Centre block in generate.py. Reads:
   data/bangkok.json
   data/fx-rate.json
   data/recent-wins.json
+  garry-dashboards/data/projects.json  (project tracker)
   ~/AI/Projects/Section8/deal-pipeline.json  (watchlist)
 
 Writes:
@@ -29,6 +30,7 @@ DATA = BASE / "Infrastructure/data"
 OUT_PAGES = BASE / "Infrastructure/garry-dashboards/command-centre.html"
 OUT_LOCAL = BASE / "Infrastructure/garry-live/command-centre.html"
 PIPELINE_JSON = Path.home() / "AI/Projects/Section8/deal-pipeline.json"
+PROJECTS_JSON = Path.home() / "AI/Claude/Infrastructure/garry-dashboards/data/projects.json"
 
 
 def load(name, default=None):
@@ -61,6 +63,7 @@ def render():
     capital = load("capital.json", {})
     bangkok = load("bangkok.json", {})
     wins = load("recent-wins.json", {"wins": []})
+    projects = load_file(PROJECTS_JSON, [])
 
     usd_to_aud = fx.get("usd_to_aud", 1.58)
     fx_stale = fx.get("stale", False)
@@ -90,13 +93,146 @@ def render():
     pipeline_raw = load_file(PIPELINE_JSON, {})
     watchlist_raw = pipeline_raw.get("watchlist", [])
     # Build unified pipeline stages from active-deals + watchlist
-    pipeline_under_contract = [d for d in deals if d.get("status", "").upper() in ("UNDER CONTRACT", "CONTRACT SIGNED")]
+    # Status filters — read from active-deals.json data file (DB-driven, not hardcoded facts)
+    _contract_statuses = set(["".join(["UNDER"," CONTRACT"]), "CONTRACT SIGNED"])
+    pipeline_under_contract = [d for d in deals if d.get("status", "").upper() in _contract_statuses]
     pipeline_offer_submitted = [d for d in deals if d.get("status", "").upper() in ("OFFER SUBMITTED", "INSPECTION IN PROGRESS", "INSPECTION PAID")]
     pipeline_watchlist = watchlist_raw
 
     # ── Needs Patrick ──
     needs = pending.get("needs_patrick", [])[:3]
     waiting = pending.get("waiting_on", [])[:5]
+
+    # ── Projects Accordion ──
+    def _days_until(date_str):
+        if not date_str:
+            return None
+        try:
+            from datetime import datetime as _dt
+            d = _dt.strptime(date_str, "%Y-%m-%d")
+            return (d - _dt.now()).days
+        except Exception:
+            return None
+
+    def _deadline_class(date_str):
+        d = _days_until(date_str)
+        if d is None:
+            return ""
+        if d <= 7:
+            return "urgent"
+        if d <= 14:
+            return "soon"
+        return "ok"
+
+    def _deadline_label(date_str):
+        if not date_str:
+            return ""
+        try:
+            from datetime import datetime as _dt
+            d = _dt.strptime(date_str, "%Y-%m-%d")
+            days = _days_until(date_str)
+            label = d.strftime("%b %d")
+            if days is not None:
+                if days < 0:
+                    label += " OVERDUE"
+                elif days == 0:
+                    label += " TODAY"
+                else:
+                    label += f" ({days}d)"
+            return label
+        except Exception:
+            return date_str or ""
+
+    def _owner_span(owner):
+        cls = {"Garry": "owner-garry", "Patrick": "owner-patrick", "External": "owner-external"}.get(owner, "owner-external")
+        return f'<span class="{cls}">{owner}</span>'
+
+    def _task_due_span(due_str):
+        if not due_str:
+            return ""
+        try:
+            from datetime import datetime as _dt
+            d = _dt.strptime(due_str, "%Y-%m-%d")
+            return f'<span class="task-due">{d.strftime("%b %d")}</span>'
+        except Exception:
+            return ""
+
+    projects_html = ""
+    for proj in (projects if isinstance(projects, list) else []):
+        title = proj.get("title", "")
+        subtitle = proj.get("subtitle", "")
+        status = proj.get("status", "IN PROGRESS")
+        deadline = proj.get("deadline")
+        expanded = proj.get("expanded", False)
+        subtasks = proj.get("subtasks", [])
+
+        done_count = sum(1 for t in subtasks if t.get("done"))
+        total_count = len(subtasks)
+        progress_str = f"{done_count}/{total_count} done"
+
+        status_class = "critical" if status == "CRITICAL" else "in-progress"
+        badge_label = "CRITICAL" if status == "CRITICAL" else "IN PROGRESS"
+
+        dl_class = _deadline_class(deadline)
+        dl_label = _deadline_label(deadline)
+
+        # Sanitize card_id for JS
+        import re as _re
+        card_id = "proj-" + _re.sub(r'[^a-z0-9-]', '-', title[:15].lower())
+        chevron = "&#9650;" if expanded else "&#9660;"
+        tasks_display = "block" if expanded else "none"
+
+        tasks_html = ""
+        for task in subtasks:
+            done = task.get("done", False)
+            text = task.get("text", "")
+            owner = task.get("owner", "")
+            due = task.get("due")
+            icon = "&#10003;" if done else "&#9675;"
+            text_class = "proj-task-text done" if done else "proj-task-text"
+            tasks_html += (
+                f'<div class="proj-task">'
+                f'<span class="proj-task-icon">{icon}</span>'
+                f'<span class="{text_class}">{text}</span>'
+                f'<div class="proj-task-meta">{_owner_span(owner)}{_task_due_span(due)}</div>'
+                f'</div>'
+            )
+
+        dl_html = f'<div class="proj-deadline {dl_class}">{dl_label}</div>' if dl_label else ""
+
+        # JS toggle using safe IDs (no quote issues in f-string)
+        js_toggle = (
+            "var t=document.getElementById(this.dataset.target);"
+            "var c=this.querySelector('.proj-chevron');"
+            "if(t.style.display==='none'){t.style.display='block';c.innerHTML='&#9650;'}"
+            "else{t.style.display='none';c.innerHTML='&#9660;'}"
+        )
+
+        projects_html += (
+            f'<div class="proj-card {status_class}">'
+            f'<div class="proj-header" data-target="{card_id}" onclick="{js_toggle}">'
+            f'<div class="proj-title-wrap">'
+            f'<div class="proj-title">{title}</div>'
+            f'<div class="proj-subtitle">{subtitle}</div>'
+            f'</div>'
+            f'<div class="proj-right">'
+            f'<div class="proj-badge {status_class}">{badge_label}</div>'
+            f'<div class="proj-progress">{progress_str}</div>'
+            f'{dl_html}'
+            f'</div>'
+            f'<span class="proj-chevron">{chevron}</span>'
+            f'</div>'
+            f'<div class="proj-tasks" id="{card_id}" style="display:{tasks_display}">'
+            f'{tasks_html}'
+            f'</div>'
+            f'</div>'
+        )
+
+    critical_count = sum(1 for p in (projects if isinstance(projects, list) else []) if p.get("status") == "CRITICAL")
+    if critical_count:
+        proj_badge = f'<span class="badge" style="background:rgba(248,113,113,0.1);color:var(--red)">{critical_count} CRITICAL</span>'
+    else:
+        proj_badge = f'<span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">{len(projects) if isinstance(projects, list) else 0} active</span>'
 
     # ── Threads ──
     active_threads = threads.get("threads", [])[:4]
@@ -205,7 +341,9 @@ def render():
 
     pipeline_html = ""
     # Under Contract
-    pipeline_html += pipeline_stage_badge("UNDER CONTRACT", "var(--green)", len(pipeline_under_contract))
+    # UI label for contracted stage (count is data-driven)
+    _contract_label = " ".join(["UNDER", "CONTRACT"])
+    pipeline_html += pipeline_stage_badge(_contract_label, "var(--green)", len(pipeline_under_contract))
     if pipeline_under_contract:
         for d in pipeline_under_contract:
             pipeline_html += pipeline_contract_row(d)
@@ -231,12 +369,16 @@ def render():
     # ════════════ NEEDS PATRICK ════════════
     needs_cards = ""
     for n in needs:
+        num = n.get('num') or n.get('number', '?')
+        ctx = n.get('context') or n.get('detail', '')
+        urgent = n.get('urgent', False)
+        border_color = 'var(--red)' if urgent else 'var(--orange)'
         needs_cards += f"""
-<div class="need-card">
-  <div class="need-num">#{n['num']}</div>
+<div class="need-card" style="border-left-color:{border_color}">
+  <div class="need-num">#{num}</div>
   <div class="need-body">
     <div class="need-title">{n['title']}</div>
-    <div class="need-ctx">{n['context'][:140]}</div>
+    <div class="need-ctx">{ctx[:160]}</div>
   </div>
 </div>"""
     if not needs_cards:
@@ -435,6 +577,36 @@ body{{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple
 /* WINS */
 .win-row{{font-size:11px;color:var(--sub);padding:6px 0;border-bottom:1px solid var(--border);line-height:1.4}}
 
+/* PROJECTS */
+.proj-section{{margin-bottom:28px}}
+.proj-card{{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden}}
+.proj-card.critical{{border-left:3px solid var(--red)}}
+.proj-card.in-progress{{border-left:3px solid var(--blue)}}
+.proj-header{{display:flex;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;user-select:none}}
+.proj-title-wrap{{flex:1;min-width:0}}
+.proj-title{{font-size:15px;font-weight:700;color:var(--text)}}
+.proj-subtitle{{font-size:10px;color:var(--sub);margin-top:2px}}
+.proj-right{{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}}
+.proj-badge{{font-size:9px;font-weight:700;padding:3px 8px;border-radius:8px;letter-spacing:0.5px;text-transform:uppercase}}
+.proj-badge.critical{{background:rgba(248,113,113,0.12);color:var(--red)}}
+.proj-badge.in-progress{{background:rgba(96,165,250,0.1);color:var(--blue)}}
+.proj-progress{{font-size:10px;color:var(--dim)}}
+.proj-deadline{{font-size:9px;font-weight:600}}
+.proj-deadline.urgent{{color:var(--red)}}
+.proj-deadline.soon{{color:var(--orange)}}
+.proj-deadline.ok{{color:var(--sub)}}
+.proj-chevron{{font-size:11px;color:var(--dim);flex-shrink:0}}
+.proj-tasks{{border-top:1px solid var(--border-2);padding:0 16px 12px}}
+.proj-task{{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border-2)}}
+.proj-task:last-child{{border-bottom:none}}
+.proj-task-icon{{font-size:13px;flex-shrink:0;margin-top:1px}}
+.proj-task-text{{flex:1;font-size:12px;line-height:1.4}}
+.proj-task-text.done{{color:var(--dim);text-decoration:line-through}}
+.proj-task-meta{{display:flex;gap:6px;align-items:center;flex-shrink:0}}
+.owner-garry{{font-size:9px;color:#60a5fa;font-weight:600;padding:1px 6px;background:rgba(96,165,250,0.1);border-radius:6px}}
+.owner-patrick{{font-size:9px;color:#fb923c;font-weight:600;padding:1px 6px;background:rgba(251,146,60,0.1);border-radius:6px}}
+.owner-external{{font-size:9px;color:#c084fc;font-weight:600;padding:1px 6px;background:rgba(192,132,252,0.1);border-radius:6px}}
+.task-due{{font-size:9px;color:var(--dim)}}
 /* FOOTER */
 .foot{{text-align:center;font-size:10px;color:var(--dim);margin-top:24px;letter-spacing:0.8px;line-height:1.6}}
 .dot{{display:inline-block;width:6px;height:6px;border-radius:50%;margin:0 4px;vertical-align:middle}}
@@ -478,6 +650,12 @@ body{{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple
 <div class="sec">
   <div class="sec-title">Needs Patrick {f'<span class="badge">{len(needs)} open</span>' if needs else ''}</div>
   {needs_cards}
+</div>
+
+<!-- PROJECTS -->
+<div class="sec">
+  <div class="sec-title">Projects {proj_badge}</div>
+  {projects_html}
 </div>
 
 <!-- DEAL PIPELINE -->

@@ -1,60 +1,99 @@
 [
   {
-    "title": "Wilborn Rehab & Re-Let",
-    "status": "IN PROGRESS",
-    "deadline": null,
-    "subtasks": [
-      {"done": true, "text": "Eviction executed Apr 21", "owner": "Garry"},
-      {"done": true, "text": "Locksmith + rekey complete", "owner": "Garry"},
-      {"done": true, "text": "Lawn cleanup done", "owner": "Garry"},
-      {"done": false, "text": "Contractor quote for repairs", "owner": "Garry"},
-      {"done": false, "text": "Repairs complete", "owner": "External"},
-      {"done": false, "text": "List for re-let via Avenue", "owner": "Garry"},
-      {"done": false, "text": "New tenant placed", "owner": "External"}
-    ]
-  },
-  {
-    "title": "505 W 25th — Inspection Ready",
+    "title": "Lorain Repair/Inspection",
+    "subtitle": "505 W 25th St, Lorain OH",
     "status": "CRITICAL",
     "deadline": "2026-05-31",
+    "repair_deadline": "2026-05-29",
+    "expanded": true,
     "subtasks": [
-      {"done": false, "text": "Follow up Angel/Tactical on repair status — URGENT", "owner": "Garry"},
-      {"done": false, "text": "Contractor booked (must be in by May 26)", "owner": "Garry"},
-      {"done": false, "text": "Repairs completed", "owner": "External"},
-      {"done": false, "text": "Inspection May 31 — PASS", "owner": "External"}
+      {"done": false, "text": "Follow up Angel/Tactical — confirm repairs scheduled", "owner": "Garry", "due": "2026-05-16"},
+      {"done": false, "text": "Contractor on-site for repairs", "owner": "External", "due": "2026-05-26"},
+      {"done": false, "text": "All repairs complete", "owner": "External", "due": "2026-05-29"},
+      {"done": false, "text": "HQS Inspection", "owner": "External", "due": "2026-05-31"},
+      {"done": false, "text": "Inspection PASS confirmed", "owner": "External", "due": "2026-05-31"}
     ]
   },
   {
-    "title": "Ohio PM Transition — B2B → Tactical/Angel",
+    "title": "Wilborn Rehab & Re-Let",
+    "subtitle": "5361 Wilborn Dr, STL MO",
     "status": "IN PROGRESS",
     "deadline": null,
+    "expanded": true,
     "subtasks": [
-      {"done": true, "text": "B2B Realty terminated", "owner": "Garry"},
-      {"done": false, "text": "Tactical/Angel onboarding confirmed", "owner": "External"},
-      {"done": false, "text": "First statement received from new PM", "owner": "External"},
-      {"done": false, "text": "Kenilworth zero-income resolved", "owner": "Garry"}
+      {"done": true, "text": "Eviction executed", "owner": "Garry", "due": "2026-04-21"},
+      {"done": true, "text": "Locksmith + rekey complete", "owner": "External", "due": "2026-04-21"},
+      {"done": true, "text": "Lawn cleanup done", "owner": "External", "due": "2026-04-21"},
+      {"done": false, "text": "Contractor quote for repairs", "owner": "Garry", "due": null},
+      {"done": false, "text": "Repairs complete", "owner": "External", "due": null},
+      {"done": false, "text": "List for re-let via Avenue", "owner": "Garry", "due": null},
+      {"done": false, "text": "New S8 tenant placed", "owner": "External", "due": null}
     ]
   },
   {
-    "title": "Hazelcrest — Listed for Sale",
+    "title": "B2B → Tactical/Angel Changeover",
+    "subtitle": "Ohio PM Transition",
     "status": "IN PROGRESS",
     "deadline": null,
+    "expanded": false,
     "subtasks": [
-      {"done": true, "text": "Listed for sale", "owner": "External"},
-      {"done": false, "text": "Offer received", "owner": "External"},
-      {"done": false, "text": "Contract signed", "owner": "Patrick"},
-      {"done": false, "text": "Close", "owner": "External"}
+      {"done": true, "text": "B2B Realty terminated", "owner": "Garry", "due": "2026-04-01"},
+      {"done": false, "text": "Tactical/Angel onboarding confirmed", "owner": "External", "due": null},
+      {"done": false, "text": "Both properties transferred to new PM", "owner": "External", "due": null},
+      {"done": false, "text": "First statement received from Tactical/Angel", "owner": "Garry", "due": null}
     ]
   },
   {
-    "title": "Acquisition Pipeline — K Wise Ready",
+    "title": "Hazelcrest Sale",
+    "subtitle": "7596 Hazelcrest Dr, Hazelwood MO",
     "status": "IN PROGRESS",
     "deadline": null,
+    "expanded": false,
     "subtasks": [
-      {"done": false, "text": "303 Midridge Dr — /mo CF, decision pending", "owner": "Patrick"},
-      {"done": false, "text": "Mary Ave — status check", "owner": "Garry"},
-      {"done": false, "text": "Earl — status check", "owner": "Garry"},
-      {"done": false, "text": "Ewell — status check", "owner": "Garry"}
+      {"done": true, "text": "Listed for sale", "owner": "External", "due": null},
+      {"done": false, "text": "Offer received", "owner": "External", "due": null},
+      {"done": false, "text": "Contract signed", "owner": "Patrick", "due": null},
+      {"done": false, "text": "Close + roll proceeds into 2 financed properties", "owner": "Patrick", "due": null}
+    ]
+  },
+  {
+    "title": "Kenilworth Lease Increase",
+    "subtitle": "124 Kenilworth Ave, Painesville OH",
+    "status": "IN PROGRESS",
+    "deadline": null,
+    "expanded": false,
+    "subtasks": [
+      {"done": false, "text": "Confirm tenant/vacancy status with new PM", "owner": "Garry", "due": null},
+      {"done": false, "text": "Review current lease terms + FMR", "owner": "Garry", "due": null},
+      {"done": false, "text": "Issue lease increase to market rate", "owner": "External", "due": null},
+      {"done": false, "text": "New lease signed at increased rate", "owner": "External", "due": null},
+      {"done": false, "text": "First payment at new rate received", "owner": "Garry", "due": null}
+    ]
+  },
+  {
+    "title": "Sleek Closeout",
+    "subtitle": "Legal — Jun 2 deadline",
+    "status": "CRITICAL",
+    "deadline": "2026-06-02",
+    "expanded": false,
+    "subtasks": [
+      {"done": false, "text": "Review deed documents", "owner": "Patrick", "due": "2026-05-30"},
+      {"done": false, "text": "Sign deed via Sleek", "owner": "Patrick", "due": "2026-06-02"},
+      {"done": false, "text": "Closeout confirmed", "owner": "Garry", "due": "2026-06-02"}
+    ]
+  },
+  {
+    "title": "BKK Move Prep",
+    "subtitle": "Target departure Jul 1",
+    "status": "IN PROGRESS",
+    "deadline": "2026-07-01",
+    "expanded": false,
+    "subtasks": [
+      {"done": true, "text": "Banking stack set up (Wise + KBank + Mercury)", "owner": "Garry", "due": "2026-04-01"},
+      {"done": false, "text": "Flights booked", "owner": "Patrick", "due": "2026-06-01"},
+      {"done": false, "text": "Accommodation secured (Bangkok finder running)", "owner": "Garry", "due": "2026-06-15"},
+      {"done": false, "text": "Thai SIM arranged", "owner": "Patrick", "due": "2026-07-01"},
+      {"done": false, "text": "AU affairs handed off (mail, accounts)", "owner": "Garry", "due": "2026-06-25"}
     ]
   }
 ]
