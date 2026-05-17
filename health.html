@@ -218,6 +218,11 @@
     </div>
     <div class="body-status" id="body-status"></div>
   </div>
+  <div id="coaching-card" style="
+    background:var(--card);border-radius:12px;padding:14px 16px;
+    font-size:13px;line-height:1.55;color:var(--text-dim);
+    border-left:3px solid var(--yellow);margin-bottom:4px;display:none;">
+  </div>
 
   <!-- 4 Rings -->
   <div class="rings" id="rings"></div>
@@ -420,6 +425,15 @@ async function render() {
     document.getElementById("spoons-num").textContent = t.spoons ?? "–";
     document.getElementById("spoons-label").textContent = t.spoons_label || "no data";
     document.getElementById("spoons-date").textContent = t.date || "";
+
+    const coachEl = document.getElementById("coaching-card");
+    if (coachEl && data.coaching) {
+      // Border colour tracks spoons level
+      const borderColor = ({green:"var(--green)",yellow:"var(--yellow)",orange:"var(--orange)",red:"var(--red)"})[spClass] || "var(--yellow)";
+      coachEl.style.borderLeftColor = borderColor;
+      coachEl.textContent = data.coaching;
+      coachEl.style.display = "block";
+    }
 
     const spClass = spoonColorClass(t.spoons);
     document.getElementById("spoons-num").style.color =
