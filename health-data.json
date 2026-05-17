@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-18T08:38:23.289893+10:00",
+  "generated": "2026-05-18T08:53:25.375901+10:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
   "coaching": "Short sleep (5.0h) and recovery in the red (17%). Keep today light \u2014 no hard training, protect the afternoon. Aim for bed by 9:30pm and a full 8h+ tonight to reset.",
@@ -26,24 +26,25 @@
         "subtitle": "HRV 9.5ms / RHR 81.9bpm"
       },
       "strain": {
-        "value": 0,
+        "value": 0.0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 0,
+          "value": 0.0,
           "max": 21,
           "kcal": 0,
-          "steps": 0,
+          "steps": 51,
           "exercise_min": 0,
-          "hr_load": 0.0
+          "hr_load": 0.0,
+          "source": "json_export"
         },
-        "subtitle": "0kcal / 0st / 0min ex"
+        "subtitle": "0kcal / 51st / 0min ex"
       },
       "stress": {
         "value": 0,
         "unit": "%",
         "color": "gray",
-        "label": "no data",
+        "label": "no HR data",
         "subtitle": "HR ?bpm vs RHR ?"
       }
     },
@@ -74,7 +75,13 @@
       "days_sampled": 24,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {}
+    "nutrition": {
+      "protein_g": 0.0,
+      "carbs_g": 0.0,
+      "fat_g": 0.0,
+      "calories_kcal": 0,
+      "has_data": false
+    }
   },
   "history": [
     {
@@ -154,13 +161,5 @@
       "hrv": 23.8,
       "rhr": 80.0
     }
-  ],
-  "ring": {
-    "source": "Kogan Aura",
-    "ts": "2026-05-18T08:40:48.596610",
-    "battery_pct": 56,
-    "hr_bpm": 0,
-    "steps": 0,
-    "spo2_pct": null
-  }
+  ]
 }
