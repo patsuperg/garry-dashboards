@@ -63,6 +63,7 @@ def render():
     capital = load("capital.json", {})
     bangkok = load("bangkok.json", {})
     wins = load("recent-wins.json", {"wins": []})
+    wise = load("wise-cashflow.json", {})
     projects = load_file(PROJECTS_JSON, [])
 
     usd_to_aud = fx.get("usd_to_aud", 1.58)
@@ -420,21 +421,128 @@ def render():
   {retenant_line}
 </div>"""
 
-    # ════════════ HAP GRID ════════════
-    hap_tiles = ""
-    for key, v in hap_month.items():
-        status = v.get("status", "PENDING")
-        expected = v.get("expected", 0)
-        name = v.get("property", key).split(",")[0].split(" ")[-1][:10]
-        color = {"RECEIVED": "#34d399", "PENDING": "#fbbf24", "LATE": "#f87171", "EVERNEST_TRANSITION": "#5a5a64"}.get(status, "#fbbf24")
-        hap_tiles += f"""
-<div class="hap-tile">
-  <div class="hap-name">{name}</div>
-  <div class="hap-amt" style="color:{color}">${expected}</div>
-  <div class="hap-status" style="color:{color}">{status[:10]}</div>
+    # ════════════ INCOME TRACKER ════════════
+    wise_collected = wise.get("current_month_received", {})
+    wise_expected = wise.get("expected_monthly_rent", {})
+    day_of_month = now.day
+    import calendar
+    days_in_month = calendar.monthrange(now.year, now.month)[1]
+
+    # PM group display config: (display_label, wise_key, note)
+    pm_groups = [
+        ("Avenue · 4x STL", "Avenue (STL 4 properties)", "Remits end of month"),
+        ("B2B · Ohio final", "B2B Realty (Ohio - phasing out)", "May final remit"),
+        ("Tactical · Ohio (from Jun)", "Tactical (Ohio incoming Jun)", "Starts June"),
+    ]
+
+    income_rows_html = ""
+    total_exp_usd = 0.0
+    total_col_usd = 0.0
+
+    for label, key, note in pm_groups:
+        exp_usd = float(wise_expected.get(key, 0))
+        col_usd = float(wise_collected.get(key, 0.0))
+        if exp_usd == 0 and col_usd == 0:
+            continue
+        exp_aud = round(exp_usd * usd_to_aud)
+        col_aud = round(col_usd * usd_to_aud)
+        total_exp_usd += exp_usd
+        total_col_usd += col_usd
+
+        if col_usd == 0 and exp_usd > 0:
+            pct_c = 0
+            col_str = "A$0"
+            gap_str = f"−A${exp_aud:,}"
+            col_clr = "#fbbf24" if day_of_month <= 20 else "#f87171"
+            gap_clr = col_clr
+            icon = "⏳"
+        elif col_usd >= exp_usd * 0.9:
+            pct_c = round(col_usd / exp_usd * 100) if exp_usd > 0 else 100
+            col_str = f"A${col_aud:,}"
+            gap_str = "✓" if abs(col_aud - exp_aud) < 100 else f"+A${col_aud - exp_aud:,}"
+            col_clr = "#34d399"
+            gap_clr = "#34d399"
+            icon = "✓"
+        else:
+            pct_c = round(col_usd / exp_usd * 100) if exp_usd > 0 else 0
+            col_str = f"A${col_aud:,}"
+            gap_str = f"−A${exp_aud - col_aud:,}"
+            col_clr = "#fbbf24"
+            gap_clr = "#f87171"
+            icon = "⚡"
+
+        exp_str = f"A${exp_aud:,}" if exp_usd > 0 else "—"
+        note_span = f'<span style="font-size:9px;opacity:0.5;margin-left:6px">{note}</span>' if note else ""
+
+        income_rows_html += f"""
+<div class="income-row">
+  <span class="inc-lbl">{icon} {label}{note_span}</span>
+  <span class="inc-exp">{exp_str}</span>
+  <span class="inc-col" style="color:{col_clr}">{col_str}</span>
+  <span class="inc-gap" style="color:{gap_clr}">{gap_str}</span>
 </div>"""
-    if not hap_tiles:
-        hap_tiles = '<div class="empty">HAP data pending</div>'
+
+    # Totals
+    total_exp_aud = round(total_exp_usd * usd_to_aud)
+    total_col_aud = round(total_col_usd * usd_to_aud)
+    total_pct = round(total_col_usd / total_exp_usd * 100) if total_exp_usd > 0 else 0
+    total_col_clr = "#34d399" if total_pct >= 80 else "#fbbf24" if total_pct >= 40 else "#f87171"
+
+    # Per-property status strip
+    prop_strip = ""
+    active_net_usd = 0.0
+    for p in properties:
+        addr = p.get("address", "").split(",")[0]
+        net = p.get("rent_net", 0)
+        status = p.get("status", "")
+        is_vacant = "VACANT" in str(status).upper() or net == 0
+        aud_net = round(net * usd_to_aud) if not is_vacant else 0
+        if is_vacant:
+            clr = "#f87171"
+            tag = "VACANT"
+        elif p.get("grade") == "SELL":
+            clr = "#f87171"
+            tag = "SELLING"
+            active_net_usd += net
+        else:
+            clr = "#34d399"
+            tag = f"A${aud_net:,}/mo"
+            active_net_usd += net
+
+        prop_strip += f'<div class="prop-strip-item" style="color:{clr}"><span class="prop-strip-addr">{addr}</span><span class="prop-strip-val">{tag}</span></div>'
+
+    active_net_aud = round(active_net_usd * usd_to_aud)
+
+    # Alerts
+    income_alerts = []
+    for p in properties:
+        if "VACANT" in str(p.get("status", "")).upper():
+            addr = p.get("address", "").split(",")[0]
+            net_lost = round(p.get("rent_net", 0) * usd_to_aud)
+            income_alerts.append(f"⚠ {addr} VACANT — A${net_lost:,}/mo offline")
+    income_alerts.append("⚠ Fenwick Apr HAP — Evernest owes ~A$2,026. Legal trigger Tue May 19.")
+
+    alerts_html = "".join(f'<div class="inc-alert">{a}</div>' for a in income_alerts)
+
+    income_html = f"""
+<div class="income-hdr">
+  <span>Source</span><span>Expected</span><span>Collected</span><span>Gap</span>
+</div>
+{income_rows_html}
+<div class="income-total">
+  <span>TOTAL · Day {day_of_month}/{days_in_month}</span>
+  <span>A${total_exp_aud:,}</span>
+  <span style="color:{total_col_clr}">A${total_col_aud:,}</span>
+  <span style="color:{total_col_clr}">{total_pct}% collected</span>
+</div>
+<div class="prop-strip">{prop_strip}</div>
+{alerts_html}
+<div class="inc-note">Active net (excl. vacant): A${active_net_aud:,}/mo · Wise balance: ${wise.get('wise_usd_balance', 0):,.0f} USD</div>"""
+
+    # Update hero income to use active net AUD
+    aud_income = active_net_aud
+    pct = round(aud_income / aud_goal * 100)
+    gap_aud = aud_goal - aud_income
 
     # ════════════ THREADS ════════════
     thread_rows = ""
@@ -551,6 +659,20 @@ body{{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple
 .hap-name{{font-size:10px;color:var(--dim)}}
 .hap-amt{{font-size:14px;font-weight:700;margin-top:4px}}
 .hap-status{{font-size:8px;margin-top:3px;text-transform:uppercase;letter-spacing:0.5px}}
+
+/* INCOME TRACKER */
+.income-tracker{{font-size:12px;line-height:1.5}}
+.income-hdr{{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4px 8px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);padding:0 0 6px 0;border-bottom:1px solid var(--border);margin-bottom:4px}}
+.income-row{{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4px 8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04)}}
+.inc-lbl{{color:var(--text)}}
+.inc-exp,.inc-col,.inc-gap{{text-align:right;font-variant-numeric:tabular-nums}}
+.income-total{{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4px 8px;padding:6px 0 4px;font-weight:700;font-size:12px;border-top:1px solid var(--border);margin-top:2px}}
+.prop-strip{{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 6px;padding:8px;background:rgba(255,255,255,0.03);border-radius:6px}}
+.prop-strip-item{{display:flex;flex-direction:column;align-items:center;min-width:80px;gap:2px}}
+.prop-strip-addr{{font-size:9px;color:var(--dim);white-space:nowrap}}
+.prop-strip-val{{font-size:11px;font-weight:600}}
+.inc-alert{{font-size:11px;color:#fbbf24;padding:3px 0}}
+.inc-note{{font-size:10px;color:var(--dim);margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}}
 
 /* THREADS */
 .thread-row{{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:6px}}
@@ -688,10 +810,10 @@ body{{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple
   <div class="props">{prop_tiles}</div>
 </div>
 
-<!-- HAP -->
+<!-- INCOME -->
 <div class="sec">
-  <div class="sec-title">HAP {ym} · {hap_received}/{hap_total}</div>
-  <div class="hap-grid">{hap_tiles}</div>
+  <div class="sec-title">Income · {now.strftime("%b %Y")} <span class="badge" style="background:rgba(52,211,153,0.1);color:var(--green)">{total_pct}% collected</span></div>
+  <div class="income-tracker">{income_html}</div>
 </div>
 
 <!-- WINS -->
