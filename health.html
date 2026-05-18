@@ -426,16 +426,15 @@ async function render() {
     document.getElementById("spoons-label").textContent = t.spoons_label || "no data";
     document.getElementById("spoons-date").textContent = t.date || "";
 
+    const spClass = spoonColorClass(t.spoons);
+
     const coachEl = document.getElementById("coaching-card");
     if (coachEl && data.coaching) {
-      // Border colour tracks spoons level
       const borderColor = ({green:"var(--green)",yellow:"var(--yellow)",orange:"var(--orange)",red:"var(--red)"})[spClass] || "var(--yellow)";
       coachEl.style.borderLeftColor = borderColor;
       coachEl.textContent = data.coaching;
       coachEl.style.display = "block";
     }
-
-    const spClass = spoonColorClass(t.spoons);
     document.getElementById("spoons-num").style.color =
       ({green:"var(--green)",yellow:"var(--yellow)",orange:"var(--orange)",red:"var(--red)",gray:"var(--text-dim)"})[spClass];
 
