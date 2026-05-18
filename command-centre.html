@@ -16,9 +16,9 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .wrap{max-width:560px;margin:0 auto}
 
 /* PHASE HERO */
-.phase-hero{background:linear-gradient(135deg,rgba(52,211,153,0.08),rgba(96,165,250,0.05));
-  border:1px solid rgba(52,211,153,0.15);border-radius:18px;padding:22px;margin:24px 0 20px}
-.phase-label{font-size:10px;letter-spacing:3px;color:var(--green);font-weight:700;text-transform:uppercase}
+.phase-hero{background:linear-gradient(135deg,rgba(251,146,60,0.08),rgba(96,165,250,0.05));
+  border:1px solid rgba(251,146,60,0.2);border-radius:18px;padding:22px;margin:24px 0 20px}
+.phase-label{font-size:10px;letter-spacing:3px;color:var(--orange);font-weight:700;text-transform:uppercase}
 .phase-title{font-size:22px;font-weight:800;margin-top:6px;letter-spacing:-0.5px}
 .phase-sub{font-size:12px;color:var(--sub);margin-top:8px;line-height:1.5}
 
@@ -41,19 +41,6 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .sec-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between}
 .sec-title .badge{font-size:10px;background:rgba(251,146,60,0.1);color:var(--orange);padding:2px 8px;border-radius:10px;letter-spacing:0.5px}
 
-/* DEAL CARD */
-.deal-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px}
-.deal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}
-.deal-addr{font-size:16px;font-weight:700}
-.deal-sub{font-size:11px;color:var(--sub);font-weight:400}
-.deal-badge{font-size:9px;font-weight:700;padding:4px 10px;border-radius:10px;letter-spacing:0.5px;white-space:nowrap}
-.deal-line{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:11px;margin-bottom:10px}
-.deal-k{color:var(--dim);font-size:9px;text-transform:uppercase;letter-spacing:0.8px}
-.deal-v{color:var(--text);font-weight:700;font-size:13px;margin-bottom:4px}
-.deal-stage{font-size:11px;color:var(--sub);padding:8px 0;border-top:1px solid var(--border)}
-.deal-lenders{font-size:11px;color:var(--sub);padding-top:6px}
-.deal-action{font-size:12px;color:var(--gold);font-weight:500;margin-top:8px}
-
 /* NEEDS */
 .need-card{display:flex;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:14px;margin-bottom:10px}
 .need-num{font-size:22px;font-weight:800;color:var(--orange);margin-right:14px;min-width:26px}
@@ -66,7 +53,7 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 /* WAITING */
 .wait-row{display:flex;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:6px;font-size:12px}
 .wait-item{color:var(--text);font-weight:500;flex:1}
-.wait-from{color:var(--dim);font-size:11px}
+.wait-from{color:var(--dim);font-size:11px;text-align:right;margin-left:8px}
 
 /* PORTFOLIO */
 .props{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
@@ -75,7 +62,7 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .prop-net{font-size:16px;font-weight:800;color:var(--green)}
 .prop-grade{font-size:10px;font-weight:800;padding:1px 6px;border-radius:4px;background:rgba(255,255,255,0.05)}
 .prop-addr{font-size:10px;color:var(--sub);margin-top:6px;line-height:1.3}
-.prop-retenant{font-size:9px;color:var(--orange);margin-top:4px}
+.prop-retenant{font-size:9px;color:var(--dim);margin-top:4px}
 
 /* HAP */
 .hap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
@@ -83,20 +70,6 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .hap-name{font-size:10px;color:var(--dim)}
 .hap-amt{font-size:14px;font-weight:700;margin-top:4px}
 .hap-status{font-size:8px;margin-top:3px;text-transform:uppercase;letter-spacing:0.5px}
-
-/* INCOME TRACKER */
-.income-tracker{font-size:12px;line-height:1.5}
-.income-hdr{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4px 8px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);padding:0 0 6px 0;border-bottom:1px solid var(--border);margin-bottom:4px}
-.income-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4px 8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-.inc-lbl{color:var(--text)}
-.inc-exp,.inc-col,.inc-gap{text-align:right;font-variant-numeric:tabular-nums}
-.income-total{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4px 8px;padding:6px 0 4px;font-weight:700;font-size:12px;border-top:1px solid var(--border);margin-top:2px}
-.prop-strip{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 6px;padding:8px;background:rgba(255,255,255,0.03);border-radius:6px}
-.prop-strip-item{display:flex;flex-direction:column;align-items:center;min-width:80px;gap:2px}
-.prop-strip-addr{font-size:9px;color:var(--dim);white-space:nowrap}
-.prop-strip-val{font-size:11px;font-weight:600}
-.inc-alert{font-size:11px;color:#fbbf24;padding:3px 0}
-.inc-note{font-size:10px;color:var(--dim);margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
 
 /* THREADS */
 .thread-row{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:6px}
@@ -120,45 +93,39 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .pipe-note{font-size:10px;color:var(--dim);margin-top:6px;font-style:italic;line-height:1.4}
 .pipe-empty{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:11px;color:var(--dim);text-align:center;margin-bottom:8px}
 
-/* WINS */
-.win-row{font-size:11px;color:var(--sub);padding:6px 0;border-bottom:1px solid var(--border);line-height:1.4}
-
-/* PROJECTS */
-.proj-section{margin-bottom:28px}
+/* PROJECTS ACCORDION */
 .proj-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden}
-.proj-card.critical{border-left:3px solid var(--red)}
-.proj-card.in-progress{border-left:3px solid var(--blue)}
-.proj-header{display:flex;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;user-select:none}
-.proj-title-wrap{flex:1;min-width:0}
-.proj-title{font-size:15px;font-weight:700;color:var(--text)}
-.proj-subtitle{font-size:10px;color:var(--sub);margin-top:2px}
-.proj-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
-.proj-badge{font-size:9px;font-weight:700;padding:3px 8px;border-radius:8px;letter-spacing:0.5px;text-transform:uppercase}
-.proj-badge.critical{background:rgba(248,113,113,0.12);color:var(--red)}
-.proj-badge.in-progress{background:rgba(96,165,250,0.1);color:var(--blue)}
-.proj-progress{font-size:10px;color:var(--dim)}
-.proj-deadline{font-size:9px;font-weight:600}
-.proj-deadline.urgent{color:var(--red)}
-.proj-deadline.soon{color:var(--orange)}
-.proj-deadline.ok{color:var(--sub)}
-.proj-chevron{font-size:11px;color:var(--dim);flex-shrink:0}
-.proj-tasks{border-top:1px solid var(--border-2);padding:0 16px 12px}
-.proj-task{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border-2)}
-.proj-task:last-child{border-bottom:none}
-.proj-task-icon{font-size:13px;flex-shrink:0;margin-top:1px}
-.proj-task-text{flex:1;font-size:12px;line-height:1.4}
-.proj-task-text.done{color:var(--dim);text-decoration:line-through}
-.proj-task-meta{display:flex;gap:6px;align-items:center;flex-shrink:0}
-.owner-garry{font-size:9px;color:#60a5fa;font-weight:600;padding:1px 6px;background:rgba(96,165,250,0.1);border-radius:6px}
-.owner-patrick{font-size:9px;color:#fb923c;font-weight:600;padding:1px 6px;background:rgba(251,146,60,0.1);border-radius:6px}
-.owner-external{font-size:9px;color:#c084fc;font-weight:600;padding:1px 6px;background:rgba(192,132,252,0.1);border-radius:6px}
-.task-due{font-size:9px;color:var(--dim)}
+.proj-card[open]{border-color:var(--border-2)}
+.proj-summary{list-style:none;padding:14px 16px 10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.proj-summary::-webkit-details-marker{display:none}
+.proj-title-row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.proj-title{font-size:14px;font-weight:700;color:var(--text);flex:1}
+.proj-status{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
+.proj-bar-wrap{width:100%;height:4px;background:#151518;border-radius:2px;overflow:hidden}
+.proj-bar-fill{height:100%;background:linear-gradient(90deg,#34d399,#60a5fa);border-radius:2px;transition:width 0.3s}
+.proj-progress-label{font-size:9px;color:var(--dim);margin-top:5px;text-align:right}
+.proj-subtasks{border-top:1px solid var(--border);padding:12px 16px}
+.st-row{display:flex;align-items:baseline;gap:8px;padding:5px 0;border-bottom:1px solid rgba(24,24,28,0.7)}
+.st-row:last-child{border-bottom:none}
+.st-done{color:#5a5a64;font-size:11px;min-width:14px}
+.st-pending{color:#a0a0a8;font-size:11px;min-width:14px}
+.st-text{font-size:12px;color:var(--text);flex:1;line-height:1.4}
+.st-owner{font-size:10px;font-weight:600;white-space:nowrap}
+
+/* DONE LOG */
+.done-row{display:flex;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:6px;gap:10px}
+.done-date{font-size:10px;color:var(--dim);white-space:nowrap;min-width:68px;padding-top:2px}
+.done-body{flex:1}
+.done-item{font-size:12px;font-weight:600;color:var(--text)}
+.done-detail{font-size:10px;color:var(--sub);margin-top:2px;line-height:1.4}
+.done-cat{font-size:9px;text-transform:uppercase;letter-spacing:0.8px;white-space:nowrap;padding-top:3px}
+
 /* FOOTER */
 .foot{text-align:center;font-size:10px;color:var(--dim);margin-top:24px;letter-spacing:0.8px;line-height:1.6}
 .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin:0 4px;vertical-align:middle}
 @media(max-width:540px){
   .hero-grid{grid-template-columns:1fr}
-  .props,.deal-line{grid-template-columns:repeat(2,1fr)}
+  .props{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -168,237 +135,634 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 <!-- PHASE HERO -->
 <div class="phase-hero">
   <div class="phase-label">Current Phase</div>
-  <div class="phase-title">ACQUISITION PHASE</div>
-  <div class="phase-sub">Active portfolio · 6/16 doors to next milestone</div>
+  <div class="phase-title">STABILISE + ACQUIRE</div>
+  <div class="phase-sub">No active contracts · Wilborn vacant/rehab pending · Bangkok 30d · Hazelcrest listed</div>
 </div>
 
 <!-- HERO NUMBERS -->
 <div class="hero-grid">
   <div class="hero-main">
-    <div class="hero-num"><span class="cur">A$</span>5,535</div>
+    <div class="hero-num"><span class="cur">A$</span>4,800</div>
     <div class="hero-goal">of A$20,000/mo · North Star</div>
-    <div class="hero-bar"><div class="hero-fill" style="width:28%"></div></div>
-    <div class="hero-pct">28% · Gap A$14,465/mo</div>
+    <div class="hero-bar"><div class="hero-fill" style="width:24%"></div></div>
+    <div class="hero-pct">24% · Gap A$15,200/mo</div>
   </div>
   <div class="hero-side">
     <div class="side-tile">
-      <div class="side-v" style="color:var(--green)">$180K</div>
-      <div class="side-l">Deployable USD</div>
-    </div>
-    <div class="side-tile">
-      <div class="side-v" style="color:var(--blue)">-19d</div>
+      <div class="side-v" style="color:var(--blue)">30d</div>
       <div class="side-l">Bangkok</div>
     </div>
+    <div class="side-tile">
+      <div class="side-v" style="color:var(--gold)">1:1.5748</div>
+      <div class="side-l">USD/AUD</div>
+    </div>
   </div>
-</div>
-
-<!-- NEEDS PATRICK -->
-<div class="sec">
-  <div class="sec-title">Needs Patrick <span class="badge">3 open</span></div>
-  
-<div class="need-card" style="border-left-color:var(--red)">
-  <div class="need-num">#1</div>
-  <div class="need-body">
-    <div class="need-title">Fenwick legal escalation — Tue May 19</div>
-    <div class="need-ctx">If Jenna (Evernest) no reply by Tue May 19 morning AEST, say 'send the legal escalation' to Garry. ~A$2,026 April HAP owed.</div>
-  </div>
-</div>
-<div class="need-card" style="border-left-color:var(--orange)">
-  <div class="need-num">#2</div>
-  <div class="need-body">
-    <div class="need-title">Sleek Deed of Loan Forgiveness — review & sign</div>
-    <div class="need-ctx">Garry emailed Gabriela May 16 with deed. No reply yet. Jun 2 = ASIC deregistration hard stop. Patrick to review deed when returned.</div>
-  </div>
-</div>
-<div class="need-card" style="border-left-color:var(--orange)">
-  <div class="need-num">#3</div>
-  <div class="need-body">
-    <div class="need-title">HostPlus beneficiary — set non-binding to Laura</div>
-    <div class="need-ctx">5 min on Member Online. Non-binding nomination. Do before Bangkok departure.</div>
-  </div>
-</div>
 </div>
 
 <!-- PROJECTS -->
 <div class="sec">
-  <div class="sec-title">Projects <span class="badge" style="background:rgba(248,113,113,0.1);color:var(--red)">2 CRITICAL</span></div>
-  <div class="proj-card critical"><div class="proj-header" data-target="proj-lorain-repair-i" onclick="var t=document.getElementById(this.dataset.target);var c=this.querySelector('.proj-chevron');if(t.style.display==='none'){t.style.display='block';c.innerHTML='&#9650;'}else{t.style.display='none';c.innerHTML='&#9660;'}"><div class="proj-title-wrap"><div class="proj-title">Lorain Repair/Inspection</div><div class="proj-subtitle">505 W 25th St, Lorain OH</div></div><div class="proj-right"><div class="proj-badge critical">CRITICAL</div><div class="proj-progress">0/5 done</div><div class="proj-deadline soon">May 31 (12d)</div></div><span class="proj-chevron">&#9650;</span></div><div class="proj-tasks" id="proj-lorain-repair-i" style="display:block"><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Follow up Angel/Tactical — confirm repairs scheduled</span><div class="proj-task-meta"><span class="owner-garry">Garry</span><span class="task-due">May 16</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Contractor on-site for repairs</span><div class="proj-task-meta"><span class="owner-external">External</span><span class="task-due">May 26</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">All repairs complete</span><div class="proj-task-meta"><span class="owner-external">External</span><span class="task-due">May 29</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">HQS Inspection</span><div class="proj-task-meta"><span class="owner-external">External</span><span class="task-due">May 31</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Inspection PASS confirmed</span><div class="proj-task-meta"><span class="owner-external">External</span><span class="task-due">May 31</span></div></div></div></div><div class="proj-card in-progress"><div class="proj-header" data-target="proj-wilborn-rehab--" onclick="var t=document.getElementById(this.dataset.target);var c=this.querySelector('.proj-chevron');if(t.style.display==='none'){t.style.display='block';c.innerHTML='&#9650;'}else{t.style.display='none';c.innerHTML='&#9660;'}"><div class="proj-title-wrap"><div class="proj-title">Wilborn Rehab & Re-Let</div><div class="proj-subtitle">5361 Wilborn Dr, STL MO</div></div><div class="proj-right"><div class="proj-badge in-progress">IN PROGRESS</div><div class="proj-progress">3/7 done</div></div><span class="proj-chevron">&#9650;</span></div><div class="proj-tasks" id="proj-wilborn-rehab--" style="display:block"><div class="proj-task"><span class="proj-task-icon">&#10003;</span><span class="proj-task-text done">Eviction executed</span><div class="proj-task-meta"><span class="owner-garry">Garry</span><span class="task-due">Apr 21</span></div></div><div class="proj-task"><span class="proj-task-icon">&#10003;</span><span class="proj-task-text done">Locksmith + rekey complete</span><div class="proj-task-meta"><span class="owner-external">External</span><span class="task-due">Apr 21</span></div></div><div class="proj-task"><span class="proj-task-icon">&#10003;</span><span class="proj-task-text done">Lawn cleanup done</span><div class="proj-task-meta"><span class="owner-external">External</span><span class="task-due">Apr 21</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Contractor quote for repairs</span><div class="proj-task-meta"><span class="owner-garry">Garry</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Repairs complete</span><div class="proj-task-meta"><span class="owner-external">External</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">List for re-let via Avenue</span><div class="proj-task-meta"><span class="owner-garry">Garry</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">New S8 tenant placed</span><div class="proj-task-meta"><span class="owner-external">External</span></div></div></div></div><div class="proj-card in-progress"><div class="proj-header" data-target="proj-b2b---tactical-" onclick="var t=document.getElementById(this.dataset.target);var c=this.querySelector('.proj-chevron');if(t.style.display==='none'){t.style.display='block';c.innerHTML='&#9650;'}else{t.style.display='none';c.innerHTML='&#9660;'}"><div class="proj-title-wrap"><div class="proj-title">B2B → Tactical/Angel Changeover</div><div class="proj-subtitle">Ohio PM Transition</div></div><div class="proj-right"><div class="proj-badge in-progress">IN PROGRESS</div><div class="proj-progress">1/4 done</div></div><span class="proj-chevron">&#9660;</span></div><div class="proj-tasks" id="proj-b2b---tactical-" style="display:none"><div class="proj-task"><span class="proj-task-icon">&#10003;</span><span class="proj-task-text done">B2B Realty terminated</span><div class="proj-task-meta"><span class="owner-garry">Garry</span><span class="task-due">Apr 01</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Tactical/Angel onboarding confirmed</span><div class="proj-task-meta"><span class="owner-external">External</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Both properties transferred to new PM</span><div class="proj-task-meta"><span class="owner-external">External</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">First statement received from Tactical/Angel</span><div class="proj-task-meta"><span class="owner-garry">Garry</span></div></div></div></div><div class="proj-card in-progress"><div class="proj-header" data-target="proj-hazelcrest-sale" onclick="var t=document.getElementById(this.dataset.target);var c=this.querySelector('.proj-chevron');if(t.style.display==='none'){t.style.display='block';c.innerHTML='&#9650;'}else{t.style.display='none';c.innerHTML='&#9660;'}"><div class="proj-title-wrap"><div class="proj-title">Hazelcrest Sale</div><div class="proj-subtitle">7596 Hazelcrest Dr, Hazelwood MO</div></div><div class="proj-right"><div class="proj-badge in-progress">IN PROGRESS</div><div class="proj-progress">1/4 done</div></div><span class="proj-chevron">&#9660;</span></div><div class="proj-tasks" id="proj-hazelcrest-sale" style="display:none"><div class="proj-task"><span class="proj-task-icon">&#10003;</span><span class="proj-task-text done">Listed for sale</span><div class="proj-task-meta"><span class="owner-external">External</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Offer received</span><div class="proj-task-meta"><span class="owner-external">External</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Contract signed</span><div class="proj-task-meta"><span class="owner-patrick">Patrick</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Close + roll proceeds into 2 financed properties</span><div class="proj-task-meta"><span class="owner-patrick">Patrick</span></div></div></div></div><div class="proj-card in-progress"><div class="proj-header" data-target="proj-kenilworth-leas" onclick="var t=document.getElementById(this.dataset.target);var c=this.querySelector('.proj-chevron');if(t.style.display==='none'){t.style.display='block';c.innerHTML='&#9650;'}else{t.style.display='none';c.innerHTML='&#9660;'}"><div class="proj-title-wrap"><div class="proj-title">Kenilworth Lease Increase</div><div class="proj-subtitle">124 Kenilworth Ave, Painesville OH</div></div><div class="proj-right"><div class="proj-badge in-progress">IN PROGRESS</div><div class="proj-progress">0/5 done</div></div><span class="proj-chevron">&#9660;</span></div><div class="proj-tasks" id="proj-kenilworth-leas" style="display:none"><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Confirm tenant/vacancy status with new PM</span><div class="proj-task-meta"><span class="owner-garry">Garry</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Review current lease terms + FMR</span><div class="proj-task-meta"><span class="owner-garry">Garry</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Issue lease increase to market rate</span><div class="proj-task-meta"><span class="owner-external">External</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">New lease signed at increased rate</span><div class="proj-task-meta"><span class="owner-external">External</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">First payment at new rate received</span><div class="proj-task-meta"><span class="owner-garry">Garry</span></div></div></div></div><div class="proj-card critical"><div class="proj-header" data-target="proj-sleek-closeout" onclick="var t=document.getElementById(this.dataset.target);var c=this.querySelector('.proj-chevron');if(t.style.display==='none'){t.style.display='block';c.innerHTML='&#9650;'}else{t.style.display='none';c.innerHTML='&#9660;'}"><div class="proj-title-wrap"><div class="proj-title">Sleek Closeout</div><div class="proj-subtitle">Legal — Jun 2 deadline</div></div><div class="proj-right"><div class="proj-badge critical">CRITICAL</div><div class="proj-progress">0/3 done</div><div class="proj-deadline soon">Jun 02 (14d)</div></div><span class="proj-chevron">&#9660;</span></div><div class="proj-tasks" id="proj-sleek-closeout" style="display:none"><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Review deed documents</span><div class="proj-task-meta"><span class="owner-patrick">Patrick</span><span class="task-due">May 30</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Sign deed via Sleek</span><div class="proj-task-meta"><span class="owner-patrick">Patrick</span><span class="task-due">Jun 02</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Closeout confirmed</span><div class="proj-task-meta"><span class="owner-garry">Garry</span><span class="task-due">Jun 02</span></div></div></div></div><div class="proj-card in-progress"><div class="proj-header" data-target="proj-bkk-move-prep" onclick="var t=document.getElementById(this.dataset.target);var c=this.querySelector('.proj-chevron');if(t.style.display==='none'){t.style.display='block';c.innerHTML='&#9650;'}else{t.style.display='none';c.innerHTML='&#9660;'}"><div class="proj-title-wrap"><div class="proj-title">BKK Move Prep</div><div class="proj-subtitle">Target departure Jul 1</div></div><div class="proj-right"><div class="proj-badge in-progress">IN PROGRESS</div><div class="proj-progress">1/5 done</div><div class="proj-deadline ok">Jul 01 (43d)</div></div><span class="proj-chevron">&#9660;</span></div><div class="proj-tasks" id="proj-bkk-move-prep" style="display:none"><div class="proj-task"><span class="proj-task-icon">&#10003;</span><span class="proj-task-text done">Banking stack set up (Wise + KBank + Mercury)</span><div class="proj-task-meta"><span class="owner-garry">Garry</span><span class="task-due">Apr 01</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Flights booked</span><div class="proj-task-meta"><span class="owner-patrick">Patrick</span><span class="task-due">Jun 01</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Accommodation secured (Bangkok finder running)</span><div class="proj-task-meta"><span class="owner-garry">Garry</span><span class="task-due">Jun 15</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">Thai SIM arranged</span><div class="proj-task-meta"><span class="owner-patrick">Patrick</span><span class="task-due">Jul 01</span></div></div><div class="proj-task"><span class="proj-task-icon">&#9675;</span><span class="proj-task-text">AU affairs handed off (mail, accounts)</span><div class="proj-task-meta"><span class="owner-garry">Garry</span><span class="task-due">Jun 25</span></div></div></div></div>
-</div>
-
-<!-- DEAL PIPELINE -->
-<div class="sec">
-  <div class="sec-title">Deal Pipeline <span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">0 contract · 0 offer · 2 watch</span></div>
-  <div class="pipe-stage-label" style="color:var(--green)">UNDER CONTRACT <span class="pipe-count">0</span></div><div class="pipe-empty">Nothing under contract</div><div class="pipe-stage-label" style="color:var(--orange)">OFFER SUBMITTED / INSPECTION <span class="pipe-count">0</span></div><div class="pipe-empty">No active offers</div><div class="pipe-stage-label" style="color:var(--blue)">WATCHLIST <span class="pipe-count">2</span></div><div class="pipe-row pipe-watch">
-  <div class="pipe-row-top">
-    <div class="pipe-addr">311 Superior Dr</div>
-    <div class="pipe-price">$109,900 · 3BR</div>
-  </div>
-  <div class="pipe-pros">+ Proven 63135 zip (same as Fenwick), clean interior, decent kitchen, 3 proper bedrooms on main floor</div>
-  <div class="pipe-cons">- 3BR only (prefers 4BR), garage has internal access to basement (can't lock separately), slope/retaining wall concern, 20</div>
-  <div class="pipe-meta">maybe</div>
-  <div class="pipe-note">Would only work at lower price OR if current rent is higher than Zillow history suggests. Need lease info to confirm.</div>
-</div><div class="pipe-row pipe-watch">
-  <div class="pipe-row-top">
-    <div class="pipe-addr">1427 Fairmeadows Ln</div>
-    <div class="pipe-price">$115,000 · 4BR</div>
-  </div>
-  <div class="pipe-pros">+ 4BR, 63138 Spanish Lake, decent neighborhood street view, crime 16/mile, HQS Good, manageable condition</div>
-  <div class="pipe-cons">- Tenant-occupied as-is — need current rent and lease expiry. Floor plan suggests only 2BR main floor + basement. Need to </div>
-  <div class="pipe-meta">pending_lease_info · Min rent needed: $1,442/mo</div>
-  <div class="pipe-note">HOLD — compile with other watchlist properties and route through Lindia to get lease info from listing agent.</div>
-</div>
-</div>
-
-<!-- ACTIVE DEALS -->
-<div class="sec">
-  <div class="sec-title">Active Deals </div>
-  <div class="empty">No active deals — Lindia watching 63135/36/37</div>
-</div>
-
-<!-- ACTIVE THREADS -->
-<div class="sec">
-  <div class="sec-title">Active Workstreams · 4</div>
+  <div class="sec-title">Projects <span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">7 active</span></div>
   
-<div class="thread-row">
-  <div class="thread-name">🔥 505 W 25th — Re-cert repairs [P0]</div>
-  <div class="thread-status">Failed Mar inspection</div>
+<details class="proj-card" open>
+  <summary class="proj-summary">
+    <div class="proj-title-row">
+      <span class="proj-title">Lorain Repair/Inspection</span>
+      <span class="proj-status" style="color:#f87171">CRITICAL <span style="color:#a0a0a8;font-size:10px;font-weight:600">· May 31 (13d)</span></span>
+    </div>
+    <div class="proj-bar-wrap">
+      <div class="proj-bar-fill" style="width:0%"></div>
+    </div>
+    <div class="proj-progress-label">0/5 done</div>
+  </summary>
+  <div class="proj-subtasks">
+    
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Follow up Angel/Tactical — confirm repairs scheduled</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
 </div>
-<div class="thread-row">
-  <div class="thread-name">🔥 Sleek UHF closeout [P0]</div>
-  <div class="thread-status">Deed of Loan Forgiveness due May 13 (today)</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Contractor on-site for repairs</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
 </div>
-<div class="thread-row">
-  <div class="thread-name">🔥 Wilborn rehab [P0]</div>
-  <div class="thread-status">Contractor fell through</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">All repairs complete</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
 </div>
-<div class="thread-row">
-  <div class="thread-name">🔥 B2B Ohio → Tactical/Angel handover [P1]</div>
-  <div class="thread-status">May 16 transition deadline</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">HQS Inspection</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Inspection PASS confirmed</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+  </div>
+</details>
+<details class="proj-card">
+  <summary class="proj-summary">
+    <div class="proj-title-row">
+      <span class="proj-title">Wilborn Rehab &amp; Re-Let</span>
+      <span class="proj-status" style="color:#fb923c">IN PROGRESS</span>
+    </div>
+    <div class="proj-bar-wrap">
+      <div class="proj-bar-fill" style="width:43%"></div>
+    </div>
+    <div class="proj-progress-label">3/7 done</div>
+  </summary>
+  <div class="proj-subtasks">
+    
+<div class="st-row">
+  <span class="st-done">&#10003;</span>
+  <span class="st-text" style="color:#5a5a64;text-decoration:line-through">Eviction executed</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-done">&#10003;</span>
+  <span class="st-text" style="color:#5a5a64;text-decoration:line-through">Locksmith + rekey complete</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-done">&#10003;</span>
+  <span class="st-text" style="color:#5a5a64;text-decoration:line-through">Lawn cleanup done</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Contractor quote for repairs</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Repairs complete</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">List for re-let via Avenue</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">New S8 tenant placed</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+  </div>
+</details>
+<details class="proj-card">
+  <summary class="proj-summary">
+    <div class="proj-title-row">
+      <span class="proj-title">B2B → Tactical/Angel Changeover</span>
+      <span class="proj-status" style="color:#fb923c">IN PROGRESS</span>
+    </div>
+    <div class="proj-bar-wrap">
+      <div class="proj-bar-fill" style="width:25%"></div>
+    </div>
+    <div class="proj-progress-label">1/4 done</div>
+  </summary>
+  <div class="proj-subtasks">
+    
+<div class="st-row">
+  <span class="st-done">&#10003;</span>
+  <span class="st-text" style="color:#5a5a64;text-decoration:line-through">B2B Realty terminated</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Tactical/Angel onboarding confirmed</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Both properties transferred to new PM</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">First statement received from Tactical/Angel</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+  </div>
+</details>
+<details class="proj-card">
+  <summary class="proj-summary">
+    <div class="proj-title-row">
+      <span class="proj-title">Hazelcrest Sale</span>
+      <span class="proj-status" style="color:#fb923c">IN PROGRESS</span>
+    </div>
+    <div class="proj-bar-wrap">
+      <div class="proj-bar-fill" style="width:25%"></div>
+    </div>
+    <div class="proj-progress-label">1/4 done</div>
+  </summary>
+  <div class="proj-subtasks">
+    
+<div class="st-row">
+  <span class="st-done">&#10003;</span>
+  <span class="st-text" style="color:#5a5a64;text-decoration:line-through">Listed for sale</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Offer received</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Contract signed</span>
+  <span class="st-owner" style="color:#fb923c">Patrick</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Close + roll proceeds into 2 financed properties</span>
+  <span class="st-owner" style="color:#fb923c">Patrick</span>
+</div>
+  </div>
+</details>
+<details class="proj-card">
+  <summary class="proj-summary">
+    <div class="proj-title-row">
+      <span class="proj-title">Kenilworth Lease Increase</span>
+      <span class="proj-status" style="color:#fb923c">IN PROGRESS</span>
+    </div>
+    <div class="proj-bar-wrap">
+      <div class="proj-bar-fill" style="width:0%"></div>
+    </div>
+    <div class="proj-progress-label">0/5 done</div>
+  </summary>
+  <div class="proj-subtasks">
+    
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Confirm tenant/vacancy status with new PM</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Review current lease terms + FMR</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Issue lease increase to market rate</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">New lease signed at increased rate</span>
+  <span class="st-owner" style="color:#a0a0a8">External</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">First payment at new rate received</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+  </div>
+</details>
+<details class="proj-card" open>
+  <summary class="proj-summary">
+    <div class="proj-title-row">
+      <span class="proj-title">Sleek Closeout</span>
+      <span class="proj-status" style="color:#f87171">CRITICAL <span style="color:#a0a0a8;font-size:10px;font-weight:600">· Jun 02 (15d)</span></span>
+    </div>
+    <div class="proj-bar-wrap">
+      <div class="proj-bar-fill" style="width:0%"></div>
+    </div>
+    <div class="proj-progress-label">0/3 done</div>
+  </summary>
+  <div class="proj-subtasks">
+    
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Review deed documents</span>
+  <span class="st-owner" style="color:#fb923c">Patrick</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Sign deed via Sleek</span>
+  <span class="st-owner" style="color:#fb923c">Patrick</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Closeout confirmed</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+  </div>
+</details>
+<details class="proj-card">
+  <summary class="proj-summary">
+    <div class="proj-title-row">
+      <span class="proj-title">BKK Move Prep</span>
+      <span class="proj-status" style="color:#fb923c">IN PROGRESS <span style="color:#a0a0a8;font-size:10px;font-weight:600">· Jul 01 (44d)</span></span>
+    </div>
+    <div class="proj-bar-wrap">
+      <div class="proj-bar-fill" style="width:20%"></div>
+    </div>
+    <div class="proj-progress-label">1/5 done</div>
+  </summary>
+  <div class="proj-subtasks">
+    
+<div class="st-row">
+  <span class="st-done">&#10003;</span>
+  <span class="st-text" style="color:#5a5a64;text-decoration:line-through">Banking stack set up (Wise + KBank + Mercury)</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Flights booked</span>
+  <span class="st-owner" style="color:#fb923c">Patrick</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Accommodation secured (Bangkok finder running)</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">Thai SIM arranged</span>
+  <span class="st-owner" style="color:#fb923c">Patrick</span>
+</div>
+<div class="st-row">
+  <span class="st-pending">&#9675;</span>
+  <span class="st-text">AU affairs handed off (mail, accounts)</span>
+  <span class="st-owner" style="color:#60a5fa">Garry</span>
+</div>
+  </div>
+</details>
+</div>
+
+<!-- NEEDS PATRICK -->
+<div class="sec">
+  <div class="sec-title">Needs Patrick <span class="badge">6 items</span></div>
+  
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">1</div>
+  <div class="need-body">
+    <div class="need-title">B2B Property Management termination effective (Ohio)</div>
+    <div class="need-ctx">30-day notice from Apr 16 lands today. Verify B2B has acknowledged + initiated handover of remaining records. 505 W 25th…</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">2</div>
+  <div class="need-body">
+    <div class="need-title">ATO follow-up call 13 28 66 (SBR + BAS reallocation)</div>
+    <div class="need-ctx">Patrick needs to call ATO 13 28 66 about: SBR 001 write-off $36,885.64 + BAS 006 reallocation $8,283. Reference Receipt …</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">3</div>
+  <div class="need-body">
+    <div class="need-title">DTV visa application deadline ~Jun 1 (25 business days processing)</div>
+    <div class="need-ctx">Patrick targeting Jul 1 Bangkok departure. DTV visa = 25 business days to process. Application must be submitted by ~Jun…</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">4</div>
+  <div class="need-body">
+    <div class="need-title">Frontier contractor — balloon property (currently vacant)</div>
+    <div class="need-ctx">Patrick raised this as a dropped ball — Garry was meant to be handling it but the thread isn't surfacing in command cent…</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#60a5fa">
+  <div class="need-num">5</div>
+  <div class="need-body">
+    <div class="need-title">Super consolidation</div>
+    <div class="need-ctx">Open item from yesterday's session. Patrick has multiple super accounts that should consolidate before becoming AU non-r…</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#60a5fa">
+  <div class="need-num">6</div>
+  <div class="need-body">
+    <div class="need-title">AU residency exit actions — zero progress since Feb 24</div>
+    <div class="need-ctx">Major life-admin gap. Bangkok move targeted Jul 1 = 9 weeks away. AU residency exit list (Medicare, super, ATO non-resid…</div>
+  </div>
 </div>
 </div>
 
 <!-- WAITING ON -->
 <div class="sec">
-  <div class="sec-title">Waiting On · 5 items</div>
+  <div class="sec-title">Waiting On · 4 items</div>
   
 <div class="wait-row">
-  <div class="wait-item">Fenwick April HAP — ~A$2,026 owed</div>
-  <div class="wait-from">Jenna / Evernest</div>
-</div>
-<div class="wait-row">
   <div class="wait-item">Sleek Deed of Loan Forgiveness</div>
-  <div class="wait-from">Gabriela / Sleek</div>
+  <div class="wait-from" style="color:#f87171">Gabriela · May 13 — 5d OVERDUE</div>
 </div>
 <div class="wait-row">
-  <div class="wait-item">W25th LMHA payee change + reinspection confirmation</div>
-  <div class="wait-from">Angel (Tactical) / Gary Farnsworth (Raise Up)</div>
+  <div class="wait-item">Wilborn contractor quote</div>
+  <div class="wait-from">Heather (Avenue) · Awaiting new bids</div>
 </div>
 <div class="wait-row">
-  <div class="wait-item">B2B June 10 wire — net proceeds + Dec HAP $1,278</div>
-  <div class="wait-from">Seth / B2B Realty</div>
+  <div class="wait-item">B2B Ohio — Michael Drew response</div>
+  <div class="wait-from">B2B AppFolio · May 16 transition deadline</div>
 </div>
 <div class="wait-row">
-  <div class="wait-item">Avenue May statement — 4x STL income</div>
-  <div class="wait-from">Heather / Avenue Residential</div>
+  <div class="wait-item">Fenwick April HAP</div>
+  <div class="wait-from">Evernest/Jenna · Reply pending (May 9 deadline passed)</div>
+</div>
+</div>
+
+<!-- ACTIVE THREADS -->
+<div class="sec">
+  <div class="sec-title">Active Workstreams · 8</div>
+  
+<div class="thread-row">
+  <div class="thread-name">505 W 25th — Re-cert repairs [P0]</div>
+  <div class="thread-status">Failed Mar inspection. Re-inspection May 31. Voucher at risk if fails. · 2 open · 1 waiting</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Sleek UHF closeout [P0]</div>
+  <div class="thread-status">Deed of Loan Forgiveness due May 13 (today). ASIC deregistration ~Jun 2 hard deadline. Gates Bangkok departure. · 1 open · 1 waiting</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Wilborn rehab [P0]</div>
+  <div class="thread-status">Contractor fell through. Heather sourcing new bids. Vacant — every week costs. · 2 open · 1 waiting</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">B2B Ohio → Tactical/Angel handover [P1]</div>
+  <div class="thread-status">May 16 transition deadline. Michael Drew response pending. Angel Chaney submitting LMHA + Lake County payee change. · 3 open · 1 waiting · 2 in progress</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Bangkok departure [P1]</div>
+  <div class="thread-status">Jun 30 hard deadline. Tourist visa (60+30). DTV applied. Departing with Laura 2026-05-17. · 2 open</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Kenilworth zero-income FIRE [P1]</div>
+  <div class="thread-status">5-month zero-income bleed. Cashflow stopped. Solving root cause.</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Credit pipeline (US) [P2]</div>
+  <div class="thread-status">Personal + Empire Investing credit building. Mercury/OpenSky/Capital One/DUNS/Net-30.</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Hazelcrest sale [P2]</div>
+  <div class="thread-status">Listed for sale. GW Carter handling FIRPTA. Capital freed rolls into 2 STL financed doors. · 1 open · 1 in progress</div>
+</div>
+</div>
+
+<!-- DEAL PIPELINE -->
+<div class="sec">
+  <div class="sec-title">Deal Pipeline <span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">0 contracts · 1 watchlist</span></div>
+  <div class="pipe-stage-label" style="color:var(--green)">UNDER CONTRACT <span class="pipe-count">0</span></div>
+  <div class="pipe-empty">No active contracts.</div>
+  <div class="pipe-stage-label" style="color:var(--blue)">WATCHLIST <span class="pipe-count">1</span></div>
+  
+<div class="pipe-row pipe-watch">
+  <div class="pipe-row-top">
+    <div class="pipe-addr">1427 Fairmeadows Ln</div>
+    <div class="pipe-price">$115,000 · 4BR</div>
+  </div>
+  <div class="pipe-pros">+ 4BR, HQS Good</div>
+  <div class="pipe-cons">- Need current rent + lease expiry. Min $1,442/mo required.</div>
+  <div class="pipe-meta">63138 Spanish Lake · lease info pending</div>
+  <div class="pipe-note">HOLD — Heather to get lease info from listing agent.</div>
 </div>
 </div>
 
 <!-- PORTFOLIO -->
 <div class="sec">
-  <div class="sec-title">Portfolio · 6 doors · re-tenant windows</div>
+  <div class="sec-title">Portfolio · 6 doors</div>
   <div class="props">
+  
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net">A$1,381</div>
+    <div class="prop-net">A$1,365</div>
     <div class="prop-grade" style="color:#34d399">A</div>
   </div>
   <div class="prop-addr">505 W 25th St</div>
-  <div class="prop-retenant">+$9/mo at re-tenant · 13mo left</div>
+  <div class="prop-retenant" style="color:var(--dim)">Leased · Ohio</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net">A$432</div>
+    <div class="prop-net">A$427</div>
     <div class="prop-grade" style="color:#f87171">SELL</div>
   </div>
-  <div class="prop-addr">7596 Hazelcrest Dr Unit F</div>
-  <div class="prop-retenant" style="color:#f87171">SELLING</div>
+  <div class="prop-addr">7596 Hazelcrest Dr</div>
+  <div class="prop-retenant" style="color:#f87171">Listed for sale</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net">A$1,483</div>
+    <div class="prop-net">A$1,466</div>
     <div class="prop-grade" style="color:#fbbf24">B</div>
   </div>
   <div class="prop-addr">132 Fenwick Dr</div>
-  <div class="prop-retenant">+$121/mo at re-tenant · 3mo left</div>
+  <div class="prop-retenant" style="color:var(--dim)">Section 8 · MO</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net">A$1,361</div>
-    <div class="prop-grade" style="color:#f87171">C</div>
+    <div class="prop-net">A$1,346</div>
+    <div class="prop-grade" style="color:#fbbf24">B</div>
   </div>
   <div class="prop-addr">5361 Wilborn Dr</div>
-  <div class="prop-retenant">+$171/mo at re-tenant · 7mo left</div>
+  <div class="prop-retenant" style="color:#fb923c">VACANT — rehab pending</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net">A$1,404</div>
+    <div class="prop-net">A$1,389</div>
     <div class="prop-grade" style="color:#34d399">A</div>
   </div>
   <div class="prop-addr">516 Alcove Ave</div>
-  <div class="prop-retenant">+$81/mo at re-tenant · 9mo left</div>
+  <div class="prop-retenant" style="color:var(--dim)">Section 8 · MO</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net">A$836</div>
+    <div class="prop-net">A$826</div>
     <div class="prop-grade" style="color:#fbbf24">B</div>
   </div>
   <div class="prop-addr">124 Kenilworth Ave</div>
-  <div class="prop-retenant">+$32/mo at re-tenant · 10mo left</div>
-</div></div>
+  <div class="prop-retenant" style="color:var(--dim)">Ohio</div>
+</div>
+  </div>
 </div>
 
-<!-- INCOME -->
+<!-- HAP -->
 <div class="sec">
-  <div class="sec-title">Income · May 2026 <span class="badge" style="background:rgba(52,211,153,0.1);color:var(--green)">49% collected</span></div>
-  <div class="income-tracker">
-<div class="income-hdr">
-  <span>Source</span><span>Expected</span><span>Collected</span><span>Gap</span>
+  <div class="sec-title">HAP 2026-05 · 0/6 received</div>
+  <div class="hap-grid">
+  
+<div class="hap-tile">
+  <div class="hap-name">505 W 25th</div>
+  <div class="hap-amt" style="color:#fbbf24">$1,383</div>
+  <div class="hap-status" style="color:#fbbf24">PENDING</div>
+</div>
+<div class="hap-tile">
+  <div class="hap-name">Hazelcrest</div>
+  <div class="hap-amt" style="color:#fbbf24">$775</div>
+  <div class="hap-status" style="color:#fbbf24">PENDING</div>
+</div>
+<div class="hap-tile">
+  <div class="hap-name">Fenwick</div>
+  <div class="hap-amt" style="color:#fbbf24">$1,450</div>
+  <div class="hap-status" style="color:#fbbf24">PENDING</div>
+</div>
+<div class="hap-tile">
+  <div class="hap-name">Wilborn</div>
+  <div class="hap-amt" style="color:#fbbf24">$1,400</div>
+  <div class="hap-status" style="color:#fbbf24">PENDING</div>
+</div>
+<div class="hap-tile">
+  <div class="hap-name">Alcove</div>
+  <div class="hap-amt" style="color:#fbbf24">$1,490</div>
+  <div class="hap-status" style="color:#fbbf24">PENDING</div>
+</div>
+<div class="hap-tile">
+  <div class="hap-name">Kenilworth</div>
+  <div class="hap-amt" style="color:#fbbf24">$1,360</div>
+  <div class="hap-status" style="color:#fbbf24">PENDING</div>
+</div>
+  </div>
 </div>
 
-<div class="income-row">
-  <span class="inc-lbl">⏳ Avenue · 4x STL<span style="font-size:9px;opacity:0.5;margin-left:6px">Remits end of month</span></span>
-  <span class="inc-exp">A$4,680</span>
-  <span class="inc-col" style="color:#fbbf24">A$0</span>
-  <span class="inc-gap" style="color:#fbbf24">−A$4,680</span>
-</div>
-<div class="income-row">
-  <span class="inc-lbl">✓ B2B · Ohio final<span style="font-size:9px;opacity:0.5;margin-left:6px">May final remit</span></span>
-  <span class="inc-exp">A$1,677</span>
-  <span class="inc-col" style="color:#34d399">A$3,115</span>
-  <span class="inc-gap" style="color:#34d399">+A$1,438</span>
-</div>
-<div class="income-total">
-  <span>TOTAL · Day 18/31</span>
-  <span>A$6,356</span>
-  <span style="color:#fbbf24">A$3,115</span>
-  <span style="color:#fbbf24">49% collected</span>
-</div>
-<div class="prop-strip"><div class="prop-strip-item" style="color:#34d399"><span class="prop-strip-addr">505 W 25th St</span><span class="prop-strip-val">A$1,381/mo</span></div><div class="prop-strip-item" style="color:#f87171"><span class="prop-strip-addr">7596 Hazelcrest Dr Unit F</span><span class="prop-strip-val">SELLING</span></div><div class="prop-strip-item" style="color:#34d399"><span class="prop-strip-addr">132 Fenwick Dr</span><span class="prop-strip-val">A$1,483/mo</span></div><div class="prop-strip-item" style="color:#f87171"><span class="prop-strip-addr">5361 Wilborn Dr</span><span class="prop-strip-val">VACANT</span></div><div class="prop-strip-item" style="color:#34d399"><span class="prop-strip-addr">516 Alcove Ave</span><span class="prop-strip-val">A$1,404/mo</span></div><div class="prop-strip-item" style="color:#34d399"><span class="prop-strip-addr">124 Kenilworth Ave</span><span class="prop-strip-val">A$836/mo</span></div></div>
-<div class="inc-alert">⚠ 5361 Wilborn Dr VACANT — A$1,361/mo offline</div><div class="inc-alert">⚠ Fenwick Apr HAP — Evernest owes ~A$2,026. Legal trigger Tue May 19.</div>
-<div class="inc-note">Active net (excl. vacant): A$5,535/mo · Wise balance: $111,761 USD</div></div>
-</div>
-
-<!-- WINS -->
+<!-- COMPLETED LOG -->
 <div class="sec">
-  <div class="sec-title">Recent Wins · 48h</div>
-  <div class="empty">Building win cache...</div>
+  <div class="sec-title">Completed · Last 12</div>
+  
+<div class="done-row">
+  <div class="done-date">2026-05-15</div>
+  <div class="done-body">
+    <div class="done-item">Telegram Duplicate Fix</div>
+    <div class="done-detail">Mercury/OpenSky repeated daily pings eliminated. 3-day cooldown per milestone added permanently.</div>
+  </div>
+  <div class="done-cat" style="color:#60a5fa">system</div>
+</div>
+<div class="done-row">
+  <div class="done-date">2026-05-15</div>
+  <div class="done-body">
+    <div class="done-item">303 Midridge Dr Analysis</div>
+    <div class="done-detail">$101K, 4-bed, $600/mo CF, 35.6% CoC, DSCR 2.73. Active pipeline.</div>
+  </div>
+  <div class="done-cat" style="color:#34d399">portfolio</div>
+</div>
+<div class="done-row">
+  <div class="done-date">2026-05-14</div>
+  <div class="done-body">
+    <div class="done-item">Wise P&amp;L Pipeline</div>
+    <div class="done-detail">Full transaction ledger + monthly P&amp;L aggregator live. Morning brief wired. Daily 07:20.</div>
+  </div>
+  <div class="done-cat" style="color:#60a5fa">system</div>
+</div>
+<div class="done-row">
+  <div class="done-date">2026-05-14</div>
+  <div class="done-body">
+    <div class="done-item">STL Foreclosure Scrapers</div>
+    <div class="done-detail">3 scrapers live: MO Public Notices (daily), OH newspaper API (daily), STL Fidlar (weekly). Daily email digest top 5 STL leads at 06:15.</div>
+  </div>
+  <div class="done-cat" style="color:#60a5fa">system</div>
+</div>
+<div class="done-row">
+  <div class="done-date">2026-05-14</div>
+  <div class="done-body">
+    <div class="done-item">Stessa Account Live</div>
+    <div class="done-detail">6 properties added at app.stessa.com. Free accounting layer, Schedule E ready.</div>
+  </div>
+  <div class="done-cat" style="color:#fbbf24">finance</div>
+</div>
+<div class="done-row">
+  <div class="done-date">2026-05-14</div>
+  <div class="done-body">
+    <div class="done-item">Repair Agent Loop Fixed</div>
+    <div class="done-detail">credit-pipeline-watchdog patched with cooldown system. Was running 6,537x overnight.</div>
+  </div>
+  <div class="done-cat" style="color:#60a5fa">system</div>
+</div>
+<div class="done-row">
+  <div class="done-date">2026-05-14</div>
+  <div class="done-body">
+    <div class="done-item">PM Statements Pulled</div>
+    <div class="done-detail">Avenue + B2B April 2026 downloaded. Wilborn eviction complete, property vacant.</div>
+  </div>
+  <div class="done-cat" style="color:#34d399">portfolio</div>
+</div>
+<div class="done-row">
+  <div class="done-date">2026-05-12</div>
+  <div class="done-body">
+    <div class="done-item">Elmdale 272 — LOST (deal fell through)</div>
+    <div class="done-detail">Property lost before inspection window closed. No longer under contract.</div>
+  </div>
+  <div class="done-cat" style="color:#34d399">portfolio</div>
+</div>
+<div class="done-row">
+  <div class="done-date">2026-05-12</div>
+  <div class="done-body">
+    <div class="done-item">Bloodwork analysis complete</div>
+    <div class="done-detail">iMEDICAL results reviewed. E2/Prolactin/GGT elevated explained by alcohol + peak draw timing. Retest in 4-6 weeks. Supplements ordered (P5P, NAC).</div>
+  </div>
+  <div class="done-cat" style="color:#f472b6">health</div>
+</div>
+<div class="done-row">
+  <div class="done-date">2026-05-08</div>
+  <div class="done-body">
+    <div class="done-item">Cycle started — Test 250mg + Deca 200mg</div>
+    <div class="done-detail">Thu/Mon split from May 8. 125mg Test + 100mg Deca each pin.</div>
+  </div>
+  <div class="done-cat" style="color:#f472b6">health</div>
+</div>
+<div class="done-row">
+  <div class="done-date">2026-05-08</div>
+  <div class="done-body">
+    <div class="done-item">Telegram bots fully rebuilt + restarted</div>
+    <div class="done-detail">SyntaxError in personas.py fixed. Startup pings, crash alerts, auto-session-bridging added.</div>
+  </div>
+  <div class="done-cat" style="color:#60a5fa">system</div>
+</div>
+<div class="done-row">
+  <div class="done-date">2026-05-08</div>
+  <div class="done-body">
+    <div class="done-item">Sleek — May 8 final chase sent</div>
+    <div class="done-detail">Gabriela chased for Deed of Loan Forgiveness. Committed delivery by May 13.</div>
+  </div>
+  <div class="done-cat" style="color:#a78bfa">legal</div>
+</div>
 </div>
 
 <!-- FOOTER -->
 <div class="foot">
-  Auto-updated Mon May 18 2026 · 11:46 AM · 1 USD = 1.3973 AUD<br>
-  <span class="dot" style="background:#34d399"></span>Data 0min old ·
-  <span style="color:#34d399">● FX live</span> ·
+  Auto-updated Mon May 18 2026 · 11:50 AM · 1 AUD = 0.6350 USD<br>
+  <span class="dot" style="background:#34d399"></span>Live DB ·
+  <span style="color:#60a5fa">Bangkok 30d</span> ·
   <span style="color:var(--dim)">Garry 24/7</span>
 </div>
 
