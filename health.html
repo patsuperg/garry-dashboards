@@ -460,18 +460,15 @@ async function render() {
     document.getElementById("updated").textContent = "load error: " + e.message;
     document.getElementById("rings").innerHTML =
       '<div style="grid-column:1/-1;padding:20px;text-align:center;color:var(--red);font-size:13px">' +
-      'JSON fetch failed: ' + e.message + '<br><small style="color:var(--text-dim)">Pull to refresh. If persists, ping Chich.</small></div>';
+      'JSON fetch failed: ' + e.message + '<br><small style="color:var(--text-dim)">Auto-retrying in 30s…</small></div>';
+    // Fast retry on error — recover without Patrick touching anything
+    setTimeout(render, 30 * 1000);
   }
 }
 
 render();
-// Auto-refresh every 5 min
-setInterval(() => {
-  fetch("health-data.json?t=" + Date.now(), { cache: "no-store" })
-    .then(r => r.json())
-    .then(_ => render())
-    .catch(() => {});
-}, 5 * 60 * 1000);
+// Auto-refresh every 5 min (health-engine pushes new data every 15 min)
+setInterval(render, 5 * 60 * 1000);
 </script>
 </body>
 </html>
