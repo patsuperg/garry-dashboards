@@ -112,6 +112,16 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .st-text{font-size:12px;color:var(--text);flex:1;line-height:1.4}
 .st-owner{font-size:10px;font-weight:600;white-space:nowrap}
 
+/* INCOME TRACKER */
+.income-row{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:8px}
+.income-pm{font-size:12px;font-weight:600;color:var(--text);margin-bottom:6px}
+.income-nums{font-size:14px;font-weight:700;margin-bottom:6px}
+.income-sep{color:var(--dim);font-size:11px;font-weight:400}
+.income-exp{color:var(--sub);font-size:13px}
+.income-bar-wrap{width:100%;height:4px;background:#151518;border-radius:2px;overflow:hidden;margin-bottom:5px}
+.income-bar-fill{height:100%;border-radius:2px;transition:width 0.3s}
+.income-status{font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
+
 /* DONE LOG */
 .done-row{display:flex;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:6px;gap:10px}
 .done-date{font-size:10px;color:var(--dim);white-space:nowrap;min-width:68px;padding-top:2px}
@@ -142,10 +152,10 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 <!-- HERO NUMBERS -->
 <div class="hero-grid">
   <div class="hero-main">
-    <div class="hero-num"><span class="cur">A$</span>4,800</div>
+    <div class="hero-num"><span class="cur">A$</span>5,549</div>
     <div class="hero-goal">of A$20,000/mo · North Star</div>
-    <div class="hero-bar"><div class="hero-fill" style="width:24%"></div></div>
-    <div class="hero-pct">24% · Gap A$15,200/mo</div>
+    <div class="hero-bar"><div class="hero-fill" style="width:28%"></div></div>
+    <div class="hero-pct">28% · Gap A$14,451/mo</div>
   </div>
   <div class="hero-side">
     <div class="side-tile">
@@ -153,8 +163,8 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
       <div class="side-l">Bangkok</div>
     </div>
     <div class="side-tile">
-      <div class="side-v" style="color:var(--gold)">1:1.5748</div>
-      <div class="side-l">USD/AUD</div>
+      <div class="side-v" style="color:var(--gold)">1.4009</div>
+      <div class="side-l">USD→AUD</div>
     </div>
   </div>
 </div>
@@ -485,23 +495,31 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 
 <!-- WAITING ON -->
 <div class="sec">
-  <div class="sec-title">Waiting On · 4 items</div>
+  <div class="sec-title">Waiting On · 6 items</div>
   
 <div class="wait-row">
+  <div class="wait-item">Fenwick April HAP ($1,450)</div>
+  <div class="wait-from">Jenna / Evernest (dispute ongoing, May 19 escalation) · </div>
+</div>
+<div class="wait-row">
   <div class="wait-item">Sleek Deed of Loan Forgiveness</div>
-  <div class="wait-from" style="color:#f87171">Gabriela · May 13 — 5d OVERDUE</div>
+  <div class="wait-from">Gabriela (Jun 2 hard deadline) · </div>
 </div>
 <div class="wait-row">
-  <div class="wait-item">Wilborn contractor quote</div>
-  <div class="wait-from">Heather (Avenue) · Awaiting new bids</div>
+  <div class="wait-item">Ohio HAP payee change → Tactical</div>
+  <div class="wait-from">Angel / Tactical (B2B → Tactical transfer pending) · </div>
 </div>
 <div class="wait-row">
-  <div class="wait-item">B2B Ohio — Michael Drew response</div>
-  <div class="wait-from">B2B AppFolio · May 16 transition deadline</div>
+  <div class="wait-item">B2B Dec HAP + trust breach resolution</div>
+  <div class="wait-from">Michael Drew / B2B (legal path Jun 10 if no resolution) · </div>
 </div>
 <div class="wait-row">
-  <div class="wait-item">Fenwick April HAP</div>
-  <div class="wait-from">Evernest/Jenna · Reply pending (May 9 deadline passed)</div>
+  <div class="wait-item">Avenue May rent statement</div>
+  <div class="wait-from">Heather / Avenue (STL 4 props, $3,349 USD expected, $0 received) · </div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">Wilborn contractor quotes</div>
+  <div class="wait-from">Darren / Dalou (new bids after first contractor fell through) · </div>
 </div>
 </div>
 
@@ -569,91 +587,79 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
   
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net">A$1,365</div>
+    <div class="prop-net" style="color:var(--green)">A$1,384</div>
     <div class="prop-grade" style="color:#34d399">A</div>
   </div>
   <div class="prop-addr">505 W 25th St</div>
-  <div class="prop-retenant" style="color:var(--dim)">Leased · Ohio</div>
+  <div class="prop-retenant" style="color:var(--dim)">BTR-managed, long lease</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net">A$427</div>
+    <div class="prop-net" style="color:var(--green)">A$433</div>
     <div class="prop-grade" style="color:#f87171">SELL</div>
   </div>
-  <div class="prop-addr">7596 Hazelcrest Dr</div>
-  <div class="prop-retenant" style="color:#f87171">Listed for sale</div>
+  <div class="prop-addr">7596 Hazelcrest Dr Unit F</div>
+  <div class="prop-retenant" style="color:#f87171">SELLING — HOA destroys returns. Hazelcrest countersi</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net">A$1,466</div>
+    <div class="prop-net" style="color:var(--green)">A$1,486</div>
     <div class="prop-grade" style="color:#fbbf24">B</div>
   </div>
   <div class="prop-addr">132 Fenwick Dr</div>
-  <div class="prop-retenant" style="color:var(--dim)">Section 8 · MO</div>
+  <div class="prop-retenant" style="color:var(--dim)">87% FMR achievable; re-tenant window 4 months</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net">A$1,346</div>
+    <div class="prop-net" style="color:#f87171">VACANT</div>
     <div class="prop-grade" style="color:#fbbf24">B</div>
   </div>
   <div class="prop-addr">5361 Wilborn Dr</div>
-  <div class="prop-retenant" style="color:#fb923c">VACANT — rehab pending</div>
+  <div class="prop-retenant" style="color:#f87171">Evernest claim pending; re-lease opportunity</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net">A$1,389</div>
+    <div class="prop-net" style="color:var(--green)">A$1,408</div>
     <div class="prop-grade" style="color:#34d399">A</div>
   </div>
   <div class="prop-addr">516 Alcove Ave</div>
-  <div class="prop-retenant" style="color:var(--dim)">Section 8 · MO</div>
+  <div class="prop-retenant" style="color:var(--dim)">Solid tenant, cosmetic-only maintenance</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net">A$826</div>
+    <div class="prop-net" style="color:var(--green)">A$838</div>
     <div class="prop-grade" style="color:#fbbf24">B</div>
   </div>
   <div class="prop-addr">124 Kenilworth Ave</div>
-  <div class="prop-retenant" style="color:var(--dim)">Ohio</div>
+  <div class="prop-retenant" style="color:var(--dim)">BTR-managed, tax appeal won</div>
 </div>
   </div>
 </div>
 
-<!-- HAP -->
+<!-- INCOME -->
 <div class="sec">
-  <div class="sec-title">HAP 2026-05 · 0/6 received</div>
-  <div class="hap-grid">
+  <div class="sec-title">Income May 2026 <span class="badge" style="background:rgba(52,211,153,0.1);color:var(--green)">A$3,123 of A$6,373</span></div>
   
-<div class="hap-tile">
-  <div class="hap-name">505 W 25th</div>
-  <div class="hap-amt" style="color:#fbbf24">$1,383</div>
-  <div class="hap-status" style="color:#fbbf24">PENDING</div>
-</div>
-<div class="hap-tile">
-  <div class="hap-name">Hazelcrest</div>
-  <div class="hap-amt" style="color:#fbbf24">$775</div>
-  <div class="hap-status" style="color:#fbbf24">PENDING</div>
-</div>
-<div class="hap-tile">
-  <div class="hap-name">Fenwick</div>
-  <div class="hap-amt" style="color:#fbbf24">$1,450</div>
-  <div class="hap-status" style="color:#fbbf24">PENDING</div>
-</div>
-<div class="hap-tile">
-  <div class="hap-name">Wilborn</div>
-  <div class="hap-amt" style="color:#fbbf24">$1,400</div>
-  <div class="hap-status" style="color:#fbbf24">PENDING</div>
-</div>
-<div class="hap-tile">
-  <div class="hap-name">Alcove</div>
-  <div class="hap-amt" style="color:#fbbf24">$1,490</div>
-  <div class="hap-status" style="color:#fbbf24">PENDING</div>
-</div>
-<div class="hap-tile">
-  <div class="hap-name">Kenilworth</div>
-  <div class="hap-amt" style="color:#fbbf24">$1,360</div>
-  <div class="hap-status" style="color:#fbbf24">PENDING</div>
-</div>
+<div class="income-row">
+  <div class="income-pm">Avenue (STL — 4 props)</div>
+  <div class="income-nums">
+    <span style="color:#f87171">A$0</span>
+    <span class="income-sep"> of </span>
+    <span class="income-exp">A$4,692</span>
   </div>
+  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:0%;background:#f87171"></div></div>
+  <div class="income-status" style="color:#f87171">A$4,692 OUTSTANDING</div>
+</div>
+<div class="income-row">
+  <div class="income-pm">B2B Ohio (phasing out)</div>
+  <div class="income-nums">
+    <span style="color:#34d399">A$3,123</span>
+    <span class="income-sep"> of </span>
+    <span class="income-exp">A$1,681</span>
+  </div>
+  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:100%;background:#34d399"></div></div>
+  <div class="income-status" style="color:#34d399">RECEIVED</div>
+</div>
 </div>
 
 <!-- COMPLETED LOG -->
@@ -760,7 +766,7 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 
 <!-- FOOTER -->
 <div class="foot">
-  Auto-updated Mon May 18 2026 · 12:30 PM · 1 AUD = 0.6350 USD<br>
+  Auto-updated Mon May 18 2026 · 12:45 PM · 1 USD = A$1.4009<br>
   <span class="dot" style="background:#34d399"></span>Live DB ·
   <span style="color:#60a5fa">Bangkok 30d</span> ·
   <span style="color:var(--dim)">Garry 24/7</span>
