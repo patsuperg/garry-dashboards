@@ -1,0 +1,151 @@
+{
+  "generated": "2026-05-19T05:35:18Z",
+  "summary": {
+    "net_monthly": 4936,
+    "gross_monthly": 7858,
+    "goal": 20000,
+    "gap": 15064,
+    "progress_pct": 24.7,
+    "properties_count": 6,
+    "vs_market_total": 679,
+    "last_updated": "2026-04-29"
+  },
+  "properties": [
+    {
+      "short": "505 W 25th St",
+      "state": "Ohio",
+      "pm": "Tactical",
+      "status": "ok",
+      "status_label": "Leased",
+      "gross_rent": 1383,
+      "net_income": 988,
+      "pm_fee": 124,
+      "market_rent": 1410,
+      "vs_market": 27,
+      "issues": [],
+      "status_note": "Leased S8"
+    },
+    {
+      "short": "Unit F 7596 Hazelcrest Dr",
+      "state": "Missouri",
+      "pm": "Avenue",
+      "status": "forsale",
+      "status_label": "For Sale",
+      "gross_rent": 775,
+      "net_income": 309,
+      "pm_fee": 70,
+      "market_rent": 984,
+      "vs_market": 209,
+      "issues": [
+        "$209/mo below market",
+        "High HOA $256/mo"
+      ],
+      "status_note": "LISTED FOR SALE \u2014 Apr 2026"
+    },
+    {
+      "short": "132 Fenwick Dr",
+      "state": "Missouri",
+      "pm": "Avenue",
+      "status": "ok",
+      "status_label": "Leased",
+      "gross_rent": 1450,
+      "net_income": 1061,
+      "pm_fee": 130,
+      "market_rent": 1450,
+      "vs_market": 0,
+      "issues": [],
+      "status_note": "Active"
+    },
+    {
+      "short": "5361 Wilborn Dr",
+      "state": "Missouri",
+      "pm": "Avenue",
+      "status": "warning",
+      "status_label": "Issues",
+      "gross_rent": 1400,
+      "net_income": 974,
+      "pm_fee": 126,
+      "market_rent": 1570,
+      "vs_market": 170,
+      "issues": [
+        "$170/mo below market"
+      ],
+      "status_note": "Active \u2014 $170/mo below market, rent increase opportunity"
+    },
+    {
+      "short": "516 Alcove Ave",
+      "state": "Missouri",
+      "pm": "Avenue",
+      "status": "ok",
+      "status_label": "Leased",
+      "gross_rent": 1490,
+      "net_income": 1005,
+      "pm_fee": 134,
+      "market_rent": 1570,
+      "vs_market": 80,
+      "issues": [],
+      "status_note": "Active"
+    },
+    {
+      "short": "124 Kenilworth Ave",
+      "state": "Ohio",
+      "pm": "Tactical",
+      "status": "zero",
+      "status_label": "Zero Income",
+      "gross_rent": 1360,
+      "net_income": 598,
+      "pm_fee": 122,
+      "market_rent": 1553,
+      "vs_market": 193,
+      "issues": [
+        "$193/mo below market",
+        "Only property with mortgage"
+      ],
+      "status_note": "\ud83d\udea8 ZERO-INCOME 5+ months \u2014 recovery starts post-May-1 payee-change"
+    }
+  ],
+  "bottlenecks": [
+    {
+      "rank": 1,
+      "severity": "critical",
+      "title": "124 Kenilworth Ave \u2014 Zero Income",
+      "desc": "$1,360/mo blocked. Recovery post payee-change.",
+      "impact": "$1,360/mo"
+    },
+    {
+      "rank": 2,
+      "severity": "warning",
+      "title": "Unit F 7596 Hazelcrest Dr \u2014 Below Market",
+      "desc": "$209/mo revenue leak vs market.",
+      "impact": "$209/mo"
+    },
+    {
+      "rank": 2,
+      "severity": "warning",
+      "title": "5361 Wilborn Dr \u2014 Below Market",
+      "desc": "$170/mo revenue leak vs market.",
+      "impact": "$170/mo"
+    },
+    {
+      "rank": 2,
+      "severity": "warning",
+      "title": "124 Kenilworth Ave \u2014 Below Market",
+      "desc": "$193/mo revenue leak vs market.",
+      "impact": "$193/mo"
+    },
+    {
+      "rank": 2,
+      "severity": "warning",
+      "title": "US Credit \u2014 Leverage Gap",
+      "desc": "Capital One approved, not delivered. 660\u2192700+ = 7%\u21926% loans.",
+      "impact": "$15K+/mo upside at scale"
+    },
+    {
+      "rank": 3,
+      "severity": "info",
+      "title": "Unit F 7596 Hazelcrest Dr \u2014 Listed for Sale",
+      "desc": "Capital redeploying into 2 STL acquisitions at 3-4x CF.",
+      "impact": "$309/mo to replace"
+    }
+  ]
+}
