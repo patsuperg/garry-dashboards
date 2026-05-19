@@ -97,11 +97,11 @@ def render():
     # Status filters — read from active-deals.json data file (DB-driven, not hardcoded facts)
     _contract_statuses = set(["".join(["UNDER"," CONTRACT"]), "CONTRACT SIGNED"])
     pipeline_under_contract = [d for d in deals if d.get("status", "").upper() in _contract_statuses]
-    pipeline_offer_submitted = [d for d in deals if d.get("status", "").upper() in ("OFFER SUBMITTED", "INSPECTION IN PROGRESS", "INSPECTION PAID")]
+    pipeline_offer_submitted = [d for d in deals if d.get("status", "").upper() in ("OFFER MADE", "OFFER SUBMITTED", "INSPECTION IN PROGRESS", "INSPECTION PAID")]
     pipeline_watchlist = watchlist_raw
 
     # ── Needs Patrick ──
-    needs = pending.get("needs_patrick", [])[:3]
+    needs = pending.get("needs_patrick", [])[:8]
     waiting = pending.get("waiting_on", [])[:5]
 
     # ── Projects Accordion ──
@@ -323,20 +323,30 @@ def render():
         addr = w.get("address", "").split(",")[0]
         asking = w.get("asking", 0)
         beds = w.get("beds", "?")
-        status_detail = w.get("status_detail", "")
         pros = w.get("pros", "")
         cons = w.get("cons", "")
-        min_rent = w.get("minimum_rent_needed")
         notes = w.get("notes", "")
-        min_rent_str = f' · Min rent needed: ${min_rent:,}/mo' if min_rent else ''
+        # Financials
+        fmr = w.get("fmr")
+        cf_aud = w.get("projected_cf_aud")
+        dscr = w.get("dscr")
+        coc = w.get("coc_pct")
+        garry_score = w.get("garry_score")
+        fin_parts = []
+        if fmr: fin_parts.append(f"FMR ${fmr:,}/mo")
+        if cf_aud: fin_parts.append(f"CF A${cf_aud:,}/mo")
+        if dscr: fin_parts.append(f"DSCR {dscr}x")
+        if coc: fin_parts.append(f"CoC {coc}%")
+        if garry_score: fin_parts.append(f"Score {garry_score}/100")
+        fin_str = " · ".join(fin_parts)
         return f"""<div class="pipe-row pipe-watch">
   <div class="pipe-row-top">
     <div class="pipe-addr">{addr}</div>
     <div class="pipe-price">${asking:,} · {beds}BR</div>
   </div>
+  {f'<div class="pipe-meta" style="color:var(--green);font-size:11px">{fin_str}</div>' if fin_str else ''}
   {f'<div class="pipe-pros">+ {pros[:120]}</div>' if pros else ''}
   {f'<div class="pipe-cons">- {cons[:120]}</div>' if cons else ''}
-  {f'<div class="pipe-meta">{status_detail}{min_rent_str}</div>' if status_detail or min_rent else ''}
   {f'<div class="pipe-note">{notes[:120]}</div>' if notes else ''}
 </div>"""
 
@@ -352,7 +362,7 @@ def render():
         pipeline_html += '<div class="pipe-empty">Nothing under contract</div>'
 
     # Offer Submitted / Inspection
-    pipeline_html += pipeline_stage_badge("OFFER SUBMITTED / INSPECTION", "var(--orange)", len(pipeline_offer_submitted))
+    pipeline_html += pipeline_stage_badge("OFFER MADE", "var(--orange)", len(pipeline_offer_submitted))
     if pipeline_offer_submitted:
         for d in pipeline_offer_submitted:
             pipeline_html += pipeline_offer_row(d)
@@ -360,7 +370,7 @@ def render():
         pipeline_html += '<div class="pipe-empty">No active offers</div>'
 
     # Watchlist
-    pipeline_html += pipeline_stage_badge("WATCHLIST", "var(--blue)", len(pipeline_watchlist))
+    pipeline_html += pipeline_stage_badge("WARM LEADS", "var(--blue)", len(pipeline_watchlist))
     if pipeline_watchlist:
         for w in pipeline_watchlist:
             pipeline_html += pipeline_watchlist_row(w)
@@ -782,7 +792,7 @@ body{{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple
 
 <!-- DEAL PIPELINE -->
 <div class="sec">
-  <div class="sec-title">Deal Pipeline <span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">{len(pipeline_under_contract)} contract · {len(pipeline_offer_submitted)} offer · {len(pipeline_watchlist)} watch</span></div>
+  <div class="sec-title">Deal Pipeline <span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">{len(pipeline_under_contract)} contract · {len(pipeline_offer_submitted)} offer · {len(pipeline_watchlist)} warm lead</span></div>
   {pipeline_html}
 </div>
 
