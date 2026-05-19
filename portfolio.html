@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Portfolio · Patrick</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050508;color:#f0f0f2;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 16px 48px}
+.wrap{max-width:600px;margin:0 auto}
+.hdr{text-align:center;padding:24px 0 4px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#5a5a64}
+
+/* HERO */
+.hero{text-align:center;padding:24px 0 16px}
+.hero-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:12px}
+.hero-num{font-size:72px;font-weight:900;line-height:1;letter-spacing:-3px;color:#34d399}
+.hero-goal{font-size:24px;color:#444;font-weight:400}
+.hero-label{font-size:11px;color:#555;margin-top:6px}
+
+/* PROGRESS BAR */
+.prog-wrap{margin:12px 0 20px;background:#0c0c10;border:1px solid #18181c;border-radius:10px;height:8px;overflow:hidden}
+.prog-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,#34d399,#22c55e);transition:width 0.6s ease}
+
+/* GRID METRICS */
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.metric{background:#0c0c10;border:1px solid #18181c;border-radius:13px;padding:14px 8px;text-align:center}
+.metric-l{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#666;margin-bottom:7px}
+.metric-v{font-size:20px;font-weight:800;line-height:1}
+.metric-u{font-size:10px;color:#555;margin-left:2px;font-weight:400}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,#1a1a20,transparent);margin:4px 0 20px}
+
+/* SECTION LABEL */
+.sec-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:12px}
+
+/* PROPERTY CARDS */
+.props{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.prop-card{background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:16px}
+.prop-card.status-ok{border-left:3px solid #34d399}
+.prop-card.status-warning{border-left:3px solid #fbbf24}
+.prop-card.status-critical,.prop-card.status-zero{border-left:3px solid #f87171}
+.prop-card.status-forsale{border-left:3px solid #A855F7}
+.prop-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.prop-addr{font-size:14px;font-weight:700;color:#f0f0f2}
+.prop-state{font-size:10px;color:#555;margin-top:2px}
+.prop-badge{font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:8px;font-weight:700;white-space:nowrap}
+.badge-ok{background:#0d2918;color:#34d399}
+.badge-warning{background:#2a2000;color:#fbbf24}
+.badge-zero,.badge-critical{background:#2a0808;color:#f87171}
+.badge-forsale{background:#1e0d2e;color:#A855F7}
+.prop-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.prop-stat{text-align:center}
+.prop-stat-l{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#555;margin-bottom:3px}
+.prop-stat-v{font-size:15px;font-weight:800}
+.prop-issues{margin-top:10px;font-size:11px;color:#666;line-height:1.5}
+.prop-issues span{color:#fbbf24}
+
+/* BOTTLENECKS */
+.bottlenecks{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.bn-card{background:#0c0c10;border:1px solid #18181c;border-radius:12px;padding:14px 16px}
+.bn-card.sev-critical{border-left:3px solid #f87171}
+.bn-card.sev-warning{border-left:3px solid #fbbf24}
+.bn-card.sev-info{border-left:3px solid #3b82f6}
+.bn-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.bn-title{font-size:13px;font-weight:700}
+.bn-impact{font-size:10px;color:#34d399;font-weight:700}
+.bn-desc{font-size:11px;color:#666;line-height:1.5}
+
+/* FOOT */
+.foot{text-align:center;font-size:10px;color:#2a2a30;padding:20px 0 8px;line-height:1.9;letter-spacing:0.5px}
+.foot a{color:#333;text-decoration:none}
+.loading{text-align:center;padding:80px 0;color:#333;font-size:13px;letter-spacing:1px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hdr">Portfolio</div>
+<div class="loading" id="loading">Loading…</div>
+<div id="root" style="display:none"></div>
+</div>
+
+<script>
+function statusBadge(s){
+  const map={ok:'ok',warning:'warning',zero:'zero',critical:'critical',forsale:'forsale'};
+  const cls=map[s]||'ok';
+  const lbl={ok:'Leased',warning:'Issues',zero:'Zero Income',critical:'Critical',forsale:'For Sale'};
+  return`<span class="prop-badge badge-${cls}">${lbl[s]||s}</span>`;
+}
+function vsMarketStr(v){
+  if(v>0)return`<span style="color:#f87171">-$${v.toLocaleString()}</span>`;
+  if(v<0)return`<span style="color:#34d399">+$${Math.abs(v).toLocaleString()}</span>`;
+  return`<span style="color:#666">At mkt</span>`;
+}
+function bnIcon(s){return s==='critical'?'🔴':s==='warning'?'🟡':'🔵'}
+
+async function render(){
+  let d;
+  try{
+    const res=await fetch('./portfolio-data.json?_='+Date.now());
+    d=await res.json();
+  }catch(e){
+    document.getElementById('loading').innerHTML='<span style="color:#f87171">Failed to load data.</span>';
+    return;
+  }
+  document.getElementById('loading').style.display='none';
+  document.getElementById('root').style.display='block';
+
+  const s=d.summary||{};
+  const props=d.properties||[];
+  const bns=d.bottlenecks||[];
+  const net=s.net_monthly||0;
+  const gross=s.gross_monthly||0;
+  const goal=s.goal||20000;
+  const gap=s.gap||0;
+  const pct=s.progress_pct||0;
+  const fillPct=Math.min(100,pct).toFixed(1);
+
+  const gen=d.generated?new Date(d.generated):null;
+  const updStr=gen?gen.toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'}):'—';
+
+  const propsHTML=props.map(p=>{
+    const issues=p.issues||[];
+    const issueHTML=issues.length?`<div class="prop-issues"><span>⚠</span> ${issues.join(' · ')}</div>`:'';
+    const netColor=p.status==='zero'?'#f87171':p.net_income>900?'#34d399':p.net_income>500?'#fbbf24':'#f87171';
+    return`<div class="prop-card status-${p.status}">
+  <div class="prop-top">
+    <div><div class="prop-addr">${p.short}</div><div class="prop-state">${p.state} · ${p.pm}</div></div>
+    ${statusBadge(p.status)}
+  </div>
+  <div class="prop-nums">
+    <div class="prop-stat"><div class="prop-stat-l">Gross</div><div class="prop-stat-v" style="color:#f0f0f2">$${p.gross_rent?.toLocaleString()}</div></div>
+    <div class="prop-stat"><div class="prop-stat-l">PM Fee</div><div class="prop-stat-v" style="color:#555">$${p.pm_fee?.toLocaleString()}</div></div>
+    <div class="prop-stat"><div class="prop-stat-l">Net</div><div class="prop-stat-v" style="color:${netColor}">$${p.net_income?.toLocaleString()}</div></div>
+    <div class="prop-stat"><div class="prop-stat-l">vs Mkt</div><div class="prop-stat-v">${vsMarketStr(p.vs_market)}</div></div>
+  </div>
+  ${issueHTML}
+</div>`;
+  }).join('');
+
+  const bnsHTML=bns.map((b,i)=>`<div class="bn-card sev-${b.severity}">
+  <div class="bn-top"><div class="bn-title">${bnIcon(b.severity)} #${i+1} — ${b.title}</div>${b.impact?`<div class="bn-impact">${b.impact}</div>`:''}</div>
+  <div class="bn-desc">${b.desc}</div>
+</div>`).join('');
+
+  document.getElementById('root').innerHTML=`
+<div class="hero">
+  <div class="hero-sub">Monthly Net Income</div>
+  <div class="hero-num">$${net.toLocaleString()}<span class="hero-goal">/$${(goal/1000).toFixed(0)}K</span></div>
+  <div class="hero-label">$${gap.toLocaleString()} to go · ${pct}% of target · ${s.properties_count} properties</div>
+</div>
+
+<div class="prog-wrap"><div class="prog-fill" style="width:${fillPct}%"></div></div>
+
+<div class="metrics">
+  <div class="metric"><div class="metric-l">Gross</div><div class="metric-v" style="color:#f0f0f2">$${gross.toLocaleString()}<span class="metric-u">/mo</span></div></div>
+  <div class="metric"><div class="metric-l">Net</div><div class="metric-v" style="color:#34d399">$${net.toLocaleString()}<span class="metric-u">/mo</span></div></div>
+  <div class="metric"><div class="metric-l">Gap</div><div class="metric-v" style="color:#f87171">$${gap.toLocaleString()}<span class="metric-u">/mo</span></div></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="sec-lbl">6 Properties</div>
+<div class="props">${propsHTML}</div>
+
+<div class="divider"></div>
+
+<div class="sec-lbl">Bottlenecks — Ranked</div>
+<div class="bottlenecks">${bnsHTML}</div>
+
+<div class="foot">
+  Updated ${updStr} · <a href="finance.html">Finance →</a> · <a href="deals.html">Deals →</a> · <a href="health.html">Health →</a>
+</div>
+`;
+}
+
+render();
+setInterval(render,10*60*1000);
+</script>
+</body>
+</html>

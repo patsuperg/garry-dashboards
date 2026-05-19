@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Finance · Patrick</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050508;color:#f0f0f2;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 16px 48px}
+.wrap{max-width:600px;margin:0 auto}
+.hdr{text-align:center;padding:24px 0 4px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#5a5a64}
+
+/* HERO — Wise Balance */
+.hero{text-align:center;padding:24px 0 16px}
+.hero-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px}
+.hero-num{font-size:72px;font-weight:900;line-height:1;letter-spacing:-3px;color:#3b82f6}
+.hero-label{font-size:11px;color:#555;margin-top:6px}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,#1a1a20,transparent);margin:4px 0 20px}
+.sec-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:12px}
+
+/* METRICS ROW */
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.metric{background:#0c0c10;border:1px solid #18181c;border-radius:13px;padding:14px 8px;text-align:center}
+.metric-l{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#666;margin-bottom:7px}
+.metric-v{font-size:20px;font-weight:800;line-height:1}
+.metric-u{font-size:10px;color:#555;margin-left:2px;font-weight:400}
+
+/* CREDIT TRACK */
+.credit-track{background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:18px;margin-bottom:16px}
+.credit-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:14px}
+.credit-bar-wrap{position:relative;height:8px;background:#1a1a20;border-radius:4px;margin:8px 0 4px}
+.credit-fill{height:100%;border-radius:4px}
+.credit-milestones{display:flex;justify-content:space-between;font-size:9px;color:#444;margin-top:6px}
+.credit-current{position:absolute;top:-22px;transform:translateX(-50%);font-size:10px;font-weight:700;white-space:nowrap}
+.credit-dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:12px;height:12px;border-radius:50%;border:2px solid #050508}
+.rate-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px}
+.rate-card{background:#14141a;border:1px solid #1a1a20;border-radius:8px;padding:10px;text-align:center}
+.rate-score{font-size:9px;color:#555;margin-bottom:4px}
+.rate-val{font-size:18px;font-weight:800}
+.rate-label{font-size:9px;color:#555;margin-top:2px}
+
+/* CAPITAL CARD */
+.cap-card{background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:18px;margin-bottom:16px}
+.cap-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #0f0f14}
+.cap-row:last-child{border-bottom:none}
+.cap-key{font-size:12px;color:#888}
+.cap-val{font-size:14px;font-weight:700}
+
+/* PATH TO 20K */
+.path-card{background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:18px;margin-bottom:16px}
+.path-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #0f0f14;font-size:13px}
+.path-row:last-child{border-bottom:none}
+.path-key{color:#888}
+.path-val{font-weight:700}
+
+/* BUY BOX */
+.buybox{background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:18px;margin-bottom:20px}
+.bb-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.bb-tag{background:#14141a;border:1px solid #1e1e26;border-radius:6px;padding:4px 10px;font-size:11px;color:#a0a0b0}
+
+/* FOOT */
+.foot{text-align:center;font-size:10px;color:#2a2a30;padding:20px 0 8px;line-height:1.9}
+.foot a{color:#333;text-decoration:none}
+.loading{text-align:center;padding:80px 0;color:#333;font-size:13px;letter-spacing:1px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hdr">Finance</div>
+<div class="loading" id="loading">Loading…</div>
+<div id="root" style="display:none"></div>
+</div>
+
+<script>
+async function render(){
+  let d;
+  try{
+    const res=await fetch('./finance-data.json?_='+Date.now());
+    d=await res.json();
+  }catch(e){
+    document.getElementById('loading').innerHTML='<span style="color:#f87171">Failed to load data.</span>';
+    return;
+  }
+  document.getElementById('loading').style.display='none';
+  document.getElementById('root').style.display='block';
+
+  const gen=d.generated?new Date(d.generated):null;
+  const updStr=gen?gen.toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'}):'—';
+
+  const wise=d.wise_usd||0;
+  const credit=d.credit||{};
+  const lending=d.lending||{};
+  const capital=d.capital||{};
+  const path=d.path_to_20k||{};
+  const buybox=d.buy_box||{};
+
+  // Credit score bar (300–850 range)
+  const cscore=credit.score_current;
+  const cMin=300,cMax=850;
+  const pct660=((660-cMin)/(cMax-cMin)*100).toFixed(1);
+  const pct700=((700-cMin)/(cMax-cMin)*100).toFixed(1);
+  const pctCurrent=cscore?((cscore-cMin)/(cMax-cMin)*100).toFixed(1):null;
+
+  const scoreDisplay=cscore?cscore:'Building';
+  const scoreColor=cscore?(cscore>=700?'#34d399':cscore>=660?'#fbbf24':'#f87171'):'#555';
+
+  const creditBarHTML=`
+<div class="credit-bar-wrap">
+  <div class="credit-fill" style="width:${pctCurrent||pct660}%;background:${scoreColor}"></div>
+  ${pctCurrent?`<div class="credit-dot" style="left:${pctCurrent}%;background:${scoreColor}"></div><div class="credit-current" style="left:${pctCurrent}%;color:${scoreColor}">${cscore}</div>`:''}
+  <div class="credit-dot" style="left:${pct660}%;background:#fbbf24;opacity:0.4"></div>
+  <div class="credit-dot" style="left:${pct700}%;background:#34d399;opacity:0.4"></div>
+</div>
+<div class="credit-milestones">
+  <span>300</span><span style="color:#fbbf24">660</span><span style="color:#34d399">700</span><span>850</span>
+</div>`;
+
+  const rateGridHTML=`
+<div class="rate-grid">
+  <div class="rate-card"><div class="rate-score">Today</div><div class="rate-val" style="color:#f87171">${lending.current_rate}%</div><div class="rate-label">rate now</div></div>
+  <div class="rate-card"><div class="rate-score">At 660</div><div class="rate-val" style="color:#fbbf24">${lending.target_rate_660}%</div><div class="rate-label">unlock rate</div></div>
+  <div class="rate-card"><div class="rate-score">At 700+</div><div class="rate-val" style="color:#34d399">${lending.target_rate_700}%</div><div class="rate-label">target rate</div></div>
+</div>`;
+
+  const itinBadge=credit.itin?'<span style="color:#34d399">✓ ITIN</span>':'<span style="color:#555">ITIN</span>';
+  const einBadge=credit.ein?'<span style="color:#34d399">✓ EIN</span>':'<span style="color:#555">EIN</span>';
+
+  const bbTags=[
+    buybox.geography||'', buybox.bedrooms||'',
+    buybox.price_band||'', buybox.cashflow_floor||'',
+    buybox.pm_fee_floor||''
+  ].filter(Boolean).map(t=>`<div class="bb-tag">${t}</div>`).join('');
+
+  document.getElementById('root').innerHTML=`
+<div class="hero">
+  <div class="hero-sub">Wise USD Balance</div>
+  <div class="hero-num">$${Math.round(wise/1000)}K</div>
+  <div class="hero-label">$${wise.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})} available for acquisition</div>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="metric-l">Net/Mo</div><div class="metric-v" style="color:#34d399">$${(path.current_net||0).toLocaleString()}</div></div>
+  <div class="metric"><div class="metric-l">Gap</div><div class="metric-v" style="color:#f87171">$${(path.gap||0).toLocaleString()}</div></div>
+  <div class="metric"><div class="metric-l">Doors Needed</div><div class="metric-v" style="color:#fbbf24">${path.doors_needed_at_avg||0}<span class="metric-u">@$${path.avg_net_per_door||0}/mo</span></div></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="sec-lbl">US Credit Build</div>
+<div class="credit-track">
+  <div class="credit-title">Score Track · Capital One Path</div>
+  ${creditBarHTML}
+  ${rateGridHTML}
+  <div style="margin-top:12px;font-size:11px;color:#666;line-height:1.7">
+    ${itinBadge} &nbsp; ${einBadge} &nbsp;
+    <span style="color:${credit.capital_one_status?.includes('not delivered')?'#fbbf24':'#555'}">${credit.capital_one_status||'—'}</span>
+  </div>
+  ${credit.next_step?`<div style="margin-top:8px;font-size:12px;color:#a0a0b0">Next: ${credit.next_step}</div>`:''}
+</div>
+
+<div class="sec-lbl">Capital Position</div>
+<div class="cap-card">
+  <div class="cap-row"><span class="cap-key">Wise USD (liquid)</span><span class="cap-val" style="color:#3b82f6">$${wise.toLocaleString()}</span></div>
+  <div class="cap-row"><span class="cap-key">AU Equity (locked)</span><span class="cap-val" style="color:#555">A$${(capital.equity_aud||0).toLocaleString()}</span></div>
+  <div class="cap-row"><span class="cap-key">Equity Blocker</span><span class="cap-val" style="color:#fbbf24">${capital.equity_blocker||'—'}</span></div>
+</div>
+
+<div class="sec-lbl">Path to $20K</div>
+<div class="path-card">
+  <div class="path-row"><span class="path-key">Current net</span><span class="path-val" style="color:#34d399">$${(path.current_net||0).toLocaleString()}/mo</span></div>
+  <div class="path-row"><span class="path-key">Target</span><span class="path-val">$${(path.goal||20000).toLocaleString()}/mo</span></div>
+  <div class="path-row"><span class="path-key">Gap remaining</span><span class="path-val" style="color:#f87171">$${(path.gap||0).toLocaleString()}/mo</span></div>
+  <div class="path-row"><span class="path-key">Doors at ~$${path.avg_net_per_door||900}/mo avg</span><span class="path-val" style="color:#fbbf24">${path.doors_needed_at_avg||0} more doors</span></div>
+  <div class="path-row"><span class="path-key">Lender</span><span class="path-val">${lending.primary?.split('—')[0]?.trim()||'—'}</span></div>
+</div>
+
+<div class="sec-lbl">Buy Box — Locked</div>
+<div class="buybox">
+  <div style="font-size:11px;color:#666">St Louis only · 4BR/1BA · $70–100K all-in · $400+/mo CF at 80% LTV</div>
+  <div class="bb-row">${bbTags}</div>
+</div>
+
+<div class="foot">
+  Updated ${updStr} · <a href="portfolio.html">Portfolio →</a> · <a href="deals.html">Deals →</a> · <a href="health.html">Health →</a>
+</div>
+`;
+}
+
+render();
+setInterval(render,10*60*1000);
+</script>
+</body>
+</html>

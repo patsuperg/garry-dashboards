@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Deals · Patrick</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050508;color:#f0f0f2;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 16px 48px}
+.wrap{max-width:600px;margin:0 auto}
+.hdr{text-align:center;padding:24px 0 4px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#5a5a64}
+
+.hero{text-align:center;padding:20px 0 14px}
+.hero-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px}
+.hero-num{font-size:64px;font-weight:900;line-height:1;letter-spacing:-2px;color:#A855F7}
+.hero-label{font-size:11px;color:#555;margin-top:6px}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,#1a1a20,transparent);margin:4px 0 18px}
+.sec-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:12px}
+
+/* DEAL CARD */
+.deals{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.deal-card{background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:18px}
+.deal-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.deal-addr{font-size:14px;font-weight:700;color:#f0f0f2;line-height:1.3}
+.deal-meta{font-size:10px;color:#555;margin-top:3px}
+.deal-score{text-align:center;min-width:52px}
+.deal-score-num{font-size:26px;font-weight:900;line-height:1}
+.deal-score-lbl{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#555;margin-top:1px}
+
+/* SCORE MINI BARS */
+.score-bars{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.sbar{display:flex;align-items:center;gap:8px}
+.sbar-lbl{font-size:9px;color:#555;width:80px;text-align:right;flex-shrink:0}
+.sbar-track{flex:1;height:4px;background:#1a1a20;border-radius:2px;overflow:hidden}
+.sbar-fill{height:100%;border-radius:2px}
+.sbar-val{font-size:9px;font-weight:700;width:28px;text-align:right}
+
+/* DEAL NUMS */
+.deal-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}
+.deal-stat{text-align:center}
+.deal-stat-l{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#555;margin-bottom:3px}
+.deal-stat-v{font-size:15px;font-weight:800}
+
+/* TAGS */
+.deal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.deal-tag{font-size:9px;padding:2px 8px;border-radius:6px;font-weight:700;letter-spacing:0.5px}
+.tag-green{background:#0d2918;color:#34d399}
+.tag-purple{background:#1e0d2e;color:#A855F7}
+.tag-yellow{background:#2a2000;color:#fbbf24}
+.tag-red{background:#2a0808;color:#f87171}
+
+/* AI SUMMARY */
+.deal-ai{font-size:11px;color:#666;line-height:1.6;border-top:1px solid #14141a;padding-top:10px}
+
+/* LINKS */
+.deal-links{display:flex;gap:10px;margin-top:10px}
+.deal-link{font-size:10px;color:#3b82f6;text-decoration:none;letter-spacing:0.5px}
+
+.foot{text-align:center;font-size:10px;color:#2a2a30;padding:20px 0 8px;line-height:1.9}
+.foot a{color:#333;text-decoration:none}
+.loading{text-align:center;padding:80px 0;color:#333;font-size:13px;letter-spacing:1px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hdr">Deals</div>
+<div class="loading" id="loading">Loading…</div>
+<div id="root" style="display:none"></div>
+</div>
+
+<script>
+function scoreColor(s){return s>=75?'#34d399':s>=55?'#fbbf24':'#f87171'}
+function barColor(s){return s>=70?'#34d399':s>=40?'#fbbf24':'#f87171'}
+function cfColor(v){return v>=800?'#34d399':v>=500?'#fbbf24':'#f87171'}
+
+function scoreBar(label,val){
+  const c=barColor(val);
+  return`<div class="sbar">
+  <span class="sbar-lbl">${label}</span>
+  <div class="sbar-track"><div class="sbar-fill" style="width:${val}%;background:${c}"></div></div>
+  <span class="sbar-val" style="color:${c}">${val}</span>
+</div>`;
+}
+
+async function render(){
+  let d;
+  try{
+    const res=await fetch('./deals-data.json?_='+Date.now());
+    d=await res.json();
+  }catch(e){
+    document.getElementById('loading').innerHTML='<span style="color:#f87171">Failed to load data.</span>';
+    return;
+  }
+  document.getElementById('loading').style.display='none';
+  document.getElementById('root').style.display='block';
+
+  const deals=d.deals||[];
+  const gen=d.generated?new Date(d.generated):null;
+  const updStr=gen?gen.toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'}):'—';
+
+  const dealCards=deals.map((dl,i)=>{
+    const sc=dl.garry_score||0;
+    const scColor=scoreColor(sc);
+    const ai=dl.ai_scores||{};
+    const cf=dl.cashflow||dl.projected_cf||0;
+    const tags=[];
+    if(dl.in_avenue_zip)tags.push(`<span class="deal-tag tag-green">Avenue ZIP</span>`);
+    if(dl.dscr_eligible)tags.push(`<span class="deal-tag tag-purple">DSCR OK</span>`);
+    if(dl.dscr>=2)tags.push(`<span class="deal-tag tag-green">DSCR ${dl.dscr?.toFixed(1)}</span>`);
+    if(dl.hqs_score<40)tags.push(`<span class="deal-tag tag-yellow">Reno Needed</span>`);
+    if(dl.crime_score>=70)tags.push(`<span class="deal-tag tag-red">Crime ⚠</span>`);
+
+    const links=[];
+    if(dl.zillow_url)links.push(`<a class="deal-link" href="${dl.zillow_url}" target="_blank">Zillow →</a>`);
+    if(dl.s8pro_url)links.push(`<a class="deal-link" href="${dl.s8pro_url}" target="_blank">S8 Pro →</a>`);
+
+    return`<div class="deal-card">
+  <div class="deal-top">
+    <div>
+      <div class="deal-addr">${dl.address?.split(',').slice(0,2).join(',')}</div>
+      <div class="deal-meta">${dl.bedrooms}BR · $${(dl.price||0).toLocaleString()} · FMR $${(dl.fmr||0).toLocaleString()}/mo</div>
+    </div>
+    <div class="deal-score">
+      <div class="deal-score-num" style="color:${scColor}">${sc.toFixed(0)}</div>
+      <div class="deal-score-lbl">Score</div>
+    </div>
+  </div>
+
+  <div class="deal-nums">
+    <div class="deal-stat"><div class="deal-stat-l">CF/mo</div><div class="deal-stat-v" style="color:${cfColor(cf)}">$${Math.round(cf).toLocaleString()}</div></div>
+    <div class="deal-stat"><div class="deal-stat-l">Cap Rate</div><div class="deal-stat-v" style="color:#A855F7">${dl.cap_rate?.toFixed(1)}%</div></div>
+    <div class="deal-stat"><div class="deal-stat-l">CoC</div><div class="deal-stat-v" style="color:#3b82f6">${dl.coc_pct?.toFixed(1)}%</div></div>
+    <div class="deal-stat"><div class="deal-stat-l">DSCR</div><div class="deal-stat-v" style="color:${dl.dscr>=2?'#34d399':'#fbbf24'}">${dl.dscr?.toFixed(1)}</div></div>
+  </div>
+
+  ${tags.length?`<div class="deal-tags">${tags.join('')}</div>`:''}
+
+  <div class="score-bars">
+    ${scoreBar('Financial',ai.financial||0)}
+    ${scoreBar('S8 Demand',ai.s8_demand||0)}
+    ${scoreBar('Location',ai.location||0)}
+    ${scoreBar('HQS',ai.hqs||0)}
+    ${scoreBar('Property',ai.property_quality||0)}
+  </div>
+
+  ${dl.ai_summary?`<div class="deal-ai">${dl.ai_summary}${dl.ai_summary.length>=299?'…':''}</div>`:''}
+
+  ${links.length?`<div class="deal-links">${links.join('')}</div>`:''}
+</div>`;
+  }).join('');
+
+  document.getElementById('root').innerHTML=`
+<div class="hero">
+  <div class="hero-sub">Active Pipeline · St Louis</div>
+  <div class="hero-num">${d.total_found||0}</div>
+  <div class="hero-label">Deals scored today · Buy box: 4BR $70-100K</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="sec-lbl">Top Deals — Ranked by Garry Score</div>
+<div class="deals">${dealCards}</div>
+
+<div class="foot">
+  Updated ${updStr} · <a href="portfolio.html">Portfolio →</a> · <a href="finance.html">Finance →</a> · <a href="health.html">Health →</a>
+</div>
+`;
+}
+
+render();
+setInterval(render,30*60*1000);
+</script>
+</body>
+</html>
