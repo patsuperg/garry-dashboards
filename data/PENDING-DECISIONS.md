@@ -1,80 +1,60 @@
 # PENDING DECISIONS
-*Updated 2026-05-07 ~12:30 AEST*
+*Updated: 2026-05-19 ~12:00 AEST (auto-generated from THREADS.md)*
 
 ---
 
-## NEEDS PATRICK — full instructions included
+## CRITICAL — ACT NOW
 
-### 1. Elmdale inspection — SAY "FIRE IT" [CLOSES MAY 14 — MOST URGENT]
-Garry has chase email to Lindia ready. Confirms inspection ordered, fixes address discrepancy (CT Florissant vs Drive Ferguson), confirms 63135 S8 voucher.
-Say "fire it" → Garry sends immediately.
+**#1 — Fenwick HAP escalation: say "send the legal escalation"**
+May 19 AEST deadline reached. No reply from Jenna (Evernest). Legal escalation email is prepped and ready. Say "send the legal escalation" and Garry fires it immediately.
 
----
+~~**#2 — Sleek Deed of Loan Forgiveness**~~ ✅ RESOLVED May 18
+Gab confirmed old SBR deed (signed 26-02-2025) is sufficient. No new signing needed. ASIC deregistration Jun 2.
 
-### 2. Sleek — Deed of Loan Forgiveness [MAY 8 DEADLINE]
-If no reply from Gab by EOD May 7: Call Sleek +61 2 9100 0482 ext 165.
-Garry sent final email chase May 6. Auto follow-up draft scheduled May 8 8:47am.
-If ASIC deregistration (~Jun 2) happens without this Deed, it's gone.
+## IRON RULE — NEEDS PATRICK APPROVAL
 
----
+**#3 — Bangkok condo booking (Airbnb/Agoda)**
+Search "Udom Suk BTS Bangkok" Jun 19–Jul 17, entire apt, 2BR. Stage 1: Ideo Mobi 66 ~฿35K/mo. Stage 2: The Line 101 ~฿35K/mo. Book before Jun 17 departure.
 
-### 3. B2B escalation — DECIDE BY MAY 9 COB
-Final notice sent May 7 (CC Seth Alden + Angel Chaney). References April 16 formal notice + expired deadline.
-If no handover pack by May 9 COB: **escalation call OR legal threat** — tell Garry which → Garry acts.
+**#4 — Screenshot all investment values on June 17**
+Jay Palmer, eToro, IBKR, Crypto, Wise, ING, Macquarie. Send to Garry. CGT Day 1 evidence for AU tax residency exit.
 
----
+**#5 — HostPlus BDBN — POST THE FORM**
+Pre-filled PDF in `~/Downloads/`. Sign with 2 witnesses (not Laura), post to:
+Hostplus Locked Bag 5046, Parramatta NSW 2124
+Must arrive before June 18.
 
-### 4. Fenwick April HAP — MONITOR MAY 9 COB
-Pushback sent May 7 to Jenna (CC Laurie + Heather). $1,450 HAP for Kaela Brooks — sent to Evernest after Mar 20 termination.
-If no bank evidence or payment by May 9 COB → Garry escalates to Patrick.
-
----
-
-### 5. ECM password reset — 3 MIN [UNBLOCKS AUTOMATION]
-LegalZoom SSO migration killed old password. All ECM automated mail sorting disabled.
-1. Safari → legalzoom.com → Forgot Password
-2. Email: patrick@spartansuppz.com
-3. Password: Sp@rtan1 — BUT has 2FA via authenticator app on Patrick's phone
-4. Tell Garry new password → Garry re-enables automation.
-*(Note: Garry cannot do autonomously — needs Patrick's phone for 2FA)*
+**#6 — Mercury IO autopay**
+Set up full balance autopay on mercury.com. Takes 5 min.
 
 ---
 
-### 6. HostPlus non-binding → Laura [5 MIN]
-Log into HostPlus Member Online → update beneficiary to Laura (non-binding, 5 min).
-Garry will prep binding form PDF for signing before departure.
+## WAITING FOR EXTERNAL
 
----
-
-### 7. Bangkok: Set up Bitkub account
-Best USD→THB route: USDT → Bitkub → KBank. Recommended by Patrick's Bangkok contact.
-Sign up at bitkub.com, complete KYC with passport. Do before departure.
-
----
-
-### 8. Bangkok: Aldi Mobile → Amaysim port [READY TO EXECUTE]
-Port details confirmed: Phone 0402 521 553 | Account 5610786
-Sign up at amaysim.com.au → PAYG $10/year → port-in with above details.
-Patrick does the signup/port. Takes 10-15 min.
-
----
-
-### 9. Fairmeadows go/no-go [DEAL DECISION — NO RUSH, WATCHLIST]
-1427 Fairmeadows Ln, 63138 | $115K | 4BR | CF $521/mo | Score 80.5 | Location risk 40/100.
-Say go → Garry schedules inspection via Lindia. Say no → stays on watchlist.
-
----
-
-### 10. NREIG payment ~May 15 [PATRICK PAYS]
-Email received May 5 from reinsurepro.com "Next Installment in 10 days." PDF attachment has exact amount.
-Check email → pay. Garry cannot pay (iron rule: spending).
+- Fenwick April HAP ($1,450) — Jenna / Evernest (escalation firing today)
+- Ohio HAP payee change → Tactical — Angel / Tactical (B2B → Tactical HAP transfer pending)
+- B2B Dec HAP + trust breach resolution — Michael Drew / B2B (legal path Jun 10 if no resolution)
+- Avenue May rent statement — Heather / Avenue (STL 4 props, $3,349 USD expected, $0 received)
+- Wilborn contractor quotes — Darren / Dalou (new bids after first contractor fell through)
 
 ---
 
 ## GARRY HANDLES (no Patrick input needed)
 
-- Darren Dalou re-chase (Wilborn rehab quote, 6 days silence) — Garry sending email
-- MSD Wilborn credit call — 866-281-5737 to confirm -$263.12 credit + request CCM recall
-- NREIG chase — Nohemi Alfaro for 4 pending properties (Fenwick, Alcove, Kenilworth, W25th)
-- Sleek BAS chase (Jan-Mar 2026, due May 26) — Garry sending reminder to Gab
-- SmartPay autopay enrollment — MSD Fenwick + Alcove accounts
+- Sleek Jan-Mar BAS: chase Gab if not lodged by May 20 (due May 26)
+- B2B financial claim draft (after June 10 wire)
+- MSD Wilborn credit call (866-281-5737)
+- NREIG 4-property add chase (Nohemi Alfaro)
+- Foreclosure STL digest (daily 6:15am)
+- W25th reinspection coordination with Gary Farnsworth (Raise Up, 440-752-6126) — before May 31
+
+---
+
+## PARKED (Patrick decides when ready)
+
+- Health insurance (Bangkok): Cigna ~$145/mo, AXA ~$135/mo, Pacific Cross ~$95/mo
+- Sub-$93.75K deal strategy: all-cash / bundle / skip
+- SBR Refund ($3,414.50 potentially owed — needs CBA statement)
+- Aldi → Amaysim port: DO ON JUNE 17 (departure day). Account 5610786, phone 0402 521 353.
+- Bitkub KYC: complete on arrival in Bangkok
+- OpenSky top-up: wait for card (~May 29-June 3), then deposit $2,800 at openskycc.com

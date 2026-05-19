@@ -2,473 +2,178 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<title>Pat's Health Dashboard</title>
-<style>
-  :root {
-    --bg: #0b0b0d;
-    --panel: #15151a;
-    --panel-2: #1c1c22;
-    --text: #f0f0f4;
-    --text-dim: #9a9aa6;
-    --green: #00d27a;
-    --yellow: #f5c842;
-    --orange: #ff8a3d;
-    --red: #ff4d4d;
-    --blue: #4dabff;
-    --purple: #9d6cff;
-    --gray: #3a3a44;
-    --ring-track: #28282f;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; padding: 16px;
-    background: var(--bg); color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  .wrap { max-width: 760px; margin: 0 auto; }
-  .header {
-    display: flex; justify-content: space-between; align-items: baseline;
-    margin-bottom: 8px;
-  }
-  .header h1 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
-  .header .updated { font-size: 11px; color: var(--text-dim); }
-
-  .spoons-card {
-    background: var(--panel); border-radius: 18px; padding: 20px;
-    margin-bottom: 14px;
-    display: flex; align-items: center; gap: 18px;
-  }
-  .spoons-num {
-    font-size: 64px; font-weight: 800; line-height: 1; letter-spacing: -0.04em;
-  }
-  .spoons-meta { flex: 1; min-width: 0; }
-  .spoons-meta .max { color: var(--text-dim); font-size: 26px; font-weight: 600; margin-left: 4px; }
-  .spoons-meta .label {
-    font-size: 13px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.06em; margin-top: 4px;
-  }
-  .spoons-meta .sub { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
-
-  .rings {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
-    background: var(--panel); border-radius: 18px; padding: 18px 8px 14px;
-    margin-bottom: 14px;
-  }
-  .ring-cell { text-align: center; }
-  .ring {
-    position: relative; width: 100%; max-width: 140px; aspect-ratio: 1;
-    margin: 0 auto;
-  }
-  .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-  .ring .track { fill: none; stroke: var(--ring-track); stroke-width: 11; }
-  .ring .arc { fill: none; stroke-width: 11; stroke-linecap: round; }
-  .ring .arc.green  { stroke: var(--green); }
-  .ring .arc.yellow { stroke: var(--yellow); }
-  .ring .arc.orange { stroke: var(--orange); }
-  .ring .arc.red    { stroke: var(--red); }
-  .ring .arc.blue   { stroke: var(--blue); }
-  .ring .arc.purple { stroke: var(--purple); }
-  .ring .arc.gray   { stroke: var(--gray); }
-  .ring .center {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-  }
-  .ring .center .v { font-size: 24px; font-weight: 800; letter-spacing: -0.03em; }
-  .ring .center .u { font-size: 11px; color: var(--text-dim); margin-top: 1px; }
-  .ring-cell .name {
-    margin-top: 6px; font-size: 11px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim);
-  }
-  .ring-cell .sub { font-size: 10px; color: var(--text-dim); margin-top: 2px; min-height: 13px; }
-
-  .grid2 {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-    margin-bottom: 14px;
-  }
-  .stat {
-    background: var(--panel); border-radius: 14px; padding: 14px;
-  }
-  .stat .label {
-    font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
-    color: var(--text-dim); font-weight: 600;
-  }
-  .stat .value { font-size: 24px; font-weight: 700; margin-top: 4px; }
-  .stat .sub { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
-
-  .history {
-    background: var(--panel); border-radius: 18px; padding: 16px;
-    margin-bottom: 14px;
-  }
-  .history h2 {
-    margin: 0 0 12px 0; font-size: 14px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim);
-  }
-  .bars { display: flex; align-items: flex-end; gap: 6px; height: 100px; }
-  .bar {
-    flex: 1; min-width: 0; border-radius: 4px 4px 0 0;
-    position: relative;
-    background: var(--gray);
-  }
-  .bar.green { background: var(--green); }
-  .bar.yellow { background: var(--yellow); }
-  .bar.orange { background: var(--orange); }
-  .bar.red    { background: var(--red); }
-  .bar .num {
-    position: absolute; top: -16px; left: 0; right: 0;
-    text-align: center; font-size: 10px; font-weight: 700;
-  }
-  .bar .day {
-    position: absolute; bottom: -18px; left: 0; right: 0;
-    text-align: center; font-size: 9px; color: var(--text-dim);
-  }
-  .history .bars { margin-bottom: 22px; }
-
-  /* Multi-metric trend rows */
-  .trend-row {
-    display: grid;
-    grid-template-columns: 70px 1fr 60px;
-    align-items: center;
-    gap: 10px;
-    padding: 6px 0;
-    border-bottom: 1px solid #1f1f26;
-  }
-  .trend-row:last-child { border-bottom: none; }
-  .trend-row .name {
-    font-size: 10px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.05em;
-    color: var(--text-dim);
-  }
-  .trend-row .now {
-    font-size: 14px; font-weight: 700;
-    text-align: right;
-    letter-spacing: -0.01em;
-  }
-  .mini-bars {
-    display: flex; align-items: flex-end; gap: 2px;
-    height: 38px;
-  }
-  .mini-bar {
-    flex: 1; min-width: 0; border-radius: 2px 2px 0 0;
-    position: relative;
-    transition: opacity 0.15s;
-  }
-  .mini-bar:hover { opacity: 0.7; cursor: help; }
-  .mini-bar.today {
-    box-shadow: 0 0 0 1px var(--text);
-  }
-  .mini-bar.missing { background: #2a2a30 !important; height: 4px !important; }
-  .mini-bar.green { background: var(--green); }
-  .mini-bar.yellow { background: var(--yellow); }
-  .mini-bar.orange { background: var(--orange); }
-  .mini-bar.red { background: var(--red); }
-  .mini-bar.blue { background: var(--blue); }
-  .mini-bar.purple { background: var(--purple); }
-
-  .baseline {
-    background: var(--panel); border-radius: 14px; padding: 14px;
-    font-size: 12px; color: var(--text-dim);
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
-  }
-  .baseline .row { display: flex; gap: 12px; flex-wrap: wrap; }
-  .baseline strong { color: var(--text); font-weight: 700; }
-
-  .legend {
-    margin: 14px 4px 0; font-size: 11px; color: var(--text-dim); line-height: 1.55;
-  }
-
-  .body-status {
-    flex: 1; min-width: 0;
-    border-left: 1px solid #28282f;
-    padding-left: 18px;
-    font-size: 12px; line-height: 1.6;
-  }
-  .body-status .sl { margin-bottom: 3px; }
-  .body-status .sl.ok   { color: var(--text-dim); }
-  .body-status .sl.warn { color: var(--yellow); }
-  .body-status .sl.low  { color: var(--orange); }
-  .body-status .sl.crit { color: var(--red); }
-
-  @media (max-width: 480px) {
-    .rings { grid-template-columns: repeat(2, 1fr); }
-    .spoons-num { font-size: 52px; }
-    .body-status { display: none; }
-  }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="refresh" content="300">
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Health · Patrick</title>
 </head>
-<body>
-<div class="wrap">
+<body style="margin:0;padding:0;background:#050508;color:#f0f0f2;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 20px 40px">
+<div style="max-width:540px;margin:0 auto">
 
-  <div class="header">
-    <h1>Pat's Health Dashboard</h1>
-    <div class="updated" id="updated">loading…</div>
-  </div>
+<!-- HEADER -->
+<div style="text-align:center;padding:24px 0 8px;opacity:0.4;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#5a5a64">Health</div>
 
-  <!-- Master: Spoons -->
-  <div class="spoons-card">
-    <div class="spoons-num" id="spoons-num">–</div>
-    <div class="spoons-meta">
-      <div class="max" id="spoons-max">/12</div>
-      <div class="label" id="spoons-label">loading…</div>
-      <div class="sub" id="spoons-date"></div>
-    </div>
-    <div class="body-status" id="body-status"></div>
-  </div>
-  <div id="coaching-card" style="
-    background:var(--card);border-radius:12px;padding:14px 16px;
-    font-size:13px;line-height:1.55;color:var(--text-dim);
-    border-left:3px solid var(--yellow);margin-bottom:4px;display:none;">
-  </div>
-
-  <!-- 4 Rings -->
-  <div class="rings" id="rings"></div>
-
-  <!-- 14-day trends — multi-metric -->
-  <div class="history">
-    <h2>Last 14 days</h2>
-    <div class="trend-rows" id="trend-rows"></div>
-  </div>
-
-  <!-- Baselines -->
-  <div class="baseline" id="baseline"></div>
-
-  <div class="legend">
-    Sleep is last night, locked. Recovery is this morning's readiness from sleep + HRV + RHR.
-    Strain accumulates through the day from movement and HR load.
-    Stress is intra-day cardiac elevation vs your baseline RHR.
-    Data: Apple Health + Oura Kogan ring (via Auto Export), refreshes ~3–5×/day.
-  </div>
-
+<!-- SPOONS HERO -->
+<div style="text-align:center;padding:32px 0 24px">
+<div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#666;margin-bottom:16px">Spoons Today · 2026-05-19</div>
+<div style="font-size:96px;font-weight:900;color:#F97316;line-height:1;letter-spacing:-3px">7<span style="font-size:32px;color:#444;font-weight:400">/12</span></div>
+<div style="margin:20px 0 8px"><span style="font-size:24px;letter-spacing:4px">🥄🥄🥄🥄🥄🥄🥄·····</span></div>
+<div style="font-size:12px;color:#555">Tuesday, May 19 · <span style="color:#10B981">● FRESH</span></div>
 </div>
 
-<script>
-const DATA_URL = "health-data.json?t=" + Date.now();
+<div style="height:1px;background:linear-gradient(90deg,transparent,#222,transparent);margin:0 20%"></div>
 
-function ringSVG(value, max, color) {
-  const pct = Math.max(0, Math.min(1, (value || 0) / (max || 100)));
-  const R = 44, C = 2 * Math.PI * R;
-  const dash = (pct * C).toFixed(2);
-  return `
-    <svg viewBox="0 0 100 100">
-      <circle class="track" cx="50" cy="50" r="${R}"/>
-      <circle class="arc ${color}" cx="50" cy="50" r="${R}"
-              stroke-dasharray="${dash} ${C}"/>
-    </svg>`;
-}
+<!-- WHOOP-STYLE METRICS -->
+<div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">Sleep</div>
+<div style="font-size:36px;font-weight:800;color:#F97316">6.3<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">hrs</span></div>
+<div style="font-size:11px;color:#555;margin-top:6px">79% of 8h target</div>
+</div>
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">HRV</div>
+<div style="font-size:36px;font-weight:800;color:#EF4444">27<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">ms</span></div>
+<div style="font-size:11px;color:#555;margin-top:6px">Higher = better</div>
+</div>
+</div>
+<div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">Resting HR</div>
+<div style="font-size:36px;font-weight:800;color:#F97316">71<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">bpm</span></div>
+<div style="font-size:11px;color:#555;margin-top:6px">Lower = fitter</div>
+</div>
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">Steps</div>
+<div style="font-size:36px;font-weight:800;color:#f0f0f2">1,822</div>
+<div style="font-size:11px;color:#555;margin-top:6px">Target: 8,000+</div>
+</div>
+</div>
 
-function fmtRing(name, ring, displayUnit, valueFmt) {
-  const color = ring.color || "gray";
-  const max = displayUnit === "/21" ? 21 : 100;
-  const valStr = valueFmt ? valueFmt(ring.value) : `${ring.value}`;
-  return `
-    <div class="ring-cell">
-      <div class="ring">
-        ${ringSVG(ring.value, max, color)}
-        <div class="center">
-          <div class="v">${valStr}</div>
-          <div class="u">${displayUnit}</div>
-        </div>
-      </div>
-      <div class="name">${name}</div>
-      <div class="sub">${ring.subtitle || ""}</div>
-    </div>`;
-}
+<!-- RECOVERY + STRAIN -->
+<div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:20px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:10px">Recovery</div>
+<div style="font-size:32px;font-weight:800;color:#F97316">64%</div>
+</div>
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:20px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:10px">Strain</div>
+<div style="font-size:32px;font-weight:800;color:#F97316">4.4<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">/21</span></div>
+</div>
+</div>
 
-function bodyStatus(t) {
-  const hrv = t.hrv_overnight;
-  const b30 = t.baseline_30d && t.baseline_30d.hrv;
-  const b14 = t.baseline_14d && t.baseline_14d.hrv;
-  const baseline = b30 || b14;
-  const recovery = t.rings && t.rings.recovery && t.rings.recovery.value;
-  if (!hrv || !baseline) return [];
+<!-- YESTERDAY + WEEKLY -->
+<div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:16px;flex:1;min-width:140px">
+<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:10px">Yesterday</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Steps: <strong style="color:#e0e0e0">—</strong><br>
+Sleep: <strong style="color:#e0e0e0">—</strong><br>
+HRV: <strong style="color:#e0e0e0">—</strong>
+</div>
+</div>
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:16px;flex:1;min-width:140px">
+<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:10px">Weekly Avg</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Steps: <strong style="color:#e0e0e0">—</strong><br>
+Sleep: <strong style="color:#e0e0e0">7.2h</strong><br>
+HRV: <strong style="color:#e0e0e0">25ms</strong> · RHR: <strong style="color:#e0e0e0">72bpm</strong>
+</div>
+</div>
+</div>
 
-  const drop = Math.round((1 - hrv / baseline) * 100);
-  const lines = [];
 
-  // HRV line
-  if (drop > 35) {
-    lines.push({ text: `HRV ${drop}% below your 30-day average — nervous system under real load today.`, cls: "crit" });
-  } else if (drop > 20) {
-    lines.push({ text: `HRV ${drop}% below your 30-day average — quieter than normal.`, cls: "warn" });
-  } else if (drop > 10) {
-    lines.push({ text: `HRV ${drop}% below your 30-day average — slight dip, worth noting.`, cls: "ok" });
-  } else if (drop < -5) {
-    lines.push({ text: `HRV above baseline — nervous system well-recovered.`, cls: "ok" });
-  } else {
-    lines.push({ text: `HRV tracking close to your baseline — nervous system stable.`, cls: "ok" });
-  }
 
-  // Recovery + instruction line
-  if (recovery == null) return lines;
-  if (recovery >= 67 && drop <= 10) {
-    lines.push({ text: `Recovery green. Full output available today.`, cls: "ok" });
-  } else if (recovery >= 67 && drop > 10) {
-    lines.push({ text: `Recovery green but HRV says don't push. Normal output only.`, cls: "warn" });
-  } else if (recovery >= 34 && drop > 20) {
-    lines.push({ text: `${recovery}% recovery. Do the work, stop on time. No extras today.`, cls: "warn" });
-  } else if (recovery >= 34) {
-    lines.push({ text: `${recovery}% recovery — half tank. Normal output is fine.`, cls: "ok" });
-  } else if (drop > 20) {
-    lines.push({ text: `${recovery}% recovery + HRV down. Rebuild day. Stop early.`, cls: "crit" });
-  } else {
-    lines.push({ text: `${recovery}% recovery — low tank. Protect the evening.`, cls: "warn" });
-  }
+<!-- PROTOCOL & DOSING -->
+<div style="margin-top:28px">
+<div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#5a5a64;font-weight:600;margin-bottom:12px">Protocol & Dosing — Lean Bulk Phase</div>
 
-  return lines;
-}
+<div style="background:#0c0c10;border:1px solid #1a2a1a;border-radius:14px;padding:18px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#34d399">Test E — 250mg/wk</div>
+<div style="font-size:11px;color:#666;background:#111;padding:3px 10px;border-radius:20px">FOUNDATION</div>
+</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Inject: <strong style="color:#e0e0e0">125mg Mon + 125mg Thu</strong> (stable blood levels)<br>
+Site: <strong style="color:#e0e0e0">Glute or quad IM</strong> · Rotate sides<br>
+Phase note: <span style="color:#34d399">Ideal for lean bulk — quality gains, manageable sides</span>
+</div>
+</div>
 
-function spoonColorClass(score) {
-  if (score == null) return "gray";
-  if (score >= 8) return "green";
-  if (score >= 6) return "yellow";
-  if (score >= 4) return "orange";
-  return "red";
-}
+<div style="background:#0c0c10;border:1px solid #1a2a1a;border-radius:14px;padding:18px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#34d399">Deca — 200mg/wk</div>
+<div style="font-size:11px;color:#34d399;background:#0a1a0a;padding:3px 10px;border-radius:20px">● STARTED APR 13</div>
+</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Inject: <strong style="color:#e0e0e0">100mg Mon + 100mg Thu</strong> — 0.5ml each, same syringe as Test E<br>
+Test:Deca ratio: <strong style="color:#34d399">1.25:1 ✓</strong> — above minimum, no Deca dick risk<br>
+Phase note: <span style="color:#34d399">Elbow synergy with BPC/TB-500. Joint lubrication + anabolic drive. Monitor prolactin if sides arise.</span>
+</div>
+</div>
 
-function renderHistory(history, todayDate) {
-  const el = document.getElementById("trend-rows");
-  if (!history || !history.length) {
-    el.innerHTML = '<div style="color:var(--text-dim);font-size:12px">no history yet</div>';
-    return;
-  }
-  // Color rules per metric
-  function spoonsColor(v) {
-    if (v == null) return "";
-    if (v >= 8) return "green";
-    if (v >= 6) return "yellow";
-    if (v >= 4) return "orange";
-    return "red";
-  }
-  function sleepColor(hr) {
-    if (hr == null) return "";
-    if (hr >= 7 && hr <= 9) return "green";
-    if (hr >= 6 || hr <= 10) return "blue";
-    return "orange";
-  }
-  function recoveryColor(pct) {
-    if (pct == null) return "";
-    if (pct >= 67) return "green";
-    if (pct >= 34) return "yellow";
-    return "red";
-  }
-  function strainColor(v) {
-    // Strain is "load", not "good/bad". Use purple gradient by intensity.
-    return "purple";
-  }
-  function stressColor(pct) {
-    if (pct == null) return "";
-    if (pct < 34) return "green";
-    if (pct < 67) return "yellow";
-    return "red";
-  }
+<div style="background:#0c0c10;border:1px solid #1a2a1a;border-radius:14px;padding:18px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#34d399">GH — 4iu/day</div>
+<div style="font-size:11px;color:#666;background:#111;padding:3px 10px;border-radius:20px">RECOVERY + RECOMP</div>
+</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Timing: <strong style="color:#e0e0e0">2iu fasted AM + 2iu post-workout</strong> (or 4iu AM if no PM session)<br>
+SubQ injection, rotate abdomen/thigh<br>
+Phase note: <span style="color:#34d399">4iu is the sweet spot for lean gains + recovery without joint sides</span>
+</div>
+</div>
 
-  const metrics = [
-    { key: "spoons",       label: "Spoons",   max: 12, format: v => v == null ? "–" : `${v}/12`, color: spoonsColor },
-    { key: "sleep_hr",     label: "Sleep",    max: 11, format: v => v == null ? "–" : `${v.toFixed(1)}h`, color: sleepColor },
-    { key: "recovery_pct", label: "Recovery", max: 100, format: v => v == null ? "–" : `${v}%`, color: recoveryColor },
-    { key: "strain",       label: "Strain",   max: 21, format: v => v == null ? "–" : `${v.toFixed(1)}`, color: strainColor },
-    { key: "stress_pct",   label: "Stress",   max: 100, format: v => v == null ? "–" : `${v}%`, color: stressColor },
-  ];
+<div style="background:#0c0c10;border:1px solid #1a2a1a;border-radius:14px;padding:18px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#34d399">Retatrutide — 2,000mcg/wk</div>
+<div style="font-size:11px;color:#666;background:#111;padding:3px 10px;border-radius:20px">FAT CONTROL</div>
+</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Inject: <strong style="color:#e0e0e0">2mg once weekly SubQ</strong> (same day each week)<br>
+Mechanism: GLP-1 + GIP + Glucagon agonist — fat oxidation + appetite control<br>
+Phase note: <span style="color:#34d399">Critical during lean bulk — keeps fat gain in check while in surplus. Don't drop this.</span>
+</div>
+</div>
 
-  el.innerHTML = metrics.map(m => {
-    const todayEntry = history.find(h => h.date === todayDate) || history[history.length - 1];
-    const todayVal = todayEntry ? todayEntry[m.key] : null;
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:18px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#60a5fa">BPC-157 + TB-500 — Elbow Rehab</div>
+<div style="font-size:11px;color:#666;background:#111;padding:3px 10px;border-radius:20px">REPAIR</div>
+</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+BPC-157: <strong style="color:#e0e0e0">250mcg/day SubQ near elbow</strong><br>
+TB-500: <strong style="color:#e0e0e0">2.5mg 2x/wk SubQ</strong> (loading) → 2.5mg/wk maintenance<br>
+Phase note: <span style="color:#60a5fa">Continue until elbow is 100% — don't train heavy pressing until pain-free</span>
+</div>
+</div>
 
-    const bars = history.map(h => {
-      const v = h[m.key];
-      if (v == null || v === undefined) {
-        return `<div class="mini-bar missing" title="${h.date}: no data"></div>`;
-      }
-      const pct = Math.max(4, Math.min(100, (v / m.max) * 100));
-      const isToday = h.date === todayDate;
-      const cls = m.color(v);
-      return `<div class="mini-bar ${cls}${isToday ? ' today' : ''}" style="height:${pct}%" title="${h.date}: ${m.format(v)}"></div>`;
-    }).join("");
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:12px;padding:14px;margin-top:12px">
+<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:8px">Yesterday · 2026-05-11</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.8">
+HRV: <strong style="color:#e0e0e0">—</strong> &nbsp;·&nbsp; RHR: <strong style="color:#e0e0e0">—</strong> &nbsp;·&nbsp; Sleep: <strong style="color:#e0e0e0">—</strong> &nbsp;·&nbsp; Steps: <strong style="color:#e0e0e0">—</strong>
+</div>
+</div>
+</div>
 
-    return `<div class="trend-row">
-      <div class="name">${m.label}</div>
-      <div class="mini-bars">${bars}</div>
-      <div class="now">${m.format(todayVal)}</div>
-    </div>`;
-  }).join("");
-}
 
-function renderBaseline(t) {
-  const b = (t && t.baseline_14d) || {};
-  const el = document.getElementById("baseline");
-  el.innerHTML = `
-    <div class="row">
-      <span>14d HRV avg: <strong>${b.hrv ?? "–"}ms</strong></span>
-      <span>14d RHR avg: <strong>${b.rhr ?? "–"}bpm</strong></span>
-      <span>14d Sleep avg: <strong>${b.sleep_hr ?? "–"}h</strong></span>
-    </div>
-    <div class="row" style="opacity:0.6">
-      <span>HRV overnight: ${t.hrv_overnight ?? "–"}ms</span>
-      <span>RHR overnight: ${t.rhr_overnight ?? "–"}bpm</span>
-    </div>`;
-}
+<!-- PHASE RECOMMENDATION -->
+<div style="background:#0c0c10;border:1px solid #1a2a3a;border-radius:16px;padding:20px;margin-top:16px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#34d399;margin-bottom:8px">Build Phase</div>
+<div style="font-size:13px;color:#e0e0e0;margin-bottom:10px;line-height:1.6">Lean enough to push hard. Surplus + protein = growth.</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:2">Eat 3,200–3,500 kcal · 280g+ protein · Max volume</div>
+</div>
 
-async function render() {
-  try {
-    const r = await fetch(DATA_URL, { cache: "no-store" });
-    if (!r.ok) throw new Error(r.statusText);
-    const data = await r.json();
-    const t = data.today || {};
-    const rings = t.rings || {};
+<!-- FOOTER -->
+<div style="text-align:center;color:#333;font-size:11px;padding:32px 0 16px">
+Auto-updated Tue May 19 2026 · 1:14 PM<br>
+Data: Eight Sleep + Evolt 360 () + Apple Watch<br>
+The income is me.
+</div>
 
-    document.getElementById("updated").textContent =
-      "updated " + new Date(data.generated).toLocaleString();
-    document.getElementById("spoons-num").textContent = t.spoons ?? "–";
-    document.getElementById("spoons-label").textContent = t.spoons_label || "no data";
-    document.getElementById("spoons-date").textContent = t.date || "";
-
-    const spClass = spoonColorClass(t.spoons);
-
-    const coachEl = document.getElementById("coaching-card");
-    if (coachEl && data.coaching) {
-      const borderColor = ({green:"var(--green)",yellow:"var(--yellow)",orange:"var(--orange)",red:"var(--red)"})[spClass] || "var(--yellow)";
-      coachEl.style.borderLeftColor = borderColor;
-      coachEl.textContent = data.coaching;
-      coachEl.style.display = "block";
-    }
-    document.getElementById("spoons-num").style.color =
-      ({green:"var(--green)",yellow:"var(--yellow)",orange:"var(--orange)",red:"var(--red)",gray:"var(--text-dim)"})[spClass];
-
-    const ringsEl = document.getElementById("rings");
-    ringsEl.innerHTML = [
-      fmtRing("Sleep", rings.sleep || {}, "%", v => v),
-      fmtRing("Recovery", rings.recovery || {}, "%", v => v),
-      fmtRing("Strain", rings.strain || {}, "/21", v => (v||0).toFixed(1)),
-      fmtRing("Stress", rings.stress || {}, "%", v => v),
-    ].join("");
-
-    renderHistory(data.history || [], t.date);
-    renderBaseline(t);
-
-    const bsLines = bodyStatus(t);
-    const bsEl = document.getElementById("body-status");
-    if (bsEl) {
-      bsEl.innerHTML = bsLines.length
-        ? bsLines.map(l => `<div class="sl ${l.cls}">${l.text}</div>`).join("")
-        : "";
-    }
-  } catch (e) {
-    document.getElementById("updated").textContent = "load error: " + e.message;
-    document.getElementById("rings").innerHTML =
-      '<div style="grid-column:1/-1;padding:20px;text-align:center;color:var(--red);font-size:13px">' +
-      'JSON fetch failed: ' + e.message + '<br><small style="color:var(--text-dim)">Auto-retrying in 30s…</small></div>';
-    // Fast retry on error — recover without Patrick touching anything
-    setTimeout(render, 30 * 1000);
-  }
-}
-
-render();
-// Auto-refresh every 5 min (health-engine pushes new data every 15 min)
-setInterval(render, 5 * 60 * 1000);
-</script>
+</div>
 </body>
 </html>

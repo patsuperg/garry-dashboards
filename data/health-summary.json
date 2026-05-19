@@ -1,52 +1,93 @@
 {
-  "updated": "2026-05-11T12:28:30.127773+00:00",
-  "source": "hae-autosync",
-  "data_age_hours": 0,
+  "updated": "2026-05-19T13:13:59.750556+10:00",
+  "source": "health-engine v2",
+  "coaching": "Elevated stress is the main drag today. Sleep was 6.3h, recovery 64%. Protect your afternoon \u2014 reduce inputs, don't stack decisions.",
   "stale": false,
   "today": {
-    "date": "2026-05-10",
-    "sleep_total_hr": 2.01,
-    "sleep_deep_hr": null,
-    "sleep_rem_hr": 0.47,
-    "sleep_core_hr": 1.54,
-    "sleep_awake_hr": 0.04,
-    "sleep_in_bed_hr": 2.02,
-    "hrv_avg": 25.3,
-    "resting_hr": 80,
-    "resp_rate_avg": 13.4,
-    "steps": 9085,
-    "active_energy_kcal": null,
-    "stand_hours": null
+    "date": "2026-05-19",
+    "sleep_total_hr": 6.35,
+    "sleep_deep_hr": 1.17,
+    "sleep_rem_hr": 1.36,
+    "sleep_core_hr": 3.83,
+    "sleep_awake_hr": 0,
+    "hrv_avg": 26.6,
+    "resting_hr": 71,
+    "steps": 1822,
+    "active_energy_kcal": 243,
+    "exercise_min": 3
   },
   "yesterday": {
     "date": "2026-05-10",
-    "sleep_total_hr": 2.01,
-    "sleep_deep_hr": null,
-    "sleep_rem_hr": 0.47,
-    "sleep_core_hr": 1.54,
-    "sleep_awake_hr": 0.04,
-    "sleep_in_bed_hr": 2.02,
-    "hrv_avg": 25.3,
-    "resting_hr": 80,
-    "resp_rate_avg": 13.4,
-    "steps": 9085,
-    "active_energy_kcal": null,
-    "stand_hours": null
+    "spoons": 5,
+    "sleep_hr": 5.98,
+    "sleep_pct": 70,
+    "recovery_pct": 25,
+    "strain": 12.1,
+    "stress_pct": 61,
+    "hrv": 14.9,
+    "rhr": 88.0
+  },
+  "rings": {
+    "sleep": {
+      "value": 77,
+      "unit": "%",
+      "raw_hr": 6.35,
+      "color": "blue",
+      "label": "6.3h",
+      "subtitle": "6.3h total \u00b7 deep 1.2h / REM 1.4h"
+    },
+    "recovery": {
+      "value": 64,
+      "unit": "%",
+      "color": "yellow",
+      "label": "YELLOW \u2014 train smart not hard",
+      "subtitle": "HRV 26.6ms / RHR 71bpm"
+    },
+    "strain": {
+      "value": 4.4,
+      "unit": "/21",
+      "color": "purple",
+      "raw": {
+        "value": 4.4,
+        "max": 21,
+        "kcal": 243,
+        "steps": 1822,
+        "exercise_min": 3,
+        "hr_load": 20.1,
+        "source": "json_export"
+      },
+      "subtitle": "243kcal / 1822st / 3min ex"
+    },
+    "stress": {
+      "value": 88,
+      "unit": "%",
+      "color": "red",
+      "label": "high",
+      "subtitle": "HR 98bpm vs RHR 72"
+    }
   },
   "spoons": {
-    "score": 4.1,
-    "label": "Low",
-    "color": "orange",
-    "sleep_norm": 0.0,
-    "hrv_norm": 0.258,
-    "activity_norm": 1.0
+    "score": 7,
+    "max": 12,
+    "label": "Moderate \u2014 analysis over execution",
+    "color": "yellow"
   },
+  "recovery_pct": 64,
+  "strain_score": 4.4,
+  "stress_pct": 88,
+  "sleep_pct": 77,
   "weekly_avg": {
-    "steps": 9085,
-    "sleep_hr": 2.01,
-    "hrv": 25.3,
-    "resting_hr": 80
+    "hrv": 24.6,
+    "resting_hr": 71.7,
+    "sleep_hr": 7.19
   },
-  "last_pipeline_refresh": "2026-05-11T12:29:40.093286+00:00",
-  "export_connected": true
+  "nutrition": {
+    "protein_g": 0.0,
+    "carbs_g": 0.0,
+    "fat_g": 0.0,
+    "calories_kcal": 0,
+    "has_data": false
+  },
+  "last_pipeline_refresh": "2026-05-19T03:14:26.108600+00:00",
+  "export_connected": false
 }
