@@ -1,14 +1,14 @@
 {
-  "generated": "2026-05-20T23:51:00.360408+10:00",
+  "generated": "2026-05-21T00:06:03.481259+10:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep + MFP",
-  "coaching": "Elevated stress is the main drag today. Sleep was 7.1h, recovery 60%. Protect your afternoon \u2014 reduce inputs, don't stack decisions.",
+  "device": "Apple Watch + Eight Sleep",
+  "coaching": "Solid foundation \u2014 7.1h sleep, 60% recovery. Execute the priority list. Lock in quality sleep tonight to build on this.",
   "today": {
-    "date": "2026-05-20",
-    "spoons": 7,
+    "date": "2026-05-21",
+    "spoons": 10,
     "spoons_max": 12,
-    "spoons_label": "Moderate \u2014 analysis over execution",
-    "spoons_color": "yellow",
+    "spoons_label": "Peak \u2014 push hard",
+    "spoons_color": "green",
     "rings": {
       "sleep": {
         "value": 92,
@@ -26,26 +26,25 @@
         "subtitle": "HRV 22.9ms / RHR 72bpm"
       },
       "strain": {
-        "value": 12.8,
+        "value": 0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 12.8,
+          "value": 0,
           "max": 21,
-          "kcal": 695,
-          "steps": 4336,
-          "exercise_min": 67,
-          "hr_load": 40.9,
-          "source": "json_export"
+          "kcal": 0,
+          "steps": 0,
+          "exercise_min": 0,
+          "hr_load": 0.0
         },
-        "subtitle": "695kcal / 4336st / 67min ex"
+        "subtitle": "0kcal / 0st / 0min ex"
       },
       "stress": {
-        "value": 100,
+        "value": 0,
         "unit": "%",
-        "color": "red",
-        "label": "high",
-        "subtitle": "HR 109bpm vs RHR 72"
+        "color": "gray",
+        "label": "no data",
+        "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
@@ -65,36 +64,19 @@
       "hrv": 25.5,
       "rhr": 71.6,
       "sleep_hr": 7.18,
-      "days_sampled": 6,
+      "days_sampled": 5,
       "source": "Eight Sleep 7d + CSV 14d hybrid"
     },
     "baseline_30d": {
-      "hrv": 20.4,
-      "rhr": 86.0,
+      "hrv": 20.9,
+      "rhr": 85.0,
       "sleep_hr": 6.8,
-      "days_sampled": 22,
+      "days_sampled": 21,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {
-      "protein_g": 184.9,
-      "carbs_g": 185.6,
-      "fat_g": 60.0,
-      "calories_kcal": 2022,
-      "has_data": true
-    }
+    "nutrition": {}
   },
   "history": [
-    {
-      "date": "2026-05-07",
-      "spoons": 4,
-      "sleep_hr": 6.46,
-      "sleep_pct": 79,
-      "recovery_pct": 31,
-      "strain": 14.4,
-      "stress_pct": 94,
-      "hrv": 17.2,
-      "rhr": 92.0
-    },
     {
       "date": "2026-05-08",
       "spoons": 2,
@@ -139,13 +121,5 @@
       "hrv": 23.8,
       "rhr": 80.0
     }
-  ],
-  "ring": {
-    "source": "Kogan Aura",
-    "ts": "2026-05-20T23:51:59.628818",
-    "battery_pct": 39,
-    "hr_bpm": 0,
-    "steps": 0,
-    "spo2_pct": null
-  }
+  ]
 }
