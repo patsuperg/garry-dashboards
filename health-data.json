@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-21T01:21:19.215747+10:00",
+  "generated": "2026-05-21T01:36:21.976839+10:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
   "coaching": "Solid foundation \u2014 7.1h sleep, 60% recovery. Execute the priority list. Lock in quality sleep tonight to build on this.",
@@ -26,24 +26,25 @@
         "subtitle": "HRV 22.9ms / RHR 72bpm"
       },
       "strain": {
-        "value": 0,
+        "value": 0.3,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 0,
+          "value": 0.3,
           "max": 21,
-          "kcal": 0,
-          "steps": 0,
+          "kcal": 50,
+          "steps": 414,
           "exercise_min": 0,
-          "hr_load": 0.0
+          "hr_load": 0.0,
+          "source": "json_export"
         },
-        "subtitle": "0kcal / 0st / 0min ex"
+        "subtitle": "50kcal / 414st / 0min ex"
       },
       "stress": {
         "value": 0,
         "unit": "%",
         "color": "gray",
-        "label": "no data",
+        "label": "no HR data",
         "subtitle": "HR ?bpm vs RHR ?"
       }
     },
@@ -74,7 +75,13 @@
       "days_sampled": 21,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {}
+    "nutrition": {
+      "protein_g": 0.0,
+      "carbs_g": 0.0,
+      "fat_g": 0.0,
+      "calories_kcal": 0,
+      "has_data": false
+    }
   },
   "history": [
     {
@@ -121,13 +128,5 @@
       "hrv": 23.8,
       "rhr": 80.0
     }
-  ],
-  "ring": {
-    "source": "Kogan Aura",
-    "ts": "2026-05-21T01:23:53.630692",
-    "battery_pct": 39,
-    "hr_bpm": 0,
-    "steps": 0,
-    "spo2_pct": null
-  }
+  ]
 }
