@@ -1,29 +1,29 @@
 {
-  "generated": "2026-05-21T10:23:01.478642+10:00",
+  "generated": "2026-05-21T10:38:04.040871+10:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
-  "coaching": "Solid foundation \u2014 7.1h sleep, 60% recovery. Execute the priority list. Lock in quality sleep tonight to build on this.",
+  "coaching": "Solid foundation \u2014 6.7h sleep, 58% recovery. Execute the priority list. Lock in quality sleep tonight to build on this.",
   "today": {
     "date": "2026-05-21",
-    "spoons": 10,
+    "spoons": 9,
     "spoons_max": 12,
-    "spoons_label": "Peak \u2014 push hard",
+    "spoons_label": "Solid \u2014 normal load",
     "spoons_color": "green",
     "rings": {
       "sleep": {
-        "value": 92,
+        "value": 81,
         "unit": "%",
-        "raw_hr": 7.09,
+        "raw_hr": 6.67,
         "color": "blue",
-        "label": "7.1h",
-        "subtitle": "7.1h total \u00b7 deep 1.3h / REM 1.2h"
+        "label": "6.7h",
+        "subtitle": "6.7h total \u00b7 deep 1.2h / REM 1.1h"
       },
       "recovery": {
-        "value": 60,
+        "value": 58,
         "unit": "%",
         "color": "yellow",
         "label": "YELLOW \u2014 train smart not hard",
-        "subtitle": "HRV 22.9ms / RHR 72bpm"
+        "subtitle": "HRV 23.6ms / RHR 72bpm"
       },
       "strain": {
         "value": 0.4,
@@ -49,22 +49,22 @@
       }
     },
     "sleep_breakdown": {
-      "total_hr": 7.09,
-      "deep_hr": 1.33,
-      "rem_hr": 1.22,
-      "core_hr": 4.54,
+      "total_hr": 6.67,
+      "deep_hr": 1.23,
+      "rem_hr": 1.11,
+      "core_hr": 4.33,
       "awake_hr": 0,
-      "in_bed_hr": 10.68,
+      "in_bed_hr": 8.57,
       "source_override": "eight_sleep",
-      "hrv_overnight": 22.9,
+      "hrv_overnight": 23.6,
       "rhr_overnight": 72
     },
-    "hrv_overnight": 22.9,
+    "hrv_overnight": 23.6,
     "rhr_overnight": 72,
     "baseline_14d": {
       "hrv": 25.5,
-      "rhr": 71.6,
-      "sleep_hr": 7.18,
+      "rhr": 71.8,
+      "sleep_hr": 7.17,
       "days_sampled": 5,
       "source": "Eight Sleep 7d + CSV 14d hybrid"
     },
@@ -101,8 +101,8 @@
       "sleep_hr": 7.82,
       "sleep_pct": 100,
       "recovery_pct": 67,
-      "strain": 13.9,
-      "stress_pct": 79,
+      "strain": 13.8,
+      "stress_pct": 78,
       "hrv": 31.2,
       "rhr": 79.0
     },
@@ -112,8 +112,8 @@
       "sleep_hr": 5.98,
       "sleep_pct": 70,
       "recovery_pct": 24,
-      "strain": 12.2,
-      "stress_pct": 62,
+      "strain": 12.1,
+      "stress_pct": 61,
       "hrv": 14.9,
       "rhr": 88.0
     },
@@ -124,17 +124,9 @@
       "sleep_pct": 24,
       "recovery_pct": 32,
       "strain": 8.9,
-      "stress_pct": 58,
+      "stress_pct": 57,
       "hrv": 23.8,
       "rhr": 80.0
     }
-  ],
-  "ring": {
-    "source": "Kogan Aura",
-    "ts": "2026-05-21T10:24:32.279010",
-    "battery_pct": 38,
-    "hr_bpm": 0,
-    "steps": 0,
-    "spo2_pct": null
-  }
+  ]
 }
