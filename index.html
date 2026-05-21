@@ -2,56 +2,352 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Garry System Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Garry · Patrick</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0a0a0a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', system-ui, sans-serif; padding: 24px; }
-  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
-  h1 { font-size: 1.8rem; color: #fff; letter-spacing: -0.5px; }
-  .ts { color: #555; font-size: 0.8rem; }
-  h2 { font-size: 1.1rem; color: #fff; margin-bottom: 14px; font-weight: 600; }
-  .section { margin-bottom: 28px; }
-  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
-  .card { background: #141414; border: 1px solid #222; border-radius: 14px; padding: 20px; }
-  .card .num { font-size: 2.5rem; font-weight: 700; line-height: 1; }
-  .card .lbl { font-size: 0.8rem; color: #888; margin-top: 6px; }
-  .green { color: #00d4aa; } .red { color: #e74c3c; } .yellow { color: #f39c12; } .white { color: #fff; }
-  .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
-  .badge-live { background: rgba(0,212,170,0.15); color: #00d4aa; border: 1px solid rgba(0,212,170,0.3); }
-  .score-bar { height: 8px; background: #1a1a1a; border-radius: 4px; margin-top: 8px; overflow: hidden; }
-  .score-fill { height: 100%; border-radius: 4px; }
-  .agent-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .agent-item { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #1a1a1a; border-radius: 8px; font-size: 0.8rem; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-green { background: #00d4aa; } .dot-red { background: #e74c3c; }
-  .agent-name { color: #ccc; } .agent-age { color: #555; margin-left: auto; font-size: 0.7rem; }
-  .capability-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-  .cap-item { padding: 10px; background: #1a1a1a; border-radius: 8px; font-size: 0.8rem; text-align: center; border-top: 3px solid; }
-  .cap-on { border-color: #00d4aa; color: #00d4aa; } .cap-off { border-color: #e74c3c; color: #e74c3c; }
-  @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } .agent-list { grid-template-columns: 1fr; } .capability-grid { grid-template-columns: repeat(2, 1fr); } }
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050508;color:#f0f0f2;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+
+/* TAB SHELL */
+.tab-content{padding:0 16px;padding-top:env(safe-area-inset-top);padding-bottom:calc(72px + env(safe-area-inset-bottom));overflow-y:auto;min-height:100vh}
+.pane{display:none}.pane.active{display:block}
+
+/* BOTTOM TAB BAR */
+.tabbar{position:fixed;bottom:0;left:0;right:0;height:calc(56px + env(safe-area-inset-bottom));background:rgba(5,5,8,0.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid #18181c;display:flex;align-items:flex-start;padding-top:8px;padding-bottom:env(safe-area-inset-bottom);z-index:100}
+.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:0 4px;background:none;border:none;color:#444;transition:color 0.2s;-webkit-tap-highlight-color:transparent}
+.tab-btn.active{color:#f0f0f2}
+.tab-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tab-btn span{font-size:9px;letter-spacing:0.5px}
+.tab-indicator{position:absolute;top:0;height:2px;border-radius:0 0 2px 2px;transition:left 0.25s ease,background 0.25s ease;width:25%}
+
+/* SHARED COMPONENTS */
+.wrap{max-width:600px;margin:0 auto}
+.hdr{text-align:center;padding:24px 0 4px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#5a5a64}
+.divider{height:1px;background:linear-gradient(90deg,transparent,#1a1a20,transparent);margin:4px 0 20px}
+.sec-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:12px}
+.loading-msg{text-align:center;padding:80px 0;color:#333;font-size:13px;letter-spacing:1px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.metric{background:#0c0c10;border:1px solid #18181c;border-radius:13px;padding:14px 8px;text-align:center}
+.metric-l{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#666;margin-bottom:7px}
+.metric-v{font-size:20px;font-weight:800;line-height:1}
+.metric-u{font-size:10px;color:#555;margin-left:2px;font-weight:400}
+.foot-ts{text-align:center;font-size:10px;color:#2a2a30;padding:16px 0 8px;letter-spacing:0.5px}
+
+/* ─── HEALTH ─────────────────────────────── */
+.spoons{text-align:center;padding:24px 0 16px}
+.spoons-date{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:12px}
+.spoons-num{font-size:80px;font-weight:900;line-height:1;letter-spacing:-3px}
+.spoons-max{font-size:26px;color:#444;font-weight:400}
+.spoons-icons{font-size:20px;letter-spacing:3px;margin:14px 0 6px}
+.spoons-label{font-size:12px;margin-top:4px}
+.rings{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.ring-card{background:#0c0c10;border:1px solid #18181c;border-radius:18px;padding:18px 12px;text-align:center}
+.ring-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:10px}
+.ring-wrap{position:relative;display:inline-block}
+svg.rdial{transform:rotate(-90deg);overflow:visible}
+.ring-bg{fill:none;stroke:#1a1a20}
+.ring-fg{fill:none;stroke-linecap:round}
+.ring-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
+.ring-val{font-size:20px;font-weight:800;line-height:1}
+.ring-unit{font-size:9px;color:#666;margin-top:1px}
+.ring-sub{font-size:10px;color:#555;margin-top:8px;line-height:1.5;min-height:26px}
+.coaching{background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:14px 16px;margin-bottom:16px}
+.coaching-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:6px}
+.coaching-txt{font-size:13px;color:#b0b0b8;line-height:1.65}
+.trend{margin-bottom:16px}
+.trend-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:10px}
+.bars{display:flex;align-items:flex-end;gap:5px;height:44px}
+.bar{flex:1;border-radius:3px 3px 0 0;min-height:4px}
+.dates{display:flex;gap:5px;margin-top:5px}
+.dt{flex:1;font-size:8px;color:#3a3a42;text-align:center}
+
+/* ─── PORTFOLIO ──────────────────────────── */
+.hero{text-align:center;padding:22px 0 14px}
+.hero-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px}
+.hero-num{font-size:68px;font-weight:900;line-height:1;letter-spacing:-3px}
+.hero-goal{font-size:22px;color:#444;font-weight:400}
+.hero-label{font-size:11px;color:#555;margin-top:6px}
+.prog-wrap{margin:10px 0 18px;background:#0c0c10;border:1px solid #18181c;border-radius:10px;height:8px;overflow:hidden}
+.prog-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,#34d399,#22c55e)}
+.props{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.prop-card{background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:14px}
+.prop-card.status-ok{border-left:3px solid #34d399}
+.prop-card.status-warning{border-left:3px solid #fbbf24}
+.prop-card.status-zero,.prop-card.status-critical{border-left:3px solid #f87171}
+.prop-card.status-forsale{border-left:3px solid #A855F7}
+.prop-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.prop-addr{font-size:13px;font-weight:700}
+.prop-state{font-size:10px;color:#555;margin-top:2px}
+.prop-badge{font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border-radius:7px;font-weight:700;white-space:nowrap}
+.badge-ok{background:#0d2918;color:#34d399}
+.badge-warning{background:#2a2000;color:#fbbf24}
+.badge-zero,.badge-critical{background:#2a0808;color:#f87171}
+.badge-forsale{background:#1e0d2e;color:#A855F7}
+.prop-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.prop-stat{text-align:center}
+.prop-stat-l{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#555;margin-bottom:2px}
+.prop-stat-v{font-size:14px;font-weight:800}
+.prop-issues{margin-top:8px;font-size:10px;color:#666;line-height:1.5}
+.bn-card{background:#0c0c10;border:1px solid #18181c;border-radius:12px;padding:12px 14px;margin-bottom:8px}
+.bn-card.sev-critical{border-left:3px solid #f87171}
+.bn-card.sev-warning{border-left:3px solid #fbbf24}
+.bn-card.sev-info{border-left:3px solid #3b82f6}
+.bn-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
+.bn-title{font-size:12px;font-weight:700}
+.bn-impact{font-size:10px;color:#34d399;font-weight:700}
+.bn-desc{font-size:11px;color:#666;line-height:1.5}
+
+/* ─── FINANCE ────────────────────────────── */
+.credit-track{background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:16px;margin-bottom:16px}
+.credit-bar-wrap{position:relative;height:8px;background:#1a1a20;border-radius:4px;margin:8px 0 4px}
+.credit-fill{height:100%;border-radius:4px}
+.credit-milestones{display:flex;justify-content:space-between;font-size:9px;color:#444;margin-top:5px}
+.credit-dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;border:2px solid #050508}
+.rate-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
+.rate-card{background:#14141a;border:1px solid #1a1a20;border-radius:8px;padding:10px;text-align:center}
+.rate-score{font-size:9px;color:#555;margin-bottom:3px}
+.rate-val{font-size:17px;font-weight:800}
+.rate-label{font-size:9px;color:#555;margin-top:2px}
+.cap-card,.path-card{background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:16px;margin-bottom:16px}
+.cap-row,.path-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #0f0f14;font-size:12px}
+.cap-row:last-child,.path-row:last-child{border-bottom:none}
+.cap-key,.path-key{color:#888}
+.cap-val,.path-val{font-weight:700}
+
+/* ─── DEALS ──────────────────────────────── */
+.deal-card{background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:16px;margin-bottom:12px}
+.deal-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.deal-addr{font-size:13px;font-weight:700;line-height:1.3}
+.deal-meta{font-size:10px;color:#555;margin-top:2px}
+.deal-score-num{font-size:24px;font-weight:900;line-height:1;text-align:center}
+.deal-score-lbl{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#555;text-align:center}
+.deal-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+.deal-stat{text-align:center}
+.deal-stat-l{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#555;margin-bottom:2px}
+.deal-stat-v{font-size:14px;font-weight:800}
+.score-bars{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.sbar{display:flex;align-items:center;gap:8px}
+.sbar-lbl{font-size:9px;color:#555;width:70px;text-align:right;flex-shrink:0}
+.sbar-track{flex:1;height:4px;background:#1a1a20;border-radius:2px;overflow:hidden}
+.sbar-fill{height:100%;border-radius:2px}
+.sbar-val{font-size:9px;font-weight:700;width:24px;text-align:right}
+.deal-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.deal-tag{font-size:9px;padding:2px 7px;border-radius:5px;font-weight:700}
+.tag-green{background:#0d2918;color:#34d399}
+.tag-purple{background:#1e0d2e;color:#A855F7}
+.tag-yellow{background:#2a2000;color:#fbbf24}
+.deal-ai{font-size:11px;color:#666;line-height:1.6;border-top:1px solid #14141a;padding-top:8px;margin-bottom:8px}
+.deal-links{display:flex;gap:10px}
+.deal-link{font-size:10px;color:#3b82f6;text-decoration:none}
 </style>
 </head>
 <body>
-<div class="header">
-  <div><h1>Garry System Dashboard</h1><span class="badge badge-live">SYSTEM LIVE</span></div>
-  <div class="ts">Auto-updated: May 22, 2026 09:48 AEDT<br>Score: 41/100 (honest)</div>
+
+<div class="tab-content">
+  <div class="pane active" id="pane-health"><div class="wrap"><div id="health-root"><div class="loading-msg">Loading…</div></div></div></div>
+  <div class="pane" id="pane-portfolio"><div class="wrap"><div id="portfolio-root"><div class="loading-msg">Loading…</div></div></div></div>
+  <div class="pane" id="pane-finance"><div class="wrap"><div id="finance-root"><div class="loading-msg">Loading…</div></div></div></div>
+  <div class="pane" id="pane-deals"><div class="wrap"><div id="deals-root"><div class="loading-msg">Loading…</div></div></div></div>
 </div>
-<div class="grid">
-  <div class="card"><div class="num red">41</div><div class="lbl">System Score</div>
-    <div class="score-bar"><div class="score-fill" style="width:41%;background:linear-gradient(90deg,#00a882,#00d4aa);"></div></div></div>
-  <div class="card"><div class="num white">49</div><div class="lbl">LaunchAgents</div></div>
-  <div class="card"><div class="num green">49</div><div class="lbl">Healthy</div></div>
-  <div class="card"><div class="num green">0</div><div class="lbl">Errors</div></div>
-</div>
-<div class="section"><h2>Capabilities — 2/12 Verified Active</h2><div class="capability-grid"><div class="cap-item cap-off">Deal Packaging</div><div class="cap-item cap-off">Rejection Learning</div><div class="cap-item cap-on">HAP Tracking</div><div class="cap-item cap-off">PM Scoring</div><div class="cap-item cap-off">Evernest Chase</div><div class="cap-item cap-on">Cashflow Dashboard</div><div class="cap-item cap-off">Morning Brief</div><div class="cap-item cap-off">Telegram (20 cmds)</div><div class="cap-item cap-off">Usage Optimizer</div><div class="cap-item cap-off">Session Continuity</div><div class="cap-item cap-off">Immune Self-Heal</div><div class="cap-item cap-off">Value Scoring</div></div></div>
-<div class="section"><h2>Agents</h2><div class="agent-list"><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">scrypted</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">deal-finder-v4</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">bot</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">keep-awake</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">portfolio-manager</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">iphone-dictate</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">worker</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">portfolio-report</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">health-refresh</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">capital-one-notify</span><span class="agent-age">2h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">downloads-screenshot-archive</span><span class="agent-age">67h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">income-stmt-requester</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">docusign-escalation</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">emergency-escalator</span><span class="agent-age">357h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">metrics-tracker</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">utility.monitor</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">financial-processor</span><span class="agent-age">126h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">payment-audit</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">pm-nudge-watcher</span><span class="agent-age">4h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">inbox-monitor</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">capital-one-paydown</span><span class="agent-age">433h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">drive-local-filer</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">ledger-watcher</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">state-writer</span><span class="agent-age">59h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">scout-runner</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">power-list</span><span class="agent-age">1h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">threads-deadline-scanner</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">journey-update</span><span class="agent-age">111h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">session-context</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">bangkok-finder</span><span class="agent-age">2h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">drive-watchdog</span><span class="agent-age">1h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">contractor-quote-monitor</span><span class="agent-age">19h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">cashflow-dashboard</span><span class="agent-age">3h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">bangkok-finder-feedback</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">downloads-sync</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">deal-alert-watcher</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">pm-tracker</span><span class="agent-age">4h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">mercury.repair</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">ring-bridge</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">portfolio-data</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">credit-step-watcher</span><span class="agent-age">0h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">deadline-scanner</span><span class="agent-age">3h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">payment-gate</span><span class="agent-age">11h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">portfolio-health-daily</span><span class="agent-age">3h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">buxton-nonrenewal</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">hap-tracker</span><span class="agent-age">2h</span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">morning-brief</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">mercury.avenue-statements</span><span class="agent-age"></span></div><div class="agent-item"><span class="dot dot-green"></span><span class="agent-name">deal-monitor</span><span class="agent-age">0h</span></div></div></div>
-<div class="section"><h2>Infrastructure</h2>
-  <div class="grid" style="grid-template-columns:repeat(3,1fr);">
-    <div class="card"><div class="num green" style="font-size:1.5rem;">12Gi</div><div class="lbl">Disk Used (584Gi free)</div></div>
-    <div class="card"><div class="num green" style="font-size:1.5rem;">Ollama</div><div class="lbl">llama3.1:8b — $0/query</div></div>
-    <div class="card"><div class="num green" style="font-size:1.5rem;">ChromaDB</div><div class="lbl">481 chunks indexed</div></div>
-  </div>
-</div>
-<div style="text-align:center;padding:16px;color:#333;font-size:0.7rem;">Garry COO — Auto-updates every 30min — Honest scoring</div>
-</body></html>
+
+<nav class="tabbar">
+  <div class="tab-indicator" id="indicator" style="left:0;background:#34d399"></div>
+  <button class="tab-btn active" data-tab="health" onclick="switchTab('health',0,'#34d399')">
+    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    <span>Health</span>
+  </button>
+  <button class="tab-btn" data-tab="portfolio" onclick="switchTab('portfolio',1,'#34d399')">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+    <span>Portfolio</span>
+  </button>
+  <button class="tab-btn" data-tab="finance" onclick="switchTab('finance',2,'#3b82f6')">
+    <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    <span>Finance</span>
+  </button>
+  <button class="tab-btn" data-tab="deals" onclick="switchTab('deals',3,'#A855F7')">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <span>Deals</span>
+  </button>
+</nav>
+
+<script>
+const loaded={health:false,portfolio:false,finance:false,deals:false};
+let activeTab='health';
+
+function switchTab(name,idx,color){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('pane-'+name).classList.add('active');
+  document.querySelector('[data-tab="'+name+'"]').classList.add('active');
+  const ind=document.getElementById('indicator');
+  ind.style.left=(idx*25)+'%';
+  ind.style.background=color;
+  activeTab=name;
+  if(!loaded[name]){loaded[name]=true;renders[name]();}
+}
+
+async function fetchJ(url){
+  const r=await fetch(url+'?_='+Date.now());
+  return r.json();
+}
+
+// Color helpers
+function spColor(n){return n>=8?'#34d399':n>=5?'#fbbf24':'#f87171'}
+function slColor(v){return v>=75?'#3B82F6':v>=55?'#60a5fa':'#f87171'}
+function recColor(v){return v>=67?'#34d399':v>=34?'#fbbf24':'#f87171'}
+function stressColor(v){return v<=30?'#34d399':v<=60?'#fbbf24':'#f87171'}
+function hvColor(v){return v>=40?'#34d399':v>=28?'#fbbf24':'#f87171'}
+function rhrColor(v){return v<=65?'#34d399':v<=75?'#fbbf24':'#f87171'}
+function stepsColor(v){return v>=8000?'#34d399':v>=4000?'#fbbf24':'#f87171'}
+function scoreColor(s){return s>=75?'#34d399':s>=55?'#fbbf24':'#f87171'}
+function barColor(s){return s>=70?'#34d399':s>=40?'#fbbf24':'#f87171'}
+function cfColor(v){return v>=800?'#34d399':v>=500?'#fbbf24':'#f87171'}
+function vsMarketStr(v){
+  if(v>0)return'<span style="color:#f87171">-$'+v.toLocaleString()+'</span>';
+  if(v<0)return'<span style="color:#34d399">+$'+Math.abs(v).toLocaleString()+'</span>';
+  return'<span style="color:#666">At mkt</span>';
+}
+function bnIcon(s){return s==='critical'?'🔴':s==='warning'?'🟡':'🔵'}
+function tsStr(iso){try{return new Date(iso).toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'})}catch(e){return'—'}}
+
+// Ring dial SVG
+const CR=44,CCX=52,CCY=52,CSW=9,CIRC=2*Math.PI*CR;
+function ringDial(pct,color,valStr,unitStr,subStr,label){
+  const off=(CIRC*(1-Math.min(1,Math.max(0,pct)/100))).toFixed(2);
+  return'<div class="ring-card"><div class="ring-lbl">'+label+'</div><div class="ring-wrap"><svg class="rdial" width="'+(CCX*2)+'" height="'+(CCY*2)+'" viewBox="0 0 '+(CCX*2)+' '+(CCY*2)+'"><circle class="ring-bg" cx="'+CCX+'" cy="'+CCY+'" r="'+CR+'" stroke-width="'+CSW+'"/><circle class="ring-fg" cx="'+CCX+'" cy="'+CCY+'" r="'+CR+'" stroke="'+color+'" stroke-width="'+CSW+'" stroke-dasharray="'+CIRC.toFixed(2)+'" stroke-dashoffset="'+off+'"/></svg><div class="ring-inner"><div class="ring-val" style="color:'+color+'">'+valStr+'</div><div class="ring-unit">'+unitStr+'</div></div></div><div class="ring-sub">'+subStr+'</div></div>';
+}
+
+function sBar(label,val){
+  const c=barColor(val);
+  return'<div class="sbar"><span class="sbar-lbl">'+label+'</span><div class="sbar-track"><div class="sbar-fill" style="width:'+val+'%;background:'+c+'"></div></div><span class="sbar-val" style="color:'+c+'">'+val+'</span></div>';
+}
+
+// ── HEALTH ──────────────────────────────────────────────────────
+async function renderHealth(){
+  const el=document.getElementById('health-root');
+  let d;
+  try{d=await fetchJ('./health-data.json')}catch(e){el.innerHTML='<div class="loading-msg" style="color:#f87171">Failed to load health data.</div>';return;}
+  const td=d.today||{},rings=td.rings||{},sl=rings.sleep||{},rc=rings.recovery||{},st=rings.strain||{},sx=rings.stress||{},bd=td.sleep_breakdown||{},hist=d.history||[];
+  const spn=td.spoons||0,spMax=td.spoons_max||12,sc=spColor(spn),spLbl=(td.spoons_label||'').toUpperCase();
+  const icons='🥄'.repeat(spn)+('·'.repeat(Math.max(0,spMax-spn)));
+  let niceDt=td.date||'';
+  try{const dt=new Date((td.date||'')+'T12:00:00');niceDt=dt.toLocaleDateString('en-AU',{weekday:'long',month:'long',day:'numeric'})}catch(e){}
+  const hrv=td.hrv_overnight||0,rhr=td.rhr_overnight||0,stRaw=st.raw||{},steps=stRaw.steps||0,kcal=stRaw.kcal||0;
+  const slPct=sl.value||0,slHr=parseFloat(sl.raw_hr||bd.total_hr||0).toFixed(1);
+  const slSub=parseFloat(bd.deep_hr||0).toFixed(1)+'h deep · '+parseFloat(bd.rem_hr||0).toFixed(1)+'h REM';
+  const rcPct=rc.value||0,rcSub='HRV '+hrv+'ms · RHR '+rhr+'bpm';
+  const stVal=parseFloat(st.value||0),stPct=Math.round((stVal/21)*100),stSub=kcal+'kcal · '+steps.toLocaleString()+' steps';
+  const sxPct=sx.value||0,sxSub=sx.subtitle||'';
+  const recent=hist.slice(-7);
+  let barsH='',dtH='';
+  if(recent.length){
+    barsH='<div class="bars">'+recent.map(h=>{const s=h.spoons||0;return'<div class="bar" style="height:'+Math.max(4,(s/12*42)).toFixed(0)+'px;background:'+spColor(s)+'"></div>';}).join('')+'</div>';
+    dtH='<div class="dates">'+recent.map(h=>{try{return'<div class="dt">'+new Date(h.date+'T12:00:00').toLocaleDateString('en-AU',{weekday:'short'}).slice(0,2)+'</div>'}catch(e){return'<div class="dt"></div>'}}).join('')+'</div>';
+  }
+  el.innerHTML='<div class="hdr">Health</div>'+
+  '<div class="spoons"><div class="spoons-date">'+niceDt+'</div><div class="spoons-num" style="color:'+sc+'">'+spn+'<span class="spoons-max">/12</span></div><div class="spoons-icons">'+icons+'</div><div class="spoons-label" style="color:'+sc+'">● '+spLbl+'</div></div>'+
+  '<div class="divider"></div>'+
+  '<div class="rings">'+ringDial(slPct,slColor(slPct),slHr,'hrs',slSub,'Sleep')+ringDial(rcPct,recColor(rcPct),rcPct,'%',rcSub,'Recovery')+ringDial(stPct,'#A855F7',stVal.toFixed(1),'/21',stSub,'Strain')+ringDial(sxPct,stressColor(sxPct),sxPct,'%',sxSub||'—','Stress')+'</div>'+
+  '<div class="metrics"><div class="metric"><div class="metric-l">HRV</div><div class="metric-v" style="color:'+hvColor(hrv)+'">'+(hrv||'—')+'<span class="metric-u">ms</span></div></div><div class="metric"><div class="metric-l">Resting HR</div><div class="metric-v" style="color:'+rhrColor(rhr)+'">'+(rhr||'—')+'<span class="metric-u">bpm</span></div></div><div class="metric"><div class="metric-l">Steps</div><div class="metric-v" style="color:'+stepsColor(steps)+'">'+(steps?steps.toLocaleString():'—')+'</div></div></div>'+
+  (d.coaching?'<div class="coaching"><div class="coaching-lbl">Coach</div><div class="coaching-txt">'+d.coaching+'</div></div>':'')+
+  (recent.length?'<div class="trend"><div class="trend-lbl">7-Day Spoons</div>'+barsH+dtH+'</div>':'')+
+  '<div class="foot-ts">Updated '+tsStr(d.generated)+' · Eight Sleep + Apple Watch</div>';
+}
+
+// ── PORTFOLIO ─────────────────────────────────────────────────────
+async function renderPortfolio(){
+  const el=document.getElementById('portfolio-root');
+  let d;
+  try{d=await fetchJ('./portfolio-data.json')}catch(e){el.innerHTML='<div class="loading-msg" style="color:#f87171">Failed to load portfolio data.</div>';return;}
+  const s=d.summary||{},props=d.properties||[],bns=d.bottlenecks||[];
+  const net=s.net_monthly||0,gross=s.gross_monthly||0,goal=s.goal||20000,gap=s.gap||0,pct=s.progress_pct||0;
+  const sLbl={ok:'Leased',warning:'Issues',zero:'Zero Income',forsale:'For Sale',critical:'Critical'};
+  const propsH=props.map(p=>{
+    const nc=p.status==='zero'?'#f87171':p.net_income>900?'#34d399':p.net_income>500?'#fbbf24':'#f87171';
+    const iss=p.issues&&p.issues.length?'<div class="prop-issues"><span style="color:#fbbf24">⚠</span> '+p.issues.join(' · ')+'</div>':'';
+    return'<div class="prop-card status-'+p.status+'"><div class="prop-top"><div><div class="prop-addr">'+p.short+'</div><div class="prop-state">'+p.state+' · '+p.pm+'</div></div><span class="prop-badge badge-'+p.status+'">'+(sLbl[p.status]||p.status)+'</span></div><div class="prop-nums"><div class="prop-stat"><div class="prop-stat-l">Gross</div><div class="prop-stat-v" style="color:#f0f0f2">$'+(p.gross_rent||0).toLocaleString()+'</div></div><div class="prop-stat"><div class="prop-stat-l">PM Fee</div><div class="prop-stat-v" style="color:#555">$'+(p.pm_fee||0).toLocaleString()+'</div></div><div class="prop-stat"><div class="prop-stat-l">Net</div><div class="prop-stat-v" style="color:'+nc+'">$'+(p.net_income||0).toLocaleString()+'</div></div><div class="prop-stat"><div class="prop-stat-l">vs Mkt</div><div class="prop-stat-v">'+vsMarketStr(p.vs_market||0)+'</div></div></div>'+iss+'</div>';
+  }).join('');
+  const bnsH=bns.map((b,i)=>'<div class="bn-card sev-'+b.severity+'"><div class="bn-top"><div class="bn-title">'+bnIcon(b.severity)+' #'+(i+1)+' — '+b.title+'</div>'+(b.impact?'<div class="bn-impact">'+b.impact+'</div>':'')+'</div><div class="bn-desc">'+b.desc+'</div></div>').join('');
+  el.innerHTML='<div class="hdr">Portfolio</div>'+
+  '<div class="hero"><div class="hero-sub">Monthly Net Income</div><div class="hero-num" style="color:#34d399">$'+net.toLocaleString()+'<span class="hero-goal">/$'+(goal/1000).toFixed(0)+'K</span></div><div class="hero-label">$'+gap.toLocaleString()+' to go · '+pct+'% · '+s.properties_count+' properties</div></div>'+
+  '<div class="prog-wrap"><div class="prog-fill" style="width:'+Math.min(100,pct).toFixed(1)+'%"></div></div>'+
+  '<div class="metrics"><div class="metric"><div class="metric-l">Gross</div><div class="metric-v">$'+gross.toLocaleString()+'</div></div><div class="metric"><div class="metric-l">Net</div><div class="metric-v" style="color:#34d399">$'+net.toLocaleString()+'</div></div><div class="metric"><div class="metric-l">Gap</div><div class="metric-v" style="color:#f87171">$'+gap.toLocaleString()+'</div></div></div>'+
+  '<div class="divider"></div><div class="sec-lbl">'+props.length+' Properties</div><div class="props">'+propsH+'</div>'+
+  '<div class="divider"></div><div class="sec-lbl">Bottlenecks</div>'+bnsH+
+  '<div class="foot-ts">Updated '+tsStr(d.generated)+'</div>';
+}
+
+// ── FINANCE ──────────────────────────────────────────────────────
+async function renderFinance(){
+  const el=document.getElementById('finance-root');
+  let d;
+  try{d=await fetchJ('./finance-data.json')}catch(e){el.innerHTML='<div class="loading-msg" style="color:#f87171">Failed to load finance data.</div>';return;}
+  const wise=d.wise_usd||0,credit=d.credit||{},lending=d.lending||{},capital=d.capital||{},path=d.path_to_20k||{};
+  const cscore=credit.score_current,cMin=300,cMax=850;
+  const p660=((660-cMin)/(cMax-cMin)*100).toFixed(1);
+  const p700=((700-cMin)/(cMax-cMin)*100).toFixed(1);
+  const pC=cscore?((cscore-cMin)/(cMax-cMin)*100).toFixed(1):null;
+  const sC=cscore?(cscore>=700?'#34d399':cscore>=660?'#fbbf24':'#f87171'):'#555';
+  el.innerHTML='<div class="hdr">Finance</div>'+
+  '<div class="hero"><div class="hero-sub">Wise USD Balance</div><div class="hero-num" style="color:#3b82f6">$'+Math.round(wise/1000)+'K</div><div class="hero-label">$'+wise.toLocaleString()+' deployment-ready</div></div>'+
+  '<div class="metrics"><div class="metric"><div class="metric-l">Net/Mo</div><div class="metric-v" style="color:#34d399">$'+(path.current_net||0).toLocaleString()+'</div></div><div class="metric"><div class="metric-l">Gap</div><div class="metric-v" style="color:#f87171">$'+(path.gap||0).toLocaleString()+'</div></div><div class="metric"><div class="metric-l">Doors Needed</div><div class="metric-v" style="color:#fbbf24">'+(path.doors_needed_at_avg||0)+'</div></div></div>'+
+  '<div class="divider"></div><div class="sec-lbl">Credit Build · Capital One Path</div>'+
+  '<div class="credit-track"><div style="font-size:10px;color:#666;margin-bottom:10px">Score unlocks cheaper financing — every 0.5% rate = ~$500/mo at scale</div>'+
+  '<div class="credit-bar-wrap"><div class="credit-fill" style="width:'+(pC||p660)+'%;background:'+sC+'"></div>'+
+  (pC?'<div class="credit-dot" style="left:'+pC+'%;background:'+sC+'"></div>':'')+
+  '<div class="credit-dot" style="left:'+p660+'%;background:#fbbf24;opacity:0.5"></div><div class="credit-dot" style="left:'+p700+'%;background:#34d399;opacity:0.5"></div></div>'+
+  '<div class="credit-milestones"><span>300</span><span style="color:#fbbf24">660</span><span style="color:#34d399">700</span><span>850</span></div>'+
+  '<div class="rate-grid"><div class="rate-card"><div class="rate-score">Today</div><div class="rate-val" style="color:#f87171">'+lending.current_rate+'%</div><div class="rate-label">rate</div></div><div class="rate-card"><div class="rate-score">At 660</div><div class="rate-val" style="color:#fbbf24">'+lending.target_rate_660+'%</div><div class="rate-label">unlock</div></div><div class="rate-card"><div class="rate-score">At 700+</div><div class="rate-val" style="color:#34d399">'+lending.target_rate_700+'%</div><div class="rate-label">target</div></div></div>'+
+  '<div style="margin-top:10px;font-size:11px;color:#666">'+(credit.capital_one_status||'—')+'</div></div>'+
+  '<div class="sec-lbl">Capital Position</div><div class="cap-card">'+
+  '<div class="cap-row"><span class="cap-key">Wise USD (liquid)</span><span class="cap-val" style="color:#3b82f6">$'+wise.toLocaleString()+'</span></div>'+
+  '<div class="cap-row"><span class="cap-key">AU Equity</span><span class="cap-val" style="color:#555">A$'+(capital.equity_aud||0).toLocaleString()+'</span></div>'+
+  '<div class="cap-row"><span class="cap-key">Equity Blocker</span><span class="cap-val" style="color:#fbbf24">'+(capital.equity_blocker||'—')+'</span></div></div>'+
+  '<div class="sec-lbl">Path to $20K</div><div class="path-card">'+
+  '<div class="path-row"><span class="path-key">Current net</span><span class="path-val" style="color:#34d399">$'+(path.current_net||0).toLocaleString()+'/mo</span></div>'+
+  '<div class="path-row"><span class="path-key">Target</span><span class="path-val">$'+(path.goal||20000).toLocaleString()+'/mo</span></div>'+
+  '<div class="path-row"><span class="path-key">Gap</span><span class="path-val" style="color:#f87171">$'+(path.gap||0).toLocaleString()+'/mo</span></div>'+
+  '<div class="path-row"><span class="path-key">Doors at ~$'+(path.avg_net_per_door||900)+'/mo</span><span class="path-val" style="color:#fbbf24">'+(path.doors_needed_at_avg||0)+' more</span></div></div>'+
+  '<div class="foot-ts">Updated '+tsStr(d.generated)+'</div>';
+}
+
+// ── DEALS ────────────────────────────────────────────────────────
+async function renderDeals(){
+  const el=document.getElementById('deals-root');
+  let d;
+  try{d=await fetchJ('./deals-data.json')}catch(e){el.innerHTML='<div class="loading-msg" style="color:#f87171">Failed to load deals data.</div>';return;}
+  const deals=d.deals||[];
+  const cardsH=deals.map(dl=>{
+    const sc=dl.garry_score||0,scC=scoreColor(sc),cf=dl.cashflow||dl.projected_cf||0,ai=dl.ai_scores||{};
+    let tags='';
+    if(dl.in_avenue_zip)tags+='<span class="deal-tag tag-green">Avenue ZIP</span>';
+    if(dl.dscr_eligible)tags+='<span class="deal-tag tag-purple">DSCR OK</span>';
+    if(dl.dscr>=2)tags+='<span class="deal-tag tag-green">DSCR '+dl.dscr.toFixed(1)+'</span>';
+    if(dl.hqs_score<40)tags+='<span class="deal-tag tag-yellow">Reno Needed</span>';
+    let links='';
+    if(dl.zillow_url)links+='<a class="deal-link" href="'+dl.zillow_url+'" target="_blank">Zillow →</a>';
+    if(dl.s8pro_url)links+='<a class="deal-link" href="'+dl.s8pro_url+'" target="_blank">S8 Pro →</a>';
+    return'<div class="deal-card"><div class="deal-top"><div><div class="deal-addr">'+dl.address.split(',').slice(0,2).join(',')+'</div><div class="deal-meta">'+dl.bedrooms+'BR · $'+dl.price.toLocaleString()+' · FMR $'+dl.fmr.toLocaleString()+'</div></div><div><div class="deal-score-num" style="color:'+scC+'">'+sc.toFixed(0)+'</div><div class="deal-score-lbl">Score</div></div></div>'+
+    '<div class="deal-nums"><div class="deal-stat"><div class="deal-stat-l">CF/mo</div><div class="deal-stat-v" style="color:'+cfColor(cf)+'">$'+Math.round(cf).toLocaleString()+'</div></div><div class="deal-stat"><div class="deal-stat-l">Cap Rate</div><div class="deal-stat-v" style="color:#A855F7">'+dl.cap_rate.toFixed(1)+'%</div></div><div class="deal-stat"><div class="deal-stat-l">CoC</div><div class="deal-stat-v" style="color:#3b82f6">'+dl.coc_pct.toFixed(1)+'%</div></div><div class="deal-stat"><div class="deal-stat-l">DSCR</div><div class="deal-stat-v" style="color:'+(dl.dscr>=2?'#34d399':'#fbbf24')+'">'+dl.dscr.toFixed(1)+'</div></div></div>'+
+    (tags?'<div class="deal-tags">'+tags+'</div>':'')+
+    '<div class="score-bars">'+sBar('Financial',ai.financial||0)+sBar('S8 Demand',ai.s8_demand||0)+sBar('Location',ai.location||0)+sBar('HQS',ai.hqs||0)+sBar('Quality',ai.property_quality||0)+'</div>'+
+    (dl.ai_summary?'<div class="deal-ai">'+dl.ai_summary.slice(0,280)+'…</div>':'')+
+    (links?'<div class="deal-links">'+links+'</div>':'')+
+    '</div>';
+  }).join('');
+  el.innerHTML='<div class="hdr">Deals</div>'+
+  '<div class="hero"><div class="hero-sub">Active Pipeline · St Louis</div><div class="hero-num" style="color:#A855F7">'+(d.total_found||0)+'</div><div class="hero-label">Deals scored today · 4BR $70–100K buy box</div></div>'+
+  '<div class="divider"></div><div class="sec-lbl">Top Deals — Garry Score</div>'+cardsH+
+  '<div class="foot-ts">Updated '+tsStr(d.generated)+'</div>';
+}
+
+const renders={health:renderHealth,portfolio:renderPortfolio,finance:renderFinance,deals:renderDeals};
+
+// Boot
+renderHealth();
+setInterval(()=>{if(loaded[activeTab])renders[activeTab]();},10*60*1000);
+</script>
+</body>
+</html>
