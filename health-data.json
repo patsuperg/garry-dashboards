@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-22T14:43:32.537629+10:00",
+  "generated": "2026-05-22T14:58:35.368126+10:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep + MFP",
   "coaching": "Well recovered (81%) and 7.5h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
@@ -26,22 +26,22 @@
         "subtitle": "HRV 30ms / RHR 68bpm"
       },
       "strain": {
-        "value": 3.2,
+        "value": 4.0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 3.2,
+          "value": 4.0,
           "max": 21,
-          "kcal": 160,
-          "steps": 1578,
+          "kcal": 225,
+          "steps": 2176,
           "exercise_min": 7,
-          "hr_load": 13.0,
+          "hr_load": 16.4,
           "source": "json_export"
         },
-        "subtitle": "160kcal / 1578st / 7min ex"
+        "subtitle": "225kcal / 2176st / 7min ex"
       },
       "stress": {
-        "value": 69,
+        "value": 68,
         "unit": "%",
         "color": "red",
         "label": "high",
@@ -76,10 +76,10 @@
       "source": "Apple Health CSV 30d avg"
     },
     "nutrition": {
-      "protein_g": 78.2,
-      "carbs_g": 72.8,
-      "fat_g": 6.4,
-      "calories_kcal": 662,
+      "protein_g": 138.1,
+      "carbs_g": 119.6,
+      "fat_g": 13.6,
+      "calories_kcal": 1154,
       "has_data": true
     }
   },
@@ -117,13 +117,5 @@
       "hrv": 23.8,
       "rhr": 80.0
     }
-  ],
-  "ring": {
-    "source": "Kogan Aura",
-    "ts": "2026-05-22T14:47:09.723759",
-    "battery_pct": 20,
-    "hr_bpm": 0,
-    "steps": 0,
-    "spo2_pct": null
-  }
+  ]
 }
