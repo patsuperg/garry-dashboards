@@ -1,13 +1,13 @@
 {
-  "generated": "2026-05-22T23:45:14.045936+10:00",
+  "generated": "2026-05-23T00:00:16.988302+10:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep + MFP",
+  "device": "Apple Watch + Eight Sleep",
   "coaching": "Well recovered (81%) and 7.5h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
   "today": {
-    "date": "2026-05-22",
-    "spoons": 8,
+    "date": "2026-05-23",
+    "spoons": 11,
     "spoons_max": 12,
-    "spoons_label": "Solid \u2014 normal load",
+    "spoons_label": "Peak \u2014 push hard",
     "spoons_color": "green",
     "rings": {
       "sleep": {
@@ -26,26 +26,25 @@
         "subtitle": "HRV 30ms / RHR 68bpm"
       },
       "strain": {
-        "value": 15.0,
+        "value": 0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 15.0,
+          "value": 0,
           "max": 21,
-          "kcal": 725,
-          "steps": 7587,
-          "exercise_min": 52,
-          "hr_load": 56.4,
-          "source": "json_export"
+          "kcal": 0,
+          "steps": 0,
+          "exercise_min": 0,
+          "hr_load": 0.0
         },
-        "subtitle": "725kcal / 7587st / 52min ex"
+        "subtitle": "0kcal / 0st / 0min ex"
       },
       "stress": {
-        "value": 100,
+        "value": 0,
         "unit": "%",
-        "color": "red",
-        "label": "high",
-        "subtitle": "HR 104bpm vs RHR 72"
+        "color": "gray",
+        "label": "no data",
+        "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
@@ -65,36 +64,19 @@
       "hrv": 24.3,
       "rhr": 72.4,
       "sleep_hr": 7.06,
-      "days_sampled": 4,
+      "days_sampled": 3,
       "source": "Eight Sleep 7d + CSV 14d hybrid"
     },
     "baseline_30d": {
-      "hrv": 20.4,
+      "hrv": 20.9,
       "rhr": 84.0,
-      "sleep_hr": 7.1,
-      "days_sampled": 20,
+      "sleep_hr": 7.2,
+      "days_sampled": 19,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {
-      "protein_g": 170.9,
-      "carbs_g": 181.1,
-      "fat_g": 21.8,
-      "calories_kcal": 1605,
-      "has_data": true
-    }
+    "nutrition": {}
   },
   "history": [
-    {
-      "date": "2026-05-09",
-      "spoons": 8,
-      "sleep_hr": 7.82,
-      "sleep_pct": 100,
-      "recovery_pct": 71,
-      "strain": 13.7,
-      "stress_pct": 76,
-      "hrv": 31.2,
-      "rhr": 79.0
-    },
     {
       "date": "2026-05-10",
       "spoons": 5,
