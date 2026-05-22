@@ -1,29 +1,29 @@
 {
-  "generated": "2026-05-22T10:27:42.779295+10:00",
+  "generated": "2026-05-22T10:30:06.995649+10:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
-  "coaching": "Solid foundation \u2014 6.7h sleep, 58% recovery. Execute the priority list. Lock in quality sleep tonight to build on this.",
+  "coaching": "Well recovered (81%) and 7.5h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
   "today": {
     "date": "2026-05-22",
-    "spoons": 9,
+    "spoons": 10,
     "spoons_max": 12,
-    "spoons_label": "Solid \u2014 normal load",
+    "spoons_label": "Peak \u2014 push hard",
     "spoons_color": "green",
     "rings": {
       "sleep": {
-        "value": 81,
+        "value": 99,
         "unit": "%",
-        "raw_hr": 6.67,
+        "raw_hr": 7.45,
         "color": "blue",
-        "label": "6.7h",
-        "subtitle": "6.7h total \u00b7 deep 1.2h / REM 1.1h"
+        "label": "7.5h",
+        "subtitle": "7.5h total \u00b7 deep 0.9h / REM 2.1h"
       },
       "recovery": {
-        "value": 58,
+        "value": 81,
         "unit": "%",
-        "color": "yellow",
-        "label": "YELLOW \u2014 train smart not hard",
-        "subtitle": "HRV 23.6ms / RHR 72bpm"
+        "color": "green",
+        "label": "GREEN \u2014 push hard",
+        "subtitle": "HRV 30ms / RHR 68bpm"
       },
       "strain": {
         "value": 0.2,
@@ -35,36 +35,36 @@
           "kcal": 0,
           "steps": 88,
           "exercise_min": 0,
-          "hr_load": 1.2,
+          "hr_load": 1.1,
           "source": "json_export"
         },
         "subtitle": "0kcal / 88st / 0min ex"
       },
       "stress": {
-        "value": 17,
+        "value": 26,
         "unit": "%",
         "color": "green",
         "label": "calm",
-        "subtitle": "HR 77bpm vs RHR 72"
+        "subtitle": "HR 80bpm vs RHR 72"
       }
     },
     "sleep_breakdown": {
-      "total_hr": 6.67,
-      "deep_hr": 1.23,
-      "rem_hr": 1.11,
-      "core_hr": 4.33,
+      "total_hr": 7.45,
+      "deep_hr": 0.89,
+      "rem_hr": 2.06,
+      "core_hr": 4.5,
       "awake_hr": 0,
-      "in_bed_hr": 8.57,
+      "in_bed_hr": 9.29,
       "source_override": "eight_sleep",
-      "hrv_overnight": 23.6,
-      "rhr_overnight": 72
+      "hrv_overnight": 30,
+      "rhr_overnight": 68
     },
-    "hrv_overnight": 23.6,
-    "rhr_overnight": 72,
+    "hrv_overnight": 30,
+    "rhr_overnight": 68,
     "baseline_14d": {
-      "hrv": 25.5,
-      "rhr": 71.8,
-      "sleep_hr": 7.17,
+      "hrv": 24.3,
+      "rhr": 72.4,
+      "sleep_hr": 7.06,
       "days_sampled": 4,
       "source": "Eight Sleep 7d + CSV 14d hybrid"
     },
@@ -86,12 +86,12 @@
   "history": [
     {
       "date": "2026-05-09",
-      "spoons": 7,
+      "spoons": 8,
       "sleep_hr": 7.82,
       "sleep_pct": 100,
-      "recovery_pct": 67,
-      "strain": 13.8,
-      "stress_pct": 78,
+      "recovery_pct": 71,
+      "strain": 13.7,
+      "stress_pct": 76,
       "hrv": 31.2,
       "rhr": 79.0
     },
@@ -100,20 +100,20 @@
       "spoons": 5,
       "sleep_hr": 5.98,
       "sleep_pct": 70,
-      "recovery_pct": 24,
-      "strain": 12.1,
-      "stress_pct": 61,
+      "recovery_pct": 26,
+      "strain": 12.0,
+      "stress_pct": 59,
       "hrv": 14.9,
       "rhr": 88.0
     },
     {
       "date": "2026-05-11",
-      "spoons": 4,
+      "spoons": 5,
       "sleep_hr": 4.04,
       "sleep_pct": 24,
-      "recovery_pct": 32,
-      "strain": 8.9,
-      "stress_pct": 57,
+      "recovery_pct": 35,
+      "strain": 8.8,
+      "stress_pct": 55,
       "hrv": 23.8,
       "rhr": 80.0
     }
