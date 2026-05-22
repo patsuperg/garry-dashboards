@@ -1,13 +1,13 @@
 {
-  "generated": "2026-05-22T11:12:51.307951+10:00",
+  "generated": "2026-05-22T11:27:54.219376+10:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
   "coaching": "Well recovered (81%) and 7.5h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
   "today": {
     "date": "2026-05-22",
-    "spoons": 11,
+    "spoons": 9,
     "spoons_max": 12,
-    "spoons_label": "Peak \u2014 push hard",
+    "spoons_label": "Solid \u2014 normal load",
     "spoons_color": "green",
     "rings": {
       "sleep": {
@@ -26,26 +26,26 @@
         "subtitle": "HRV 30ms / RHR 68bpm"
       },
       "strain": {
-        "value": 0.2,
+        "value": 2.0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 0.2,
+          "value": 2.0,
           "max": 21,
-          "kcal": 0,
-          "steps": 88,
-          "exercise_min": 0,
-          "hr_load": 1.1,
+          "kcal": 106,
+          "steps": 1161,
+          "exercise_min": 7,
+          "hr_load": 6.9,
           "source": "json_export"
         },
-        "subtitle": "0kcal / 88st / 0min ex"
+        "subtitle": "106kcal / 1161st / 7min ex"
       },
       "stress": {
-        "value": 3,
+        "value": 81,
         "unit": "%",
-        "color": "green",
-        "label": "calm",
-        "subtitle": "HR 73bpm vs RHR 72"
+        "color": "red",
+        "label": "high",
+        "subtitle": "HR 97bpm vs RHR 72"
       }
     },
     "sleep_breakdown": {
@@ -117,13 +117,5 @@
       "hrv": 23.8,
       "rhr": 80.0
     }
-  ],
-  "ring": {
-    "source": "Kogan Aura",
-    "ts": "2026-05-22T11:12:57.680740",
-    "battery_pct": 28,
-    "hr_bpm": 0,
-    "steps": 0,
-    "spo2_pct": null
-  }
+  ]
 }
