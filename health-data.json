@@ -1,69 +1,70 @@
 {
-  "generated": "2026-05-23T13:47:48.165879+10:00",
+  "generated": "2026-05-23T14:02:50.777554+10:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
-  "coaching": "Short sleep (2.1h) and recovery in the red (10%). Keep today light \u2014 no hard training, protect the afternoon. Aim for bed by 9:30pm and a full 8h+ tonight to reset.",
+  "coaching": "Short sleep (4.5h) and recovery in the red (23%). Keep today light \u2014 no hard training, protect the afternoon. Aim for bed by 9:30pm and a full 8h+ tonight to reset.",
   "today": {
     "date": "2026-05-23",
-    "spoons": 5,
+    "spoons": 4,
     "spoons_max": 12,
     "spoons_label": "Restful \u2014 light movement, defer big decisions",
     "spoons_color": "orange",
     "rings": {
       "sleep": {
-        "value": 14,
+        "value": 31,
         "unit": "%",
-        "raw_hr": 2.12,
+        "raw_hr": 4.55,
         "color": "blue",
-        "label": "2.1h",
-        "subtitle": "2.1h total \u00b7 deep 0.8h / REM 0.4h"
+        "label": "4.5h",
+        "subtitle": "4.5h total \u00b7 deep 1.1h / REM 0.6h"
       },
       "recovery": {
-        "value": 10,
+        "value": 23,
         "unit": "%",
         "color": "red",
         "label": "RED \u2014 protect the body",
-        "subtitle": "HRV 12.4ms / RHR 84.3bpm"
+        "subtitle": "HRV 16.3ms / RHR 82.2bpm"
       },
       "strain": {
-        "value": 0,
+        "value": 4.3,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 0,
+          "value": 4.3,
           "max": 21,
-          "kcal": 0,
-          "steps": 0,
-          "exercise_min": 0,
-          "hr_load": 0.0
+          "kcal": 321,
+          "steps": 3574,
+          "exercise_min": 6,
+          "hr_load": 13.7,
+          "source": "json_export"
         },
-        "subtitle": "0kcal / 0st / 0min ex"
+        "subtitle": "321kcal / 3574st / 6min ex"
       },
       "stress": {
-        "value": 0,
+        "value": 100,
         "unit": "%",
-        "color": "gray",
-        "label": "no data",
-        "subtitle": "HR ?bpm vs RHR ?"
+        "color": "red",
+        "label": "high",
+        "subtitle": "HR 123bpm vs RHR 73"
       }
     },
     "sleep_breakdown": {
-      "total_hr": 2.12,
-      "deep_hr": 0.79,
-      "rem_hr": 0.38,
-      "core_hr": 0.95,
+      "total_hr": 4.55,
+      "deep_hr": 1.12,
+      "rem_hr": 0.57,
+      "core_hr": 2.86,
       "awake_hr": 0,
-      "in_bed_hr": 3.64,
+      "in_bed_hr": 6.22,
       "source_override": "eight_sleep",
-      "hrv_overnight": 12.4,
-      "rhr_overnight": 84.3
+      "hrv_overnight": 16.3,
+      "rhr_overnight": 82.2
     },
-    "hrv_overnight": 12.4,
-    "rhr_overnight": 84.3,
+    "hrv_overnight": 16.3,
+    "rhr_overnight": 82.2,
     "baseline_14d": {
-      "hrv": 23.4,
-      "rhr": 73.5,
-      "sleep_hr": 6.41,
+      "hrv": 24,
+      "rhr": 73.2,
+      "sleep_hr": 6.75,
       "days_sampled": 3,
       "source": "Eight Sleep 7d + CSV 14d hybrid"
     },
@@ -74,7 +75,13 @@
       "days_sampled": 19,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {}
+    "nutrition": {
+      "protein_g": 0.0,
+      "carbs_g": 0.0,
+      "fat_g": 0.0,
+      "calories_kcal": 0,
+      "has_data": false
+    }
   },
   "history": [
     {
@@ -82,9 +89,9 @@
       "spoons": 5,
       "sleep_hr": 5.98,
       "sleep_pct": 70,
-      "recovery_pct": 27,
-      "strain": 11.7,
-      "stress_pct": 55,
+      "recovery_pct": 26,
+      "strain": 11.8,
+      "stress_pct": 56,
       "hrv": 14.9,
       "rhr": 88.0
     },
@@ -93,9 +100,9 @@
       "spoons": 5,
       "sleep_hr": 4.04,
       "sleep_pct": 24,
-      "recovery_pct": 37,
-      "strain": 8.5,
-      "stress_pct": 51,
+      "recovery_pct": 36,
+      "strain": 8.6,
+      "stress_pct": 52,
       "hrv": 23.8,
       "rhr": 80.0
     }
