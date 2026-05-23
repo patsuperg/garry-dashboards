@@ -1,14 +1,14 @@
 {
-  "generated": "2026-05-23T23:49:32.922529+10:00",
+  "generated": "2026-05-24T00:04:35.637843+10:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep + MFP",
+  "device": "Apple Watch + Eight Sleep",
   "coaching": "Short sleep (4.5h) and recovery in the red (23%). Keep today light \u2014 no hard training, protect the afternoon. Aim for bed by 9:30pm and a full 8h+ tonight to reset.",
   "today": {
-    "date": "2026-05-23",
-    "spoons": 3,
+    "date": "2026-05-24",
+    "spoons": 6,
     "spoons_max": 12,
-    "spoons_label": "Red flag \u2014 recovery day",
-    "spoons_color": "red",
+    "spoons_label": "Moderate \u2014 analysis over execution",
+    "spoons_color": "yellow",
     "rings": {
       "sleep": {
         "value": 31,
@@ -26,26 +26,25 @@
         "subtitle": "HRV 16.3ms / RHR 82.2bpm"
       },
       "strain": {
-        "value": 13.1,
+        "value": 0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 13.1,
+          "value": 0,
           "max": 21,
-          "kcal": 791,
-          "steps": 10620,
-          "exercise_min": 22,
-          "hr_load": 46.3,
-          "source": "json_export"
+          "kcal": 0,
+          "steps": 0,
+          "exercise_min": 0,
+          "hr_load": 0.0
         },
-        "subtitle": "791kcal / 10620st / 22min ex"
+        "subtitle": "0kcal / 0st / 0min ex"
       },
       "stress": {
-        "value": 83,
+        "value": 0,
         "unit": "%",
-        "color": "red",
-        "label": "high",
-        "subtitle": "HR 98bpm vs RHR 73"
+        "color": "gray",
+        "label": "no data",
+        "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
@@ -65,36 +64,19 @@
       "hrv": 24,
       "rhr": 73.2,
       "sleep_hr": 6.75,
-      "days_sampled": 3,
+      "days_sampled": 2,
       "source": "Eight Sleep 7d + CSV 14d hybrid"
     },
     "baseline_30d": {
-      "hrv": 20.9,
+      "hrv": 20.4,
       "rhr": 84.0,
       "sleep_hr": 7.2,
-      "days_sampled": 19,
+      "days_sampled": 18,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {
-      "protein_g": 182.8,
-      "carbs_g": 178.2,
-      "fat_g": 52.6,
-      "calories_kcal": 1918,
-      "has_data": true
-    }
+    "nutrition": {}
   },
   "history": [
-    {
-      "date": "2026-05-10",
-      "spoons": 5,
-      "sleep_hr": 5.98,
-      "sleep_pct": 70,
-      "recovery_pct": 26,
-      "strain": 11.8,
-      "stress_pct": 56,
-      "hrv": 14.9,
-      "rhr": 88.0
-    },
     {
       "date": "2026-05-11",
       "spoons": 5,
