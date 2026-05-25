@@ -20,7 +20,7 @@ body{background:#050508;color:#f0f0f2;font-family:-apple-system,BlinkMacSystemFo
 .tab-btn.active{color:#f0f0f2}
 .tab-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .tab-btn span{font-size:9px;letter-spacing:0.5px}
-.tab-indicator{position:absolute;top:0;height:2px;border-radius:0 0 2px 2px;transition:left 0.25s ease,background 0.25s ease;width:25%}
+.tab-indicator{position:absolute;top:0;height:2px;border-radius:0 0 2px 2px;transition:left 0.25s ease,background 0.25s ease;width:20%}
 
 /* SHARED COMPONENTS */
 .wrap{max-width:600px;margin:0 auto}
@@ -150,6 +150,24 @@ svg.rdial{transform:rotate(-90deg);overflow:visible}
 .deal-ai{font-size:11px;color:#666;line-height:1.6;border-top:1px solid #14141a;padding-top:8px;margin-bottom:8px}
 .deal-links{display:flex;gap:10px}
 .deal-link{font-size:10px;color:#3b82f6;text-decoration:none}
+
+/* ─── OPS ────────────────────────────────── */
+.ops-thread{background:#0c0c10;border:1px solid #18181c;border-radius:10px;padding:12px 14px;margin-bottom:8px}
+.ops-thread-name{font-size:12px;font-weight:700;margin-bottom:3px}
+.ops-thread-meta{font-size:10px;color:#555;margin-bottom:2px}
+.ops-thread-status{font-size:10px;color:#888;line-height:1.45}
+.ops-item{display:flex;align-items:flex-start;gap:10px;background:#0c0c10;border:1px solid #18181c;border-radius:10px;padding:12px 14px;margin-bottom:8px}
+.ops-needs-you{border-left:3px solid #f87171}
+.ops-item-icon{font-size:13px;margin-top:1px;flex-shrink:0}
+.ops-item-title{font-size:12px;font-weight:700;margin-bottom:2px}
+.ops-item-sub{font-size:10px;color:#666;line-height:1.5}
+.ops-empty{font-size:12px;color:#444;text-align:center;padding:16px 0;background:#0c0c10;border:1px solid #18181c;border-radius:10px;margin-bottom:8px}
+.ops-prop-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #0f0f14;font-size:11px}
+.ops-prop-row:last-child{border-bottom:none}
+.ops-prop-addr{font-weight:700}
+.ops-prop-right{text-align:right}
+.ops-prop-net{font-weight:800;font-size:13px}
+.ops-prop-lease{font-size:9px;color:#555;margin-top:1px}
 </style>
 </head>
 <body>
@@ -159,6 +177,7 @@ svg.rdial{transform:rotate(-90deg);overflow:visible}
   <div class="pane" id="pane-portfolio"><div class="wrap"><div id="portfolio-root"><div class="loading-msg">Loading…</div></div></div></div>
   <div class="pane" id="pane-finance"><div class="wrap"><div id="finance-root"><div class="loading-msg">Loading…</div></div></div></div>
   <div class="pane" id="pane-deals"><div class="wrap"><div id="deals-root"><div class="loading-msg">Loading…</div></div></div></div>
+  <div class="pane" id="pane-ops"><div class="wrap"><div id="ops-root"><div class="loading-msg">Loading…</div></div></div></div>
 </div>
 
 <nav class="tabbar">
@@ -179,10 +198,14 @@ svg.rdial{transform:rotate(-90deg);overflow:visible}
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     <span>Deals</span>
   </button>
+  <button class="tab-btn" data-tab="ops" onclick="switchTab('ops',4,'#f97316')">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/></svg>
+    <span>Ops</span>
+  </button>
 </nav>
 
 <script>
-const loaded={health:false,portfolio:false,finance:false,deals:false};
+const loaded={health:false,portfolio:false,finance:false,deals:false,ops:false};
 let activeTab='health';
 
 function switchTab(name,idx,color){
@@ -191,7 +214,7 @@ function switchTab(name,idx,color){
   document.getElementById('pane-'+name).classList.add('active');
   document.querySelector('[data-tab="'+name+'"]').classList.add('active');
   const ind=document.getElementById('indicator');
-  ind.style.left=(idx*25)+'%';
+  ind.style.left=(idx*20)+'%';
   ind.style.background=color;
   activeTab=name;
   if(!loaded[name]){loaded[name]=true;renders[name]();}
@@ -405,7 +428,72 @@ async function renderDeals(){
   '<div class="foot-ts">Updated '+tsStr(d.generated)+'</div>';
 }
 
-const renders={health:renderHealth,portfolio:renderPortfolio,finance:renderFinance,deals:renderDeals};
+// ── OPS ──────────────────────────────────────────────────────────
+async function renderOps(){
+  const el=document.getElementById('ops-root');
+  let d;
+  try{d=await fetchJ('./cc-data.json')}catch(e){el.innerHTML='<div class="loading-msg" style="color:#f87171">Failed to load ops data.</div>';return;}
+  const thr=d.threads||{},np=d.needs_patrick||[],wo=d.waiting_on||[],port=d.portfolio||{},cap=d.capital||{};
+  const p0=thr.p0||[],p1=thr.p1||[],p2=thr.p2||[];
+
+  function threadCard(t,color){
+    const cod=t.cost_of_delay_per_day_usd?'<span style="color:#f87171"> · $'+t.cost_of_delay_per_day_usd+'/day</span>':'';
+    return'<div class="ops-thread" style="border-left:3px solid '+color+'">'+
+      '<div class="ops-thread-name">'+t.name+'</div>'+
+      '<div class="ops-thread-meta">'+t.owner+cod+'</div>'+
+      '<div class="ops-thread-status">'+t.status_text+'</div>'+
+    '</div>';
+  }
+
+  const npH=np.length
+    ? np.map(item=>'<div class="ops-item ops-needs-you"><div class="ops-item-icon">🔴</div><div><div class="ops-item-title">'+(item.title||item.item||JSON.stringify(item))+'</div>'+(item.desc||item.from?'<div class="ops-item-sub">'+(item.desc||item.from)+'</div>':'')+'</div></div>').join('')
+    :'<div class="ops-empty">Nothing needs you right now ✓</div>';
+
+  const threadsH=
+    (p0.length?'<div class="tier-hdr" style="color:#f87171">P0 — Critical</div>'+p0.map(t=>threadCard(t,'#f87171')).join(''):'')+
+    (p1.length?'<div class="tier-hdr" style="color:#fbbf24">P1 — Active</div>'+p1.map(t=>threadCard(t,'#fbbf24')).join(''):'')+
+    (p2.length?'<div class="tier-hdr" style="color:#3b82f6">P2 — Watching</div>'+p2.map(t=>threadCard(t,'#3b82f6')).join(''):
+      (p0.length+p1.length===0?'<div class="ops-empty">No active threads</div>':''));
+
+  const woH=wo.map(item=>'<div class="ops-item"><div class="ops-item-icon">⏳</div><div><div class="ops-item-title">'+item.item.replace(/\*\*/g,'')+'</div>'+(item.from?'<div class="ops-item-sub">'+item.from+'</div>':'')+'</div></div>').join('');
+
+  const props=port.properties||[];
+  const gradeColor=g=>g==='A'?'#34d399':g==='B'?'#fbbf24':g==='SELL'?'#A855F7':'#f87171';
+  const statusColor=s=>s==='LEASED'?'#34d399':s==='VACANT'?'#f87171':'#fbbf24';
+  const propRows=props.map(p=>{
+    const leaseStr=p.lease_end?p.lease_end.slice(0,7):'—';
+    const gc=gradeColor(p.grade),sc=statusColor(p.status);
+    return'<div class="ops-prop-row">'+
+      '<div><div class="ops-prop-addr">'+p.short+'</div><div style="font-size:9px;color:#555">'+p.state+' · '+p.pm+'</div></div>'+
+      '<div class="ops-prop-right"><div class="ops-prop-net" style="color:'+sc+'">$'+(p.rent_net||0).toLocaleString()+'/mo</div>'+
+      '<div class="ops-prop-lease"><span style="color:'+gc+'">'+p.grade+'</span> · '+p.status+' · '+leaseStr+'</div></div>'+
+    '</div>';
+  }).join('');
+
+  const wise=cap.wise_usd||0,hazel=cap.hazelcrest_pending||0,dep=cap.total_deployable||0;
+  const net=port.net_monthly||0,goal=port.target_monthly||20000,pct=port.progress_pct||0;
+
+  el.innerHTML='<div class="hdr">Ops</div>'+
+  '<div class="hero"><div class="hero-sub">Monthly Net · Target $20K</div>'+
+  '<div class="hero-num" style="color:#34d399">$'+net.toLocaleString()+'<span class="hero-goal">/$'+(goal/1000).toFixed(0)+'K</span></div>'+
+  '<div class="hero-label">'+(p0.length?p0.length+' P0 critical · ':'')+wo.length+' waiting · '+np.length+' need you</div></div>'+
+  '<div class="prog-wrap"><div class="prog-fill" style="width:'+Math.min(100,pct).toFixed(1)+'%"></div></div>'+
+  '<div class="metrics"><div class="metric"><div class="metric-l">Wise USD</div><div class="metric-v" style="color:#3b82f6">$'+Math.round(wise/1000)+'K</div></div>'+
+  '<div class="metric"><div class="metric-l">Hazel Pending</div><div class="metric-v" style="color:#fbbf24">$'+Math.round(hazel/1000)+'K</div></div>'+
+  '<div class="metric"><div class="metric-l">Deployable</div><div class="metric-v" style="color:#34d399">$'+Math.round(dep/1000)+'K</div></div></div>'+
+  '<div class="divider"></div>'+
+  '<div class="sec-lbl">Needs You ('+np.length+')</div>'+npH+
+  '<div class="divider"></div>'+
+  '<div class="sec-lbl">Active Threads ('+(p0.length+p1.length+p2.length)+')</div>'+threadsH+
+  '<div class="divider"></div>'+
+  '<div class="sec-lbl">Waiting On ('+wo.length+')</div>'+woH+
+  '<div class="divider"></div>'+
+  '<div class="sec-lbl">Portfolio ('+props.length+' properties)</div>'+
+  '<div class="cap-card">'+propRows+'</div>'+
+  '<div class="foot-ts">Updated '+tsStr(d.generated)+'</div>';
+}
+
+const renders={health:renderHealth,portfolio:renderPortfolio,finance:renderFinance,deals:renderDeals,ops:renderOps};
 
 // Boot
 renderHealth();
