@@ -62,6 +62,39 @@
     }
     .hero .meta span { display: flex; align-items: center; gap: 6px; }
     .hero .meta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+    .hero .meta .updated { color: var(--gold); }
+
+    /* NOW BAND — where the work is right now */
+    .now-band {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px 24px 8px;
+      text-align: center;
+    }
+    .now-band .now-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .now-band .now-headline {
+      font-size: 1.35rem;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.4;
+      color: var(--gold);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .now-band .now-sub {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    @media (max-width: 600px) {
+      .now-band .now-headline { font-size: 1.1rem; }
+    }
 
     /* INVESTMENT COUNTERS */
     .investment {
@@ -489,7 +522,14 @@
       <span><span class="dot"></span> Started 20 Jan 2026</span>
       <span>With Meg Bonnell</span>
       <span id="hero-weeks"></span>
+      <span class="updated" id="hero-updated"></span>
     </div>
+  </div>
+
+  <div class="now-band" id="now-band">
+    <div class="now-label">Where the work is right now</div>
+    <div class="now-headline" id="now-headline"></div>
+    <div class="now-sub" id="now-sub"></div>
   </div>
 
   <div class="investment">
@@ -639,6 +679,18 @@
     function renderHeroWeeks() {
       const weeks = weeksBetween(DATA.profile.started, DATA.profile.lastUpdated);
       document.getElementById('hero-weeks').textContent = `${weeks} weeks in`;
+
+      const upd = document.getElementById('hero-updated');
+      if (upd) upd.textContent = `Updated ${formatDate(DATA.profile.lastUpdated)}`;
+
+      const focus = DATA.profile.currentFocus;
+      const band = document.getElementById('now-band');
+      if (focus) {
+        document.getElementById('now-headline').textContent = `“${focus}”`;
+        document.getElementById('now-sub').textContent = DATA.profile.currentFocusDetail || '';
+      } else if (band) {
+        band.style.display = 'none';
+      }
     }
 
     function renderScores() {
