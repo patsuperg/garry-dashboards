@@ -118,6 +118,15 @@ svg.rdial{transform:rotate(-90deg);overflow:visible}
 
 /* ─── DEALS ──────────────────────────────── */
 .deal-card{background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:16px;margin-bottom:12px}
+.deal-card.tier-contract{border:2px solid #d97706;background:linear-gradient(180deg,#150e00 0%,#0c0c10 60%)}
+.deal-card.tier-warm{border-left:3px solid #60a5fa}
+.deal-contract-banner{display:flex;align-items:center;justify-content:space-between;background:#1f1200;border-radius:8px;padding:7px 12px;margin-bottom:12px}
+.deal-contract-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#d97706;font-weight:800}
+.deal-closing-info{font-size:11px;color:#fbbf24;font-weight:700}
+.deal-warm-badge{display:inline-block;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;background:#0d1f35;color:#60a5fa;padding:3px 8px;border-radius:6px;font-weight:800;margin-bottom:10px}
+.deal-note{font-size:11px;color:#888;line-height:1.55;background:#080810;border-radius:8px;padding:9px 11px;margin-bottom:8px;border-left:2px solid #1e1e30}
+.tier-hdr{font-size:9px;letter-spacing:2px;text-transform:uppercase;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+.tier-hdr::after{content:'';flex:1;height:1px;background:#1a1a20}
 .deal-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
 .deal-addr{font-size:13px;font-weight:700;line-height:1.3}
 .deal-meta{font-size:10px;color:#555;margin-top:2px}
@@ -319,27 +328,80 @@ async function renderDeals(){
   let d;
   try{d=await fetchJ('./deals-data.json')}catch(e){el.innerHTML='<div class="loading-msg" style="color:#f87171">Failed to load deals data.</div>';return;}
   const deals=d.deals||[];
-  const cardsH=deals.map(dl=>{
+  const contracts=deals.filter(x=>x.tier==='under_contract');
+  const warm=deals.filter(x=>x.tier==='warm');
+  const fresh=deals.filter(x=>x.tier!=='under_contract'&&x.tier!=='warm');
+
+  function numsRow(dl){
+    const cf=dl.projected_cf||dl.cashflow||0;
+    return'<div class="deal-nums">'+
+      '<div class="deal-stat"><div class="deal-stat-l">CF/mo</div><div class="deal-stat-v" style="color:'+cfColor(cf)+'">$'+Math.round(cf).toLocaleString()+'</div></div>'+
+      '<div class="deal-stat"><div class="deal-stat-l">Cap Rate</div><div class="deal-stat-v" style="color:#A855F7">'+dl.cap_rate.toFixed(1)+'%</div></div>'+
+      '<div class="deal-stat"><div class="deal-stat-l">CoC</div><div class="deal-stat-v" style="color:#3b82f6">'+dl.coc_pct.toFixed(1)+'%</div></div>'+
+      '<div class="deal-stat"><div class="deal-stat-l">DSCR</div><div class="deal-stat-v" style="color:'+(dl.dscr>=2?'#34d399':'#fbbf24')+'">'+dl.dscr.toFixed(1)+'</div></div>'+
+    '</div>';
+  }
+
+  function links(dl){let s='';if(dl.zillow_url)s+='<a class="deal-link" href="'+dl.zillow_url+'" target="_blank">Zillow →</a>';if(dl.s8pro_url)s+='<a class="deal-link" href="'+dl.s8pro_url+'" target="_blank">S8 Pro →</a>';return s?'<div class="deal-links">'+s+'</div>':'';}
+
+  const contractH=contracts.map(dl=>{
+    const cf=dl.projected_cf||0;
+    const fmtDate=iso=>{try{return new Date(iso).toLocaleDateString('en-AU',{month:'short',day:'numeric'})}catch(e){return'—'}};
+    return'<div class="deal-card tier-contract">'+
+      '<div class="deal-contract-banner"><span class="deal-contract-label">🔒 Under Contract</span><span class="deal-closing-info">Closes '+fmtDate(dl.closing_date)+'</span></div>'+
+      '<div class="deal-top"><div><div class="deal-addr">'+dl.address.split(',')[0]+'</div><div class="deal-meta">'+dl.bedrooms+'BR · $'+dl.price.toLocaleString()+' · FMR $'+(dl.fmr||0).toLocaleString()+'</div></div>'+
+      '<div><div class="deal-score-num" style="color:#d97706">$'+Math.round(cf).toLocaleString()+'</div><div class="deal-score-lbl">CF/mo</div></div></div>'+
+      '<div class="deal-nums">'+
+        '<div class="deal-stat"><div class="deal-stat-l">Cap Rate</div><div class="deal-stat-v" style="color:#A855F7">'+dl.cap_rate.toFixed(1)+'%</div></div>'+
+        '<div class="deal-stat"><div class="deal-stat-l">CoC</div><div class="deal-stat-v" style="color:#3b82f6">'+dl.coc_pct.toFixed(1)+'%</div></div>'+
+        '<div class="deal-stat"><div class="deal-stat-l">DSCR</div><div class="deal-stat-v" style="color:#34d399">'+dl.dscr.toFixed(1)+'</div></div>'+
+        '<div class="deal-stat"><div class="deal-stat-l">Inspect</div><div class="deal-stat-v" style="color:#fbbf24;font-size:11px">'+fmtDate(dl.inspection_date)+'</div></div>'+
+      '</div>'+
+      (dl.note?'<div class="deal-note">'+dl.note+'</div>':'')+
+    '</div>';
+  }).join('');
+
+  const warmH=warm.map(dl=>{
+    const sc=dl.garry_score||0,scC=scoreColor(sc),ai=dl.ai_scores||{};
+    let tags='';
+    if(dl.in_avenue_zip)tags+='<span class="deal-tag tag-green">Avenue ZIP</span>';
+    if(dl.dscr>=2)tags+='<span class="deal-tag tag-green">DSCR '+dl.dscr.toFixed(1)+'</span>';
+    if(dl.bedrooms===3)tags+='<span class="deal-tag tag-yellow">3BR</span>';
+    if(dl.offer_price&&dl.offer_price<dl.price)tags+='<span class="deal-tag tag-purple">Offer $'+dl.offer_price.toLocaleString()+'</span>';
+    return'<div class="deal-card tier-warm">'+
+      '<span class="deal-warm-badge">⭐ Warm Deal</span>'+
+      '<div class="deal-top"><div><div class="deal-addr">'+dl.address.split(',')[0]+'</div><div class="deal-meta">'+dl.bedrooms+'BR · $'+dl.price.toLocaleString()+' · FMR $'+(dl.fmr||0).toLocaleString()+'</div></div>'+
+      '<div><div class="deal-score-num" style="color:'+scC+'">'+sc.toFixed(0)+'</div><div class="deal-score-lbl">Score</div></div></div>'+
+      numsRow(dl)+
+      (tags?'<div class="deal-tags">'+tags+'</div>':'')+
+      '<div class="score-bars">'+sBar('Financial',ai.financial||0)+sBar('S8 Demand',ai.s8_demand||0)+sBar('Location',ai.location||0)+sBar('HQS',ai.hqs||0)+sBar('Quality',ai.property_quality||0)+'</div>'+
+      (dl.note?'<div class="deal-note">'+dl.note+'</div>':'')+
+      links(dl)+
+    '</div>';
+  }).join('');
+
+  const freshH=fresh.map(dl=>{
     const sc=dl.garry_score||0,scC=scoreColor(sc),cf=dl.cashflow||dl.projected_cf||0,ai=dl.ai_scores||{};
     let tags='';
     if(dl.in_avenue_zip)tags+='<span class="deal-tag tag-green">Avenue ZIP</span>';
     if(dl.dscr_eligible)tags+='<span class="deal-tag tag-purple">DSCR OK</span>';
     if(dl.dscr>=2)tags+='<span class="deal-tag tag-green">DSCR '+dl.dscr.toFixed(1)+'</span>';
     if(dl.hqs_score<40)tags+='<span class="deal-tag tag-yellow">Reno Needed</span>';
-    let links='';
-    if(dl.zillow_url)links+='<a class="deal-link" href="'+dl.zillow_url+'" target="_blank">Zillow →</a>';
-    if(dl.s8pro_url)links+='<a class="deal-link" href="'+dl.s8pro_url+'" target="_blank">S8 Pro →</a>';
     return'<div class="deal-card"><div class="deal-top"><div><div class="deal-addr">'+dl.address.split(',').slice(0,2).join(',')+'</div><div class="deal-meta">'+dl.bedrooms+'BR · $'+dl.price.toLocaleString()+' · FMR $'+dl.fmr.toLocaleString()+'</div></div><div><div class="deal-score-num" style="color:'+scC+'">'+sc.toFixed(0)+'</div><div class="deal-score-lbl">Score</div></div></div>'+
-    '<div class="deal-nums"><div class="deal-stat"><div class="deal-stat-l">CF/mo</div><div class="deal-stat-v" style="color:'+cfColor(cf)+'">$'+Math.round(cf).toLocaleString()+'</div></div><div class="deal-stat"><div class="deal-stat-l">Cap Rate</div><div class="deal-stat-v" style="color:#A855F7">'+dl.cap_rate.toFixed(1)+'%</div></div><div class="deal-stat"><div class="deal-stat-l">CoC</div><div class="deal-stat-v" style="color:#3b82f6">'+dl.coc_pct.toFixed(1)+'%</div></div><div class="deal-stat"><div class="deal-stat-l">DSCR</div><div class="deal-stat-v" style="color:'+(dl.dscr>=2?'#34d399':'#fbbf24')+'">'+dl.dscr.toFixed(1)+'</div></div></div>'+
-    (tags?'<div class="deal-tags">'+tags+'</div>':'')+
+    numsRow(dl)+(tags?'<div class="deal-tags">'+tags+'</div>':'')+
     '<div class="score-bars">'+sBar('Financial',ai.financial||0)+sBar('S8 Demand',ai.s8_demand||0)+sBar('Location',ai.location||0)+sBar('HQS',ai.hqs||0)+sBar('Quality',ai.property_quality||0)+'</div>'+
     (dl.ai_summary?'<div class="deal-ai">'+dl.ai_summary.slice(0,280)+'…</div>':'')+
-    (links?'<div class="deal-links">'+links+'</div>':'')+
-    '</div>';
+    links(dl)+'</div>';
   }).join('');
+
   el.innerHTML='<div class="hdr">Deals</div>'+
-  '<div class="hero"><div class="hero-sub">Active Pipeline · St Louis</div><div class="hero-num" style="color:#A855F7">'+(d.total_found||0)+'</div><div class="hero-label">Deals scored today · 4BR $70–100K buy box</div></div>'+
-  '<div class="divider"></div><div class="sec-lbl">Top Deals — Garry Score</div>'+cardsH+
+  '<div class="hero"><div class="hero-sub">Active Pipeline · St Louis</div>'+
+  '<div class="hero-num" style="color:#A855F7">'+(fresh.length)+'</div>'+
+  '<div class="hero-label">Fresh picks today · '+warm.length+' warm · '+contracts.length+' under contract</div></div>'+
+  '<div class="divider"></div>'+
+  (contracts.length?'<div class="tier-hdr" style="color:#d97706">Under Contract</div>'+contractH:'')+
+  (warm.length?'<div class="tier-hdr" style="color:#60a5fa">Warm Deals</div>'+warmH:'')+
+  '<div class="tier-hdr" style="color:#555">Fresh Scan — '+new Date(d.generated).toLocaleDateString('en-AU',{month:'short',day:'numeric'})+'</div>'+freshH+
   '<div class="foot-ts">Updated '+tsStr(d.generated)+'</div>';
 }
 
