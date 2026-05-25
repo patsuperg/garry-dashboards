@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-25T10:10:28.688286+10:00",
+  "generated": "2026-05-25T10:25:31.714688+10:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
   "coaching": "Solid foundation \u2014 8.7h sleep, 63% recovery. Execute the priority list. Lock in quality sleep tonight to build on this.",
@@ -26,24 +26,25 @@
         "subtitle": "HRV 24.4ms / RHR 72bpm"
       },
       "strain": {
-        "value": 0,
+        "value": 0.0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 0,
+          "value": 0.0,
           "max": 21,
           "kcal": 0,
-          "steps": 0,
+          "steps": 245,
           "exercise_min": 0,
-          "hr_load": 0.0
+          "hr_load": 0.0,
+          "source": "json_export"
         },
-        "subtitle": "0kcal / 0st / 0min ex"
+        "subtitle": "0kcal / 245st / 0min ex"
       },
       "stress": {
         "value": 0,
         "unit": "%",
         "color": "gray",
-        "label": "no data",
+        "label": "no HR data",
         "subtitle": "HR ?bpm vs RHR ?"
       }
     },
@@ -74,7 +75,13 @@
       "days_sampled": 17,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {}
+    "nutrition": {
+      "protein_g": 0.0,
+      "carbs_g": 0.0,
+      "fat_g": 0.0,
+      "calories_kcal": 0,
+      "has_data": false
+    }
   },
   "history": []
 }
