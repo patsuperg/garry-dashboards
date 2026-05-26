@@ -125,6 +125,15 @@ svg.rdial{transform:rotate(-90deg);overflow:visible}
 .deal-closing-info{font-size:11px;color:#fbbf24;font-weight:700}
 .deal-warm-badge{display:inline-block;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;background:#0d1f35;color:#60a5fa;padding:3px 8px;border-radius:6px;font-weight:800;margin-bottom:10px}
 .deal-note{font-size:11px;color:#888;line-height:1.55;background:#080810;border-radius:8px;padding:9px 11px;margin-bottom:8px;border-left:2px solid #1e1e30}
+/* Warm deal compact strip */
+.warm-strip{display:flex;align-items:center;gap:10px;background:#0a0d14;border:1px solid #1a2030;border-left:3px solid #60a5fa;border-radius:10px;padding:9px 12px;margin-bottom:7px;flex-wrap:nowrap;overflow:hidden}
+.warm-strip-badge{font-size:8px;letter-spacing:1px;text-transform:uppercase;background:#0d1f35;color:#60a5fa;padding:2px 6px;border-radius:5px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.warm-strip-addr{font-size:12px;font-weight:700;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.warm-strip-cf{font-size:12px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.warm-strip-score{font-size:11px;color:#888;white-space:nowrap;flex-shrink:0}
+.warm-strip-note{font-size:10px;color:#555;white-space:nowrap;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;max-width:140px}
+.warm-strip-links{display:flex;gap:6px;flex-shrink:0}
+.warm-strip-link{font-size:9px;color:#3b82f6;text-decoration:none;white-space:nowrap}
 .tier-hdr{font-size:9px;letter-spacing:2px;text-transform:uppercase;margin:0 0 12px;display:flex;align-items:center;gap:8px}
 .tier-hdr::after{content:'';flex:1;height:1px;background:#1a1a20}
 .deal-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
@@ -352,7 +361,8 @@ async function renderDeals(){
   try{d=await fetchJ('./deals-data.json')}catch(e){el.innerHTML='<div class="loading-msg" style="color:#f87171">Failed to load deals data.</div>';return;}
   const deals=d.deals||[];
   const contracts=deals.filter(x=>x.tier==='under_contract');
-  const warm=deals.filter(x=>x.tier==='warm');
+  // Warm deals: prefer top-level warm_deals array, fall back to tier==='warm' in deals array
+  const warm=d.warm_deals||(deals.filter(x=>x.tier==='warm'));
   const fresh=deals.filter(x=>x.tier!=='under_contract'&&x.tier!=='warm');
 
   function numsRow(dl){
@@ -384,22 +394,24 @@ async function renderDeals(){
     '</div>';
   }).join('');
 
+  // Compact horizontal strip renderer for warm deals
   const warmH=warm.map(dl=>{
-    const sc=dl.garry_score||0,scC=scoreColor(sc),ai=dl.ai_scores||{};
-    let tags='';
-    if(dl.in_avenue_zip)tags+='<span class="deal-tag tag-green">Avenue ZIP</span>';
-    if(dl.dscr>=2)tags+='<span class="deal-tag tag-green">DSCR '+dl.dscr.toFixed(1)+'</span>';
-    if(dl.bedrooms===3)tags+='<span class="deal-tag tag-yellow">3BR</span>';
-    if(dl.offer_price&&dl.offer_price<dl.price)tags+='<span class="deal-tag tag-purple">Offer $'+dl.offer_price.toLocaleString()+'</span>';
-    return'<div class="deal-card tier-warm">'+
-      '<span class="deal-warm-badge">⭐ Warm Deal</span>'+
-      '<div class="deal-top"><div><div class="deal-addr">'+dl.address.split(',')[0]+'</div><div class="deal-meta">'+dl.bedrooms+'BR · $'+dl.price.toLocaleString()+' · FMR $'+(dl.fmr||0).toLocaleString()+'</div></div>'+
-      '<div><div class="deal-score-num" style="color:'+scC+'">'+sc.toFixed(0)+'</div><div class="deal-score-lbl">Score</div></div></div>'+
-      numsRow(dl)+
-      (tags?'<div class="deal-tags">'+tags+'</div>':'')+
-      '<div class="score-bars">'+sBar('Financial',ai.financial||0)+sBar('S8 Demand',ai.s8_demand||0)+sBar('Location',ai.location||0)+sBar('HQS',ai.hqs||0)+sBar('Quality',ai.property_quality||0)+'</div>'+
-      (dl.note?'<div class="deal-note">'+dl.note+'</div>':'')+
-      links(dl)+
+    const addr=dl.address.split(',')[0];
+    const cf=dl.cf_mo||dl.projected_cf||dl.cashflow||0;
+    const sc=dl.score||dl.garry_score||null;
+    const isWarmDeal=dl.status==='warm_deal';
+    const badgeLabel=isWarmDeal?'Warm Deal':'Warm Lead';
+    const cfC=cfColor(cf);
+    let lnks='';
+    if(dl.zillow_url)lnks+='<a class="warm-strip-link" href="'+dl.zillow_url+'" target="_blank">Zillow→</a>';
+    if(dl.s8pro_url)lnks+='<a class="warm-strip-link" href="'+dl.s8pro_url+'" target="_blank">S8Pro→</a>';
+    return'<div class="warm-strip">'+
+      '<span class="warm-strip-badge">'+badgeLabel+'</span>'+
+      '<span class="warm-strip-addr">'+addr+'</span>'+
+      '<span class="warm-strip-cf" style="color:'+cfC+'">$'+Math.round(cf)+'/mo</span>'+
+      (sc!==null?'<span class="warm-strip-score">'+sc+'pts</span>':'')+
+      '<span class="warm-strip-note">'+dl.offer+'</span>'+
+      (lnks?'<div class="warm-strip-links">'+lnks+'</div>':'')+
     '</div>';
   }).join('');
 
