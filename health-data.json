@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-28T12:33:36.520852+10:00",
+  "generated": "2026-05-28T12:48:39.335434+10:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
   "coaching": "Well recovered (85%) and 10.2h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
@@ -26,25 +26,26 @@
         "subtitle": "HRV 37ms / RHR 70bpm"
       },
       "strain": {
-        "value": 0,
+        "value": 1.1,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 0,
+          "value": 1.1,
           "max": 21,
-          "kcal": 0,
-          "steps": 0,
-          "exercise_min": 0,
-          "hr_load": 0.0
+          "kcal": 75,
+          "steps": 481,
+          "exercise_min": 5,
+          "hr_load": 3.4,
+          "source": "json_export"
         },
-        "subtitle": "0kcal / 0st / 0min ex"
+        "subtitle": "75kcal / 481st / 5min ex"
       },
       "stress": {
-        "value": 0,
+        "value": 27,
         "unit": "%",
-        "color": "gray",
-        "label": "no data",
-        "subtitle": "HR ?bpm vs RHR ?"
+        "color": "green",
+        "label": "calm",
+        "subtitle": "HR 81bpm vs RHR 72"
       }
     },
     "sleep_breakdown": {
@@ -74,7 +75,13 @@
       "days_sampled": 14,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {}
+    "nutrition": {
+      "protein_g": 0.0,
+      "carbs_g": 0.0,
+      "fat_g": 0.0,
+      "calories_kcal": 0,
+      "has_data": false
+    }
   },
   "history": []
 }
