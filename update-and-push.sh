@@ -26,8 +26,12 @@ python3 "$INFRA/cc-data-gen.py" 2>/dev/null
 # health-dashboard-generator.py is the authoritative source — generate.py is now neutered for health.html
 python3 "$INFRA/health-dashboard-generator.py" 2>/dev/null
 
+# Step 3c: Sync deals + portfolio data (warm-deals.json → deals-data.json, portfolio status overrides)
+python3 "$(dirname "$0")/sync-data.py" 2>/dev/null
+
 # Step 4: Push ALL dashboard files + data directory
-git add index.html garry.html health.html system-map.html health-data.json journey.html journey-data.json cc-data.json data/ 2>/dev/null
+# NOTE: deals-data.json, portfolio-data.json, finance-data.json MUST be included — index.html fetches all of them
+git add index.html garry.html health.html system-map.html health-data.json journey.html journey-data.json cc-data.json deals-data.json portfolio-data.json finance-data.json data/ 2>/dev/null
 
 # Only push if something changed
 if git diff --cached --quiet 2>/dev/null; then
