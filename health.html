@@ -3,224 +3,177 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="refresh" content="300">
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Health · Patrick</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#050508;color:#f0f0f2;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 20px 48px}
-.wrap{max-width:540px;margin:0 auto}
-.hdr{text-align:center;padding:24px 0 4px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#5a5a64}
-
-/* SPOONS */
-.spoons{text-align:center;padding:28px 0 20px}
-.spoons-date{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:14px}
-.spoons-num{font-size:88px;font-weight:900;line-height:1;letter-spacing:-3px}
-.spoons-max{font-size:28px;color:#444;font-weight:400}
-.spoons-icons{font-size:22px;letter-spacing:3px;margin:16px 0 8px}
-.spoons-label{font-size:12px;margin-top:4px}
-
-.divider{height:1px;background:linear-gradient(90deg,transparent,#1a1a20,transparent);margin:4px 0 24px}
-
-/* 4 RING DIALS */
-.rings{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-.ring-card{background:#0c0c10;border:1px solid #18181c;border-radius:18px;padding:20px 14px;text-align:center}
-.ring-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px}
-.ring-wrap{position:relative;display:inline-block}
-svg.rdial{transform:rotate(-90deg);overflow:visible}
-.ring-bg{fill:none;stroke:#1a1a20}
-.ring-fg{fill:none;stroke-linecap:round}
-.ring-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
-.ring-val{font-size:22px;font-weight:800;line-height:1}
-.ring-unit{font-size:10px;color:#666;margin-top:1px}
-.ring-sub{font-size:10px;color:#555;margin-top:8px;line-height:1.5;min-height:28px}
-
-/* STATS */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
-.stat{background:#0c0c10;border:1px solid #18181c;border-radius:13px;padding:14px 8px;text-align:center}
-.stat-l{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#666;margin-bottom:7px}
-.stat-v{font-size:22px;font-weight:800;line-height:1}
-.stat-u{font-size:10px;color:#555;margin-left:1px;font-weight:400}
-
-/* COACHING */
-.coaching{background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:16px 18px;margin-bottom:16px}
-.coaching-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:7px}
-.coaching-txt{font-size:13px;color:#b0b0b8;line-height:1.65}
-
-/* TREND */
-.trend{margin-bottom:20px}
-.trend-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:10px}
-.bars{display:flex;align-items:flex-end;gap:5px;height:46px}
-.bar{flex:1;border-radius:3px 3px 0 0;min-height:4px}
-.dates{display:flex;gap:5px;margin-top:5px}
-.dt{flex:1;font-size:8px;color:#3a3a42;text-align:center}
-
-/* FOOT */
-.foot{text-align:center;font-size:10px;color:#2a2a30;padding:20px 0 8px;line-height:1.9;letter-spacing:0.5px}
-.foot em{color:#222}
-
-/* Loading */
-.loading{text-align:center;padding:80px 0;color:#333;font-size:13px;letter-spacing:1px}
-</style>
 </head>
-<body>
-<div class="wrap">
-<div class="hdr">Health</div>
-<div class="loading" id="loading">Loading…</div>
-<div id="root" style="display:none"></div>
+<body style="margin:0;padding:0;background:#050508;color:#f0f0f2;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;padding:env(safe-area-inset-top) 20px 40px">
+<div style="max-width:540px;margin:0 auto">
+
+<!-- HEADER -->
+<div style="text-align:center;padding:24px 0 8px;opacity:0.4;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#5a5a64">Health</div>
+
+<!-- SPOONS HERO -->
+<div style="text-align:center;padding:32px 0 24px">
+<div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#666;margin-bottom:16px">Spoons Today · 2026-05-28</div>
+<div style="font-size:96px;font-weight:900;color:#10B981;line-height:1;letter-spacing:-3px">11<span style="font-size:32px;color:#444;font-weight:400">/12</span></div>
+<div style="margin:20px 0 8px"><span style="font-size:24px;letter-spacing:4px">🥄🥄🥄🥄🥄🥄🥄🥄🥄🥄🥄·</span></div>
+<div style="font-size:12px;color:#555">Thursday, May 28 · <span style="color:#10B981">● FRESH</span></div>
 </div>
 
-<script>
-const C_R=46,C_CX=54,C_CY=54,C_SW=10;
-const CIRC=2*Math.PI*C_R;
+<div style="height:1px;background:linear-gradient(90deg,transparent,#222,transparent);margin:0 20%"></div>
 
-function ringDial(pct,color,valStr,unitStr,subStr,label){
-  const off=(CIRC*(1-Math.min(1,Math.max(0,pct)/100))).toFixed(2);
-  return`<div class="ring-card">
-  <div class="ring-lbl">${label}</div>
-  <div class="ring-wrap">
-    <svg class="rdial" width="${C_CX*2}" height="${C_CY*2}" viewBox="0 0 ${C_CX*2} ${C_CY*2}">
-      <circle class="ring-bg" cx="${C_CX}" cy="${C_CY}" r="${C_R}" stroke-width="${C_SW}"/>
-      <circle class="ring-fg" cx="${C_CX}" cy="${C_CY}" r="${C_R}" stroke="${color}" stroke-width="${C_SW}"
-        stroke-dasharray="${CIRC.toFixed(2)}" stroke-dashoffset="${off}"/>
-    </svg>
-    <div class="ring-inner">
-      <div class="ring-val" style="color:${color}">${valStr}</div>
-      <div class="ring-unit">${unitStr}</div>
-    </div>
-  </div>
-  <div class="ring-sub">${subStr}</div>
-</div>`;
-}
-
-function spColor(n){return n>=8?'#34d399':n>=5?'#fbbf24':'#f87171'}
-function hvColor(v){return v>=40?'#34d399':v>=28?'#fbbf24':'#f87171'}
-function rhrColor(v){return v<=65?'#34d399':v<=75?'#fbbf24':'#f87171'}
-function stColor(v){return v>=8000?'#34d399':v>=4000?'#fbbf24':'#f87171'}
-function recColor(v){return v>=67?'#34d399':v>=34?'#fbbf24':'#f87171'}
-function slColor(v){return v>=75?'#3B82F6':v>=55?'#60a5fa':'#f87171'}
-function stressColor(v){return v<=30?'#34d399':v<=60?'#fbbf24':'#f87171'}
-
-async function render(){
-  let d;
-  try{
-    const res=await fetch('./health-data.json?_='+Date.now());
-    d=await res.json();
-  }catch(e){
-    document.getElementById('loading').innerHTML='<span style="color:#f87171">Failed to load data.</span>';
-    return;
-  }
-  document.getElementById('loading').style.display='none';
-  document.getElementById('root').style.display='block';
-
-  const td=d.today||{};
-  const rings=td.rings||{};
-  const sl=rings.sleep||{};
-  const rc=rings.recovery||{};
-  const st=rings.strain||{};
-  const sx=rings.stress||{};
-  const bd=td.sleep_breakdown||{};
-  const hist=d.history||[];
-
-  const spn=td.spoons||0;
-  const spMax=td.spoons_max||12;
-  const spLbl=(td.spoons_label||'').toUpperCase();
-  const sc=spColor(spn);
-  const icons='🥄'.repeat(spn)+('·'.repeat(Math.max(0,spMax-spn)));
-
-  const dateStr=td.date||'';
-  let niceDt=dateStr;
-  try{const dt=new Date(dateStr+'T12:00:00');niceDt=dt.toLocaleDateString('en-AU',{weekday:'long',month:'long',day:'numeric'})}catch(e){}
-
-  const hrv=td.hrv_overnight||0;
-  const rhr=td.rhr_overnight||0;
-  const stRaw=st.raw||{};
-  const steps=stRaw.steps||0;
-  const kcal=stRaw.kcal||0;
-
-  // Sleep ring
-  const slPct=sl.value||0;
-  const slHr=parseFloat(sl.raw_hr||bd.total_hr||0).toFixed(1);
-  const slSub=`${parseFloat(bd.deep_hr||0).toFixed(1)}h deep · ${parseFloat(bd.rem_hr||0).toFixed(1)}h REM`;
-
-  // Recovery
-  const rcPct=rc.value||0;
-  const rcSub=`HRV ${hrv}ms · RHR ${rhr}bpm`;
-
-  // Strain (% of 21 max)
-  const stVal=parseFloat(st.value||0);
-  const stPct=Math.round((stVal/21)*100);
-  const stSub=`${kcal}kcal · ${steps.toLocaleString()} steps`;
-
-  // Stress
-  const sxPct=sx.value||0;
-  const sxSub=sx.subtitle||'';
-
-  // Trend
-  const recent=hist.slice(-7);
-  let barsH='',dtH='';
-  if(recent.length){
-    barsH='<div class="bars">'+recent.map(h=>{
-      const s=h.spoons||0;
-      const ht=Math.max(4,(s/12*44)).toFixed(0);
-      const c=spColor(s);
-      return`<div class="bar" style="height:${ht}px;background:${c}" title="${h.date}: ${s}/12"></div>`;
-    }).join('')+'</div>';
-    dtH='<div class="dates">'+recent.map(h=>{
-      try{const dt=new Date(h.date+'T12:00:00');return`<div class="dt">${dt.toLocaleDateString('en-AU',{weekday:'short'}).slice(0,2)}</div>`}
-      catch(e){return'<div class="dt"></div>'}
-    }).join('')+'</div>';
-  }
-
-  const gen=d.generated?new Date(d.generated):null;
-  const updStr=gen?gen.toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'}):'—';
-  const coaching=d.coaching||'';
-
-  document.getElementById('root').innerHTML=`
-<div class="spoons">
-  <div class="spoons-date">${niceDt}</div>
-  <div class="spoons-num" style="color:${sc}">${spn}<span class="spoons-max">/12</span></div>
-  <div class="spoons-icons">${icons}</div>
-  <div class="spoons-label" style="color:${sc}">● ${spLbl}</div>
+<!-- WHOOP-STYLE METRICS -->
+<div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">Sleep</div>
+<div style="font-size:36px;font-weight:800;color:#10B981">10.2<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">hrs</span></div>
+<div style="font-size:11px;color:#555;margin-top:6px">127% of 8h target</div>
+</div>
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">HRV</div>
+<div style="font-size:36px;font-weight:800;color:#F97316">37<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">ms</span></div>
+<div style="font-size:11px;color:#555;margin-top:6px">Higher = better</div>
+</div>
+</div>
+<div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">Resting HR</div>
+<div style="font-size:36px;font-weight:800;color:#F97316">70<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">bpm</span></div>
+<div style="font-size:11px;color:#555;margin-top:6px">Lower = fitter</div>
+</div>
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:24px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:12px">Steps</div>
+<div style="font-size:36px;font-weight:800;color:#f0f0f2">0</div>
+<div style="font-size:11px;color:#555;margin-top:6px">Target: 8,000+</div>
+</div>
 </div>
 
-<div class="divider"></div>
-
-<div class="rings">
-  ${ringDial(slPct,slColor(slPct),slHr,'hrs',slSub,'Sleep')}
-  ${ringDial(rcPct,recColor(rcPct),rcPct,'%',rcSub,'Recovery')}
-  ${ringDial(stPct,'#A855F7',stVal.toFixed(1),'/21',stSub,'Strain')}
-  ${ringDial(sxPct,stressColor(sxPct),sxPct,'%',sxSub||'—','Stress')}
+<!-- RECOVERY + STRAIN -->
+<div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:20px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:10px">Recovery</div>
+<div style="font-size:32px;font-weight:800;color:#10B981">85%</div>
+</div>
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:16px;padding:20px;text-align:center;flex:1;min-width:140px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:10px">Strain</div>
+<div style="font-size:32px;font-weight:800;color:#F97316">0.0<span style="font-size:14px;color:#666;font-weight:400;margin-left:4px">/21</span></div>
+</div>
 </div>
 
-<div class="stats">
-  <div class="stat">
-    <div class="stat-l">HRV</div>
-    <div class="stat-v" style="color:${hvColor(hrv)}">${hrv||'—'}<span class="stat-u">ms</span></div>
-  </div>
-  <div class="stat">
-    <div class="stat-l">Resting HR</div>
-    <div class="stat-v" style="color:${rhrColor(rhr)}">${rhr||'—'}<span class="stat-u">bpm</span></div>
-  </div>
-  <div class="stat">
-    <div class="stat-l">Steps</div>
-    <div class="stat-v" style="color:${stColor(steps)}">${steps?(steps).toLocaleString():'—'}</div>
-  </div>
+<!-- YESTERDAY + WEEKLY -->
+<div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:16px;flex:1;min-width:140px">
+<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:10px">Yesterday</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Steps: <strong style="color:#e0e0e0">—</strong><br>
+Sleep: <strong style="color:#e0e0e0">—</strong><br>
+HRV: <strong style="color:#e0e0e0">—</strong>
+</div>
+</div>
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:16px;flex:1;min-width:140px">
+<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#5a5a64;margin-bottom:10px">Weekly Avg</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Steps: <strong style="color:#e0e0e0">—</strong><br>
+Sleep: <strong style="color:#e0e0e0">7.0h</strong><br>
+HRV: <strong style="color:#e0e0e0">27ms</strong> · RHR: <strong style="color:#e0e0e0">72bpm</strong>
+</div>
+</div>
 </div>
 
-${coaching?`<div class="coaching"><div class="coaching-lbl">Coach</div><div class="coaching-txt">${coaching}</div></div>`:''}
 
-${recent.length?`<div class="trend"><div class="trend-lbl">7-Day Spoons</div>${barsH}${dtH}</div>`:''}
 
-<div class="foot">
-  Updated ${updStr} · Eight Sleep + Apple Watch<br>
-  <em>The income is me.</em>
+<!-- PROTOCOL & DOSING -->
+<div style="margin-top:28px">
+<div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#5a5a64;font-weight:600;margin-bottom:12px">Protocol & Dosing — Lean Bulk Phase</div>
+
+<div style="background:#0c0c10;border:1px solid #1a2a1a;border-radius:14px;padding:18px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#34d399">Test E — 250mg/wk</div>
+<div style="font-size:11px;color:#666;background:#111;padding:3px 10px;border-radius:20px">FOUNDATION</div>
 </div>
-`;
-}
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Inject: <strong style="color:#e0e0e0">125mg Mon + 125mg Thu</strong> (stable blood levels)<br>
+Site: <strong style="color:#e0e0e0">Glute or quad IM</strong> · Rotate sides<br>
+Phase note: <span style="color:#34d399">Ideal for lean bulk — quality gains, manageable sides</span>
+</div>
+</div>
 
-render();
-setInterval(render,5*60*1000);
-</script>
+<div style="background:#0c0c10;border:1px solid #1a2a1a;border-radius:14px;padding:18px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#34d399">Deca — 200mg/wk</div>
+<div style="font-size:11px;color:#34d399;background:#0a1a0a;padding:3px 10px;border-radius:20px">● STARTED APR 13</div>
+</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Inject: <strong style="color:#e0e0e0">100mg Mon + 100mg Thu</strong> — 0.5ml each, same syringe as Test E<br>
+Test:Deca ratio: <strong style="color:#34d399">1.25:1 ✓</strong> — above minimum, no Deca dick risk<br>
+Phase note: <span style="color:#34d399">Elbow synergy with BPC/TB-500. Joint lubrication + anabolic drive. Monitor prolactin if sides arise.</span>
+</div>
+</div>
+
+<div style="background:#0c0c10;border:1px solid #1a2a1a;border-radius:14px;padding:18px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#34d399">GH — 4iu/day</div>
+<div style="font-size:11px;color:#666;background:#111;padding:3px 10px;border-radius:20px">RECOVERY + RECOMP</div>
+</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Timing: <strong style="color:#e0e0e0">2iu fasted AM + 2iu post-workout</strong> (or 4iu AM if no PM session)<br>
+SubQ injection, rotate abdomen/thigh<br>
+Phase note: <span style="color:#34d399">4iu is the sweet spot for lean gains + recovery without joint sides</span>
+</div>
+</div>
+
+<div style="background:#0c0c10;border:1px solid #1a2a1a;border-radius:14px;padding:18px;margin-bottom:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#34d399">Retatrutide — 2,000mcg/wk</div>
+<div style="font-size:11px;color:#666;background:#111;padding:3px 10px;border-radius:20px">FAT CONTROL</div>
+</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+Inject: <strong style="color:#e0e0e0">2mg once weekly SubQ</strong> (same day each week)<br>
+Mechanism: GLP-1 + GIP + Glucagon agonist — fat oxidation + appetite control<br>
+Phase note: <span style="color:#34d399">Critical during lean bulk — keeps fat gain in check while in surplus. Don't drop this.</span>
+</div>
+</div>
+
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:14px;padding:18px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:13px;font-weight:700;color:#60a5fa">BPC-157 + TB-500 — Elbow Rehab</div>
+<div style="font-size:11px;color:#666;background:#111;padding:3px 10px;border-radius:20px">REPAIR</div>
+</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.9">
+BPC-157: <strong style="color:#e0e0e0">250mcg/day SubQ near elbow</strong><br>
+TB-500: <strong style="color:#e0e0e0">2.5mg 2x/wk SubQ</strong> (loading) → 2.5mg/wk maintenance<br>
+Phase note: <span style="color:#60a5fa">Continue until elbow is 100% — don't train heavy pressing until pain-free</span>
+</div>
+</div>
+
+<div style="background:#0c0c10;border:1px solid #18181c;border-radius:12px;padding:14px;margin-top:12px">
+<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:8px">Yesterday </div>
+<div style="font-size:12px;color:#a0a0a8;line-height:1.8">
+HRV: <strong style="color:#e0e0e0">—</strong> &nbsp;·&nbsp; RHR: <strong style="color:#e0e0e0">—</strong> &nbsp;·&nbsp; Sleep: <strong style="color:#e0e0e0">—</strong> &nbsp;·&nbsp; Steps: <strong style="color:#e0e0e0">—</strong>
+</div>
+</div>
+</div>
+
+
+<!-- PHASE RECOMMENDATION -->
+<div style="background:#0c0c10;border:1px solid #1a2a3a;border-radius:16px;padding:20px;margin-top:16px">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#34d399;margin-bottom:8px">Build Phase</div>
+<div style="font-size:13px;color:#e0e0e0;margin-bottom:10px;line-height:1.6">Lean enough to push hard. Surplus + protein = growth.</div>
+<div style="font-size:12px;color:#a0a0a8;line-height:2">Eat 3,200–3,500 kcal · 280g+ protein · Max volume</div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center;color:#333;font-size:11px;padding:32px 0 16px">
+Auto-updated Thu May 28 2026 · 12:35 PM<br>
+Data: Eight Sleep + Evolt 360 () + Apple Watch<br>
+The income is me.
+</div>
+
+</div>
 </body>
 </html>
