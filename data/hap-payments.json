@@ -102,7 +102,7 @@
     }
   },
   "_meta": {
-    "last_scraped": "2026-05-30T01:24:38.140559+00:00",
+    "last_scraped": "2026-05-30T01:35:58.097170+00:00",
     "scraper_version": "portal_scraper_v1"
   },
   "2026-05": {
@@ -110,49 +110,61 @@
       "address": "505 W 25th St, Lorain, OH 44052",
       "expected": 1383,
       "received": null,
-      "date_received": null,
-      "status": "PENDING",
-      "pm": "BTR"
+      "date_received": "2026-05-29",
+      "status": "STATEMENT_RECEIVED",
+      "pm": "BTR",
+      "source": "tactical_statement_email",
+      "note": "Statement email received \u2014 AppFolio scraper needed for amount"
     },
     "hazelcrest": {
       "address": "7596 Hazelcrest Dr Unit F, Hazelwood, MO 63042",
       "expected": 775,
-      "received": null,
-      "date_received": null,
-      "status": "PENDING",
-      "pm": "Avenue Residential"
+      "received": 163.99,
+      "date_received": "2026-05-21",
+      "status": "RECEIVED",
+      "pm": "Avenue Residential",
+      "source": "avenue_distribution_email",
+      "distribution_total": 1082.35
     },
     "fenwick": {
       "address": "132 Fenwick Dr, Saint Louis, MO 63135",
       "expected": 1450,
-      "received": null,
-      "date_received": null,
-      "status": "PENDING",
-      "pm": "Avenue Residential"
+      "received": 306.82,
+      "date_received": "2026-05-21",
+      "status": "RECEIVED",
+      "pm": "Avenue Residential",
+      "source": "avenue_distribution_email",
+      "distribution_total": 1082.35
     },
     "wilborn": {
       "address": "5361 Wilborn Dr, St Louis, MO 63136",
       "expected": 1400,
-      "received": null,
-      "date_received": null,
-      "status": "PENDING",
-      "pm": "Avenue Residential"
+      "received": 296.24,
+      "date_received": "2026-05-21",
+      "status": "RECEIVED",
+      "pm": "Avenue Residential",
+      "source": "avenue_distribution_email",
+      "distribution_total": 1082.35
     },
     "alcove": {
       "address": "516 Alcove Ave, Bellefontaine Neighbors, MO 63137",
       "expected": 1490,
-      "received": null,
-      "date_received": null,
-      "status": "PENDING",
-      "pm": "Avenue Residential"
+      "received": 315.29,
+      "date_received": "2026-05-21",
+      "status": "RECEIVED",
+      "pm": "Avenue Residential",
+      "source": "avenue_distribution_email",
+      "distribution_total": 1082.35
     },
     "kenilworth": {
       "address": "124 Kenilworth Ave, Painesville, OH 44077",
       "expected": 1360,
       "received": null,
-      "date_received": null,
-      "status": "PENDING",
-      "pm": "BTR"
+      "date_received": "2026-05-29",
+      "status": "STATEMENT_RECEIVED",
+      "pm": "BTR",
+      "source": "tactical_statement_email",
+      "note": "Statement email received \u2014 AppFolio scraper needed for amount"
     }
   }
 }
