@@ -147,14 +147,65 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 /* FOOTER */
 .foot{text-align:center;font-size:10px;color:var(--dim);margin-top:24px;letter-spacing:0.8px;line-height:1.6}
 .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin:0 4px;vertical-align:middle}
+
+/* TABS */
+.tab-nav{display:flex;gap:4px;margin:12px 0 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:4px}
+.tab-btn{flex:1;padding:8px 4px;font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;background:transparent;border:none;color:var(--dim);border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all 0.15s}
+.tab-btn.active{background:var(--surface-2);color:var(--text);border:1px solid var(--border-2)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+
+/* ARCH TAB */
+.arch-section{margin-bottom:28px}
+.arch-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:12px}
+.arch-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px}
+.arch-card h4{font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:0.3px}
+.arch-card p,.arch-card li{font-size:11px;color:var(--sub);line-height:1.7}
+.arch-card ul{padding-left:14px}
+.arch-code{background:#0a0a0e;border:1px solid var(--border-2);border-radius:8px;padding:12px;margin-top:8px;font-family:'SF Mono',Monaco,monospace;font-size:10px;color:#a0c0f0;overflow-x:auto;line-height:1.6;white-space:pre}
+.arch-tbl{width:100%;border-collapse:collapse;font-size:11px}
+.arch-tbl th{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--dim);padding:6px 8px;border-bottom:1px solid var(--border);text-align:left;font-weight:700}
+.arch-tbl td{padding:7px 8px;border-bottom:1px solid rgba(24,24,28,0.6);color:var(--sub);vertical-align:top}
+.arch-tbl td:first-child{color:var(--text);font-weight:500;white-space:nowrap}
+.arch-tbl tr:last-child td{border-bottom:none}
+
+/* GARRY GATE */
+.garry-gate{background:linear-gradient(135deg,rgba(248,113,113,0.06),rgba(251,146,60,0.04));border:1.5px solid rgba(248,113,113,0.35);border-radius:14px;padding:18px;margin-bottom:20px}
+.gate-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#f87171;margin-bottom:10px}
+.gate-rule{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid rgba(248,113,113,0.12);font-size:11px;color:var(--sub);line-height:1.5}
+.gate-rule:last-child{border-bottom:none;padding-bottom:0}
+.gate-icon{font-size:13px;flex-shrink:0;margin-top:1px}
+.gate-block{color:#f87171;font-weight:700}
+.gate-ok{color:#34d399;font-weight:700}
+
 @media(max-width:540px){
   .hero-grid{grid-template-columns:1fr}
   .props{grid-template-columns:repeat(2,1fr)}
 }
 </style>
+<script>
+function showTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelectorAll('[data-tab="'+id+'"]').forEach(b=>b.classList.add('active'));
+  localStorage.setItem('cc-tab',id);
+}
+document.addEventListener('DOMContentLoaded',function(){
+  const saved=localStorage.getItem('cc-tab');
+  if(saved) showTab(saved);
+});
+</script>
 </head>
 <body>
 <div class="wrap">
+
+<!-- TAB NAV -->
+<div class="tab-nav">
+  <button class="tab-btn active" data-tab="ops"   onclick="showTab('ops')">Operations</button>
+  <button class="tab-btn"        data-tab="arch"  onclick="showTab('arch')">Architecture</button>
+</div>
+
+<div id="tab-ops" class="tab-panel active">
 
 <!-- PHASE HERO -->
 <div class="phase-hero">
@@ -807,11 +858,175 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 
 <!-- FOOTER -->
 <div class="foot">
-  Auto-updated Sat May 30 2026 · 12:12 PM · 1 USD = A$1.3933<br>
+  Auto-updated Sat May 30 2026 · 12:42 PM · 1 USD = A$1.3933<br>
   <span class="dot" style="background:#34d399"></span>Live DB ·
   <span style="color:#60a5fa">Bangkok 18d</span> ·
   <span style="color:var(--dim)">Garry 24/7</span>
 </div>
+</div><!-- /tab-ops -->
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SYSTEM ARCHITECTURE TAB                               -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="tab-arch" class="tab-panel">
+
+<!-- GARRY GATE — HITL SECURITY CALLOUT -->
+<div class="garry-gate">
+  <div class="gate-title">⛔ Garry Gate — HITL Draft-Only Protocol</div>
+  <div class="gate-rule"><span class="gate-icon">✅</span><div><span class="gate-ok">PERMITTED:</span> <code>email_utils.create_draft()</code> — saves to Gmail Drafts. Patrick sends manually.</div></div>
+  <div class="gate-rule"><span class="gate-icon">✅</span><div><span class="gate-ok">PERMITTED:</span> <code>email_utils.send_email()</code> — Patrick-to-Patrick internal alerts ONLY.</div></div>
+  <div class="gate-rule"><span class="gate-icon">⛔</span><div><span class="gate-block">BLOCKED:</span> Direct <code>send()</code> to PM / contractor / broker / external. Use <code>create_draft()</code>.</div></div>
+  <div class="gate-rule"><span class="gate-icon">⛔</span><div><span class="gate-block">BLOCKED:</span> Telegram for business alerts (deals, rent, RFPs). Email only.</div></div>
+  <div class="gate-rule"><span class="gate-icon">🔴</span><div><span class="gate-block">TELEGRAM ONLY:</span> Fatal infrastructure crashes — <code>critical_failure</code> type only.</div></div>
+  <div class="gate-rule"><span class="gate-icon">📁</span><div><span class="gate-ok">ALL OUTBOUND DRAFTS:</span> Frozen in Gmail Drafts. Contractor SOW, Insurance RFQ, Tax Appeals → Patrick reviews and sends manually.</div></div>
+</div>
+
+<!-- PIPELINE OVERVIEW -->
+<div class="arch-section">
+  <div class="arch-title">Core Pipelines</div>
+
+  <div class="arch-card">
+    <h4>💰 Daily 2am — Income Pipeline</h4>
+    <div class="arch-code">avenue-payment-parser.py
+  → Gmail: "Distribution Initiated for HS-Empire"
+  → parse ACH amount → hap-payments.json per property
+
+portal_scraper.py (AppFolio/Tactical OH)
+  → persistent Chrome profile session
+  → update hap-payments.json + transactions-YYYY-MM-DD.json
+
+update-and-push.sh
+  → dashboards + command-centre + GitHub Pages</div>
+  </div>
+
+  <div class="arch-card">
+    <h4>🔍 Deal Finder → HQS Auto-trigger</h4>
+    <div class="arch-code">deal-finder-v4.py (daily 09:00)
+  → score ≥ 78 → Popen rehab_underwriter.py
+
+rehab_underwriter.py
+  → Zillow photos + Claude Vision → HQS tags
+  → rehab_costs.db → cost bands (STL 1.0x / OH 0.92x)
+  → email Patrick: [DEAL ALERT] [MARKET] addr — PASS/FAIL (Score: N)
+  → underwriting_runs → command-centre Underwriting tab</div>
+  </div>
+
+  <div class="arch-card">
+    <h4>🏠 Day 8 — HAP Rent Chaser</h4>
+    <div class="arch-code">hap-rent-chaser.py (8th of month 09:00)
+  Day 8:  create_draft() → Gmail Drafts (HITL)
+  Day 12: create_draft() to PM + send_email() to Patrick
+          subject: [RENT ESCALATION] PM — N unpaid (Day 12) — YYYY-MM</div>
+  </div>
+
+  <div class="arch-card">
+    <h4>🔧 Wilborn Vacancy — Contractor Outreach</h4>
+    <div class="arch-code">contractor_outreach.py --draft (HITL)
+  → 4 SOW drafts in Gmail → Patrick sends manually
+  → hard cap $2,000 | Darren (Dalou) BLACKLISTED
+
+contractor_outreach.py --monitor
+  → inbox scan for replies → email Patrick summary
+  → bid data → contractor_bids.db → CC matrix</div>
+  </div>
+
+  <div class="arch-card">
+    <h4>📊 Weekly Monday 06:00 — P&amp;L Report</h4>
+    <div class="arch-code">local_accountant.py --export-csv
+  → ingest HAP + Wise → categorize
+  → ledger.db → draft_outputs/ledger_YYYY-MM.csv
+                 draft_outputs/pnl_YYYY-MM.csv</div>
+  </div>
+</div>
+
+<!-- SCRIPT REGISTRY -->
+<div class="arch-section">
+  <div class="arch-title">Script Registry</div>
+  <div class="arch-card">
+    <table class="arch-tbl">
+      <thead><tr><th>Script</th><th>Purpose</th><th>Fires</th></tr></thead>
+      <tbody>
+        <tr><td>avenue-payment-parser.py</td><td>Parse Avenue distribution emails</td><td>Daily 2am</td></tr>
+        <tr><td>portal_scraper.py</td><td>AppFolio/Tactical scrape (Ohio)</td><td>Daily 2am</td></tr>
+        <tr><td>hap-rent-chaser.py</td><td>Chase missing HAP — day 8 + escalate day 12</td><td>8th 09:00</td></tr>
+        <tr><td>rehab_underwriter.py</td><td>Claude Vision HQS + cost estimate</td><td>Score ≥78</td></tr>
+        <tr><td>contractor_outreach.py</td><td>SOW drafts for vacant property repairs</td><td>Manual + auto</td></tr>
+        <tr><td>local_accountant.py</td><td>SQLite bookkeeper, CSV export</td><td>Daily</td></tr>
+        <tr><td>tax_shield.py</td><td>Tax assessment spike + appeal draft</td><td>Monthly</td></tr>
+        <tr><td>insurance_rfp.py</td><td>Competitive broker RFQ every 180 days</td><td>180-day cycle</td></tr>
+        <tr><td>email_utils.py</td><td>HITL email layer — all scripts import this</td><td>Library</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- DATABASE SCHEMAS -->
+<div class="arch-section">
+  <div class="arch-title">Database Schemas</div>
+
+  <div class="arch-card">
+    <h4>rehab_costs.db — Underwriting</h4>
+    <div class="arch-code">hqs_failures      — 39 tags · labor + material bands
+cost_adjustments  — STL 1.0x / OH 0.92x
+underwriting_runs — per-deal analysis log</div>
+  </div>
+
+  <div class="arch-card">
+    <h4>ledger.db — Bookkeeping</h4>
+    <div class="arch-code">ledger_entries — date | property_key | amount
+                  direction(IN/OUT) | category | source
+monthly_pnl   — income | expenses | net
+              mgmt_fee | repairs | insurance
+              utilities | property_tax
+Categories: HAP_INCOME · TENANT_INCOME · MGMT_FEE
+            REPAIR · INSURANCE · UTILITY
+            PROPERTY_TAX · MORTGAGE · OTHER</div>
+  </div>
+
+  <div class="arch-card">
+    <h4>contractor_bids.db — Vacancy Tracker</h4>
+    <div class="arch-code">contractor_bids — bid_amount | timeline | status
+outreach_log   — action | sent_at | draft_saved</div>
+  </div>
+</div>
+
+<!-- LAUNCHAGENT SCHEDULE -->
+<div class="arch-section">
+  <div class="arch-title">LaunchAgent Schedule</div>
+  <div class="arch-card">
+    <table class="arch-tbl">
+      <thead><tr><th>Agent</th><th>Fires</th><th>What</th></tr></thead>
+      <tbody>
+        <tr><td>daily-dashboard-sync</td><td>Daily 02:00</td><td>Parse emails + scrape portals + push</td></tr>
+        <tr><td>hap-rent-chaser</td><td>8th 09:00</td><td>Chase unpaid HAP → Gmail Drafts</td></tr>
+        <tr><td>weekly-accounting-report</td><td>Monday 06:00</td><td>P&amp;L CSV report</td></tr>
+        <tr><td>garry-dashboards</td><td>Every 30 min</td><td>All dashboards + GitHub Pages push</td></tr>
+        <tr><td>command-center-refresh</td><td>Every 5 min</td><td>cc-data.json live ops update</td></tr>
+        <tr><td>health-refresh</td><td>Every 15 min</td><td>Health dashboard + Whoop data</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- EMAIL ALERT FORMAT -->
+<div class="arch-section">
+  <div class="arch-title">Mandatory Email Subject Format</div>
+  <div class="arch-card">
+    <div class="arch-code">[DEAL ALERT] [MARKET] address — Underwriting: PASS/FAIL (Score: N) — YYYY-MM-DD
+[RENT ESCALATION] PM — N properties unpaid (Day N) — YYYY-MM
+[HAP CHASER] YYYY-MM Summary — N chased, N escalated — YYYY-MM-DD
+[TAX SHIELD] N properties flagged for assessment review — YYYY-MM-DD
+[INSURANCE RFP] N broker drafts ready — 6-month cycle — YYYY-MM-DD
+[CONTRACTOR DRAFTS] N SOW emails ready for Property — YYYY-MM-DD</div>
+  </div>
+</div>
+
+<div class="foot">
+  Spec: GARRY-EXECUTION-SPEC-2026-05-30.md · Roger 94/100 · Preflight GREEN<br>
+  <span class="dot" style="background:#34d399"></span>All builds verified ·
+  <span style="color:#60a5fa">HITL active</span>
+</div>
+</div><!-- /tab-arch -->
 
 </div>
 </body>
