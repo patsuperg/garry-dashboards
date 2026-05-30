@@ -24,8 +24,13 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .phase-m-l{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
 .phase-goal{font-size:12px;color:var(--sub);margin-top:10px}
 
+/* COACHING */
+.coaching{background:linear-gradient(135deg,rgba(96,165,250,0.07),rgba(52,211,153,0.04));border:1px solid rgba(96,165,250,0.18);border-radius:14px;padding:16px;margin-bottom:20px}
+.coaching-label{font-size:9px;letter-spacing:2px;color:#60a5fa;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.coaching-text{font-size:12px;color:#a0a0a8;line-height:1.6}
+
 /* SPOONS */
-.spoons{text-align:center;padding:24px 0;border-bottom:1px solid var(--border);margin-bottom:24px}
+.spoons{text-align:center;padding:24px 0;border-bottom:1px solid var(--border);margin-bottom:20px}
 .spoons-l{font-size:10px;letter-spacing:3px;color:var(--dim);text-transform:uppercase}
 .spoons-n{font-size:72px;font-weight:900;color:#34d399;line-height:1;letter-spacing:-2px;margin:12px 0}
 .spoons-n span{font-size:24px;color:#444}
@@ -35,6 +40,14 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 /* TREND */
 .trend-row{display:flex;align-items:flex-end;gap:6px;justify-content:center;margin-top:14px;height:46px}
 .trend-bar{width:14px;border-radius:3px 3px 0 0}
+
+/* RING DIALS */
+.dials{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
+.dial{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;text-align:center}
+.dial-label{font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-bottom:8px}
+.dial-ring{position:relative;display:inline-flex;align-items:center;justify-content:center;margin:4px 0}
+.dial-val{position:absolute;font-size:15px;font-weight:800;line-height:1}
+.dial-sub{font-size:10px;color:var(--dim);margin-top:6px;line-height:1.4}
 
 /* VITALS */
 .vitals-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px}
@@ -96,13 +109,43 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
   <div class="phase-goal">→ Max volume, 3,200+ kcal, 280g protein</div>
 </div>
 
+<!-- COACHING SUMMARY -->
+<div class="coaching">
+  <div class="coaching-label">Today's Read</div>
+  <div class="coaching-text">Elevated stress is the main drag today. Sleep was 7.5h, recovery 69%. Protect your afternoon — reduce inputs, don't stack decisions.</div>
+</div>
+
 <!-- SPOONS -->
 <div class="spoons">
   <div class="spoons-l">Spoons Today · 2026-05-30</div>
   <div class="spoons-n">8<span>/12</span></div>
   <div class="spoons-e">🥄🥄🥄🥄🥄🥄🥄🥄····</div>
-  <div class="spoons-meta"><span style="color:#f87171">● EXPORT DOWN</span></div>
+  <div class="spoons-meta"><span style="color:#34d399">● FRESH</span></div>
   
+</div>
+
+<!-- RING DIALS: Recovery · Strain · Stress · Sleep -->
+<div class="dials">
+  <div class="dial">
+    <div class="dial-label">Recovery</div>
+    <div class="dial-ring"><svg width="76" height="76" style="transform:rotate(-90deg)"><circle cx="38" cy="38" r="34" fill="none" stroke="#1a1a20" stroke-width="5"/><circle cx="38" cy="38" r="34" fill="none" stroke="#34d399" stroke-width="5" stroke-dasharray="147.4 66.2" stroke-linecap="round"/></svg><div class="dial-val" style="color:#34d399">69%</div></div>
+    <div class="dial-sub">GREEN — push hard</div>
+  </div>
+  <div class="dial">
+    <div class="dial-label">Strain</div>
+    <div class="dial-ring"><svg width="76" height="76" style="transform:rotate(-90deg)"><circle cx="38" cy="38" r="34" fill="none" stroke="#1a1a20" stroke-width="5"/><circle cx="38" cy="38" r="34" fill="none" stroke="#a78bfa" stroke-width="5" stroke-dasharray="130.3 83.3" stroke-linecap="round"/></svg><div class="dial-val" style="color:#a78bfa">12.9</div></div>
+    <div class="dial-sub">734kcal / 6720st / 58min ex</div>
+  </div>
+  <div class="dial">
+    <div class="dial-label">Stress</div>
+    <div class="dial-ring"><svg width="76" height="76" style="transform:rotate(-90deg)"><circle cx="38" cy="38" r="34" fill="none" stroke="#1a1a20" stroke-width="5"/><circle cx="38" cy="38" r="34" fill="none" stroke="#f87171" stroke-width="5" stroke-dasharray="162.4 51.2" stroke-linecap="round"/></svg><div class="dial-val" style="color:#f87171">76%</div></div>
+    <div class="dial-sub">HR 96bpm vs RHR 73</div>
+  </div>
+  <div class="dial">
+    <div class="dial-label">Sleep</div>
+    <div class="dial-ring"><svg width="76" height="76" style="transform:rotate(-90deg)"><circle cx="38" cy="38" r="34" fill="none" stroke="#1a1a20" stroke-width="5"/><circle cx="38" cy="38" r="34" fill="none" stroke="#60a5fa" stroke-width="5" stroke-dasharray="200.8 12.8" stroke-linecap="round"/></svg><div class="dial-val" style="color:#60a5fa">7.5h</div></div>
+    <div class="dial-sub">7.5h total · deep 1.8h / REM 1.1h</div>
+  </div>
 </div>
 
 <!-- VITALS -->
@@ -199,7 +242,7 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 
 <!-- FOOT -->
 <div class="foot">
-  Auto-updated Sat May 30 · 10:32 PM<br>
+  Auto-updated Sat May 30 · 10:44 PM<br>
   Data: Apple Health + Eight Sleep + Evolt 360<br>
   <em>The income is me.</em>
 </div>
