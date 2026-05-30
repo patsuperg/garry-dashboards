@@ -192,8 +192,96 @@ function showTab(id){
 }
 document.addEventListener('DOMContentLoaded',function(){
   const saved=localStorage.getItem('cc-tab');
-  if(saved) showTab(saved);
+  if(saved){showTab(saved);if(saved==='health')loadHealth();}
 });
+
+var healthLoaded=false;
+function loadHealth(){
+  if(healthLoaded)return;
+  healthLoaded=true;
+  fetch('health-data.json?t='+Date.now())
+    .then(r=>r.json()).then(d=>renderHealth(d))
+    .catch(()=>document.getElementById('health-render').innerHTML='<div style="text-align:center;padding:40px;color:#f87171">Could not load health-data.json</div>');
+}
+function renderHealth(d){
+  var t=d.today||{};
+  var sp=t.spoons||0;
+  var smax=12;
+  var scolor=sp>=8?'#34d399':sp>=5?'#F97316':'#f87171';
+  var rings=t.rings||{};
+  var slp=rings.sleep||{};
+  var rec=rings.recovery||{};
+  var str=rings.strain||{};
+  var sb=t.sleep_breakdown||{};
+  var hrv=t.hrv_overnight||sb.hrv_overnight||'—';
+  var rhr=t.rhr_overnight||sb.rhr_overnight||'—';
+  var slpH=sb.total_hr||0;
+  var b14=t.baseline_14d||{};
+  var coaching=d.coaching||'';
+  var spEmoji='🥄'.repeat(Math.min(sp,12))+'·'.repeat(Math.max(0,12-sp));
+  function col(v,g,y){return v>=g?'#34d399':v>=y?'#fbbf24':'#f87171';}
+  var hrvCol=col(hrv,40,28);
+  var rhrCol=hrv?'#f87171':'#5a5a64';
+  if(rhr&&rhr<=65)rhrCol='#34d399';else if(rhr&&rhr<=75)rhrCol='#fbbf24';
+  var slpCol=col(slpH,7.5,6);
+  var date=t.date||'—';
+  var recV=rec.value||0;
+  var recColor=recV>=70?'#34d399':recV>=40?'#fbbf24':'#f87171';
+  var strV=str.value||0;
+  var nutri=t.nutrition||{};
+  var html='';
+  html+='<div style="text-align:center;padding:20px 0 12px">';
+  html+='<div style="font-size:10px;letter-spacing:3px;color:#666;text-transform:uppercase;margin-bottom:10px">'+date+'</div>';
+  html+='<div style="font-size:80px;font-weight:900;color:'+scolor+';line-height:1;letter-spacing:-2px">'+sp+'<span style="font-size:24px;color:#444;font-weight:400">/'+smax+'</span></div>';
+  html+='<div style="font-size:20px;letter-spacing:3px;margin:12px 0 6px">'+spEmoji+'</div>';
+  html+='<div style="font-size:11px;color:#555">'+date+'</div>';
+  html+='</div>';
+  html+='<div style="height:1px;background:linear-gradient(90deg,transparent,#222,transparent);margin:0 20%"></div>';
+  html+='<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:20px 0">';
+  html+=vCard('Sleep',slpH?slpH.toFixed(1):'—','hrs','Target 7.5+',slpCol);
+  html+=vCard('HRV',hrv,'ms','Baseline '+((b14.hrv||'—')),hrvCol);
+  html+=vCard('Resting HR',rhr,'bpm','Lower = fitter',rhrCol);
+  html+=vCard('Recovery',recV,'%',rec.label||'',recColor);
+  html+='</div>';
+  if(strV){
+    html+='<div style="background:#0c0c10;border:1px solid #18181c;border-radius:12px;padding:14px;text-align:center;margin-bottom:16px">';
+    html+='<div style="font-size:10px;letter-spacing:2px;color:#666;text-transform:uppercase;margin-bottom:8px">Strain</div>';
+    html+='<div style="font-size:28px;font-weight:800;color:#a78bfa">'+strV+'<span style="font-size:12px;color:#666;font-weight:400">/21</span></div>';
+    html+='<div style="font-size:10px;color:#555;margin-top:4px">'+(str.subtitle||'')+'</div>';
+    html+='</div>';
+  }
+  if(coaching){
+    html+='<div style="background:#0c0c10;border:1px solid rgba(96,165,250,0.2);border-radius:12px;padding:14px;margin-bottom:16px">';
+    html+='<div style="font-size:10px;letter-spacing:1.5px;color:#60a5fa;text-transform:uppercase;margin-bottom:6px">Coaching</div>';
+    html+='<div style="font-size:12px;color:#a0a0a8;line-height:1.6">'+coaching+'</div>';
+    html+='</div>';
+  }
+  if(nutri&&nutri.has_data){
+    html+='<div style="background:#0c0c10;border:1px solid #18181c;border-radius:12px;padding:14px;margin-bottom:16px">';
+    html+='<div style="font-size:10px;letter-spacing:2px;color:#666;text-transform:uppercase;margin-bottom:10px">Nutrition Today</div>';
+    html+='<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center">';
+    html+=nCard('Protein',nutri.protein_g,'g','#34d399');
+    html+=nCard('Carbs',nutri.carbs_g,'g','#60a5fa');
+    html+=nCard('Fat',nutri.fat_g,'g','#fbbf24');
+    html+=nCard('kcal',nutri.calories_kcal,'','#f87171');
+    html+='</div></div>';
+  }
+  html+='<div style="text-align:center;color:#333;font-size:10px;padding:16px 0">Auto-updated · health-data.json · Eight Sleep + Apple Watch</div>';
+  document.getElementById('health-render').innerHTML=html;
+}
+function vCard(label,val,unit,sub,color){
+  return '<div style="background:#0c0c10;border:1px solid #18181c;border-radius:12px;padding:16px;text-align:center">'
+    +'<div style="font-size:10px;letter-spacing:2px;color:#666;text-transform:uppercase;margin-bottom:8px">'+label+'</div>'
+    +'<div style="font-size:30px;font-weight:800;color:'+color+'">'+val+'<span style="font-size:12px;color:#666;font-weight:400;margin-left:3px">'+unit+'</span></div>'
+    +'<div style="font-size:10px;color:#555;margin-top:5px">'+sub+'</div>'
+    +'</div>';
+}
+function nCard(label,val,unit,color){
+  return '<div style="background:#111;border-radius:8px;padding:10px">'
+    +'<div style="font-size:9px;color:#666;text-transform:uppercase;letter-spacing:0.8px">'+label+'</div>'
+    +'<div style="font-size:16px;font-weight:800;color:'+color+';margin-top:3px">'+(val?Math.round(val):0)+'<span style="font-size:9px;color:#555;margin-left:1px">'+unit+'</span></div>'
+    +'</div>';
+}
 </script>
 </head>
 <body>
@@ -201,18 +289,65 @@ document.addEventListener('DOMContentLoaded',function(){
 
 <!-- TAB NAV -->
 <div class="tab-nav">
-  <button class="tab-btn active" data-tab="ops"   onclick="showTab('ops')">Operations</button>
-  <button class="tab-btn"        data-tab="arch"  onclick="showTab('arch')">Architecture</button>
+  <button class="tab-btn active" data-tab="deal"   onclick="showTab('deal')">Deals</button>
+  <button class="tab-btn"        data-tab="ops"    onclick="showTab('ops')">Ops</button>
+  <button class="tab-btn"        data-tab="health" onclick="showTab('health');loadHealth()">Health</button>
+  <button class="tab-btn"        data-tab="arch"   onclick="showTab('arch')">System</button>
 </div>
 
-<div id="tab-ops" class="tab-panel active">
+<!-- ═══════════════ TAB 1: DEAL UNDERWRITING ═══════════════ -->
+<div id="tab-deal" class="tab-panel active">
 
 <!-- PHASE HERO -->
 <div class="phase-hero">
   <div class="phase-label">Current Phase</div>
   <div class="phase-title">STABILISE + ACQUIRE</div>
-  <div class="phase-sub">No active contracts · Wilborn vacant/rehab pending · Bangkok 18d · Hazelcrest listed</div>
+  <div class="phase-sub">No active contracts · Wilborn vacant · Bangkok 18d · Score ≥78 = auto-underwrite</div>
 </div>
+
+<!-- DEAL PIPELINE -->
+<div class="sec">
+  <div class="sec-title">Deal Pipeline <span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">0 contracts · 1 watchlist</span></div>
+  <div class="pipe-stage-label" style="color:var(--green)">UNDER CONTRACT <span class="pipe-count">0</span></div>
+  <div class="pipe-empty">No active contracts.</div>
+  <div class="pipe-stage-label" style="color:var(--blue)">WATCHLIST <span class="pipe-count">1</span></div>
+  
+<div class="pipe-row pipe-watch">
+  <div class="pipe-row-top">
+    <div class="pipe-addr">1427 Fairmeadows Ln</div>
+    <div class="pipe-price">$115,000 · 4BR</div>
+  </div>
+  <div class="pipe-pros">+ 4BR, HQS Good</div>
+  <div class="pipe-cons">- Need current rent + lease expiry. Min $1,442/mo required.</div>
+  <div class="pipe-meta">63138 Spanish Lake · lease info pending</div>
+  <div class="pipe-note">HOLD — Heather to get lease info from listing agent.</div>
+</div>
+</div>
+
+<!-- HQS UNDERWRITING RUNS -->
+<div class="sec">
+  <div class="sec-title">HQS Underwriting <span class="badge" style="background:rgba(52,211,153,0.08);color:var(--green)">0 runs · auto-triggers score ≥78</span></div>
+  <div class="uw-empty">No underwriting runs yet — auto-triggers when deal score ≥78</div>
+</div>
+
+<!-- CONTRACTOR OUTREACH — WILBORN -->
+<div class="sec">
+  <div class="sec-title">Contractor Outreach · 5361 Wilborn Dr <span class="badge" style="background:rgba(251,146,60,0.1);color:var(--orange)">VACANT · $1,400/mo bleed</span></div>
+  <div class="arch-card" style="margin-bottom:0">
+    <div style="font-size:11px;color:var(--sub);line-height:1.8">
+      <strong style="color:var(--text)">4 SOW drafts in Gmail Drafts</strong> (saved 2026-05-30) · Budget cap $2,000 · Review and send manually<br>
+      Targets: HandyPros STL · Heavenly Hands Help · Home Team Pro · Gateway Home Services<br>
+      <span style="color:#f87171;font-size:10px">BLACKLISTED: Darren (Dalou)</span> ·
+      Run <code style="font-size:10px">contractor_outreach.py --monitor</code> to scan for bid replies
+    </div>
+  </div>
+</div>
+
+<div class="foot">Auto-updated Sat May 30 2026 · 12:59 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
+</div><!-- /tab-deal -->
+
+<!-- ═══════════════ TAB 2: OPERATIONS & CASH FLOW ═══════════════ -->
+<div id="tab-ops" class="tab-panel">
 
 <!-- HERO NUMBERS -->
 <div class="hero-grid">
@@ -232,6 +367,180 @@ document.addEventListener('DOMContentLoaded',function(){
       <div class="side-l">USD→AUD</div>
     </div>
   </div>
+</div>
+
+<!-- NEEDS PATRICK -->
+<div class="sec">
+  <div class="sec-title">Needs Patrick <span class="badge">6 items</span></div>
+  
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">1</div>
+  <div class="need-body">
+    <div class="need-title">B2B disburses final May rent to Patrick (window: May 28-31)</div>
+    <div class="need-ctx">B2B obligated to forward May rent collected under their HAP payee. If not received by May 31 (5+ days late), escalate.</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">2</div>
+  <div class="need-body">
+    <div class="need-title">B2B Property Management termination effective (Ohio)</div>
+    <div class="need-ctx">30-day notice from Apr 16 lands today. Verify B2B has acknowledged + initiated handover of remaining records. 505 W 25th…</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">3</div>
+  <div class="need-body">
+    <div class="need-title">ATO follow-up call 13 28 66 (SBR + BAS reallocation)</div>
+    <div class="need-ctx">Patrick needs to call ATO 13 28 66 about: SBR 001 write-off $36,885.64 + BAS 006 reallocation $8,283. Reference Receipt …</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">4</div>
+  <div class="need-body">
+    <div class="need-title">DTV visa application deadline ~Jun 1 (25 business days processing)</div>
+    <div class="need-ctx">Patrick targeting Jul 1 Bangkok departure. DTV visa = 25 business days to process. Application must be submitted by ~Jun…</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">5</div>
+  <div class="need-body">
+    <div class="need-title">Frontier contractor — balloon property (currently vacant)</div>
+    <div class="need-ctx">Patrick raised this as a dropped ball — Garry was meant to be handling it but the thread isn't surfacing in command cent…</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#60a5fa">
+  <div class="need-num">6</div>
+  <div class="need-body">
+    <div class="need-title">Super consolidation</div>
+    <div class="need-ctx">Open item from yesterday's session. Patrick has multiple super accounts that should consolidate before becoming AU non-r…</div>
+  </div>
+</div>
+</div>
+
+<!-- INCOME -->
+<div class="sec">
+  <div class="sec-title">Income May 2026 <span class="badge" style="background:rgba(52,211,153,0.1);color:var(--green)">A$4,614 of A$6,338</span></div>
+  
+<div class="income-row">
+  <div class="income-pm">Avenue (STL — 4 props)</div>
+  <div class="income-nums">
+    <span style="color:#fbbf24">A$1,508</span>
+    <span class="income-sep"> of </span>
+    <span class="income-exp">A$4,666</span>
+  </div>
+  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:32%;background:#fbbf24"></div></div>
+  <div class="income-status" style="color:#fbbf24">A$3,158 SHORT</div>
+</div>
+<div class="income-row">
+  <div class="income-pm">B2B Ohio (phasing out)</div>
+  <div class="income-nums">
+    <span style="color:#34d399">A$3,106</span>
+    <span class="income-sep"> of </span>
+    <span class="income-exp">A$1,672</span>
+  </div>
+  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:100%;background:#34d399"></div></div>
+  <div class="income-status" style="color:#34d399">RECEIVED</div>
+</div>
+</div>
+
+<!-- PORTFOLIO -->
+<div class="sec">
+  <div class="sec-title">Portfolio · 6 doors</div>
+  <div class="props">
+  
+<div class="prop-tile">
+  <div class="prop-top">
+    <div class="prop-net" style="color:var(--green)">A$1,377</div>
+    <div class="prop-grade" style="color:#34d399">A</div>
+  </div>
+  <div class="prop-addr">505 W 25th St</div>
+  <div class="prop-retenant" style="color:var(--dim)">BTR-managed, long lease</div>
+</div>
+<div class="prop-tile">
+  <div class="prop-top">
+    <div class="prop-net" style="color:var(--green)">A$431</div>
+    <div class="prop-grade" style="color:#f87171">SELL</div>
+  </div>
+  <div class="prop-addr">7596 Hazelcrest Dr Unit F</div>
+  <div class="prop-retenant" style="color:#f87171">SELLING — HOA destroys returns. Hazelcrest countersi</div>
+</div>
+<div class="prop-tile">
+  <div class="prop-top">
+    <div class="prop-net" style="color:var(--green)">A$1,478</div>
+    <div class="prop-grade" style="color:#fbbf24">B</div>
+  </div>
+  <div class="prop-addr">132 Fenwick Dr</div>
+  <div class="prop-retenant" style="color:var(--dim)">87% FMR achievable; re-tenant window 4 months</div>
+</div>
+<div class="prop-tile">
+  <div class="prop-top">
+    <div class="prop-net" style="color:#f87171">VACANT</div>
+    <div class="prop-grade" style="color:#fbbf24">B</div>
+  </div>
+  <div class="prop-addr">5361 Wilborn Dr</div>
+  <div class="prop-retenant" style="color:#f87171">Evernest claim pending; re-lease opportunity</div>
+</div>
+<div class="prop-tile">
+  <div class="prop-top">
+    <div class="prop-net" style="color:var(--green)">A$1,400</div>
+    <div class="prop-grade" style="color:#34d399">A</div>
+  </div>
+  <div class="prop-addr">516 Alcove Ave</div>
+  <div class="prop-retenant" style="color:var(--dim)">Solid tenant, cosmetic-only maintenance</div>
+</div>
+<div class="prop-tile">
+  <div class="prop-top">
+    <div class="prop-net" style="color:var(--green)">A$833</div>
+    <div class="prop-grade" style="color:#fbbf24">B</div>
+  </div>
+  <div class="prop-addr">124 Kenilworth Ave</div>
+  <div class="prop-retenant" style="color:var(--dim)">BTR-managed, tax appeal won</div>
+</div>
+  </div>
+</div>
+
+<!-- WAITING ON -->
+<div class="sec">
+  <div class="sec-title">Waiting On · 0 items</div>
+  <div class="empty">Nothing waiting on external parties.</div>
+</div>
+
+<!-- ACTIVE THREADS -->
+<div class="sec">
+  <div class="sec-title">Active Workstreams · 8</div>
+  
+<div class="thread-row">
+  <div class="thread-name">505 W 25th — Re-cert repairs [P0]</div>
+  <div class="thread-status">Failed Mar inspection. Re-inspection May 31. Voucher at risk if fails. · 2 open · 1 waiting</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Sleek UHF closeout [P0]</div>
+  <div class="thread-status">Deed of Loan Forgiveness due May 13 (today). ASIC deregistration ~Jun 2 hard deadline. Gates Bangkok departure. · 1 open · 1 waiting</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Wilborn rehab [P0]</div>
+  <div class="thread-status">Contractor fell through. Heather sourcing new bids. Vacant — every week costs. · 2 open · 1 waiting</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">B2B Ohio → Tactical/Angel handover [P1]</div>
+  <div class="thread-status">May 16 transition deadline. Michael Drew response pending. Angel Chaney submitting LMHA + Lake County payee change. · 3 open · 1 waiting · 2 in progress</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Bangkok departure [P1]</div>
+  <div class="thread-status">Jun 30 hard deadline. Tourist visa (60+30). DTV applied. Departing with Laura 2026-05-17. · 2 open</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Kenilworth zero-income FIRE [P1]</div>
+  <div class="thread-status">5-month zero-income bleed. Cashflow stopped. Solving root cause.</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Credit pipeline (US) [P2]</div>
+  <div class="thread-status">Personal + Empire Investing credit building. Mercury/OpenSky/Capital One/DUNS/Net-30.</div>
+</div>
+<div class="thread-row">
+  <div class="thread-name">Hazelcrest sale [P2]</div>
+  <div class="thread-status">Listed for sale. GW Carter handling FIRPTA. Capital freed rolls into 2 STL financed doors. · 1 open · 1 in progress</div>
+</div>
 </div>
 
 <!-- PROJECTS -->
@@ -555,205 +864,6 @@ document.addEventListener('DOMContentLoaded',function(){
 </details>
 </div>
 
-<!-- NEEDS PATRICK -->
-<div class="sec">
-  <div class="sec-title">Needs Patrick <span class="badge">6 items</span></div>
-  
-<div class="need-card" style="border-left-color:#fb923c">
-  <div class="need-num">1</div>
-  <div class="need-body">
-    <div class="need-title">B2B disburses final May rent to Patrick (window: May 28-31)</div>
-    <div class="need-ctx">B2B obligated to forward May rent collected under their HAP payee. If not received by May 31 (5+ days late), escalate.</div>
-  </div>
-</div>
-<div class="need-card" style="border-left-color:#fb923c">
-  <div class="need-num">2</div>
-  <div class="need-body">
-    <div class="need-title">B2B Property Management termination effective (Ohio)</div>
-    <div class="need-ctx">30-day notice from Apr 16 lands today. Verify B2B has acknowledged + initiated handover of remaining records. 505 W 25th…</div>
-  </div>
-</div>
-<div class="need-card" style="border-left-color:#fb923c">
-  <div class="need-num">3</div>
-  <div class="need-body">
-    <div class="need-title">ATO follow-up call 13 28 66 (SBR + BAS reallocation)</div>
-    <div class="need-ctx">Patrick needs to call ATO 13 28 66 about: SBR 001 write-off $36,885.64 + BAS 006 reallocation $8,283. Reference Receipt …</div>
-  </div>
-</div>
-<div class="need-card" style="border-left-color:#fb923c">
-  <div class="need-num">4</div>
-  <div class="need-body">
-    <div class="need-title">DTV visa application deadline ~Jun 1 (25 business days processing)</div>
-    <div class="need-ctx">Patrick targeting Jul 1 Bangkok departure. DTV visa = 25 business days to process. Application must be submitted by ~Jun…</div>
-  </div>
-</div>
-<div class="need-card" style="border-left-color:#fb923c">
-  <div class="need-num">5</div>
-  <div class="need-body">
-    <div class="need-title">Frontier contractor — balloon property (currently vacant)</div>
-    <div class="need-ctx">Patrick raised this as a dropped ball — Garry was meant to be handling it but the thread isn't surfacing in command cent…</div>
-  </div>
-</div>
-<div class="need-card" style="border-left-color:#60a5fa">
-  <div class="need-num">6</div>
-  <div class="need-body">
-    <div class="need-title">Super consolidation</div>
-    <div class="need-ctx">Open item from yesterday's session. Patrick has multiple super accounts that should consolidate before becoming AU non-r…</div>
-  </div>
-</div>
-</div>
-
-<!-- WAITING ON -->
-<div class="sec">
-  <div class="sec-title">Waiting On · 0 items</div>
-  <div class="empty">Nothing waiting on external parties.</div>
-</div>
-
-<!-- ACTIVE THREADS -->
-<div class="sec">
-  <div class="sec-title">Active Workstreams · 8</div>
-  
-<div class="thread-row">
-  <div class="thread-name">505 W 25th — Re-cert repairs [P0]</div>
-  <div class="thread-status">Failed Mar inspection. Re-inspection May 31. Voucher at risk if fails. · 2 open · 1 waiting</div>
-</div>
-<div class="thread-row">
-  <div class="thread-name">Sleek UHF closeout [P0]</div>
-  <div class="thread-status">Deed of Loan Forgiveness due May 13 (today). ASIC deregistration ~Jun 2 hard deadline. Gates Bangkok departure. · 1 open · 1 waiting</div>
-</div>
-<div class="thread-row">
-  <div class="thread-name">Wilborn rehab [P0]</div>
-  <div class="thread-status">Contractor fell through. Heather sourcing new bids. Vacant — every week costs. · 2 open · 1 waiting</div>
-</div>
-<div class="thread-row">
-  <div class="thread-name">B2B Ohio → Tactical/Angel handover [P1]</div>
-  <div class="thread-status">May 16 transition deadline. Michael Drew response pending. Angel Chaney submitting LMHA + Lake County payee change. · 3 open · 1 waiting · 2 in progress</div>
-</div>
-<div class="thread-row">
-  <div class="thread-name">Bangkok departure [P1]</div>
-  <div class="thread-status">Jun 30 hard deadline. Tourist visa (60+30). DTV applied. Departing with Laura 2026-05-17. · 2 open</div>
-</div>
-<div class="thread-row">
-  <div class="thread-name">Kenilworth zero-income FIRE [P1]</div>
-  <div class="thread-status">5-month zero-income bleed. Cashflow stopped. Solving root cause.</div>
-</div>
-<div class="thread-row">
-  <div class="thread-name">Credit pipeline (US) [P2]</div>
-  <div class="thread-status">Personal + Empire Investing credit building. Mercury/OpenSky/Capital One/DUNS/Net-30.</div>
-</div>
-<div class="thread-row">
-  <div class="thread-name">Hazelcrest sale [P2]</div>
-  <div class="thread-status">Listed for sale. GW Carter handling FIRPTA. Capital freed rolls into 2 STL financed doors. · 1 open · 1 in progress</div>
-</div>
-</div>
-
-<!-- DEAL PIPELINE (build uw_html before this point) -->
-<div class="sec">
-  <div class="sec-title">Deal Pipeline <span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">0 contracts · 1 watchlist</span></div>
-  <div class="pipe-stage-label" style="color:var(--green)">UNDER CONTRACT <span class="pipe-count">0</span></div>
-  <div class="pipe-empty">No active contracts.</div>
-  <div class="pipe-stage-label" style="color:var(--blue)">WATCHLIST <span class="pipe-count">1</span></div>
-  
-<div class="pipe-row pipe-watch">
-  <div class="pipe-row-top">
-    <div class="pipe-addr">1427 Fairmeadows Ln</div>
-    <div class="pipe-price">$115,000 · 4BR</div>
-  </div>
-  <div class="pipe-pros">+ 4BR, HQS Good</div>
-  <div class="pipe-cons">- Need current rent + lease expiry. Min $1,442/mo required.</div>
-  <div class="pipe-meta">63138 Spanish Lake · lease info pending</div>
-  <div class="pipe-note">HOLD — Heather to get lease info from listing agent.</div>
-</div>
-</div>
-
-<!-- DEAL UNDERWRITING -->
-<div class="sec">
-  <div class="sec-title">Deal Underwriting <span class="badge" style="background:rgba(52,211,153,0.08);color:var(--green)">0 runs</span></div>
-  <div class="uw-empty">No underwriting runs yet — auto-triggers when deal score ≥78</div>
-</div>
-
-<!-- PORTFOLIO -->
-<div class="sec">
-  <div class="sec-title">Portfolio · 6 doors</div>
-  <div class="props">
-  
-<div class="prop-tile">
-  <div class="prop-top">
-    <div class="prop-net" style="color:var(--green)">A$1,377</div>
-    <div class="prop-grade" style="color:#34d399">A</div>
-  </div>
-  <div class="prop-addr">505 W 25th St</div>
-  <div class="prop-retenant" style="color:var(--dim)">BTR-managed, long lease</div>
-</div>
-<div class="prop-tile">
-  <div class="prop-top">
-    <div class="prop-net" style="color:var(--green)">A$431</div>
-    <div class="prop-grade" style="color:#f87171">SELL</div>
-  </div>
-  <div class="prop-addr">7596 Hazelcrest Dr Unit F</div>
-  <div class="prop-retenant" style="color:#f87171">SELLING — HOA destroys returns. Hazelcrest countersi</div>
-</div>
-<div class="prop-tile">
-  <div class="prop-top">
-    <div class="prop-net" style="color:var(--green)">A$1,478</div>
-    <div class="prop-grade" style="color:#fbbf24">B</div>
-  </div>
-  <div class="prop-addr">132 Fenwick Dr</div>
-  <div class="prop-retenant" style="color:var(--dim)">87% FMR achievable; re-tenant window 4 months</div>
-</div>
-<div class="prop-tile">
-  <div class="prop-top">
-    <div class="prop-net" style="color:#f87171">VACANT</div>
-    <div class="prop-grade" style="color:#fbbf24">B</div>
-  </div>
-  <div class="prop-addr">5361 Wilborn Dr</div>
-  <div class="prop-retenant" style="color:#f87171">Evernest claim pending; re-lease opportunity</div>
-</div>
-<div class="prop-tile">
-  <div class="prop-top">
-    <div class="prop-net" style="color:var(--green)">A$1,400</div>
-    <div class="prop-grade" style="color:#34d399">A</div>
-  </div>
-  <div class="prop-addr">516 Alcove Ave</div>
-  <div class="prop-retenant" style="color:var(--dim)">Solid tenant, cosmetic-only maintenance</div>
-</div>
-<div class="prop-tile">
-  <div class="prop-top">
-    <div class="prop-net" style="color:var(--green)">A$833</div>
-    <div class="prop-grade" style="color:#fbbf24">B</div>
-  </div>
-  <div class="prop-addr">124 Kenilworth Ave</div>
-  <div class="prop-retenant" style="color:var(--dim)">BTR-managed, tax appeal won</div>
-</div>
-  </div>
-</div>
-
-<!-- INCOME -->
-<div class="sec">
-  <div class="sec-title">Income May 2026 <span class="badge" style="background:rgba(52,211,153,0.1);color:var(--green)">A$4,614 of A$6,338</span></div>
-  
-<div class="income-row">
-  <div class="income-pm">Avenue (STL — 4 props)</div>
-  <div class="income-nums">
-    <span style="color:#fbbf24">A$1,508</span>
-    <span class="income-sep"> of </span>
-    <span class="income-exp">A$4,666</span>
-  </div>
-  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:32%;background:#fbbf24"></div></div>
-  <div class="income-status" style="color:#fbbf24">A$3,158 SHORT</div>
-</div>
-<div class="income-row">
-  <div class="income-pm">B2B Ohio (phasing out)</div>
-  <div class="income-nums">
-    <span style="color:#34d399">A$3,106</span>
-    <span class="income-sep"> of </span>
-    <span class="income-exp">A$1,672</span>
-  </div>
-  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:100%;background:#34d399"></div></div>
-  <div class="income-status" style="color:#34d399">RECEIVED</div>
-</div>
-</div>
-
 <!-- COMPLETED LOG -->
 <div class="sec">
   <div class="sec-title">Completed · Last 12</div>
@@ -856,14 +966,13 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 </div>
 
-<!-- FOOTER -->
-<div class="foot">
-  Auto-updated Sat May 30 2026 · 12:42 PM · 1 USD = A$1.3933<br>
-  <span class="dot" style="background:#34d399"></span>Live DB ·
-  <span style="color:#60a5fa">Bangkok 18d</span> ·
-  <span style="color:var(--dim)">Garry 24/7</span>
-</div>
+<div class="foot">Auto-updated Sat May 30 2026 · 12:59 PM · 1 USD = A$1.3933 · <span class="dot" style="background:#34d399"></span>Live DB</div>
 </div><!-- /tab-ops -->
+
+<!-- ═══════════════ TAB 3: HEALTH ═══════════════ -->
+<div id="tab-health" class="tab-panel">
+<div id="health-render"><div style="text-align:center;padding:60px 0;color:#5a5a64;font-size:12px">Tap Health tab to load biometrics…</div></div>
+</div><!-- /tab-health -->
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <!--  SYSTEM ARCHITECTURE TAB                               -->
