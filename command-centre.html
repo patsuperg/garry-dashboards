@@ -181,30 +181,39 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .bkk-hero{background:linear-gradient(135deg,rgba(96,165,250,0.1),rgba(52,211,153,0.06));border:1px solid rgba(96,165,250,0.2);border-radius:16px;padding:20px;margin:0 0 20px;text-align:center}
 .bkk-days{font-size:56px;font-weight:900;color:#60a5fa;line-height:1;letter-spacing:-2px}
 .bkk-label{font-size:10px;letter-spacing:3px;color:#5a5a64;text-transform:uppercase;margin-top:6px}
-.bkk-date{font-size:13px;color:#a0a0a8;margin-top:4px}
+.bkk-date{font-size:12px;color:#a0a0a8;margin-top:4px;word-break:break-word;line-height:1.5}
 .bkk-cat{margin-bottom:22px}
 .bkk-cat-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--dim);margin-bottom:10px;display:flex;align-items:center;gap:8px}
-.bkk-item{display:flex;align-items:flex-start;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:11px 13px;margin-bottom:6px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color 0.15s}
+/* touch-optimised: min 44px tap target, no text overflow */
+.bkk-item{display:flex;align-items:flex-start;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color 0.15s;min-height:44px;-webkit-user-select:none;user-select:none}
 .bkk-item.done{border-color:rgba(52,211,153,0.25);background:rgba(52,211,153,0.03)}
 .bkk-item.done .bkk-text{color:#5a5a64;text-decoration:line-through}
-.bkk-cb{width:16px;height:16px;border-radius:4px;border:1.5px solid #333;background:transparent;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all 0.15s}
+.bkk-cb{width:22px;height:22px;border-radius:5px;border:1.5px solid #333;background:transparent;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;transition:all 0.15s}
 .bkk-item.done .bkk-cb{background:#34d399;border-color:#34d399;color:#050508}
-.bkk-body{flex:1;min-width:0}
-.bkk-text{font-size:12px;color:var(--text);line-height:1.4}
-.bkk-sub{font-size:10px;color:var(--dim);margin-top:3px;line-height:1.4}
-.bkk-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.5px;padding:2px 6px;border-radius:4px;margin-left:6px;vertical-align:middle}
+.bkk-body{flex:1;min-width:0;overflow:hidden}
+.bkk-text{font-size:13px;color:var(--text);line-height:1.5;word-wrap:break-word;overflow-wrap:break-word}
+.bkk-sub{font-size:11px;color:var(--dim);margin-top:4px;line-height:1.5;word-wrap:break-word;overflow-wrap:break-word}
+.bkk-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.5px;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle;white-space:nowrap}
 .tag-high{background:rgba(248,113,113,0.12);color:#f87171}
 .tag-med{background:rgba(251,191,36,0.12);color:#fbbf24}
 .tag-low{background:rgba(96,165,250,0.1);color:#60a5fa}
-.bkk-progress{background:#111;border-radius:6px;height:6px;overflow:hidden;margin-bottom:4px}
+.bkk-progress{background:#111;border-radius:6px;height:8px;overflow:hidden;margin-bottom:5px}
 .bkk-progress-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#60a5fa,#34d399);transition:width 0.4s}
-.bkk-progress-label{font-size:10px;color:var(--dim);text-align:right}
+.bkk-progress-label{font-size:11px;color:var(--dim);text-align:right;font-weight:600}
+
+/* TAB NAV — 5 buttons, wraps safely on narrow screens */
+.tab-nav{display:flex;gap:3px;margin:12px 0 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-btn{flex:1;min-width:52px;padding:8px 4px;font-size:11px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;background:transparent;border:none;color:var(--dim);border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all 0.15s;white-space:nowrap}
+.tab-btn.active{background:var(--surface-2);color:var(--text);border:1px solid var(--border-2)}
 
 @media(max-width:540px){
   .hero-grid{grid-template-columns:1fr}
   .props{grid-template-columns:repeat(2,1fr)}
-  .tab-nav{gap:2px}
-  .tab-btn{font-size:10px;padding:7px 2px}
+  .tab-btn{font-size:10px;padding:7px 3px;min-width:48px}
+  .bkk-text{font-size:12px}
+  .bkk-sub{font-size:10px}
+  .bkk-days{font-size:48px}
 }
 </style>
 <script>
@@ -403,7 +412,7 @@ function nCard(label,val,unit,color){
   </div>
 </div>
 
-<div class="foot">Auto-updated Sat May 30 2026 · 01:07 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
+<div class="foot">Auto-updated Sat May 30 2026 · 01:09 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
 </div><!-- /tab-deal -->
 
 <!-- ═══════════════ TAB 2: OPERATIONS & CASH FLOW ═══════════════ -->
@@ -1026,7 +1035,7 @@ function nCard(label,val,unit,color){
 </div>
 </div>
 
-<div class="foot">Auto-updated Sat May 30 2026 · 01:07 PM · 1 USD = A$1.3933 · <span class="dot" style="background:#34d399"></span>Live DB</div>
+<div class="foot">Auto-updated Sat May 30 2026 · 01:09 PM · 1 USD = A$1.3933 · <span class="dot" style="background:#34d399"></span>Live DB</div>
 </div><!-- /tab-ops -->
 
 <!-- ═══════════════ TAB 3: HEALTH ═══════════════ -->
