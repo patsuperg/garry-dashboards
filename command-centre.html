@@ -201,6 +201,29 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .bkk-progress-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#60a5fa,#34d399);transition:width 0.4s}
 .bkk-progress-label{font-size:11px;color:var(--dim);text-align:right;font-weight:600}
 
+/* BLUEPRINT TAB */
+.bp-flow{margin-bottom:28px}
+.bp-flow-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:14px}
+.bp-step{display:flex;align-items:flex-start;gap:12px;margin-bottom:0;position:relative}
+.bp-step:not(:last-child) .bp-line{position:absolute;left:17px;top:36px;width:2px;height:calc(100% + 2px);background:linear-gradient(180deg,#333,#222)}
+.bp-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;z-index:1}
+.bp-step-body{flex:1;padding-bottom:20px}
+.bp-step-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px}
+.bp-step-desc{font-size:11px;color:var(--sub);line-height:1.6}
+.bp-step-arrow{text-align:center;font-size:16px;color:#333;margin:2px 0 2px 17px}
+.hp-card{background:linear-gradient(135deg,rgba(251,146,60,0.08),rgba(96,165,250,0.05));border:1.5px solid rgba(251,146,60,0.25);border-radius:18px;padding:24px;margin-bottom:24px;text-align:center}
+.hp-num{font-size:72px;font-weight:900;color:#fb923c;line-height:1;letter-spacing:-3px}
+.hp-unit{font-size:18px;font-weight:400;color:#5a5a64;margin-left:4px}
+.hp-why{font-size:12px;color:#a0a0a8;margin-top:10px;line-height:1.6;max-width:340px;margin-left:auto;margin-right:auto}
+.hp-bar-wrap{width:100%;height:8px;background:#111;border-radius:4px;overflow:hidden;margin:14px 0 6px}
+.hp-bar-fill{height:100%;background:linear-gradient(90deg,#f87171,#fb923c,#fbbf24,#34d399);border-radius:4px}
+.hp-max{font-size:10px;color:#5a5a64;text-align:right}
+.log-entry{display:flex;align-items:flex-start;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:6px}
+.log-date{font-size:10px;color:var(--dim);white-space:nowrap;min-width:72px;padding-top:1px}
+.log-body{flex:1;min-width:0}
+.log-desc{font-size:12px;color:var(--text);line-height:1.4;word-wrap:break-word}
+.log-hp{font-size:11px;font-weight:700;color:#34d399;white-space:nowrap;padding-top:1px}
+
 /* TAB NAV — 5 buttons, wraps safely on narrow screens */
 .tab-nav{display:flex;gap:3px;margin:12px 0 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .tab-nav::-webkit-scrollbar{display:none}
@@ -262,6 +285,55 @@ function restoreBkkChecks(){
   updateBkkProgress();
 }
 document.addEventListener('DOMContentLoaded',restoreBkkChecks);
+
+// Blueprint tab — loads logbook + HP from system-logbook.json
+var bpLoaded=false;
+function loadBP(){
+  if(bpLoaded)return;
+  bpLoaded=true;
+  fetch('data/system-logbook.json?t='+Date.now())
+    .then(r=>r.json()).then(d=>renderBP(d))
+    .catch(()=>{});
+}
+function renderBP(d){
+  var entries=(d.entries||[]).slice().reverse(); // newest first
+  var totalHP=0;
+  if(entries.length>0)totalHP=d.entries[d.entries.length-1].cumulative_hp||875;
+  // Update HP display
+  var hpEl=document.getElementById('bp-hp-num');
+  var hpBar=document.getElementById('bp-hp-bar');
+  var hpWhy=document.getElementById('bp-hp-why');
+  if(hpEl)hpEl.textContent=totalHP;
+  if(hpBar)hpBar.style.width=Math.min(100,Math.round(totalHP/1000*100))+'%';
+  if(hpWhy){
+    var why='';
+    if(totalHP>=800)why='Fully autonomous income tracking, AI deal analysis, and self-healing infrastructure running around the clock.';
+    else if(totalHP>=600)why='Core automation pipelines live — deals found, rent chased, and financials tracked without manual input.';
+    else if(totalHP>=400)why='Foundation systems operational — monitoring, alerts, and basic reporting in place.';
+    else why='Early-stage automation — basic monitoring and alerts configured.';
+    hpWhy.textContent=why;
+  }
+  // Render logbook
+  var logEl=document.getElementById('bp-logbook');
+  if(!logEl)return;
+  var html='';
+  var catColors={'income':'#34d399','deals':'#60a5fa','infrastructure':'#a78bfa','finance':'#fbbf24','health':'#f472b6','dashboard':'#fb923c','autonomy':'#f87171','governance':'#f87171','monitoring':'#60a5fa','comms':'#60a5fa','foundation':'#5a5a64','personal':'#34d399'};
+  entries.forEach(function(e){
+    var col=catColors[e.category]||'#5a5a64';
+    var sign=e.hp_change>0?'+':'';
+    html+='<div class="log-entry">'
+      +'<div class="log-date">'+e.date+'</div>'
+      +'<div class="log-body"><div class="log-desc">'+e.description+'</div></div>'
+      +'<div class="log-hp" style="color:'+col+'">'+sign+e.hp_change+' HP</div>'
+      +'</div>';
+  });
+  logEl.innerHTML=html;
+}
+document.addEventListener('DOMContentLoaded',function(){
+  // Pre-load blueprint if it's the saved tab
+  var saved=localStorage.getItem('cc-tab');
+  if(saved==='bp')loadBP();
+});
 
 var healthLoaded=false;
 function loadHealth(){
@@ -361,7 +433,8 @@ function nCard(label,val,unit,color){
   <button class="tab-btn"        data-tab="ops"    onclick="showTab('ops')">Ops</button>
   <button class="tab-btn"        data-tab="health" onclick="showTab('health');loadHealth()">Health</button>
   <button class="tab-btn"        data-tab="bkk"    onclick="showTab('bkk')">✈️ BKK</button>
-  <button class="tab-btn"        data-tab="arch"   onclick="showTab('arch')">System</button>
+  <button class="tab-btn"        data-tab="bp"     onclick="showTab('bp');loadBP()">Blueprint</button>
+  <button class="tab-btn"        data-tab="arch"   onclick="showTab('arch')">Arch</button>
 </div>
 
 <!-- ═══════════════ TAB 1: DEAL UNDERWRITING ═══════════════ -->
@@ -412,7 +485,7 @@ function nCard(label,val,unit,color){
   </div>
 </div>
 
-<div class="foot">Auto-updated Sat May 30 2026 · 01:42 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
+<div class="foot">Auto-updated Sat May 30 2026 · 01:46 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
 </div><!-- /tab-deal -->
 
 <!-- ═══════════════ TAB 2: OPERATIONS & CASH FLOW ═══════════════ -->
@@ -1035,7 +1108,7 @@ function nCard(label,val,unit,color){
 </div>
 </div>
 
-<div class="foot">Auto-updated Sat May 30 2026 · 01:42 PM · 1 USD = A$1.3933 · <span class="dot" style="background:#34d399"></span>Live DB</div>
+<div class="foot">Auto-updated Sat May 30 2026 · 01:46 PM · 1 USD = A$1.3933 · <span class="dot" style="background:#34d399"></span>Live DB</div>
 </div><!-- /tab-ops -->
 
 <!-- ═══════════════ TAB 3: HEALTH ═══════════════ -->
@@ -1339,6 +1412,109 @@ function nCard(label,val,unit,color){
   <span style="color:#60a5fa">Tap any item to mark complete — saved to your device</span>
 </div>
 </div><!-- /tab-bkk -->
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SYSTEM BLUEPRINT & PERFORMANCE TAB                    -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="tab-bp" class="tab-panel">
+
+<!-- SECTION 1: BUSINESS FLOW -->
+<div class="bp-flow">
+  <div class="bp-flow-title">How the Business Works</div>
+
+  <div class="bp-step">
+    <div class="bp-line"></div>
+    <div class="bp-dot" style="background:rgba(96,165,250,0.12);border:1px solid rgba(96,165,250,0.3)">🔍</div>
+    <div class="bp-step-body">
+      <div class="bp-step-title">New deals found automatically — every day at 9am</div>
+      <div class="bp-step-desc">The system scans property listings across St. Louis and Ohio, scores each one against Section 8 rent rates, cash flow targets, and neighborhood data. Only properties hitting a 78/100 score threshold get surfaced.</div>
+    </div>
+  </div>
+
+  <div class="bp-step">
+    <div class="bp-line"></div>
+    <div class="bp-dot" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.3)">🏠</div>
+    <div class="bp-step-body">
+      <div class="bp-step-title">High-scoring properties get an instant repair estimate</div>
+      <div class="bp-step-desc">AI vision analyses listing photos and flags any issues that would fail a Section 8 housing inspection. A repair cost estimate (low/high/mid) and a PASS/REVIEW/FAIL verdict are emailed to Patrick automatically — no manual inspection needed first.</div>
+    </div>
+  </div>
+
+  <div class="bp-step">
+    <div class="bp-line"></div>
+    <div class="bp-dot" style="background:rgba(251,146,60,0.12);border:1px solid rgba(251,146,60,0.3)">✅</div>
+    <div class="bp-step-body">
+      <div class="bp-step-title">Patrick decides — everything else is pre-solved</div>
+      <div class="bp-step-desc">Patrick reviews the deal summary and repair estimate. If it passes, he sends the offer. All context (comps, cash flow model, crime data, rent demand) is already attached. The only decision is yes or no.</div>
+    </div>
+  </div>
+
+  <div class="bp-step">
+    <div class="bp-line"></div>
+    <div class="bp-dot" style="background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.3)">🔧</div>
+    <div class="bp-step-body">
+      <div class="bp-step-title">Repair quotes drafted and sent to contractors automatically</div>
+      <div class="bp-step-desc">The moment a property goes under contract, the system drafts professional repair scope emails to vetted contractors and saves them as Gmail Drafts. Patrick reviews and sends with one tap. Bids are logged and compared automatically.</div>
+    </div>
+  </div>
+
+  <div class="bp-step">
+    <div class="bp-line"></div>
+    <div class="bp-dot" style="background:rgba(244,114,182,0.12);border:1px solid rgba(244,114,182,0.3)">🏘️</div>
+    <div class="bp-step-body">
+      <div class="bp-step-title">Property passes Section 8 inspection — tenant placed by PM</div>
+      <div class="bp-step-desc">Property manager (Avenue/Tactical) handles tenant screening, leasing, and Section 8 voucher approval. Once approved, HUD pays rent directly to the PM who disburses to Patrick monthly.</div>
+    </div>
+  </div>
+
+  <div class="bp-step">
+    <div class="bp-line"></div>
+    <div class="bp-dot" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.3)">💰</div>
+    <div class="bp-step-body">
+      <div class="bp-step-title">Rental income tracked and reconciled automatically</div>
+      <div class="bp-step-desc">The system reads Avenue distribution emails, scrapes the property management portals, and cross-checks against expected amounts per property. If payment is missing on day 8 of the month, a polite chase email is drafted automatically. Day 12 with no response = escalation email to Patrick.</div>
+    </div>
+  </div>
+
+  <div class="bp-step">
+    <div class="bp-dot" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.3)">📊</div>
+    <div class="bp-step-body">
+      <div class="bp-step-title">Monthly P&L generated — no accounting software needed</div>
+      <div class="bp-step-desc">Every Monday, a clean income vs expense report is generated per property and saved as a spreadsheet. Tax shield monitors assessment spikes and drafts appeal letters if needed. Every 6 months, competitive insurance quotes are requested automatically to keep premiums low.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: SYSTEM HORSEPOWER -->
+<div>
+  <div class="bp-flow-title">System Horsepower</div>
+  <div class="hp-card">
+    <div>
+      <span id="bp-hp-num" class="hp-num">875</span>
+      <span class="hp-unit">HP</span>
+    </div>
+    <div class="hp-bar-wrap"><div class="hp-bar-fill" id="bp-hp-bar" style="width:87%"></div></div>
+    <div class="hp-max">Baseline: 100 HP · Current ceiling: 1,000 HP</div>
+    <div id="bp-hp-why" class="hp-why">Fully autonomous income tracking, AI deal analysis, and self-healing infrastructure running around the clock.</div>
+  </div>
+</div>
+
+<!-- SECTION 3: SYSTEM LOGBOOK -->
+<div>
+  <div class="bp-flow-title" style="display:flex;justify-content:space-between;align-items:center">
+    <span>Upgrade Logbook</span>
+    <span style="font-size:10px;color:#5a5a64;font-weight:400;letter-spacing:0.5px">Newest first</span>
+  </div>
+  <div id="bp-logbook">
+    <div style="text-align:center;padding:30px;color:#5a5a64;font-size:12px">Loading logbook…</div>
+  </div>
+</div>
+
+<div class="foot">
+  Logbook entries: 22 · Net gain today: +375 HP · All systems autonomous<br>
+  <span class="dot" style="background:#fb923c"></span>System Horsepower updates with every infrastructure upgrade
+</div>
+</div><!-- /tab-bp -->
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <!--  SYSTEM ARCHITECTURE TAB                               -->
