@@ -177,9 +177,34 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .gate-block{color:#f87171;font-weight:700}
 .gate-ok{color:#34d399;font-weight:700}
 
+/* BKK TAB */
+.bkk-hero{background:linear-gradient(135deg,rgba(96,165,250,0.1),rgba(52,211,153,0.06));border:1px solid rgba(96,165,250,0.2);border-radius:16px;padding:20px;margin:0 0 20px;text-align:center}
+.bkk-days{font-size:56px;font-weight:900;color:#60a5fa;line-height:1;letter-spacing:-2px}
+.bkk-label{font-size:10px;letter-spacing:3px;color:#5a5a64;text-transform:uppercase;margin-top:6px}
+.bkk-date{font-size:13px;color:#a0a0a8;margin-top:4px}
+.bkk-cat{margin-bottom:22px}
+.bkk-cat-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--dim);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.bkk-item{display:flex;align-items:flex-start;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:11px 13px;margin-bottom:6px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color 0.15s}
+.bkk-item.done{border-color:rgba(52,211,153,0.25);background:rgba(52,211,153,0.03)}
+.bkk-item.done .bkk-text{color:#5a5a64;text-decoration:line-through}
+.bkk-cb{width:16px;height:16px;border-radius:4px;border:1.5px solid #333;background:transparent;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all 0.15s}
+.bkk-item.done .bkk-cb{background:#34d399;border-color:#34d399;color:#050508}
+.bkk-body{flex:1;min-width:0}
+.bkk-text{font-size:12px;color:var(--text);line-height:1.4}
+.bkk-sub{font-size:10px;color:var(--dim);margin-top:3px;line-height:1.4}
+.bkk-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.5px;padding:2px 6px;border-radius:4px;margin-left:6px;vertical-align:middle}
+.tag-high{background:rgba(248,113,113,0.12);color:#f87171}
+.tag-med{background:rgba(251,191,36,0.12);color:#fbbf24}
+.tag-low{background:rgba(96,165,250,0.1);color:#60a5fa}
+.bkk-progress{background:#111;border-radius:6px;height:6px;overflow:hidden;margin-bottom:4px}
+.bkk-progress-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#60a5fa,#34d399);transition:width 0.4s}
+.bkk-progress-label{font-size:10px;color:var(--dim);text-align:right}
+
 @media(max-width:540px){
   .hero-grid{grid-template-columns:1fr}
   .props{grid-template-columns:repeat(2,1fr)}
+  .tab-nav{gap:2px}
+  .tab-btn{font-size:10px;padding:7px 2px}
 }
 </style>
 <script>
@@ -194,6 +219,40 @@ document.addEventListener('DOMContentLoaded',function(){
   const saved=localStorage.getItem('cc-tab');
   if(saved){showTab(saved);if(saved==='health')loadHealth();}
 });
+
+// BKK checklist persistence
+function bkkToggle(id){
+  var el=document.getElementById('bkk-'+id);
+  if(!el)return;
+  var done=el.classList.toggle('done');
+  var cb=el.querySelector('.bkk-cb');
+  if(cb)cb.textContent=done?'✓':'';
+  var state=JSON.parse(localStorage.getItem('bkk-checks')||'{}');
+  state[id]=done;
+  localStorage.setItem('bkk-checks',JSON.stringify(state));
+  updateBkkProgress();
+}
+function updateBkkProgress(){
+  var items=document.querySelectorAll('.bkk-item');
+  var total=items.length,done=0;
+  items.forEach(function(i){if(i.classList.contains('done'))done++;});
+  var pct=total?Math.round(done/total*100):0;
+  var fill=document.getElementById('bkk-prog-fill');
+  var lbl=document.getElementById('bkk-prog-lbl');
+  if(fill)fill.style.width=pct+'%';
+  if(lbl)lbl.textContent=done+'/'+total+' complete — '+pct+'%';
+}
+function restoreBkkChecks(){
+  var state=JSON.parse(localStorage.getItem('bkk-checks')||'{}');
+  for(var id in state){
+    if(state[id]){
+      var el=document.getElementById('bkk-'+id);
+      if(el){el.classList.add('done');var cb=el.querySelector('.bkk-cb');if(cb)cb.textContent='✓';}
+    }
+  }
+  updateBkkProgress();
+}
+document.addEventListener('DOMContentLoaded',restoreBkkChecks);
 
 var healthLoaded=false;
 function loadHealth(){
@@ -292,6 +351,7 @@ function nCard(label,val,unit,color){
   <button class="tab-btn active" data-tab="deal"   onclick="showTab('deal')">Deals</button>
   <button class="tab-btn"        data-tab="ops"    onclick="showTab('ops')">Ops</button>
   <button class="tab-btn"        data-tab="health" onclick="showTab('health');loadHealth()">Health</button>
+  <button class="tab-btn"        data-tab="bkk"    onclick="showTab('bkk')">✈️ BKK</button>
   <button class="tab-btn"        data-tab="arch"   onclick="showTab('arch')">System</button>
 </div>
 
@@ -343,7 +403,7 @@ function nCard(label,val,unit,color){
   </div>
 </div>
 
-<div class="foot">Auto-updated Sat May 30 2026 · 12:59 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
+<div class="foot">Auto-updated Sat May 30 2026 · 01:07 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
 </div><!-- /tab-deal -->
 
 <!-- ═══════════════ TAB 2: OPERATIONS & CASH FLOW ═══════════════ -->
@@ -966,13 +1026,310 @@ function nCard(label,val,unit,color){
 </div>
 </div>
 
-<div class="foot">Auto-updated Sat May 30 2026 · 12:59 PM · 1 USD = A$1.3933 · <span class="dot" style="background:#34d399"></span>Live DB</div>
+<div class="foot">Auto-updated Sat May 30 2026 · 01:07 PM · 1 USD = A$1.3933 · <span class="dot" style="background:#34d399"></span>Live DB</div>
 </div><!-- /tab-ops -->
 
 <!-- ═══════════════ TAB 3: HEALTH ═══════════════ -->
 <div id="tab-health" class="tab-panel">
 <div id="health-render"><div style="text-align:center;padding:60px 0;color:#5a5a64;font-size:12px">Tap Health tab to load biometrics…</div></div>
 </div><!-- /tab-health -->
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  BANGKOK MOVE TAB                                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="tab-bkk" class="tab-panel">
+
+<!-- COUNTDOWN HERO -->
+<div class="bkk-hero">
+  <div id="bkk-countdown" class="bkk-days">18</div>
+  <div class="bkk-label">Days to departure</div>
+  <div class="bkk-date">✈️ June 17, 2026 · Suvarnabhumi · Unit 1411, Ideo Mobi Sukhumvit 66</div>
+</div>
+
+<!-- OVERALL PROGRESS -->
+<div style="margin-bottom:20px">
+  <div class="bkk-progress"><div class="bkk-progress-fill" id="bkk-prog-fill" style="width:0%"></div></div>
+  <div class="bkk-progress-label" id="bkk-prog-lbl">Loading…</div>
+</div>
+
+<!-- CAT A: VISAS & IMMIGRATION -->
+<div class="bkk-cat">
+  <div class="bkk-cat-title">🛂 A — Visas &amp; Immigration</div>
+
+  <div class="bkk-item done" id="bkk-a1" onclick="bkkToggle('a1')">
+    <div class="bkk-cb">✓</div>
+    <div class="bkk-body">
+      <div class="bkk-text">Patrick DTV — SUBMITTED &amp; PAID ✅<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">Ref: SYD001-202605-5687040 · $600 AUD · Approval target June 12 · Email PDF to show at border</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-a2" onclick="bkkToggle('a2')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Laura Tourist Visa — Apply at thaievisa.go.th<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">All docs ready in Drive · MYS passport A60667337 · Arrival Jun 17, departure Sep 8 · Drive folder linked in email sent May 22</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-a3" onclick="bkkToggle('a3')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Download DTV approval PDF before departure<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">Delivered to patrick@spartansuppz.com · Show at Suvarnabhumi immigration · No physical sticker</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-a4" onclick="bkkToggle('a4')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Verify Laura has paid Tourist Visa fee<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">thaievisa.go.th payment status unconfirmed — Patrick to confirm</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-a5" onclick="bkkToggle('a5')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Verify both passports valid 6+ months from Jun 17<span class="bkk-tag tag-med">MED</span></div>
+      <div class="bkk-sub">Patrick: Australian. Laura: Malaysian A60667337. Thai border requires min 6 months validity</div>
+    </div>
+  </div>
+
+  <div class="bkk-item done" id="bkk-a6" onclick="bkkToggle('a6')">
+    <div class="bkk-cb">✓</div>
+    <div class="bkk-body">
+      <div class="bkk-text">Thai bank accounts confirmed ✅<span class="bkk-tag tag-low">LOW</span></div>
+      <div class="bkk-sub">Patrick has 2 Thai accounts from last visit · Online logins verified</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-a7" onclick="bkkToggle('a7')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Bangkok health insurance — pick provider<span class="bkk-tag tag-med">MED</span></div>
+      <div class="bkk-sub">Options: Cigna ~$145/mo · AXA ~$135/mo · Pacific Cross ~$95/mo · Both Patrick + Laura need cover · Garry handles application once Patrick picks</div>
+    </div>
+  </div>
+</div>
+
+<!-- CAT B: FINANCIAL & TAX EXIT -->
+<div class="bkk-cat">
+  <div class="bkk-cat-title">💰 B — Financial &amp; Tax Exit</div>
+
+  <div class="bkk-item done" id="bkk-b1" onclick="bkkToggle('b1')">
+    <div class="bkk-cb">✓</div>
+    <div class="bkk-body">
+      <div class="bkk-text">ATO non-residency exit checklist built ✅<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">PDF built · emailed · Drive uploaded · Power list task added</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-b2" onclick="bkkToggle('b2')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Book expat tax accountant<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">~$300–500 AUD · 1hr session · Handles FY2025-26 departure year return (due Oct 31 2026) · Most critical action</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-b3" onclick="bkkToggle('b3')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">myGov → ATO → update address to Bangkok<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">Unit 1411, Ideo Mobi Sukhumvit 66, Phra Khanong, Bangkok 10260 · ~20 min</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-b4" onclick="bkkToggle('b4')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">myGov → Medicare → overseas departure statement<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">Cancel on departure day · ~30 min on myGov</div>
+    </div>
+  </div>
+
+  <div class="bkk-item done" id="bkk-b5" onclick="bkkToggle('b5')">
+    <div class="bkk-cb">✓</div>
+    <div class="bkk-body">
+      <div class="bkk-text">Brooklyn lease exit automated ✅<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">Auto-email to Elly Rezania (Buxton) scheduled Aug 18 · Apple Reminder set Sep 21</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-b6" onclick="bkkToggle('b6')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Golf R — sell or transfer to family<span class="bkk-tag tag-med">MED</span></div>
+      <div class="bkk-sub">Before Ozicare renewal Sep 9 · Keep insured until sold</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-b7" onclick="bkkToggle('b7')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Macquarie → downgrade to non-resident account<span class="bkk-tag tag-med">MED</span></div>
+      <div class="bkk-sub">Do NOT close — maintain for AU transactions</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-b8" onclick="bkkToggle('b8')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Super fund notification of overseas status<span class="bkk-tag tag-low">LOW</span></div>
+      <div class="bkk-sub">TAL 1857508 policy review — $0 out of pocket, life + TPD · Keep</div>
+    </div>
+  </div>
+</div>
+
+<!-- CAT C: COMMUNICATIONS & PHONE -->
+<div class="bkk-cat">
+  <div class="bkk-cat-title">📱 C — Communications &amp; Phone</div>
+
+  <div class="bkk-item" id="bkk-c1" onclick="bkkToggle('c1')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Port AU mobile: Aldi Mobile → Amaysim PAYG<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">$10/year — keeps AU number alive for 2FA · Need Aldi Mobile account number first · Garry has port instructions ready</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-c2" onclick="bkkToggle('c2')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Bangkok SIM — AIS or DTAC on arrival<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">Buy at Suvarnabhumi airport or 7-Eleven Day 1 · AIS preferred for coverage</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-c3" onclick="bkkToggle('c3')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Set up AIS Fibre at condo<span class="bkk-tag tag-med">MED</span></div>
+      <div class="bkk-sub">~$17/mo AUD · Day one priority for Mac Mini setup</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-c4" onclick="bkkToggle('c4')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Verify 2FA backup for all banking + portals<span class="bkk-tag tag-med">MED</span></div>
+      <div class="bkk-sub">Mercury, Capital One, AppFolio, Rentvine, Macquarie — ensure all can receive via Amaysim AU number or app-based auth</div>
+    </div>
+  </div>
+</div>
+
+<!-- CAT D: FREIGHT & SHIPPING -->
+<div class="bkk-cat">
+  <div class="bkk-cat-title">📦 D — Freight &amp; Shipping</div>
+
+  <div class="bkk-item" id="bkk-d1" onclick="bkkToggle('d1')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Build DHL ETS item list<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">Patrick provides list → Garry builds declaration table (retail price, 5yr age rule, used value ~25-35% of retail, duty estimates)</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-d2" onclick="bkkToggle('d2')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Book DHL ETS pickup — ONE shipment only<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">~$16–17/kg all-in · Flat pickup ~$400–450 AUD · NEVER split · Declare as "Personal Effects / Household Goods"</div>
+    </div>
+  </div>
+
+  <div class="bkk-item done" id="bkk-d3" onclick="bkkToggle('d3')">
+    <div class="bkk-cb">✓</div>
+    <div class="bkk-body">
+      <div class="bkk-text">Vacuum seal bags ordered ✅<span class="bkk-tag tag-low">LOW</span></div>
+      <div class="bkk-sub">Amazon Basics 15-pack (5 Jumbo/4L/4M/2 XL-Jumbo) · $36 AUD · Laura has Mighty Kitten bags too</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-d4" onclick="bkkToggle('d4')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">B&amp;W 700 soundbar + sub — declare ~$500 AUD used<span class="bkk-tag tag-med">MED</span></div>
+      <div class="bkk-sub">Retail ~$2,400 AUD, 6 years old · Generic description: "Used personal audio equipment" · Defensible</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-d5" onclick="bkkToggle('d5')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Air fryer — buy locally in Bangkok instead?<span class="bkk-tag tag-low">LOW</span></div>
+      <div class="bkk-sub">TISI-regulated electrical = highest customs risk · Bangkok price ~$30–50 USD · Patrick's call</div>
+    </div>
+  </div>
+</div>
+
+<!-- CAT E: FLIGHT & ARRIVAL -->
+<div class="bkk-cat">
+  <div class="bkk-cat-title">🛫 E — Flight &amp; Arrival</div>
+
+  <div class="bkk-item" id="bkk-e1" onclick="bkkToggle('e1')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Confirm flight — June 17 departure<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">Arrive Bangkok ~8–9pm · Hard deadline June 30</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-e2" onclick="bkkToggle('e2')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Book hotel 2 nights — Jun 17–18<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">Near Udom Suk BTS · Condo from Jun 19-20 onwards</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-e3" onclick="bkkToggle('e3')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Confirm Unit 1411, Ideo Mobi Sukhumvit 66 booking<span class="bkk-tag tag-high">HIGH</span></div>
+      <div class="bkk-sub">2BR/2Bath, 80sqm, Floor 14 · BTS Udom Suk · From Jun 19–20 · Agent inspection underway</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-e4" onclick="bkkToggle('e4')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Check baggage allowances — Patrick + Laura<span class="bkk-tag tag-med">MED</span></div>
+      <div class="bkk-sub">Mac Mini in carry-on or checked? · Note: Mac Mini is coming to Bangkok</div>
+    </div>
+  </div>
+
+  <div class="bkk-item done" id="bkk-e5" onclick="bkkToggle('e5')">
+    <div class="bkk-cb">✓</div>
+    <div class="bkk-body">
+      <div class="bkk-text">Bangkok address confirmed ✅<span class="bkk-tag tag-low">LOW</span></div>
+      <div class="bkk-sub">Unit 1411, Ideo Mobi Sukhumvit 66, Phra Khanong, Bangkok 10260 · For KYC + ATO address update</div>
+    </div>
+  </div>
+
+  <div class="bkk-item" id="bkk-e6" onclick="bkkToggle('e6')">
+    <div class="bkk-cb"></div>
+    <div class="bkk-body">
+      <div class="bkk-text">Print / download physical copies of key documents<span class="bkk-tag tag-med">MED</span></div>
+      <div class="bkk-sub">Both passports · DTV approval PDF · Condo booking confirmation · Travel insurance · Wise statement</div>
+    </div>
+  </div>
+
+  <div class="bkk-item done" id="bkk-e7" onclick="bkkToggle('e7')">
+    <div class="bkk-cb">✓</div>
+    <div class="bkk-body">
+      <div class="bkk-text">Pool hall scouted ✅<span class="bkk-tag tag-low">LOW</span></div>
+      <div class="bkk-sub">S1 Signature Snooker Club · Sukhumvit Soi 50 · Low-key, local</div>
+    </div>
+  </div>
+</div>
+
+<div class="foot">
+  18 days to go · Depart hard deadline June 30 · Return mid-Sep 2026<br>
+  <span style="color:#60a5fa">Tap any item to mark complete — saved to your device</span>
+</div>
+</div><!-- /tab-bkk -->
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <!--  SYSTEM ARCHITECTURE TAB                               -->
