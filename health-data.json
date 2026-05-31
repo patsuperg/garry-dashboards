@@ -1,13 +1,13 @@
 {
-  "generated": "2026-05-31T23:51:02.516270+10:00",
+  "generated": "2026-06-01T00:06:05.124495+10:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
   "coaching": "Solid foundation \u2014 7.5h sleep, 69% recovery. Execute the priority list. Lock in quality sleep tonight to build on this.",
   "today": {
-    "date": "2026-05-31",
-    "spoons": 8,
+    "date": "2026-06-01",
+    "spoons": 10,
     "spoons_max": 12,
-    "spoons_label": "Solid \u2014 normal load",
+    "spoons_label": "Peak \u2014 push hard",
     "spoons_color": "green",
     "rings": {
       "sleep": {
@@ -26,26 +26,25 @@
         "subtitle": "HRV 28ms / RHR 73bpm"
       },
       "strain": {
-        "value": 11.0,
+        "value": 0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 11.0,
+          "value": 0,
           "max": 21,
-          "kcal": 637,
-          "steps": 5951,
-          "exercise_min": 10,
-          "hr_load": 47.1,
-          "source": "json_export"
+          "kcal": 0,
+          "steps": 0,
+          "exercise_min": 0,
+          "hr_load": 0.0
         },
-        "subtitle": "637kcal / 5951st / 10min ex"
+        "subtitle": "0kcal / 0st / 0min ex"
       },
       "stress": {
-        "value": 62,
+        "value": 0,
         "unit": "%",
-        "color": "yellow",
-        "label": "moderate",
-        "subtitle": "HR 92bpm vs RHR 73"
+        "color": "gray",
+        "label": "no data",
+        "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
@@ -69,19 +68,13 @@
       "source": "Eight Sleep 7d + CSV 14d hybrid"
     },
     "baseline_30d": {
-      "hrv": 20.9,
+      "hrv": 21.0,
       "rhr": 84.0,
-      "sleep_hr": 6.9,
-      "days_sampled": 11,
+      "sleep_hr": 6.6,
+      "days_sampled": 10,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {
-      "protein_g": 0.0,
-      "carbs_g": 0.0,
-      "fat_g": 0.0,
-      "calories_kcal": 0,
-      "has_data": false
-    }
+    "nutrition": {}
   },
   "history": []
 }
