@@ -1,11 +1,11 @@
 {
-  "generated": "2026-06-01T23:55:15.328346+10:00",
+  "generated": "2026-06-02T00:10:18.169472+10:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep + MFP",
+  "device": "Apple Watch + Eight Sleep",
   "coaching": "Well recovered (97%) and 12.0h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
   "today": {
-    "date": "2026-06-01",
-    "spoons": 10,
+    "date": "2026-06-02",
+    "spoons": 12,
     "spoons_max": 12,
     "spoons_label": "Peak \u2014 push hard",
     "spoons_color": "green",
@@ -26,26 +26,25 @@
         "subtitle": "HRV 54.8ms / RHR 65bpm"
       },
       "strain": {
-        "value": 7.1,
+        "value": 0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 7.1,
+          "value": 0,
           "max": 21,
-          "kcal": 332,
-          "steps": 3443,
-          "exercise_min": 38,
-          "hr_load": 22.8,
-          "source": "json_export"
+          "kcal": 0,
+          "steps": 0,
+          "exercise_min": 0,
+          "hr_load": 0.0
         },
-        "subtitle": "332kcal / 3443st / 38min ex"
+        "subtitle": "0kcal / 0st / 0min ex"
       },
       "stress": {
-        "value": 63,
+        "value": 0,
         "unit": "%",
-        "color": "yellow",
-        "label": "moderate",
-        "subtitle": "HR 92bpm vs RHR 73"
+        "color": "gray",
+        "label": "no data",
+        "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
@@ -69,19 +68,13 @@
       "source": "Eight Sleep 7d + CSV 14d hybrid"
     },
     "baseline_30d": {
-      "hrv": 21.0,
+      "hrv": 20.9,
       "rhr": 84.0,
-      "sleep_hr": 6.6,
-      "days_sampled": 10,
+      "sleep_hr": 6.7,
+      "days_sampled": 9,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {
-      "protein_g": 150.9,
-      "carbs_g": 134.8,
-      "fat_g": 17.5,
-      "calories_kcal": 1300,
-      "has_data": true
-    }
+    "nutrition": {}
   },
   "history": []
 }
