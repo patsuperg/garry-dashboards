@@ -1,5 +1,5 @@
 # PENDING DECISIONS
-*Auto-generated 2026-06-01 AEST (session end)*
+*Auto-generated 2026-06-03 AEST (session end)*
 
 ---
 
@@ -7,8 +7,8 @@
 
 | # | Item | Detail | Trigger phrase |
 |---|---|---|---|
-| 0 | **🔴 TOMORROW — Belaire earnest $1,000** | Due June 2 (within 5 days of May 29 acceptance). Wire/check to Investors Title Company. Same as Farmview process. | Pay tomorrow morning |
-| 1 | **🔴 TOMORROW — Farmview inspection deadline June 2** | Evergreen doing general + septic. Report arrives ~June 2. On arrival: Garry blasts SweenCo + 1st Priority + Pro-Com for septic quotes. No action needed from Patrick until report lands. | Watch for inspection email |
+| 0 | **🔴 Belaire earnest $1,000 — CONFIRM PAID?** | Was due June 2. Confirm with Investors Title Company if not already done. | Confirm or action now |
+| 1 | **Farmview inspection — EXTENDED to June 4** (septic inspector 6/3) | Evergreen doing general + septic. Septic inspection 6/3, report by ~6/4. On arrival: Garry blasts SweenCo + 1st Priority + Pro-Com for septic quotes. No action needed from Patrick until report lands. | Watch for inspection email |
 | 2 | **Angel draft reply — review before sending** | Covers: Kenilworth $832/mo upside, utility/appliance questions, $828 tenant flag, lease timing, 505W reinspection, SD request, W25th $500 reserve. | Patrick reviews and says send |
 | 3 | **1012 Forestwood Dr — verdict** | CF $466/mo @ $100K. Crime 39 shootings/mi. Taxes $1,698/yr. No appliances. | Say YES / NO / PASS |
 | 4 | **Lindia walkthrough batch** | Frostview + Shillington + Dellwood drafted, not sent. | Say "send the Lindia email" |
@@ -33,5 +33,5 @@
 | Hazelcrest sale | Heather | Listed — tracking offers |
 | Brannon pre-approval | Nexa Mortgage | Requested, no response yet |
 | Gab — ATO reallocation update | Sleek (Gabriela Alamo) | $10,683 misallocated payments being reallocated |
-| Wilborn contractor quote | Heather / contractors | 7 contacted May 19 — awaiting first quote |
+| Wilborn contractor quotes | Gateway (Ethan) + Heavenly Hands | Lockbox code (74926) sent to both June 3. Gateway quote expected shortly; Heavenly Hands walkthrough Sat Jun 6. Heather OOO. |
 | Fenwick April HAP | Jenna (Evernest) | Legal escalation prepped. Patrick's May 19 follow-up outstanding. |
