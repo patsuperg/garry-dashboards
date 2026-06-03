@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-03T10:31:48.540798+10:00",
+  "generated": "2026-06-03T10:46:51.260108+10:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
   "coaching": "Moderate day \u2014 7.2h sleep, 47% recovery. Prioritise quality over volume. No heroics today.",
@@ -26,24 +26,25 @@
         "subtitle": "HRV 20.7ms / RHR 73bpm"
       },
       "strain": {
-        "value": 0,
+        "value": 2.2,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 0,
+          "value": 2.2,
           "max": 21,
-          "kcal": 0,
-          "steps": 0,
+          "kcal": 106,
+          "steps": 903,
           "exercise_min": 0,
-          "hr_load": 0.0
+          "hr_load": 11.4,
+          "source": "json_export"
         },
-        "subtitle": "0kcal / 0st / 0min ex"
+        "subtitle": "106kcal / 903st / 0min ex"
       },
       "stress": {
         "value": 0,
         "unit": "%",
         "color": "gray",
-        "label": "no data",
+        "label": "no HR data",
         "subtitle": "HR ?bpm vs RHR ?"
       }
     },
@@ -74,7 +75,13 @@
       "days_sampled": 8,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {}
+    "nutrition": {
+      "protein_g": 0.0,
+      "carbs_g": 0.0,
+      "fat_g": 0.0,
+      "calories_kcal": 0,
+      "has_data": false
+    }
   },
   "history": []
 }
