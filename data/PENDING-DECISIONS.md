@@ -7,13 +7,13 @@
 
 | # | Item | Detail | Trigger phrase |
 |---|---|---|---|
-| 0 | **🔴 Belaire earnest $1,000 — CONFIRM PAID?** | Was due June 2. Confirm with Investors Title Company if not already done. | Confirm or action now |
 | 0a | **⏳ Belaire roof credit — SENT to Lindia June 3** | Asked seller for **$12,000 closing credit** toward roof + buffer (close 6/29 → ~July 6). Patrick's accept floor ~$10K. AWAITING listing agent response. | Watch for Lindia reply |
 | 0b | **⏳ Belaire appraisal — Brannon GO-AHEAD SENT June 3** | Ordered appraisal + pre-approval update to $107K/63121 + Farmview timeline. AWAITING Brannon: appraisal fee + confirm dates work. | Watch for Brannon reply |
 | 0c | **Belaire — confirm occupancy status** | Inspection report lists property "Occupied" w/ belongings; listing said vacant. Ask Lindia before close. | Garry asks Lindia |
+| 0d2 | **Cancel home internet — Brooklyn (3/47 Stenhouse Ave)** | ~$60/mo. Cancel around departure (~June 17). Provider per the app on Patrick's phone — confirm + give notice. | On/near departure |
+| 0e | **Embassy notarial appt — Wed July 1, 8:15 AM (Bangkok)** | UID PA64194254. Both closing packets (Belaire 802171 + Farmview 802169) signed in one visit. BRING printed packets + printed appt confirmation. Megan to send packets by June 29. | Attend July 1 |
 | 0d | **Belaire MUST-DO rehab ~$15.8K (high-end, deck deferred)** | Roof+gutters $12K / Termite $675 / Electrical $900 / Joist sister $600 / Water $800 / Plumbing $450 / Safety $350. CF $511-582/door. Full analysis: deal-prep/3525-belaire/. | Reference only |
 | 1 | **Farmview inspection — EXTENDED to June 4** (septic inspector 6/3) | Evergreen doing general + septic. Septic inspection 6/3, report by ~6/4. On arrival: Garry blasts SweenCo + 1st Priority + Pro-Com for septic quotes. No action needed from Patrick until report lands. | Watch for inspection email |
-| 2 | **Angel draft reply — review before sending** | Covers: Kenilworth $832/mo upside, utility/appliance questions, $828 tenant flag, lease timing, 505W reinspection, SD request, W25th $500 reserve. | Patrick reviews and says send |
 | 3 | **1012 Forestwood Dr — verdict** | CF $466/mo @ $100K. Crime 39 shootings/mi. Taxes $1,698/yr. No appliances. | Say YES / NO / PASS |
 | 4 | **Lindia walkthrough batch** | Frostview + Shillington + Dellwood drafted, not sent. | Say "send the Lindia email" |
 | 5 | **Renfrew Dr — proceed or wait?** | Lindia's report in. SOW mid ~$18K. CF $613/mo @ $94K. All-in ~$41.5K. CoC ~17.7%. Contractor bid pending from Lindia. | "Wait for bid" OR "go at $94K" |
