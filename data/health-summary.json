@@ -1,83 +1,76 @@
 {
-  "updated": "2026-06-06T01:58:18.953644+10:00",
+  "updated": "2026-06-07T01:56:39.837590+10:00",
   "source": "health-engine v2",
-  "coaching": "Well recovered (89%) and 7.3h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
+  "coaching": "Short sleep (2.0h) and recovery in the red (10%). Keep today light \u2014 no hard training, protect the afternoon. Aim for bed by 9:30pm and a full 8h+ tonight to reset.",
   "stale": false,
   "today": {
-    "date": "2026-06-06",
-    "sleep_total_hr": 7.3,
-    "sleep_deep_hr": 1.88,
-    "sleep_rem_hr": 1.53,
-    "sleep_core_hr": 3.88,
+    "date": "2026-06-07",
+    "sleep_total_hr": 1.98,
+    "sleep_deep_hr": 0.52,
+    "sleep_rem_hr": 0.06,
+    "sleep_core_hr": 1.4,
     "sleep_awake_hr": 0,
-    "hrv_avg": 58.6,
-    "resting_hr": 63,
-    "steps": 157,
-    "active_energy_kcal": 28,
+    "hrv_avg": 21.4,
+    "resting_hr": 77,
+    "steps": 0,
+    "active_energy_kcal": 0,
     "exercise_min": 0
   },
   "yesterday": null,
   "rings": {
     "sleep": {
-      "value": 96,
+      "value": 7,
       "unit": "%",
-      "raw_hr": 7.3,
+      "raw_hr": 1.98,
       "color": "blue",
-      "label": "7.3h",
-      "subtitle": "7.3h total \u00b7 deep 1.9h / REM 1.5h"
+      "label": "2.0h",
+      "subtitle": "2.0h total \u00b7 deep 0.5h / REM 0.1h"
     },
     "recovery": {
-      "value": 89,
+      "value": 10,
       "unit": "%",
-      "color": "green",
-      "label": "GREEN \u2014 push hard",
-      "subtitle": "HRV 58.6ms / RHR 63bpm"
+      "color": "red",
+      "label": "RED \u2014 protect the body",
+      "subtitle": "HRV 21.4ms / RHR 77bpm"
     },
     "strain": {
-      "value": 0.2,
+      "value": 0,
       "unit": "/21",
       "color": "purple",
       "raw": {
-        "value": 0.2,
+        "value": 0,
         "max": 21,
-        "kcal": 28,
-        "steps": 157,
+        "kcal": 0,
+        "steps": 0,
         "exercise_min": 0,
-        "hr_load": 0.0,
-        "source": "json_export"
+        "hr_load": 0.0
       },
-      "subtitle": "28kcal / 157st / 0min ex"
+      "subtitle": "0kcal / 0st / 0min ex"
     },
     "stress": {
       "value": 0,
       "unit": "%",
       "color": "gray",
-      "label": "no HR data",
+      "label": "no data",
       "subtitle": "HR ?bpm vs RHR ?"
     }
   },
   "spoons": {
-    "score": 11,
+    "score": 5,
     "max": 12,
-    "label": "Peak \u2014 push hard",
-    "color": "green"
+    "label": "Restful \u2014 light movement, defer big decisions",
+    "color": "orange"
   },
-  "recovery_pct": 89,
-  "strain_score": 0.2,
+  "recovery_pct": 10,
+  "strain_score": 0,
   "stress_pct": 0,
-  "sleep_pct": 96,
+  "sleep_pct": 7,
   "weekly_avg": {
-    "hrv": 41.4,
-    "resting_hr": 67.9,
-    "sleep_hr": 7.2
+    "hrv": 40.3,
+    "resting_hr": 68.6,
+    "sleep_hr": 6.74
   },
-  "nutrition": {
-    "protein_g": 0.0,
-    "carbs_g": 0.0,
-    "fat_g": 0.0,
-    "calories_kcal": 0,
-    "has_data": false
-  },
-  "last_pipeline_refresh": "2026-06-05T16:00:29.658890+00:00",
+  "nutrition": {},
+  "last_pipeline_refresh": "2026-06-06T16:00:35.381842+00:00",
   "export_connected": false
 }
