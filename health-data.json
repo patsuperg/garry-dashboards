@@ -1,29 +1,29 @@
 {
-  "generated": "2026-06-07T10:18:44.107152+10:00",
+  "generated": "2026-06-07T10:33:46.539005+10:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
-  "coaching": "Short sleep (2.0h) and recovery in the red (10%). Keep today light \u2014 no hard training, protect the afternoon. Aim for bed by 9:30pm and a full 8h+ tonight to reset.",
+  "coaching": "Well recovered (84%) and 10.0h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
   "today": {
     "date": "2026-06-07",
-    "spoons": 5,
+    "spoons": 11,
     "spoons_max": 12,
-    "spoons_label": "Restful \u2014 light movement, defer big decisions",
-    "spoons_color": "orange",
+    "spoons_label": "Peak \u2014 push hard",
+    "spoons_color": "green",
     "rings": {
       "sleep": {
-        "value": 7,
+        "value": 100,
         "unit": "%",
-        "raw_hr": 1.98,
+        "raw_hr": 10.0,
         "color": "blue",
-        "label": "2.0h",
-        "subtitle": "2.0h total \u00b7 deep 0.5h / REM 0.1h"
+        "label": "10.0h",
+        "subtitle": "10.0h total \u00b7 deep 2.4h / REM 1.8h"
       },
       "recovery": {
-        "value": 10,
+        "value": 84,
         "unit": "%",
-        "color": "red",
-        "label": "RED \u2014 protect the body",
-        "subtitle": "HRV 21.4ms / RHR 77bpm"
+        "color": "green",
+        "label": "GREEN \u2014 push hard",
+        "subtitle": "HRV 56.1ms / RHR 65bpm"
       },
       "strain": {
         "value": 0,
@@ -48,22 +48,22 @@
       }
     },
     "sleep_breakdown": {
-      "total_hr": 1.98,
-      "deep_hr": 0.52,
-      "rem_hr": 0.06,
-      "core_hr": 1.4,
+      "total_hr": 10.0,
+      "deep_hr": 2.41,
+      "rem_hr": 1.76,
+      "core_hr": 5.83,
       "awake_hr": 0,
-      "in_bed_hr": 3.74,
+      "in_bed_hr": 11.81,
       "source_override": "eight_sleep",
-      "hrv_overnight": 21.4,
-      "rhr_overnight": 77
+      "hrv_overnight": 56.1,
+      "rhr_overnight": 65
     },
-    "hrv_overnight": 21.4,
-    "rhr_overnight": 77,
+    "hrv_overnight": 56.1,
+    "rhr_overnight": 65,
     "baseline_14d": {
-      "hrv": 40.3,
-      "rhr": 68.6,
-      "sleep_hr": 6.74,
+      "hrv": 42.2,
+      "rhr": 68.1,
+      "sleep_hr": 7.1,
       "days_sampled": 0,
       "source": "Eight Sleep 7d + CSV 14d hybrid"
     },
