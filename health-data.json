@@ -1,13 +1,13 @@
 {
-  "generated": "2026-06-09T23:59:26.873989+10:00",
+  "generated": "2026-06-10T00:14:29.600153+10:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep + MFP",
+  "device": "Apple Watch + Eight Sleep",
   "coaching": "Well recovered (74%) and 9.4h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
   "today": {
-    "date": "2026-06-09",
-    "spoons": 8,
+    "date": "2026-06-10",
+    "spoons": 11,
     "spoons_max": 12,
-    "spoons_label": "Solid \u2014 normal load",
+    "spoons_label": "Peak \u2014 push hard",
     "spoons_color": "green",
     "rings": {
       "sleep": {
@@ -26,26 +26,25 @@
         "subtitle": "HRV 41.8ms / RHR 66.5bpm"
       },
       "strain": {
-        "value": 8.4,
+        "value": 0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 8.4,
+          "value": 0,
           "max": 21,
-          "kcal": 495,
-          "steps": 6187,
-          "exercise_min": 10,
-          "hr_load": 32.3,
-          "source": "json_export"
+          "kcal": 0,
+          "steps": 0,
+          "exercise_min": 0,
+          "hr_load": 0.0
         },
-        "subtitle": "495kcal / 6187st / 10min ex"
+        "subtitle": "0kcal / 0st / 0min ex"
       },
       "stress": {
-        "value": 83,
+        "value": 0,
         "unit": "%",
-        "color": "red",
-        "label": "high",
-        "subtitle": "HR 94bpm vs RHR 69"
+        "color": "gray",
+        "label": "no data",
+        "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
@@ -69,19 +68,13 @@
       "source": "Eight Sleep 7d + CSV 14d hybrid"
     },
     "baseline_30d": {
-      "hrv": 28.3,
-      "rhr": 80.0,
-      "sleep_hr": 4.8,
-      "days_sampled": 2,
+      "hrv": 32.8,
+      "rhr": 79.0,
+      "sleep_hr": 5.6,
+      "days_sampled": 1,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {
-      "protein_g": 207.9,
-      "carbs_g": 266.0,
-      "fat_g": 45.9,
-      "calories_kcal": 2309,
-      "has_data": true
-    }
+    "nutrition": {}
   },
   "history": []
 }
