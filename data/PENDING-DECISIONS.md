@@ -7,8 +7,8 @@
 
 | # | Item | Detail | Trigger phrase |
 |---|---|---|---|
-| ⭐ TOP | **Calculate storage dimensions for items being kept (Bangkok move)** | TOP PRIORITY June 9. Work out total cubic metres of the keep-pile to size the right AU storage unit before departure (~June 17). Garry can estimate m³ from photos + rough measurements — send pics + any dimensions and Garry itemises + totals + recommends unit size. | Send Garry the photos/measurements |
-| 0d3 | **Follow up Kogan NBN cancellation (June 9)** | Kogan tried calling re: the cancellation request (acct 300682691, Brooklyn, effective ~June 17) — missed call + voicemail 7:29pm June 8, couldn't get through. Call them back on **1300 010 400** to confirm the cancellation is locked in for ~June 17, no exit fee (MTM). Ties to 0d2. | Call Kogan 1300 010 400 |
+| ✅ DONE | **Kogan NBN cancelled June 9** | Kogan tried calling re: the cancellation request (acct 300682691, Brooklyn, effective ~June 17) — missed call + voicemail 7:29pm June 8. Disconnected eff June 18, no auto-renewal. Final bill normal month $82.56 (due 11/06). ~$40 unused-days refund optional (call 1300 010 400 if bothered). | — done |
+| ✅ DONE | **Storage dimensions — COMPLETE June 9** | Keep-pile ≈ 12.8 m³ → all fits in bro's spare room (33 m³), no paid storage, $0. Visual stacking plan + disassembly checklist delivered (~/Downloads/storage-plan.png/pdf). | — done, no action |
 | 0a | **⏳ Belaire roof credit — SENT to Lindia June 3** | Asked seller for **$12,000 closing credit** toward roof + buffer (close 6/29 → ~July 6). Patrick's accept floor ~$10K. AWAITING listing agent response. | Watch for Lindia reply |
 | 0b | **⏳ Belaire appraisal — Brannon GO-AHEAD SENT June 3** | Ordered appraisal + pre-approval update to $107K/63121 + Farmview timeline. AWAITING Brannon: appraisal fee + confirm dates work. | Watch for Brannon reply |
 | 0c | **Belaire — confirm occupancy status** | Inspection report lists property "Occupied" w/ belongings; listing said vacant. Ask Lindia before close. | Garry asks Lindia |
