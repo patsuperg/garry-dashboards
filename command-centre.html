@@ -153,6 +153,7 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .tab-btn{flex:1;padding:8px 4px;font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;background:transparent;border:none;color:var(--dim);border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all 0.15s}
 .tab-btn.active{background:var(--surface-2);color:var(--text);border:1px solid var(--border-2)}
 .tab-panel{display:none}.tab-panel.active{display:block}
+.fresh-stamp{font-size:10px;letter-spacing:0.5px;text-align:right;margin:-6px 2px 10px;color:#a0a0a8}
 
 /* ARCH TAB */
 .arch-section{margin-bottom:28px}
@@ -440,21 +441,41 @@ function nCard(label,val,unit,color){
 
 <!-- ═══════════════ TAB 1: DEAL UNDERWRITING ═══════════════ -->
 <div id="tab-deal" class="tab-panel active">
-
-<div class="arch-section"><div class="arch-title">🔒 Under Contract — Live Milestones (auto-tracked, as of 2026-06-03)</div><div class="arch-card"><h4>🔒 3525 Belaire Pl, Beverly Hills, MO 63121 · <span style="color:#60a5fa">$107,000</span></h4><p>4BR · loan $85,600 @ 80% · rent ~$1,576 · DSCR 1.9 · VACANT — UNDER CONTRACT (seller: Jie Liu)</p><table class="arch-tbl"><tbody><tr><td>EMD $1,000 → Investors Title</td><td style="color:#a0a0a8">2026-05-29</td><td style="color:#34d399;font-weight:600">PAID</td></tr><tr><td>Appraisal — ORDER NOW (Brannon)</td><td style="color:#a0a0a8">2026-06-03</td><td style="color:#ef4444;font-weight:600">CRITICAL</td></tr><tr><td>Financing clear (Brannon: 6/29 doable)</td><td style="color:#a0a0a8">—</td><td style="color:#888;font-weight:600">PENDING</td></tr><tr><td>Close</td><td style="color:#a0a0a8">2026-06-29</td><td style="color:#60a5fa;font-weight:600">SCHEDULED</td></tr></tbody></table></div><div class="arch-card"><h4>🔒 1020 Farmview, St Louis, MO 63138 · <span style="color:#60a5fa">$97,000</span></h4><p>4BR · loan $77,600 @ 80% · rent ~$1,644 · DSCR 2.0 · UNDER CONTRACT (seller: Jocelyn Watkins) — extension pending</p><table class="arch-tbl"><tbody><tr><td>Inspection (Evergreen general; septic 6/3 — septic EOL)</td><td style="color:#a0a0a8">2026-06-05</td><td style="color:#f59e0b;font-weight:600">DEADLINE</td></tr><tr><td>Extension proposed (Lindia sent 6/3) — financing 7/3</td><td style="color:#a0a0a8">2026-07-03</td><td style="color:#888;font-weight:600">PENDING</td></tr><tr><td>Appraisal (Brannon — needs 30 days)</td><td style="color:#a0a0a8">—</td><td style="color:#888;font-weight:600">PENDING</td></tr><tr><td>Close (extended from 6/22)</td><td style="color:#a0a0a8">2026-07-10</td><td style="color:#888;font-weight:600">PROPOSED</td></tr></tbody></table></div></div>
+<div class="fresh-stamp" style="color:#a0a0a8">deal data as of: Jun 10 20:30 · 4m ago</div>
+<div class="arch-section"><div class="arch-title">🔒 Under Contract — Live Milestones (auto-tracked, as of 2026-06-05)</div><div class="arch-card"><h4>🔒 3525 Belaire Pl, Beverly Hills, MO 63121 · <span style="color:#60a5fa">$107,000</span></h4><p>4BR · loan $85,600 @ 80% · rent ~$1,576 · DSCR 1.9 · VACANT — UNDER CONTRACT (seller: Jie Liu)</p><table class="arch-tbl"><tbody><tr><td>EMD $1,000 → Investors Title</td><td style="color:#a0a0a8">2026-05-29</td><td style="color:#34d399;font-weight:600">PAID</td></tr><tr><td>Appraisal — ORDER NOW (Brannon)</td><td style="color:#a0a0a8">2026-06-03</td><td style="color:#ef4444;font-weight:600">CRITICAL</td></tr><tr><td>Financing clear (Brannon: 6/29 doable)</td><td style="color:#a0a0a8">—</td><td style="color:#888;font-weight:600">PENDING</td></tr><tr><td>Close</td><td style="color:#a0a0a8">2026-06-29</td><td style="color:#34d399;font-weight:600">CONFIRMED</td></tr></tbody></table></div><div class="arch-card"><h4>🔒 1020 Farmview, St Louis, MO 63138 · <span style="color:#60a5fa">$97,000</span></h4><p>4BR · loan $77,600 @ 80% · rent ~$1,644 · DSCR 2.0 · UNDER CONTRACT (seller: Jocelyn Watkins) — extension pending</p><table class="arch-tbl"><tbody><tr><td>Inspection (Evergreen general; septic 6/3 — septic EOL)</td><td style="color:#a0a0a8">2026-06-05</td><td style="color:#f59e0b;font-weight:600">DEADLINE</td></tr><tr><td>Extension proposed (Lindia sent 6/3) — financing 7/3</td><td style="color:#a0a0a8">2026-07-03</td><td style="color:#888;font-weight:600">PENDING</td></tr><tr><td>Appraisal (Brannon — needs 30 days)</td><td style="color:#a0a0a8">—</td><td style="color:#888;font-weight:600">PENDING</td></tr><tr><td>Close (extended from 6/22)</td><td style="color:#a0a0a8">2026-07-10</td><td style="color:#34d399;font-weight:600">CONFIRMED</td></tr></tbody></table></div></div>
 
 <!-- PHASE HERO -->
 <div class="phase-hero">
   <div class="phase-label">Current Phase</div>
   <div class="phase-title">STABILISE + ACQUIRE</div>
-  <div class="phase-sub">2 under contract (Belaire · Farmview) · Wilborn vacant · Bangkok 14d · Score ≥78 = auto-underwrite</div>
+  <div class="phase-sub">2 under contract (Belaire · Farmview) · Wilborn vacant · Bangkok 7d · Score ≥78 = auto-underwrite</div>
 </div>
 
 <!-- DEAL PIPELINE -->
 <div class="sec">
-  <div class="sec-title">Deal Pipeline <span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">0 contracts · 1 watchlist</span></div>
-  <div class="pipe-stage-label" style="color:var(--green)">UNDER CONTRACT <span class="pipe-count">0</span></div>
-  <div class="pipe-empty">No active contracts.</div>
+  <div class="sec-title">Deal Pipeline <span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">2 contracts · 1 watchlist</span></div>
+  <div class="pipe-stage-label" style="color:var(--green)">UNDER CONTRACT <span class="pipe-count">2</span></div>
+  
+<div class="pipe-row pipe-contract">
+  <div class="pipe-row-top">
+    <div class="pipe-addr">3525 Belaire Pl</div>
+    <div class="pipe-price">$107,000 · 4BR</div>
+  </div>
+  <div class="pipe-pros">+ rent ~$1,576/mo · DSCR 1.9 · loan $85,600</div>
+  <div class="pipe-cons">- Next: Appraisal — ORDER NOW (Brannon) (2026-06-03)</div>
+  <div class="pipe-meta">VACANT — UNDER CONTRACT (seller: Jie Liu)</div>
+  <div class="pipe-note" style="color:#fbbf24">Close: 2026-06-29</div>
+</div>
+<div class="pipe-row pipe-contract">
+  <div class="pipe-row-top">
+    <div class="pipe-addr">1020 Farmview</div>
+    <div class="pipe-price">$97,000 · 4BR</div>
+  </div>
+  <div class="pipe-pros">+ rent ~$1,644/mo · DSCR 2.0 · loan $77,600</div>
+  <div class="pipe-cons">- Next: Inspection (Evergreen general; septic 6/3 — septic EOL) (2026-06-05)</div>
+  <div class="pipe-meta">UNDER CONTRACT (seller: Jocelyn Watkins) — extension pending</div>
+  <div class="pipe-note" style="color:#fbbf24">Close: 2026-07-10</div>
+</div>
   <div class="pipe-stage-label" style="color:var(--blue)">WATCHLIST <span class="pipe-count">1</span></div>
   
 <div class="pipe-row pipe-watch">
@@ -488,27 +509,27 @@ function nCard(label,val,unit,color){
   </div>
 </div>
 
-<div class="foot">Auto-updated Wed Jun 03 2026 · 01:15 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
+<div class="foot">Auto-updated Wed Jun 10 2026 · 08:35 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
 </div><!-- /tab-deal -->
 
 <!-- ═══════════════ TAB 2: OPERATIONS & CASH FLOW ═══════════════ -->
 <div id="tab-ops" class="tab-panel">
-
+<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jun 10 20:35 · 0m ago</div>
 <!-- HERO NUMBERS -->
 <div class="hero-grid">
   <div class="hero-main">
-    <div class="hero-num"><span class="cur">A$</span>5,520</div>
+    <div class="hero-num"><span class="cur">A$</span>5,633</div>
     <div class="hero-goal">of A$20,000/mo · North Star</div>
     <div class="hero-bar"><div class="hero-fill" style="width:28%"></div></div>
-    <div class="hero-pct">28% · Gap A$14,480/mo</div>
+    <div class="hero-pct">28% · Gap A$14,367/mo</div>
   </div>
   <div class="hero-side">
     <div class="side-tile">
-      <div class="side-v" style="color:var(--blue)">14d</div>
+      <div class="side-v" style="color:var(--blue)">7d</div>
       <div class="side-l">Bangkok</div>
     </div>
     <div class="side-tile">
-      <div class="side-v" style="color:var(--gold)">1.3937</div>
+      <div class="side-v" style="color:var(--gold)">1.4221</div>
       <div class="side-l">USD→AUD</div>
     </div>
   </div>
@@ -521,70 +542,71 @@ function nCard(label,val,unit,color){
 <div class="need-card" style="border-left-color:#fb923c">
   <div class="need-num">1</div>
   <div class="need-body">
+    <div class="need-title">First rent under Tactical — Kenilworth zero-income recovery starts</div>
+    <div class="need-ctx">First June rent under new payee. Check ledgers for both 505 + 124. If 124 Kenilworth shows zero, begin recovery via Lake…</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num">2</div>
+  <div class="need-body">
     <div class="need-title">B2B disburses final May rent to Patrick (window: May 28-31)</div>
     <div class="need-ctx">B2B obligated to forward May rent collected under their HAP payee. If not received by May 31 (5+ days late), escalate.</div>
   </div>
 </div>
 <div class="need-card" style="border-left-color:#fb923c">
-  <div class="need-num">2</div>
+  <div class="need-num">3</div>
   <div class="need-body">
     <div class="need-title">B2B Property Management termination effective (Ohio)</div>
     <div class="need-ctx">30-day notice from Apr 16 lands today. Verify B2B has acknowledged + initiated handover of remaining records. 505 W 25th…</div>
   </div>
 </div>
 <div class="need-card" style="border-left-color:#fb923c">
-  <div class="need-num">3</div>
+  <div class="need-num">4</div>
   <div class="need-body">
     <div class="need-title">ATO follow-up call 13 28 66 (SBR + BAS reallocation)</div>
     <div class="need-ctx">Patrick needs to call ATO 13 28 66 about: SBR 001 write-off $36,885.64 + BAS 006 reallocation $8,283. Reference Receipt …</div>
   </div>
 </div>
 <div class="need-card" style="border-left-color:#fb923c">
-  <div class="need-num">4</div>
+  <div class="need-num">5</div>
   <div class="need-body">
     <div class="need-title">DTV visa application deadline ~Jun 1 (25 business days processing)</div>
     <div class="need-ctx">Patrick targeting Jul 1 Bangkok departure. DTV visa = 25 business days to process. Application must be submitted by ~Jun…</div>
   </div>
 </div>
 <div class="need-card" style="border-left-color:#fb923c">
-  <div class="need-num">5</div>
+  <div class="need-num">6</div>
   <div class="need-body">
     <div class="need-title">Frontier contractor — balloon property (currently vacant)</div>
     <div class="need-ctx">Patrick raised this as a dropped ball — Garry was meant to be handling it but the thread isn't surfacing in command cent…</div>
-  </div>
-</div>
-<div class="need-card" style="border-left-color:#60a5fa">
-  <div class="need-num">6</div>
-  <div class="need-body">
-    <div class="need-title">Super consolidation</div>
-    <div class="need-ctx">Open item from yesterday's session. Patrick has multiple super accounts that should consolidate before becoming AU non-r…</div>
   </div>
 </div>
 </div>
 
 <!-- INCOME -->
 <div class="sec">
-  <div class="sec-title">Income Jun 2026 <span class="badge" style="background:rgba(52,211,153,0.1);color:var(--green)">A$495 of A$6,340</span></div>
+  <div class="sec-title">Income Jun 2026 <span class="badge" style="background:rgba(52,211,153,0.1);color:var(--green)">A$505 of A$6,469</span></div>
+  <div class="fresh-stamp" style="color:#a0a0a8">income data as of: Jun 10 07:15 · 13.3h ago</div>
   
 <div class="income-row">
   <div class="income-pm">Avenue (STL — 4 props)</div>
   <div class="income-nums">
     <span style="color:#f87171">A$0</span>
     <span class="income-sep"> of </span>
-    <span class="income-exp">A$4,668</span>
+    <span class="income-exp">A$4,763</span>
   </div>
   <div class="income-bar-wrap"><div class="income-bar-fill" style="width:0%;background:#f87171"></div></div>
-  <div class="income-status" style="color:#f87171">A$4,668 OUTSTANDING</div>
+  <div class="income-status" style="color:#f87171">A$4,763 OUTSTANDING</div>
 </div>
 <div class="income-row">
   <div class="income-pm">B2B Ohio (phasing out)</div>
   <div class="income-nums">
-    <span style="color:#fbbf24">A$495</span>
+    <span style="color:#fbbf24">A$505</span>
     <span class="income-sep"> of </span>
-    <span class="income-exp">A$1,672</span>
+    <span class="income-exp">A$1,707</span>
   </div>
   <div class="income-bar-wrap"><div class="income-bar-fill" style="width:30%;background:#fbbf24"></div></div>
-  <div class="income-status" style="color:#fbbf24">A$1,177 SHORT</div>
+  <div class="income-status" style="color:#fbbf24">A$1,202 SHORT</div>
 </div>
 </div>
 
@@ -595,7 +617,7 @@ function nCard(label,val,unit,color){
   
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net" style="color:var(--green)">A$1,377</div>
+    <div class="prop-net" style="color:var(--green)">A$1,405</div>
     <div class="prop-grade" style="color:#34d399">A</div>
   </div>
   <div class="prop-addr">505 W 25th St</div>
@@ -603,7 +625,7 @@ function nCard(label,val,unit,color){
 </div>
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net" style="color:var(--green)">A$431</div>
+    <div class="prop-net" style="color:var(--green)">A$439</div>
     <div class="prop-grade" style="color:#f87171">SELL</div>
   </div>
   <div class="prop-addr">7596 Hazelcrest Dr Unit F</div>
@@ -611,7 +633,7 @@ function nCard(label,val,unit,color){
 </div>
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net" style="color:var(--green)">A$1,479</div>
+    <div class="prop-net" style="color:var(--green)">A$1,509</div>
     <div class="prop-grade" style="color:#fbbf24">B</div>
   </div>
   <div class="prop-addr">132 Fenwick Dr</div>
@@ -627,7 +649,7 @@ function nCard(label,val,unit,color){
 </div>
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net" style="color:var(--green)">A$1,401</div>
+    <div class="prop-net" style="color:var(--green)">A$1,429</div>
     <div class="prop-grade" style="color:#34d399">A</div>
   </div>
   <div class="prop-addr">516 Alcove Ave</div>
@@ -635,7 +657,7 @@ function nCard(label,val,unit,color){
 </div>
 <div class="prop-tile">
   <div class="prop-top">
-    <div class="prop-net" style="color:var(--green)">A$833</div>
+    <div class="prop-net" style="color:var(--green)">A$850</div>
     <div class="prop-grade" style="color:#fbbf24">B</div>
   </div>
   <div class="prop-addr">124 Kenilworth Ave</div>
@@ -926,7 +948,7 @@ function nCard(label,val,unit,color){
   <summary class="proj-summary">
     <div class="proj-title-row">
       <span class="proj-title">BKK Move Prep</span>
-      <span class="proj-status" style="color:#fb923c">IN PROGRESS <span style="color:#a0a0a8;font-size:10px;font-weight:600">· Jul 01 (28d)</span></span>
+      <span class="proj-status" style="color:#fb923c">IN PROGRESS <span style="color:#a0a0a8;font-size:10px;font-weight:600">· Jul 01 (21d)</span></span>
     </div>
     <div class="proj-bar-wrap">
       <div class="proj-bar-fill" style="width:20%"></div>
@@ -1111,11 +1133,12 @@ function nCard(label,val,unit,color){
 </div>
 </div>
 
-<div class="foot">Auto-updated Wed Jun 03 2026 · 01:15 PM · 1 USD = A$1.3937 · <span class="dot" style="background:#34d399"></span>Live DB</div>
+<div class="foot">Auto-updated Wed Jun 10 2026 · 08:35 PM · 1 USD = A$1.4221 · <span class="dot" style="background:#34d399"></span>Live DB</div>
 </div><!-- /tab-ops -->
 
 <!-- ═══════════════ TAB 3: HEALTH ═══════════════ -->
 <div id="tab-health" class="tab-panel">
+<div class="fresh-stamp" style="color:#a0a0a8">health data as of: Jun 10 20:33 · 2m ago</div>
 <div id="health-render"><div style="text-align:center;padding:60px 0;color:#5a5a64;font-size:12px">Tap Health tab to load biometrics…</div></div>
 </div><!-- /tab-health -->
 
@@ -1126,7 +1149,7 @@ function nCard(label,val,unit,color){
 
 <!-- COUNTDOWN HERO -->
 <div class="bkk-hero">
-  <div id="bkk-countdown" class="bkk-days">14</div>
+  <div id="bkk-countdown" class="bkk-days">7</div>
   <div class="bkk-label">Days to departure</div>
   <div class="bkk-date">✈️ June 17, 2026 · Suvarnabhumi · Unit 1411, Ideo Mobi Sukhumvit 66</div>
 </div>
@@ -1411,7 +1434,7 @@ function nCard(label,val,unit,color){
 </div>
 
 <div class="foot">
-  14 days to go · Depart hard deadline June 30 · Return mid-Sep 2026<br>
+  7 days to go · Depart hard deadline June 30 · Return mid-Sep 2026<br>
   <span style="color:#60a5fa">Tap any item to mark complete — saved to your device</span>
 </div>
 </div><!-- /tab-bkk -->
@@ -1420,7 +1443,7 @@ function nCard(label,val,unit,color){
 <!--  SYSTEM BLUEPRINT & PERFORMANCE TAB                    -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <div id="tab-bp" class="tab-panel">
-
+<div class="fresh-stamp" style="color:#a0a0a8">logbook as of: Jun 10 01:59 · 18.6h ago</div>
 <!-- SECTION 1: BUSINESS FLOW -->
 <div class="bp-flow">
   <div class="bp-flow-title">How the Business Works</div>
@@ -1686,13 +1709,14 @@ outreach_log   — action | sent_at | draft_saved</div>
 <!--  CREDIT & CAPITAL PIPELINE TAB                          -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <div id="tab-credit" class="tab-panel">
+<div class="fresh-stamp" style="color:#a0a0a8">credit data as of: Jun 10 00:12 · 20.4h ago</div>
 
 <div class="arch-section">
   <div class="arch-title">Goal</div>
   <div class="arch-card"><h4>680+ personal FICO + PAYDEX 80+ for Brannon Nexa DSCR loan eligibility (Q4 2026)</h4>
     <div style="background:#0a0a0e;border-radius:8px;height:14px;margin-top:10px;overflow:hidden">
       <div style="width:33%;height:100%;background:linear-gradient(90deg,#60a5fa,#34d399)"></div></div>
-    <p style="margin-top:6px">2/6 milestones complete (33%) · data as of 2026-06-03</p>
+    <p style="margin-top:6px">2/6 milestones complete (33%) · data as of 2026-06-10</p>
   </div>
 </div>
 <div class="arch-section"><div class="arch-title">Personal Credit</div><div class="arch-card"><h4>Capital One · <span style="color:#60a5fa">ACTIVE</span></h4><ul><li>Patrick confirmed live with bills attached (2026-05-07). Statement close date + autopay-full status need verification.</li><li>Open Qs: statement close day of month?; autopay set to FULL balance (not minimum)?; current credit limit?</li></ul></div><div class="arch-card"><h4>OpenSky · <span style="color:#60a5fa">CARD_RECEIVED</span></h4><ul><li>Deposit  received 2026-05-08. Card shipped 2026-05-11, ETA 12-14 biz days (~May 29-Jun 4). Application ID: 0008605668. Shipped to ECM Cincinnati address.</li><li>Next: Fund $2,800 deposit via Mercury debit card or ACH — Mercury is funded</li><li>Limit $200</li></ul></div></div>
