@@ -484,6 +484,42 @@
           "severity": "info"
         }
       ]
+    },
+    {
+      "date": "2026-06-11 00:00:01",
+      "checks": 4,
+      "healed": 0,
+      "critical": 1,
+      "events": [
+        {
+          "ts": "2026-06-11 00:00:01",
+          "action": "perms",
+          "detail": "all credential files locked at 600",
+          "healed": false,
+          "severity": "info"
+        },
+        {
+          "ts": "2026-06-11 00:00:01",
+          "action": "gate",
+          "detail": "hard-gate intact",
+          "healed": false,
+          "severity": "info"
+        },
+        {
+          "ts": "2026-06-11 00:00:01",
+          "action": "daemons",
+          "detail": "com.patrick.daily-triage plist MISSING at /Users/patrickdickson/Library/LaunchAgents/com.patrick.daily-triage.plist",
+          "healed": false,
+          "severity": "critical"
+        },
+        {
+          "ts": "2026-06-11 00:00:01",
+          "action": "daemons",
+          "detail": "3/4 verified daemons loaded",
+          "healed": false,
+          "severity": "info"
+        }
+      ]
     }
   ]
 }

@@ -1,29 +1,31 @@
 {
-  "generated": "2026-06-10T15:23:41Z",
+  "generated": "2026-06-10T16:00:32.720900+00:00",
   "summary": {
-    "net_monthly": 4936,
-    "gross_monthly": 7858,
+    "net_monthly": 2066,
+    "gross_monthly": 3715,
     "goal": 20000,
     "gap": 15064,
-    "progress_pct": 24.7,
+    "progress_pct": 16.3,
     "properties_count": 6,
     "vs_market_total": 679,
-    "last_updated": "2026-04-29"
+    "last_updated": "2026-06-10"
   },
   "properties": [
     {
       "short": "505 W 25th St",
       "state": "Ohio",
       "pm": "Tactical",
-      "status": "ok",
-      "status_label": "Leased",
-      "gross_rent": 1383,
-      "net_income": 988,
+      "status": "critical",
+      "status_label": "HAP Abated",
+      "gross_rent": 0,
+      "net_income": 0,
       "pm_fee": 124,
       "market_rent": 1410,
       "vs_market": 27,
-      "issues": [],
-      "status_note": "Leased S8"
+      "issues": [
+        "HAP abatement \u2014 reinspection May 27 result pending"
+      ],
+      "status_note": "HAP abatement since Oct 2025. Reinspection May 27 1pm. Result pending."
     },
     {
       "short": "Unit F 7596 Hazelcrest Dr",
@@ -60,17 +62,18 @@
       "short": "5361 Wilborn Dr",
       "state": "Missouri",
       "pm": "Avenue",
-      "status": "warning",
-      "status_label": "Issues",
-      "gross_rent": 1400,
-      "net_income": 974,
+      "status": "zero",
+      "status_label": "Vacant \u2014 Listed",
+      "gross_rent": 0,
+      "net_income": 0,
       "pm_fee": 126,
       "market_rent": 1570,
       "vs_market": 170,
       "issues": [
-        "$170/mo below market"
+        "Vacant \u2014 listed $1,420/mo S8",
+        "7 contractors sourced for punch list"
       ],
-      "status_note": "Active \u2014 $170/mo below market, rent increase opportunity"
+      "status_note": "Vacant. Listed $1,420/mo. Rehab in progress."
     },
     {
       "short": "516 Alcove Ave",
@@ -90,18 +93,18 @@
       "short": "124 Kenilworth Ave",
       "state": "Ohio",
       "pm": "Tactical",
-      "status": "zero",
-      "status_label": "Zero Income",
-      "gross_rent": 1360,
-      "net_income": 598,
+      "status": "critical",
+      "status_label": "Non-Paying",
+      "gross_rent": 0,
+      "net_income": 0,
       "pm_fee": 122,
       "market_rent": 1553,
       "vs_market": 193,
       "issues": [
-        "$193/mo below market",
-        "Only property with mortgage"
+        "$903 outstanding \u2014 May rent + late fee",
+        "Lease expires Jul 31, 2026"
       ],
-      "status_note": "\ud83d\udea8 ZERO-INCOME 5+ months \u2014 recovery starts post-May-1 payee-change"
+      "status_note": "Non-paying. $903 outstanding. Lease Jul 31."
     }
   ],
   "bottlenecks": [
