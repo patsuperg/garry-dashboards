@@ -9,7 +9,7 @@
 |---|---|---|---|
 | 1 | ✅ DECIDED June 10 — **Fenwick RENEW + HASLC increase to $1,660** | Email sent to Heather 20:51 AEDT (msg 19eb12910904e615): file increase before July 1, confirm lodgement, reconcile $1,318-vs-$1,450 HAP shortfall in same HASLC conversation. | — awaiting Heather confirmation |
 | 2 | **Farmview June 15 inspection gate** | Seller fixing $2,300 water main; sewer can't be scoped until water on. If water slips past June 15 → extension or walk. Backup pre-staged: **Elsworth 814 ($99,900, CF $727)**. | Watch Lindia; decide if it slips |
-| 3 | **AppFolio SMS 2FA (2-sec job)** | One-time code to unblind Ohio portal data. | Send the code when it arrives |
+| 3 | ✅ DONE June 11 — **AppFolio 2FA + Ohio data live** | Code 720330 accepted 14:11; scraper rewired to AppFolio API. June receipts: 505 W 25th $1,320 ✅, Kenilworth HAP $430 ✅ (tenant $828 outstanding). | — done |
 | 4 | **Full-sweep accounting build** | Brief LOCKED (rolling per-door ledger + escalating uncollected-rent alarm). Awaiting go. | Say "go build" |
 | 5 | **Laura: 2 manual FB replies** | Accept **Kai $40 ladder** + **Ethan $100 irons** (both at floor; baselined threads, bot won't touch). | Tell Laura |
 | 6 | **Embassy notarial appt — Wed July 1, 8:15 AM (Bangkok)** | UID PA64194254. Now FARMVIEW ONLY (Belaire terminated). Megan to send packet by ~June 29. Bring printed packet + confirmation. | Attend July 1 |
@@ -29,6 +29,7 @@
 
 | Item | Waiting on | Notes |
 |---|---|---|
+| **Kyra/lender — REO list + Mercury funds path** | Kyra (Nexa) | Sent June 11 14:27 (msg 19eb4f0379b1d4dd): REO schedule + asked if Mercury (opened May 7) + Wise seasoning + transfer proof satisfies US-bank guideline. On lender OK → Patrick moves ~$104K same day. Chase June 13 |
 | **Fenwick renewal + $1,660 increase filing** | Heather (Avenue) | Sent June 10 (msg 19eb12910904e615). Chase if not lodged by June 20; HARD deadline July 1 |
 | **Alcove unpaid rent Apr-Jun ($4,470+)** + Fenwick HAP $1,318-vs-$1,450 + $100 zero-collection fee question | Heather (Avenue) | Email 19eb06bcad1ac842 sent June 10. CHASE if no reply by June 12 |
 | **Wilborn S8 listings live (GoSection8 + AffordableHousing)** | Heather | Email 19eaa52fa92ea01a. Hold rent $1,420 until distribution gap fixed |
