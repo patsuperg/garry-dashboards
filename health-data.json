@@ -1,14 +1,14 @@
 {
-  "generated": "2026-06-11T23:52:59.501780+10:00",
+  "generated": "2026-06-12T00:00:45.690109+10:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep + MFP",
+  "device": "Apple Watch + Eight Sleep",
   "coaching": "Sleep looked okay (6.2h) but recovery is low at 24% \u2014 body is under load from stress or cumulative fatigue. Hold back on intensity today and protect the evening.",
   "today": {
-    "date": "2026-06-11",
-    "spoons": 4,
+    "date": "2026-06-12",
+    "spoons": 7,
     "spoons_max": 12,
-    "spoons_label": "Restful \u2014 light movement, defer big decisions",
-    "spoons_color": "orange",
+    "spoons_label": "Moderate \u2014 analysis over execution",
+    "spoons_color": "yellow",
     "rings": {
       "sleep": {
         "value": 74,
@@ -26,26 +26,25 @@
         "subtitle": "HRV 14.5ms / RHR 83bpm"
       },
       "strain": {
-        "value": 14.1,
+        "value": 0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 14.1,
+          "value": 0,
           "max": 21,
-          "kcal": 934,
-          "steps": 8881,
-          "exercise_min": 58,
-          "hr_load": 39.9,
-          "source": "json_export"
+          "kcal": 0,
+          "steps": 0,
+          "exercise_min": 0,
+          "hr_load": 0.0
         },
-        "subtitle": "934kcal / 8881st / 58min ex"
+        "subtitle": "0kcal / 0st / 0min ex"
       },
       "stress": {
-        "value": 100,
+        "value": 0,
         "unit": "%",
-        "color": "red",
-        "label": "high",
-        "subtitle": "HR 105bpm vs RHR 70"
+        "color": "gray",
+        "label": "no data",
+        "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
@@ -75,13 +74,7 @@
       "days_sampled": 0,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {
-      "protein_g": 133.9,
-      "carbs_g": 164.7,
-      "fat_g": 32.2,
-      "calories_kcal": 1484,
-      "has_data": true
-    }
+    "nutrition": {}
   },
   "history": []
 }
