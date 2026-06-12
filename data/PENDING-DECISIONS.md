@@ -1,5 +1,5 @@
 # PENDING DECISIONS
-*Auto-generated 2026-06-10 19:20 AEDT (session end)*
+*Auto-generated 2026-06-12 16:00 AEDT (session end)*
 
 ---
 
@@ -7,45 +7,28 @@
 
 | # | Item | Detail | Trigger phrase |
 |---|---|---|---|
-| 1 | ✅ DECIDED June 10 — **Fenwick RENEW + HASLC increase to $1,660** | Email sent to Heather 20:51 AEDT (msg 19eb12910904e615): file increase before July 1, confirm lodgement, reconcile $1,318-vs-$1,450 HAP shortfall in same HASLC conversation. | — awaiting Heather confirmation |
-| 2 | **Farmview June 15 inspection gate** | Seller fixing $2,300 water main; sewer can't be scoped until water on. If water slips past June 15 → extension or walk. Backup pre-staged: **Elsworth 814 ($99,900, CF $727)**. | Watch Lindia; decide if it slips |
-| 3 | ✅ DONE June 11 — **AppFolio 2FA + Ohio data live** | Code 720330 accepted 14:11; scraper rewired to AppFolio API. June receipts: 505 W 25th $1,320 ✅, Kenilworth HAP $430 ✅ (tenant $828 outstanding). | — done |
-| 4 | **Full-sweep accounting build** | Brief LOCKED (rolling per-door ledger + escalating uncollected-rent alarm). Awaiting go. | Say "go build" |
-| 5 | **Laura: 2 manual FB replies** | Accept **Kai $40 ladder** + **Ethan $100 irons** (both at floor; baselined threads, bot won't touch). | Tell Laura |
-| 6 | **Embassy notarial appt — Wed July 1, 8:15 AM (Bangkok)** | UID PA64194254. Now FARMVIEW ONLY (Belaire terminated). Megan to send packet by ~June 29. Bring printed packet + confirmation. | Attend July 1 |
-| 7 | **HostPlus binding nomination** | Pre-filled PDF ready. Sign with 2 witnesses (not Laura) + post to Locked Bag 5046, Parramatta NSW 2124. | When signed |
+| 1 | **🔴 Farmview inspection — Tue June 16, 1PM US** | Evergreen general + termite; contingency deadline June 19. Clean report → Patrick pays appraisal Wed US time → file moves to processing → close July 10. Bad septic/structure news → renegotiate or walk (backup pre-staged: **Elsworth 814, $99,900, CF $727**). | Watch for report; say "pay appraisal" or "renegotiate" |
+| 2 | **Thai visa — Pending Document Check** | Cert of Organization + driver licence uploaded June 12 (app SYD001260529-I-323203). Flight ~June 18. | If no approval by Mon June 15, Garry flags it |
+| 3 | **Full-sweep accounting build** | Brief LOCKED (rolling per-door ledger + escalating uncollected-rent alarm). Awaiting go. | Say "go build" |
+| 4 | **Laura: 2 manual FB replies** | Accept **Kai $40 ladder** + **Ethan $100 irons** (both at floor; baselined threads, bot won't touch). | Tell Laura |
+| 5 | **Embassy notarial appt — Wed July 1, 8:15 AM (Bangkok)** | UID PA64194254. FARMVIEW ONLY (Belaire terminated). Megan to send packet by ~June 29. Bring printed packet + confirmation. | Attend July 1 |
 
-## DEPARTURE-DAY CHECKLIST (June 17)
+## WAITING ON (Garry watching — no Patrick action needed)
 
-| Item | Detail |
-|---|---|
-| Screenshot ALL investment values | CGT I1 evidence — every platform, departure day |
-| Cancel Medicare | 5 min on myGov — steps ready |
-| Aldi → Amaysim port | amaysim.com.au, acct 5610786, phone 0402 521 553. Drain Aldi balance to $0 first |
-| OpenSky top-up $2,800 | On Bangkok arrival — card at Danny's address |
-| Bitkub KYC | Complete in Bangkok (app geo-blocked in AU) |
-
-## WAITING ON OTHERS
-
-| Item | Waiting on | Notes |
+| Item | Who | State |
 |---|---|---|
-| **Kyra/lender — REO list + Mercury funds path** | Kyra (Nexa) | Sent June 11 14:27 (msg 19eb4f0379b1d4dd): REO schedule + asked if Mercury (opened May 7) + Wise seasoning + transfer proof satisfies US-bank guideline. On lender OK → Patrick moves ~$104K same day. Chase June 13 |
-| **Fenwick renewal + $1,660 increase filing** | Heather (Avenue) | Sent June 10 (msg 19eb12910904e615). Chase if not lodged by June 20; HARD deadline July 1 |
-| **Alcove unpaid rent Apr-Jun ($4,470+)** + Fenwick HAP $1,318-vs-$1,450 + $100 zero-collection fee question | Heather (Avenue) | Email 19eb06bcad1ac842 sent June 10. CHASE if no reply by June 12 |
-| **Wilborn S8 listings live (GoSection8 + AffordableHousing)** | Heather | Email 19eaa52fa92ea01a. Hold rent $1,420 until distribution gap fixed |
-| Avenue June owner distribution | Avenue | Chase if not in Wise by **June 15** (~$5,594 not-yet-landed) |
-| Farmview corrected amendment + water/sewer status | Lindia | Nudge scheduled June 10 ~18:47; if not fired, send manually |
-| Farmview DocuSign reset + ITIN proof acceptance | Brannon/Kyra (Nexa) | Msg 19eaa5cdbc0b9656 — locked-out disclosures + 1040-NR page-1 as CP565 substitute |
-| 3 STL offers: Castro $105k backup / Frostview $100k / Winchelsea $100k | Heather | Sent June 9 (msg 19eaae2b5395400d) |
-| DTV visa approval (Patrick) | Thai Consulate Sydney | Ref SYD001-202605-5687040 — target ~June 12 |
-| Tourist visa approval (Laura) | Thai Consulate Sydney | Target ~June 13 |
-| ATO $10,683 reallocation | Gab (Sleek) | Misallocated BPAY payments being moved |
-| Hazelcrest sale offers | Heather | Listed, tracking |
+| Lender file → processing + underwriting asks | Kyra (Nexa) | $50K wire + 3-doc bundle sent June 12 (msg 19eb9af1caeecd7f). Reply-watcher pings Patrick on any response |
+| $50K landing in Mercury (..2719) | Wise→Mercury | Due by Sat. Then forward updated Mercury statement to Kyra |
+| Alcove/Fenwick/fees ledger answers ($4,470 Alcove arrears inside) | Heather | OVERDUE since June 11 "morning" — Garry chasing |
+| Fenwick $1,660 HASLC increase lodgement | Heather | "On it" June 10 (msg 19eb12910904e615). Chase by June 20; HARD gate July 1 |
+| Wilborn turn $1,299.50 + fresh photos + HQS occupancy booking | Heather / Round The Corner | Approved June 12 (msg 19eb9b95e892de1b) |
+| Show Me Soils septic/soils report | DJ (Evergreen) | Requested June 12 (msg 19eb9c4e6b4e8430) — full analysis on arrival |
+| June distribution ~$5,594 | Avenue | Chase if not in Wise by Mon June 15 |
+| Written DSCR terms (min loan size $55–90K = likely disqualifier) | Jill (America Mortgages) | Challenge sent June 12 (msg 19eba49ee861390e) |
 
-## CLOSED THIS CYCLE (no action)
-- **Belaire — TERMINATED June 7-8.** Earnest $1,000 refund processing. All prior Belaire items (roof credit, appraisal, occupancy, rehab) dead.
-- **Marketplace bot — REBUILT & LIVE June 10** (was silently dead since June 8). No-double-up baseline verified; escalations → Laura's Telegram.
-- **Kogan NBN — cancelled,** disconnect June 18. Optional ~$40 refund: 1300 010 400.
-- **Storage — sorted,** $0, bro's spare room.
-- **RACV IDP — obtained June 10** (VA124388, car-only, carry with AU licence).
-- **Laura money guide — emailed June 10** (Wise primary + ING cash; K-Bank in Sept on DTV).
+## RESOLVED THIS SESSION
+- ✅ Fenwick: RENEW + $1,660 filing (decided June 10, Heather on it)
+- ✅ AppFolio 2FA + Ohio data unblinded (June 11)
+- ✅ Lender funds path: Mercury approved, $50K wired, bundle sent (June 12)
+- ✅ Wilborn turn approved $1,299.50 (June 12)
+- ✅ Thai visa extra docs uploaded (June 12)
