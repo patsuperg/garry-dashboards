@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-13T14:29:50.009255+10:00",
+  "generated": "2026-06-13T14:43:19.099688+10:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep",
+  "device": "Apple Watch + Eight Sleep + MFP",
   "coaching": "Short sleep (4.5h) and recovery in the red (17%). Keep today light \u2014 no hard training, protect the afternoon. Aim for bed by 9:30pm and a full 8h+ tonight to reset.",
   "today": {
     "date": "2026-06-13",
@@ -26,26 +26,26 @@
         "subtitle": "HRV 16.4ms / RHR 79.9bpm"
       },
       "strain": {
-        "value": 9.9,
+        "value": 11.3,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 9.9,
+          "value": 11.3,
           "max": 21,
-          "kcal": 578,
-          "steps": 6617,
-          "exercise_min": 12,
-          "hr_load": 39.3,
+          "kcal": 664,
+          "steps": 7003,
+          "exercise_min": 15,
+          "hr_load": 44.9,
           "source": "json_export"
         },
-        "subtitle": "578kcal / 6617st / 12min ex"
+        "subtitle": "664kcal / 7003st / 15min ex"
       },
       "stress": {
-        "value": 90,
+        "value": 58,
         "unit": "%",
-        "color": "red",
-        "label": "high",
-        "subtitle": "HR 99bpm vs RHR 72"
+        "color": "yellow",
+        "label": "moderate",
+        "subtitle": "HR 90bpm vs RHR 72"
       }
     },
     "sleep_breakdown": {
@@ -76,11 +76,11 @@
       "source": "Apple Health CSV 30d avg"
     },
     "nutrition": {
-      "protein_g": 0.0,
-      "carbs_g": 0.0,
-      "fat_g": 0.0,
-      "calories_kcal": 0,
-      "has_data": false
+      "protein_g": 137.8,
+      "carbs_g": 152.6,
+      "fat_g": 41.8,
+      "calories_kcal": 1537,
+      "has_data": true
     }
   },
   "history": []
