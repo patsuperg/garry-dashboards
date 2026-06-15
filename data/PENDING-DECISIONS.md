@@ -9,7 +9,6 @@
 |---|---|---|---|
 | 1 | **🔴 Farmview — Tue June 16, 1PM US = RENEGOTIATE-OR-WALK gate** | Septic report = UNACCEPTABLE / end-of-life (~74yr tank, full/full, level above operating, top not sound; replacement **$10-25K+**, NOT seller's $2,300 water repair). Tue general inspection is the decision point. Seller gives septic credit/price cut → proceed (pay appraisal Wed → processing → close July 10). Seller won't move → **walk** (contingency June 19, earnest protected, backup **Elsworth 814 $99,900/CF $727** staged). | Watch for general report; say "renegotiate", "pay appraisal", or "walk" |
 | 2 | **Thai visa — Pending Document Check** | Cert of Organization + driver licence uploaded June 12 (app SYD001260529-I-323203). Flight ~June 18. | If no approval by Mon June 15, Garry flags it |
-| 3 | **💧 MONDAY: Pay Lorain utilities $46.35 — 505 W 25th** | City of Lorain acct **20830310-007** (Empire Investing LLC), due **June 17 US**. Trash/stormwater/EPA only, $0 water. Pay online: https://ipn2.paymentus.com/cp/lora (card/echeck) or 440-204-2500 opt 2. Bill: ~/AI/Projects/Section8/bills/Lorain-Utilities-505W25th-Jun2026-46.35.pdf. NEW account — check for autopay enrolment once paid. | Pay Monday June 15, say "paid" |
 | 4 | **Fibre Boost INV #32433 — $495 UNPAID (Spartans-era, Patrick's bill)** | Zach flagged. Verified never paid (order Nov 13 2025, pre-sale). Pay via bank details on invoice p2 OR portal fibre-boost.com/my-account; contact accounts@fibre-boost.com / 1800 342 752. Then send remittance (Garry can draft). | Say "paid Fibre Boost" → Garry drafts remittance |
 | 5 | **Full-sweep accounting build** | Brief LOCKED (rolling per-door ledger + escalating uncollected-rent alarm). Awaiting go. | Say "go build" |
 | 6 | **Laura: 2 manual FB replies** | Accept **Kai $40 ladder** + **Ethan $100 irons** (both at floor; baselined threads, bot won't touch). | Tell Laura |
@@ -37,3 +36,4 @@
 - ✅ Lorain utility bill logged for Monday payment
 - ✅ Fibre Boost $495 unpaid invoice traced + confirmed (Zach's flag correct)
 - ✅ Laura's Jenny `claude` command repaired (silent) + overview PDF built for Tank
+- ✅ Lorain utility $46.35 (505 W 25th, acct 20830310-007) PAID Jun 15 — Patrick confirmed
