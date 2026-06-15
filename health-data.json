@@ -1,14 +1,14 @@
 {
-  "generated": "2026-06-15T16:37:27.639466+10:00",
+  "generated": "2026-06-15T16:52:32.570563+10:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep",
-  "coaching": "Solid foundation \u2014 8.4h sleep, 59% recovery. Execute the priority list. Lock in quality sleep tonight to build on this.",
+  "device": "Apple Watch + Eight Sleep + MFP",
+  "coaching": "Elevated stress is the main drag today. Sleep was 8.4h, recovery 59%. Protect your afternoon \u2014 reduce inputs, don't stack decisions.",
   "today": {
     "date": "2026-06-15",
-    "spoons": 10,
+    "spoons": 6,
     "spoons_max": 12,
-    "spoons_label": "Peak \u2014 push hard",
-    "spoons_color": "green",
+    "spoons_label": "Moderate \u2014 analysis over execution",
+    "spoons_color": "yellow",
     "rings": {
       "sleep": {
         "value": 100,
@@ -26,26 +26,26 @@
         "subtitle": "HRV 24.5ms / RHR 69.5bpm"
       },
       "strain": {
-        "value": 0.0,
+        "value": 8.7,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 0.0,
+          "value": 8.7,
           "max": 21,
-          "kcal": 0,
-          "steps": 59,
-          "exercise_min": 0,
-          "hr_load": 0.0,
+          "kcal": 507,
+          "steps": 4618,
+          "exercise_min": 52,
+          "hr_load": 22.1,
           "source": "json_export"
         },
-        "subtitle": "0kcal / 59st / 0min ex"
+        "subtitle": "507kcal / 4618st / 52min ex"
       },
       "stress": {
-        "value": 0,
+        "value": 100,
         "unit": "%",
-        "color": "gray",
-        "label": "no HR data",
-        "subtitle": "HR ?bpm vs RHR ?"
+        "color": "red",
+        "label": "high",
+        "subtitle": "HR 106bpm vs RHR 72"
       }
     },
     "sleep_breakdown": {
@@ -76,11 +76,11 @@
       "source": "Apple Health CSV 30d avg"
     },
     "nutrition": {
-      "protein_g": 0.0,
-      "carbs_g": 0.0,
-      "fat_g": 0.0,
-      "calories_kcal": 0,
-      "has_data": false
+      "protein_g": 60.5,
+      "carbs_g": 68.0,
+      "fat_g": 14.4,
+      "calories_kcal": 644,
+      "has_data": true
     }
   },
   "history": []
