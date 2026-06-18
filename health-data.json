@@ -1,63 +1,59 @@
 {
-  "generated": "2026-06-16T21:27:51.214192+10:00",
+  "generated": "2026-06-18T18:37:21.925649+10:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep",
-  "coaching": "Sleep was short at 5.8h and recovery is restricted (25%). Less movement today is the right call \u2014 conserve for what matters. Early night tonight to get back on track.",
+  "device": "Apple Watch",
+  "coaching": "Sleep looked okay (unknown) but recovery is low at 6% \u2014 body is under load from stress or cumulative fatigue. Hold back on intensity today and protect the evening.",
   "today": {
-    "date": "2026-06-16",
+    "date": "2026-06-18",
     "spoons": 5,
     "spoons_max": 12,
     "spoons_label": "Restful \u2014 light movement, defer big decisions",
     "spoons_color": "orange",
     "rings": {
       "sleep": {
-        "value": 64,
+        "value": 0,
         "unit": "%",
-        "raw_hr": 5.84,
+        "raw_hr": 0,
         "color": "blue",
-        "label": "5.8h",
-        "subtitle": "5.8h total \u00b7 deep 1.0h / REM 1.2h"
+        "label": "0.0h",
+        "subtitle": "0.0h total \u00b7 deep 0.0h / REM 0.0h"
       },
       "recovery": {
-        "value": 25,
+        "value": 6,
         "unit": "%",
         "color": "red",
         "label": "RED \u2014 protect the body",
         "subtitle": "HRV 11ms / RHR 84bpm"
       },
       "strain": {
-        "value": 5.5,
+        "value": 0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 5.5,
+          "value": 0,
           "max": 21,
-          "kcal": 648,
-          "steps": 5187,
-          "exercise_min": 18,
-          "hr_load": 5.5,
-          "source": "json_export"
+          "kcal": 0,
+          "steps": 0,
+          "exercise_min": 0,
+          "hr_load": 0.0
         },
-        "subtitle": "648kcal / 5187st / 18min ex"
+        "subtitle": "0kcal / 0st / 0min ex"
       },
       "stress": {
-        "value": 97,
+        "value": 0,
         "unit": "%",
-        "color": "red",
-        "label": "high",
-        "subtitle": "HR 104bpm vs RHR 74"
+        "color": "gray",
+        "label": "no data",
+        "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
-      "total_hr": 5.84,
-      "deep_hr": 1.02,
-      "rem_hr": 1.23,
-      "core_hr": 3.59,
-      "awake_hr": 0,
-      "in_bed_hr": 7.29,
-      "source_override": "eight_sleep",
-      "hrv_overnight": 11,
-      "rhr_overnight": 84
+      "total_hr": 0,
+      "deep_hr": 0.0,
+      "rem_hr": 0.0,
+      "core_hr": 0.0,
+      "awake_hr": 0.0,
+      "in_bed_hr": 0.0
     },
     "hrv_overnight": 11,
     "rhr_overnight": 84,
@@ -75,13 +71,7 @@
       "days_sampled": 0,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {
-      "protein_g": 0.0,
-      "carbs_g": 0.0,
-      "fat_g": 0.0,
-      "calories_kcal": 0,
-      "has_data": false
-    }
+    "nutrition": {}
   },
   "history": []
 }
