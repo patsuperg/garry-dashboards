@@ -1,14 +1,14 @@
 {
-  "generated": "2026-06-24T14:58:11.429370+07:00",
+  "generated": "2026-06-24T15:13:11.767818+07:00",
   "source": "health-engine v2",
   "device": "Apple Watch",
   "coaching": "Sleep looked okay (unknown) but recovery is low at 6% \u2014 body is under load from stress or cumulative fatigue. Hold back on intensity today and protect the evening.",
   "today": {
     "date": "2026-06-24",
-    "spoons": 5,
+    "spoons": 2,
     "spoons_max": 12,
-    "spoons_label": "Restful \u2014 light movement, defer big decisions",
-    "spoons_color": "orange",
+    "spoons_label": "Red flag \u2014 recovery day",
+    "spoons_color": "red",
     "rings": {
       "sleep": {
         "value": 0,
@@ -26,25 +26,26 @@
         "subtitle": "HRV 12.3ms / RHR 84bpm"
       },
       "strain": {
-        "value": 0,
+        "value": 7.8,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 0,
+          "value": 7.8,
           "max": 21,
-          "kcal": 0,
-          "steps": 0,
-          "exercise_min": 0,
-          "hr_load": 0.0
+          "kcal": 407,
+          "steps": 3001,
+          "exercise_min": 58,
+          "hr_load": 19.5,
+          "source": "json_export"
         },
-        "subtitle": "0kcal / 0st / 0min ex"
+        "subtitle": "407kcal / 3001st / 58min ex"
       },
       "stress": {
-        "value": 0,
+        "value": 82,
         "unit": "%",
-        "color": "gray",
-        "label": "no data",
-        "subtitle": "HR ?bpm vs RHR ?"
+        "color": "red",
+        "label": "high",
+        "subtitle": "HR 99bpm vs RHR 74"
       }
     },
     "sleep_breakdown": {
@@ -71,7 +72,13 @@
       "days_sampled": 0,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {}
+    "nutrition": {
+      "protein_g": 0.0,
+      "carbs_g": 0.0,
+      "fat_g": 0.0,
+      "calories_kcal": 0,
+      "has_data": false
+    }
   },
   "history": []
 }
