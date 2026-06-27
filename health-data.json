@@ -1,11 +1,11 @@
 {
-  "generated": "2026-06-27T08:25:49.714766+07:00",
+  "generated": "2026-06-27T08:40:52.394610+07:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
   "coaching": "Well recovered (98%) and 9.1h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
   "today": {
     "date": "2026-06-27",
-    "spoons": 11,
+    "spoons": 10,
     "spoons_max": 12,
     "spoons_label": "Peak \u2014 push hard",
     "spoons_color": "green",
@@ -26,26 +26,26 @@
         "subtitle": "HRV 64.1ms / RHR 58bpm"
       },
       "strain": {
-        "value": 3.6,
+        "value": 4.5,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 3.6,
+          "value": 4.5,
           "max": 21,
-          "kcal": 246,
-          "steps": 4137,
+          "kcal": 295,
+          "steps": 4465,
           "exercise_min": 2,
-          "hr_load": 11.3,
+          "hr_load": 16.1,
           "source": "json_export"
         },
-        "subtitle": "246kcal / 4137st / 2min ex"
+        "subtitle": "295kcal / 4465st / 2min ex"
       },
       "stress": {
-        "value": 0,
+        "value": 91,
         "unit": "%",
-        "color": "gray",
-        "label": "no HR data",
-        "subtitle": "HR ?bpm vs RHR ?"
+        "color": "red",
+        "label": "high",
+        "subtitle": "HR 94bpm vs RHR 67"
       }
     },
     "sleep_breakdown": {
