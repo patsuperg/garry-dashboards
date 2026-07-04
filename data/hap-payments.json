@@ -102,19 +102,133 @@
     }
   },
   "_meta": {
-    "last_refresh": "2026-07-04T02:00:43.656922"
+    "last_scraped": "2026-07-04T19:00:25.308288+00:00",
+    "scraper_version": "portal_scraper_v1",
+    "last_refresh": "2026-07-05T02:00:42.701875"
   },
   "2026-05": {
     "505_w_25th": {
       "address": "505 W 25th St, Lorain, OH 44052",
       "expected": 1383,
       "received": null,
-      "date_received": null,
-      "status": "PENDING",
-      "pm": "BTR"
+      "date_received": "2026-05-29",
+      "status": "STATEMENT_RECEIVED",
+      "pm": "BTR",
+      "source": "tactical_statement_email",
+      "note": "Statement email received \u2014 AppFolio scraper needed for amount"
     },
     "hazelcrest": {
       "address": "7596 Hazelcrest Dr Unit F, Hazelwood, MO 63042",
+      "expected": 775,
+      "received": 163.99,
+      "date_received": "2026-05-21",
+      "status": "RECEIVED",
+      "pm": "Avenue Residential",
+      "source": "avenue_distribution_email",
+      "distribution_total": 1082.35
+    },
+    "fenwick": {
+      "address": "132 Fenwick Dr, Saint Louis, MO 63135",
+      "expected": 1450,
+      "received": 306.82,
+      "date_received": "2026-05-21",
+      "status": "RECEIVED",
+      "pm": "Avenue Residential",
+      "source": "avenue_distribution_email",
+      "distribution_total": 1082.35
+    },
+    "wilborn": {
+      "address": "5361 Wilborn Dr, St Louis, MO 63136",
+      "expected": 1400,
+      "received": 296.24,
+      "date_received": "2026-05-21",
+      "status": "RECEIVED",
+      "pm": "Avenue Residential",
+      "source": "avenue_distribution_email",
+      "distribution_total": 1082.35
+    },
+    "alcove": {
+      "address": "516 Alcove Ave, Bellefontaine Neighbors, MO 63137",
+      "expected": 1490,
+      "received": 315.29,
+      "date_received": "2026-05-21",
+      "status": "RECEIVED",
+      "pm": "Avenue Residential",
+      "source": "avenue_distribution_email",
+      "distribution_total": 1082.35
+    },
+    "kenilworth": {
+      "address": "124 Kenilworth Ave, Painesville, OH 44077",
+      "expected": 1360,
+      "received": null,
+      "date_received": "2026-05-29",
+      "status": "STATEMENT_RECEIVED",
+      "pm": "BTR",
+      "source": "tactical_statement_email",
+      "note": "Statement email received \u2014 AppFolio scraper needed for amount"
+    }
+  },
+  "2026-06": {
+    "hazelcrest": {
+      "address": "7596 Hazelcrest Dr Unit F, Hazelwood, MO",
+      "expected": null,
+      "received": 229.92,
+      "date_received": "2026-06-10",
+      "status": "RECEIVED",
+      "pm": "Avenue Residential",
+      "source": "avenue_distribution_email",
+      "distribution_total": 1517.47
+    },
+    "fenwick": {
+      "address": "132 Fenwick Dr, Saint Louis, MO",
+      "expected": null,
+      "received": 430.17,
+      "date_received": "2026-06-10",
+      "status": "RECEIVED",
+      "pm": "Avenue Residential",
+      "source": "avenue_distribution_email",
+      "distribution_total": 1517.47
+    },
+    "wilborn": {
+      "address": "5361 Wilborn Dr, St Louis, MO",
+      "expected": null,
+      "received": 415.34,
+      "date_received": "2026-06-10",
+      "status": "RECEIVED",
+      "pm": "Avenue Residential",
+      "source": "avenue_distribution_email",
+      "distribution_total": 1517.47
+    },
+    "alcove": {
+      "address": "516 Alcove Ave, Bellefontaine Neighbors, MO",
+      "expected": null,
+      "received": 442.04,
+      "date_received": "2026-06-10",
+      "status": "RECEIVED",
+      "pm": "Avenue Residential",
+      "source": "avenue_distribution_email",
+      "distribution_total": 1517.47
+    },
+    "505_w_25th": {
+      "address": "505 W 25th St, Lorain, OH",
+      "expected": null,
+      "received": null,
+      "date_received": null,
+      "status": "PENDING",
+      "pm": "Tactical"
+    },
+    "kenilworth": {
+      "address": "124 Kenilworth Ave, Painesville, OH",
+      "expected": null,
+      "received": null,
+      "date_received": null,
+      "status": "PENDING",
+      "pm": "Tactical"
+    }
+  },
+  "2026-07": {
+    "hazelcrest": {
+      "address": "7596 Hazelcrest Dr Unit F, Hazelwood, MO",
       "expected": 775,
       "received": null,
       "date_received": null,
@@ -122,15 +236,17 @@
       "pm": "Avenue Residential"
     },
     "fenwick": {
-      "address": "132 Fenwick Dr, Saint Louis, MO 63135",
+      "address": "132 Fenwick Dr, Saint Louis, MO",
       "expected": 1450,
-      "received": null,
-      "date_received": null,
-      "status": "PENDING",
-      "pm": "Avenue Residential"
+      "received": 1318.0,
+      "date_received": "2026-07-01",
+      "status": "RECEIVED",
+      "pm": "Avenue Residential",
+      "source": "rentvine",
+      "scraped_at": "2026-07-04T19:00:25.308288+00:00"
     },
     "wilborn": {
-      "address": "5361 Wilborn Dr, St Louis, MO 63136",
+      "address": "5361 Wilborn Dr, St Louis, MO",
       "expected": 1400,
       "received": null,
       "date_received": null,
@@ -138,22 +254,39 @@
       "pm": "Avenue Residential"
     },
     "alcove": {
-      "address": "516 Alcove Ave, Bellefontaine Neighbors, MO 63137",
+      "address": "516 Alcove Ave, Bellefontaine Neighbors, MO",
       "expected": 1490,
-      "received": null,
-      "date_received": null,
-      "status": "PENDING",
-      "pm": "Avenue Residential"
+      "received": 248.0,
+      "date_received": "2026-07-03",
+      "status": "RECEIVED",
+      "pm": "Avenue Residential",
+      "source": "rentvine",
+      "scraped_at": "2026-07-04T19:00:25.308288+00:00"
+    },
+    "505_w_25th": {
+      "address": "505 W 25th St, Lorain, OH",
+      "expected": 1383,
+      "received": 1383.0,
+      "date_received": "2026-07-02",
+      "status": "RECEIVED",
+      "pm": "Tactical",
+      "source": "appfolio",
+      "scraped_at": "2026-07-04T19:00:25.308288+00:00"
     },
     "kenilworth": {
-      "address": "124 Kenilworth Ave, Painesville, OH 44077",
+      "address": "124 Kenilworth Ave, Painesville, OH",
       "expected": 1360,
       "received": null,
       "date_received": null,
       "status": "PENDING",
-      "pm": "BTR"
+      "pm": "Tactical"
+    },
+    "unknown": {
+      "received": 775.0,
+      "date_received": "2026-07-02",
+      "status": "RECEIVED",
+      "source": "rentvine",
+      "scraped_at": "2026-07-04T19:00:25.308288+00:00"
     }
-  },
-  "2026-06": {},
-  "2026-07": {}
+  }
 }
