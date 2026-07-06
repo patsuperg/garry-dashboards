@@ -152,31 +152,19 @@ def sync_portfolio():
     USD_AUD = 1.58
 
     # Status overrides — these reflect ACTUAL current state from THREADS.md
-    # Update this dict when property status changes (Garry maintains it)
+    # Update this dict when property status changes (Garry maintains it).
+    # 505 W 25th and 124 Kenilworth removed 2026-07-06: both confirmed LEASED
+    # in portfolio-v2.json + CURRENT-STATE.md (live-verified 07:04 that day) —
+    # these zero-income overrides were stale and had been silently understating
+    # portfolio net by ~$1,586/mo on the dashboard for an unknown period.
     STATUS_OVERRIDES = {
-        "505 W 25th": {
-            "status": "critical",
-            "status_label": "HAP Abated",
-            "gross_rent": 0,
-            "net_income": 0,
-            "issues": ["HAP abatement — reinspection May 27 result pending"],
-            "status_note": "HAP abatement since Oct 2025. Reinspection May 27 1pm. Result pending.",
-        },
         "5361 Wilborn": {
             "status": "zero",
             "status_label": "Vacant — Listed",
             "gross_rent": 0,
             "net_income": 0,
-            "issues": ["Vacant — listed $1,420/mo S8", "7 contractors sourced for punch list"],
-            "status_note": "Vacant. Listed $1,420/mo. Rehab in progress.",
-        },
-        "124 Kenilworth": {
-            "status": "critical",
-            "status_label": "Non-Paying",
-            "gross_rent": 0,
-            "net_income": 0,
-            "issues": ["$903 outstanding — May rent + late fee", "Lease expires Jul 31, 2026"],
-            "status_note": "Non-paying. $903 outstanding. Lease Jul 31.",
+            "issues": ["Vacant — listed $1,420/mo S8", "re-tenant gated on City of Jennings occupancy inspection"],
+            "status_note": "Vacant. Listed $1,420/mo. Turn complete, awaiting occupancy inspection.",
         },
     }
 

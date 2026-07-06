@@ -83,19 +83,30 @@ def build_health_section():
 
 
 def build_deal_section():
-    pipeline_path = Path.home() / "AI/Projects/Section8/deal-pipeline.json"
-    pipeline = load_json(pipeline_path)
-    if not pipeline:
+    # deal-finder-v4 (Infrastructure/data/deal-finder-v4-results.json) is the live
+    # engine (daily 07:00 LaunchAgent). The old Section8/deal-pipeline.json is a
+    # dead pre-v4 tracker frozen at 2026-05-19 with 0 active_deals - reading from
+    # it made the dashboard say "no active deals" every day regardless of what
+    # deal-finder-v4 actually found.
+    results_path = DATA / "deal-finder-v4-results.json"
+    results = load_json(results_path)
+    if not results:
         return "- last_run: No active deals\n- Lindia watching STL market for next acquisition"
-    last_run = pipeline.get("last_run", "unknown")
-    active = pipeline.get("active_deals", [])
-    lines = [f"- last_run: {last_run}"]
-    if active:
-        for deal in active[:3]:
-            lines.append(f"- {deal.get('address', 'Unknown')}: {deal.get('status', 'unknown')}")
+    last_run = results.get("run_at", "unknown")
+    summary = results.get("summary", {})
+    top = results.get("top_properties", [])
+    lines = [
+        f"- last_run: {last_run}",
+        f"- scanned: {summary.get('total_scraped', '?')} total, "
+        f"{summary.get('in_coverage_area', '?')} in coverage, "
+        f"{summary.get('dscr_eligible', '?')} DSCR-eligible, "
+        f"top score {summary.get('top_garry_score', '?')}",
+    ]
+    if top:
+        for deal in top[:3]:
+            lines.append(f"- {deal.get('address', 'Unknown')}")
     else:
-        lines.append("- No active deals in pipeline")
-        lines.append("- Lindia watching for next STL acquisition")
+        lines.append("- No properties cleared filters today")
     return "\n".join(lines)
 
 
@@ -125,8 +136,16 @@ def build_system_section():
     except Exception:
         active, total = "?", "?"
 
-    hp = load_json(DATA / "hp-score.json")
-    hp_score = hp.get("hp_score", 30)
+    try:
+        import subprocess
+        hp_result = subprocess.run(
+            [str(BASE / "Infrastructure/.venv/bin/python3"),
+             str(BASE / "Infrastructure/hp-calculator.py"), "--json", "--no-update"],
+            capture_output=True, text=True, timeout=15
+        )
+        hp_score = json.loads(hp_result.stdout)["total"]
+    except Exception:
+        hp_score = "unavailable"
 
     lines = [
         f"- timestamp: {datetime.now(timezone.utc).isoformat()}",
