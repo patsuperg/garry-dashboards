@@ -13,6 +13,7 @@
 | 🟡 | **Ameren MO — new service call** | 800-552-7583, ~5 min, ID-verification requires his voice. Best window: 7-9pm ICT (lands at US open, shortest queues). | — |
 | 🟡 | **Tactical — pull 505 W25th's Owner Packet PDF** | June owner payment was only $216.56, no expense breakdown seen. Garry can pull via AppFolio portal — no approval needed, just flagging it's not yet done. | — (Garry's to do) |
 | 🟡 | **FB Marketplace re-login** | Needs Laura's 2FA to bring the sold-cascade automation live. **PARKED per Patrick — Melbourne-only, not needed until ~Aug 12-13 return.** Do not resurface before then. | — |
+| 🟡 | **Lindia comparative table (Elmdale/Widefields/Haley) — corrected version awaiting sign-off** | Session ran rough (self-audit in LEARNING-LOG.md 2026-07-06) — Patrick has the assessment + fix plan, has NOT yet given go-ahead to execute the rebuild. Do not resend the table until he explicitly says go. Also: Haley went pending-sale Jul 3 (backup offer only), Elmdale 27+ days silent on Lindia's "thoughts?", Widefields non-S8 tenant lease runs to Dec 2026. Full detail: THREADS.md top block. | — (ask Patrick for go-ahead first) |
 
 ## RESOLVED / SENT THIS SESSION (2026-07-02 → 07-04)
 
