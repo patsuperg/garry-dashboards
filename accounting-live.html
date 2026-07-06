@@ -1,0 +1,158 @@
+<!doctype html><html><head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><title>Accounting — Live</title><style>
+*{box-sizing:border-box}body{margin:0;font:14px/1.5 -apple-system,system-ui,sans-serif;
+background:#0d1117;color:#e6edf3;padding:14px;max-width:900px;margin:auto}
+h1{font-size:19px;margin:.2em 0}.sub{color:#7d8590;font-size:12px;margin-bottom:1em}
+a{color:#58a6ff}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:#161b22;border:1px solid #30363d;
+border-radius:10px;padding:12px 14px;margin:12px 0}
+.bar b{font-size:12px;color:#7d8590;margin-right:4px}
+.chip{cursor:pointer;padding:5px 10px;border-radius:16px;border:1px solid #30363d;background:#0d1117;
+color:#c9d1d9;font-size:12px;user-select:none}
+.chip.on{background:#1f6feb;border-color:#1f6feb;color:#fff}
+.presets{display:flex;gap:6px;margin-left:auto}
+.presets .chip.active{background:#3fb950;border-color:#3fb950;color:#0d1117;font-weight:600}
+.cards{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.card{flex:1;min-width:150px;background:#161b22;border:1px solid #30363d;border-radius:10px;padding:14px}
+.card .lbl{color:#7d8590;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+.card .val{font-size:22px;font-weight:700;margin-top:4px}
+.card.net.pos .val{color:#3fb950}.card.net.neg .val{color:#f85149}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13px;margin:10px 0}
+th,td{padding:7px 6px;text-align:right;border-bottom:1px solid #21262d}
+th:first-child,td:first-child{text-align:left}
+th{color:#7d8590;font-weight:600;font-size:11px;text-transform:uppercase}
+tr.tot td{font-weight:700;border-top:2px solid #30363d}
+tr td.neg{color:#f85149}tr td.pos{color:#3fb950}
+details{background:#161b22;border:1px solid #30363d;border-radius:10px;margin:12px 0;padding:4px 12px}
+summary{cursor:pointer;padding:8px 2px;font-size:14px;font-weight:600}
+.note{color:#7d8590;font-size:11px;margin-top:6px}
+.loading{color:#7d8590;padding:20px;text-align:center}
+</style></head><body>
+<h1>📒 Accounting — Live &amp; Filterable</h1>
+<div class=sub>Real reconciled figures, not projections — same source as <a href="accounting.html">the full reconciliation page</a>. Filter by property and period below.</div>
+
+<div id=app class=loading>Loading accounting.json…</div>
+
+<script>
+const DOOR_ORDER = ["505_w_25th","hazelcrest","fenwick","wilborn","alcove","kenilworth"];
+let DATA = null;
+let selectedDoors = new Set(DOOR_ORDER);
+let periodPreset = "12";  // "3","6","12","ytd","all"
+
+function fmt(n){ return (n<0?"-$":"$") + Math.abs(Math.round(n)).toLocaleString(); }
+function cls(n){ return n<0 ? "neg" : (n>0 ? "pos" : ""); }
+
+function monthsForPreset(allMonths, preset){
+  if (preset === "all") return allMonths;
+  if (preset === "ytd"){
+    const year = allMonths[allMonths.length-1].slice(0,4);
+    return allMonths.filter(m => m.startsWith(year));
+  }
+  const n = parseInt(preset, 10);
+  return allMonths.slice(-n);
+}
+
+function computeFiltered(){
+  const allMonths = DATA.months;
+  const months = monthsForPreset(allMonths, periodPreset);
+  const monthSet = new Set(months);
+
+  const perMonth = {};
+  months.forEach(m => perMonth[m] = {income:0, expenses:0, net:0, expected_rent:0});
+
+  const perDoorTotals = {};
+  DOOR_ORDER.forEach(door => {
+    if (!selectedDoors.has(door)) return;
+    const rows = (DATA.pnl[door] || []).filter(r => monthSet.has(r.month));
+    let t = {income:0, expenses:0, net:0, expected_rent:0, mgmt_fee:0, repairs:0, insurance:0, utilities:0, property_tax:0, other_expense:0};
+    rows.forEach(r => {
+      t.income += r.income||0; t.expenses += r.expenses||0; t.net += r.net||0;
+      t.expected_rent += r.expected_rent||0; t.mgmt_fee += r.mgmt_fee||0;
+      t.repairs += r.repairs||0; t.insurance += r.insurance||0;
+      t.utilities += r.utilities||0; t.property_tax += r.property_tax||0;
+      t.other_expense += r.other_expense||0;
+      const pm = perMonth[r.month];
+      if (pm){ pm.income += r.income||0; pm.expenses += r.expenses||0; pm.net += r.net||0; pm.expected_rent += r.expected_rent||0; }
+    });
+    perDoorTotals[door] = t;
+  });
+
+  const totals = {income:0, expenses:0, net:0, expected_rent:0};
+  Object.values(perDoorTotals).forEach(t => { totals.income+=t.income; totals.expenses+=t.expenses; totals.net+=t.net; totals.expected_rent+=t.expected_rent; });
+
+  return {months, perMonth, perDoorTotals, totals};
+}
+
+function render(){
+  const {months, perMonth, perDoorTotals, totals} = computeFiltered();
+  const doorMeta = DATA.per_door;
+
+  const doorChips = DOOR_ORDER.map(d => {
+    const label = (doorMeta[d] && doorMeta[d].short) || d;
+    const on = selectedDoors.has(d);
+    return `<span class="chip ${on?'on':''}" data-door="${d}">${label}</span>`;
+  }).join("");
+
+  const presets = [["3","3mo"],["6","6mo"],["12","12mo"],["ytd","YTD"],["all","All"]].map(([k,label]) =>
+    `<span class="chip ${periodPreset===k?'active':''}" data-preset="${k}">${label}</span>`
+  ).join("");
+
+  const netClass = totals.net >= 0 ? "pos" : "neg";
+  const monthRows = months.map(m => {
+    const r = perMonth[m];
+    return `<tr><td>${m}</td><td>${fmt(r.expected_rent)}</td><td>${fmt(r.income)}</td><td>${fmt(r.expenses)}</td><td class="${cls(r.net)}">${fmt(r.net)}</td></tr>`;
+  }).join("");
+
+  const doorRows = DOOR_ORDER.filter(d => selectedDoors.has(d)).map(d => {
+    const t = perDoorTotals[d] || {income:0,expenses:0,net:0,expected_rent:0,repairs:0,mgmt_fee:0};
+    const label = (doorMeta[d] && doorMeta[d].short) || d;
+    return `<tr><td>${label}</td><td>${fmt(t.expected_rent)}</td><td>${fmt(t.income)}</td><td>${fmt(t.repairs)}</td><td>${fmt(t.mgmt_fee)}</td><td>${fmt(t.expenses)}</td><td class="${cls(t.net)}">${fmt(t.net)}</td></tr>`;
+  }).join("");
+
+  const monthsIncluded = months.length || 1;
+
+  document.getElementById("app").innerHTML = `
+    <div class=bar><b>Properties:</b> ${doorChips}
+      <span class=presets>${presets}</span>
+    </div>
+    <div class=cards>
+      <div class="card"><div class=lbl>Income</div><div class=val>${fmt(totals.income)}</div></div>
+      <div class="card"><div class=lbl>Expenses</div><div class=val>${fmt(totals.expenses)}</div></div>
+      <div class="card net ${netClass==='pos'?'pos':'neg'}"><div class=lbl>Net (period total)</div><div class=val>${fmt(totals.net)}</div></div>
+      <div class="card"><div class=lbl>Net (avg / mo)</div><div class=val>${fmt(totals.net/monthsIncluded)}</div></div>
+    </div>
+    <div class=note>${months.length} month(s) selected: ${months[0]||'—'} → ${months[months.length-1]||'—'} · ${selectedDoors.size}/${DOOR_ORDER.length} properties selected</div>
+
+    <details open><summary>Month-by-month (selected properties, summed)</summary>
+    <table><tr><th>Month</th><th>Expected</th><th>Income</th><th>Expenses</th><th>Net</th></tr>
+    ${monthRows}
+    <tr class=tot><td>TOTAL</td><td>${fmt(totals.expected_rent)}</td><td>${fmt(totals.income)}</td><td>${fmt(totals.expenses)}</td><td class="${cls(totals.net)}">${fmt(totals.net)}</td></tr>
+    </table></details>
+
+    <details open><summary>Per-property breakdown (selected period)</summary>
+    <table><tr><th>Property</th><th>Expected</th><th>Income</th><th>Repairs</th><th>PM Fee</th><th>Expenses</th><th>Net</th></tr>
+    ${doorRows}
+    </table></details>
+  `;
+
+  document.querySelectorAll(".chip[data-door]").forEach(el => {
+    el.onclick = () => {
+      const d = el.dataset.door;
+      if (selectedDoors.has(d)) selectedDoors.delete(d); else selectedDoors.add(d);
+      if (selectedDoors.size === 0) selectedDoors.add(d); // never allow zero selection
+      render();
+    };
+  });
+  document.querySelectorAll(".chip[data-preset]").forEach(el => {
+    el.onclick = () => { periodPreset = el.dataset.preset; render(); };
+  });
+}
+
+fetch("accounting.json").then(r => r.json()).then(d => {
+  DATA = d;
+  render();
+}).catch(err => {
+  document.getElementById("app").innerHTML = `<div class=loading>Failed to load accounting.json — ${err}</div>`;
+});
+</script>
+</body></html>
