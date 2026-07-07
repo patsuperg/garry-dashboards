@@ -1,5 +1,5 @@
 # PENDING DECISIONS
-*Auto-generated 2026-07-04 (session end)*
+*Auto-generated 2026-07-04 (session end) · reviewed 2026-07-07 16:25 — all items below still live; nothing resolved this session*
 
 ---
 
@@ -14,6 +14,14 @@
 | 🟡 | **Tactical — pull 505 W25th's Owner Packet PDF** | June owner payment was only $216.56, no expense breakdown seen. Garry can pull via AppFolio portal — no approval needed, just flagging it's not yet done. | — (Garry's to do) |
 | 🟡 | **FB Marketplace re-login** | Needs Laura's 2FA to bring the sold-cascade automation live. **PARKED per Patrick — Melbourne-only, not needed until ~Aug 12-13 return.** Do not resurface before then. | — |
 | 🟡 | **Lindia comparative table (Elmdale/Widefields/Haley) — corrected version awaiting sign-off** | Session ran rough (self-audit in LEARNING-LOG.md 2026-07-06) — Patrick has the assessment + fix plan, has NOT yet given go-ahead to execute the rebuild. Do not resend the table until he explicitly says go. Also: Haley went pending-sale Jul 3 (backup offer only), Elmdale 27+ days silent on Lindia's "thoughts?", Widefields non-S8 tenant lease runs to Dec 2026. Full detail: THREADS.md top block. | — (ask Patrick for go-ahead first) |
+
+## 2026-07-07 SESSION END — PREP WORK SAVED (read first tomorrow)
+
+| # | Item | Detail | Trigger phrase |
+|---|---|---|---|
+| ✅ | **Wilborn rent drop $1,350 — SENT, do NOT re-send** | Patrick approved Heather's recommendation; sent Jul 7 msg `19f3bb4a274878bd` in "Leasing Report for 5361 Wilborn Drive" thread. Also asked about the occupancy inspection that ran Jul 7. Await her reply. | — |
+| 🟡 | **2 staged Heather drafts — awaiting Patrick's "send"** | Gmail MCP dropped mid-session before these fired. Full text in `~/AI/Claude/staged-drafts-2026-07-07.md`: (1) Fenwick HAP nudge #2 — push Heather to CALL Ms. Syndor (silent since Jun 17, $2,636 held); (2) Hazelcrest — confirm $2K drop to ~$49K is actually live + any showings. | "send the drafts" |
+| 🔴 | **B2B $14,920.05 — deadline COB Wed Jul 8 (TOMORROW)** | No action until deadline. If $0 received by COB Jul 8: DRE complaint packet is pre-built, ready to file same-day on Patrick's go. | "file the DRE complaint" |
 
 ## RESOLVED / SENT THIS SESSION (2026-07-02 → 07-04)
 
@@ -65,6 +73,7 @@
 
 ## PARKED / LOW PRIORITY
 - Office RGB lighting cart (personal session thread). Pool-hall shortlist (Patrick to try + report). TrueMoney KYC result SMS (watch). ALL member card at 7-11 (Patrick's own).
+- *Note 2026-07-07: office lights + pool hall are now standing items on Patrick's daily Power List (Projects section) — he's driving them himself.*
 
 ## AUTO-FLAGGED BY ROGER — RECURRING PAYMENT APPROVAL (2026-07-04)
 
