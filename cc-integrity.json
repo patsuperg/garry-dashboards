@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-07-08T06:10:41.891258+00:00",
+  "checked_at": "2026-07-08T06:15:44.991447+00:00",
   "overall": "red",
   "panels": [
     {
@@ -11,7 +11,7 @@
       "reasons": [
         "dead/settled reference present: 'Evernest claim pending'"
       ],
-      "measured_age_hours": 0.9
+      "measured_age_hours": 1.0
     },
     {
       "id": "pending",
@@ -22,15 +22,17 @@
       "reasons": [
         "empty output (needs_count, waiting_count=0) but PENDING-DECISIONS.md has 11307B \u2014 silent parse failure"
       ],
-      "measured_age_hours": 0.9
+      "measured_age_hours": 1.0
     },
     {
       "id": "threads",
       "panel": "Active threads (P0/P1/P2)",
       "sla_hours": 24,
       "money_source": false,
-      "status": "ok",
-      "reasons": [],
+      "status": "broken",
+      "reasons": [
+        "dead/settled reference present: 'May 16 transition deadline'"
+      ],
       "measured_age_hours": 0.0
     },
     {
@@ -42,7 +44,7 @@
       "reasons": [
         "last_verified is 78d old (max 21d) \u2014 unverified money figure"
       ],
-      "measured_age_hours": 0.9
+      "measured_age_hours": 1.0
     }
   ]
 }
