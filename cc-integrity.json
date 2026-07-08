@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-07-08T21:45:42.199554+00:00",
+  "checked_at": "2026-07-08T21:50:45.581136+00:00",
   "overall": "red",
   "panels": [
     {
@@ -29,8 +29,10 @@
       "panel": "Active threads (P0/P1/P2)",
       "sla_hours": 24,
       "money_source": false,
-      "status": "ok",
-      "reasons": [],
+      "status": "broken",
+      "reasons": [
+        "dead/settled reference present: 'May 16 transition deadline'"
+      ],
       "measured_age_hours": 0.0
     },
     {
