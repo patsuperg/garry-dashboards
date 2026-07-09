@@ -8,7 +8,7 @@
 | # | Item | Detail | Trigger phrase |
 |---|---|---|---|
 <!-- HAP-OVERDUE-MARKER -->
-| 🟡 | **HAP overdue — 2026-07** | 2 properties unconfirmed as of day 8: 7596 Hazelcrest Dr Unit F, 5361 Wilborn Dr. Auto-flagged by avenue-payment-parser.py; clears itself once payment posts. | — |
+| 🟡 | **HAP overdue — 2026-07** | 2 properties unconfirmed as of day 9: 7596 Hazelcrest Dr Unit F, 5361 Wilborn Dr. Auto-flagged by avenue-payment-parser.py; clears itself once payment posts. | — |
 <!-- /HAP-OVERDUE-MARKER -->
 | 🟡 | **"Remote control" — needs Patrick to define it** | Asked to open a new Garry iTerm window + "turn on remote control." Window opened via osascript (unverified — computer-use screenshot access was declined). "Remote control" isn't an established term anywhere in the system; closest real mechanism is the frozen `--channels` Telegram bridge, but that wasn't assumed/touched without confirming that's what he means. | — (ask Patrick directly) |
 | 🔴 | **OpenSky card — activate + pay overdue balance** | Account ending 2152. "Payment due in 3 days" landed Jun 28 (due ~Jul 1) — may already be unpaid past due as of Jul 4. Activate via myaccount.openskycc.com or the number on the back of the card, then pay the balance in full immediately + set autopay. A 30-day-late report here wrecks the entire credit-building thesis. | — (in progress this session) |
