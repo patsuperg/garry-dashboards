@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-07-10T18:45:37.097559+00:00",
+  "checked_at": "2026-07-10T18:50:40.461976+00:00",
   "overall": "red",
   "panels": [
     {
@@ -20,7 +20,7 @@
       "money_source": false,
       "status": "broken",
       "reasons": [
-        "content unchanged 61h > SLA 24h",
+        "content unchanged 62h > SLA 24h",
         "empty output (needs_count, waiting_count=0) but PENDING-DECISIONS.md has 11569B \u2014 silent parse failure"
       ],
       "measured_age_hours": 61.5
@@ -30,10 +30,8 @@
       "panel": "Active threads (P0/P1/P2)",
       "sla_hours": 24,
       "money_source": false,
-      "status": "broken",
-      "reasons": [
-        "dead/settled reference present: 'May 16 transition deadline'"
-      ],
+      "status": "ok",
+      "reasons": [],
       "measured_age_hours": 0.0
     },
     {
