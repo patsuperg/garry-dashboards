@@ -460,7 +460,8 @@ function nCard(label,val,unit,color){
 
 <!-- TAB NAV -->
 <div class="tab-nav">
-  <button class="tab-btn active" data-tab="deal"   onclick="showTab('deal')">Deals</button>
+  <button class="tab-btn active" data-tab="board"  onclick="showTab('board')">📋 Board</button>
+  <button class="tab-btn"        data-tab="deal"   onclick="showTab('deal')">Deals</button>
   <button class="tab-btn"        data-tab="ops"    onclick="showTab('ops')">Ops</button>
   <button class="tab-btn"        data-tab="health" onclick="showTab('health');loadHealth()">Health</button>
   <button class="tab-btn"        data-tab="bp"     onclick="showTab('bp');loadBP()">Blueprint</button>
@@ -468,8 +469,43 @@ function nCard(label,val,unit,color){
   <button class="tab-btn"        data-tab="arch"   onclick="showTab('arch')">Arch</button>
 </div>
 
+<!-- ═══════════════ TAB 0: COMMAND BOARD ═══════════════ -->
+<div id="tab-board" class="tab-panel active">
+<div class="fresh-stamp" style="color:#a0a0a8">command board · income mission · updated Jul 11</div>
+<div class="phase-hero">
+  <div class="phase-label">Mission</div>
+  <div class="phase-title">STABILISE → US$10K/MO NET</div>
+  <div class="phase-sub">Income first · fix ops → prove 3 months clean → scale self-funded · real ~$3,961/mo now</div>
+</div>
+<div class="sec">
+  <div class="sec-title">Command Board <span class="badge" style="background:rgba(96,165,250,0.1);color:var(--blue)">income · protect · admin</span></div>
+  <div style="overflow-x:auto">
+  <table style="width:100%;border-collapse:collapse;font-size:11px">
+    <thead><tr style="text-align:left;color:var(--dim);border-bottom:1px solid var(--border-2)">
+      <th style="padding:6px 8px">#</th><th style="padding:6px 8px">Item</th><th style="padding:6px 8px">Phase</th><th style="padding:6px 8px">Timeline</th><th style="padding:6px 8px">Owner</th><th style="padding:6px 8px">Next action / 🚧 bottleneck</th></tr></thead>
+    <tbody style="color:var(--text)">
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">1</td><td style="padding:6px 8px"><b>Wilborn — fill</b></td><td style="padding:6px 8px">Stabilise</td><td style="padding:6px 8px">2–4 wk</td><td style="padding:6px 8px">Heather</td><td style="padding:6px 8px">Punch-list repairs → re-inspect → lease $1,350 · 🚧 failed inspection</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">2</td><td style="padding:6px 8px"><b>Kenilworth — collect</b></td><td style="padding:6px 8px">Stabilise</td><td style="padding:6px 8px">this wk</td><td style="padding:6px 8px">Angel/Cassy</td><td style="padding:6px 8px">⏳ reply: reconciled balance + HAP · 🚧 B2B May ledger error</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">3</td><td style="padding:6px 8px"><b>Alcove — evict + re-tenant</b></td><td style="padding:6px 8px">Stabilise</td><td style="padding:6px 8px">1–2 mo</td><td style="padding:6px 8px">Heather</td><td style="padding:6px 8px">⏳ reply: balance + timeline · 🚧 eviction process</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">4</td><td style="padding:6px 8px"><b>Hazelcrest — sell</b></td><td style="padding:6px 8px">Exit</td><td style="padding:6px 8px">ongoing</td><td style="padding:6px 8px">Patrick</td><td style="padding:6px 8px">Close → recycle to deposit · 🚧 buyer</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">5</td><td style="padding:6px 8px"><b>Insurance blanket quote</b></td><td style="padding:6px 8px">Optimise</td><td style="padding:6px 8px">~1 wk</td><td style="padding:6px 8px">Chich/Bill</td><td style="padding:6px 8px">Chase Steadily quote (sent Jun 2)</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">6</td><td style="padding:6px 8px"><b>Rent-to-market bumps</b></td><td style="padding:6px 8px">Optimise</td><td style="padding:6px 8px">renewals</td><td style="padding:6px 8px">PMs</td><td style="padding:6px 8px">Ken +$193 · Alcove +$80 · Lorain +$27</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">7</td><td style="padding:6px 8px"><b>Alcove tax appeal</b></td><td style="padding:6px 8px">Optimise</td><td style="padding:6px 8px">1–3 mo</td><td style="padding:6px 8px">Heather</td><td style="padding:6px 8px">File appeal ($130→~$50/mo)</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">8</td><td style="padding:6px 8px"><b>Income app — live feeds</b></td><td style="padding:6px 8px">Visibility</td><td style="padding:6px 8px">1–2 wk</td><td style="padding:6px 8px">Chich/Garry</td><td style="padding:6px 8px">Wire Mercury + Rentvine; forecast cockpit</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">9</td><td style="padding:6px 8px"><b>B2B claim — $14,920</b></td><td style="padding:6px 8px">Recover</td><td style="padding:6px 8px">in flight</td><td style="padding:6px 8px">Garry</td><td style="padding:6px 8px">✅ signed → gather exhibits → file DRE + civil</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">10</td><td style="padding:6px 8px"><b>AU tax return</b></td><td style="padding:6px 8px">Protect</td><td style="padding:6px 8px">due 31 Oct</td><td style="padding:6px 8px">Sleek/Chich</td><td style="padding:6px 8px">Prep deductions pack</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">11</td><td style="padding:6px 8px"><b>Global structure (estate/asset)</b></td><td style="padding:6px 8px">Protect</td><td style="padding:6px 8px">3–6 mo</td><td style="padding:6px 8px">Chich + pros</td><td style="padding:6px 8px">Engage CPA + attorney when ready</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">12</td><td style="padding:6px 8px"><b>De-Australia liquid rebalance</b></td><td style="padding:6px 8px">Protect</td><td style="padding:6px 8px">flexible</td><td style="padding:6px 8px">Chich</td><td style="padding:6px 8px">Stage rotation (already CGT-free)</td></tr>
+      <tr><td style="padding:6px 8px">13</td><td style="padding:6px 8px"><b>OpenSky + ANZ FF close</b></td><td style="padding:6px 8px">Admin</td><td style="padding:6px 8px">this wk</td><td style="padding:6px 8px">Patrick</td><td style="padding:6px 8px">Pay OpenSky overdue · close ANZ Frequent Flyer</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+<div class="foot">Command board · income first · v1 static (auto-feed from tracker next). Source: PRIORITY-STACK.md + collections-followup-tracker.json</div>
+</div><!-- /tab-board -->
+
 <!-- ═══════════════ TAB 1: DEAL UNDERWRITING ═══════════════ -->
-<div id="tab-deal" class="tab-panel active">
+<div id="tab-deal" class="tab-panel">
 <div class="fresh-stamp" style="color:#a0a0a8">deal data as of: Jul 11 08:15 · 33m ago</div>
 
 
@@ -950,11 +986,6 @@ function nCard(label,val,unit,color){
   </summary>
   <div class="proj-subtasks">
     
-<div class="st-row">
-  <span class="st-done">&#10003;</span>
-  <span class="st-text" style="color:#5a5a64;text-decoration:line-through">Banking stack set up (Wise + KBank + Mercury)</span>
-  <span class="st-owner" style="color:#60a5fa">Garry</span>
-</div>
 <div class="st-row">
   <span class="st-pending">&#9675;</span>
   <span class="st-text">Flights booked</span>
