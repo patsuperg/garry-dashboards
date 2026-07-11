@@ -7,9 +7,6 @@
 
 | # | Item | Detail | Trigger phrase |
 |---|---|---|---|
-<!-- HAP-OVERDUE-MARKER -->
-| 🟡 | **HAP overdue — 2026-07** | 2 properties unconfirmed as of day 10: 7596 Hazelcrest Dr Unit F, 5361 Wilborn Dr. Auto-flagged by avenue-payment-parser.py; clears itself once payment posts. | — |
-<!-- /HAP-OVERDUE-MARKER -->
 | 🟡 | **"Remote control" — needs Patrick to define it** | Asked to open a new Garry iTerm window + "turn on remote control." Window opened via osascript (unverified — computer-use screenshot access was declined). "Remote control" isn't an established term anywhere in the system; closest real mechanism is the frozen `--channels` Telegram bridge, but that wasn't assumed/touched without confirming that's what he means. | — (ask Patrick directly) |
 | 🔴 | **OpenSky card — activate + pay overdue balance** | Account ending 2152. "Payment due in 3 days" landed Jun 28 (due ~Jul 1) — may already be unpaid past due as of Jul 4. Activate via myaccount.openskycc.com or the number on the back of the card, then pay the balance in full immediately + set autopay. A 30-day-late report here wrecks the entire credit-building thesis. | — (in progress this session) |
 | 🟢 | **Winchelsea ($95K) — OFFER SENT, awaiting Heather** | Patrick explicitly overrode the 4BR-only buy-box gate 2026-07-04 — proceeding at $95,000 despite 3BR (recalc: Net CF $459/mo, DSCR 1.74, CoC 29% at Avenue's 9% PM). Offer SENT to Heather 2026-07-04 (msg 19f2c139adc4f33e) — $95K, 10-day inspection / 22-23 day appraisal / 30-day financing (foreign-national DSCR) / 37-40 day close / Empire Investing LLC. First deal actually transacting through Heather/Avenue — contingency structure spelled out explicitly since no prior precedent with her. Awaiting her reply. | — |
