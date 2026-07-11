@@ -1,14 +1,14 @@
 {
-  "generated": "2026-07-11T10:47:08.133969+07:00",
+  "generated": "2026-07-11T11:02:11.199796+07:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep",
+  "device": "Apple Watch + Eight Sleep + MFP",
   "coaching": "Short sleep (0.8h) and recovery in the red (5%). Keep today light \u2014 no hard training, protect the afternoon. Aim for bed by 9:30pm and a full 8h+ tonight to reset.",
   "today": {
     "date": "2026-07-11",
-    "spoons": 4,
+    "spoons": 3,
     "spoons_max": 12,
-    "spoons_label": "Restful \u2014 light movement, defer big decisions",
-    "spoons_color": "orange",
+    "spoons_label": "Red flag \u2014 recovery day",
+    "spoons_color": "red",
     "rings": {
       "sleep": {
         "value": 6,
@@ -26,26 +26,26 @@
         "subtitle": "HRV 8.2ms / RHR 84bpm"
       },
       "strain": {
-        "value": 1.8,
+        "value": 3.0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 1.8,
+          "value": 3.0,
           "max": 21,
-          "kcal": 89,
-          "steps": 868,
+          "kcal": 170,
+          "steps": 1675,
           "exercise_min": 4,
-          "hr_load": 7.8,
+          "hr_load": 12.1,
           "source": "json_export"
         },
-        "subtitle": "89kcal / 868st / 4min ex"
+        "subtitle": "170kcal / 1675st / 4min ex"
       },
       "stress": {
-        "value": 0,
+        "value": 67,
         "unit": "%",
-        "color": "gray",
-        "label": "no HR data",
-        "subtitle": "HR ?bpm vs RHR ?"
+        "color": "red",
+        "label": "high",
+        "subtitle": "HR 92bpm vs RHR 72"
       }
     },
     "sleep_breakdown": {
@@ -76,11 +76,11 @@
       "source": "Apple Health CSV 30d avg"
     },
     "nutrition": {
-      "protein_g": 0.0,
-      "carbs_g": 0.0,
-      "fat_g": 0.0,
-      "calories_kcal": 0,
-      "has_data": false
+      "protein_g": 87.5,
+      "carbs_g": 40.9,
+      "fat_g": 6.0,
+      "calories_kcal": 567,
+      "has_data": true
     }
   },
   "history": []
