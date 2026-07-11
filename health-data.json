@@ -1,14 +1,14 @@
 {
-  "generated": "2026-07-11T23:49:34.678775+07:00",
+  "generated": "2026-07-12T00:04:37.442401+07:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
   "coaching": "Short sleep (0.8h) and recovery in the red (5%). Keep today light \u2014 no hard training, protect the afternoon. Aim for bed by 9:30pm and a full 8h+ tonight to reset.",
   "today": {
-    "date": "2026-07-11",
-    "spoons": 2,
+    "date": "2026-07-12",
+    "spoons": 5,
     "spoons_max": 12,
-    "spoons_label": "Red flag \u2014 recovery day",
-    "spoons_color": "red",
+    "spoons_label": "Restful \u2014 light movement, defer big decisions",
+    "spoons_color": "orange",
     "rings": {
       "sleep": {
         "value": 6,
@@ -26,26 +26,25 @@
         "subtitle": "HRV 8.2ms / RHR 84bpm"
       },
       "strain": {
-        "value": 12.7,
+        "value": 0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 12.7,
+          "value": 0,
           "max": 21,
-          "kcal": 687,
-          "steps": 10021,
-          "exercise_min": 26,
-          "hr_load": 46.1,
-          "source": "json_export"
+          "kcal": 0,
+          "steps": 0,
+          "exercise_min": 0,
+          "hr_load": 0.0
         },
-        "subtitle": "687kcal / 10021st / 26min ex"
+        "subtitle": "0kcal / 0st / 0min ex"
       },
       "stress": {
-        "value": 90,
+        "value": 0,
         "unit": "%",
-        "color": "red",
-        "label": "high",
-        "subtitle": "HR 99bpm vs RHR 72"
+        "color": "gray",
+        "label": "no data",
+        "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
@@ -75,13 +74,7 @@
       "days_sampled": 0,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {
-      "protein_g": 0.0,
-      "carbs_g": 0.0,
-      "fat_g": 0.0,
-      "calories_kcal": 0,
-      "has_data": false
-    }
+    "nutrition": {}
   },
   "history": []
 }
