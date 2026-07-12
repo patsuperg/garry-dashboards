@@ -1,5 +1,14 @@
 # PENDING DECISIONS
 *Auto-generated 2026-07-04 (session end) · reviewed 2026-07-07 16:25 — all items below still live; nothing resolved this session*
+*Updated 2026-07-12 14:20 — Life OS dashboard v1 build: 1 new blocker added below (Tailscale Serve one-time enablement).*
+
+---
+
+## NEEDS PATRICK (2026-07-12 — Life OS build)
+
+| # | Item | Detail | Trigger phrase |
+|---|---|---|---|
+| 🟡 | **Tailscale Serve — one-time tailnet enablement (Life OS personal dashboard)** | Built the Life OS dashboard's PERSONAL view (`command-centre-personal.html` — tax/residency, phase bar, net-worth-adjacent content) and tried to publish it privately via `tailscale serve --bg --set-path=/life-os ...`. Tailscale returned: **"Serve is not enabled on your tailnet"** and requires a one-time click at `https://login.tailscale.com/f/serve?node=ntamGET5YC21CNTRL` — this is an interactive admin-console step, cannot be done non-interactively from the CLI. Everything else is done and safe in the meantime: the personal file exists locally only at `/Users/patrickdickson/AI/Claude/Infrastructure/private-dashboard/command-centre-personal.html` (not in any public repo), and the public `command-centre.html` (patsuperg.github.io-bound) has been verified to contain zero tax/net-worth/health/personal content. Once Patrick clicks the enablement link, re-run: `tailscale serve --bg --set-path=/life-os /Users/patrickdickson/AI/Claude/Infrastructure/private-dashboard/command-centre-personal.html`, then update the `TAILSCALE_SERVE_URL` constant in `command_centre_render.py` (near the top, `PRIVATE_DASH`/`OUT_PERSONAL` block) to the real URL from `tailscale serve status` (tailnet: `tail08d85e.ts.net`, node `pats-mac-mini`), then re-run the render script once to bake the real URL into the dashboard's Board tab. | "enable tailscale serve" / "click the link" |
 
 ---
 
