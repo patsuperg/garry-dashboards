@@ -250,7 +250,12 @@ function showTab(id){
 }
 document.addEventListener('DOMContentLoaded',function(){
   const saved=localStorage.getItem('cc-tab');
-  if(saved){showTab(saved);if(saved==='health')loadHealth();}
+  // Landing override (2026-07-12): Money Command Board is the new default.
+  // Returning visitors whose last tab was the retired Bangkok-move checklist
+  // ('bkk') or the old Blueprint landing ('bp'), or who have no saved tab,
+  // land on Money — never the stale move content.
+  if(!saved||saved==='bkk'||saved==='bp'){showTab('money');}
+  else{showTab(saved);if(saved==='health')loadHealth();}
 });
 
 // BKK checklist persistence
@@ -441,16 +446,25 @@ function nCard(label,val,unit,color){
 (function(){
   fetch('cc-integrity.json?t='+Date.now()).then(function(r){return r.json();}).then(function(d){
     var el=document.getElementById('cc-integrity-banner');
-    var bad=(d.panels||[]).filter(function(p){return p.status!=='ok';});
+    var panels=d.panels||[];
+    var failing=panels.filter(function(p){return p.status!=='ok'&&p.status!=='unverified';});
+    var unverified=panels.filter(function(p){return p.status==='unverified';});
     var checked=new Date(d.checked_at);
     var mins=Math.round((Date.now()-checked.getTime())/60000);
-    if(d.overall==='green'){
-      el.innerHTML='<div style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.3);color:#34d399;border-radius:10px;padding:8px 12px">🟢 All data verified fresh &amp; consistent · checked '+mins+'m ago</div>';
+    // Amber 'awaiting Patrick' rows — honest, not a failure. Rendered under either state.
+    var uvRows=unverified.map(function(p){
+      return '<div style="margin-top:4px;color:#fbbf24">🟠 <b>'+p.panel+'</b>: needs Patrick to reverify · '+(p.reasons||[]).join('; ')+'</div>';
+    }).join('');
+    if(failing.length===0){
+      var head=unverified.length
+        ? '🟢 Data verified fresh &amp; consistent · '+unverified.length+' figure awaiting your reverification · checked '+mins+'m ago'
+        : '🟢 All data verified fresh &amp; consistent · checked '+mins+'m ago';
+      el.innerHTML='<div style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.3);color:#34d399;border-radius:10px;padding:8px 12px">'+head+uvRows+'</div>';
     } else {
-      var rows=bad.map(function(p){
+      var rows=failing.map(function(p){
         return '<div style="margin-top:4px;color:#f0a">• <b>'+p.panel+'</b>: '+(p.reasons||[]).join('; ')+'</div>';
       }).join('');
-      el.innerHTML='<div style="background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.4);color:#f87171;border-radius:10px;padding:10px 12px">🔴 <b>'+bad.length+' data panel(s) failing integrity</b> · checked '+mins+'m ago · self-heal engaged'+rows+'</div>';
+      el.innerHTML='<div style="background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.4);color:#f87171;border-radius:10px;padding:10px 12px">🔴 <b>'+failing.length+' data panel(s) failing integrity</b> · checked '+mins+'m ago · self-heal engaged'+rows+uvRows+'</div>';
     }
   }).catch(function(){
     document.getElementById('cc-integrity-banner').innerHTML='<div style="background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.4);color:#f87171;border-radius:10px;padding:8px 12px">🔴 Integrity feed unreachable — freshness UNKNOWN</div>';
@@ -460,7 +474,8 @@ function nCard(label,val,unit,color){
 
 <!-- TAB NAV -->
 <div class="tab-nav">
-  <button class="tab-btn active" data-tab="deal"   onclick="showTab('deal')">Deals</button>
+  <button class="tab-btn active" data-tab="money"  onclick="showTab('money')">💰 Money</button>
+  <button class="tab-btn"        data-tab="deal"   onclick="showTab('deal')">Deals</button>
   <button class="tab-btn"        data-tab="ops"    onclick="showTab('ops')">Ops</button>
   <button class="tab-btn"        data-tab="health" onclick="showTab('health');loadHealth()">Health</button>
   <button class="tab-btn"        data-tab="bp"     onclick="showTab('bp');loadBP()">Blueprint</button>
@@ -468,9 +483,118 @@ function nCard(label,val,unit,color){
   <button class="tab-btn"        data-tab="arch"   onclick="showTab('arch')">Arch</button>
 </div>
 
+<!-- ═══════════════ TAB 0: MONEY COMMAND BOARD (landing) ═══════════════ -->
+<div id="tab-money" class="tab-panel active">
+<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 12 10:17 · 0m ago</div>
+
+<div class="phase-hero">
+  <div class="phase-label">Mission · Income Ops</div>
+  <div class="phase-title">MONEY COMMAND BOARD</div>
+  <div class="phase-sub">Section 8 income to A$20,000/mo. Not a growth problem — an OPS problem: collect what's owed, fill vacant doors, recover arrears.</div>
+</div>
+
+<div class="hero-grid">
+  <div class="hero-main">
+    <div class="hero-num"><span class="cur">A$</span>5,699</div>
+    <div class="hero-goal">of A$20,000/mo · North Star (S8 income = OPS problem)</div>
+    <div class="hero-bar"><div class="hero-fill" style="width:28%"></div></div>
+    <div class="hero-pct">28% · Gap A$14,301/mo</div>
+  </div>
+  <div class="hero-side">
+    <div class="side-tile">
+      <div class="side-v" style="color:var(--orange)">1</div>
+      <div class="side-l">Vacant Doors</div>
+    </div>
+    <div class="side-tile">
+      <div class="side-v" style="color:var(--green)">A$1,401</div>
+      <div class="side-l">Recoverable/mo</div>
+    </div>
+  </div>
+</div>
+<div class="sec">
+  <div class="sec-title">Cash Leaks — Fix These <span class="badge" style="background:rgba(248,113,113,0.1);color:#f87171">A$6,544 uncollected</span></div>
+  
+<div class="need-card" style="border-left-color:#f87171">
+  <div class="need-num" style="color:#f87171">✕</div>
+  <div class="need-body">
+    <div class="need-title">5361 Wilborn Dr — VACANT · recover A$1,401/mo</div>
+    <div class="need-ctx">VACANT — rent drop to $1,350 sent; re-tenant gated on occupancy inspection</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num" style="color:#fb923c">$</div>
+  <div class="need-body">
+    <div class="need-title">Avenue (STL 4 properties) — A$4,818 uncollected (day 12)</div>
+    <div class="need-ctx">Expected US$3,349 · received US$0 this month</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#fb923c">
+  <div class="need-num" style="color:#fb923c">$</div>
+  <div class="need-body">
+    <div class="need-title">B2B Realty (Ohio - phasing out) — A$1,726 uncollected (day 12)</div>
+    <div class="need-ctx">Expected US$1,200 · received US$0 this month</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#fbbf24">
+  <div class="need-num" style="color:#fbbf24">◆</div>
+  <div class="need-body">
+    <div class="need-title">Winchelsea ($95K) — OFFER SENT, awaiting Heather</div>
+    <div class="need-ctx">Patrick explicitly overrode the 4BR-only buy-box gate 2026-07-04 — proceeding at $95,000 despite 3BR (recalc: Net CF $45</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#fbbf24">
+  <div class="need-num" style="color:#fbbf24">◆</div>
+  <div class="need-body">
+    <div class="need-title">Tactical — pull 505 W25th's Owner Packet PDF</div>
+    <div class="need-ctx">June owner payment was only $216.56, no expense breakdown seen. Garry can pull via AppFolio portal — no approval needed,</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#fbbf24">
+  <div class="need-num" style="color:#fbbf24">◆</div>
+  <div class="need-body">
+    <div class="need-title">2 staged Heather drafts — awaiting Patrick's &quot;send&quot;</div>
+    <div class="need-ctx">Gmail MCP dropped mid-session before these fired. Full text in `~/AI/Claude/staged-drafts-2026-07-07.md`: (1) Fenwick HA</div>
+  </div>
+</div>
+<div class="need-card" style="border-left-color:#f87171">
+  <div class="need-num" style="color:#f87171">◆</div>
+  <div class="need-body">
+    <div class="need-title">B2B $14,920.05 — deadline COB Wed Jul 8 (TOMORROW)</div>
+    <div class="need-ctx">No action until deadline. If $0 received by COB Jul 8: DRE complaint packet is pre-built, ready to file same-day on Patr</div>
+  </div>
+</div>
+</div>
+<div class="sec">
+  <div class="sec-title">Collections by PM · this month</div>
+  
+<div class="income-row">
+  <div class="income-pm">Avenue (STL 4 properties)</div>
+  <div class="income-nums"><span style="color:#f87171">A$0</span><span class="income-sep"> of </span><span class="income-exp">A$4,818</span></div>
+  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:0%;background:#f87171"></div></div>
+  <div class="income-status" style="color:#f87171">A$4,818 OUTSTANDING</div>
+</div>
+<div class="income-row">
+  <div class="income-pm">B2B Realty (Ohio - phasing out)</div>
+  <div class="income-nums"><span style="color:#f87171">A$0</span><span class="income-sep"> of </span><span class="income-exp">A$1,726</span></div>
+  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:0%;background:#f87171"></div></div>
+  <div class="income-status" style="color:#f87171">A$1,726 OUTSTANDING</div>
+</div>
+  <div class="need-ctx" style="margin-top:8px;color:var(--dim)">Avenue STL: US$1,517 distributed in last 30d (1 transfer) · current-month distribution not yet received</div>
+</div>
+<div class="sec">
+  <div class="sec-title">Per-Door Net · worst first</div>
+  <div class="arch-card" style="padding:8px 12px">
+    <table class="arch-tbl"><thead><tr><th>Door</th><th>PM</th><th style="text-align:right">Net A$/mo</th></tr></thead>
+    <tbody><tr><td>7596 Hazelcrest Dr Unit F</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:var(--green);font-weight:700;text-align:right">A$445</td></tr><tr><td>124 Kenilworth Ave</td><td style="color:var(--dim)">Tactical</td><td style="color:var(--green);font-weight:700;text-align:right">A$860</td></tr><tr><td>505 W 25th St</td><td style="color:var(--dim)">Tactical</td><td style="color:var(--green);font-weight:700;text-align:right">A$1,421</td></tr><tr><td>516 Alcove Ave</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:var(--green);font-weight:700;text-align:right">A$1,446</td></tr><tr><td>132 Fenwick Dr</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:var(--green);font-weight:700;text-align:right">A$1,526</td></tr><tr><td>5361 Wilborn Dr</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:#f87171;font-weight:700;text-align:right">VACANT</td></tr></tbody></table>
+  </div>
+</div>
+
+<div class="foot">Auto-updated Sun Jul 12 2026 · 10:17 AM · 1 USD = A$1.4387 · <span class="dot" style="background:#34d399"></span>Income = the mission</div>
+</div><!-- /tab-money -->
+
 <!-- ═══════════════ TAB 1: DEAL UNDERWRITING ═══════════════ -->
-<div id="tab-deal" class="tab-panel active">
-<div class="fresh-stamp" style="color:#a0a0a8">deal data as of: Jul 12 08:15 · 1.6h ago</div>
+<div id="tab-deal" class="tab-panel">
+<div class="fresh-stamp" style="color:#a0a0a8">deal data as of: Jul 12 08:15 · 2.0h ago</div>
 
 
 <!-- PHASE HERO -->
@@ -518,12 +642,12 @@ function nCard(label,val,unit,color){
   </div>
 </div>
 
-<div class="foot">Auto-updated Sun Jul 12 2026 · 09:51 AM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
+<div class="foot">Auto-updated Sun Jul 12 2026 · 10:17 AM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
 </div><!-- /tab-deal -->
 
 <!-- ═══════════════ TAB 2: OPERATIONS & CASH FLOW ═══════════════ -->
 <div id="tab-ops" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 12 09:51 · 0m ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 12 10:17 · 0m ago</div>
 <!-- HERO NUMBERS -->
 <div class="hero-grid">
   <div class="hero-main">
@@ -595,7 +719,7 @@ function nCard(label,val,unit,color){
 <!-- INCOME -->
 <div class="sec">
   <div class="sec-title">Income Jul 2026 <span class="badge" style="background:rgba(52,211,153,0.1);color:var(--green)">A$0 of A$6,545</span></div>
-  <div class="fresh-stamp" style="color:#a0a0a8">income data as of: Jul 12 07:15 · 2.6h ago</div>
+  <div class="fresh-stamp" style="color:#a0a0a8">income data as of: Jul 12 07:15 · 3.0h ago</div>
   
 <div class="income-row">
   <div class="income-pm">Avenue (STL — 4 props)</div>
@@ -654,7 +778,7 @@ function nCard(label,val,unit,color){
     <div class="prop-grade" style="color:#fbbf24">B</div>
   </div>
   <div class="prop-addr">5361 Wilborn Dr</div>
-  <div class="prop-retenant" style="color:#f87171">Evernest claim pending; re-lease opportunity</div>
+  <div class="prop-retenant" style="color:#f87171">VACANT — rent drop to $1,350 sent; re-tenant gated o</div>
 </div>
 <div class="prop-tile">
   <div class="prop-top">
@@ -677,8 +801,64 @@ function nCard(label,val,unit,color){
 
 <!-- WAITING ON -->
 <div class="sec">
-  <div class="sec-title">Waiting On · 0 items</div>
-  <div class="empty">Nothing waiting on external parties.</div>
+  <div class="sec-title">Waiting On · 14 items</div>
+  
+<div class="wait-row">
+  <div class="wait-item">Portfolio forensic audit + Xero-style accounting system</div>
+  <div class="wait-from">TOP INITIATIVE — running independently in a separate terminal window, checkpointing per phase. Full brief: [[project_forensic_audit_2026_07_04]]. Check that win · </div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">B2B $14,920.05 total demand</div>
+  <div class="wait-from">Addendum sent Jul 1 → deadline COB Wed Jul 8. Calendar reminder set Jul 9 08:00 Bangkok. · </div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">💵 Earnest refund $2,002.26 (net $1,927.26)</div>
+  <div class="wait-from">Patrick accepted wire personally Jul 1. Awaiting Megan's CertifID secure link. · </div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">Kenilworth tenant collection</div>
+  <div class="wait-from">Approved Jul 3 — awaiting Tactical to issue the 30-day CARES Act notice. · </div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">Kenilworth compliance (roof/rodent)</div>
+  <div class="wait-from">$12,550 paid Jun 16, Lake-MHA deadline was Jun 25. Zero confirmation of completion. $430/mo HAP + $1,738 FMR upside riding on it. Check-in sent Jul 2, awaiting  · </div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">516 Alcove eviction</div>
+  <div class="wait-from">Avenue + attorney driving; awaiting summons/court date. No Patrick attendance needed. · </div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">🏚️ Wilborn re-tenant</div>
+  <div class="wait-from">Gated on City of Jennings occupancy inspection (no date). Heather actively calling. · </div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">📞 Talkatone (US number 334-304-6237)</div>
+  <div class="wait-from">Root cause confirmed account-side lock (not network/VPN — disproven across 2 clean networks). Escalated 2 ways Jul 4: Zendesk ticket #4519185 follow-up w/ recei · </div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">🩺 ADHD med sourcing — Bumrungrad vs Manarom</div>
+  <div class="wait-from">Manarom quoted ~half-price medication (฿20/tab vs ฿38/tab) but didn't answer the follow-up-fee question. Follow-up sent Jul 3, awaiting Khemika's reply before d · </div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">🛏️ SOLOMON mattress refund</div>
+  <div class="wait-from">Return filed (RN 772865378828066, ฿4,446.80). Seller decision due ~Jul 3 — escalate if stalled. · </div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">🏷️ Hazelcrest sale</div>
+  <div class="wait-from">Further $2K drop to ~$49K pre-approved Jun 24/26 — unconfirmed if live yet. · </div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">🚗 Ozicare refund</div>
+  <div class="wait-from">Cancellation CONFIRMED by Auto &amp; General Jul 2, backdated to 17 Jun as requested. Refund $ amount still unverified — a &quot;Complaint Response&quot; email has 3 unopened · </div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">🏠 Brooklyn vacate ledger ($6,174.46)</div>
+  <div class="wait-from">Buxton's number not itemised. No deadline forcing it — say &quot;ledger&quot; to chase. · </div>
+</div>
+<div class="wait-row">
+  <div class="wait-item">📺 YouTube Premium Thai switch</div>
+  <div class="wait-from">K PLUS card verified. Holding switch deliberately — AU sub runs to Jul 14. · </div>
+</div>
 </div>
 
 <!-- ACTIVE THREADS -->
@@ -691,7 +871,7 @@ function nCard(label,val,unit,color){
 </div>
 <div class="thread-row">
   <div class="thread-name">B2B Ohio → Tactical/Angel handover [P1]</div>
-  <div class="thread-status">May 16 transition deadline. Michael Drew response pending. Angel Chaney submitting LMHA + Lake County payee change. · 3 open · 1 waiting · 2 in progress</div>
+  <div class="thread-status">Tactical/Angel assuming both Ohio doors; LMHA + Lake County payee changes in progress. B2B $14,920 recovery demand outstanding. · 3 open · 1 waiting · 2 in progress</div>
 </div>
 <div class="thread-row">
   <div class="thread-name">Credit pipeline (US) [P2]</div>
@@ -1126,12 +1306,12 @@ function nCard(label,val,unit,color){
 </div>
 </div>
 
-<div class="foot">Auto-updated Sun Jul 12 2026 · 09:51 AM · 1 USD = A$1.4387 · <span class="dot" style="background:#34d399"></span>Live DB</div>
+<div class="foot">Auto-updated Sun Jul 12 2026 · 10:17 AM · 1 USD = A$1.4387 · <span class="dot" style="background:#34d399"></span>Live DB</div>
 </div><!-- /tab-ops -->
 
 <!-- ═══════════════ TAB 3: HEALTH ═══════════════ -->
 <div id="tab-health" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">health data as of: Jul 12 09:36 · 15m ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">health data as of: Jul 12 10:07 · 10m ago</div>
 <div id="health-render"><div style="text-align:center;padding:60px 0;color:#5a5a64;font-size:12px">Tap Health tab to load biometrics…</div></div>
 </div><!-- /tab-health -->
 
@@ -1140,11 +1320,18 @@ function nCard(label,val,unit,color){
 <!-- ═══════════════════════════════════════════════════════ -->
 <div id="tab-bkk" class="tab-panel">
 
-<!-- COUNTDOWN HERO -->
+<!-- ARCHIVED 2026-07-12: Patrick moved ~June 17 2026. This move checklist is
+     complete/historical. No nav button; kept for reference only — never the
+     default landing (see cc-tab restore override). -->
+<div style="background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.25);color:#34d399;border-radius:12px;padding:12px 14px;margin-bottom:16px">
+  ✅ <b>ARCHIVED — move complete.</b> Patrick relocated to Bangkok (~Jun 17 2026). This checklist is historical.
+</div>
+
+<!-- COUNTDOWN HERO (historical) -->
 <div class="bkk-hero">
-  <div id="bkk-countdown" class="bkk-days">-25</div>
-  <div class="bkk-label">Days to departure</div>
-  <div class="bkk-date">✈️ June 17, 2026 · Suvarnabhumi · Unit 1411, Ideo Mobi Sukhumvit 66</div>
+  <div id="bkk-countdown" class="bkk-days" style="color:#34d399">✓</div>
+  <div class="bkk-label">Move complete · archived</div>
+  <div class="bkk-date">✈️ Departed June 17, 2026 · now based in Bangkok</div>
 </div>
 
 <!-- OVERALL PROGRESS -->
@@ -1436,7 +1623,7 @@ function nCard(label,val,unit,color){
 <!--  SYSTEM BLUEPRINT & PERFORMANCE TAB                    -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <div id="tab-bp" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">logbook as of: Jul 12 01:55 · 7.9h ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">logbook as of: Jul 12 01:55 · 8.4h ago</div>
 <!-- SECTION 1: BUSINESS FLOW -->
 <div class="bp-flow">
   <div class="bp-flow-title">How the Business Works</div>
@@ -1702,7 +1889,7 @@ outreach_log   — action | sent_at | draft_saved</div>
 <!--  CREDIT & CAPITAL PIPELINE TAB                          -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <div id="tab-credit" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">credit data as of: Jul 12 00:19 · 9.5h ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">credit data as of: Jul 12 00:19 · 10.0h ago</div>
 
 <div class="arch-section">
   <div class="arch-title">Goal</div>
