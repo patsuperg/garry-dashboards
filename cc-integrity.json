@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-07-12T03:27:53.463775+00:00",
+  "checked_at": "2026-07-12T03:32:56.066574+00:00",
   "overall": "green",
   "panels": [
     {
@@ -9,7 +9,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 0.2
+      "measured_age_hours": 0.3
     },
     {
       "id": "pending",
@@ -18,7 +18,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 0.2
+      "measured_age_hours": 0.3
     },
     {
       "id": "threads",
@@ -27,18 +27,16 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 0.2
+      "measured_age_hours": 0.3
     },
     {
       "id": "capital",
       "panel": "Deployable capital",
       "sla_hours": 336,
       "money_source": true,
-      "status": "unverified",
-      "reasons": [
-        "last_verified is 82d old (max 21d) \u2014 unverified money figure"
-      ],
-      "measured_age_hours": 0.2
+      "status": "ok",
+      "reasons": [],
+      "measured_age_hours": 0.0
     }
   ]
 }
