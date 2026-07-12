@@ -231,6 +231,12 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .tab-btn{flex:1;min-width:52px;padding:8px 4px;font-size:11px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;background:transparent;border:none;color:var(--dim);border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all 0.15s;white-space:nowrap}
 .tab-btn.active{background:var(--surface-2);color:var(--text);border:1px solid var(--border-2)}
 
+/* PERSONAL|BUSINESS view toggle (Life OS v1, 2026-07-12) — private-file only,
+   never emitted on the public build (no data-view="personal" nodes exist there) */
+.view-personal-block{display:none}
+[data-view="personal"]{display:none}
+#view-btn-personal.active,#view-btn-business.active{background:var(--surface-2);color:var(--text);border:1px solid var(--border-2)}
+
 @media(max-width:540px){
   .hero-grid{grid-template-columns:1fr}
   .props{grid-template-columns:repeat(2,1fr)}
@@ -241,6 +247,24 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 }
 </style>
 <script>
+function setView(view){
+  document.querySelectorAll('[data-view="business"]').forEach(el=>{el.style.display=(view==='business')?'':'none';});
+  document.querySelectorAll('[data-view="personal"]').forEach(el=>{el.style.display=(view==='personal')?'':'none';});
+  var vb=document.getElementById('view-btn-business'), vp=document.getElementById('view-btn-personal');
+  if(vb)vb.classList.toggle('active',view==='business');
+  if(vp)vp.classList.toggle('active',view==='personal');
+  localStorage.setItem('cc-view',view);
+  // Keep the active tab valid for the new view — jump to a sane default if the
+  // currently-active tab just got hidden.
+  var activePanel=document.querySelector('.tab-panel.active');
+  if(activePanel && activePanel.hasAttribute('data-view') && activePanel.getAttribute('data-view')!==view){
+    showTab(view==='personal'?'tax':'money');
+  }
+}
+document.addEventListener('DOMContentLoaded',function(){
+  var savedView=localStorage.getItem('cc-view')||'business';
+  if(document.getElementById('view-btn-personal'))setView(savedView);
+});
 function showTab(id){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
@@ -472,20 +496,23 @@ function nCard(label,val,unit,color){
 })();
 </script>
 
+
+
 <!-- TAB NAV -->
 <div class="tab-nav">
-  <button class="tab-btn active" data-tab="money"  onclick="showTab('money')">💰 Money</button>
-  <button class="tab-btn"        data-tab="deal"   onclick="showTab('deal')">Deals</button>
-  <button class="tab-btn"        data-tab="ops"    onclick="showTab('ops')">Ops</button>
-  <button class="tab-btn"        data-tab="health" onclick="showTab('health');loadHealth()">Health</button>
-  <button class="tab-btn"        data-tab="bp"     onclick="showTab('bp');loadBP()">Blueprint</button>
-  <button class="tab-btn"        data-tab="credit" onclick="showTab('credit')">💳 Credit</button>
-  <button class="tab-btn"        data-tab="arch"   onclick="showTab('arch')">Arch</button>
+  <button class="tab-btn active" data-tab="money"  data-view="business" onclick="showTab('money')">💰 Money</button>
+  <button class="tab-btn"        data-tab="deal"   data-view="business" onclick="showTab('deal')">Deals</button>
+  <button class="tab-btn"        data-tab="ops"    data-view="business" onclick="showTab('ops')">Ops</button>
+  
+  <button class="tab-btn"        data-tab="bp"     data-view="business" onclick="showTab('bp');loadBP()">Blueprint</button>
+  <button class="tab-btn"        data-tab="credit" data-view="business" onclick="showTab('credit')">💳 Credit</button>
+  <button class="tab-btn"        data-tab="arch"   data-view="business" onclick="showTab('arch')">Arch</button>
+  
 </div>
 
 <!-- ═══════════════ TAB 0: MONEY COMMAND BOARD (landing) ═══════════════ -->
 <div id="tab-money" class="tab-panel active">
-<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 12 13:52 · 0m ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 12 14:22 · 0m ago</div>
 
 <div class="phase-hero">
   <div class="phase-label">Mission · Income Ops</div>
@@ -621,7 +648,19 @@ function nCard(label,val,unit,color){
 </div>
 <div class="sec">
   <div class="sec-title">Collections by PM · this month</div>
-  <div class="empty">No PM expectations loaded.</div>
+  
+<div class="income-row">
+  <div class="income-pm">Avenue (STL 4 properties)</div>
+  <div class="income-nums"><span style="color:#f87171">A$0</span><span class="income-sep"> of </span><span class="income-exp">A$3,417</span></div>
+  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:0%;background:#f87171"></div></div>
+  <div class="income-status" style="color:#f87171">A$3,417 OUTSTANDING</div>
+</div>
+<div class="income-row">
+  <div class="income-pm">Tactical (Ohio incoming Jun)</div>
+  <div class="income-nums"><span style="color:#f87171">A$0</span><span class="income-sep"> of </span><span class="income-exp">A$2,282</span></div>
+  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:0%;background:#f87171"></div></div>
+  <div class="income-status" style="color:#f87171">A$2,282 OUTSTANDING</div>
+</div>
   <div class="need-ctx" style="margin-top:8px;color:var(--dim)">Avenue STL: US$1,517 distributed in last 30d (1 transfer) · current-month distribution not yet received</div>
 </div>
 <div class="sec">
@@ -632,12 +671,108 @@ function nCard(label,val,unit,color){
   </div>
 </div>
 
-<div class="foot">Auto-updated Sun Jul 12 2026 · 01:52 PM · 1 USD = A$1.4387 · <span class="dot" style="background:#34d399"></span>Income = the mission</div>
+
+<div class="sec">
+  <div class="sec-title">PM Accountability Scorecard <span class="badge" style="background:rgba(248,113,113,0.15);color:#f87171">⚠ RED-MONTH ESCALATION · Avenue Residential</span></div>
+  <div class="need-ctx" style="color:var(--dim);margin-bottom:10px">Commandment IX — income leaks from unmanaged managers, not bad houses. Two PMs, 4 hard SLAs, scored monthly (2026-07). Remit-day-aware; honest "n/a — needs feed" where no data source exists yet.</div>
+  
+<div class="arch-card" style="padding:12px 14px;margin-bottom:10px;border-left:3px solid #f87171">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <div style="font-size:13px;font-weight:700;color:var(--text)">Avenue Residential
+      <span style="color:var(--dim);font-weight:400;font-size:11px">· STL</span><span class="badge" style="background:rgba(248,113,113,0.15);color:#f87171;margin-left:8px">⚠ RED MONTH</span></div>
+    <div style="font-size:22px;font-weight:800;color:#f87171">46<span style="font-size:11px;color:var(--dim);font-weight:400">/100</span></div>
+  </div>
+  <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:2px">overall · mean of 3 of 4 computable SLAs</div>
+  
+<div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-top:1px solid rgba(148,163,184,0.08)">
+  <div style="flex:0 0 46px;text-align:center;font-weight:800;font-size:15px;color:#fbbf24">79</div>
+  <div style="flex:1">
+    <div style="font-size:12px;color:var(--text);font-weight:600">Collections %
+      <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#fbbf24;margin-left:5px"></span></div>
+    <div class="need-ctx" style="color:var(--dim);font-size:11px;margin-top:2px">US$2,837 of US$3,596 over 3 occupied doors · within grace (day 12 of 10-15)</div>
+    <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:3px">trend 54% → 55% → 79% ▲ improving</div>
+  </div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-top:1px solid rgba(148,163,184,0.08)">
+  <div style="flex:0 0 46px;text-align:center;font-weight:800;font-size:15px;color:#f87171">59</div>
+  <div style="flex:1">
+    <div style="font-size:12px;color:var(--text);font-weight:600">Vacancy / days-to-lease
+      <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#f87171;margin-left:5px"></span></div>
+    <div class="need-ctx" style="color:var(--dim);font-size:11px;margin-top:2px">1 open vacancy · 41d longest (target ≤30d to re-lease)</div>
+    
+  </div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-top:1px solid rgba(148,163,184,0.08)">
+  <div style="flex:0 0 46px;text-align:center;font-weight:800;font-size:15px;color:#94a3b8">n/a</div>
+  <div style="flex:1">
+    <div style="font-size:12px;color:var(--text);font-weight:600">Maint. turnaround
+      <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#94a3b8;margin-left:5px"></span></div>
+    <div class="need-ctx" style="color:var(--dim);font-size:11px;margin-top:2px">n/a — needs feed</div>
+    
+  </div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-top:1px solid rgba(148,163,184,0.08)">
+  <div style="flex:0 0 46px;text-align:center;font-weight:800;font-size:15px;color:#f87171">0</div>
+  <div style="flex:1">
+    <div style="font-size:12px;color:var(--text);font-weight:600">Inspection pass-rate
+      <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#f87171;margin-left:5px"></span></div>
+    <div class="need-ctx" style="color:var(--dim);font-size:11px;margin-top:2px">0/1 known inspection events passed (exceptions feed = failures only; partial view)</div>
+    
+  </div>
+</div>
+</div>
+<div class="arch-card" style="padding:12px 14px;margin-bottom:10px;border-left:3px solid #fbbf24">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <div style="font-size:13px;font-weight:700;color:var(--text)">Tactical
+      <span style="color:var(--dim);font-weight:400;font-size:11px">· OH</span></div>
+    <div style="font-size:22px;font-weight:800;color:#fbbf24">100<span style="font-size:11px;color:var(--dim);font-weight:400">/100</span></div>
+  </div>
+  <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:2px">overall · mean of 1 of 4 computable SLAs · low confidence — most SLAs unmeasurable this month</div>
+  
+<div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-top:1px solid rgba(148,163,184,0.08)">
+  <div style="flex:0 0 46px;text-align:center;font-weight:800;font-size:15px;color:#94a3b8">n/a</div>
+  <div style="flex:1">
+    <div style="font-size:12px;color:var(--text);font-weight:600">Collections %
+      <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#94a3b8;margin-left:5px"></span></div>
+    <div class="need-ctx" style="color:var(--dim);font-size:11px;margin-top:2px">pending — remit day 16, 4d out; 68% collected so far (2 doors, not yet penalised)</div>
+    <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:3px">trend 107% → 98% → 68% ▼ declining</div>
+  </div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-top:1px solid rgba(148,163,184,0.08)">
+  <div style="flex:0 0 46px;text-align:center;font-weight:800;font-size:15px;color:#34d399">100</div>
+  <div style="flex:1">
+    <div style="font-size:12px;color:var(--text);font-weight:600">Vacancy / days-to-lease
+      <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#34d399;margin-left:5px"></span></div>
+    <div class="need-ctx" style="color:var(--dim);font-size:11px;margin-top:2px">no open vacancies — every door leased</div>
+    
+  </div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-top:1px solid rgba(148,163,184,0.08)">
+  <div style="flex:0 0 46px;text-align:center;font-weight:800;font-size:15px;color:#94a3b8">n/a</div>
+  <div style="flex:1">
+    <div style="font-size:12px;color:var(--text);font-weight:600">Maint. turnaround
+      <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#94a3b8;margin-left:5px"></span></div>
+    <div class="need-ctx" style="color:var(--dim);font-size:11px;margin-top:2px">n/a — needs feed</div>
+    
+  </div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-top:1px solid rgba(148,163,184,0.08)">
+  <div style="flex:0 0 46px;text-align:center;font-weight:800;font-size:15px;color:#94a3b8">n/a</div>
+  <div style="flex:1">
+    <div style="font-size:12px;color:var(--text);font-weight:600">Inspection pass-rate
+      <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#94a3b8;margin-left:5px"></span></div>
+    <div class="need-ctx" style="color:var(--dim);font-size:11px;margin-top:2px">n/a — needs feed</div>
+    
+  </div>
+</div>
+</div>
+</div>
+<div class="foot">Auto-updated Sun Jul 12 2026 · 02:22 PM · 1 USD = A$1.4387 · <span class="dot" style="background:#34d399"></span>Income = the mission</div>
 </div><!-- /tab-money -->
 
 <!-- ═══════════════ TAB 1: DEAL UNDERWRITING ═══════════════ -->
 <div id="tab-deal" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">deal data as of: Jul 12 08:15 · 5.6h ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">deal data as of: Jul 12 08:15 · 6.1h ago</div>
 
 
 <!-- PHASE HERO -->
@@ -685,12 +820,12 @@ function nCard(label,val,unit,color){
   </div>
 </div>
 
-<div class="foot">Auto-updated Sun Jul 12 2026 · 01:52 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
+<div class="foot">Auto-updated Sun Jul 12 2026 · 02:22 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
 </div><!-- /tab-deal -->
 
 <!-- ═══════════════ TAB 2: OPERATIONS & CASH FLOW ═══════════════ -->
 <div id="tab-ops" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 12 13:52 · 0m ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 12 14:22 · 0m ago</div>
 <!-- HERO NUMBERS -->
 <div class="hero-grid">
   <div class="hero-main">
@@ -761,9 +896,29 @@ function nCard(label,val,unit,color){
 
 <!-- INCOME -->
 <div class="sec">
-  <div class="sec-title">Income Jul 2026 <span class="badge" style="background:rgba(52,211,153,0.1);color:var(--green)">A$0 of A$0</span></div>
-  <div class="fresh-stamp" style="color:#a0a0a8">income data as of: Jul 12 11:09 · 2.7h ago</div>
+  <div class="sec-title">Income Jul 2026 <span class="badge" style="background:rgba(52,211,153,0.1);color:var(--green)">A$0 of A$5,699</span></div>
+  <div class="fresh-stamp" style="color:#a0a0a8">income data as of: Jul 12 11:09 · 3.2h ago</div>
   
+<div class="income-row">
+  <div class="income-pm">Avenue (STL — 4 props)</div>
+  <div class="income-nums">
+    <span style="color:#f87171">A$0</span>
+    <span class="income-sep"> of </span>
+    <span class="income-exp">A$3,417</span>
+  </div>
+  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:0%;background:#f87171"></div></div>
+  <div class="income-status" style="color:#f87171">A$3,417 OUTSTANDING</div>
+</div>
+<div class="income-row">
+  <div class="income-pm">Tactical Ohio (incoming)</div>
+  <div class="income-nums">
+    <span style="color:#f87171">A$0</span>
+    <span class="income-sep"> of </span>
+    <span class="income-exp">A$2,282</span>
+  </div>
+  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:0%;background:#f87171"></div></div>
+  <div class="income-status" style="color:#f87171">A$2,282 OUTSTANDING</div>
+</div>
 </div>
 
 <!-- PORTFOLIO -->
@@ -1329,14 +1484,10 @@ function nCard(label,val,unit,color){
 </div>
 </div>
 
-<div class="foot">Auto-updated Sun Jul 12 2026 · 01:52 PM · 1 USD = A$1.4387 · <span class="dot" style="background:#34d399"></span>Live DB</div>
+<div class="foot">Auto-updated Sun Jul 12 2026 · 02:22 PM · 1 USD = A$1.4387 · <span class="dot" style="background:#34d399"></span>Live DB</div>
 </div><!-- /tab-ops -->
 
-<!-- ═══════════════ TAB 3: HEALTH ═══════════════ -->
-<div id="tab-health" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">health data as of: Jul 12 13:38 · 14m ago</div>
-<div id="health-render"><div style="text-align:center;padding:60px 0;color:#5a5a64;font-size:12px">Tap Health tab to load biometrics…</div></div>
-</div><!-- /tab-health -->
+
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <!--  BANGKOK MOVE TAB                                       -->
@@ -1646,7 +1797,7 @@ function nCard(label,val,unit,color){
 <!--  SYSTEM BLUEPRINT & PERFORMANCE TAB                    -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <div id="tab-bp" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">logbook as of: Jul 12 01:55 · 12.0h ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">logbook as of: Jul 12 01:55 · 12.5h ago</div>
 <!-- SECTION 1: BUSINESS FLOW -->
 <div class="bp-flow">
   <div class="bp-flow-title">How the Business Works</div>
@@ -1912,7 +2063,7 @@ outreach_log   — action | sent_at | draft_saved</div>
 <!--  CREDIT & CAPITAL PIPELINE TAB                          -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <div id="tab-credit" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">credit data as of: Jul 12 00:19 · 13.6h ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">credit data as of: Jul 12 00:19 · 14.1h ago</div>
 
 <div class="arch-section">
   <div class="arch-title">Goal</div>
@@ -1932,6 +2083,8 @@ outreach_log   — action | sent_at | draft_saved</div>
     <tbody><tr><td>5361 Wilborn Dr</td><td>VACANT</td><td>−$1,400/mo</td><td>Rehab closeout → ready to release</td></tr><tr><td>124 Kenilworth</td><td>LEASED</td><td>+$832/mo upside</td><td>Angel: rent increase / re-inspection</td></tr><tr><td>505 W 25th</td><td>LEASED</td><td>—</td><td>Angel: reinspection / asset production</td></tr><tr><td>B2B Ohio</td><td>DISPUTE</td><td>$ owed TBD</td><td>Concrete dispute movement only</td></tr></tbody></table></div></div>
 
 </div><!-- /tab-credit -->
+
+
 
 </div>
 </body>

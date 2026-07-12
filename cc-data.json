@@ -1,97 +1,68 @@
 {
-  "generated": "2026-07-12T07:20:51.496541+00:00",
+  "generated": "2026-07-12T07:22:56.789871+00:00",
   "threads": {
-    "p0": [
-      {
-        "name": "Wilborn rehab [P0]",
-        "status": "Contractor fell through",
-        "status_text": "Contractor fell through",
-        "owner": "Heather (Avenue)",
-        "p_tier": "P0",
-        "cost_of_delay_per_day_usd": 87
-      }
-    ],
-    "p1": [
-      {
-        "name": "B2B Ohio \u2192 Tactical/Angel handover [P1]",
-        "status": "Tactical/Angel assuming both Ohio doors; LMHA + Lake County payee changes in progress",
-        "status_text": "Tactical/Angel assuming both Ohio doors; LMHA + Lake County payee changes in progress",
-        "owner": "patrick",
-        "p_tier": "P1",
-        "cost_of_delay_per_day_usd": null
-      }
-    ],
-    "p2": [
-      {
-        "name": "Credit pipeline (US) [P2]",
-        "status": "Personal + Empire Investing credit building",
-        "status_text": "Personal + Empire Investing credit building",
-        "owner": "patrick",
-        "p_tier": "P2",
-        "cost_of_delay_per_day_usd": null
-      },
-      {
-        "name": "Hazelcrest sale [P2]",
-        "status": "Listed for sale",
-        "status_text": "Listed for sale",
-        "owner": "GW Carter",
-        "p_tier": "P2",
-        "cost_of_delay_per_day_usd": null
-      }
-    ],
-    "count": 4
+    "p0": [],
+    "p1": [],
+    "p2": [],
+    "count": 2
   },
   "needs_patrick": [
     {
       "num": 1,
+      "title": "Tailscale Serve \u2014 one-time tailnet enablement (Life OS personal dashboard)",
+      "context": "Built the Life OS dashboard's PERSONAL view (`command-centre-personal.html` \u2014 tax/residency, phase bar, net-worth-adjacent content) and tried to publish it privately via `tailscale serve --bg --set-pa",
+      "priority": "normal"
+    },
+    {
+      "num": 2,
       "title": "\"Remote control\" \u2014 needs Patrick to define it",
       "context": "Asked to open a new Garry iTerm window + \"turn on remote control.\" Window opened via osascript (unverified \u2014 computer-use screenshot access was declined). \"Remote control\" isn't an established term an",
       "priority": "normal"
     },
     {
-      "num": 2,
+      "num": 3,
       "title": "OpenSky card \u2014 activate + pay overdue balance",
       "context": "Account ending 2152. \"Payment due in 3 days\" landed Jun 28 (due ~Jul 1) \u2014 may already be unpaid past due as of Jul 4. Activate via myaccount.openskycc.com or the number on the back of the card, then p",
       "priority": "high"
     },
     {
-      "num": 3,
+      "num": 4,
       "title": "Winchelsea ($95K) \u2014 OFFER SENT, awaiting Heather",
       "context": "Patrick explicitly overrode the 4BR-only buy-box gate 2026-07-04 \u2014 proceeding at $95,000 despite 3BR (recalc: Net CF $459/mo, DSCR 1.74, CoC 29% at Avenue's 9% PM). Offer SENT to Heather 2026-07-04 (m",
       "priority": "low"
     },
     {
-      "num": 4,
+      "num": 5,
       "title": "Ameren MO \u2014 new service call",
       "context": "800-552-7583, ~5 min, ID-verification requires his voice. Best window: 7-9pm ICT (lands at US open, shortest queues).",
       "priority": "normal"
     },
     {
-      "num": 5,
+      "num": 6,
       "title": "Tactical \u2014 pull 505 W25th's Owner Packet PDF",
       "context": "June owner payment was only $216.56, no expense breakdown seen. Garry can pull via AppFolio portal \u2014 no approval needed, just flagging it's not yet done.",
       "priority": "normal"
     },
     {
-      "num": 6,
+      "num": 7,
       "title": "FB Marketplace re-login",
       "context": "Needs Laura's 2FA to bring the sold-cascade automation live. PARKED per Patrick \u2014 Melbourne-only, not needed until ~Aug 12-13 return. Do not resurface before then.",
       "priority": "normal"
     },
     {
-      "num": 7,
+      "num": 8,
       "title": "Lindia comparative table (Elmdale/Widefields/Haley) \u2014 corrected version awaiting sign-off",
       "context": "Session ran rough (self-audit in LEARNING-LOG.md 2026-07-06) \u2014 Patrick has the assessment + fix plan, has NOT yet given go-ahead to execute the rebuild. Do not resend the table until he explicitly say",
       "priority": "normal"
     },
     {
-      "num": 8,
+      "num": 9,
       "title": "2 staged Heather drafts \u2014 awaiting Patrick's \"send\"",
       "context": "Gmail MCP dropped mid-session before these fired. Full text in `~/AI/Claude/staged-drafts-2026-07-07.md`: (1) Fenwick HAP nudge #2 \u2014 push Heather to CALL Ms. Syndor (silent since Jun 17, $2,636 held);",
       "priority": "normal"
     },
     {
-      "num": 9,
+      "num": 10,
       "title": "B2B $14,920.05 \u2014 deadline COB Wed Jul 8 (TOMORROW)",
       "context": "No action until deadline. If $0 received by COB Jul 8: DRE complaint packet is pre-built, ready to file same-day on Patrick's go.",
       "priority": "high"
