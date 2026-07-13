@@ -6,7 +6,7 @@
       "zip": "44052",
       "status": "LEASED",
       "rent_gross": 1383,
-      "rent_net": 500,
+      "rent_net": 988,
       "pm": "Tactical",
       "section_8": true,
       "notes": "3BR/1.5ba/1,098sqft; net tax $892.50 but $574.76 delinquency+penalty owed \u2014 flag",
@@ -25,10 +25,10 @@
       "parcel": "02-01-003-186-005",
       "property_tax_annual": 892.5,
       "property_tax_source": "Lorain County Auditor (net; gross $1,981.58; +$574.76 delinquency/penalty owed)",
-      "financed": true,
-      "lender": "ICG10 Capital LLC (originator) / Fay Servicing (servicer)",
-      "debt_service_monthly": 488,
-      "financing_note": "Bought cash Mar 2025 @ $105k (Black Tie Title), then CASH-OUT REFI ~Jul 2025: $70,000, 30-yr DSCR. Servicer Fay Servicing (mortgagee PO Box 7047 Troy MI). EXACT rate/P&I NOT in any Drive/Gmail doc (no CD/note on file) \u2014 P&I ~$488/mo ESTIMATE ($70k/30yr @ ~7.3-7.6%, ICG10 foreign-national DSCR quotes); pull recorded note or Fay statement to confirm. This debt service had NEVER been counted before 2026-07-12."
+      "financed": false,
+      "lender": null,
+      "debt_service_monthly": 0,
+      "financing_note": "UNFINANCED / owned free & clear per Patrick 2026-07-13. The ICG10 Capital LLC / Fay Servicing loan was an APPLICATION ONLY that never funded \u2014 no debt-service ACH appears in ~14mo of bank history and Patrick directly confirmed 505 is not mortgaged. Prior audit (2026-07-12) wrongly marked it financed because a signed $70k/30yr cash-out finance application existed and Fay appeared as mortgagee on the Steadily insurance cert. RESOLVED-per-Patrick; a 2-min confirm (pull recorded note / Fay statement) is still advised since Fay was listed as mortgagee. Audit trail retained in FUNDAMENTALS Part G0."
     },
     {
       "address": "7596 Hazelcrest Dr Unit F, Hazelwood, MO 63042",
@@ -176,19 +176,19 @@
       "financed": true,
       "lender": "Michael Ciatto / Ciatto Consulting LLC (seller finance, purchase-money note)",
       "debt_service_monthly": 532.24,
-      "financing_note": "Seller finance, closed 12/26/2025: $100k price / $80,000 note @ 7% / $532.24/mo (60 installments from 1/1/2026) / balloon $75,997.07 due 1/1/2031 (30-yr amort). Borrower Empire Investing LLC + Patrick jointly. Already reflected in stored net."
+      "financing_note": "Seller finance, closed 12/26/2025: $100k price / $80,000 note @ 7% / $532.24/mo (60 installments from 1/1/2026) / balloon $75,997.07 due 1/1/2031 (30-yr amort). Borrower Empire Investing LLC + Patrick jointly. Already reflected in stored net. PLACEHOLDER: Patrick is sending the full signed seller-finance agreement separately \u2014 reconcile exact rate/balloon/payoff terms against it when it arrives."
     }
   ],
   "totals": {
     "gross_monthly": 6458,
-    "net_monthly": 3473,
+    "net_monthly": 3961,
     "target_monthly": 20000,
-    "progress_pct": 17.4,
+    "progress_pct": 19.8,
     "property_count": 6,
-    "_note": "Excludes Wilborn (VACANT). net_monthly is TRUE net AFTER debt service: 505 (Fay ~$488/mo) + Kenilworth (Ciatto $532.24/mo) subtracted. Corrected 2026-07-12 (insurance-DD audit) \u2014 was $3,961 which omitted 505's debt.",
-    "debt_service_total_monthly": 1020.24
+    "_note": "Excludes Wilborn (VACANT). net_monthly is TRUE net AFTER debt service: only Kenilworth (Ciatto $532.24/mo) subtracted. 505 is UNFINANCED (owned free & clear per Patrick 2026-07-13; prior ICG10/Fay 'loan' was an application that never funded) - its ~$488/mo was reversed out. Restored net = $3,961.",
+    "debt_service_total_monthly": 532.24
   },
-  "updated": "2026-07-12T19:01:16.350487+00:00",
+  "updated": "2026-07-13T19:01:15.959885+00:00",
   "verified_by": "data-refresh.py",
-  "lease_windows_generated_at": "2026-07-12T19:01:18.733804+00:00"
+  "lease_windows_generated_at": "2026-07-13T19:01:16.625075+00:00"
 }
