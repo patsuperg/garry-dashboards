@@ -1,6 +1,6 @@
 {
-  "checked_at": "2026-07-13T07:24:48.680661+00:00",
-  "overall": "green",
+  "checked_at": "2026-07-13T07:29:53.264775+00:00",
+  "overall": "red",
   "panels": [
     {
       "id": "portfolio",
@@ -9,16 +9,18 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 24.0
+      "measured_age_hours": 24.1
     },
     {
       "id": "pending",
       "panel": "Needs-Patrick / Waiting-on",
       "sla_hours": 24,
       "money_source": false,
-      "status": "ok",
-      "reasons": [],
-      "measured_age_hours": 24.0
+      "status": "stale",
+      "reasons": [
+        "content unchanged 24h > SLA 24h"
+      ],
+      "measured_age_hours": 24.1
     },
     {
       "id": "threads",
@@ -27,7 +29,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 1.8
+      "measured_age_hours": 1.9
     },
     {
       "id": "capital",
@@ -45,7 +47,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 24.1
+      "measured_age_hours": 24.2
     },
     {
       "id": "roadmap",
@@ -54,7 +56,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 24.1
+      "measured_age_hours": 24.2
     }
   ]
 }
