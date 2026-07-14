@@ -12,6 +12,18 @@
 
 ---
 
+## NEEDS PATRICK — empinv.com EMAIL MIGRATION (2026-07-14, Chich)
+
+Email is now **fully independent of spartansuppz** at the DNS/mail layer (verified via dig + Cloudflare API 2026-07-14): MX → `smtp.google.com` (Google Workspace on empinv.com, admin pat@empinv.com), SPF → Google, DMARC p=none live, zero spartansuppz/improvmx references in DNS. Three items remain — each is browser/OAuth/billing-gated, so each is a Patrick one-tap. I do the DNS/CLI half of each.
+
+| # | Item | Detail | Trigger phrase |
+|---|---|---|---|
+| 🟡 | **DKIM — generate in admin.google.com (2 min, then I finish it)** | Google Workspace DKIM keys can ONLY be generated in the Admin console — there is NO API for it, so I genuinely can't do this half. Steps: (1) go to **admin.google.com** → **Apps → Google Workspace → Gmail → Authenticate email**; (2) select empinv.com, prefix `google`, key length **2048**, click **Generate new record**; (3) it shows a TXT with host `google._domainkey` and a long `v=DKIM1; k=rsa; p=…` value — **paste that whole value to me**. Then I run `~/AI/Claude/Infrastructure/migration-prep/cf-add-record.sh TXT google._domainkey "<value>"` to publish it on Cloudflare, remove the stale privateemail `default._domainkey` record, and confirm via dig — after which you click **Start authentication** in the console. (Stale `default._domainkey` is harmless meanwhile: receivers only check the selector named in a signature.) | "here's the DKIM record" |
+| 🟡 | **EmpinvDrive OAuth — one login unlocks BOTH backup-sink move AND file-org** | The `EmpinvDrive:` rclone remote is pre-created but has an **empty token** (needs one browser OAuth). Run: `rclone config reconnect EmpinvDrive:` → log in as **pat@empinv.com** → approve Drive access. That single login lets me: (a) re-point the nightly encrypted brain-backup off the old spartansuppz Drive onto the new empinv 2TB Drive via `wire-backup-sink.sh 'EmpinvDrive:brain-backups'` (auto round-trip-tested, reversible), and (b) do the immaculate cross-account file/mail organization into the new account. Both are fully staged on my side — the login is the only blocker. | "reconnect empinv drive" |
+| 🟢 | **Namecheap — cancel Private Email subscription ONLY (keep the domain!)** | SAFE to cancel now: mail no longer touches privateemail (MX is Google, verified). At **ap.www.namecheap.com** → Account → Dashboard → find **Private Email** for empinv.com → **cancel/turn off auto-renew on the EMAIL product only**. **Do NOT cancel/transfer the empinv.com domain registration** — that's the identity root; keep it + its auto-renew ON. Saves ~$1-2/mo. Non-urgent (borderline-irreversible billing action = your call, not mine). | "cancelled namecheap email" |
+
+---
+
 ## NEEDS PATRICK
 
 | # | Item | Detail | Trigger phrase |
