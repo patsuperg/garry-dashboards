@@ -106,9 +106,9 @@
     }
   ],
   "sentinel_self": {
-    "consecutive_push_failures": 1,
+    "consecutive_push_failures": 0,
     "last_heartbeat": "2026-07-14T23:59:24+00:00",
-    "last_successful_push_at": "2026-07-14T23:57:25+00:00",
+    "last_successful_push_at": "2026-07-14T23:59:47+00:00",
     "push_status": "healthy",
     "status": "healthy",
     "uptime_24h_pct": 100.0
@@ -129,7 +129,7 @@
       "last_success_at": "2026-06-14T22:54:51+00:00",
       "next_expected_run": null,
       "notes": "process not detected and log stale",
-      "seconds_since_last_run": 4298243,
+      "seconds_since_last_run": 4298314,
       "seconds_until_next_run": null,
       "status": "failed"
     },
@@ -147,7 +147,7 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": null,
       "notes": "process alive",
-      "seconds_since_last_run": 3083,
+      "seconds_since_last_run": 3154,
       "seconds_until_next_run": null,
       "status": "healthy"
     },
@@ -165,7 +165,7 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": null,
       "notes": "process alive",
-      "seconds_since_last_run": 6814259,
+      "seconds_since_last_run": 6814330,
       "seconds_until_next_run": null,
       "status": "healthy"
     },
@@ -183,7 +183,7 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": null,
       "notes": "process alive",
-      "seconds_since_last_run": 2224884,
+      "seconds_since_last_run": 2224955,
       "seconds_until_next_run": null,
       "status": "healthy"
     },
@@ -196,12 +196,12 @@
       "id": "scrypted",
       "last_24h_failures": 0,
       "last_24h_runs": 282,
-      "last_run_at": "2026-07-14T23:55:44+00:00",
+      "last_run_at": "2026-07-15T00:00:44+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": null,
       "notes": "process alive",
-      "seconds_since_last_run": 231,
+      "seconds_since_last_run": 2,
       "seconds_until_next_run": null,
       "status": "healthy"
     },
@@ -236,10 +236,10 @@
       "last_run_outcome": "unknown",
       "last_success_at": "2026-07-14T22:58:07+00:00",
       "next_expected_run": "2026-07-15T23:00:00+00:00",
-      "notes": "",
+      "notes": "deal-finder process currently running",
       "seconds_since_last_run": null,
       "seconds_until_next_run": null,
-      "status": "degraded"
+      "status": "recovering"
     },
     {
       "auto_fixes_applied_24h": 0,
@@ -255,8 +255,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T02:00:00+00:00",
       "notes": "no run since 2026-07-14T02:00:00+00:00 (past grace)",
-      "seconds_since_last_run": 3113973,
-      "seconds_until_next_run": 7223,
+      "seconds_since_last_run": 3114045,
+      "seconds_until_next_run": 7152,
       "status": "degraded"
     },
     {
@@ -273,8 +273,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T19:00:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 17976,
-      "seconds_until_next_run": 68423,
+      "seconds_since_last_run": 18047,
+      "seconds_until_next_run": 68352,
       "status": "healthy"
     },
     {
@@ -291,8 +291,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T19:30:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 16172,
-      "seconds_until_next_run": 70223,
+      "seconds_since_last_run": 16243,
+      "seconds_until_next_run": 70151,
       "status": "healthy"
     },
     {
@@ -308,10 +308,10 @@
       "last_run_outcome": "unknown",
       "last_success_at": null,
       "next_expected_run": "2026-07-15T21:00:00+00:00",
-      "notes": "within grace window",
-      "seconds_since_last_run": 615571,
-      "seconds_until_next_run": 75622,
-      "status": "healthy"
+      "notes": "no run since 2026-07-14T21:00:00+00:00 (past grace)",
+      "seconds_since_last_run": 615642,
+      "seconds_until_next_run": 75551,
+      "status": "degraded"
     },
     {
       "auto_fixes_applied_24h": 0,
@@ -325,9 +325,9 @@
       "last_run_at": "2026-07-14T23:57:55+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:04:37+00:00",
+      "next_expected_run": "2026-07-15T00:05:48+00:00",
       "notes": "",
-      "seconds_since_last_run": 101,
+      "seconds_since_last_run": 172,
       "seconds_until_next_run": 299,
       "status": "healthy"
     },
@@ -345,8 +345,8 @@
       "last_success_at": "2026-07-14T06:22:26+00:00",
       "next_expected_run": "2026-07-15T02:00:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 63389,
-      "seconds_until_next_run": 7222,
+      "seconds_since_last_run": 63460,
+      "seconds_until_next_run": 7151,
       "status": "healthy"
     },
     {
@@ -361,9 +361,9 @@
       "last_run_at": "2026-05-19T04:59:20+00:00",
       "last_run_outcome": "unknown",
       "last_success_at": null,
-      "next_expected_run": "2026-07-15T00:09:37+00:00",
-      "notes": "no run since 2026-07-14T23:49:37+00:00 (past grace)",
-      "seconds_since_last_run": 4906817,
+      "next_expected_run": "2026-07-15T00:10:48+00:00",
+      "notes": "no run since 2026-07-14T23:50:48+00:00 (past grace)",
+      "seconds_since_last_run": 4906888,
       "seconds_until_next_run": 599,
       "status": "degraded"
     },
@@ -376,13 +376,13 @@
       "id": "ohio-watchpoint",
       "last_24h_failures": 0,
       "last_24h_runs": 282,
-      "last_run_at": "2026-07-14T00:00:02+00:00",
+      "last_run_at": "2026-07-15T00:00:05+00:00",
       "last_run_outcome": "unknown",
       "last_success_at": null,
-      "next_expected_run": "2026-07-15T00:00:00+00:00",
+      "next_expected_run": "2026-07-16T00:00:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 86374,
-      "seconds_until_next_run": 22,
+      "seconds_since_last_run": 43,
+      "seconds_until_next_run": 86351,
       "status": "healthy"
     },
     {
@@ -399,8 +399,8 @@
       "last_success_at": null,
       "next_expected_run": "2026-07-15T00:15:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 85471,
-      "seconds_until_next_run": 922,
+      "seconds_since_last_run": 85542,
+      "seconds_until_next_run": 851,
       "status": "healthy"
     },
     {
@@ -415,9 +415,9 @@
       "last_run_at": "2026-07-14T23:57:53+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:04:37+00:00",
+      "next_expected_run": "2026-07-15T00:05:48+00:00",
       "notes": "",
-      "seconds_since_last_run": 103,
+      "seconds_since_last_run": 174,
       "seconds_until_next_run": 299,
       "status": "healthy"
     },
@@ -433,9 +433,9 @@
       "last_run_at": "2026-07-14T23:59:24+00:00",
       "last_run_outcome": "unknown",
       "last_success_at": null,
-      "next_expected_run": "2026-07-15T00:04:37+00:00",
+      "next_expected_run": "2026-07-15T00:05:48+00:00",
       "notes": "",
-      "seconds_since_last_run": 13,
+      "seconds_since_last_run": 84,
       "seconds_until_next_run": 299,
       "status": "healthy"
     },
@@ -451,9 +451,9 @@
       "last_run_at": "2026-07-14T23:54:44+00:00",
       "last_run_outcome": "unknown",
       "last_success_at": "2026-07-14T21:21:07+00:00",
-      "next_expected_run": "2026-07-15T00:14:37+00:00",
+      "next_expected_run": "2026-07-15T00:15:49+00:00",
       "notes": "",
-      "seconds_since_last_run": 293,
+      "seconds_since_last_run": 364,
       "seconds_until_next_run": 899,
       "status": "healthy"
     },
@@ -469,9 +469,9 @@
       "last_run_at": "2026-07-14T23:54:44+00:00",
       "last_run_outcome": "unknown",
       "last_success_at": "2026-06-18T08:47:50+00:00",
-      "next_expected_run": "2026-07-15T00:14:38+00:00",
+      "next_expected_run": "2026-07-15T00:15:49+00:00",
       "notes": "",
-      "seconds_since_last_run": 293,
+      "seconds_since_last_run": 364,
       "seconds_until_next_run": 899,
       "status": "healthy"
     },
@@ -484,12 +484,12 @@
       "id": "property-ledger-publish",
       "last_24h_failures": 9,
       "last_24h_runs": 282,
-      "last_run_at": "2026-07-14T23:59:35+00:00",
+      "last_run_at": "2026-07-15T00:00:45+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:00:38+00:00",
+      "next_expected_run": "2026-07-15T00:01:49+00:00",
       "notes": "",
-      "seconds_since_last_run": 2,
+      "seconds_since_last_run": 3,
       "seconds_until_next_run": 59,
       "status": "healthy"
     },
@@ -507,8 +507,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T03:15:00+00:00",
       "notes": "no run since 2026-07-14T03:15:00+00:00 (past grace)",
-      "seconds_since_last_run": 4923873,
-      "seconds_until_next_run": 11721,
+      "seconds_since_last_run": 4923944,
+      "seconds_until_next_run": 11650,
       "status": "degraded"
     },
     {
@@ -525,8 +525,8 @@
       "last_success_at": null,
       "next_expected_run": "2026-07-15T02:00:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 79174,
-      "seconds_until_next_run": 7221,
+      "seconds_since_last_run": 79245,
+      "seconds_until_next_run": 7150,
       "status": "healthy"
     },
     {
@@ -543,8 +543,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T01:15:00+00:00",
       "notes": "no run since 2026-07-14T01:15:00+00:00 (past grace)",
-      "seconds_since_last_run": 3116672,
-      "seconds_until_next_run": 4521,
+      "seconds_since_last_run": 3116743,
+      "seconds_until_next_run": 4450,
       "status": "degraded"
     },
     {
@@ -561,8 +561,8 @@
       "last_success_at": null,
       "next_expected_run": "2026-08-04T02:00:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 943173,
-      "seconds_until_next_run": 1735221,
+      "seconds_since_last_run": 943244,
+      "seconds_until_next_run": 1735150,
       "status": "healthy"
     },
     {
@@ -577,11 +577,11 @@
       "last_run_at": "2026-06-08T21:00:04+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:00:00+00:00",
-      "notes": "no run since 2026-07-14T00:00:00+00:00 (past grace)",
-      "seconds_since_last_run": 3121174,
-      "seconds_until_next_run": 21,
-      "status": "degraded"
+      "next_expected_run": "2026-07-16T00:00:00+00:00",
+      "notes": "within grace window",
+      "seconds_since_last_run": 3121245,
+      "seconds_until_next_run": 86350,
+      "status": "healthy"
     },
     {
       "auto_fixes_applied_24h": 0,
@@ -595,9 +595,9 @@
       "last_run_at": "2026-07-14T23:58:33+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:04:38+00:00",
+      "next_expected_run": "2026-07-15T00:05:49+00:00",
       "notes": "",
-      "seconds_since_last_run": 65,
+      "seconds_since_last_run": 136,
       "seconds_until_next_run": 299,
       "status": "healthy"
     },
@@ -613,9 +613,9 @@
       "last_run_at": "2026-07-14T21:59:30+00:00",
       "last_run_outcome": "unknown",
       "last_success_at": null,
-      "next_expected_run": "2026-07-15T03:59:38+00:00",
+      "next_expected_run": "2026-07-15T04:00:49+00:00",
       "notes": "",
-      "seconds_since_last_run": 7207,
+      "seconds_since_last_run": 7278,
       "seconds_until_next_run": 14399,
       "status": "healthy"
     },
@@ -631,9 +631,9 @@
       "last_run_at": "2026-07-14T23:51:28+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:14:38+00:00",
+      "next_expected_run": "2026-07-15T00:15:50+00:00",
       "notes": "",
-      "seconds_since_last_run": 490,
+      "seconds_since_last_run": 561,
       "seconds_until_next_run": 899,
       "status": "healthy"
     },
@@ -649,9 +649,9 @@
       "last_run_at": "2026-07-13T17:04:45+00:00",
       "last_run_outcome": "unknown",
       "last_success_at": null,
-      "next_expected_run": "2026-07-15T00:00:38+00:00",
+      "next_expected_run": "2026-07-15T00:01:50+00:00",
       "notes": "within grace window",
-      "seconds_since_last_run": 111293,
+      "seconds_since_last_run": 111364,
       "seconds_until_next_run": 59,
       "status": "healthy"
     },
@@ -667,9 +667,9 @@
       "last_run_at": "2026-07-14T23:48:27+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:14:39+00:00",
+      "next_expected_run": "2026-07-15T00:15:50+00:00",
       "notes": "",
-      "seconds_since_last_run": 672,
+      "seconds_since_last_run": 743,
       "seconds_until_next_run": 899,
       "status": "healthy"
     },
@@ -685,9 +685,9 @@
       "last_run_at": "2026-07-14T23:47:39+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:14:39+00:00",
+      "next_expected_run": "2026-07-15T00:15:50+00:00",
       "notes": "",
-      "seconds_since_last_run": 720,
+      "seconds_since_last_run": 791,
       "seconds_until_next_run": 899,
       "status": "healthy"
     },
@@ -700,12 +700,12 @@
       "id": "income-stmt-requester",
       "last_24h_failures": 0,
       "last_24h_runs": 282,
-      "last_run_at": "2026-07-14T23:30:16+00:00",
+      "last_run_at": "2026-07-15T00:00:16+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:29:39+00:00",
+      "next_expected_run": "2026-07-15T00:30:50+00:00",
       "notes": "",
-      "seconds_since_last_run": 1762,
+      "seconds_since_last_run": 33,
       "seconds_until_next_run": 1799,
       "status": "healthy"
     },
@@ -723,8 +723,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-17T09:00:00+00:00",
       "notes": "no run since 2026-07-10T09:00:00+00:00 (past grace)",
-      "seconds_since_last_run": 5853564,
-      "seconds_until_next_run": 205220,
+      "seconds_since_last_run": 5853635,
+      "seconds_until_next_run": 205149,
       "status": "degraded"
     },
     {
@@ -739,11 +739,11 @@
       "last_run_at": "2026-05-12T21:00:04+00:00",
       "last_run_outcome": "unknown",
       "last_success_at": null,
-      "next_expected_run": "2026-07-15T00:00:00+00:00",
-      "notes": "no run since 2026-07-14T00:00:00+00:00 (past grace)",
-      "seconds_since_last_run": 5453975,
-      "seconds_until_next_run": 20,
-      "status": "degraded"
+      "next_expected_run": "2026-07-16T00:00:00+00:00",
+      "notes": "within grace window",
+      "seconds_since_last_run": 5454046,
+      "seconds_until_next_run": 86349,
+      "status": "healthy"
     },
     {
       "auto_fixes_applied_24h": 0,
@@ -757,9 +757,9 @@
       "last_run_at": "2026-07-14T23:58:59+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:59:39+00:00",
+      "next_expected_run": "2026-07-15T01:00:50+00:00",
       "notes": "",
-      "seconds_since_last_run": 39,
+      "seconds_since_last_run": 111,
       "seconds_until_next_run": 3599,
       "status": "healthy"
     },
@@ -777,8 +777,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-08-05T02:00:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 579790,
-      "seconds_until_next_run": 1821620,
+      "seconds_since_last_run": 579861,
+      "seconds_until_next_run": 1821549,
       "status": "healthy"
     },
     {
@@ -793,9 +793,9 @@
       "last_run_at": "2026-07-14T23:58:04+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:02:39+00:00",
+      "next_expected_run": "2026-07-15T00:03:50+00:00",
       "notes": "",
-      "seconds_since_last_run": 94,
+      "seconds_since_last_run": 165,
       "seconds_until_next_run": 179,
       "status": "healthy"
     },
@@ -811,9 +811,9 @@
       "last_run_at": "2026-07-14T23:59:00+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:59:39+00:00",
+      "next_expected_run": "2026-07-15T01:00:50+00:00",
       "notes": "",
-      "seconds_since_last_run": 39,
+      "seconds_since_last_run": 110,
       "seconds_until_next_run": 3599,
       "status": "healthy"
     },
@@ -829,9 +829,9 @@
       "last_run_at": "2026-07-14T23:47:46+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:14:39+00:00",
+      "next_expected_run": "2026-07-15T00:15:51+00:00",
       "notes": "",
-      "seconds_since_last_run": 713,
+      "seconds_since_last_run": 784,
       "seconds_until_next_run": 899,
       "status": "healthy"
     },
@@ -849,8 +849,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T16:00:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 28775,
-      "seconds_until_next_run": 57620,
+      "seconds_since_last_run": 28847,
+      "seconds_until_next_run": 57548,
       "status": "healthy"
     },
     {
@@ -867,8 +867,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T07:00:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 3574,
-      "seconds_until_next_run": 25219,
+      "seconds_since_last_run": 3646,
+      "seconds_until_next_run": 25148,
       "status": "healthy"
     },
     {
@@ -880,13 +880,13 @@
       "id": "power-list",
       "last_24h_failures": 0,
       "last_24h_runs": 282,
-      "last_run_at": "2026-07-14T04:00:15+00:00",
+      "last_run_at": "2026-07-15T00:00:17+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:00:00+00:00",
+      "next_expected_run": "2026-07-15T02:00:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 71964,
-      "seconds_until_next_run": 19,
+      "seconds_since_last_run": 33,
+      "seconds_until_next_run": 7148,
       "status": "healthy"
     },
     {
@@ -901,9 +901,9 @@
       "last_run_at": "2026-07-04T05:17:58+00:00",
       "last_run_outcome": "failure",
       "last_success_at": "2026-07-02T03:06:42+00:00",
-      "next_expected_run": "2026-07-15T00:09:40+00:00",
+      "next_expected_run": "2026-07-15T00:10:51+00:00",
       "notes": "failure markers in log tail",
-      "seconds_since_last_run": 931301,
+      "seconds_since_last_run": 931373,
       "seconds_until_next_run": 599,
       "status": "failed"
     },
@@ -916,12 +916,12 @@
       "id": "scout-runner",
       "last_24h_failures": 0,
       "last_24h_runs": 282,
-      "last_run_at": "2026-07-14T23:30:16+00:00",
+      "last_run_at": "2026-07-15T00:00:16+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:29:40+00:00",
+      "next_expected_run": "2026-07-15T00:30:51+00:00",
       "notes": "",
-      "seconds_since_last_run": 1763,
+      "seconds_since_last_run": 35,
       "seconds_until_next_run": 1799,
       "status": "healthy"
     },
@@ -939,8 +939,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T05:00:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 3575,
-      "seconds_until_next_run": 18019,
+      "seconds_since_last_run": 3646,
+      "seconds_until_next_run": 17948,
       "status": "healthy"
     },
     {
@@ -955,9 +955,9 @@
       "last_run_at": "2026-04-29T06:46:30+00:00",
       "last_run_outcome": "unknown",
       "last_success_at": null,
-      "next_expected_run": "2026-07-15T00:04:40+00:00",
+      "next_expected_run": "2026-07-15T00:05:51+00:00",
       "notes": "within grace window",
-      "seconds_since_last_run": 6628390,
+      "seconds_since_last_run": 6628461,
       "seconds_until_next_run": 299,
       "status": "healthy"
     },
@@ -975,8 +975,8 @@
       "last_success_at": null,
       "next_expected_run": "2026-07-15T01:00:00+00:00",
       "notes": "no run since 2026-07-14T01:00:00+00:00 (past grace)",
-      "seconds_since_last_run": 3117578,
-      "seconds_until_next_run": 3619,
+      "seconds_since_last_run": 3117649,
+      "seconds_until_next_run": 3548,
       "status": "degraded"
     },
     {
@@ -993,8 +993,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T01:00:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 82642,
-      "seconds_until_next_run": 3619,
+      "seconds_since_last_run": 82713,
+      "seconds_until_next_run": 3548,
       "status": "healthy"
     },
     {
@@ -1011,8 +1011,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T02:00:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 79172,
-      "seconds_until_next_run": 7219,
+      "seconds_since_last_run": 79244,
+      "seconds_until_next_run": 7147,
       "status": "healthy"
     },
     {
@@ -1029,8 +1029,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T23:30:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 1776,
-      "seconds_until_next_run": 84619,
+      "seconds_since_last_run": 1847,
+      "seconds_until_next_run": 84547,
       "status": "healthy"
     },
     {
@@ -1047,8 +1047,8 @@
       "last_success_at": "2026-05-23T17:57:01+00:00",
       "next_expected_run": "2026-07-18T21:00:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 269980,
-      "seconds_until_next_run": 334819,
+      "seconds_since_last_run": 270052,
+      "seconds_until_next_run": 334747,
       "status": "healthy"
     },
     {
@@ -1065,8 +1065,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T01:00:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 82777,
-      "seconds_until_next_run": 3618,
+      "seconds_since_last_run": 82848,
+      "seconds_until_next_run": 3547,
       "status": "healthy"
     },
     {
@@ -1083,8 +1083,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T05:00:00+00:00",
       "notes": "no run since 2026-07-14T05:00:00+00:00 (past grace)",
-      "seconds_since_last_run": 5571071,
-      "seconds_until_next_run": 18018,
+      "seconds_since_last_run": 5571142,
+      "seconds_until_next_run": 17947,
       "status": "degraded"
     },
     {
@@ -1119,8 +1119,8 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T23:05:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 3277,
-      "seconds_until_next_run": 83118,
+      "seconds_since_last_run": 3348,
+      "seconds_until_next_run": 83047,
       "status": "healthy"
     },
     {
@@ -1135,9 +1135,9 @@
       "last_run_at": "2026-07-14T23:59:30+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:04:41+00:00",
+      "next_expected_run": "2026-07-15T00:05:52+00:00",
       "notes": "",
-      "seconds_since_last_run": 11,
+      "seconds_since_last_run": 82,
       "seconds_until_next_run": 299,
       "status": "healthy"
     },
@@ -1150,10 +1150,10 @@
       "id": "sentinel-publisher",
       "last_24h_failures": 2,
       "last_24h_runs": 282,
-      "last_run_at": "2026-07-14T23:59:36+00:00",
+      "last_run_at": "2026-07-15T00:00:47+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:00:41+00:00",
+      "next_expected_run": "2026-07-15T00:01:52+00:00",
       "notes": "",
       "seconds_since_last_run": 5,
       "seconds_until_next_run": 59,
@@ -1173,8 +1173,8 @@
       "last_success_at": null,
       "next_expected_run": "2026-07-15T05:00:00+00:00",
       "notes": "no run since 2026-07-14T05:00:00+00:00 (past grace)",
-      "seconds_since_last_run": 3646777,
-      "seconds_until_next_run": 18018,
+      "seconds_since_last_run": 3646848,
+      "seconds_until_next_run": 17947,
       "status": "degraded"
     },
     {
@@ -1191,8 +1191,8 @@
       "last_success_at": null,
       "next_expected_run": "2026-07-15T14:00:00+00:00",
       "notes": "no run since 2026-07-14T14:00:00+00:00 (past grace)",
-      "seconds_since_last_run": 3614374,
-      "seconds_until_next_run": 50418,
+      "seconds_since_last_run": 3614445,
+      "seconds_until_next_run": 50347,
       "status": "degraded"
     },
     {
@@ -1207,9 +1207,9 @@
       "last_run_at": "2026-07-14T23:52:44+00:00",
       "last_run_outcome": "success",
       "last_success_at": "2026-07-14T23:59:24+00:00",
-      "next_expected_run": "2026-07-15T00:59:41+00:00",
+      "next_expected_run": "2026-07-15T01:00:53+00:00",
       "notes": "",
-      "seconds_since_last_run": 417,
+      "seconds_since_last_run": 488,
       "seconds_until_next_run": 3599,
       "status": "healthy"
     },
@@ -1227,24 +1227,24 @@
       "last_success_at": "2026-07-14T23:59:24+00:00",
       "next_expected_run": "2026-07-15T03:30:00+00:00",
       "notes": "",
-      "seconds_since_last_run": 61167,
-      "seconds_until_next_run": 12618,
+      "seconds_since_last_run": 61238,
+      "seconds_until_next_run": 12546,
       "status": "healthy"
     }
   ],
   "summary_24h": {
     "auto_fixes_applied": 11,
     "open_issues": 2,
-    "services_degraded": 12,
+    "services_degraded": 10,
     "services_failed": 3,
-    "services_healthy": 47,
+    "services_healthy": 48,
     "services_monitored": 62,
-    "services_recovering": 0,
+    "services_recovering": 1,
     "services_unknown": 0,
     "services_unmonitorable": 0,
     "telegram_pings_sent": 0,
     "total_checks_run": 17484
   },
   "telegram_pings_24h": [],
-  "updated_at": "2026-07-14T23:59:42+00:00"
+  "updated_at": "2026-07-15T00:00:53+00:00"
 }
