@@ -1581,6 +1581,129 @@
           "severity": "info"
         }
       ]
+    },
+    {
+      "date": "2026-07-15 15:34:26",
+      "checks": 4,
+      "healed": 1,
+      "critical": 1,
+      "events": [
+        {
+          "ts": "2026-07-15 15:34:25",
+          "action": "perms",
+          "detail": "all credential files locked at 600",
+          "healed": false,
+          "severity": "info"
+        },
+        {
+          "ts": "2026-07-15 15:34:25",
+          "action": "gate",
+          "detail": "HARD-GATE ABSENT \u2014 tampered or removed",
+          "healed": false,
+          "severity": "critical"
+        },
+        {
+          "ts": "2026-07-15 15:34:26",
+          "action": "gate",
+          "detail": "hard-gate surgically re-inserted + AST-validated",
+          "healed": true,
+          "severity": "warn"
+        },
+        {
+          "ts": "2026-07-15 15:34:26",
+          "action": "daemons",
+          "detail": "5/5 verified daemons loaded",
+          "healed": false,
+          "severity": "info"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-15 15:35:37",
+      "checks": 3,
+      "healed": 0,
+      "critical": 0,
+      "events": [
+        {
+          "ts": "2026-07-15 15:35:37",
+          "action": "perms",
+          "detail": "all credential files locked at 600",
+          "healed": false,
+          "severity": "info"
+        },
+        {
+          "ts": "2026-07-15 15:35:37",
+          "action": "gate",
+          "detail": "hard-gate intact",
+          "healed": false,
+          "severity": "info"
+        },
+        {
+          "ts": "2026-07-15 15:35:37",
+          "action": "daemons",
+          "detail": "5/5 verified daemons loaded",
+          "healed": false,
+          "severity": "info"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-15 15:39:15",
+      "checks": 3,
+      "healed": 0,
+      "critical": 0,
+      "events": [
+        {
+          "ts": "2026-07-15 15:39:15",
+          "action": "perms",
+          "detail": "all credential files locked at 600",
+          "healed": false,
+          "severity": "info"
+        },
+        {
+          "ts": "2026-07-15 15:39:15",
+          "action": "gate",
+          "detail": "hard-gate intact",
+          "healed": false,
+          "severity": "info"
+        },
+        {
+          "ts": "2026-07-15 15:39:15",
+          "action": "daemons",
+          "detail": "5/5 verified daemons loaded",
+          "healed": false,
+          "severity": "info"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-16 00:00:04",
+      "checks": 3,
+      "healed": 0,
+      "critical": 0,
+      "events": [
+        {
+          "ts": "2026-07-16 00:00:04",
+          "action": "perms",
+          "detail": "all credential files locked at 600",
+          "healed": false,
+          "severity": "info"
+        },
+        {
+          "ts": "2026-07-16 00:00:04",
+          "action": "gate",
+          "detail": "hard-gate intact",
+          "healed": false,
+          "severity": "info"
+        },
+        {
+          "ts": "2026-07-16 00:00:04",
+          "action": "daemons",
+          "detail": "5/5 verified daemons loaded",
+          "healed": false,
+          "severity": "info"
+        }
+      ]
     }
   ]
 }

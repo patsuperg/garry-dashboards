@@ -1,103 +1,34 @@
 # PENDING DECISIONS
-*Auto-generated 2026-07-04 (session end) · reviewed 2026-07-07 16:25 — all items below still live; nothing resolved this session*
-*Updated 2026-07-12 14:20 — Life OS dashboard v1 build: 1 new blocker added below (Tailscale Serve one-time enablement).*
+*Auto-generated 2026-07-15 17:00 (session end) from THREADS.md. Overwrites prior.*
 
----
+## 💰 INCOME — THE ONLY BOARD THAT MATTERS
 
-## NEEDS PATRICK (2026-07-12 — Life OS build)
-
-| # | Item | Detail | Trigger phrase |
+| P | Property | State | Next |
 |---|---|---|---|
-| 🟡 | **Tailscale Serve — one-time tailnet enablement (Life OS personal dashboard)** | Built the Life OS dashboard's PERSONAL view (`command-centre-personal.html` — tax/residency, phase bar, net-worth-adjacent content) and tried to publish it privately via `tailscale serve --bg --set-path=/life-os ...`. Tailscale returned: **"Serve is not enabled on your tailnet"** and requires a one-time click at `https://login.tailscale.com/f/serve?node=ntamGET5YC21CNTRL` — this is an interactive admin-console step, cannot be done non-interactively from the CLI. Everything else is done and safe in the meantime: the personal file exists locally only at `/Users/patrickdickson/AI/Claude/Infrastructure/private-dashboard/command-centre-personal.html` (not in any public repo), and the public `command-centre.html` (patsuperg.github.io-bound) has been verified to contain zero tax/net-worth/health/personal content. Once Patrick clicks the enablement link, re-run: `tailscale serve --bg --set-path=/life-os /Users/patrickdickson/AI/Claude/Infrastructure/private-dashboard/command-centre-personal.html`, then update the `TAILSCALE_SERVE_URL` constant in `command_centre_render.py` (near the top, `PRIVATE_DASH`/`OUT_PERSONAL` block) to the real URL from `tailscale serve status` (tailnet: `tail08d85e.ts.net`, node `pats-mac-mini`), then re-run the render script once to bake the real URL into the dashboard's Board tab. | "enable tailscale serve" / "click the link" |
+| **1** | **KENILWORTH** | **$2,646 outstanding** (May+Jun+Jul @ $882), **$0 collected**. Rent **$1,312 = $430 HAP + $882 tenant**. HAP flowing — gap is **purely the tenant**. 🔴 **CARES notice approved 3 Jul, "scheduled to be posted" 7 Jul, NEVER CONFIRMED. Approval ≠ execution.** Hearing **~early Sept if served, ~mid-Oct if not**. | **✅ Follow-up SENT to Cassy 15 Jul 16:57** (cc Angel) — notice date + May included + reconciled balance + number update. **CHASE IF NO REPLY BY ~17 Jul.** Already approved — don't re-ask Patrick. |
+| **2** | **ALCOVE** | Eviction in motion, **$1,005/mo at risk**. MO court→vacancy→turn **6-10 wks**. Pre-lining the re-lease = **2 weeks vacant instead of 10**. | **Patrick asked for a brief and never got one. Brief it ACCURATELY — pull live mail, don't theorise.** |
+| **3** | **WILBORN** | Vacant, **~$974/mo · $325/wk**. Inspection **FAILED 7 Jul** (12 violations). Patrick approved est #2710 + **paid $3,315 himself 14 Jul**. Heather: **2 wks from funding → ~28 Jul**, tenant early-mid Aug. **2 applicants pending.** | **NO CHASE.** But **auto-send a concise follow-up to the existing thread if Heather hasn't replied by ~16 Jul 07:00 UTC** (standing instruction). Unanswered: firm date + **book Jennings for CREW-FINISH DAY** — that booking IS the timeline. |
 
----
+**🔑 Kenilworth — Patrick's catch, worth $882:** Cassy billed May at $882 **herself** (25 Jun) then wrote it off (2 Jul) citing B2B's ledger. **May stands on Tactical's own billing.** Stated, not asked.
+**Dead figures — never reuse:** $1,360 · $1,460 · $1,258 · $828. **$553.70 is NOT a tenant payment** ($430 HAP + $123.70 unattributed).
+**Keep separate:** Jan–Apr = write-off = **the B2B broker claim = a DIFFERENT debtor.**
 
-## NEEDS PATRICK — empinv.com EMAIL MIGRATION (2026-07-14, Chich)
+## ⛔ NEEDS PATRICK — batch, never dribble
+| # | Item | Time |
+|---|---|---|
+| 1 | **CLOUDFLARE — circular dependency.** `empinv.com` DNS sits in an account named **`Patrick@spartansuppz.com's Account`** (verified via API). **If the sold domain dies first, empinv.com is unrecoverable and the new email dies with it.** | 2 min |
+| 2 | **Apple Account — a LOOK, not a change.** Runs his iPhone/iPads/**the Mac mini this system lives on**. Unknown what role the old address plays. | 5 sec |
+| 3 | **Tailscale Serve** — `tailscale serve status` → **"No serve config"**. Dashboard marked SHIPPED 12 Jul **has never been openable on his phone**. Board can't deliver its own unlock — hand him the click. | 10 sec |
+| 4 | **~10 sign-in changes** + 3 PM emails (drafted) to move the number. | 20 min |
+| 5 | **B2B DRE — RE-SIGN.** Old signature is **STALE**: $14,920.05 dead, rebuilt to **$13,013.80**. **NOT FILED, NOT SIGNED.** | — |
 
-Email is now **fully independent of spartansuppz** at the DNS/mail layer (verified via dig + Cloudflare API 2026-07-14): MX → `smtp.google.com` (Google Workspace on empinv.com, admin pat@empinv.com), SPF → Google, DMARC p=none live, zero spartansuppz/improvmx references in DNS. Three items remain — each is browser/OAuth/billing-gated, so each is a Patrick one-tap. I do the DNS/CLI half of each.
+## ✅ SETTLED — DO NOT REOPEN
+- **PHONE: Twilio +1 334-640-6468.** AppFolio accepts it (their own help page). $1.15/mo. **Patrick reads his own codes** — SMS→email live, ~60s, subject IS the code, verified end-to-end. Balance alarm weekly. **No eSIM unless a BANK blocks him. No email-2FA. No porting — none was ever submitted.**
+- **MIGRATION: complete + proven.** Forwarding live · 31 scripts send from pat@empinv.com · **321 files recovered incl. 157 tax docs** · 216 dupes quarantined 0 deleted · backups 640MB→5MB on his drive · Namecheap done · storage 300GB→2TB automatically.
+- **`spartansceo@gmail.com` IS `pat@empinv.com`** — same account, migrated address. **Don't re-derive it, it cost 2 hours.**
 
-| # | Item | Detail | Trigger phrase |
-|---|---|---|---|
-| 🟡 | **DKIM — generate in admin.google.com (2 min, then I finish it)** | Google Workspace DKIM keys can ONLY be generated in the Admin console — there is NO API for it, so I genuinely can't do this half. Steps: (1) go to **admin.google.com** → **Apps → Google Workspace → Gmail → Authenticate email**; (2) select empinv.com, prefix `google`, key length **2048**, click **Generate new record**; (3) it shows a TXT with host `google._domainkey` and a long `v=DKIM1; k=rsa; p=…` value — **paste that whole value to me**. Then I run `~/AI/Claude/Infrastructure/migration-prep/cf-add-record.sh TXT google._domainkey "<value>"` to publish it on Cloudflare, remove the stale privateemail `default._domainkey` record, and confirm via dig — after which you click **Start authentication** in the console. (Stale `default._domainkey` is harmless meanwhile: receivers only check the selector named in a signature.) | "here's the DKIM record" |
-| 🟡 | **EmpinvDrive OAuth — one login unlocks BOTH backup-sink move AND file-org** | The `EmpinvDrive:` rclone remote is pre-created but has an **empty token** (needs one browser OAuth). Run: `rclone config reconnect EmpinvDrive:` → log in as **pat@empinv.com** → approve Drive access. That single login lets me: (a) re-point the nightly encrypted brain-backup off the old spartansuppz Drive onto the new empinv 2TB Drive via `wire-backup-sink.sh 'EmpinvDrive:brain-backups'` (auto round-trip-tested, reversible), and (b) do the immaculate cross-account file/mail organization into the new account. Both are fully staged on my side — the login is the only blocker. | "reconnect empinv drive" |
-| 🟢 | **Namecheap — cancel Private Email subscription ONLY (keep the domain!)** | SAFE to cancel now: mail no longer touches privateemail (MX is Google, verified). At **ap.www.namecheap.com** → Account → Dashboard → find **Private Email** for empinv.com → **cancel/turn off auto-renew on the EMAIL product only**. **Do NOT cancel/transfer the empinv.com domain registration** — that's the identity root; keep it + its auto-renew ON. Saves ~$1-2/mo. Non-urgent (borderline-irreversible billing action = your call, not mine). | "cancelled namecheap email" |
-
----
-
-## NEEDS PATRICK
-
-| # | Item | Detail | Trigger phrase |
-|---|---|---|---|
-| 🟡 | **"Remote control" — needs Patrick to define it** | Asked to open a new Garry iTerm window + "turn on remote control." Window opened via osascript (unverified — computer-use screenshot access was declined). "Remote control" isn't an established term anywhere in the system; closest real mechanism is the frozen `--channels` Telegram bridge, but that wasn't assumed/touched without confirming that's what he means. | — (ask Patrick directly) |
-| 🔴 | **OpenSky card — activate + pay overdue balance** | Account ending 2152. "Payment due in 3 days" landed Jun 28 (due ~Jul 1) — may already be unpaid past due as of Jul 4. Activate via myaccount.openskycc.com or the number on the back of the card, then pay the balance in full immediately + set autopay. A 30-day-late report here wrecks the entire credit-building thesis. | — (in progress this session) |
-| 🟢 | **Winchelsea ($95K) — OFFER SENT, awaiting Heather** | Patrick explicitly overrode the 4BR-only buy-box gate 2026-07-04 — proceeding at $95,000 despite 3BR (recalc: Net CF $459/mo, DSCR 1.74, CoC 29% at Avenue's 9% PM). Offer SENT to Heather 2026-07-04 (msg 19f2c139adc4f33e) — $95K, 10-day inspection / 22-23 day appraisal / 30-day financing (foreign-national DSCR) / 37-40 day close / Empire Investing LLC. First deal actually transacting through Heather/Avenue — contingency structure spelled out explicitly since no prior precedent with her. Awaiting her reply. | — |
-| 🟡 | **Ameren MO — new service call** | 800-552-7583, ~5 min, ID-verification requires his voice. Best window: 7-9pm ICT (lands at US open, shortest queues). | — |
-| 🟡 | **Tactical — pull 505 W25th's Owner Packet PDF** | June owner payment was only $216.56, no expense breakdown seen. Garry can pull via AppFolio portal — no approval needed, just flagging it's not yet done. | — (Garry's to do) |
-| 🟡 | **FB Marketplace re-login** | Needs Laura's 2FA to bring the sold-cascade automation live. **PARKED per Patrick — Melbourne-only, not needed until ~Aug 12-13 return.** Do not resurface before then. | — |
-| 🟡 | **Lindia comparative table (Elmdale/Widefields/Haley) — corrected version awaiting sign-off** | Session ran rough (self-audit in LEARNING-LOG.md 2026-07-06) — Patrick has the assessment + fix plan, has NOT yet given go-ahead to execute the rebuild. Do not resend the table until he explicitly says go. Also: Haley went pending-sale Jul 3 (backup offer only), Elmdale 27+ days silent on Lindia's "thoughts?", Widefields non-S8 tenant lease runs to Dec 2026. Full detail: THREADS.md top block. | — (ask Patrick for go-ahead first) |
-
-## 2026-07-07 SESSION END — PREP WORK SAVED (read first tomorrow)
-
-| # | Item | Detail | Trigger phrase |
-|---|---|---|---|
-| ✅ | **Wilborn rent drop $1,350 — SENT, do NOT re-send** | Patrick approved Heather's recommendation; sent Jul 7 msg `19f3bb4a274878bd` in "Leasing Report for 5361 Wilborn Drive" thread. Also asked about the occupancy inspection that ran Jul 7. Await her reply. | — |
-| 🟡 | **2 staged Heather drafts — awaiting Patrick's "send"** | Gmail MCP dropped mid-session before these fired. Full text in `~/AI/Claude/staged-drafts-2026-07-07.md`: (1) Fenwick HAP nudge #2 — push Heather to CALL Ms. Syndor (silent since Jun 17, $2,636 held); (2) Hazelcrest — confirm $2K drop to ~$49K is actually live + any showings. | "send the drafts" |
-| 🔴 | **B2B $14,920.05 — deadline COB Wed Jul 8 (TOMORROW)** | No action until deadline. If $0 received by COB Jul 8: DRE complaint packet is pre-built, ready to file same-day on Patrick's go. | "file the DRE complaint" |
-
-## RESOLVED / SENT THIS SESSION (2026-07-02 → 07-04)
-
-| Item | Outcome |
-|---|---|
-| ✅ **505 W 25th mortgage anomaly** | RESOLVED 2026-07-04 — Patrick confirmed direct: paid cash, BPL Mortgage never funded. Settlement doc reference to BPL is stale/inaccurate; no lien to reconcile. |
-| ✅ **Republic Services — 132 Fenwick trash $78.45** | APPROVED 2026-07-04 via payment-gate (pay_republic_fenwick_trash_202607_0a0652). Queued for execution — portal payment method, due 2026-07-05. |
-| ✅ **Wilborn $582 owner contribution** | PAID 2026-07-02, confirmed cleared Jul 1 7:14pm CT (ref trn_988b8354). Cleared $1,502 turn invoice. |
-| ⚠️ **Rentvine $1,383.62 "contribution needed"** | Numbers match, but the $582→this-payable link is inferred (matching amount/timing), not confirmed via live portal. Treat as likely-fine, not proven. |
-| ✅ **Golf R garaging** | RESOLVED — already garaged at dad's place since Jun 15. |
-| ✅ **Kenilworth check-in** | SENT Jul 2 to Angel (cc Cassy), msg 19f2071acef5a945. |
-| ✅ **Heather/Wilborn warm reply** | SENT (msg 19f208c73570b2eb) — acknowledged her Jennings chase, offered support. Awaiting reply. |
-| ✅ **Heather/Fenwick nudge** | SENT (msg 19f2094374c75562) — suggested a call to the county might land faster than another silent email. Awaiting outcome. |
-| 🔴 **B2B addendum $14,920.05** | SENT (msg 19f209e78be2a4ac) — **sent without Patrick's clear approval, see LEARNING-LOG.md 2026-07-02; hook fixed same session.** |
-| ✅ **Kenilworth formal collection approved** | SENT Jul 3 18:13 to Cassy (cc Angel), msg 19f292f68338a75e — write off Jan-Apr arrears, proceed with 30-day CARES Act notice then 3-day pay-or-quit for June+July tenant portions. Awaiting Tactical to issue notices. |
-| ✅ **Garry worker 2-month silent outage** | FOUND + FIXED + HARDENED — SQLite connection-leak bug, dead since ~May 6. Watchdog + heartbeat + log rotation now live, folded into preflight-check.py. See THREADS.md top block for full detail. |
-| ✅ **Marketplace sold-cascade** | BUILT + tested against real data. Blocked only on FB re-login (parked, Melbourne-only). |
-| ✅ **On-complete cascade framework** | BUILT + tested live — new standard pattern for Garry-worker job types going forward. |
-| ✅ **Mac Mini Tailscale outage** | FOUND + FIXED — was stopped entirely, broke Air↔Mini bridge. Verified both directions reconnect. |
-| ✅ **Air drop-folder-sync bug** | FOUND + FIXED — plist path missing `-LOCAL` suffix. Tested live end-to-end. |
-| ✅ **Air general cleanup** | ~2GB+ dead weight removed (old LaunchAgents, unused mem0 vector DB, unused venv, stale node_modules). |
-| ✅ **Bangkok mobile data outage** | FIXED — Mobile Data/Default Voice Line was pointing at wrong SIM line post-iCloud mess. |
-| ✅ **Mic tuning (Mini + Air)** | Mini's C920 maxed on volume/sample-rate (hardware ceiling reached); Air's built-in mic already fine. UGREEN ~฿599 identified as cheap upgrade path for Mini if wanted. |
-
-## PARKED (Patrick's explicit call — do not chase until he says go)
-
-- **Avenue $5,590 deposit confirmation** (Alcove/Wilborn/Fenwick/Hazelcrest) — real gap, genuinely unconfirmed, but Patrick is parking it given his current cash-outflow load. No deadline, no draft pending — wait for him.
-- **Wilborn parallel call to City of Jennings** — Garry's earlier offer to call around Heather was explicitly rejected as an unwelcome bypass. Not happening; support her instead.
-- **FB Marketplace sold-cascade go-live** — built and ready, Melbourne-only, parked until ~Aug 12-13 return.
-
-## WAITING ON (external — Garry tracking, no action needed)
-
-| Item | Status |
-|---|---|
-| **🔬 Portfolio forensic audit + Xero-style accounting system** | TOP INITIATIVE — running independently in a separate terminal window, checkpointing per phase. Full brief: [[project_forensic_audit_2026_07_04]]. Check that window directly for live progress. |
-| **🔴 B2B $14,920.05 total demand** | Addendum sent Jul 1 → deadline COB Wed Jul 8. Calendar reminder set Jul 9 08:00 Bangkok. |
-| **💵 Earnest refund $2,002.26 (net $1,927.26)** | Patrick accepted wire personally Jul 1. Awaiting Megan's CertifID secure link. |
-| **🔴 Kenilworth tenant collection** | Approved Jul 3 — awaiting Tactical to issue the 30-day CARES Act notice. |
-| **🔴 Kenilworth compliance (roof/rodent)** | $12,550 paid Jun 16, Lake-MHA deadline was Jun 25. Zero confirmation of completion. $430/mo HAP + $1,738 FMR upside riding on it. Check-in sent Jul 2, awaiting Angel. |
-| **⚠️ 516 Alcove eviction** | Avenue + attorney driving; awaiting summons/court date. No Patrick attendance needed. |
-| **🏚️ Wilborn re-tenant** | Gated on City of Jennings occupancy inspection (no date). Heather actively calling. |
-| **📞 Talkatone (US number 334-304-6237)** | Root cause confirmed account-side lock (not network/VPN — disproven across 2 clean networks). Escalated 2 ways Jul 4: Zendesk ticket #4519185 follow-up w/ receipts (msg 19f2bb63ad0e69d7) + direct email to parent company Ooma's Customer Advocate (msg 19f2c5472a497784), offering unlock-or-port-out. Twilio confirmed the number IS portable but still needs Talkatone/Ooma's PIN — parked unless both go unanswered. Full detail: [[talkatone-account-lockout]] entity file. Affects 2FA on Mercury/OpenSky/GW Carter + a PM portal. |
-| **🩺 ADHD med sourcing — Bumrungrad vs Manarom** | Manarom quoted ~half-price medication (฿20/tab vs ฿38/tab) but didn't answer the follow-up-fee question. Follow-up sent Jul 3, awaiting Khemika's reply before deciding whether to switch. |
-| **🛏️ SOLOMON mattress refund** | Return filed (RN 772865378828066, ฿4,446.80). Seller decision due ~Jul 3 — escalate if stalled. |
-| **🏷️ Hazelcrest sale** | Further $2K drop to ~$49K pre-approved Jun 24/26 — unconfirmed if live yet. |
-| **🚗 Ozicare refund** | Cancellation CONFIRMED by Auto & General Jul 2, backdated to 17 Jun as requested. Refund $ amount still unverified — a "Complaint Response" email has 3 unopened attachments (likely the confirmation). Auto-watcher has self-disabled (`.fired` stamp) and its "any reply = handled" logic needs a rewrite — not trustworthy for the $ confirmation. |
-| **🏠 Brooklyn vacate ledger ($6,174.46)** | Buxton's number not itemised. No deadline forcing it — say "ledger" to chase. |
-| **📺 YouTube Premium Thai switch** | K PLUS card verified. Holding switch deliberately — AU sub runs to Jul 14. |
-
-## PARKED / LOW PRIORITY
-- Office RGB lighting cart (personal session thread). Pool-hall shortlist (Patrick to try + report). TrueMoney KYC result SMS (watch). ALL member card at 7-11 (Patrick's own).
-- *Note 2026-07-07: office lights + pool hall are now standing items on Patrick's daily Power List (Projects section) — he's driving them himself.*
-
-## AUTO-FLAGGED BY ROGER — RECURRING PAYMENT APPROVAL (2026-07-04)
-
-| # | Item | Detail | Trigger phrase |
-|---|---|---|---|
-| 🟡 | **Republic Services — 132 Fenwick Dr trash — payment approval stuck** | Pending approval 205.6h with no Telegram tap yet (pay_id `pay_republic_fenwick_trash_202607_0a0652`, $78.45 USD, due 2026-07-05). First reminder already sent once; further reminders are suppressed (see roger-repairs.log) so this item lives here until approved via payment-gate or explicitly skipped. | — (approve via payment-gate or tell Chich to skip) |
+## 🅿️ PARKED — do not raise
+- **Vacuum replacement** — Patrick handles it himself. **Do not ask again.**
+- **Old-drive deletion** — *"there's no rush."* Nothing deleted, nothing to decide.
+- **Folder-name restore** — BLOCKED **correctly**: twin folders are **DIVERGED, not copies** (`_ARCHIVE` 989 vs 1,287). It's a **MERGE**; picking a winner destroys data. Same class as the 157 lost tax docs.
+- **Deal pipeline** — hasn't run since 19 May (57 days). Noted, not this session's fight.
