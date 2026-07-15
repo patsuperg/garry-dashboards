@@ -1,184 +1,44 @@
 {
-  "generated": "2026-07-15T10:12:16.252662+00:00",
+  "generated": "2026-07-15T10:13:25.534614+00:00",
   "threads": {
-    "p0": [
-      {
-        "name": "Wilborn rehab [P0]",
-        "status": "Contractor fell through",
-        "status_text": "Contractor fell through",
-        "owner": "Heather (Avenue)",
-        "p_tier": "P0",
-        "cost_of_delay_per_day_usd": 87
-      }
-    ],
-    "p1": [
-      {
-        "name": "B2B Ohio \u2192 Tactical/Angel handover [P1]",
-        "status": "Tactical/Angel assuming both Ohio doors; LMHA + Lake County payee changes in progress",
-        "status_text": "Tactical/Angel assuming both Ohio doors; LMHA + Lake County payee changes in progress",
-        "owner": "patrick",
-        "p_tier": "P1",
-        "cost_of_delay_per_day_usd": null
-      }
-    ],
-    "p2": [
-      {
-        "name": "Credit pipeline (US) [P2]",
-        "status": "Personal + Empire Investing credit building",
-        "status_text": "Personal + Empire Investing credit building",
-        "owner": "patrick",
-        "p_tier": "P2",
-        "cost_of_delay_per_day_usd": null
-      },
-      {
-        "name": "Hazelcrest sale [P2]",
-        "status": "Listed for sale",
-        "status_text": "Listed for sale",
-        "owner": "GW Carter",
-        "p_tier": "P2",
-        "cost_of_delay_per_day_usd": null
-      }
-    ],
-    "count": 4
+    "p0": [],
+    "p1": [],
+    "p2": [],
+    "count": 2
   },
   "needs_patrick": [
     {
       "num": 1,
-      "title": "Tailscale Serve \u2014 one-time tailnet enablement (Life OS personal dashboard)",
-      "context": "Built the Life OS dashboard's PERSONAL view (`command-centre-personal.html` \u2014 tax/residency, phase bar, net-worth-adjacent content) and tried to publish it privately via `tailscale serve --bg --set-pa",
-      "priority": "normal"
+      "title": "CLOUDFLARE \u2014 circular dependency. `empinv.com` DNS sits in an account named `Patrick@spartansuppz.com's Account` (verified via API). If the sold domain dies first, empinv.com is unrecoverable and the new email dies with it.",
+      "context": "2 min",
+      "priority": "low"
     },
     {
       "num": 2,
-      "title": "DKIM \u2014 generate in admin.google.com (2 min, then I finish it)",
-      "context": "Google Workspace DKIM keys can ONLY be generated in the Admin console \u2014 there is NO API for it, so I genuinely can't do this half. Steps: (1) go to admin.google.com \u2192 Apps \u2192 Google Workspace \u2192 Gmail \u2192",
-      "priority": "normal"
+      "title": "Apple Account \u2014 a LOOK, not a change. Runs his iPhone/iPads/the Mac mini this system lives on. Unknown what role the old address plays.",
+      "context": "5 sec",
+      "priority": "low"
     },
     {
       "num": 3,
-      "title": "EmpinvDrive OAuth \u2014 one login unlocks BOTH backup-sink move AND file-org",
-      "context": "The `EmpinvDrive:` rclone remote is pre-created but has an empty token (needs one browser OAuth). Run: `rclone config reconnect EmpinvDrive:` \u2192 log in as pat@empinv.com \u2192 approve Drive access. That si",
-      "priority": "normal"
+      "title": "Tailscale Serve \u2014 `tailscale serve status` \u2192 \"No serve config\". Dashboard marked SHIPPED 12 Jul has never been openable on his phone. Board can't deliver its own unlock \u2014 hand him the click.",
+      "context": "10 sec",
+      "priority": "low"
     },
     {
       "num": 4,
-      "title": "Namecheap \u2014 cancel Private Email subscription ONLY (keep the domain!)",
-      "context": "SAFE to cancel now: mail no longer touches privateemail (MX is Google, verified). At ap.www.namecheap.com \u2192 Account \u2192 Dashboard \u2192 find Private Email for empinv.com \u2192 cancel/turn off auto-renew on the ",
+      "title": "~10 sign-in changes + 3 PM emails (drafted) to move the number.",
+      "context": "20 min",
       "priority": "low"
     },
     {
       "num": 5,
-      "title": "\"Remote control\" \u2014 needs Patrick to define it",
-      "context": "Asked to open a new Garry iTerm window + \"turn on remote control.\" Window opened via osascript (unverified \u2014 computer-use screenshot access was declined). \"Remote control\" isn't an established term an",
-      "priority": "normal"
-    },
-    {
-      "num": 6,
-      "title": "OpenSky card \u2014 activate + pay overdue balance",
-      "context": "Account ending 2152. \"Payment due in 3 days\" landed Jun 28 (due ~Jul 1) \u2014 may already be unpaid past due as of Jul 4. Activate via myaccount.openskycc.com or the number on the back of the card, then p",
-      "priority": "high"
-    },
-    {
-      "num": 7,
-      "title": "Winchelsea ($95K) \u2014 OFFER SENT, awaiting Heather",
-      "context": "Patrick explicitly overrode the 4BR-only buy-box gate 2026-07-04 \u2014 proceeding at $95,000 despite 3BR (recalc: Net CF $459/mo, DSCR 1.74, CoC 29% at Avenue's 9% PM). Offer SENT to Heather 2026-07-04 (m",
+      "title": "B2B DRE \u2014 RE-SIGN. Old signature is STALE: $14,920.05 dead, rebuilt to $13,013.80. NOT FILED, NOT SIGNED.",
+      "context": "\u2014",
       "priority": "low"
-    },
-    {
-      "num": 8,
-      "title": "Ameren MO \u2014 new service call",
-      "context": "800-552-7583, ~5 min, ID-verification requires his voice. Best window: 7-9pm ICT (lands at US open, shortest queues).",
-      "priority": "normal"
-    },
-    {
-      "num": 9,
-      "title": "Tactical \u2014 pull 505 W25th's Owner Packet PDF",
-      "context": "June owner payment was only $216.56, no expense breakdown seen. Garry can pull via AppFolio portal \u2014 no approval needed, just flagging it's not yet done.",
-      "priority": "normal"
-    },
-    {
-      "num": 10,
-      "title": "FB Marketplace re-login",
-      "context": "Needs Laura's 2FA to bring the sold-cascade automation live. PARKED per Patrick \u2014 Melbourne-only, not needed until ~Aug 12-13 return. Do not resurface before then.",
-      "priority": "normal"
-    },
-    {
-      "num": 11,
-      "title": "Lindia comparative table (Elmdale/Widefields/Haley) \u2014 corrected version awaiting sign-off",
-      "context": "Session ran rough (self-audit in LEARNING-LOG.md 2026-07-06) \u2014 Patrick has the assessment + fix plan, has NOT yet given go-ahead to execute the rebuild. Do not resend the table until he explicitly say",
-      "priority": "normal"
-    },
-    {
-      "num": 12,
-      "title": "2 staged Heather drafts \u2014 awaiting Patrick's \"send\"",
-      "context": "Gmail MCP dropped mid-session before these fired. Full text in `~/AI/Claude/staged-drafts-2026-07-07.md`: (1) Fenwick HAP nudge #2 \u2014 push Heather to CALL Ms. Syndor (silent since Jun 17, $2,636 held);",
-      "priority": "normal"
-    },
-    {
-      "num": 13,
-      "title": "B2B $14,920.05 \u2014 ~~deadline COB Wed Jul 8~~ SUPERSEDED, see the B2B block at the top of this file",
-      "context": "~~No action until deadline. If $0 received by COB Jul 8: DRE complaint packet is pre-built, ready to file same-day on Patrick's go.~~ Resolved into a decision: B2B replied Jul 9/10 with a ~$500 offer ",
-      "priority": "high"
     }
   ],
-  "waiting_on": [
-    {
-      "item": "Portfolio forensic audit + Xero-style accounting system",
-      "from": "TOP INITIATIVE \u2014 running independently in a separate terminal window, checkpointing per phase. Full brief: [[project_forensic_audit_2026_07_04]]. Check that win"
-    },
-    {
-      "item": "B2B $14,920.05 total demand",
-      "from": "~~Addendum sent Jul 1 \u2192 deadline COB Wed Jul 8.~~ CLOSED OUT into a ruling: B2B replied with ~$500 \u2192 Patrick REJECTED + authorized escalation (Jul 10/11). Now t"
-    },
-    {
-      "item": "\ud83d\udcb5 Earnest refund $2,002.26 (net $1,927.26)",
-      "from": "Patrick accepted wire personally Jul 1. Awaiting Megan's CertifID secure link."
-    },
-    {
-      "item": "Kenilworth tenant collection",
-      "from": "Approved Jul 3 \u2014 awaiting Tactical to issue the 30-day CARES Act notice."
-    },
-    {
-      "item": "Kenilworth compliance (roof/rodent)",
-      "from": "$12,550 paid Jun 16, Lake-MHA deadline was Jun 25. Zero confirmation of completion. $430/mo HAP + $1,738 FMR upside riding on it. Check-in sent Jul 2, awaiting "
-    },
-    {
-      "item": "516 Alcove eviction",
-      "from": "Avenue + attorney driving; awaiting summons/court date. No Patrick attendance needed."
-    },
-    {
-      "item": "\ud83c\udfda\ufe0f Wilborn re-tenant",
-      "from": "Gated on City of Jennings occupancy inspection (no date). Heather actively calling."
-    },
-    {
-      "item": "\ud83d\udcde Talkatone (US number 334-304-6237)",
-      "from": "Root cause confirmed account-side lock (not network/VPN \u2014 disproven across 2 clean networks). Escalated 2 ways Jul 4: Zendesk ticket #4519185 follow-up w/ recei"
-    },
-    {
-      "item": "\ud83e\ude7a ADHD med sourcing \u2014 Bumrungrad vs Manarom",
-      "from": "Manarom quoted ~half-price medication (\u0e3f20/tab vs \u0e3f38/tab) but didn't answer the follow-up-fee question. Follow-up sent Jul 3, awaiting Khemika's reply before d"
-    },
-    {
-      "item": "\ud83d\udecf\ufe0f SOLOMON mattress refund",
-      "from": "Return filed (RN 772865378828066, \u0e3f4,446.80). Seller decision due ~Jul 3 \u2014 escalate if stalled."
-    },
-    {
-      "item": "\ud83c\udff7\ufe0f Hazelcrest sale",
-      "from": "Further $2K drop to ~$49K pre-approved Jun 24/26 \u2014 unconfirmed if live yet."
-    },
-    {
-      "item": "\ud83d\ude97 Ozicare refund",
-      "from": "Cancellation CONFIRMED by Auto & General Jul 2, backdated to 17 Jun as requested. Refund $ amount still unverified \u2014 a \"Complaint Response\" email has 3 unopened"
-    },
-    {
-      "item": "\ud83c\udfe0 Brooklyn vacate ledger ($6,174.46)",
-      "from": "Buxton's number not itemised. No deadline forcing it \u2014 say \"ledger\" to chase."
-    },
-    {
-      "item": "\ud83d\udcfa YouTube Premium Thai switch",
-      "from": "K PLUS card verified. Holding switch deliberately \u2014 AU sub runs to Jul 14."
-    }
-  ],
+  "waiting_on": [],
   "portfolio": {
     "net_monthly": 3961,
     "gross_monthly": 6458,
