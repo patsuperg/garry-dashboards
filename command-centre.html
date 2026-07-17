@@ -136,6 +136,43 @@ body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-
 .income-bar-fill{height:100%;border-radius:2px;transition:width 0.3s}
 .income-status{font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
 
+/* MONEY TAB REDESIGN — Part C (namespaced mny- so other tabs are unaffected) */
+.mny-l1{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px;margin-bottom:22px}
+.mny-l1-num{font-size:46px;font-weight:800;line-height:1;letter-spacing:-1.5px;text-align:center}
+.mny-l1-num .cur{font-size:20px;color:var(--gold);vertical-align:top;margin-right:3px}
+.mny-l1-usd{font-size:11px;color:var(--dim);text-align:center;margin-top:4px}
+.mny-l1-sub{font-size:11px;color:var(--dim);text-align:center;margin-top:1px}
+.mny-l1-bar{width:100%;height:8px;background:#151518;border-radius:4px;margin-top:16px;overflow:hidden}
+.mny-l1-fill{height:100%;background:linear-gradient(90deg,var(--gold),#f0c040);border-radius:4px;transition:width .3s}
+.mny-l1-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--sub);margin-top:8px;font-weight:600}
+.mny-l1-milestone{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--text);line-height:1.5}
+.mny-l1-milestone b{color:var(--green)}
+.mny-asof{display:inline-flex;align-items:center;gap:4px;font-size:9px;color:var(--dim);letter-spacing:0.3px;margin-top:10px}
+.mny-asof.stale{color:#fbbf24}
+.mny-asof .dot{width:5px;height:5px;border-radius:50%;background:currentColor;display:inline-block}
+
+.mny-move{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:14px;padding:16px;margin-bottom:10px}
+.mny-move-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.mny-move-door{font-size:14px;font-weight:700;color:var(--text)}
+.mny-move-impact{font-size:17px;font-weight:800;color:var(--green);white-space:nowrap}
+.mny-move-action{font-size:12px;color:var(--sub);line-height:1.5;margin-top:4px}
+.mny-move-step{font-size:11px;color:var(--dim);margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);line-height:1.5}
+.mny-move-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:8px}
+.mny-move-deadline{font-size:10px;color:var(--dim);letter-spacing:0.3px}
+.mny-badge-patrick{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;color:#fbbf24;background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.3);border-radius:20px;padding:3px 9px;white-space:nowrap}
+
+.mny-doortbl{width:100%;border-collapse:collapse;font-size:11px}
+.mny-doortbl th{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--dim);padding:8px;border-bottom:1px solid var(--border);text-align:left;font-weight:700}
+.mny-doortbl td{padding:9px 8px;border-bottom:1px solid rgba(24,24,28,0.6);vertical-align:middle}
+.mny-doortbl tr:last-child td{border-bottom:none}
+.mny-chip{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:800}
+
+.mny-acc{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden}
+.mny-acc[open]{border-color:var(--border-2)}
+.mny-acc-sum{list-style:none;padding:14px 16px;cursor:pointer;font-size:12px;font-weight:700;color:var(--text);-webkit-tap-highlight-color:transparent;display:flex;justify-content:space-between;align-items:center}
+.mny-acc-sum::-webkit-details-marker{display:none}
+.mny-acc-body{border-top:1px solid var(--border);padding:14px 16px}
+
 /* DONE LOG */
 .done-row{display:flex;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:6px;gap:10px}
 .done-date{font-size:10px;color:var(--dim);white-space:nowrap;min-width:68px;padding-top:2px}
@@ -512,7 +549,7 @@ function nCard(label,val,unit,color){
 
 <!-- ═══════════════ TAB 0: MONEY COMMAND BOARD (landing) ═══════════════ -->
 <div id="tab-money" class="tab-panel active">
-<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 17 17:44 · 0m ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 17 18:14 · 0m ago</div>
 
 <div class="phase-hero">
   <div class="phase-label">Mission · Income Ops</div>
@@ -520,184 +557,155 @@ function nCard(label,val,unit,color){
   <div class="phase-sub">Section 8 income to A$20,000/mo. Not a growth problem — an OPS problem: collect what's owed, fill vacant doors, recover arrears.</div>
 </div>
 
-<div class="hero-grid">
-  <div class="hero-main">
-    <div class="hero-num"><span class="cur">A$</span>5,659</div>
-    <div class="hero-goal">of A$20,000/mo · North Star (S8 income = OPS problem)</div>
-    <div class="hero-bar"><div class="hero-fill" style="width:28%"></div></div>
-    <div class="hero-pct">28% · Gap A$14,341/mo</div>
-    <div class="need-ctx" style="margin-top:8px;color:var(--sub);font-size:12px">
-      Net after reserves <span style="color:var(--text);font-weight:800">A$4,176/mo</span>
-      <span style="color:var(--dim);font-size:10px">· 8.33% vacancy + $100 CapEx/door (calculation-standards.md)</span>
-    </div>
-  </div>
-  <div class="hero-side">
-    <div class="side-tile">
-      <div class="side-v" style="color:var(--orange)">1</div>
-      <div class="side-l">Vacant Doors</div>
-    </div>
-    <div class="side-tile">
-      <div class="side-v" style="color:var(--green)">A$1,392</div>
-      <div class="side-l">Recoverable/mo</div>
-    </div>
-  </div>
+<div class="mny-l1">
+  <div class="mny-l1-num"><span class="cur">A$</span>5,659</div>
+  <div class="mny-l1-usd">US$3,961/mo</div>
+  <div class="mny-l1-sub">of A$20,000/mo target</div>
+  <div class="mny-l1-bar"><div class="mny-l1-fill" style="width:28%"></div></div>
+  <div class="mny-l1-meta"><span>28% of target</span><span>Gap A$14,341/mo</span></div>
+  <div class="mny-l1-milestone">Next milestone: <b>A$7,051/mo</b> when the vacancy re-leases.</div>
+  <span class="mny-asof"><span class="dot"></span>door figures: 0m ago</span>
 </div>
 
 <div class="sec">
-  <div class="sec-title">⚠ Exceptions &amp; Decisions <span class="badge" style="background:rgba(248,113,113,0.1);color:#f87171">A$1,829/mo + A$821 one-off at stake</span></div>
-  <div class="need-ctx" style="color:var(--dim);margin-bottom:10px">Management by exception — 7 open, ranked by $ impact. Nothing green shown; each is one decision + owner. (US$ figures.)</div>
+  <div class="sec-title">The Moves</div>
+  <span class="mny-asof"><span class="dot"></span>moves data: 0m ago</span>
+  <div style="margin-top:8px">
+<div class="mny-move" style="border-left-color:#f87171">
+  <div class="mny-move-top">
+    <div class="mny-move-door">5361 Wilborn Dr</div>
+    <div class="mny-move-impact">A$1,392/mo</div>
+  </div>
+  <div class="mny-move-action">Widen the listing and lock the occupancy re-inspection date — re-lease is the single biggest income lever…</div>
+  <div class="mny-move-step">Step: Confirm make-ready punch-list closed, then book &amp; pass the occupancy re-inspection.</div>
+  <div class="mny-move-foot">
+    <span class="mny-move-deadline">ongoing — bleeding daily</span>
+    <span class="mny-badge-patrick">⚑ Patrick</span>
+  </div>
+</div>
+<div class="mny-move" style="border-left-color:#fb923c">
+  <div class="mny-move-top">
+    <div class="mny-move-door">132 Fenwick Dr</div>
+    <div class="mny-move-impact">A$273/mo</div>
+  </div>
+  <div class="mny-move-action">File the PHA owner-request rent increase to $1,660 NOW.</div>
   
-<div class="need-card" style="border-left-color:#f87171">
-  <div class="need-num" style="color:#f87171">🔴</div>
-  <div class="need-body">
-    <div class="need-title">5361 Wilborn Dr <span class="badge" style="background:rgba(148,163,184,0.12);color:#f87171;margin-left:6px">VACANCY</span></div>
-    <div class="need-ctx" style="color:#f87171;font-weight:600">$974/mo bleeding · ≥$1,472 lost to date (≥46d vacant @ $32/day)</div>
-    <div class="need-ctx" style="margin-top:4px">→ Widen the listing (GoSection8 + AffordableHousing + cash pool) and lock the occupancy re-inspection date — re-lease is the single biggest income lever (+$974/mo).</div>
-    <div class="need-ctx" style="margin-top:4px;color:var(--dim);font-size:11px">Patrick → Heather/Avenue · external contact</div>
+  <div class="mny-move-foot">
+    <span class="mny-move-deadline">by 2026-08-31</span>
+    <span class="mny-badge-patrick">⚑ Patrick</span>
   </div>
 </div>
-<div class="need-card" style="border-left-color:#fb923c">
-  <div class="need-num" style="color:#fb923c">🟠</div>
-  <div class="need-body">
-    <div class="need-title">132 Fenwick Dr <span class="badge" style="background:rgba(148,163,184,0.12);color:#fb923c;margin-left:6px">FILING WINDOW</span></div>
-    <div class="need-ctx" style="color:#fb923c;font-weight:600">+$191/mo net headroom ($1,450 → cap $1,660) · anniv 2026-08-31 — 45d out, 60-day notice window OPEN</div>
-    <div class="need-ctx" style="margin-top:4px">→ File the PHA owner-request rent increase to $1,660 NOW (60-day notice; anniversary 2026-08-31). +$191/mo net.</div>
-    <div class="need-ctx" style="margin-top:4px;color:var(--dim);font-size:11px">Patrick → PHA (via PM) · external contact</div>
+<div class="mny-move" style="border-left-color:#fbbf24">
+  <div class="mny-move-top">
+    <div class="mny-move-door">505 W 25th St</div>
+    <div class="mny-move-impact">A$113/mo</div>
   </div>
-</div>
-<div class="need-card" style="border-left-color:#fbbf24">
-  <div class="need-num" style="color:#fbbf24">🟡</div>
-  <div class="need-body">
-    <div class="need-title">505 W 25th St <span class="badge" style="background:rgba(148,163,184,0.12);color:#fbbf24;margin-left:6px">UPSIDE</span></div>
-    <div class="need-ctx" style="color:#fbbf24;font-weight:600">+$79/mo net headroom ($1,383 → cap $1,470) · anniv 2027-06-30</div>
-    <div class="need-ctx" style="margin-top:4px">→ Confirm Raise Up payment-standard % (call 440-288-1600), then Queue rent-increase filing to $1,470 for the 2027-06-30 anniversary (60-day notice). +$79/mo net.</div>
-    <div class="need-ctx" style="margin-top:4px;color:var(--dim);font-size:11px">Patrick → PHA (via PM) · external contact</div>
-  </div>
-</div>
-<div class="need-card" style="border-left-color:#fb923c">
-  <div class="need-num" style="color:#fb923c">🟠</div>
-  <div class="need-body">
-    <div class="need-title">505 W 25th St <span class="badge" style="background:rgba(148,163,184,0.12);color:#fb923c;margin-left:6px">MONEY-OUT</span></div>
-    <div class="need-ctx" style="color:#fb923c;font-weight:600">$574.76 delinquent tax + penalty accruing</div>
-    <div class="need-ctx" style="margin-top:4px">→ Pay the $574.76 OH county delinquency and enrol autopay on this parcel so it never recurs.</div>
-    <div class="need-ctx" style="margin-top:4px;color:var(--dim);font-size:11px">Patrick (spend approval) · spend approval</div>
-  </div>
-</div>
-<div class="need-card" style="border-left-color:#fbbf24">
-  <div class="need-num" style="color:#fbbf24">🟡</div>
-  <div class="need-body">
-    <div class="need-title">516 Alcove Ave <span class="badge" style="background:rgba(148,163,184,0.12);color:#fbbf24;margin-left:6px">UPSIDE</span></div>
-    <div class="need-ctx" style="color:#fbbf24;font-weight:600">+$36/mo net headroom ($1,490 → cap $1,530) · anniv 2027-02-28</div>
-    <div class="need-ctx" style="margin-top:4px">→ Queue rent-increase filing to $1,530 for the 2027-02-28 anniversary (60-day notice). +$36/mo net.</div>
-    <div class="need-ctx" style="margin-top:4px;color:var(--dim);font-size:11px">Patrick → PHA (via PM) · external contact</div>
-  </div>
-</div>
-<div class="need-card" style="border-left-color:#fb923c">
-  <div class="need-num" style="color:#fb923c">🟠</div>
-  <div class="need-body">
-    <div class="need-title">5361 Wilborn Dr <span class="badge" style="background:rgba(148,163,184,0.12);color:#fb923c;margin-left:6px">INSPECTION</span></div>
-    <div class="need-ctx" style="color:#fb923c;font-weight:600">gates the $974/mo vacancy above</div>
-    <div class="need-ctx" style="margin-top:4px">→ Confirm make-ready punch-list closed, then book &amp; pass the occupancy re-inspection (Jennings for Wilborn).</div>
-    <div class="need-ctx" style="margin-top:4px;color:var(--dim);font-size:11px">Patrick → Heather/Mike (Avenue) · external contact</div>
-  </div>
-</div>
-<div class="need-card" style="border-left-color:#fbbf24">
-  <div class="need-num" style="color:#fbbf24">🟡</div>
-  <div class="need-body">
-    <div class="need-title">Avenue PMA (4 STL doors) <span class="badge" style="background:rgba(148,163,184,0.12);color:#fbbf24;margin-left:6px">CONTRACT</span></div>
-    <div class="need-ctx" style="color:#fbbf24;font-weight:600">up to ~$150/mo if the negotiated tier is formalised (est., unsigned)</div>
-    <div class="need-ctx" style="margin-top:4px">→ Get an amended Attachment A signed with the 9/8/7/6% tier schedule (currently flat 9%+$100/door minimum).</div>
-    <div class="need-ctx" style="margin-top:4px;color:var(--dim);font-size:11px">Patrick → Heather/Avenue (sign) · signature</div>
-  </div>
-</div>
-</div>
-<div class="sec">
-  <div class="sec-title">Cash Leaks — Fix These <span class="badge" style="background:rgba(248,113,113,0.1);color:#f87171">A$0 uncollected</span></div>
+  <div class="mny-move-action">Confirm Raise Up payment-standard %, then Queue rent-increase filing to $1,470 for the 2027-06-30 anniversary.</div>
   
-<div class="need-card" style="border-left-color:#f87171">
-  <div class="need-num" style="color:#f87171">✕</div>
-  <div class="need-body">
-    <div class="need-title">5361 Wilborn Dr — VACANT · recover A$1,392/mo</div>
-    <div class="need-ctx">3BR; VACANT — re-tenant gated on occupancy inspection; HASLC 3BR cap $1,420</div>
+  <div class="mny-move-foot">
+    <span class="mny-move-deadline">by 2027-06-30</span>
+    <span class="mny-badge-patrick">⚑ Patrick</span>
   </div>
-</div>
-<div class="need-card" style="border-left-color:#fbbf24">
-  <div class="need-num" style="color:#fbbf24">◆</div>
-  <div class="need-body">
-    <div class="need-title">~~B2B DRE — RE-SIGN. Old signature is STALE: $14,920.05 dead, rebuilt to $13,013.80. NOT F</div>
-    <div class="need-ctx">0 min</div>
-  </div>
-</div>
-</div>
-<div class="sec">
-  <div class="sec-title">Collections by PM · this month</div>
+</div></div>
   
-<div class="income-row">
-  <div class="income-pm">Avenue (STL 4 properties)</div>
-  <div class="income-nums"><span style="color:#fbbf24">A$1,988</span><span class="income-sep"> of </span><span class="income-exp">A$3,393</span></div>
-  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:59%;background:#fbbf24"></div></div>
-  <div class="income-status" style="color:#fbbf24">A$1,405 SHORT</div>
-</div>
-<div class="income-row">
-  <div class="income-pm">Tactical (Ohio incoming Jun)</div>
-  <div class="income-nums"><span style="color:#f87171">A$0</span><span class="income-sep"> of </span><span class="income-exp">A$2,266</span></div>
-  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:0%;background:#f87171"></div></div>
-  <div class="income-status" style="color:#f87171">A$2,266 OUTSTANDING</div>
-</div>
-  <div class="need-ctx" style="margin-top:8px;color:var(--dim)">Avenue STL: US$1,392 distributed in last 30d (1 transfer) · current-month distribution not yet received</div>
-</div>
-<div class="sec">
-  <div class="sec-title">Per-Door Net · worst first</div>
-  <div class="need-ctx" style="color:var(--dim);margin-bottom:8px">"Net A$/mo" = stored owner net. "After reserves" holds back 8.33% vacancy + $100/mo CapEx per door (calculation-standards.md) — the more honest number.</div>
-  <div class="arch-card" style="padding:8px 12px">
-    <table class="arch-tbl"><thead><tr><th>Door</th><th>PM</th><th style="text-align:right">Net A$/mo</th><th style="text-align:right">After reserves</th></tr></thead>
-    <tbody><tr><td>7596 Hazelcrest Dr Unit F</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:var(--green);font-weight:700;text-align:right">A$441</td><td style="color:var(--sub);font-weight:600;text-align:right">A$206</td></tr><tr><td>124 Kenilworth Ave</td><td style="color:var(--dim)">Tactical</td><td style="color:var(--green);font-weight:700;text-align:right">A$854</td><td style="color:var(--sub);font-weight:600;text-align:right">A$550</td></tr><tr><td>505 W 25th St</td><td style="color:var(--dim)">Tactical</td><td style="color:var(--green);font-weight:700;text-align:right">A$1,412</td><td style="color:var(--sub);font-weight:600;text-align:right">A$1,104</td></tr><tr><td>516 Alcove Ave</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:var(--green);font-weight:700;text-align:right">A$1,436</td><td style="color:var(--sub);font-weight:600;text-align:right">A$1,116</td></tr><tr><td>132 Fenwick Dr</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:var(--green);font-weight:700;text-align:right">A$1,516</td><td style="color:var(--sub);font-weight:600;text-align:right">A$1,200</td></tr><tr><td>5361 Wilborn Dr</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:#f87171;font-weight:700;text-align:right">VACANT</td><td style="color:var(--sub);font-weight:600;text-align:right">—</td></tr></tbody></table>
+<details class="mny-acc">
+  <summary class="mny-acc-sum"><span>+3 more</span><span style="color:var(--dim);font-weight:400">▾</span></summary>
+  <div class="mny-acc-body">
+<div class="mny-move" style="border-left-color:#fbbf24">
+  <div class="mny-move-top">
+    <div class="mny-move-door" style="font-size:12px">516 Alcove Ave</div>
+    <div class="mny-move-impact" style="font-size:13px">A$51/mo</div>
   </div>
+  <div class="mny-move-action">Queue rent-increase filing to $1,530 for the 2027-02-28 anniversary.</div>
+  
+  <div class="mny-move-foot">
+    <span class="mny-move-deadline">by 2027-02-28</span>
+    <span class="mny-badge-patrick">⚑ Patrick</span>
+  </div>
+</div>
+<div class="mny-move" style="border-left-color:#fb923c">
+  <div class="mny-move-top">
+    <div class="mny-move-door" style="font-size:12px">505 W 25th St</div>
+    <div class="mny-move-impact" style="font-size:13px">A$821 one-off</div>
+  </div>
+  <div class="mny-move-action">Pay the $574.</div>
+  
+  <div class="mny-move-foot">
+    <span class="mny-move-deadline">overdue — penalty accruing</span>
+    <span class="mny-badge-patrick">⚑ Patrick</span>
+  </div>
+</div>
+<div class="mny-move" style="border-left-color:#fbbf24">
+  <div class="mny-move-top">
+    <div class="mny-move-door" style="font-size:12px">Avenue PMA (4 STL doors)</div>
+    <div class="mny-move-impact" style="font-size:13px">—</div>
+  </div>
+  <div class="mny-move-action">Get an amended Attachment A signed with the 9/8/7/6% tier schedule.</div>
+  
+  <div class="mny-move-foot">
+    <span class="mny-move-deadline">no date set</span>
+    <span class="mny-badge-patrick">⚑ Patrick</span>
+  </div>
+</div></div>
+</details>
 </div>
 
 <div class="sec">
-  <div class="sec-title">HAP Share · North Star <span class="badge" style="background:rgba(52,211,153,0.1);color:var(--green)">≥90 green · 60–90 amber · &lt;60 red</span></div>
-  <div class="need-ctx" style="color:var(--dim);margin-bottom:10px">% of each door's rent paid by the voucher — the north star; higher = less tenant-dependent income.</div>
-  <div class="arch-card" style="padding:6px 14px">
-    
-<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid rgba(148,163,184,0.08)">
-  <div style="flex:0 0 90px"><span style="display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;font-weight:800;background:rgba(52,211,153,0.15);color:#34d399">100%</span></div>
-  <div style="flex:1"><div style="font-size:12px;color:var(--text);font-weight:600">505 W 25th St</div>
-    <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:2px">basis: observed receipt · eff 2025-01-01</div></div>
-</div>
-<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid rgba(148,163,184,0.08)">
-  <div style="flex:0 0 90px"><span style="display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;font-weight:800;background:rgba(52,211,153,0.15);color:#34d399">98%</span></div>
-  <div style="flex:1"><div style="font-size:12px;color:var(--text);font-weight:600">132 Fenwick Dr</div>
-    <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:2px">basis: documented · eff 2026-06-01</div></div>
-</div>
-<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid rgba(148,163,184,0.08)">
-  <div style="flex:0 0 90px"><span style="display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;font-weight:800;background:rgba(248,113,113,0.15);color:#f87171">50%</span></div>
-  <div style="flex:1"><div style="font-size:12px;color:var(--text);font-weight:600">516 Alcove Ave</div>
-    <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:2px">basis: observed receipt · eff 2025-12-01</div></div>
-</div>
-<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid rgba(148,163,184,0.08)">
-  <div style="flex:0 0 90px"><span style="display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;font-weight:800;background:rgba(248,113,113,0.15);color:#f87171">30%</span></div>
-  <div style="flex:1"><div style="font-size:12px;color:var(--text);font-weight:600">124 Kenilworth Ave</div>
-    <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:2px">basis: observed receipt · eff 2025-01-01</div></div>
-</div>
-<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid rgba(148,163,184,0.08)">
-  <div style="flex:0 0 90px"><span style="display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(148,163,184,0.12);color:#94a3b8">—</span></div>
-  <div style="flex:1"><div style="font-size:12px;color:var(--sub);font-weight:600">7596 Hazelcrest Dr Unit F</div>
-    <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:2px">not a Section 8 door</div></div>
-</div>
-<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid rgba(148,163,184,0.08)">
-  <div style="flex:0 0 90px"><span style="display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(148,163,184,0.12);color:#94a3b8">—</span></div>
-  <div style="flex:1"><div style="font-size:12px;color:var(--sub);font-weight:600">5361 Wilborn Dr</div>
-    <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:2px">vacant — no tenant</div></div>
-</div>
+  <div class="sec-title">Door Strip · worst net first</div>
+  <div><span class="mny-asof"><span class="dot"></span>door net: 0m ago</span> <span class="mny-asof"><span class="dot"></span>HAP % + this month: 3.8h ago</span></div>
+  <div class="arch-card" style="padding:4px 10px;margin-top:8px">
+    <table class="mny-doortbl">
+      <thead><tr><th>Door</th><th>PM</th><th style="text-align:right">Net A$/mo</th>
+        <th style="text-align:right">After reserves</th><th style="text-align:center">HAP share</th>
+        <th style="text-align:right">This month</th></tr></thead>
+      <tbody>
+<tr>
+  <td style="color:var(--text);font-weight:600">7596 Hazelcrest Dr Unit F</td>
+  <td style="color:var(--dim)">Avenue Residential</td>
+  <td style="text-align:right;color:var(--green);font-weight:700">A$441</td>
+  <td style="text-align:right;color:var(--sub);font-weight:600">A$206</td>
+  <td style="text-align:center"><span class="mny-chip" style="background:rgba(148,163,184,0.12);color:#94a3b8">—</span></td>
+  <td style="text-align:right;color:#fbbf24;font-weight:700;font-size:10px;white-space:nowrap">A$806 SHORT</td>
+</tr>
+<tr>
+  <td style="color:var(--text);font-weight:600">124 Kenilworth Ave</td>
+  <td style="color:var(--dim)">Tactical</td>
+  <td style="text-align:right;color:var(--green);font-weight:700">A$854</td>
+  <td style="text-align:right;color:var(--sub);font-weight:600">A$550</td>
+  <td style="text-align:center"><span class="mny-chip" style="background:rgba(248,113,113,0.15);color:#f87171">30%</span></td>
+  <td style="text-align:right;color:#fbbf24;font-weight:700;font-size:10px;white-space:nowrap">A$1,329 SHORT</td>
+</tr>
+<tr>
+  <td style="color:var(--text);font-weight:600">505 W 25th St</td>
+  <td style="color:var(--dim)">Tactical</td>
+  <td style="text-align:right;color:var(--green);font-weight:700">A$1,412</td>
+  <td style="text-align:right;color:var(--sub);font-weight:600">A$1,104</td>
+  <td style="text-align:center"><span class="mny-chip" style="background:rgba(52,211,153,0.15);color:#34d399">100%</span></td>
+  <td style="text-align:right;color:#34d399;font-weight:700;font-size:10px;white-space:nowrap">COLLECTED</td>
+</tr>
+<tr>
+  <td style="color:var(--text);font-weight:600">516 Alcove Ave</td>
+  <td style="color:var(--dim)">Avenue Residential</td>
+  <td style="text-align:right;color:var(--green);font-weight:700">A$1,436</td>
+  <td style="text-align:right;color:var(--sub);font-weight:600">A$1,116</td>
+  <td style="text-align:center"><span class="mny-chip" style="background:rgba(248,113,113,0.15);color:#f87171">50%</span></td>
+  <td style="text-align:right;color:#fbbf24;font-weight:700;font-size:10px;white-space:nowrap">A$1,066 SHORT</td>
+</tr>
+<tr>
+  <td style="color:var(--text);font-weight:600">132 Fenwick Dr</td>
+  <td style="color:var(--dim)">Avenue Residential</td>
+  <td style="text-align:right;color:var(--green);font-weight:700">A$1,516</td>
+  <td style="text-align:right;color:var(--sub);font-weight:600">A$1,200</td>
+  <td style="text-align:center"><span class="mny-chip" style="background:rgba(52,211,153,0.15);color:#34d399">98%</span></td>
+  <td style="text-align:right;color:#fbbf24;font-weight:700;font-size:10px;white-space:nowrap">A$189 SHORT</td>
+</tr></tbody>
+    </table>
   </div>
 </div>
 
-
-<div class="sec">
-  <div class="sec-title">PM Accountability Scorecard <span class="badge" style="background:rgba(248,113,113,0.15);color:#f87171">⚠ RED-MONTH ESCALATION · Avenue Residential</span></div>
-  <div class="need-ctx" style="color:var(--dim);margin-bottom:10px">Commandment IX — income leaks from unmanaged managers, not bad houses. Two PMs, 4 hard SLAs, scored monthly (2026-07). Remit-day-aware; honest "n/a — needs feed" where no data source exists yet.</div>
-  
+<details class="mny-acc">
+  <summary class="mny-acc-sum"><span>PM Accountability Scorecard</span><span style="color:var(--dim);font-weight:400">▾</span></summary>
+  <div class="mny-acc-body"><div class="need-ctx" style="color:var(--dim);margin-bottom:10px">Two PMs, 4 hard SLAs, scored monthly (2026-07). Remit-day-aware; honest "n/a — needs feed" where no data source exists yet. <span class="badge" style="background:rgba(248,113,113,0.15);color:#f87171">⚠ RED-MONTH ESCALATION · Avenue Residential</span></div>
 <div class="arch-card" style="padding:12px 14px;margin-bottom:10px;border-left:3px solid #f87171">
   <div style="display:flex;align-items:center;justify-content:space-between">
     <div style="font-size:13px;font-weight:700;color:var(--text)">Avenue Residential
@@ -787,14 +795,48 @@ function nCard(label,val,unit,color){
     
   </div>
 </div>
+</div></div>
+</details>
+
+<details class="mny-acc">
+  <summary class="mny-acc-sum"><span>Collections Detail</span><span style="color:var(--dim);font-weight:400">▾</span></summary>
+  <div class="mny-acc-body">
+    <span class="mny-asof"><span class="dot"></span>PM remittance data: 7.5h ago</span>
+    <div style="margin-top:8px">
+<div class="income-row">
+  <div class="income-pm">Avenue (STL — 4 props)</div>
+  <div class="income-nums"><span style="color:#fbbf24">A$1,988</span><span class="income-sep"> of </span><span class="income-exp">A$3,393</span></div>
+  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:59%;background:#fbbf24"></div></div>
+  <div class="income-status" style="color:#fbbf24">A$1,405 SHORT</div>
 </div>
-</div>
-<div class="foot">Auto-updated Fri Jul 17 2026 · 05:44 PM · 1 USD = A$1.4287 · <span class="dot" style="background:#34d399"></span>Income = the mission</div>
+<div class="income-row">
+  <div class="income-pm">Tactical Ohio</div>
+  <div class="income-nums"><span style="color:#f87171">A$0</span><span class="income-sep"> of </span><span class="income-exp">A$2,266</span></div>
+  <div class="income-bar-wrap"><div class="income-bar-fill" style="width:0%;background:#f87171"></div></div>
+  <div class="income-status" style="color:#f87171">A$2,266 OUTSTANDING</div>
+</div></div>
+    <div class="need-ctx" style="margin-top:8px;color:var(--dim)">Avenue STL: US$1,392 distributed in last 30d (1 transfer) · current-month distribution not yet received</div>
+  </div>
+</details>
+
+<details class="mny-acc">
+  <summary class="mny-acc-sum"><span>Methodology</span><span style="color:var(--dim);font-weight:400">▾</span></summary>
+  <div class="mny-acc-body" style="font-size:11px;color:var(--sub);line-height:1.7">
+    <p><b style="color:var(--text)">Net A$/mo</b> is each door's stored owner net, converted at the live USD→AUD rate.</p>
+    <p><b style="color:var(--text)">After reserves</b> holds back 8.33% of gross rent for vacancy plus a flat $100/month for CapEx, per door — a more conservative number than the raw stored net.</p>
+    <p><b style="color:var(--text)">HAP share</b> is the percentage of a door's rent paid by the housing voucher rather than the tenant — green ≥90%, amber 60–90%, red &lt;60%. Higher is less tenant-dependent income.</p>
+    <p><b style="color:var(--text)">This month</b> compares each door's actually-observed receipt this month against its expected rent.</p>
+    <p><b style="color:var(--text)">The Moves</b> are ranked purely by $/mo impact; a large one-off dollar amount (like a tax delinquency) can still land in "+N more" if its $/mo impact is zero.</p>
+    <p><b style="color:var(--text)">Month-over-month trend</b> is intentionally not shown on the scoreboard: the only historical ledger available is mid-month for the current period and measures actual dollars collected — a different basis than this scoreboard's stored owner-net figure. Showing a trend arrow here would compare two different things, so it stays off until a same-basis history exists.</p>
+  </div>
+</details>
+
+<div class="foot">Auto-updated Fri Jul 17 2026 · 06:14 PM · 1 USD = A$1.4287 · <span class="dot" style="background:#34d399"></span>Income = the mission</div>
 </div><!-- /tab-money -->
 
 <!-- ═══════════════ TAB 1: DEAL UNDERWRITING ═══════════════ -->
 <div id="tab-deal" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">deal data as of: Jul 17 17:15 · 29m ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">deal data as of: Jul 17 17:15 · 59m ago</div>
 
 
 <!-- PHASE HERO -->
@@ -842,12 +884,12 @@ function nCard(label,val,unit,color){
   </div>
 </div>
 
-<div class="foot">Auto-updated Fri Jul 17 2026 · 05:44 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
+<div class="foot">Auto-updated Fri Jul 17 2026 · 06:14 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
 </div><!-- /tab-deal -->
 
 <!-- ═══════════════ TAB 2: OPERATIONS & CASH FLOW ═══════════════ -->
 <div id="tab-ops" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 17 17:44 · 0m ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 17 18:14 · 0m ago</div>
 <!-- HERO NUMBERS -->
 <div class="hero-grid">
   <div class="hero-main">
@@ -919,7 +961,7 @@ function nCard(label,val,unit,color){
 <!-- INCOME -->
 <div class="sec">
   <div class="sec-title">Income Jul 2026 <span class="badge" style="background:rgba(52,211,153,0.1);color:var(--green)">A$1,988 of A$5,659</span></div>
-  <div class="fresh-stamp" style="color:#a0a0a8">income data as of: Jul 17 10:43 · 7.0h ago</div>
+  <div class="fresh-stamp" style="color:#a0a0a8">income data as of: Jul 17 10:43 · 7.5h ago</div>
   
 <div class="income-row">
   <div class="income-pm">Avenue (STL — 4 props)</div>
@@ -1450,7 +1492,7 @@ function nCard(label,val,unit,color){
 </div>
 </div>
 
-<div class="foot">Auto-updated Fri Jul 17 2026 · 05:44 PM · 1 USD = A$1.4287 · <span class="dot" style="background:#34d399"></span>Live DB</div>
+<div class="foot">Auto-updated Fri Jul 17 2026 · 06:14 PM · 1 USD = A$1.4287 · <span class="dot" style="background:#34d399"></span>Live DB</div>
 </div><!-- /tab-ops -->
 
 
@@ -1763,7 +1805,7 @@ function nCard(label,val,unit,color){
 <!--  SYSTEM BLUEPRINT & PERFORMANCE TAB                    -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <div id="tab-bp" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">logbook as of: Jul 16 01:58 · 39.8h ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">logbook as of: Jul 16 01:58 · 40.3h ago</div>
 <!-- SECTION 1: BUSINESS FLOW -->
 <div class="bp-flow">
   <div class="bp-flow-title">How the Business Works</div>
@@ -1929,10 +1971,9 @@ contractor_outreach.py --monitor
 
   <div class="arch-card">
     <h4>📊 Weekly Monday 06:00 — P&amp;L Report</h4>
-    <div class="arch-code">local_accountant.py --export-csv
-  → ingest HAP + Wise → categorize
-  → ledger.db → draft_outputs/ledger_YYYY-MM.csv
-                 draft_outputs/pnl_YYYY-MM.csv</div>
+    <div class="arch-code">accounting-engine.py (sole ledger.db writer — local_accountant.py archived 2026-07-17)
+  → ingest HAP + Wise → classify payer + categorize
+  → ledger.db → monthly_pnl, statement_lines, draft_outputs/pnl_YYYY-MM.csv</div>
   </div>
 </div>
 
@@ -1948,7 +1989,7 @@ contractor_outreach.py --monitor
         <tr><td>hap-rent-chaser.py</td><td>Chase missing HAP — day 8 + escalate day 12</td><td>8th 09:00</td></tr>
         <tr><td>rehab_underwriter.py</td><td>Claude Vision HQS + cost estimate</td><td>Score ≥78</td></tr>
         <tr><td>contractor_outreach.py</td><td>SOW drafts for vacant property repairs</td><td>Manual + auto</td></tr>
-        <tr><td>local_accountant.py</td><td>SQLite bookkeeper, CSV export</td><td>Daily</td></tr>
+        <tr><td>accounting-engine.py</td><td>Sole ledger.db writer — parses statements, classifies payer, rolls up monthly_pnl</td><td>Daily</td></tr>
         <tr><td>tax_shield.py</td><td>Tax assessment spike + appeal draft</td><td>Monthly</td></tr>
         <tr><td>insurance_rfp.py</td><td>Competitive broker RFQ every 180 days</td><td>180-day cycle</td></tr>
         <tr><td>email_utils.py</td><td>HITL email layer — all scripts import this</td><td>Library</td></tr>
