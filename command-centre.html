@@ -512,7 +512,7 @@ function nCard(label,val,unit,color){
 
 <!-- ═══════════════ TAB 0: MONEY COMMAND BOARD (landing) ═══════════════ -->
 <div id="tab-money" class="tab-panel active">
-<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 17 13:14 · 0m ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 17 13:44 · 0m ago</div>
 
 <div class="phase-hero">
   <div class="phase-label">Mission · Income Ops</div>
@@ -526,6 +526,10 @@ function nCard(label,val,unit,color){
     <div class="hero-goal">of A$20,000/mo · North Star (S8 income = OPS problem)</div>
     <div class="hero-bar"><div class="hero-fill" style="width:28%"></div></div>
     <div class="hero-pct">28% · Gap A$14,341/mo</div>
+    <div class="need-ctx" style="margin-top:8px;color:var(--sub);font-size:12px">
+      Net after reserves <span style="color:var(--text);font-weight:800">A$4,176/mo</span>
+      <span style="color:var(--dim);font-size:10px">· 8.33% vacancy + $100 CapEx/door (calculation-standards.md)</span>
+    </div>
   </div>
   <div class="hero-side">
     <div class="side-tile">
@@ -644,9 +648,48 @@ function nCard(label,val,unit,color){
 </div>
 <div class="sec">
   <div class="sec-title">Per-Door Net · worst first</div>
+  <div class="need-ctx" style="color:var(--dim);margin-bottom:8px">"Net A$/mo" = stored owner net. "After reserves" holds back 8.33% vacancy + $100/mo CapEx per door (calculation-standards.md) — the more honest number.</div>
   <div class="arch-card" style="padding:8px 12px">
-    <table class="arch-tbl"><thead><tr><th>Door</th><th>PM</th><th style="text-align:right">Net A$/mo</th></tr></thead>
-    <tbody><tr><td>7596 Hazelcrest Dr Unit F</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:var(--green);font-weight:700;text-align:right">A$441</td></tr><tr><td>124 Kenilworth Ave</td><td style="color:var(--dim)">Tactical</td><td style="color:var(--green);font-weight:700;text-align:right">A$854</td></tr><tr><td>505 W 25th St</td><td style="color:var(--dim)">Tactical</td><td style="color:var(--green);font-weight:700;text-align:right">A$1,412</td></tr><tr><td>516 Alcove Ave</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:var(--green);font-weight:700;text-align:right">A$1,436</td></tr><tr><td>132 Fenwick Dr</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:var(--green);font-weight:700;text-align:right">A$1,516</td></tr><tr><td>5361 Wilborn Dr</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:#f87171;font-weight:700;text-align:right">VACANT</td></tr></tbody></table>
+    <table class="arch-tbl"><thead><tr><th>Door</th><th>PM</th><th style="text-align:right">Net A$/mo</th><th style="text-align:right">After reserves</th></tr></thead>
+    <tbody><tr><td>7596 Hazelcrest Dr Unit F</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:var(--green);font-weight:700;text-align:right">A$441</td><td style="color:var(--sub);font-weight:600;text-align:right">A$206</td></tr><tr><td>124 Kenilworth Ave</td><td style="color:var(--dim)">Tactical</td><td style="color:var(--green);font-weight:700;text-align:right">A$854</td><td style="color:var(--sub);font-weight:600;text-align:right">A$550</td></tr><tr><td>505 W 25th St</td><td style="color:var(--dim)">Tactical</td><td style="color:var(--green);font-weight:700;text-align:right">A$1,412</td><td style="color:var(--sub);font-weight:600;text-align:right">A$1,104</td></tr><tr><td>516 Alcove Ave</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:var(--green);font-weight:700;text-align:right">A$1,436</td><td style="color:var(--sub);font-weight:600;text-align:right">A$1,116</td></tr><tr><td>132 Fenwick Dr</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:var(--green);font-weight:700;text-align:right">A$1,516</td><td style="color:var(--sub);font-weight:600;text-align:right">A$1,200</td></tr><tr><td>5361 Wilborn Dr</td><td style="color:var(--dim)">Avenue Residential</td><td style="color:#f87171;font-weight:700;text-align:right">VACANT</td><td style="color:var(--sub);font-weight:600;text-align:right">—</td></tr></tbody></table>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">HAP Share · North Star <span class="badge" style="background:rgba(52,211,153,0.1);color:var(--green)">≥90 green · 60–90 amber · &lt;60 red</span></div>
+  <div class="need-ctx" style="color:var(--dim);margin-bottom:10px">% of each door's rent paid by the voucher — the north star; higher = less tenant-dependent income.</div>
+  <div class="arch-card" style="padding:6px 14px">
+    
+<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid rgba(148,163,184,0.08)">
+  <div style="flex:0 0 90px"><span style="display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;font-weight:800;background:rgba(52,211,153,0.15);color:#34d399">100%</span></div>
+  <div style="flex:1"><div style="font-size:12px;color:var(--text);font-weight:600">505 W 25th St</div>
+    <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:2px">basis: observed receipt · eff 2025-01-01</div></div>
+</div>
+<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid rgba(148,163,184,0.08)">
+  <div style="flex:0 0 90px"><span style="display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;font-weight:800;background:rgba(52,211,153,0.15);color:#34d399">98%</span></div>
+  <div style="flex:1"><div style="font-size:12px;color:var(--text);font-weight:600">132 Fenwick Dr</div>
+    <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:2px">basis: documented · eff 2026-06-01</div></div>
+</div>
+<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid rgba(148,163,184,0.08)">
+  <div style="flex:0 0 90px"><span style="display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;font-weight:800;background:rgba(248,113,113,0.15);color:#f87171">50%</span></div>
+  <div style="flex:1"><div style="font-size:12px;color:var(--text);font-weight:600">516 Alcove Ave</div>
+    <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:2px">basis: observed receipt · eff 2025-12-01</div></div>
+</div>
+<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid rgba(148,163,184,0.08)">
+  <div style="flex:0 0 90px"><span style="display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;font-weight:800;background:rgba(248,113,113,0.15);color:#f87171">32%</span></div>
+  <div style="flex:1"><div style="font-size:12px;color:var(--text);font-weight:600">124 Kenilworth Ave</div>
+    <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:2px">basis: observed receipt · eff 2025-01-01</div></div>
+</div>
+<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid rgba(148,163,184,0.08)">
+  <div style="flex:0 0 90px"><span style="display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(148,163,184,0.12);color:#94a3b8">—</span></div>
+  <div style="flex:1"><div style="font-size:12px;color:var(--sub);font-weight:600">7596 Hazelcrest Dr Unit F</div>
+    <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:2px">not a Section 8 door</div></div>
+</div>
+<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid rgba(148,163,184,0.08)">
+  <div style="flex:0 0 90px"><span style="display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(148,163,184,0.12);color:#94a3b8">—</span></div>
+  <div style="flex:1"><div style="font-size:12px;color:var(--sub);font-weight:600">5361 Wilborn Dr</div>
+    <div class="need-ctx" style="color:var(--dim);font-size:10px;margin-top:2px">vacant — no tenant</div></div>
+</div>
   </div>
 </div>
 
@@ -746,12 +789,12 @@ function nCard(label,val,unit,color){
 </div>
 </div>
 </div>
-<div class="foot">Auto-updated Fri Jul 17 2026 · 01:14 PM · 1 USD = A$1.4287 · <span class="dot" style="background:#34d399"></span>Income = the mission</div>
+<div class="foot">Auto-updated Fri Jul 17 2026 · 01:44 PM · 1 USD = A$1.4287 · <span class="dot" style="background:#34d399"></span>Income = the mission</div>
 </div><!-- /tab-money -->
 
 <!-- ═══════════════ TAB 1: DEAL UNDERWRITING ═══════════════ -->
 <div id="tab-deal" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">deal data as of: Jul 17 08:15 · 5.0h ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">deal data as of: Jul 17 08:15 · 5.5h ago</div>
 
 
 <!-- PHASE HERO -->
@@ -799,12 +842,12 @@ function nCard(label,val,unit,color){
   </div>
 </div>
 
-<div class="foot">Auto-updated Fri Jul 17 2026 · 01:14 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
+<div class="foot">Auto-updated Fri Jul 17 2026 · 01:44 PM · <span class="dot" style="background:#34d399"></span>Deal Finder daily 09:00</div>
 </div><!-- /tab-deal -->
 
 <!-- ═══════════════ TAB 2: OPERATIONS & CASH FLOW ═══════════════ -->
 <div id="tab-ops" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 17 13:14 · 0m ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">ops data as of: Jul 17 13:44 · 0m ago</div>
 <!-- HERO NUMBERS -->
 <div class="hero-grid">
   <div class="hero-main">
@@ -876,7 +919,7 @@ function nCard(label,val,unit,color){
 <!-- INCOME -->
 <div class="sec">
   <div class="sec-title">Income Jul 2026 <span class="badge" style="background:rgba(52,211,153,0.1);color:var(--green)">A$1,988 of A$5,659</span></div>
-  <div class="fresh-stamp" style="color:#a0a0a8">income data as of: Jul 17 10:43 · 2.5h ago</div>
+  <div class="fresh-stamp" style="color:#a0a0a8">income data as of: Jul 17 10:43 · 3.0h ago</div>
   
 <div class="income-row">
   <div class="income-pm">Avenue (STL — 4 props)</div>
@@ -1407,7 +1450,7 @@ function nCard(label,val,unit,color){
 </div>
 </div>
 
-<div class="foot">Auto-updated Fri Jul 17 2026 · 01:14 PM · 1 USD = A$1.4287 · <span class="dot" style="background:#34d399"></span>Live DB</div>
+<div class="foot">Auto-updated Fri Jul 17 2026 · 01:44 PM · 1 USD = A$1.4287 · <span class="dot" style="background:#34d399"></span>Live DB</div>
 </div><!-- /tab-ops -->
 
 
@@ -1720,7 +1763,7 @@ function nCard(label,val,unit,color){
 <!--  SYSTEM BLUEPRINT & PERFORMANCE TAB                    -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <div id="tab-bp" class="tab-panel">
-<div class="fresh-stamp" style="color:#a0a0a8">logbook as of: Jul 16 01:58 · 35.3h ago</div>
+<div class="fresh-stamp" style="color:#a0a0a8">logbook as of: Jul 16 01:58 · 35.8h ago</div>
 <!-- SECTION 1: BUSINESS FLOW -->
 <div class="bp-flow">
   <div class="bp-flow-title">How the Business Works</div>
