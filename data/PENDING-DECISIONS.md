@@ -1,16 +1,16 @@
 # PENDING DECISIONS
-*Auto-generated 2026-07-15 17:00 (session end) from THREADS.md. Overwrites prior.*
+*Auto-generated 2026-07-16 14:21 (session end) from THREADS.md. Overwrites prior.*
 
 ## 💰 INCOME — THE ONLY BOARD THAT MATTERS
 
 | P | Property | State | Next |
 |---|---|---|---|
-| **1** | **KENILWORTH** | **$2,646 outstanding** (May+Jun+Jul @ $882), **$0 collected**. Rent **$1,312 = $430 HAP + $882 tenant**. HAP flowing — gap is **purely the tenant**. 🔴 **CARES notice approved 3 Jul, "scheduled to be posted" 7 Jul, NEVER CONFIRMED. Approval ≠ execution.** Hearing **~early Sept if served, ~mid-Oct if not**. | **✅ Follow-up SENT to Cassy 15 Jul 16:57** (cc Angel) — notice date + May included + reconciled balance + number update. **CHASE IF NO REPLY BY ~17 Jul.** Already approved — don't re-ask Patrick. |
+| **1** | **KENILWORTH** | **$1,914.00 outstanding** per **Tactical's own ledger** (`tenant_unpaid_charges_report_quinetta_drummer.pdf`, stmt 07/15/2026) = Jun $882 + Jul $882 + **$150 late fees** (3×$50). **Rent-only = $1,764.** 🔴 **$2,646 IS DEAD — DO NOT REUSE.** Rent **$1,312 = $430 HAP + $882 tenant**; HAP flowing, gap is purely the tenant. **✅ CARES notice WAS posted 7 Jul** — confirmed in writing by Cassy 15 Jul, work order closed, copy in Owner's Portal. The "approved ≠ executed / never confirmed" flag is **CLOSED**. **30-day expires ~6 Aug** → 3-day notice → filing. **Hearing ~early Sept holds.** LakeMHA case manager has instructed the tenant to pay. | **Nothing to chase — Cassy replied unprompted.** Next gate is **~6 Aug** (30-day expiry → 3-day notice). |
 | **2** | **ALCOVE** | Eviction in motion, **$1,005/mo at risk**. MO court→vacancy→turn **6-10 wks**. Pre-lining the re-lease = **2 weeks vacant instead of 10**. | **Patrick asked for a brief and never got one. Brief it ACCURATELY — pull live mail, don't theorise.** |
 | **3** | **WILBORN** | Vacant, **~$974/mo · $325/wk**. Inspection **FAILED 7 Jul** (12 violations). Patrick approved est #2710 + **paid $3,315 himself 14 Jul**. Heather: **2 wks from funding → ~28 Jul**, tenant early-mid Aug. **2 applicants pending.** | **NO CHASE.** But **auto-send a concise follow-up to the existing thread if Heather hasn't replied by ~16 Jul 07:00 UTC** (standing instruction). Unanswered: firm date + **book Jennings for CREW-FINISH DAY** — that booking IS the timeline. |
 
-**🔑 Kenilworth — Patrick's catch, worth $882:** Cassy billed May at $882 **herself** (25 Jun) then wrote it off (2 Jul) citing B2B's ledger. **May stands on Tactical's own billing.** Stated, not asked.
-**Dead figures — never reuse:** $1,360 · $1,460 · $1,258 · $828. **$553.70 is NOT a tenant payment** ($430 HAP + $123.70 unattributed).
+**⚠️ Kenilworth — the "$882 catch" was an OVERREACH, retired 16 Jul.** **May is NOT on Tactical's ledger at all** — no May charge stands, so "May stands on Tactical's own billing" was weaker than this board claimed. Cassy holds firm with attorney-backed specifics (not PM when rent became due → no firsthand knowledge for sworn testimony; B2B's amount was wrong). **The ORIGINAL brief was right.** Don't re-litigate.
+**Dead figures — never reuse:** $2,646 · $1,360 · $1,460 · $1,258 · $828 · $14,920.05 (B2B — real claim $13,013.80). **$553.70 is NOT a tenant payment** ($430 HAP + $123.70 unattributed).
 **Keep separate:** Jan–Apr = write-off = **the B2B broker claim = a DIFFERENT debtor.**
 
 ## ⛔ NEEDS PATRICK — batch, never dribble
@@ -20,15 +20,20 @@
 | 2 | **Apple Account — a LOOK, not a change.** Runs his iPhone/iPads/**the Mac mini this system lives on**. Unknown what role the old address plays. | 5 sec |
 | 3 | **Tailscale Serve** — `tailscale serve status` → **"No serve config"**. Dashboard marked SHIPPED 12 Jul **has never been openable on his phone**. Board can't deliver its own unlock — hand him the click. | 10 sec |
 | 4 | **~10 sign-in changes** + 3 PM emails (drafted) to move the number. | 20 min |
-| 5 | **B2B DRE — RE-SIGN.** Old signature is **STALE**: $14,920.05 dead, rebuilt to **$13,013.80**. **NOT FILED, NOT SIGNED.** | — |
 
 ## ✅ SETTLED — DO NOT REOPEN
 - **PHONE: Twilio +1 334-640-6468.** AppFolio accepts it (their own help page). $1.15/mo. **Patrick reads his own codes** — SMS→email live, ~60s, subject IS the code, verified end-to-end. Balance alarm weekly. **No eSIM unless a BANK blocks him. No email-2FA. No porting — none was ever submitted.**
 - **MIGRATION: complete + proven.** Forwarding live · 31 scripts send from pat@empinv.com · **321 files recovered incl. 157 tax docs** · 216 dupes quarantined 0 deleted · backups 640MB→5MB on his drive · Namecheap done · storage 300GB→2TB automatically.
 - **`spartansceo@gmail.com` IS `pat@empinv.com`** — same account, migrated address. **Don't re-derive it, it cost 2 hours.**
+- **B2B DRE claim — FILED + SIGNED 16 Jul 2026**, msg `19f69c0f63a47b37`, 22 attachments, SOL clock stopped, $13,013.80 (not $14,920.05). Nothing needed from Patrick. **Do not re-sign, do not re-file, do not re-add as a "needs Patrick" row.**
 
 ## 🅿️ PARKED — do not raise
 - **Vacuum replacement** — Patrick handles it himself. **Do not ask again.**
 - **Old-drive deletion** — *"there's no rush."* Nothing deleted, nothing to decide.
 - **Folder-name restore** — BLOCKED **correctly**: twin folders are **DIVERGED, not copies** (`_ARCHIVE` 989 vs 1,287). It's a **MERGE**; picking a winner destroys data. Same class as the 157 lost tax docs.
 - **Deal pipeline** — hasn't run since 19 May (57 days). Noted, not this session's fight.
+
+- [ ] 2026-07-17 · HAP share RED: alcove at 50% (observed_receipt, eff 2025-12-01). North-star is 90%+ — re-exam / re-tenant / confirm payee.  <!--HAP-RED-alcove-2025-12-01-->
+
+- [ ] 2026-07-17 · HAP share RED: kenilworth at 32% (observed_receipt, eff 2025-01-01). North-star is 90%+ — re-exam / re-tenant / confirm payee.  <!--HAP-RED-kenilworth-2025-01-01-->
+
