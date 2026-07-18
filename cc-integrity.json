@@ -1,6 +1,6 @@
 {
-  "checked_at": "2026-07-18T11:07:23.856604+00:00",
-  "overall": "green",
+  "checked_at": "2026-07-18T11:12:27.032235+00:00",
+  "overall": "red",
   "panels": [
     {
       "id": "portfolio",
@@ -9,16 +9,18 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 34.5
+      "measured_age_hours": 34.6
     },
     {
       "id": "pending",
       "panel": "Needs-Patrick / Waiting-on",
       "sla_hours": 24,
       "money_source": false,
-      "status": "ok",
-      "reasons": [],
-      "measured_age_hours": 24.0
+      "status": "stale",
+      "reasons": [
+        "content unchanged 24h > SLA 24h"
+      ],
+      "measured_age_hours": 24.1
     },
     {
       "id": "threads",
@@ -27,7 +29,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 5.7
+      "measured_age_hours": 5.8
     },
     {
       "id": "capital",
@@ -36,7 +38,7 @@
       "money_source": true,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 151.6
+      "measured_age_hours": 151.7
     },
     {
       "id": "tax_checklist",
