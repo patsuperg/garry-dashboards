@@ -1,17 +1,17 @@
 {
-  "updated": "2026-07-18T01:47:33.976364+07:00",
+  "updated": "2026-07-19T01:52:18.345596+07:00",
   "source": "health-engine v2",
-  "coaching": "Sleep was short at 5.9h and recovery is restricted (35%). Less movement today is the right call \u2014 conserve for what matters. Early night tonight to get back on track.",
+  "coaching": "Well recovered (78%) and 10.8h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
   "stale": false,
   "today": {
-    "date": "2026-07-18",
-    "sleep_total_hr": 5.88,
-    "sleep_deep_hr": 1.28,
-    "sleep_rem_hr": 1.15,
-    "sleep_core_hr": 3.44,
+    "date": "2026-07-19",
+    "sleep_total_hr": 10.85,
+    "sleep_deep_hr": 2.07,
+    "sleep_rem_hr": 2.58,
+    "sleep_core_hr": 6.2,
     "sleep_awake_hr": 0,
-    "hrv_avg": 17.1,
-    "resting_hr": 75.3,
+    "hrv_avg": 34,
+    "resting_hr": 65,
     "steps": 0,
     "active_energy_kcal": 0,
     "exercise_min": 0
@@ -19,19 +19,19 @@
   "yesterday": null,
   "rings": {
     "sleep": {
-      "value": 67,
+      "value": 100,
       "unit": "%",
-      "raw_hr": 5.88,
+      "raw_hr": 10.85,
       "color": "blue",
-      "label": "5.9h",
-      "subtitle": "5.9h total \u00b7 deep 1.3h / REM 1.1h"
+      "label": "10.8h",
+      "subtitle": "10.8h total \u00b7 deep 2.1h / REM 2.6h"
     },
     "recovery": {
-      "value": 35,
+      "value": 78,
       "unit": "%",
-      "color": "yellow",
-      "label": "YELLOW \u2014 train smart not hard",
-      "subtitle": "HRV 17.1ms / RHR 75.3bpm"
+      "color": "green",
+      "label": "GREEN \u2014 push hard",
+      "subtitle": "HRV 34ms / RHR 65bpm"
     },
     "strain": {
       "value": 0,
@@ -56,21 +56,21 @@
     }
   },
   "spoons": {
-    "score": 8,
+    "score": 11,
     "max": 12,
-    "label": "Solid \u2014 normal load",
+    "label": "Peak \u2014 push hard",
     "color": "green"
   },
-  "recovery_pct": 35,
+  "recovery_pct": 78,
   "strain_score": 0,
   "stress_pct": 0,
-  "sleep_pct": 67,
+  "sleep_pct": 100,
   "weekly_avg": {
-    "hrv": 28.4,
-    "resting_hr": 70.2,
-    "sleep_hr": 5.87
+    "hrv": 29.5,
+    "resting_hr": 68.5,
+    "sleep_hr": 6.17
   },
   "nutrition": {},
-  "last_pipeline_refresh": "2026-07-17T19:00:26.446188+00:00",
+  "last_pipeline_refresh": "2026-07-18T19:00:27.419530+00:00",
   "export_connected": false
 }
