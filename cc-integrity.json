@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-07-19T07:15:19.790213+00:00",
+  "checked_at": "2026-07-19T07:20:20.898418+00:00",
   "overall": "red",
   "panels": [
     {
@@ -9,7 +9,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 54.6
+      "measured_age_hours": 54.7
     },
     {
       "id": "pending",
@@ -20,7 +20,7 @@
       "reasons": [
         "content unchanged 44h > SLA 24h"
       ],
-      "measured_age_hours": 44.1
+      "measured_age_hours": 44.2
     },
     {
       "id": "threads",
@@ -38,25 +38,29 @@
       "money_source": true,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 171.7
+      "measured_age_hours": 171.8
     },
     {
       "id": "tax_checklist",
       "panel": "Tax & Residency checklist (personal view)",
       "sla_hours": 168,
       "money_source": false,
-      "status": "ok",
-      "reasons": [],
-      "measured_age_hours": 168.0
+      "status": "stale",
+      "reasons": [
+        "content unchanged 168h > SLA 168h"
+      ],
+      "measured_age_hours": 168.1
     },
     {
       "id": "roadmap",
       "panel": "Life OS phase bar (personal view)",
       "sla_hours": 168,
       "money_source": false,
-      "status": "ok",
-      "reasons": [],
-      "measured_age_hours": 168.0
+      "status": "stale",
+      "reasons": [
+        "content unchanged 168h > SLA 168h"
+      ],
+      "measured_age_hours": 168.1
     }
   ]
 }
