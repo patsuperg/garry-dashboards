@@ -1,14 +1,14 @@
 {
-  "generated": "2026-07-19T23:54:00.465456+07:00",
+  "generated": "2026-07-20T00:09:01.536272+07:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep + MFP",
+  "device": "Apple Watch + Eight Sleep",
   "coaching": "Moderate day \u2014 6.4h sleep, 37% recovery. Prioritise quality over volume. No heroics today.",
   "today": {
-    "date": "2026-07-19",
-    "spoons": 7,
+    "date": "2026-07-20",
+    "spoons": 8,
     "spoons_max": 12,
-    "spoons_label": "Moderate \u2014 analysis over execution",
-    "spoons_color": "yellow",
+    "spoons_label": "Solid \u2014 normal load",
+    "spoons_color": "green",
     "rings": {
       "sleep": {
         "value": 78,
@@ -26,26 +26,25 @@
         "subtitle": "HRV 19.2ms / RHR 76bpm"
       },
       "strain": {
-        "value": 3.9,
+        "value": 0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 3.9,
+          "value": 0,
           "max": 21,
-          "kcal": 215,
-          "steps": 2885,
-          "exercise_min": 6,
-          "hr_load": 14.8,
-          "source": "json_export"
+          "kcal": 0,
+          "steps": 0,
+          "exercise_min": 0,
+          "hr_load": 0.0
         },
-        "subtitle": "215kcal / 2885st / 6min ex"
+        "subtitle": "0kcal / 0st / 0min ex"
       },
       "stress": {
-        "value": 51,
+        "value": 0,
         "unit": "%",
-        "color": "yellow",
-        "label": "moderate",
-        "subtitle": "HR 84bpm vs RHR 69"
+        "color": "gray",
+        "label": "no data",
+        "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
@@ -75,13 +74,7 @@
       "days_sampled": 0,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {
-      "protein_g": 125.5,
-      "carbs_g": 85.8,
-      "fat_g": 32.8,
-      "calories_kcal": 1140,
-      "has_data": true
-    }
+    "nutrition": {}
   },
   "history": []
 }
