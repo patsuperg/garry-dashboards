@@ -37,3 +37,11 @@
 
 - [ ] 2026-07-17 · HAP share RED: kenilworth at 32% (observed_receipt, eff 2025-01-01). North-star is 90%+ — re-exam / re-tenant / confirm payee.  <!--HAP-RED-kenilworth-2025-01-01-->
 
+
+## ⚠️ 2026-08-15 — Buxton non-renewal auto-send will fire from the DYING domain (login-changeover fallout)
+`Infrastructure/scheduled-emails/buxton-nonrenewal-send.py` (LaunchAgent-scheduled, fires 2026-08-15) is an EXTERNAL send to erezania@buxton.com.au, hardcoded `EMAIL_FROM = patrick@spartansuppz.com` via the sold-domain token; signature also cites the spartansuppz address. If the domain is dead by then the send fails / leaves from an address Patrick no longer controls. FIX before Aug 15: route via `email_utils.send_legacy_external()` or repoint token+FROM→empinv + update signature line. NOT auto-edited: altering approved external-email content is iron-rule (Patrick's call). Surfaced by Chich 2026-07-20 during token repoint.
+
+## 📅 2026-07-30 → 2026-08-29 — NREIG insurance consolidation (Fenwick + 505 Lorain), capture the discount
+Verified 2026-07-20 (Chich, insurance deep-check): NO lapse — all 6 doors insured, autopay current, NREIG blanket July installment $373.75 PAID 17 Jul. The stalled item is a COST-SAVING, not a payment miss: moving Fenwick + 505 Lorain off Steadily onto NREIG blanket NREIG0106934 (started 2 Jun). NREIG rep Nohemi Alfaro (nohemi@nreig.com, 816-398-4066) can't quote Fenwick until ~30d before effective; 505 Lorain add-request (7/12) never returned a proposal.
+ACTION ~Jul 30: chase Nohemi for BOTH NREIG proposals (Fenwick + 505 Lorain), compare vs Steadily Fenwick auto-renew $1,557.36/yr. DECIDE before Aug 29 (Fenwick Steadily renewal date). External contact + bind decision = Patrick approves. Chich to auto-draft the chase on Jul 30.
+Coverage map: Steadily = Hazelcrest / Fenwick / 505 Lorain · NREIG = Alcove / Wilborn / Kenilworth.
