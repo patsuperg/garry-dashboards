@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-07-20T06:31:11.042070+00:00",
+  "checked_at": "2026-07-20T06:36:12.125388+00:00",
   "overall": "red",
   "panels": [
     {
@@ -9,7 +9,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 77.9
+      "measured_age_hours": 78.0
     },
     {
       "id": "pending",
@@ -20,7 +20,7 @@
       "reasons": [
         "content unchanged 67h > SLA 24h"
       ],
-      "measured_age_hours": 67.4
+      "measured_age_hours": 67.5
     },
     {
       "id": "threads",
@@ -38,7 +38,25 @@
       "money_source": true,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 195.0
+      "measured_age_hours": 195.1
+    },
+    {
+      "id": "collection_rentvine",
+      "panel": "Door strip \u2014 Rentvine collections (Fenwick/Hazelcrest/Wilborn/Alcove)",
+      "sla_hours": 26,
+      "money_source": true,
+      "status": "ok",
+      "reasons": [],
+      "measured_age_hours": 0.0
+    },
+    {
+      "id": "collection_appfolio",
+      "panel": "Door strip \u2014 AppFolio collections (505/Kenilworth)",
+      "sla_hours": 26,
+      "money_source": true,
+      "status": "ok",
+      "reasons": [],
+      "measured_age_hours": 0.0
     },
     {
       "id": "tax_checklist",
@@ -49,7 +67,7 @@
       "reasons": [
         "content unchanged 191h > SLA 168h"
       ],
-      "measured_age_hours": 191.2
+      "measured_age_hours": 191.3
     },
     {
       "id": "roadmap",
@@ -60,7 +78,7 @@
       "reasons": [
         "content unchanged 191h > SLA 168h"
       ],
-      "measured_age_hours": 191.2
+      "measured_age_hours": 191.3
     }
   ]
 }
