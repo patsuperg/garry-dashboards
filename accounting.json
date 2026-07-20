@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-17T00:40:06.065651+00:00",
+  "generated": "2026-07-20T00:40:01.222622+00:00",
   "months": [
     "2025-03",
     "2025-04",
@@ -2910,31 +2910,31 @@
   "feed_freshness": [
     {
       "source": "Rentvine / Avenue",
-      "age_hours": 24.2,
+      "age_hours": 5.7,
       "status": "\ud83d\udfe2 fresh"
     },
     {
       "source": "AppFolio / Tactical",
-      "age_hours": 96.2,
-      "status": "\ud83d\udfe1 stale"
+      "age_hours": 0.2,
+      "status": "\ud83d\udfe2 fresh"
     },
     {
       "source": "B2B (historical)",
-      "age_hours": 96.1,
-      "status": "\ud83d\udfe1 stale"
+      "age_hours": 168.1,
+      "status": "\ud83d\udd34 very stale"
     },
     {
       "source": "HAP tracker",
-      "age_hours": 0.1,
+      "age_hours": 0.3,
       "status": "\ud83d\udfe2 fresh"
     },
     {
       "source": "Wise",
-      "age_hours": 0.1,
+      "age_hours": 0.4,
       "status": "\ud83d\udfe2 fresh"
     }
   ],
-  "wise_balance": 33115.26,
+  "wise_balance": 30857.33,
   "alarms": [],
   "statement_months": [
     "2026-02",
@@ -3387,33 +3387,42 @@
           "month": "2026-04",
           "expected": 775.0,
           "sources": {
-            "portal": 775.0
+            "portal": 775.0,
+            "statement": 775.0
           },
           "collected": 775.0,
-          "status": "\u2753 single-source",
-          "notes": [],
+          "status": "\u2705 agree",
+          "notes": [
+            "$775 ref 'trn_858ba4d0-0a39-442b-a795-129272349308'"
+          ],
           "confidence": "inferred"
         },
         {
           "month": "2026-05",
           "expected": 775.0,
           "sources": {
-            "portal": 775.0
+            "portal": 775.0,
+            "statement": 775.0
           },
           "collected": 775.0,
-          "status": "\u2753 single-source",
-          "notes": [],
+          "status": "\u2705 agree",
+          "notes": [
+            "$775 ref 'trn_5d6ae90b-3038-4fa4-b909-b635ac482438'"
+          ],
           "confidence": "inferred"
         },
         {
           "month": "2026-06",
           "expected": 775.0,
           "sources": {
-            "portal": 775.0
+            "portal": 775.0,
+            "statement": 775.0
           },
           "collected": 775.0,
-          "status": "\u2753 single-source",
-          "notes": [],
+          "status": "\u2705 agree",
+          "notes": [
+            "$775 ref 'trn_929c03aa-3b29-4b2d-a82f-bb76e6bb5be5'"
+          ],
           "confidence": "inferred"
         },
         {
@@ -3541,12 +3550,14 @@
           "month": "2026-03",
           "expected": 1331.0,
           "sources": {
-            "portal": 3954.0
+            "portal": 3954.0,
+            "statement": 3954.0
           },
           "collected": 3954.0,
           "status": "\u26a0\ufe0f mismatch",
           "notes": [
-            "governing $1,331 vs collected $3,954"
+            "governing $1,331 vs collected $3,954",
+            "HASLC back-pay checks (ref 071110) \u2014 covers Sep\u2013Nov 2025 @ $1,318/mo per email 'Re: 516 Alcove Ave - Termination of Management'. Rentvine booked payer as 'Resident' \u2014 label unreliable; Reference field is the real attribution."
           ],
           "confidence": "pending-doc"
         },
@@ -3565,12 +3576,14 @@
           "month": "2026-05",
           "expected": 1331.0,
           "sources": {
-            "portal": 1318.0
+            "portal": 1318.0,
+            "statement": 1318.0
           },
           "collected": 1318.0,
           "status": "\u26a0\ufe0f mismatch",
           "notes": [
-            "governing $1,331 vs collected $1,318"
+            "governing $1,331 vs collected $1,318",
+            "$1,318 ref 'STL Housing'"
           ],
           "confidence": "pending-doc"
         },
@@ -3578,12 +3591,15 @@
           "month": "2026-06",
           "expected": 1331.0,
           "sources": {
-            "portal": 1318.0
+            "portal": 1318.0,
+            "statement": 1318.0
           },
           "collected": 1318.0,
           "status": "\u26a0\ufe0f mismatch",
           "notes": [
-            "governing $1,331 vs collected $1,318"
+            "governing $1,331 vs collected $1,318",
+            "$13 ref 'STL Housing'",
+            "$1,305 ref 'STL Housing'"
           ],
           "confidence": "pending-doc"
         },
@@ -3881,12 +3897,14 @@
           "month": "2026-03",
           "expected": 1490.0,
           "sources": {
-            "portal": 1350.0
+            "portal": 1350.0,
+            "statement": 1350.0
           },
           "collected": 1350.0,
           "status": "\u26a0\ufe0f mismatch",
           "notes": [
-            "governing $1,490 vs collected $1,350"
+            "governing $1,490 vs collected $1,350",
+            "HASLC back-pay check (ref 071109) \u2014 Nov-2025 @ old $1,350 rate per same email. NOT a 2026 month's rent."
           ],
           "confidence": "documented"
         },
@@ -3916,12 +3934,15 @@
           "month": "2026-06",
           "expected": 1490.0,
           "sources": {
-            "portal": 240.0
+            "portal": 240.0,
+            "statement": 240.0
           },
           "collected": 240.0,
           "status": "\u26a0\ufe0f mismatch",
           "notes": [
-            "governing $1,490 vs collected $240"
+            "governing $1,490 vs collected $240",
+            "$140 ref 'trn_6aecf161-e375-48b7-b5f2-75ec076757a5'",
+            "$100 ref 'trn_6aecf161-e375-48b7-b5f2-75ec076757a5'"
           ],
           "confidence": "documented"
         },
@@ -4285,10 +4306,12 @@
       "gap": -2623.0,
       "status": "\u26a0\ufe0f mismatch",
       "sources": {
-        "portal": 3954.0
+        "portal": 3954.0,
+        "statement": 3954.0
       },
       "notes": [
-        "governing $1,331 vs collected $3,954"
+        "governing $1,331 vs collected $3,954",
+        "HASLC back-pay checks (ref 071110) \u2014 covers Sep\u2013Nov 2025 @ $1,318/mo per email 'Re: 516 Alcove Ave - Termination of Management'. Rentvine booked payer as 'Resident' \u2014 label unreliable; Reference field is the real attribution."
       ]
     },
     {
@@ -4313,10 +4336,12 @@
       "gap": 13.0,
       "status": "\u26a0\ufe0f mismatch",
       "sources": {
-        "portal": 1318.0
+        "portal": 1318.0,
+        "statement": 1318.0
       },
       "notes": [
-        "governing $1,331 vs collected $1,318"
+        "governing $1,331 vs collected $1,318",
+        "$1,318 ref 'STL Housing'"
       ]
     },
     {
@@ -4328,10 +4353,13 @@
       "gap": 13.0,
       "status": "\u26a0\ufe0f mismatch",
       "sources": {
-        "portal": 1318.0
+        "portal": 1318.0,
+        "statement": 1318.0
       },
       "notes": [
-        "governing $1,331 vs collected $1,318"
+        "governing $1,331 vs collected $1,318",
+        "$13 ref 'STL Housing'",
+        "$1,305 ref 'STL Housing'"
       ]
     },
     {
@@ -4371,10 +4399,12 @@
       "gap": 140.0,
       "status": "\u26a0\ufe0f mismatch",
       "sources": {
-        "portal": 1350.0
+        "portal": 1350.0,
+        "statement": 1350.0
       },
       "notes": [
-        "governing $1,490 vs collected $1,350"
+        "governing $1,490 vs collected $1,350",
+        "HASLC back-pay check (ref 071109) \u2014 Nov-2025 @ old $1,350 rate per same email. NOT a 2026 month's rent."
       ]
     },
     {
@@ -4412,10 +4442,13 @@
       "gap": 1250.0,
       "status": "\u26a0\ufe0f mismatch",
       "sources": {
-        "portal": 240.0
+        "portal": 240.0,
+        "statement": 240.0
       },
       "notes": [
-        "governing $1,490 vs collected $240"
+        "governing $1,490 vs collected $240",
+        "$140 ref 'trn_6aecf161-e375-48b7-b5f2-75ec076757a5'",
+        "$100 ref 'trn_6aecf161-e375-48b7-b5f2-75ec076757a5'"
       ]
     },
     {
@@ -4591,7 +4624,18 @@
     }
   ],
   "held_flags": [],
-  "fee_flags": [],
+  "fee_flags": [
+    "alcove 2026-02: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+    "alcove 2026-04: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+    "alcove 2026-05: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+    "fenwick 2026-04: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+    "hazelcrest 2026-03: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+    "wilborn 2026-03: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+    "wilborn 2026-04: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+    "wilborn 2026-05: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+    "wilborn 2026-06: fee $110.00 vs model $100.00 (9% of $0 or $100 min)",
+    "wilborn 2026-06: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this"
+  ],
   "evernest_wire": {
     "wire": 19078.36,
     "wire_date": "2026-04-06",
@@ -4772,6 +4816,66 @@
       "title": "Fenwick tenant share uncollected: $39 (3 mo \u00d7 ~$13)",
       "detail": "Governing total $1,331 (HASLC 9/2024, owner-requested reduction from $1,450 lease). HAP stepped 1,331\u21921,318\u21921,305+13; tenant share growing per re-exam and not being collected. Real lever = the $1,660 increase filing (July 1 window).",
       "sources": "governing_rents vs Rentvine (ref 'STL Housing')"
+    },
+    {
+      "amount": 0,
+      "title": "Fee model check",
+      "detail": "alcove 2026-02: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+      "sources": "statement_lines vs Avenue PMA"
+    },
+    {
+      "amount": 0,
+      "title": "Fee model check",
+      "detail": "alcove 2026-04: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+      "sources": "statement_lines vs Avenue PMA"
+    },
+    {
+      "amount": 0,
+      "title": "Fee model check",
+      "detail": "alcove 2026-05: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+      "sources": "statement_lines vs Avenue PMA"
+    },
+    {
+      "amount": 0,
+      "title": "Fee model check",
+      "detail": "fenwick 2026-04: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+      "sources": "statement_lines vs Avenue PMA"
+    },
+    {
+      "amount": 0,
+      "title": "Fee model check",
+      "detail": "hazelcrest 2026-03: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+      "sources": "statement_lines vs Avenue PMA"
+    },
+    {
+      "amount": 0,
+      "title": "Fee model check",
+      "detail": "wilborn 2026-03: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+      "sources": "statement_lines vs Avenue PMA"
+    },
+    {
+      "amount": 0,
+      "title": "Fee model check",
+      "detail": "wilborn 2026-04: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+      "sources": "statement_lines vs Avenue PMA"
+    },
+    {
+      "amount": 0,
+      "title": "Fee model check",
+      "detail": "wilborn 2026-05: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+      "sources": "statement_lines vs Avenue PMA"
+    },
+    {
+      "amount": 0,
+      "title": "Fee model check",
+      "detail": "wilborn 2026-06: fee $110.00 vs model $100.00 (9% of $0 or $100 min)",
+      "sources": "statement_lines vs Avenue PMA"
+    },
+    {
+      "amount": 0,
+      "title": "Fee model check",
+      "detail": "wilborn 2026-06: $100 min fee charged on a $0-collection month (vacant/uncollected) \u2014 confirm PMA terms cover this",
+      "sources": "statement_lines vs Avenue PMA"
     }
   ]
 }
