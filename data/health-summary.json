@@ -1,17 +1,17 @@
 {
-  "updated": "2026-07-21T01:55:55.721464+07:00",
+  "updated": "2026-07-22T01:57:43.473296+07:00",
   "source": "health-engine v2",
-  "coaching": "Well recovered (89%) and 8.3h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
+  "coaching": "Well recovered (100%) and 7.7h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
   "stale": false,
   "today": {
-    "date": "2026-07-21",
-    "sleep_total_hr": 8.27,
-    "sleep_deep_hr": 1.87,
-    "sleep_rem_hr": 1.82,
-    "sleep_core_hr": 4.58,
+    "date": "2026-07-22",
+    "sleep_total_hr": 7.7,
+    "sleep_deep_hr": 1.52,
+    "sleep_rem_hr": 1.66,
+    "sleep_core_hr": 4.52,
     "sleep_awake_hr": 0,
-    "hrv_avg": 39.5,
-    "resting_hr": 63.1,
+    "hrv_avg": 43.1,
+    "resting_hr": 58,
     "steps": 0,
     "active_energy_kcal": 0,
     "exercise_min": 0
@@ -21,17 +21,17 @@
     "sleep": {
       "value": 100,
       "unit": "%",
-      "raw_hr": 8.27,
+      "raw_hr": 7.7,
       "color": "blue",
-      "label": "8.3h",
-      "subtitle": "8.3h total \u00b7 deep 1.9h / REM 1.8h"
+      "label": "7.7h",
+      "subtitle": "7.7h total \u00b7 deep 1.5h / REM 1.7h"
     },
     "recovery": {
-      "value": 89,
+      "value": 100,
       "unit": "%",
       "color": "green",
       "label": "GREEN \u2014 push hard",
-      "subtitle": "HRV 39.5ms / RHR 63.1bpm"
+      "subtitle": "HRV 43.1ms / RHR 58bpm"
     },
     "strain": {
       "value": 0,
@@ -56,21 +56,21 @@
     }
   },
   "spoons": {
-    "score": 11,
+    "score": 12,
     "max": 12,
     "label": "Peak \u2014 push hard",
     "color": "green"
   },
-  "recovery_pct": 89,
+  "recovery_pct": 100,
   "strain_score": 0,
   "stress_pct": 0,
   "sleep_pct": 100,
   "weekly_avg": {
-    "hrv": 29.1,
-    "resting_hr": 68.9,
-    "sleep_hr": 7.87
+    "hrv": 28,
+    "resting_hr": 68.2,
+    "sleep_hr": 7.62
   },
   "nutrition": {},
-  "last_pipeline_refresh": "2026-07-20T19:00:48.764896+00:00",
+  "last_pipeline_refresh": "2026-07-21T19:00:22.824209+00:00",
   "export_connected": false
 }
