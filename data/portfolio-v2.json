@@ -185,10 +185,16 @@
     "target_monthly": 20000,
     "progress_pct": 19.8,
     "property_count": 6,
-    "_note": "Excludes Wilborn (VACANT). net_monthly is TRUE net AFTER debt service: only Kenilworth (Ciatto $532.24/mo) subtracted. 505 is UNFINANCED (owned free & clear per Patrick 2026-07-13; prior ICG10/Fay 'loan' was an application that never funded) - its ~$488/mo was reversed out. Restored net = $3,961.",
-    "debt_service_total_monthly": 532.24
+    "_note": "net_monthly (3961) is PAPER / full-collection net: sum of occupied-door rent_net AFTER debt service (Kenilworth Ciatto $532.24/mo), assuming full collection. It is NOT the cash that actually lands. Bank-reconciled real cash = cash_reconciled_net_monthly_usd (1297 USD / 1965 AUD) \u2014 only 505 W 25th + Hazelcrest collect today; the other 4 doors have a broken link. See data/money-truth.json. The '$3,961/mo net' figure must never be shown as headline cash.",
+    "debt_service_total_monthly": 532.24,
+    "net_monthly_basis": "paper_full_collection",
+    "net_monthly_label": "PAPER net (assumes every occupied door collects in full) \u2014 NOT cash that lands",
+    "cash_reconciled_net_monthly_usd": 1297,
+    "cash_reconciled_net_monthly_aud": 1965,
+    "cash_reconciled_basis": "Real cash landing today = 505 W 25th + Hazelcrest (the only doors collecting). Forensic-verified 2026-07-22.",
+    "cash_truth_source": "data/money-truth.json (headline_cash) \u2014 authority for the dashboard headline"
   },
-  "updated": "2026-07-22T19:00:27.095147+00:00",
+  "updated": "2026-07-23T19:00:26.792417+00:00",
   "verified_by": "data-refresh.py",
-  "lease_windows_generated_at": "2026-07-22T19:00:27.448320+00:00"
+  "lease_windows_generated_at": "2026-07-23T19:00:27.224562+00:00"
 }
