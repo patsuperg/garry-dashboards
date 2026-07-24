@@ -1,14 +1,14 @@
 {
-  "generated": "2026-07-24T16:46:06.317943+07:00",
+  "generated": "2026-07-24T16:47:50.548541+07:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep",
+  "device": "Apple Watch + Eight Sleep + MFP",
   "coaching": "Short sleep (4.6h) and recovery in the red (15%). Keep today light \u2014 no hard training, protect the afternoon. Aim for bed by 9:30pm and a full 8h+ tonight to reset.",
   "today": {
     "date": "2026-07-24",
-    "spoons": 5,
+    "spoons": 3,
     "spoons_max": 12,
-    "spoons_label": "Restful \u2014 light movement, defer big decisions",
-    "spoons_color": "orange",
+    "spoons_label": "Red flag \u2014 recovery day",
+    "spoons_color": "red",
     "rings": {
       "sleep": {
         "value": 32,
@@ -26,26 +26,26 @@
         "subtitle": "HRV 15.6ms / RHR 79bpm"
       },
       "strain": {
-        "value": 5.5,
+        "value": 8.1,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 5.5,
+          "value": 8.1,
           "max": 21,
-          "kcal": 293,
-          "steps": 3352,
+          "kcal": 438,
+          "steps": 5325,
           "exercise_min": 1,
-          "hr_load": 24.8,
+          "hr_load": 36.4,
           "source": "json_export"
         },
-        "subtitle": "293kcal / 3352st / 1min ex"
+        "subtitle": "438kcal / 5325st / 1min ex"
       },
       "stress": {
-        "value": 0,
+        "value": 100,
         "unit": "%",
-        "color": "gray",
-        "label": "no HR data",
-        "subtitle": "HR ?bpm vs RHR ?"
+        "color": "red",
+        "label": "high",
+        "subtitle": "HR 99bpm vs RHR 68"
       }
     },
     "sleep_breakdown": {
@@ -76,11 +76,11 @@
       "source": "Apple Health CSV 30d avg"
     },
     "nutrition": {
-      "protein_g": 0.0,
-      "carbs_g": 0.0,
-      "fat_g": 0.0,
-      "calories_kcal": 0,
-      "has_data": false
+      "protein_g": 124.6,
+      "carbs_g": 98.9,
+      "fat_g": 27.5,
+      "calories_kcal": 1141,
+      "has_data": true
     }
   },
   "history": []
