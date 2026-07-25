@@ -1,69 +1,70 @@
 {
-  "generated": "2026-07-25T10:19:22.579767+07:00",
+  "generated": "2026-07-25T10:34:25.946361+07:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
-  "coaching": "Short sleep (4.6h) and recovery in the red (15%). Keep today light \u2014 no hard training, protect the afternoon. Aim for bed by 9:30pm and a full 8h+ tonight to reset.",
+  "coaching": "Solid foundation \u2014 7.5h sleep, 58% recovery. Execute the priority list. Lock in quality sleep tonight to build on this.",
   "today": {
     "date": "2026-07-25",
-    "spoons": 6,
+    "spoons": 10,
     "spoons_max": 12,
-    "spoons_label": "Moderate \u2014 analysis over execution",
-    "spoons_color": "yellow",
+    "spoons_label": "Peak \u2014 push hard",
+    "spoons_color": "green",
     "rings": {
       "sleep": {
-        "value": 32,
+        "value": 100,
         "unit": "%",
-        "raw_hr": 4.6,
+        "raw_hr": 7.49,
         "color": "blue",
-        "label": "4.6h",
-        "subtitle": "4.6h total \u00b7 deep 1.2h / REM 0.5h"
+        "label": "7.5h",
+        "subtitle": "7.5h total \u00b7 deep 1.5h / REM 1.4h"
       },
       "recovery": {
-        "value": 15,
+        "value": 58,
         "unit": "%",
-        "color": "red",
-        "label": "RED \u2014 protect the body",
-        "subtitle": "HRV 15.6ms / RHR 79bpm"
+        "color": "yellow",
+        "label": "YELLOW \u2014 train smart not hard",
+        "subtitle": "HRV 23.6ms / RHR 72bpm"
       },
       "strain": {
-        "value": 0,
+        "value": 1.7,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 0,
+          "value": 1.7,
           "max": 21,
-          "kcal": 0,
-          "steps": 0,
-          "exercise_min": 0,
-          "hr_load": 0.0
+          "kcal": 66,
+          "steps": 1534,
+          "exercise_min": 2,
+          "hr_load": 7.5,
+          "source": "json_export"
         },
-        "subtitle": "0kcal / 0st / 0min ex"
+        "subtitle": "66kcal / 1534st / 2min ex"
       },
       "stress": {
         "value": 0,
         "unit": "%",
         "color": "gray",
-        "label": "no data",
+        "label": "no HR data",
         "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
-      "total_hr": 4.6,
-      "deep_hr": 1.23,
-      "rem_hr": 0.47,
-      "core_hr": 2.9,
+      "total_hr": 7.49,
+      "deep_hr": 1.48,
+      "rem_hr": 1.39,
+      "core_hr": 4.62,
       "awake_hr": 0,
-      "in_bed_hr": 4.39,
+      "in_bed_hr": 6.96,
       "source_override": "eight_sleep",
-      "hrv_overnight": 15.6,
-      "rhr_overnight": 79
+      "hrv_overnight": 23.6,
+      "rhr_overnight": 72
     },
-    "hrv_overnight": 15.6,
-    "rhr_overnight": 79,
+    "hrv_overnight": 23.6,
+    "rhr_overnight": 72,
     "baseline_14d": {
-      "hrv": 29.4,
-      "rhr": 68.5,
-      "sleep_hr": 7.26,
+      "hrv": 27.9,
+      "rhr": 69.5,
+      "sleep_hr": 6.65,
       "days_sampled": 0,
       "source": "Eight Sleep 7d + CSV 14d hybrid"
     },
@@ -74,7 +75,13 @@
       "days_sampled": 0,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {}
+    "nutrition": {
+      "protein_g": 0.0,
+      "carbs_g": 0.0,
+      "fat_g": 0.0,
+      "calories_kcal": 0,
+      "has_data": false
+    }
   },
   "history": []
 }
