@@ -1,14 +1,14 @@
 {
-  "generated": "2026-07-25T23:50:38.296201+07:00",
+  "generated": "2026-07-26T00:05:39.405381+07:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep + MFP",
-  "coaching": "Elevated stress is the main drag today. Sleep was 7.5h, recovery 58%. Protect your afternoon \u2014 reduce inputs, don't stack decisions.",
+  "device": "Apple Watch + Eight Sleep",
+  "coaching": "Solid foundation \u2014 7.5h sleep, 58% recovery. Execute the priority list. Lock in quality sleep tonight to build on this.",
   "today": {
-    "date": "2026-07-25",
-    "spoons": 6,
+    "date": "2026-07-26",
+    "spoons": 10,
     "spoons_max": 12,
-    "spoons_label": "Moderate \u2014 analysis over execution",
-    "spoons_color": "yellow",
+    "spoons_label": "Peak \u2014 push hard",
+    "spoons_color": "green",
     "rings": {
       "sleep": {
         "value": 100,
@@ -26,26 +26,25 @@
         "subtitle": "HRV 23.6ms / RHR 72bpm"
       },
       "strain": {
-        "value": 14.5,
+        "value": 0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 14.5,
+          "value": 0,
           "max": 21,
-          "kcal": 933,
-          "steps": 10173,
-          "exercise_min": 64,
-          "hr_load": 38.7,
-          "source": "json_export"
+          "kcal": 0,
+          "steps": 0,
+          "exercise_min": 0,
+          "hr_load": 0.0
         },
-        "subtitle": "933kcal / 10173st / 64min ex"
+        "subtitle": "0kcal / 0st / 0min ex"
       },
       "stress": {
-        "value": 100,
+        "value": 0,
         "unit": "%",
-        "color": "red",
-        "label": "high",
-        "subtitle": "HR 102bpm vs RHR 70"
+        "color": "gray",
+        "label": "no data",
+        "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
@@ -75,13 +74,7 @@
       "days_sampled": 0,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {
-      "protein_g": 83.2,
-      "carbs_g": 67.2,
-      "fat_g": 13.5,
-      "calories_kcal": 723,
-      "has_data": true
-    }
+    "nutrition": {}
   },
   "history": []
 }
