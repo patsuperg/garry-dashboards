@@ -1,72 +1,12 @@
 {
-  "generated": "2026-07-26T17:32:11.250558+00:00",
+  "generated": "2026-07-26T17:37:12.596219+00:00",
   "threads": {
-    "p0": [
-      {
-        "name": "Wilborn rehab [P0]",
-        "status": "Contractor fell through",
-        "status_text": "Contractor fell through",
-        "owner": "Heather (Avenue)",
-        "p_tier": "P0",
-        "cost_of_delay_per_day_usd": 87
-      }
-    ],
-    "p1": [
-      {
-        "name": "B2B Ohio \u2192 Tactical/Angel handover [P1]",
-        "status": "Tactical/Angel assuming both Ohio doors; LMHA + Lake County payee changes in progress",
-        "status_text": "Tactical/Angel assuming both Ohio doors; LMHA + Lake County payee changes in progress",
-        "owner": "patrick",
-        "p_tier": "P1",
-        "cost_of_delay_per_day_usd": null
-      }
-    ],
-    "p2": [
-      {
-        "name": "Credit pipeline (US) [P2]",
-        "status": "Personal + Empire Investing credit building",
-        "status_text": "Personal + Empire Investing credit building",
-        "owner": "patrick",
-        "p_tier": "P2",
-        "cost_of_delay_per_day_usd": null
-      },
-      {
-        "name": "Hazelcrest sale [P2]",
-        "status": "Listed for sale",
-        "status_text": "Listed for sale",
-        "owner": "GW Carter",
-        "p_tier": "P2",
-        "cost_of_delay_per_day_usd": null
-      }
-    ],
-    "count": 4
+    "p0": [],
+    "p1": [],
+    "p2": [],
+    "count": 2
   },
-  "needs_patrick": [
-    {
-      "num": 1,
-      "title": "CLOUDFLARE \u2014 circular dependency. `empinv.com` DNS sits in an account named `Patrick@spartansuppz.com's Account` (verified via API). If the sold domain dies first, empinv.com is unrecoverable and the new email dies with it.",
-      "context": "2 min",
-      "priority": "low"
-    },
-    {
-      "num": 2,
-      "title": "Apple Account \u2014 a LOOK, not a change. Runs his iPhone/iPads/the Mac mini this system lives on. Unknown what role the old address plays.",
-      "context": "5 sec",
-      "priority": "low"
-    },
-    {
-      "num": 3,
-      "title": "Tailscale Serve \u2014 `tailscale serve status` \u2192 \"No serve config\". Dashboard marked SHIPPED 12 Jul has never been openable on his phone. Board can't deliver its own unlock \u2014 hand him the click.",
-      "context": "10 sec",
-      "priority": "low"
-    },
-    {
-      "num": 4,
-      "title": "~10 sign-in changes + 3 PM emails (drafted) to move the number.",
-      "context": "20 min",
-      "priority": "low"
-    }
-  ],
+  "needs_patrick": [],
   "waiting_on": [],
   "portfolio": {
     "net_monthly": 3961,
