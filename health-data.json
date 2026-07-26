@@ -1,14 +1,14 @@
 {
-  "generated": "2026-07-26T22:22:20.868678+07:00",
+  "generated": "2026-07-26T22:37:21.978687+07:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
-  "coaching": "Moderate day \u2014 7.0h sleep, 41% recovery. Prioritise quality over volume. No heroics today.",
+  "coaching": "Elevated stress is the main drag today. Sleep was 7.0h, recovery 41%. Protect your afternoon \u2014 reduce inputs, don't stack decisions.",
   "today": {
     "date": "2026-07-26",
-    "spoons": 8,
+    "spoons": 5,
     "spoons_max": 12,
-    "spoons_label": "Solid \u2014 normal load",
-    "spoons_color": "green",
+    "spoons_label": "Restful \u2014 light movement, defer big decisions",
+    "spoons_color": "orange",
     "rings": {
       "sleep": {
         "value": 89,
@@ -26,26 +26,26 @@
         "subtitle": "HRV 15.9ms / RHR 74bpm"
       },
       "strain": {
-        "value": 5.6,
+        "value": 13.9,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 5.6,
+          "value": 13.9,
           "max": 21,
-          "kcal": 270,
-          "steps": 3388,
-          "exercise_min": 7,
-          "hr_load": 24.2,
+          "kcal": 711,
+          "steps": 9811,
+          "exercise_min": 21,
+          "hr_load": 56.4,
           "source": "json_export"
         },
-        "subtitle": "270kcal / 3388st / 7min ex"
+        "subtitle": "711kcal / 9811st / 21min ex"
       },
       "stress": {
-        "value": 0,
+        "value": 100,
         "unit": "%",
-        "color": "gray",
-        "label": "no HR data",
-        "subtitle": "HR ?bpm vs RHR ?"
+        "color": "red",
+        "label": "high",
+        "subtitle": "HR 105bpm vs RHR 69"
       }
     },
     "sleep_breakdown": {
