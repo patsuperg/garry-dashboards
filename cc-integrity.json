@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-07-29T04:00:28.382532+00:00",
+  "checked_at": "2026-07-29T04:05:29.632683+00:00",
   "overall": "red",
   "panels": [
     {
@@ -9,7 +9,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 30.9
+      "measured_age_hours": 31.0
     },
     {
       "id": "pending",
@@ -18,7 +18,7 @@
       "money_source": false,
       "status": "broken",
       "reasons": [
-        "content unchanged 58h > SLA 24h",
+        "content unchanged 59h > SLA 24h",
         "empty output (needs_count, waiting_count=0) but PENDING-DECISIONS.md has 2719B \u2014 silent parse failure"
       ],
       "measured_age_hours": 58.5
@@ -39,7 +39,7 @@
       "money_source": true,
       "status": "stale",
       "reasons": [
-        "content unchanged 408h > SLA 336h"
+        "content unchanged 409h > SLA 336h"
       ],
       "measured_age_hours": 408.5
     },
@@ -59,7 +59,7 @@
       "money_source": true,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 3.4
+      "measured_age_hours": 3.5
     },
     {
       "id": "tax_checklist",
@@ -70,7 +70,7 @@
       "reasons": [
         "content unchanged 405h > SLA 168h"
       ],
-      "measured_age_hours": 404.7
+      "measured_age_hours": 404.8
     },
     {
       "id": "roadmap",
@@ -81,7 +81,7 @@
       "reasons": [
         "content unchanged 405h > SLA 168h"
       ],
-      "measured_age_hours": 404.7
+      "measured_age_hours": 404.8
     }
   ]
 }
