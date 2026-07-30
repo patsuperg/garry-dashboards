@@ -1,4 +1,24 @@
-# PENDING DECISIONS — auto-generated from THREADS.md
+# PENDING DECISIONS
+
+## 🔴 CHICH MUST RAISE THESE UNPROMPTED — every session, until Patrick closes them
+_Locked 2026-07-31. Patrick: "YOU need to bring these up not rely on me remembering."_
+_Do not wait to be asked. Do not bury below other work. Silence is not closure._
+
+| # | Item | Why it matters | Chich's next move |
+|---|---|---|---|
+| **1** | **Phantom mortgagee — Fay Servicing on 505 W 25th** (Steadily cert FP3-OH-12760325-01) | 505 is **unfinanced, Patrick-confirmed 13 Jul** — the Fay loan never funded. A **lienless mortgagee gets named on the claim cheque**, so a payout on a free-and-clear house could be issued jointly to a lender with no interest. ⚠️ Chich's Email B (29 Jul) wrongly told Steadily to KEEP them listed | Draft correcting email → get Patrick's yes → send. Also pull Lorain County recorder to confirm no lien |
+| **2** | **Restructuring window OPEN, will close** | FinCEN Residential Real Estate Rule **vacated 2026-03-19**; **appeal filed 2026-05-11 (5th Cir)**. Right now, deeding into LLCs reports nothing. **5 of 6 doors are free and clear** → no lender consent, no due-on-sale exposure. Cheapest quietest moment likely to exist | Put the **3-entity design (WY holdco → OH OpCo + MO OpCo)** to Patrick as yes/no with cost + sequence. NOT 21 entities — Form 5472 is **$25k penalty per entity per year** |
+| **3** | **Two tax exposures, unscoped** | **§ 871(d) election UNVERIFIED** → without it, tax is **30% of GROSS rent**. **US estate tax, NRA exemption only ~$60k** → live already at 6 doors, potentially the largest exposure at 20 | Research both, then bring a decision |
+| 4 | **Alcove ~$10k composition** | $10k is arithmetically hard to reach from a tenant portion alone. If part is **abated HAP after a failed inspection**, it is a landlord-compliance loss with a different recovery path | Pull the balance apart |
+| 5 | **Mercury web login locked** | 2FA to a phone Patrick no longer controls. **$47,305 sits behind it.** API feed unaffected, but funds are not movable | iOS app → Settings → Security; or backup codes; or support reset |
+| 6 | **NFRA filing not lodged** (ORC 5301.254) | Both OH doors over the $100k threshold (505 $105k, Kenilworth $100k). Penalty **$5,000 to 25% of value** | Populate Form NFRA Box 2 (Business, $25) for signature |
+| 7 | **$2,987/mo baseline unreconciled** | Live sources give $4,935 / $3,961 / $1,249. Do **not** quote to a lender or accountant until fixed | Reconcile |
+
+Detail: `THREADS.md` (top block) · `HANDOVER-2026-07-29.md` §8 · `Outputs/ENTITY-STRUCTURE-RESEARCH-2026-07-29.md`
+
+---
+
+ — auto-generated from THREADS.md
 _Last generated: 2026-07-29 18:25 BKK. Items WAITING / NEEDS PATRICK / CRITICAL._
 _⚠️ Third-party dates below carry over from 28 Jul and are UNVERIFIED against live sources today — check Gmail (BOTH boxes) / portal before acting on any of them._
 
