@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-08-01T00:02:35.669994+00:00",
+  "checked_at": "2026-08-01T00:07:37.033604+00:00",
   "overall": "red",
   "panels": [
     {
@@ -9,7 +9,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 98.9
+      "measured_age_hours": 99.0
     },
     {
       "id": "pending",
@@ -18,10 +18,10 @@
       "money_source": false,
       "status": "broken",
       "reasons": [
-        "content unchanged 126h > SLA 24h",
+        "content unchanged 127h > SLA 24h",
         "empty output (needs_count, waiting_count=0) but PENDING-DECISIONS.md has 6760B \u2014 silent parse failure"
       ],
-      "measured_age_hours": 126.5
+      "measured_age_hours": 126.6
     },
     {
       "id": "threads",
@@ -39,9 +39,9 @@
       "money_source": true,
       "status": "stale",
       "reasons": [
-        "content unchanged 476h > SLA 336h"
+        "content unchanged 477h > SLA 336h"
       ],
-      "measured_age_hours": 476.5
+      "measured_age_hours": 476.6
     },
     {
       "id": "collection_rentvine",
@@ -50,7 +50,7 @@
       "money_source": true,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 5.0
+      "measured_age_hours": 5.1
     },
     {
       "id": "collection_appfolio",
@@ -59,7 +59,7 @@
       "money_source": true,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 23.5
+      "measured_age_hours": 23.6
     },
     {
       "id": "tax_checklist",
@@ -70,7 +70,7 @@
       "reasons": [
         "content unchanged 473h > SLA 168h"
       ],
-      "measured_age_hours": 472.8
+      "measured_age_hours": 472.9
     },
     {
       "id": "roadmap",
@@ -81,7 +81,7 @@
       "reasons": [
         "content unchanged 473h > SLA 168h"
       ],
-      "measured_age_hours": 472.8
+      "measured_age_hours": 472.9
     }
   ]
 }
