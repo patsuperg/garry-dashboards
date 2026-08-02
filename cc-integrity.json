@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-08-02T06:00:06.305293+00:00",
+  "checked_at": "2026-08-02T06:05:16.273652+00:00",
   "overall": "red",
   "panels": [
     {
@@ -9,16 +9,18 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 128.9
+      "measured_age_hours": 129.0
     },
     {
       "id": "pending",
       "panel": "Needs-Patrick / Waiting-on",
       "sla_hours": 24,
       "money_source": false,
-      "status": "ok",
-      "reasons": [],
-      "measured_age_hours": 23.9
+      "status": "stale",
+      "reasons": [
+        "content unchanged 24h > SLA 24h"
+      ],
+      "measured_age_hours": 24.0
     },
     {
       "id": "threads",
@@ -27,7 +29,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 0.3
+      "measured_age_hours": 0.0
     },
     {
       "id": "capital",
@@ -36,7 +38,7 @@
       "money_source": true,
       "status": "stale",
       "reasons": [
-        "content unchanged 506h > SLA 336h"
+        "content unchanged 507h > SLA 336h"
       ],
       "measured_age_hours": 506.5
     },
@@ -47,7 +49,7 @@
       "money_source": true,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 11.0
+      "measured_age_hours": 11.1
     },
     {
       "id": "collection_appfolio",
@@ -56,7 +58,7 @@
       "money_source": true,
       "status": "stale",
       "reasons": [
-        "content unchanged 29h > SLA 26h"
+        "content unchanged 30h > SLA 26h"
       ],
       "measured_age_hours": 29.5
     },
@@ -69,7 +71,7 @@
       "reasons": [
         "content unchanged 503h > SLA 168h"
       ],
-      "measured_age_hours": 502.7
+      "measured_age_hours": 502.8
     },
     {
       "id": "roadmap",
@@ -80,7 +82,7 @@
       "reasons": [
         "content unchanged 503h > SLA 168h"
       ],
-      "measured_age_hours": 502.7
+      "measured_age_hours": 502.8
     }
   ]
 }
