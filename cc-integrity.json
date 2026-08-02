@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-08-02T02:28:27.247131+00:00",
+  "checked_at": "2026-08-02T02:33:37.545367+00:00",
   "overall": "red",
   "panels": [
     {
@@ -9,7 +9,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 125.3
+      "measured_age_hours": 125.4
     },
     {
       "id": "pending",
@@ -18,7 +18,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 20.4
+      "measured_age_hours": 20.5
     },
     {
       "id": "threads",
@@ -27,7 +27,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 0.3
+      "measured_age_hours": 0.0
     },
     {
       "id": "capital",
@@ -38,7 +38,7 @@
       "reasons": [
         "content unchanged 503h > SLA 336h"
       ],
-      "measured_age_hours": 502.9
+      "measured_age_hours": 503.0
     },
     {
       "id": "collection_rentvine",
@@ -47,16 +47,18 @@
       "money_source": true,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 7.4
+      "measured_age_hours": 7.5
     },
     {
       "id": "collection_appfolio",
       "panel": "Door strip \u2014 AppFolio collections (505/Kenilworth)",
       "sla_hours": 26,
       "money_source": true,
-      "status": "ok",
-      "reasons": [],
-      "measured_age_hours": 25.9
+      "status": "stale",
+      "reasons": [
+        "content unchanged 26h > SLA 26h"
+      ],
+      "measured_age_hours": 26.0
     },
     {
       "id": "tax_checklist",
@@ -67,7 +69,7 @@
       "reasons": [
         "content unchanged 499h > SLA 168h"
       ],
-      "measured_age_hours": 499.2
+      "measured_age_hours": 499.3
     },
     {
       "id": "roadmap",
@@ -78,7 +80,7 @@
       "reasons": [
         "content unchanged 499h > SLA 168h"
       ],
-      "measured_age_hours": 499.2
+      "measured_age_hours": 499.3
     }
   ]
 }
