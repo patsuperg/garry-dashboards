@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-08-03T09:02:58.609932+00:00",
+  "checked_at": "2026-08-03T09:08:07.538811+00:00",
   "overall": "red",
   "panels": [
     {
@@ -9,16 +9,18 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 155.9
+      "measured_age_hours": 156.0
     },
     {
       "id": "pending",
       "panel": "Needs-Patrick / Waiting-on",
       "sla_hours": 24,
       "money_source": false,
-      "status": "ok",
-      "reasons": [],
-      "measured_age_hours": 6.5
+      "status": "broken",
+      "reasons": [
+        "empty output (needs_count, waiting_count=0) but PENDING-DECISIONS.md has 1496B \u2014 silent parse failure"
+      ],
+      "measured_age_hours": 0.0
     },
     {
       "id": "threads",
@@ -27,7 +29,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 1.4
+      "measured_age_hours": 0.0
     },
     {
       "id": "capital",
@@ -36,10 +38,10 @@
       "money_source": true,
       "status": "broken",
       "reasons": [
-        "content unchanged 533h > SLA 336h",
+        "content unchanged 534h > SLA 336h",
         "last_verified is 22d old (max 21d) \u2014 unverified money figure"
       ],
-      "measured_age_hours": 533.5
+      "measured_age_hours": 533.6
     },
     {
       "id": "collection_rentvine",
@@ -48,7 +50,7 @@
       "money_source": true,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 2.3
+      "measured_age_hours": 2.4
     },
     {
       "id": "collection_appfolio",
@@ -59,7 +61,7 @@
       "reasons": [
         "content unchanged 57h > SLA 26h"
       ],
-      "measured_age_hours": 56.5
+      "measured_age_hours": 56.6
     },
     {
       "id": "tax_checklist",
@@ -70,7 +72,7 @@
       "reasons": [
         "content unchanged 530h > SLA 168h"
       ],
-      "measured_age_hours": 529.8
+      "measured_age_hours": 529.9
     },
     {
       "id": "roadmap",
@@ -81,7 +83,7 @@
       "reasons": [
         "content unchanged 530h > SLA 168h"
       ],
-      "measured_age_hours": 529.8
+      "measured_age_hours": 529.9
     }
   ]
 }
