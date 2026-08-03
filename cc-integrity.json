@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-08-02T23:55:27.516891+00:00",
+  "checked_at": "2026-08-03T00:00:36.341867+00:00",
   "overall": "red",
   "panels": [
     {
@@ -9,7 +9,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 146.8
+      "measured_age_hours": 146.9
     },
     {
       "id": "pending",
@@ -18,7 +18,7 @@
       "money_source": false,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 5.8
+      "measured_age_hours": 5.9
     },
     {
       "id": "threads",
@@ -34,11 +34,12 @@
       "panel": "Deployable capital",
       "sla_hours": 336,
       "money_source": true,
-      "status": "stale",
+      "status": "broken",
       "reasons": [
-        "content unchanged 524h > SLA 336h"
+        "content unchanged 524h > SLA 336h",
+        "last_verified is 22d old (max 21d) \u2014 unverified money figure"
       ],
-      "measured_age_hours": 524.4
+      "measured_age_hours": 524.5
     },
     {
       "id": "collection_rentvine",
@@ -47,7 +48,7 @@
       "money_source": true,
       "status": "ok",
       "reasons": [],
-      "measured_age_hours": 4.9
+      "measured_age_hours": 5.0
     },
     {
       "id": "collection_appfolio",
@@ -58,7 +59,7 @@
       "reasons": [
         "content unchanged 47h > SLA 26h"
       ],
-      "measured_age_hours": 47.4
+      "measured_age_hours": 47.5
     },
     {
       "id": "tax_checklist",
