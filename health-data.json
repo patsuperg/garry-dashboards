@@ -1,14 +1,14 @@
 {
-  "generated": "2026-08-03T23:52:54.694427+07:00",
+  "generated": "2026-08-04T00:07:56.273974+07:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep + MFP",
-  "coaching": "Elevated stress is the main drag today. Sleep was 6.1h, recovery 55%. Protect your afternoon \u2014 reduce inputs, don't stack decisions.",
+  "device": "Apple Watch + Eight Sleep",
+  "coaching": "Solid foundation \u2014 6.1h sleep, 55% recovery. Execute the priority list. Lock in quality sleep tonight to build on this.",
   "today": {
-    "date": "2026-08-03",
-    "spoons": 7,
+    "date": "2026-08-04",
+    "spoons": 9,
     "spoons_max": 12,
-    "spoons_label": "Moderate \u2014 analysis over execution",
-    "spoons_color": "yellow",
+    "spoons_label": "Solid \u2014 normal load",
+    "spoons_color": "green",
     "rings": {
       "sleep": {
         "value": 71,
@@ -26,27 +26,27 @@
         "subtitle": "HRV 31.3ms / RHR 65.5bpm"
       },
       "strain": {
-        "value": 8.1,
+        "value": 0.0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 8.1,
+          "value": 0.0,
           "max": 21,
-          "kcal": 1406,
-          "steps": 8257,
-          "exercise_min": 12,
-          "hr_load": 4.6,
-          "source": "json_export",
-          "as_of": "2026-08-03T23:47:36+07:00"
+          "kcal": 0,
+          "steps": 0,
+          "exercise_min": 0,
+          "hr_load": 0.0,
+          "as_of": null,
+          "source": "AutoSync .hae (live)"
         },
-        "subtitle": "1406kcal / 8257st / 12min ex"
+        "subtitle": "0kcal / 0st / 0min ex"
       },
       "stress": {
-        "value": 69,
+        "value": 0,
         "unit": "%",
-        "color": "red",
-        "label": "high",
-        "subtitle": "HR 88bpm vs RHR 67"
+        "color": "gray",
+        "label": "no data",
+        "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
@@ -76,13 +76,7 @@
       "days_sampled": 0,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {
-      "protein_g": 221.8,
-      "carbs_g": 223.3,
-      "fat_g": 85.8,
-      "calories_kcal": 2553,
-      "has_data": true
-    }
+    "nutrition": {}
   },
   "history": []
 }
