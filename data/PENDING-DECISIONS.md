@@ -1,24 +1,20 @@
-# PENDING DECISIONS — auto-generated from THREADS.md
-_Generated 2026-08-03 15:47 BKK (Chich). Overwritten every session end. Do not hand-edit._
+# PENDING DECISIONS — auto-generated
+_Generated 2026-08-04 14:45 BKK (Chich)._
 
 ## ⛔ NEEDS PATRICK
-1. **Alcove collections placement** — direct bureau furnishing is closed to an individual landlord.
-   An agency is 25–50% contingency, $0 upfront, low expected recovery. The real lever is the HASLC
-   admissions block, which costs nothing. **Place it anyway, or skip?**
-2. **Wilborn foundation** — vendor recommends a full basement floor reconstruction, unscoped and
-   unapproved, on a door already bleeding ~$974/mo. Written finding requested from Heather.
-   **Spend decision once the number lands.**
-3. **Tactical + B2B AppFolio portals** — unreachable because Twilio deletes inbound OTPs.
-   Needs a non-Twilio 2FA route (email or the Thai SIM). **Which?**
+1. **Kenilworth rental assistance** — Tactical's attorney refuses the pre-notice-arrears distinction and won't
+   act without your own counsel or a court direction. **Engage counsel for a one-line opinion, or drop the
+   agency money?** My view: drop it — the sum is unknown and the delay costs more.
+2. **Alcove collections placement** — only after the court outcome. A judgment materially improves an agency's
+   odds; without one it is near-worthless. **Wait for today's result before deciding.**
+3. **Tactical + B2B AppFolio portals** — unreachable; Twilio deletes inbound OTPs. Needs email or Thai-SIM 2FA.
 
-## ⏳ WAITING ON OTHERS (no Patrick action)
-- **Heather** — Jennings result · Wilborn live at $1,056 · basement finding · Alcove court date ·
-  Alcove ultimatum response · Fenwick $1,846 breakdown
-- **Angel/Cassy** — 3-Day date (8/10 vs "after 1 Sep") · rental-assistance agency's three answers
-- **Jenna/Tim (Evernest)** — the $2,636 send date
-- **Sarah Harrison (Raise Up)** — 505 W 25th Dec 2025 HAP $1,278
+## ⏳ WAITING (tracked in ops.db — `obligations.py list`)
+8 open, ~$33k. Highest: Seth/B2B $14,920 (2.4d) · Heather/Alcove outcome $9,912 (due today) ·
+Jenna/Evernest $2,636 (1.1d, 3rd chase) · Heather/Fenwick $1,846 · Angel/Kenilworth dates $1,446 ·
+Sarah/505 HAP $1,278 (3.0d) · Heather/Jennings re-visit $974.
 
-## 🔧 CHICH'S TO FIX (no approval needed — do not surface again)
-- `portfolio-v2.json` pre-correction ceilings + dead `beds_conflict`
-- `weekly-report-2026-W26.json` impossible figures
-- `financial-db.json` stale since 31 Mar
+## 🔧 CHICH'S TO FIX (do not surface)
+- One state store, one writer (40 writers currently)
+- Facts store w/ provenance · remediation daemon (both approved, not built)
+- weekly-report-W26 · portfolio-v2 stale ceilings · financial-db stale since 31 Mar

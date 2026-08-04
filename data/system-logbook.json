@@ -2268,6 +2268,42 @@
           "severity": "info"
         }
       ]
+    },
+    {
+      "date": "2026-08-05 00:00:06",
+      "checks": 4,
+      "healed": 0,
+      "critical": 1,
+      "events": [
+        {
+          "ts": "2026-08-05 00:00:06",
+          "action": "perms",
+          "detail": "all credential files locked at 600",
+          "healed": false,
+          "severity": "info"
+        },
+        {
+          "ts": "2026-08-05 00:00:06",
+          "action": "gate",
+          "detail": "hard-gate intact",
+          "healed": false,
+          "severity": "info"
+        },
+        {
+          "ts": "2026-08-05 00:00:06",
+          "action": "daemons",
+          "detail": "com.patrick.hap-rent-chaser plist MISSING at /Users/patrickdickson/Library/LaunchAgents/com.patrick.hap-rent-chaser.plist",
+          "healed": false,
+          "severity": "critical"
+        },
+        {
+          "ts": "2026-08-05 00:00:06",
+          "action": "daemons",
+          "detail": "4/5 verified daemons loaded",
+          "healed": false,
+          "severity": "info"
+        }
+      ]
     }
   ]
 }

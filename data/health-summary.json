@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-04T01:53:03.834713+07:00",
+  "updated": "2026-08-05T01:57:45.587116+07:00",
   "feeds": {
     "apple_health_autosync": {
       "last_push": null,
@@ -8,22 +8,22 @@
       "note": "phone has not pushed recently \u2014 activity rings lag reality"
     },
     "eight_sleep": {
-      "stale_min": 32.4,
+      "stale_min": 0.5,
       "ok": true
     }
   },
   "source": "health-engine v2",
-  "coaching": "Solid foundation \u2014 6.1h sleep, 55% recovery. Execute the priority list. Lock in quality sleep tonight to build on this.",
+  "coaching": "Well recovered (77%) and 7.1h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
   "stale": false,
   "today": {
-    "date": "2026-08-04",
-    "sleep_total_hr": 6.06,
-    "sleep_deep_hr": 1.1,
-    "sleep_rem_hr": 1.62,
-    "sleep_core_hr": 3.34,
+    "date": "2026-08-05",
+    "sleep_total_hr": 7.06,
+    "sleep_deep_hr": 1.34,
+    "sleep_rem_hr": 1.23,
+    "sleep_core_hr": 4.49,
     "sleep_awake_hr": 0,
-    "hrv_avg": 31.3,
-    "resting_hr": 65.5,
+    "hrv_avg": 46.1,
+    "resting_hr": 64,
     "steps": 0,
     "active_energy_kcal": 0,
     "exercise_min": 0
@@ -31,19 +31,19 @@
   "yesterday": null,
   "rings": {
     "sleep": {
-      "value": 71,
+      "value": 91,
       "unit": "%",
-      "raw_hr": 6.06,
+      "raw_hr": 7.06,
       "color": "blue",
-      "label": "6.1h",
-      "subtitle": "6.1h total \u00b7 deep 1.1h / REM 1.6h"
+      "label": "7.1h",
+      "subtitle": "7.1h total \u00b7 deep 1.3h / REM 1.2h"
     },
     "recovery": {
-      "value": 55,
+      "value": 77,
       "unit": "%",
-      "color": "yellow",
-      "label": "YELLOW \u2014 train smart not hard",
-      "subtitle": "HRV 31.3ms / RHR 65.5bpm"
+      "color": "green",
+      "label": "GREEN \u2014 push hard",
+      "subtitle": "HRV 46.1ms / RHR 64bpm"
     },
     "strain": {
       "value": 0.0,
@@ -70,21 +70,21 @@
     }
   },
   "spoons": {
-    "score": 9,
+    "score": 11,
     "max": 12,
-    "label": "Solid \u2014 normal load",
+    "label": "Peak \u2014 push hard",
     "color": "green"
   },
-  "recovery_pct": 55,
+  "recovery_pct": 77,
   "strain_score": 0.0,
   "stress_pct": 0,
-  "sleep_pct": 71,
+  "sleep_pct": 91,
   "weekly_avg": {
-    "hrv": 36.2,
-    "resting_hr": 67.1,
-    "sleep_hr": 6.49
+    "hrv": 37.2,
+    "resting_hr": 66.7,
+    "sleep_hr": 6.31
   },
   "nutrition": {},
-  "last_pipeline_refresh": "2026-08-03T19:00:25.139282+00:00",
+  "last_pipeline_refresh": "2026-08-04T19:00:20.308893+00:00",
   "export_connected": false
 }
