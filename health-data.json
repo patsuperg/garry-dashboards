@@ -1,13 +1,13 @@
 {
-  "generated": "2026-08-04T23:57:36.470442+07:00",
+  "generated": "2026-08-05T00:06:43.477275+07:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep + MFP",
+  "device": "Apple Watch + Eight Sleep",
   "coaching": "Well recovered (77%) and 7.1h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
   "today": {
-    "date": "2026-08-04",
-    "spoons": 8,
+    "date": "2026-08-05",
+    "spoons": 11,
     "spoons_max": 12,
-    "spoons_label": "Solid \u2014 normal load",
+    "spoons_label": "Peak \u2014 push hard",
     "spoons_color": "green",
     "rings": {
       "sleep": {
@@ -26,27 +26,27 @@
         "subtitle": "HRV 46.1ms / RHR 64bpm"
       },
       "strain": {
-        "value": 11.7,
+        "value": 0.0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 11.7,
+          "value": 0.0,
           "max": 21,
-          "kcal": 1100,
-          "steps": 10829,
-          "exercise_min": 88,
-          "hr_load": 4.3,
-          "source": "json_export",
-          "as_of": "2026-08-04T21:58:22+07:00"
+          "kcal": 0,
+          "steps": 0,
+          "exercise_min": 0,
+          "hr_load": 0.0,
+          "as_of": null,
+          "source": "AutoSync .hae (live)"
         },
-        "subtitle": "1100kcal / 10829st / 88min ex"
+        "subtitle": "0kcal / 0st / 0min ex"
       },
       "stress": {
-        "value": 96,
+        "value": 0,
         "unit": "%",
-        "color": "red",
-        "label": "high",
-        "subtitle": "HR 96bpm vs RHR 67"
+        "color": "gray",
+        "label": "no data",
+        "subtitle": "HR ?bpm vs RHR ?"
       }
     },
     "sleep_breakdown": {
@@ -76,13 +76,7 @@
       "days_sampled": 0,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {
-      "protein_g": 211.0,
-      "carbs_g": 269.2,
-      "fat_g": 37.6,
-      "calories_kcal": 2259,
-      "has_data": true
-    }
+    "nutrition": {}
   },
   "history": []
 }
