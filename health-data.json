@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-05T17:28:55.794570+07:00",
+  "generated": "2026-08-05T17:43:57.097408+07:00",
   "source": "health-engine v2",
-  "device": "Apple Watch + Eight Sleep",
+  "device": "Apple Watch + Eight Sleep + MFP",
   "coaching": "Sleep was short at 0.7h and recovery is restricted (46%). Less movement today is the right call \u2014 conserve for what matters. Early night tonight to get back on track.",
   "today": {
     "date": "2026-08-05",
@@ -26,27 +26,27 @@
         "subtitle": "HRV 52.3ms / RHR 69.4bpm"
       },
       "strain": {
-        "value": 6.8,
+        "value": 7.3,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 6.8,
+          "value": 7.3,
           "max": 21,
           "kcal": 2372,
-          "steps": 3168,
-          "exercise_min": 8,
-          "hr_load": 3.6,
+          "steps": 4225,
+          "exercise_min": 13,
+          "hr_load": 4.4,
           "source": "json_export",
           "as_of": "2026-08-05T14:58:38+07:00"
         },
-        "subtitle": "2372kcal / 3168st / 8min ex"
+        "subtitle": "2372kcal / 4225st / 13min ex"
       },
       "stress": {
         "value": 100,
         "unit": "%",
         "color": "red",
         "label": "high",
-        "subtitle": "HR 101bpm vs RHR 67"
+        "subtitle": "HR 104bpm vs RHR 67"
       }
     },
     "sleep_breakdown": {
@@ -77,11 +77,11 @@
       "source": "Apple Health CSV 30d avg"
     },
     "nutrition": {
-      "protein_g": 0.0,
-      "carbs_g": 0.0,
-      "fat_g": 0.0,
-      "calories_kcal": 0,
-      "has_data": false
+      "protein_g": 149.8,
+      "carbs_g": 177.1,
+      "fat_g": 66.2,
+      "calories_kcal": 1904,
+      "has_data": true
     }
   },
   "history": []
