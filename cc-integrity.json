@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-08-05T04:37:55.173055+00:00",
+  "checked_at": "2026-08-05T04:43:05.377377+00:00",
   "overall": "red",
   "panels": [
     {
@@ -9,9 +9,9 @@
       "money_source": false,
       "status": "stale",
       "reasons": [
-        "content unchanged 199h > SLA 168h"
+        "content unchanged 200h > SLA 168h"
       ],
-      "measured_age_hours": 199.5
+      "measured_age_hours": 199.6
     },
     {
       "id": "pending",
@@ -20,10 +20,10 @@
       "money_source": false,
       "status": "broken",
       "reasons": [
-        "content unchanged 43h > SLA 24h",
+        "content unchanged 44h > SLA 24h",
         "empty output (needs_count, waiting_count=0) but PENDING-DECISIONS.md has 2716B \u2014 silent parse failure"
       ],
-      "measured_age_hours": 43.5
+      "measured_age_hours": 43.6
     },
     {
       "id": "threads",
@@ -44,7 +44,7 @@
         "content unchanged 577h > SLA 336h",
         "last_verified is 24d old (max 21d) \u2014 unverified money figure"
       ],
-      "measured_age_hours": 577.1
+      "measured_age_hours": 577.2
     },
     {
       "id": "collection_rentvine",
@@ -64,7 +64,7 @@
       "reasons": [
         "content unchanged 100h > SLA 26h"
       ],
-      "measured_age_hours": 100.1
+      "measured_age_hours": 100.2
     },
     {
       "id": "tax_checklist",
