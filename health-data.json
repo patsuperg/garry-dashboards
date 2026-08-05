@@ -1,8 +1,8 @@
 {
-  "generated": "2026-08-05T13:43:37.168379+07:00",
+  "generated": "2026-08-05T13:58:38.759432+07:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
-  "coaching": "Sleep was short at 0.7h and recovery is restricted (56%). Less movement today is the right call \u2014 conserve for what matters. Early night tonight to get back on track.",
+  "coaching": "Sleep was short at 0.7h and recovery is restricted (46%). Less movement today is the right call \u2014 conserve for what matters. Early night tonight to get back on track.",
   "today": {
     "date": "2026-08-05",
     "spoons": 5,
@@ -13,17 +13,17 @@
       "sleep": {
         "value": 3,
         "unit": "%",
-        "raw_hr": 0.67,
+        "raw_hr": 0.73,
         "color": "blue",
         "label": "0.7h",
-        "subtitle": "0.7h total \u00b7 deep 0.0h / REM 0.3h"
+        "subtitle": "0.7h total \u00b7 deep 0.0h / REM 0.2h"
       },
       "recovery": {
-        "value": 56,
+        "value": 46,
         "unit": "%",
         "color": "yellow",
         "label": "YELLOW \u2014 train smart not hard",
-        "subtitle": "HRV 65.9ms / RHR 69.2bpm"
+        "subtitle": "HRV 52.3ms / RHR 69.4bpm"
       },
       "strain": {
         "value": 2.4,
@@ -50,22 +50,22 @@
       }
     },
     "sleep_breakdown": {
-      "total_hr": 0.67,
-      "deep_hr": 0.02,
-      "rem_hr": 0.27,
-      "core_hr": 0.38,
+      "total_hr": 0.73,
+      "deep_hr": 0.04,
+      "rem_hr": 0.23,
+      "core_hr": 0.46,
       "awake_hr": 0,
-      "in_bed_hr": 2.96,
+      "in_bed_hr": 3.54,
       "source_override": "eight_sleep",
-      "hrv_overnight": 65.9,
-      "rhr_overnight": 69.2
+      "hrv_overnight": 52.3,
+      "rhr_overnight": 69.4
     },
-    "hrv_overnight": 65.9,
-    "rhr_overnight": 69.2,
+    "hrv_overnight": 52.3,
+    "rhr_overnight": 69.4,
     "baseline_14d": {
-      "hrv": 43.6,
+      "hrv": 41.3,
       "rhr": 67.3,
-      "sleep_hr": 5.71,
+      "sleep_hr": 5.72,
       "days_sampled": 0,
       "source": "Eight Sleep 7d + CSV 14d hybrid"
     },
