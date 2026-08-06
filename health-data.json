@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-06T08:00:06.703138+07:00",
+  "generated": "2026-08-06T08:15:07.735512+07:00",
   "source": "health-engine v2",
   "device": "Apple Watch + Eight Sleep",
   "coaching": "Sleep was short at 0.7h and recovery is restricted (46%). Less movement today is the right call \u2014 conserve for what matters. Early night tonight to get back on track.",
@@ -33,19 +33,19 @@
           "value": 0.0,
           "max": 21,
           "kcal": 0,
-          "steps": 0,
+          "steps": 22,
           "exercise_min": 0,
           "hr_load": 0.0,
-          "as_of": null,
-          "source": "AutoSync .hae (live)"
+          "source": "json_export",
+          "as_of": null
         },
-        "subtitle": "0kcal / 0st / 0min ex"
+        "subtitle": "0kcal / 22st / 0min ex"
       },
       "stress": {
         "value": 0,
         "unit": "%",
         "color": "gray",
-        "label": "no data",
+        "label": "no HR data",
         "subtitle": "HR ?bpm vs RHR ?"
       }
     },
@@ -76,7 +76,13 @@
       "days_sampled": 0,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {}
+    "nutrition": {
+      "protein_g": 0.0,
+      "carbs_g": 0.0,
+      "fat_g": 0.0,
+      "calories_kcal": 0,
+      "has_data": false
+    }
   },
   "history": []
 }
