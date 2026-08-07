@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-08T02:48:43.980948+07:00",
+  "generated": "2026-08-08T03:03:45.138542+07:00",
   "source": "health-engine v2",
   "device": "Apple Watch",
   "coaching": "Moderate day \u2014 unknown sleep, 45% recovery. Prioritise quality over volume. No heroics today.",
@@ -26,26 +26,26 @@
         "subtitle": "HRV 52.3ms / RHR 69.4bpm"
       },
       "strain": {
-        "value": 0.0,
+        "value": 0.5,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 0.0,
+          "value": 0.5,
           "max": 21,
-          "kcal": 0,
-          "steps": 0,
+          "kcal": 90,
+          "steps": 490,
           "exercise_min": 0,
           "hr_load": 0.0,
-          "as_of": "2026-08-08T02:46:56+07:00",
-          "source": "AutoSync .hae (live)"
+          "source": "json_export",
+          "as_of": "2026-08-08T02:46:56+07:00"
         },
-        "subtitle": "0kcal / 0st / 0min ex"
+        "subtitle": "90kcal / 490st / 0min ex"
       },
       "stress": {
         "value": 0,
         "unit": "%",
         "color": "gray",
-        "label": "no data",
+        "label": "no HR data",
         "subtitle": "HR ?bpm vs RHR ?"
       }
     },
@@ -73,7 +73,13 @@
       "days_sampled": 0,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {}
+    "nutrition": {
+      "protein_g": 0.0,
+      "carbs_g": 0.0,
+      "fat_g": 0.0,
+      "calories_kcal": 0,
+      "has_data": false
+    }
   },
   "history": []
 }
