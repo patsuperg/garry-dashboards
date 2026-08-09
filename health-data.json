@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-10T01:37:29.573972+07:00",
+  "generated": "2026-08-10T01:52:30.751611+07:00",
   "source": "health-engine v2",
   "device": "Apple Watch",
   "coaching": "Solid foundation \u2014 unknown sleep, 64% recovery. Execute the priority list. Lock in quality sleep tonight to build on this.",
@@ -33,19 +33,19 @@
           "value": 0.0,
           "max": 21,
           "kcal": 0,
-          "steps": 0,
+          "steps": 18,
           "exercise_min": 0,
           "hr_load": 0.0,
-          "as_of": null,
-          "source": "AutoSync .hae (live)"
+          "source": "json_export",
+          "as_of": "2026-08-10T01:43:50+07:00"
         },
-        "subtitle": "0kcal / 0st / 0min ex"
+        "subtitle": "0kcal / 18st / 0min ex"
       },
       "stress": {
         "value": 0,
         "unit": "%",
         "color": "gray",
-        "label": "no data",
+        "label": "no HR data",
         "subtitle": "HR ?bpm vs RHR ?"
       }
     },
@@ -66,7 +66,13 @@
       "days_sampled": 0,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {}
+    "nutrition": {
+      "protein_g": 0.0,
+      "carbs_g": 0.0,
+      "fat_g": 0.0,
+      "calories_kcal": 0,
+      "has_data": false
+    }
   },
   "history": []
 }
