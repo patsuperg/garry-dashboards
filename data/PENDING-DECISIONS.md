@@ -63,13 +63,59 @@ is open now — the remaining call is whether signing joins the money markers. *
   whole batch; the retraction swept up a claim that happened to be TRUE, and the void was then
   treated as proof of the opposite. Everything else in that VOID list still stands.
   **There is no remaining MO property-tax gap in the portfolio.**
-- **The $2,636 Evernest HAP — booked, cash only.** The EVIDENCE-GAPS query was run and **neither
-  branch applied**: Avenue's statements carry one Fenwick income line dated 2026-03 ($3,954.00 =
-  exactly 3 × $1,318, payer "Resident") and **none** dated 2026-04 — but the statement prints no
-  month against the $3,954 and Avenue never answered which months it covered. So the cash is booked
-  to `Equity:Unattributed-Receipts`, not income. `owner_net_cash` 19,198.88 → 21,834.88 (+$2,636
-  exactly); `operating_income` is now understated by exactly $2,636 and `metrics.py` says so every
-  run. **Closes properly with one document: an Evernest statement covering 2026-04 → 2026-08.**
+- **The $2,636 Evernest HAP — BOOKED AS INCOME 2026-08-09.** Superseded the 8 Aug "cash only"
+  entry. The blocker was Avenue's un-attributed $3,954 lump of 2026-03-20; it is **Sep+Oct+Nov
+  2025 arrears**, not Mar/Apr 2026 — settled by month-elimination from statements already on the
+  Mini, no chase to Avenue. Fenwick settled 2025-08-29 with `Rent Adjustment 0.00`, so the series
+  is Sep-25→Jun-26 = 10 months; every other month is individually named in a primary source.
+  `operating_income` 64,458.83 → **67,094.83**; recognised rent = **exactly 10 × $1,318**.
+
+## ⛔ NEEDS PATRICK — added 2026-08-09, in consequence order
+
+**A. 🔴 VERIFY MISSOURI FOREIGN-LLC REGISTRATION — before any Missouri eviction step.**
+Empire Investing is an **Ohio** entity owning **four Missouri doors**. **RSMo 347.163** bars an
+unregistered foreign LLC from *maintaining any action* in Missouri — **including an eviction** —
+plus a fine of not less than $1,000, and Missouri's version is **not** framed as curable mid-suit
+the way Ohio's is. **516 Alcove has a live eviction and an $11,428.02 judgment.**
+⚠️ **Status is UNVERIFIED — do not assert either way.** Missouri SOS business search settles it.
+
+**B. 🔴 City of Lorain $92.71 — due 2026-08-17, and he flies ~11 Aug.**
+ACH autopay is 4–6 weeks out, so **this cycle is manual**. Faster than the paper form, same
+sitting: `ipn2.paymentus.com/cp/lora`, acct **20830310-007**, switch on Auto Pay.
+
+**C. ⏳ Segregate the pre-2027 pool — HARD EXPIRY 31 Dec 2026.**
+Worth **7.5 years of Bangkok, tax-free. Costs $0.** Nothing else on this list has a cliff.
+
+## 🟢 DECIDED 2026-08-09 — do not re-derive
+
+- **TARGET REVISED: US$20,000/mo → US$14,000/mo net.** $20k is not reachable from A$1.2M by any
+  structure modelled (crosses $20k nominal in year 31, never in today's money inside 40 years).
+- **The portfolio ALONE never reaches $14k** — 40 years. $168k/yr ÷ 9.5% = **US$1.77M needed**
+  against **US$804,038** controlled. **Gap ≈ US$970,000 of OUTSIDE capital.** With $100k/yr from
+  ORION it is **16 years**; at $200k/yr, **10 years**. **The vessels are the tank; ORION is the fuel.**
+- **PATHWAY LOCKED: P1 → P2, gated on measured collection.** Year-20 US$8,562/mo (88/100).
+  Year one lifts him $1,098 → **$3,203/mo**. New doors **OHIO ONLY** — ⅓ the Missouri tax burden,
+  and Ohio ceilings ROSE FY25→FY26 while 3 of 4 Missouri ZIPs FELL.
+- **DEAD, do not re-propose:** the **Isle of Man bond / P3** (he said no return to Australia,
+  ever) and the **A$45,000 term-deposit leg** (uncompensated FX risk).
+- **The "no Android phone" screening rule is WITHDRAWN** — disparate-impact exposure under
+  24 CFR 100.500. **The 500 credit floor stands.**
+
+## ⛔ NEW — CARRIED FROM 2026-08-09, needs Patrick
+
+**5. 🔴 City of Lorain utility $92.71 — due 2026-08-17, and you fly ~11 Aug.**
+Approval alert delivered (empinv `19fe185d6248d31b`). ACH autopay is 4–6wk processing so it will
+NOT be live for this cycle — **this one is manual, pay it before you fly.**
+Faster than the paper form, same sitting: register at `ipn2.paymentus.com/cp/lora` under acct
+**20830310-007** and switch on Auto Pay there — instant, no voided cheque.
+
+**6. MSD sewer Fenwick $227.31 — due 2026-08-24.**
+Acct 1505083-4. SmartPay enrolment started 27 Jul and stalled at the payment-method step; the
+account is already registered and on eBill, it **only needs a card**.
+
+**7. Wilborn MSD — $264.80 credit vs a collection agency chasing $265.09 on the SAME account.**
+Acct 1507873. CCM / EvokePay code 14246853. **Do NOT pay them.** One call to MSD
+1-866-281-5737 settles whether the credit is a refundable overpayment or a rate adjustment.
 
 ## ⚠️ NAMED UNVERIFIED — never upgrade these into assertions
 - **Alcove judgment** — the watch file says none exists, memory says one was signed at $11,428.02.
@@ -87,6 +133,39 @@ is open now — the remaining call is whether signing joins the money markers. *
 
 - [ ] 2026-08-08 · HAP share RED: kenilworth at 29% (observed_receipt, eff 2025-01-01). North-star is 90%+ — re-exam / re-tenant / confirm payee.  <!--HAP-RED-kenilworth-2025-01-01-->
 
+---
+
+## ▶ ADDED 2026-08-09 20:50 (King, interactive-model window)
+
+**THE INTERACTIVE MODEL IS LIVE — no decision needed, but he should open it.**
+https://claude.ai/code/artifact/8c65dceb-20eb-4e20-837a-fa2f0a598674
+13 sliders, 40-year projection, works on his phone. Emailed to pat@empinv.com only (his instruction),
+read-back confirmed. The JS reconciles to `synthesis_model.py` to the dollar across 12 checkpoints and
+re-runs that self-test live in the footer.
+
+**❓ THE ONE QUESTION THAT SETS THE WHOLE TIMELINE — how fast can ORION realistically clear
+US$100–200k/yr?**
+Years to $14k/mo in today's money: $0→40 · $50k→23 · $100k→16 · $150k→12 · $200k→10.
+Nothing in the structure work moves that number; only the business does. **If ORION is 2–3 years out,
+the real question becomes how much of the A$1.2M funds the BUSINESS rather than door #7** — and that
+is a different plan from the one currently modelled.
+
+**Also now settled and needing no further work:** P3 / Isle of Man bond is DEAD (no AU return ever, so
+ITAA s26AH — its entire thesis — can never pay). The A$45,000 AUD term-deposit leg is DEAD
+(uncompensated FX risk against a currency he will never spend again).
+
+---
+
+## ▶ ADDED 2026-08-09 22:15 (Golf R listing photos)
+
+**❓ Blur the number plate (1UH2EK) on the Golf R listing photos, or leave it visible?**
+Most Melbourne Marketplace car ads leave it. Blurred copies not produced pending his call —
+it's a 2-minute job either way, but the hero photo can't go live until this is answered.
+
+**Not a decision, just so it's not lost:** 5 real photos are already in `~/Downloads/GOLF R PHOTOS/`
+and the ad can go live on the two front 3/4 shots. Missing rear 3/4, side profile, **odometer total km**,
+boot/rear seats, engine bay, damage — ~15 min with the car once he lands 13 Aug.
+
 <!-- HAP-OVERDUE-MARKER -->
-| 🟡 | **HAP overdue — 2026-08** | 4 properties unconfirmed as of day 8: 7596 Hazelcrest Dr Unit F, 5361 Wilborn Dr, 505 W 25th St, 124 Kenilworth Ave. Auto-flagged by avenue-payment-parser.py; clears itself once payment posts. | — |
+| 🟡 | **HAP overdue — 2026-08** | 4 properties unconfirmed as of day 9: 7596 Hazelcrest Dr Unit F, 5361 Wilborn Dr, 505 W 25th St, 124 Kenilworth Ave. Auto-flagged by avenue-payment-parser.py; clears itself once payment posts. | — |
 <!-- /HAP-OVERDUE-MARKER -->
