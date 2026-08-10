@@ -167,5 +167,5 @@ and the ad can go live on the two front 3/4 shots. Missing rear 3/4, side profil
 boot/rear seats, engine bay, damage — ~15 min with the car once he lands 13 Aug.
 
 <!-- HAP-OVERDUE-MARKER -->
-| 🟡 | **HAP overdue — 2026-08** | 4 properties unconfirmed as of day 9: 7596 Hazelcrest Dr Unit F, 5361 Wilborn Dr, 505 W 25th St, 124 Kenilworth Ave. Auto-flagged by avenue-payment-parser.py; clears itself once payment posts. | — |
+| 🟡 | **HAP overdue — 2026-08** | 4 properties unconfirmed as of day 10: 7596 Hazelcrest Dr Unit F, 5361 Wilborn Dr, 505 W 25th St, 124 Kenilworth Ave. Auto-flagged by avenue-payment-parser.py; clears itself once payment posts. | — |
 <!-- /HAP-OVERDUE-MARKER -->
