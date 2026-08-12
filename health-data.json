@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-13T06:42:47.437050+07:00",
+  "generated": "2026-08-13T06:57:48.616380+07:00",
   "source": "health-engine v2",
   "device": "Apple Watch",
   "coaching": "Sleep was short at 0.7h and recovery is restricted (46%). Less movement today is the right call \u2014 conserve for what matters. Early night tonight to get back on track.",
@@ -26,27 +26,27 @@
         "subtitle": "HRV 52.3ms / RHR 69.4bpm"
       },
       "strain": {
-        "value": 0.0,
+        "value": 0.3,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 0.0,
+          "value": 0.3,
           "max": 21,
-          "kcal": 0,
-          "steps": 0,
+          "kcal": 56,
+          "steps": 256,
           "exercise_min": 0,
-          "hr_load": 0.0,
-          "as_of": null,
-          "source": "AutoSync .hae (live)"
+          "hr_load": 0.2,
+          "source": "json_export",
+          "as_of": null
         },
-        "subtitle": "0kcal / 0st / 0min ex"
+        "subtitle": "56kcal / 256st / 0min ex"
       },
       "stress": {
-        "value": 0,
+        "value": 20,
         "unit": "%",
-        "color": "gray",
-        "label": "no data",
-        "subtitle": "HR ?bpm vs RHR ?"
+        "color": "green",
+        "label": "calm",
+        "subtitle": "HR 73bpm vs RHR 67"
       }
     },
     "sleep_breakdown": {
@@ -73,7 +73,13 @@
       "days_sampled": 0,
       "source": "Apple Health CSV 30d avg"
     },
-    "nutrition": {}
+    "nutrition": {
+      "protein_g": 0.0,
+      "carbs_g": 0.0,
+      "fat_g": 0.0,
+      "calories_kcal": 0,
+      "has_data": false
+    }
   },
   "history": []
 }
