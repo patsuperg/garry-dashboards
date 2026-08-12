@@ -1,21 +1,22 @@
 {
-  "updated": "2026-08-12T01:56:18.665956+07:00",
+  "updated": "2026-08-13T01:57:27.109060+07:00",
   "feeds": {
     "apple_health_autosync": {
-      "last_push": "2026-08-12T00:42:27+07:00",
-      "stale_min": 73.9,
-      "ok": true,
-      "note": null
+      "last_push": null,
+      "stale_min": null,
+      "ok": false,
+      "note": "phone has not pushed recently \u2014 activity rings lag reality"
     },
     "eight_sleep": {
-      "stale_min": 9358.2,
+      "stale_min": 10799.4,
       "ok": false
     }
   },
   "source": "health-engine v2",
-  "coaching": "Well recovered (75%) and 7.8h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
-  "stale": false,
+  "coaching": "Sleep was short at 0.7h and recovery is restricted (46%). Less movement today is the right call \u2014 conserve for what matters. Early night tonight to get back on track.",
+  "stale": true,
   "stale_feeds": [
+    "apple_health_autosync",
     "eight_sleep"
   ],
   "recovery_basis": [
@@ -27,9 +28,9 @@
   "unverified": [],
   "sleep_sources": {
     "eightsleep_json": {
-      "age_min": 9358.2,
+      "age_min": 10799.4,
       "ok": false,
-      "note": "fetcher has not written in 156.0h"
+      "note": "fetcher has not written in 180.0h"
     },
     "icloud_csv": {
       "newest": "2026-05-11",
@@ -38,59 +39,59 @@
     },
     "hae_sleep": {
       "ok": true,
-      "records": 22,
-      "total_sleep_hr": 7.76,
-      "in_bed_hr": 7.87,
+      "records": 18,
+      "total_sleep_hr": 2.12,
+      "in_bed_hr": 2.12,
       "note": null
     },
     "verdict": "live"
   },
-  "sleep_source": "hae:2026-08-11",
+  "sleep_source": "hae:2026-08-12",
   "today": {
-    "date": "2026-08-12",
-    "sleep_total_hr": 7.76,
-    "sleep_deep_hr": 1.98,
-    "sleep_rem_hr": 1.75,
-    "sleep_core_hr": 4.03,
-    "sleep_awake_hr": 0.11,
+    "date": "2026-08-13",
+    "sleep_total_hr": 0.71,
+    "sleep_deep_hr": 0.0,
+    "sleep_rem_hr": 0.34,
+    "sleep_core_hr": 0.37,
+    "sleep_awake_hr": 0.12,
     "hrv_avg": 52.3,
     "resting_hr": 69.4,
-    "steps": 1270,
+    "steps": 0,
     "active_energy_kcal": 0,
     "exercise_min": 0
   },
   "yesterday": null,
   "rings": {
     "sleep": {
-      "value": 100,
+      "value": 4,
       "unit": "%",
-      "raw_hr": 7.76,
+      "raw_hr": 0.71,
       "color": "blue",
-      "label": "7.8h",
-      "subtitle": "7.8h total \u00b7 deep 2.0h / REM 1.8h"
+      "label": "0.7h",
+      "subtitle": "0.7h total \u00b7 deep 0.0h / REM 0.3h"
     },
     "recovery": {
-      "value": 75,
+      "value": 46,
       "unit": "%",
-      "color": "green",
-      "label": "GREEN \u2014 push hard",
+      "color": "yellow",
+      "label": "YELLOW \u2014 train smart not hard",
       "subtitle": "HRV 52.3ms / RHR 69.4bpm"
     },
     "strain": {
-      "value": 0.4,
+      "value": 0.0,
       "unit": "/21",
       "color": "purple",
       "raw": {
-        "value": 0.4,
+        "value": 0.0,
         "max": 21,
         "kcal": 0,
-        "steps": 1270,
+        "steps": 0,
         "exercise_min": 0,
         "hr_load": 0.0,
-        "as_of": "2026-08-12T00:42:27+07:00",
+        "as_of": null,
         "source": "AutoSync .hae (live)"
       },
-      "subtitle": "0kcal / 1270st / 0min ex"
+      "subtitle": "0kcal / 0st / 0min ex"
     },
     "stress": {
       "value": 0,
@@ -101,21 +102,21 @@
     }
   },
   "spoons": {
-    "score": 11,
+    "score": 6,
     "max": 12,
-    "label": "Peak \u2014 push hard",
-    "color": "green"
+    "label": "Moderate \u2014 analysis over execution",
+    "color": "yellow"
   },
-  "recovery_pct": 75,
-  "strain_score": 0.4,
+  "recovery_pct": 46,
+  "strain_score": 0.0,
   "stress_pct": 0,
-  "sleep_pct": 100,
+  "sleep_pct": 4,
   "weekly_avg": {
     "hrv": 41.3,
     "resting_hr": 67.3,
     "sleep_hr": 5.72
   },
   "nutrition": {},
-  "last_pipeline_refresh": "2026-08-11T19:02:48.979305+00:00",
+  "last_pipeline_refresh": "2026-08-12T19:00:24.109442+00:00",
   "export_connected": false
 }
