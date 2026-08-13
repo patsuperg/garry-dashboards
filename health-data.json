@@ -1,45 +1,45 @@
 {
-  "generated": "2026-08-13T15:28:28.081026+07:00",
+  "generated": "2026-08-13T15:43:29.203722+07:00",
   "source": "health-engine v2",
   "device": "Apple Watch",
-  "coaching": "Solid foundation \u2014 unknown sleep, 64% recovery. Execute the priority list. Lock in quality sleep tonight to build on this.",
+  "coaching": "Well recovered (75%) and 7.8h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
   "today": {
     "date": "2026-08-13",
-    "spoons": 8,
+    "spoons": 10,
     "spoons_max": 12,
-    "spoons_label": "Solid \u2014 normal load",
+    "spoons_label": "Peak \u2014 push hard",
     "spoons_color": "green",
     "rings": {
       "sleep": {
-        "value": null,
+        "value": 100,
         "unit": "%",
-        "raw_hr": null,
-        "color": "gray",
-        "label": "no data",
-        "subtitle": "sleep feed has not reported \u2014 not a zero-sleep night"
+        "raw_hr": 7.76,
+        "color": "blue",
+        "label": "7.8h",
+        "subtitle": "7.8h total \u00b7 deep 2.0h / REM 1.8h"
       },
       "recovery": {
-        "value": 64,
+        "value": 75,
         "unit": "%",
-        "color": "yellow",
-        "label": "YELLOW \u2014 train smart not hard",
+        "color": "green",
+        "label": "GREEN \u2014 push hard",
         "subtitle": "HRV 52.3ms / RHR 69.4bpm"
       },
       "strain": {
-        "value": 2.6,
+        "value": 2.5,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 2.6,
+          "value": 2.5,
           "max": 21,
           "kcal": 314,
-          "steps": 3616,
+          "steps": 3079,
           "exercise_min": 8,
           "hr_load": 0.9,
           "source": "json_export",
-          "as_of": "2026-08-13T08:30:04+07:00"
+          "as_of": null
         },
-        "subtitle": "314kcal / 3616st / 8min ex"
+        "subtitle": "314kcal / 3079st / 8min ex"
       },
       "stress": {
         "value": 32,
@@ -49,7 +49,14 @@
         "subtitle": "HR 77bpm vs RHR 67"
       }
     },
-    "sleep_breakdown": null,
+    "sleep_breakdown": {
+      "total_hr": 7.76,
+      "deep_hr": 1.98,
+      "rem_hr": 1.75,
+      "core_hr": 4.03,
+      "awake_hr": 0.11,
+      "in_bed_hr": 7.87
+    },
     "hrv_overnight": 52.3,
     "rhr_overnight": 69.4,
     "baseline_14d": {
