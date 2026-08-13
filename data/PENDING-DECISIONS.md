@@ -62,5 +62,5 @@ Then: RWC booked? Carsales ad approved? Fiat listed?
 - [ ] 2026-08-12 · HAP share RED: kenilworth at 29% (observed_receipt, eff 2025-01-01). North-star is 90%+ — re-exam / re-tenant / confirm payee.  <!--HAP-RED-kenilworth-2025-01-01-->
 
 <!-- HAP-OVERDUE-MARKER -->
-| 🟡 | **HAP overdue — 2026-08** | 2 properties unconfirmed as of day 12: 505 W 25th St, 124 Kenilworth Ave. Auto-flagged by avenue-payment-parser.py; clears itself once payment posts. | — |
+| 🟡 | **HAP overdue — 2026-08** | 2 properties unconfirmed as of day 13: 505 W 25th St, 124 Kenilworth Ave. Auto-flagged by avenue-payment-parser.py; clears itself once payment posts. | — |
 <!-- /HAP-OVERDUE-MARKER -->

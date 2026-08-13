@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-13T01:57:27.109060+07:00",
+  "updated": "2026-08-14T01:59:21.812882+07:00",
   "feeds": {
     "apple_health_autosync": {
       "last_push": null,
@@ -8,7 +8,7 @@
       "note": "phone has not pushed recently \u2014 activity rings lag reality"
     },
     "eight_sleep": {
-      "stale_min": 10799.4,
+      "stale_min": 12241.3,
       "ok": false
     }
   },
@@ -28,9 +28,9 @@
   "unverified": [],
   "sleep_sources": {
     "eightsleep_json": {
-      "age_min": 10799.4,
+      "age_min": 12241.3,
       "ok": false,
-      "note": "fetcher has not written in 180.0h"
+      "note": "fetcher has not written in 204.0h"
     },
     "icloud_csv": {
       "newest": "2026-05-11",
@@ -38,17 +38,17 @@
       "note": "CSV export dead \u2014 newest is 2026-05-11"
     },
     "hae_sleep": {
-      "ok": true,
-      "records": 18,
-      "total_sleep_hr": 2.12,
-      "in_bed_hr": 2.12,
-      "note": null
+      "ok": false,
+      "records": 0,
+      "total_sleep_hr": 0,
+      "in_bed_hr": 0,
+      "note": "no sleep records at all"
     },
-    "verdict": "live"
+    "verdict": "ALL SLEEP SOURCES DOWN"
   },
   "sleep_source": "hae:2026-08-12",
   "today": {
-    "date": "2026-08-13",
+    "date": "2026-08-14",
     "sleep_total_hr": 0.71,
     "sleep_deep_hr": 0.0,
     "sleep_rem_hr": 0.34,
@@ -117,6 +117,6 @@
     "sleep_hr": 5.72
   },
   "nutrition": {},
-  "last_pipeline_refresh": "2026-08-12T19:00:24.109442+00:00",
+  "last_pipeline_refresh": "2026-08-13T19:00:22.383023+00:00",
   "export_connected": false
 }
