@@ -1,61 +1,61 @@
 {
-  "generated": "2026-08-13T15:43:29.203722+07:00",
+  "generated": "2026-08-13T15:58:30.417875+07:00",
   "source": "health-engine v2",
   "device": "Apple Watch",
-  "coaching": "Well recovered (75%) and 7.8h sleep. Full output available today \u2014 good day to push on priorities or train hard.",
+  "coaching": "Sleep was short at 0.7h and recovery is restricted (46%). Less movement today is the right call \u2014 conserve for what matters. Early night tonight to get back on track.",
   "today": {
     "date": "2026-08-13",
-    "spoons": 10,
+    "spoons": 5,
     "spoons_max": 12,
-    "spoons_label": "Peak \u2014 push hard",
-    "spoons_color": "green",
+    "spoons_label": "Restful \u2014 light movement, defer big decisions",
+    "spoons_color": "orange",
     "rings": {
       "sleep": {
-        "value": 100,
+        "value": 4,
         "unit": "%",
-        "raw_hr": 7.76,
+        "raw_hr": 0.71,
         "color": "blue",
-        "label": "7.8h",
-        "subtitle": "7.8h total \u00b7 deep 2.0h / REM 1.8h"
+        "label": "0.7h",
+        "subtitle": "0.7h total \u00b7 deep 0.0h / REM 0.3h"
       },
       "recovery": {
-        "value": 75,
+        "value": 46,
         "unit": "%",
-        "color": "green",
-        "label": "GREEN \u2014 push hard",
+        "color": "yellow",
+        "label": "YELLOW \u2014 train smart not hard",
         "subtitle": "HRV 52.3ms / RHR 69.4bpm"
       },
       "strain": {
-        "value": 2.5,
+        "value": 7.0,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 2.5,
+          "value": 7.0,
           "max": 21,
-          "kcal": 314,
-          "steps": 3079,
-          "exercise_min": 8,
-          "hr_load": 0.9,
+          "kcal": 2134,
+          "steps": 5462,
+          "exercise_min": 10,
+          "hr_load": 1.2,
           "source": "json_export",
-          "as_of": null
+          "as_of": "2026-08-13T15:32:49+07:00"
         },
-        "subtitle": "314kcal / 3079st / 8min ex"
+        "subtitle": "2134kcal / 5462st / 10min ex"
       },
       "stress": {
-        "value": 32,
+        "value": 54,
         "unit": "%",
-        "color": "green",
-        "label": "calm",
-        "subtitle": "HR 77bpm vs RHR 67"
+        "color": "yellow",
+        "label": "moderate",
+        "subtitle": "HR 83bpm vs RHR 67"
       }
     },
     "sleep_breakdown": {
-      "total_hr": 7.76,
-      "deep_hr": 1.98,
-      "rem_hr": 1.75,
-      "core_hr": 4.03,
-      "awake_hr": 0.11,
-      "in_bed_hr": 7.87
+      "total_hr": 0.71,
+      "deep_hr": 0.0,
+      "rem_hr": 0.34,
+      "core_hr": 0.37,
+      "awake_hr": 0.12,
+      "in_bed_hr": 0.71
     },
     "hrv_overnight": 52.3,
     "rhr_overnight": 69.4,
