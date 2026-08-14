@@ -1,7 +1,19 @@
 # PENDING DECISIONS
-_Generated 2026-08-12 06:30 BKK (King, session end). Derived from THREADS.md. Overwritten each session._
+_Updated 2026-08-14 17:25 BKK (King, session end). Derived from THREADS.md._
 
 ## ⛔ NEEDS PATRICK
+
+**0. 🟠 TELL LAURA: ASHEN MAY TURN UP AT THE HOUSE FOR THE LED FLOOR LAMPS.**
+He said *"I come tmr morning"* and *"I will pay cash on pick up"*. The lamps are now **withdrawn —
+you are keeping them** — but his Facebook thread was destroyed when that listing was deleted on
+14 Aug, so he cannot be told by any route. Naimul Islam is in the same position. Patrick has closed
+this ("Nothing for Ashen"), but **Laura should not be ambushed at the door.** One message to her.
+→ `Entities/issues/melbourne-selloff-2026-08.md`
+
+**0b. 30 seconds in the Claude app — clear 11 dead Remote Control sessions.**
+Old Chich sessions from 14 Jul – 8 Aug, all offline, cluttering the session list on your phone.
+They are account-side records; no tool on this machine can delete them.
+
 
 **1. 🔴 BOOK THE ROADWORTHY ON THE GOLF R — it is promised in a live, PAID ad.**
 The Carsales ad (`SSE-AD-20495100`, $519, published 11 Aug) and the Facebook listing both say
@@ -62,5 +74,5 @@ Then: RWC booked? Carsales ad approved? Fiat listed?
 - [ ] 2026-08-12 · HAP share RED: kenilworth at 29% (observed_receipt, eff 2025-01-01). North-star is 90%+ — re-exam / re-tenant / confirm payee.  <!--HAP-RED-kenilworth-2025-01-01-->
 
 <!-- HAP-OVERDUE-MARKER -->
-| 🟡 | **HAP overdue — 2026-08** | 2 properties unconfirmed as of day 13: 505 W 25th St, 124 Kenilworth Ave. Auto-flagged by avenue-payment-parser.py; clears itself once payment posts. | — |
+| 🟡 | **HAP overdue — 2026-08** | 2 properties unconfirmed as of day 14: 505 W 25th St, 124 Kenilworth Ave. Auto-flagged by avenue-payment-parser.py; clears itself once payment posts. | — |
 <!-- /HAP-OVERDUE-MARKER -->
