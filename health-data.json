@@ -1,14 +1,14 @@
 {
-  "generated": "2026-08-14T14:30:17.280725+07:00",
+  "generated": "2026-08-14T14:45:18.493553+07:00",
   "source": "health-engine v2",
-  "device": "Apple Watch",
+  "device": "Apple Watch + MFP",
   "coaching": "Sleep was short at 0.7h and recovery is restricted (46%). Less movement today is the right call \u2014 conserve for what matters. Early night tonight to get back on track.",
   "today": {
     "date": "2026-08-14",
-    "spoons": 6,
+    "spoons": 5,
     "spoons_max": 12,
-    "spoons_label": "Moderate \u2014 analysis over execution",
-    "spoons_color": "yellow",
+    "spoons_label": "Restful \u2014 light movement, defer big decisions",
+    "spoons_color": "orange",
     "rings": {
       "sleep": {
         "value": 4,
@@ -26,27 +26,26 @@
         "subtitle": "HRV 52.3ms / RHR 69.4bpm"
       },
       "strain": {
-        "value": 0.1,
+        "value": 0.5,
         "unit": "/21",
         "color": "purple",
         "raw": {
-          "value": 0.1,
+          "value": 0.5,
           "max": 21,
-          "kcal": 10,
-          "steps": 233,
+          "kcal": 58,
+          "steps": 815,
           "exercise_min": 0,
-          "hr_load": 0.0,
-          "source": "json_export",
-          "as_of": "2026-08-14T13:00:05+07:00"
+          "hr_load": 0.5,
+          "source": "json_export"
         },
-        "subtitle": "10kcal / 233st / 0min ex"
+        "subtitle": "58kcal / 815st / 0min ex"
       },
       "stress": {
-        "value": 0,
+        "value": 93,
         "unit": "%",
-        "color": "gray",
-        "label": "no HR data",
-        "subtitle": "HR ?bpm vs RHR ?"
+        "color": "red",
+        "label": "high",
+        "subtitle": "HR 95bpm vs RHR 67"
       }
     },
     "sleep_breakdown": {
@@ -74,11 +73,11 @@
       "source": "Apple Health CSV 30d avg"
     },
     "nutrition": {
-      "protein_g": 0.0,
-      "carbs_g": 0.0,
-      "fat_g": 0.0,
-      "calories_kcal": 0,
-      "has_data": false
+      "protein_g": 90.3,
+      "carbs_g": 126.4,
+      "fat_g": 19.0,
+      "calories_kcal": 1037,
+      "has_data": true
     }
   },
   "history": []
